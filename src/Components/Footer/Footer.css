@@ -1,0 +1,150 @@
+/* Footer.css */
+
+.footer-container {
+    background-color: #26A4B6;
+    color: #fff;
+    padding: 20px 0;
+  }
+  
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-links{
+    margin-top: 4rem;
+  }
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: block;
+  }
+  
+  .footer-links li {
+    margin-right: 20px;
+    line-height: 40px;
+  }
+
+  .footer-links h5{
+    font-weight: 500;
+    font-size: 24px;
+  }
+  
+  .footer-links a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 300;
+    font-size: 20px;
+  }
+  
+  .footer-social{
+    display: flex;
+    justify-content: space-around;
+    cursor: pointer;
+  }
+  
+  .footer-links .input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .footer-links input {
+    padding: 10px;
+    width: 350px;
+    border: 1px solid #ffff;
+    border-radius: 15px;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 10px;
+    outline: none;
+    position: relative;
+  }
+  .footer-links input::placeholder{
+    color: white;
+  }
+  .input-icon {
+    position: absolute;
+    top: 60%;
+    right: 1px;
+    text-align: center;
+    width: 40px;
+    background-color: #fff;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 30px;
+    transform: translateY(-50%);
+    color: #636E88;
+    cursor: pointer; /* Add a cursor pointer for better usability */
+  }
+  .input-icon svg {
+    width: 26px; /* Adjust the icon size as needed */
+    height: 26px;
+  }
+  .allrights{
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+/* Responsive styles for smaller screens */
+@media (max-width: 868px) {
+  .footer-links {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-links li {
+    /* margin-right: 0; */
+    margin-bottom: 10px;
+  }
+
+  .footer-links input {
+    width: 100%;
+    align-items: center;
+  }
+
+  .input-icon {
+    top: 60%;
+    right: 1px;
+  }
+}
+
+@media (max-width: 568px) {
+  .footer-links {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-content{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-links li {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .footer-links input {
+    width: 100%;
+    align-items: center;
+  }
+
+  .input-icon {
+    top: 60%;
+    right: 1px;
+  }
+}
+  

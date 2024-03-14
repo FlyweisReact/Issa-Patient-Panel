@@ -1,0 +1,131 @@
+/* .main-div-login {
+    border: 1px solid rgb(255, 255, 255);
+    height: 100vh;
+    width: 100%;
+
+    background-color: white;
+    font-size: 62.5%;
+    padding: 1%;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
+}
+
+.top-div-login {
+
+
+    width: 35%;
+    margin: auto;
+    height: 40%;
+}
+
+.bottom-div-login {
+
+    width: 50%;
+    margin: auto;
+    height: 58%;
+    border-radius: 8px;
+
+    background-color: #C5E2E8;
+
+}
+
+.login-form {
+
+    width: 60%;
+    margin: auto;
+    text-align: center;
+    padding-top: 2rem;
+    color: black;
+}
+
+.login-btn {
+    width: 100%;
+    background-color: #1A9FB2;
+    color: white;
+    padding: .4rem;
+    font-size: 1.4rem;
+    border-radius: 8px;
+}
+
+
+.register-btn {
+    width: 100%;
+    background-color: #C5E2E8;
+    color: #1A9FB2;
+    padding: .4rem;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    border: 1px solid #1A9FB2;
+    font-weight: bold;
+
+}
+
+
+@media screen and (max-width: 768px) {
+    .main-div-login {
+        border: 1px solid rgb(255, 255, 255);
+        height: 100vh;
+        width: 100%;
+
+        background-color: white;
+        font-size: 62.5%;
+        padding: 1%;
+        font-family: 'Montserrat', sans-serif;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .top-div-login {
+
+
+        width: 65%;
+        margin: auto;
+        height: 25%;
+        margin-top: 10%;
+    }
+
+    .bottom-div-login {
+
+        width: 90%;
+        margin: auto;
+        height: 45%;
+        border-radius: 8px;
+
+        background-color: #C5E2E8;
+
+    }
+
+    Form {
+
+        width: 70%;
+        margin: auto;
+        text-align: center;
+        padding-top: 2rem;
+        color: black;
+    }
+
+    .login-btn {
+        width: 100%;
+        background-color: #1A9FB2;
+        color: white;
+        padding: .4rem;
+        font-size: 1.4rem;
+        border-radius: 8px;
+    }
+
+
+    .register-btn {
+        width: 100%;
+        background-color: #C5E2E8;
+        color: #1A9FB2;
+        padding: .4rem;
+        font-size: 1.2rem;
+        border-radius: 8px;
+        border: 1px solid #1A9FB2;
+        font-weight: bold;
+
+    }
+
+    html {
+        font-size: 70%;
+    }
+} */

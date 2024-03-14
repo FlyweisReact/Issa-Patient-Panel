@@ -1,0 +1,111 @@
+/* Modal.css */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+.modal-content {
+  position: relative;
+  top: 100px;
+  left: 450px;
+  background: #fff;
+  padding: 20px;
+  width: 400px;
+  height: 600px;
+  text-align: start;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: #1a9fb2;
+}
+
+.profilemodal-container {
+}
+
+.profilemodal-header {
+  text-align: center;
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
+.profilemodal-header h2 {
+  color: black;
+  font-weight: 500;
+  font-size: 24px;
+}
+.profilemodal-header p {
+  color: #4daf4e;
+  font-weight: 500;
+  font-size: 16px;
+}
+.profilemodal-header span {
+  color: #1e1e1e99;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.profilemodal-image {
+  margin-left: 100px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  position: relative;
+}
+.personalmodal-info {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.personalmodal-info p {
+  color: #1e1e1ecc;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.profilemodalbutton {
+  width: 255px;
+  height: 43px;
+  background: transparent;
+  border: 2px solid #0c5c75;
+  border-radius: 10px;
+  color: #0c5c75;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+@media (max-width: 1280px) {
+  .modal-content {
+    position: relative;
+    top: 130px;
+    left: 400px;
+    bottom: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .modal-content {
+    position: relative;
+    top: 130px;
+    left: 150px;
+    bottom: 0;
+  }
+}
+@media (max-width: 568px) {
+  .modal-content {
+    position: relative;
+    top: 130px;
+    left: 0;
+    bottom: 0;
+  }
+}

@@ -1,0 +1,141 @@
+/* ProfilePage.css */
+
+.profile{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin-top: 20px;
+}
+.profile-container {
+    max-width: 600px;
+    /* margin: 0 auto; */
+    padding: 30px;
+  }
+  
+  .profile-header {
+    text-align: center;
+  }
+  .profile-header h2{
+    color: black;
+    font-weight: 500;
+    font-size: 24px;
+  }
+  .profile-header p{
+    color: #4DAF4E;
+    font-weight: 500;
+    font-size: 18px;
+  }
+  .profile-header span{
+    color: #1E1E1E99;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  
+  .profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    position: relative;
+    left: 200px;
+  }
+  
+  .personal-info {
+    margin-top: 20px;
+  }
+  .personal-info p{
+    color: #000000;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  .personal-info span{
+    color: #1E1E1E99;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  
+  
+  .personal-info h3 {
+    color: #000000;
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .profile_right p{
+    color: #000000;
+  }
+
+  .profileppointments p:nth-child(1){
+    font-weight: 600;
+    font-size: 24px;
+    color: #000000;
+  }
+
+  .nurse{
+
+  }
+
+  .nurse p{
+    font-weight: 600;
+    font-size: 24px;
+    color: #000000;
+  }
+  .nurse-card{
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .nursecard{
+    width: 102px;
+    height: 151px;
+  }
+  .nursecard img{
+    width: 93px;
+    height: 93px;
+    border-radius: 50%;
+  }
+  .nursecard p{
+    font-weight: 500;
+    font-size: 14px;
+    color: #000000;
+    margin-top: 20px;
+  }
+  .nursecard span{
+    font-weight: 500;
+    font-size: 18px;
+    color: #1E1E1E99;
+    margin-top: 20px;
+  }
+
+/* Responsive styles for screens 868px and below */
+@media only screen and (max-width: 868px) {
+  .profile{
+    width: 100%;
+}
+.profile-image {
+  position: relative;
+  left: 100px;
+}
+}
+
+/* Responsive styles for screens 568px and below */
+@media only screen and (max-width: 568px) {
+  .profile{
+    width: 100%; /* One card in one row */
+    display: block;
+  }
+  .profile-header p{
+    font-size: 15px;
+  }
+  .profile-header span{
+    font-size: 16px;
+  }
+  .personal-info p{
+    font-size: 15px;
+  }
+  .profile-image {
+    position: relative;
+    left: 50px;
+  }
+}

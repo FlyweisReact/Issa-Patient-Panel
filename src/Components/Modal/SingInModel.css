@@ -1,0 +1,74 @@
+/* Modal.css */
+.modal-overlay-sing {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+.modal-content-sing {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1a9fb2;
+  padding: 20px;
+  top: 30%;
+  width: 400px;
+  height: 300px;
+  border-radius: 20px;
+}
+
+.close-btn-sing {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: black;
+}
+
+.input_singin_button {
+  width: 80%;
+  margin: auto;
+}
+
+.input_singin_button input {
+  outline: none;
+  width: 100%;
+}
+
+.sing_in_submit_button {
+  position: absolute;
+  bottom: -20%;
+  width: 380px;
+}
+
+.sing_in_submit_button button {
+  background-color: #1a9fb2;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  font-weight: 600;
+  color: white;
+  font-size: 16px;
+  transition: all 0.5s ease;
+}
+
+.sing_in_submit_button button:hover {
+  transform: scale(1.07);
+}
+
+@media screen and (max-width: 480) {
+  .input_singin_button {
+    width: 100%;
+    margin: auto;
+  }
+}

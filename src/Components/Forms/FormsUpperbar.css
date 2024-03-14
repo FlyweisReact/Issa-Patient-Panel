@@ -1,0 +1,83 @@
+.formheading1 {
+  /* display: flex; */
+  /* align-items: center; */
+}
+
+
+.formsheading2 {
+  text-align: center;
+  padding: 20px;
+  width: inherit;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border: 1px solid #ffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  /* Add your preferred box shadow */
+  border-radius: 10px;
+  background: #ffff;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+
+}
+
+.checkboxitem125555 {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  gap: 10px
+}
+
+.checkboxitem125555 label {
+  font-size: 22px;
+  font-weight: 600;
+  color: #000000;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.formsheading2 h1 {
+  font-size: 24px;
+  font-weight: 500;
+  color: #000000;
+}
+
+
+.formHeadingChangesTreatmentPlan {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+
+/* Add any additional styling as needed */
+
+
+@media(max-width: 900px) {
+  .formsheading2 {
+    width: 90%;
+    height: auto;
+    margin: auto;
+  }
+}
+
+@media(max-width: 568px) {
+  .formsheading2 {
+    width: 90%;
+    height: auto;
+    margin: auto;
+  }
+
+  .formsheading2 h1 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #000000;
+  }
+
+  .checkboxitem125555 label {
+    font-size: 16px;
+    font-weight: 400;
+    color: #000000;
+
+  }
+}

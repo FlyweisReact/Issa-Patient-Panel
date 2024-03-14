@@ -1,0 +1,99 @@
+.notificationmodal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+   
+}
+
+.notificationmodal-content {
+    position: relative;
+    overflow-y: scroll;
+    top: 100px;
+    left: 400px;
+    background: #fff;
+    padding: 20px;
+    width: 510px;
+    height: 350px;
+    text-align: start;
+}
+
+.notificationmodal-content::-webkit-scrollbar{
+    display: none;
+}
+
+.notification h5 {
+    color: #0C5C75;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.notification hr {
+    width: 470px;
+    color: #000000;
+    border: 1px solid;
+}
+
+.notification p {
+    font-weight: 700;
+    font-size: 14px;
+    color: #0C5C75;
+    margin-top: 20px;
+}
+
+.notificationcontent {
+    display: flex;
+}
+
+.notificationcontent span {
+    font-weight: 500;
+    font-size: 14px;
+    color: #000000;
+    margin-left: 20px;
+}
+
+.notificationcontent img {
+    width: 50px;
+    height: 50px;
+}
+
+
+
+
+@media(max-width: 1280px) {
+    .notificationmodal-content {
+        position: relative;
+        top: 130px;
+        left: 350px;
+        padding: 20px;
+        width: 510px;
+        height: 350px;
+    }
+}
+
+@media(max-width: 900px) {
+    .notificationmodal-content {
+        position: relative;
+        top: 130px;
+        left: 150px;
+        padding: 20px;
+        width: 400px;
+        height: 350px;
+    }
+}
+
+@media(max-width: 568px) {
+    .notificationmodal-content {
+        position: relative;
+        top: 130px;
+        left: 0;
+        padding: 20px;
+        width: 400px;
+        height: 350px;
+    }
+}

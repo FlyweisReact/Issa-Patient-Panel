@@ -1,0 +1,87 @@
+.Appointment_Schedulingcontainer {
+  margin: auto;
+
+}
+
+.Schedulingcards {
+  display: flex;
+  margin-top: 30px;
+}
+
+.Scheduling-card {
+  width: 167px;
+  height: 204px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+  background: linear-gradient(50deg, #d0f7e6 16%, #defaed 40%);
+}
+
+.Scheduling-card p {
+  text-align: center;
+  margin: 10px;
+  flex-grow: 1;
+  color: #0C5C75;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.Scheduling-card a {
+  text-align: center;
+  margin: 10px;
+  flex-grow: 1;
+  color: #0C5C75;
+  font-weight: 500;
+  font-size: 16px;
+  text-decoration: none;
+  /* Removes underline */
+}
+
+.SchedulingCard {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.todayappointments {
+  display: block;
+}
+
+.SchedulingCard p:nth-child(1) {
+  color: #0C5C75;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* Responsive styles for screens 868px and below */
+@media only screen and (max-width: 868px) {
+  .Schedulingcards {
+    flex-wrap: wrap;
+    /* Allow flex items to wrap to the next line */
+    justify-content: center;
+    /* Center items when they wrap */
+  }
+
+  .Scheduling-card {
+    width: 200px;
+    /* Two cards in one row */
+    margin: 10px 10px;
+    /* Add some space between cards */
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .Scheduling-card {
+    width: 100%;
+    /* One card in one row */
+  }
+
+  .SchedulingCard {
+    display: block;
+    width: 100%;
+  }
+}

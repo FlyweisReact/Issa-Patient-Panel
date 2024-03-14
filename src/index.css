@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  font-family: Quicksand !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden !important;
+  font-family: 'Quicksand', sans-serif;
+
+}
+
+code {
+  font-family: Quicksand !important;
+}
+
+*,
+html {
+  font-family: Quicksand !important;
+}

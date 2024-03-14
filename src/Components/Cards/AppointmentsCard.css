@@ -1,0 +1,94 @@
+/* Card.css */
+.card {
+    display: flex;
+    border: 1px solid #ddd;
+    margin: 10px;
+    width: 350px; 
+    height: auto;
+  }
+  .cardscontent{
+    display: inline-flex;
+    padding: 10px;
+  }
+  .card-image {
+    width: 95px; 
+    height: 120px; 
+    margin-right: 10px;
+  }
+ 
+  
+  .card-content {
+    flex-grow: 1;
+    /* padding: 10px; */
+    position: relative;
+   
+  }
+
+  .delete_button{
+    position: absolute;
+    right: 0;
+    font-size: 1.5rem;
+    top: -0.3rem;
+    cursor: pointer;
+  }
+
+  .card-content p{
+    color: #000000;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  
+  .card-content h6{
+    color: #0C5C75;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+/* Responsive styles for screens 768px and below */
+@media only screen and (max-width: 868px) {
+  .card {
+    width: 100%; /* Make the card take full width on smaller screens */
+    border: 1px solid black;
+  }
+
+  .cardscontent {
+    flex-direction: row; /* Stack items vertically on smaller screens */
+  }
+
+  .card-image {
+    width: 55px; 
+    height: 90px;
+    margin-right: 5px;
+  }
+
+  .card-content p {
+    font-size: 12px; /* Adjust font size for smaller screens */
+  }
+
+  .card-content h6 {
+    font-size: 15px; /* Adjust font size for smaller screens */
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .card {
+    width: 100%; /* Make the card take full width on smaller screens */
+  }
+
+  .cardscontent {
+    flex-direction: row; /* Stack items vertically on smaller screens */
+  }
+  .card-image {
+    width: 95px; 
+    height: 120px; 
+    margin-right: 5px;
+  }
+
+  .card-content p {
+    font-size: 13px; /* Adjust font size for smaller screens */
+  }
+
+  .card-content h6 {
+    font-size: 18px; /* Adjust font size for smaller screens */
+  }
+}

@@ -1,0 +1,72 @@
+.Intakemodal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+}
+
+.Intakemodal-content {
+    position: fixed;
+    top: 100px;
+    /* left: 400px; */
+    background: #fff;
+    padding: 20px;
+    width: 500px;
+    height: auto;
+    text-align: start;
+}
+
+
+.completeintake{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.completeintake div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.completeintake p{
+    font-weight: 500;
+    font-size: 16px;
+    color: #000000;
+}
+
+.completeintake img{
+    width: 98px;
+    height: 98px;
+    align-items: center;
+    margin: auto;
+}
+
+.completeintakebutton{
+    width: 350px;
+    height: 45px;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #0C5C75;
+    border: none;
+   margin-bottom: 20px;
+}
+.skiptakebutton{
+    width: 350px;
+    height: 45px;
+    color: #0C5C75;
+    font-size: 16px;
+    font-weight: 600;
+    background: transparent;
+    border: 1px solid #0C5C75;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,87 @@
+.appointmentcontainer{
+    margin-top: 20px;
+}
+.appointmentcontent{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.appointmentcontent p:nth-child(1){
+    font-weight: 600;
+    font-size: 20px;
+    color: black;
+}
+.appointmentcontent p:nth-child(2){
+    color: #1A9FB2;
+    border-bottom: 1px solid #1A9FB2;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.appointmentCard{
+    display: flex;
+    gap: 2%;
+    flex-wrap: wrap;
+}
+
+/* file upload */
+.file_parent{
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    border: 1px solid rgb(184, 173, 173);
+    color: black;
+}
+
+.file_parent_button{
+    background-color: #1A9FB2;
+    cursor: pointer;
+    width: 170px;
+    height: 40px;
+    border-radius: 2px;
+    outline: none;
+    border: none;
+    color:"white"
+}
+
+/* Responsive styles for screen size 867px and below */
+@media only screen and (max-width: 867px) {
+    .appointmentcontainer {
+        margin-top: 10px; /* Adjust margin for smaller screens */
+    }
+
+    .appointmentcontent {
+        flex-direction: column; /* Stack items vertically */
+    }
+
+    .appointmentcontent p:nth-child(1) {
+        font-size: 18px; /* Adjust font size for smaller screens */
+    }
+
+    .appointmentcontent p:nth-child(2) {
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+}
+
+/* Responsive styles for screen size 568px and below */
+@media only screen and (max-width: 568px) {
+    .appointmentcontainer {
+        margin-top: 5px; /* Adjust margin for even smaller screens */
+    }
+
+    .appointmentcontent p:nth-child(1) {
+        font-size: 16px; /* Further adjust font size for smaller screens */
+    }
+
+    .appointmentcontent p:nth-child(2) {
+        font-size: 12px; /* Further adjust font size for smaller screens */
+    }
+    .appointmentCard{
+        display: block;
+        /* justify-content: space-between; */
+        gap: 5%;
+    }
+}
