@@ -99,6 +99,20 @@ export const safety_form = async (payLoad) => {
   }
 };
 
+export const Safety_form_get = async (id,setGetApiData) => {
+  try {
+    const {data} = await axios.get(
+      `${BaseUrl}Patient/getResidentSafetyPlan/${id}`,
+      
+      Token
+    );
+    setGetApiData(data?.data);
+    return data;
+  } catch (e) {
+    // show_notification("fail !", `${e?.response?.data?.message}`, "danger");
+  }
+};
+
 export const initialAssestment_form = async (payLoad) => {
   try {
     const res = await axios.post(

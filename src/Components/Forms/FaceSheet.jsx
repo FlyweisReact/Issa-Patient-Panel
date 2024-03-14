@@ -98,7 +98,7 @@ const FaceSheet = () => {
   //   setPreferredHospitalPhone("");
   //   setPreferredHospitalAddress("");
   // }
-  console.log("patientId face sheet",patientId );
+
 
 
 
@@ -410,7 +410,7 @@ if (getApiDataAdmit) {
   return (
     <>
     <div ref={componentRef}>
-      <div className="backbutton">
+      <div className="backbutton hidePrint">
         <IoArrowBackCircle
           style={{
             color: "#1A9FB2",
@@ -430,7 +430,7 @@ if (getApiDataAdmit) {
           <form onSubmit={handleData}>
           <div className="form-section">
 
-            <div className="box-image-container">
+            <div className="box-image-container" style={{marginTop:"2rem"}}>
               <div className="form-field-update">
                 <div className="form-field-child">
               <label htmlFor="residentFullName">Resident Name:</label>
@@ -1268,15 +1268,16 @@ if (getApiDataAdmit) {
                 </button>
                 </div>
               </div> 
-              <div>
+             
+              
+            </div>
+            <div style={{textAlign:"right"}}>
                 {
                   signature && (
                     <p className="signature_name_print">Digitally Sign by {signature} {signatureDate} {signatureTime}</p>
                   )
                 }
               </div>
-              
-            </div>
 
             {
               showSignature && (<SingInUpdateModel 
@@ -1284,7 +1285,7 @@ if (getApiDataAdmit) {
                 singin={signature}
                 setSingIn={setSignature}
                 setDateAndTime={setSignatureDate}
-                setSegnatureTime={setSegnatureTime}
+                setSignatureTime={setSegnatureTime}
                 />)
             }
     

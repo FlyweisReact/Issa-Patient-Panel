@@ -3,7 +3,7 @@ import { IoArrowBackCircle } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import formupload from "../../img/formupload.png";
 import { CiCirclePlus } from "react-icons/ci";
-import { user_detail, safety_form } from "../../Api_Collection/Api";
+import { user_detail, safety_form,Safety_form_get } from "../../Api_Collection/Api";
 import SingInModel from "../Modal/SingInModel";
 import Select from "react-select";
 import Draftinmodel from "../Modal/Draftinmodel";
@@ -38,6 +38,7 @@ const SafetyPlan = () => {
   };
 
   //singIn model state
+  const [getApiData,setGetApiData]=useState("");
   const [showSingIn, setShowSingIn] = useState(false);
   const [userDetail, setUserDetail] = useState("");
   const navigate = useNavigate();
@@ -57,7 +58,7 @@ const SafetyPlan = () => {
   const [socialName1, setSocialName1] = useState("");
   const [socialPhone1, setSocialPhone1] = useState("");
   const [socialRelationship1, setSocialRelationship1] = useState("");
-  const [socialArray, setSocialArray] = useState([]);
+  // const [socialArray, setSocialArray] = useState([]);
   //address and place
   const [address, setAdress] = useState("");
   const [place, setPlace] = useState("");
@@ -67,16 +68,79 @@ const SafetyPlan = () => {
   const [helpRelationship, setHelpRelationship] = useState("");
   const [helpArray, setHelpArray] = useState([]);
   //Professionals or agencies I can contact during Crisis
+  const [professionalsClinicianName,setProfessionalsClinicianName]=useState("")
+  const [professionalsPhone,setProfessionalsPhone]=useState("")
+  const [professionalsRelationship,setProfessionalsRelationship]=useState("")
   const [crisisName, setCrisisName] = useState("");
   const [crisisPhone, setCrisisPhone] = useState("");
   const [crisisRelationship, setCrisisRelationship] = useState("");
-  const [crisisArray, setCrisisArray] = useState([]);
-  const [localEmergencyNumber,setLocalEmergencyNumber]=useState("")
+  const [crisisName1, setCrisisName1] = useState("");
+  const [crisisPhone1, setCrisisPhone1] = useState("");
+  const [crisisRelationship1, setCrisisRelationship1] = useState("");
+
+
+
+  // const [crisisArray, setCrisisArray] = useState([]);
+  // const [localEmergencyNumber,setLocalEmergencyNumber]=useState("")
   //environmentSafetyMedications
   const [enviromentAdress, setEnviromentAdress] = useState([]);
   //singin
   const [singin, setSingIn] = useState("");
-  const [signInDate,setSignInDate]=useState("");
+  const [signatureDate,setSignatureDate]=useState("");
+  const [signatureTime,setSignatureTime]=useState("");
+  
+  useEffect(()=>{
+    // add patient name key and date key
+    // setUser();
+    // setUserId("");
+    // setDate("");
+    setWarning1(getApiData?.warningSigns?.[0]?.warning1);
+    setWarning2(getApiData?.warningSigns?.[0]?.warning2);
+    setWarning3(getApiData?.warningSigns?.[0]?.warning3);
+    setInernalCopy1(getApiData?.internalCopingStrategies?.[0]?.internalCopy1);
+    setInernalCopy2(getApiData?.internalCopingStrategies?.[0]?.internalCopy2);
+    setInernalCopy3(getApiData?.internalCopingStrategies?.[0]?.internalCopy3);
+    setSocialName(getApiData?.distractionsPeople?.[0]?.name);
+    setSocialPhone(getApiData?.distractionsPeople?.[0]?.phone);
+    setSocialRelationship(getApiData?.distractionsPeople?.[0]?.relationship)
+    setSocialName1(getApiData?.distractionsPeople?.[1]?.name);
+    setSocialPhone1(getApiData?.distractionsPeople?.[1]?.phone);
+    setSocialRelationship1(getApiData?.distractionsPeople?.[1]?.relationship);
+    setAdress(getApiData?.distractionsPlace);
+    setPlace(getApiData?.distractionsPlane);
+    setHelpName("");
+    setHelpPhone("");
+    setHelpRelationship("");
+    setHelpArray(getApiData?.helpContactsPeople ? getApiData?.helpContactsPeople : []);
+    // Professionals or agencies I can contact during Crisis:
+    setProfessionalsClinicianName(getApiData?.professionalsClinicianName);
+    setProfessionalsPhone(getApiData?.professionalsPhone);
+    
+    setCrisisName(getApiData?.professionals?.[0]?.clinicianName);
+    setCrisisPhone(getApiData?.professionals?.[0]?.phone);
+    setCrisisRelationship(getApiData?.professionals?.[0]?.relationship);
+    setCrisisName1(getApiData?.professionals?.[1]?.clinicianName);
+    setCrisisPhone1(getApiData?.professionals?.[1]?.phone);
+    setCrisisRelationship1(getApiData?.professionals?.[1]?.relationship);
+
+    // setCrisisArray([]);
+    // setLocalEmergencyNumber("")
+    setEnviromentAdress(getApiData?.environmentSafetyMedications
+      ? getApiData.environmentSafetyMedications.map(item => ({
+          label: item, // Assuming 'name' is the property you want to use as label
+          value: item    // Assuming 'id' is the property you want to use as value
+        }))
+      : []);
+    setSingIn(getApiData?.signature);
+    setSignatureDate(getApiData?.signatureDate?.slice(0,10));
+    setSignatureTime(getApiData?.signatureTime);
+  },[getApiData])
+
+  useEffect(()=>{
+    Safety_form_get(userId,setGetApiData);
+  },[userId])
+  console.log(userId,"user id")
+  console.log("user detail 11111",getApiData)
 
   useEffect(() => {
     setUserId(userDetail?._id);
@@ -100,30 +164,45 @@ const SafetyPlan = () => {
     setInernalCopy3("");
     setSocialName("");
     setSocialPhone("");
-    setSocialPhone("");
+    setSocialRelationship("")
     setSocialName1("");
     setSocialPhone1("");
-    setSocialPhone1("");
-    setSocialRelationship("");
-    setSocialArray([]);
+    setSocialRelationship1("");
     setAdress("");
     setPlace("");
     setHelpName("");
     setHelpPhone("");
     setHelpRelationship("");
     setHelpArray([]);
+    // Professionals or agencies I can contact during Crisis:
+    setProfessionalsClinicianName("");
+    setProfessionalsPhone("");
+    setProfessionalsRelationship("");
     setCrisisName("");
     setCrisisPhone("");
     setCrisisRelationship("");
-    setCrisisArray([]);
-    setLocalEmergencyNumber("")
-    setEnviromentAdress("");
+    setCrisisName1("");
+    setCrisisPhone1("");
+    setCrisisRelationship1("");
+
+    // setCrisisArray([]);
+    // setLocalEmergencyNumber("")
+    setEnviromentAdress([]);
     setSingIn("");
+    setSignatureDate("");
+    setSignatureTime("");
   };
 
   const handlePost = (e) => {
     e.preventDefault();
+
+    const enviromentAdressArray=[];
+
+    for(let i=0;i<enviromentAdress.length;i++){
+      enviromentAdressArray.push(enviromentAdress[i].value);
+    }
     
+
     const data = {
       patientId: userId,
       date: date,
@@ -139,14 +218,14 @@ const SafetyPlan = () => {
       }],
       distractionsPeople :[
         {
-          socialName,
-          socialPhone,
-          socialRelationship
+          name: socialName,
+          phone: socialPhone,
+          relationship: socialRelationship
         },
         {
-          socialName1,
-          socialPhone1,
-          socialRelationship1
+          name: socialName1,
+          phone: socialPhone1,
+          relationship: socialRelationship1
         }
       ],
       // internalCopyinternalCopy: socialArray,
@@ -154,29 +233,46 @@ const SafetyPlan = () => {
       distractionsPlane: place,
       // array add
       helpContactsPeople: helpArray,
-      professionals: crisisArray,
+      // Professionals or agencies I can contact during Crisis
+      professionalsClinicianName,
+      professionalsPhone,
+      professionalsRelationship,
+      // professionals: crisisArray,
+      professionals: [
+        {
+          clinicianName: crisisName,
+          phone : crisisPhone,
+          relationship: crisisRelationship
+        },
+        {
+          clinicianName: crisisName1,
+          phone:  crisisPhone1,
+         relationship: crisisRelationship1
+        }
+      ],
       //penddig
-      localEmergencyNumber,
-      environmentSafetyMedications: enviromentAdress,
+      environmentSafetyMedications: enviromentAdressArray,
       signature: singin,
+      signatureDate,
+      signatureTime
     };
     safety_form(data);
     initial_value();
     navigate("/intake");
   };
 
-  const handleSocialArray = () => {
+  // const handleSocialArray = () => {
     
-    const newContact = {
-      name: socialName,
-      phone: socialPhone,
-      relationship: socialRelationship,
-    };
-    setSocialArray((prev) => [...prev, newContact]);
-    setSocialName("");
-    setSocialPhone("");
-    setSocialRelationship("");
-  };
+  //   const newContact = {
+  //     name: socialName,
+  //     phone: socialPhone,
+  //     relationship: socialRelationship,
+  //   };
+  //   setSocialArray((prev) => [...prev, newContact]);
+  //   setSocialName("");
+  //   setSocialPhone("");
+  //   setSocialRelationship("");
+  // };
   const handleHelpArray = () => {
     if(helpName || helpPhone || helpRelationship){
       const newContact = {
@@ -191,25 +287,24 @@ const SafetyPlan = () => {
     };
     }
     
-
   //handle delete array
   const handleDeleteArray=(index)=>{
     setHelpArray((prev)=>[...prev.filter((_,i)=>i!==index)]);
   }
 
 
-  const handleCrisisArray = () => {
-    const newContact = {
-      clinicianName: crisisName,
-      phone: crisisPhone,
-      relationship: crisisRelationship,
-    };
-    setCrisisArray((prev) => [...prev, newContact]);
+  // const handleCrisisArray = () => {
+  //   const newContact = {
+  //     clinicianName: crisisName,
+  //     phone: crisisPhone,
+  //     relationship: crisisRelationship,
+  //   };
+  //   setCrisisArray((prev) => [...prev, newContact]);
 
-    setCrisisName("");
-    setCrisisPhone("");
-    setCrisisRelationship("");
-  };
+  //   setCrisisName("");
+  //   setCrisisPhone("");
+  //   setCrisisRelationship("");
+  // };
 
   // Making the environment safe
   const enviromentAdressOptions=[
@@ -481,10 +576,10 @@ const SafetyPlan = () => {
                 <input
                   type="text"
 
-                  value={socialName}
+                  value={socialName1}
                   placeholder="Enter name"
                   
-                  onChange={(e) => setSocialName(e.target.value)}
+                  onChange={(e) => setSocialName1(e.target.value)}
                 />
               </div>
                 <div className="form-field-child">
@@ -492,10 +587,10 @@ const SafetyPlan = () => {
                 <input
                   type="text"
 
-                  value={socialPhone}
+                  value={socialPhone1}
                   placeholder="Enter number"
                   
-                  onChange={(e) => setSocialPhone(e.target.value)}
+                  onChange={(e) => setSocialPhone1(e.target.value)}
                 />
               </div>
                 <div className="form-field-child">
@@ -503,10 +598,10 @@ const SafetyPlan = () => {
                 <input
                   type="text"
 
-                  value={socialRelationship}
+                  value={socialRelationship1}
                   placeholder="Enter text"
                   
-                  onChange={(e) => setSocialRelationship(e.target.value)}
+                  onChange={(e) => setSocialRelationship1(e.target.value)}
                 />
               </div>
 
@@ -677,10 +772,10 @@ const SafetyPlan = () => {
                 <input
                   type="text"
                  
-                  value={crisisName}
+                  value={professionalsClinicianName}
                   placeholder="Enter name"
                   
-                  onChange={(e) => setCrisisName(e.target.value)}
+                  onChange={(e) => setProfessionalsClinicianName(e.target.value)}
                 />
               </div>
                 <div className="form-field-child">
@@ -688,10 +783,10 @@ const SafetyPlan = () => {
                 <input
                   type="text"
                
-                  value={crisisPhone}
+                  value={professionalsPhone}
                   placeholder="Enter number"
                   
-                  onChange={(e) => setCrisisPhone(e.target.value)}
+                  onChange={(e) => setProfessionalsPhone(e.target.value)}
                 />
               </div>
               </div>
@@ -713,10 +808,10 @@ const SafetyPlan = () => {
                   <input
                     type="text"
 
-                    value={crisisName}
+                    value={crisisPhone}
                     placeholder="Enter name"
 
-                    onChange={(e) => setCrisisName(e.target.value)}
+                    onChange={(e) => setCrisisPhone(e.target.value)}
                   />
                 </div>
 
@@ -739,10 +834,10 @@ const SafetyPlan = () => {
                   <input
                     type="text"
 
-                    value={crisisName}
+                    value={crisisName1}
                     placeholder="Enter name"
 
-                    onChange={(e) => setCrisisName(e.target.value)}
+                    onChange={(e) => setCrisisName1(e.target.value)}
                   />
                 </div>
                 <div className="form-field-child">
@@ -750,10 +845,10 @@ const SafetyPlan = () => {
                   <input
                     type="text"
 
-                    value={crisisName}
+                    value={crisisPhone1}
                     placeholder="Enter name"
 
-                    onChange={(e) => setCrisisName(e.target.value)}
+                    onChange={(e) => setCrisisPhone1(e.target.value)}
                   />
                 </div>
 
@@ -762,16 +857,17 @@ const SafetyPlan = () => {
                   <input
                     type="text"
 
-                    value={crisisRelationship}
+                    value={crisisRelationship1}
                     placeholder="Enter text"
 
-                    onChange={(e) => setCrisisRelationship(e.target.value)}
+                    onChange={(e) => setCrisisRelationship1(e.target.value)}
                   />
               </div>
 
             </div>
 
-            <div className="needs-interventions-container">
+
+            {/* <div className="needs-interventions-container">
               <div className="needs-interventions-column3">
                 {crisisArray.length > 0 && (
                   <table>
@@ -792,7 +888,7 @@ const SafetyPlan = () => {
                   </table>
                 )}
               </div>
-            </div>
+            </div> */}
 
 
             <h5
@@ -862,27 +958,28 @@ const SafetyPlan = () => {
                 </button>
                 </div>
                 <div>
-                    <button className="upload-button signature_shift_margin" type="button" onClick={handlePrint2} >
+                    <button className="upload-button signature_shift_margin" type="button" onClick={()=>handlePrint2()}>
                   PRINT THIS FORM
                 </button>
                 </div>
-              </div> 
-              <div>
+              </div>
+            </div>
+
+            <div>
                 {
                   singin && (
-                    <p className="signature_name_print">Digitally Sign by {singin} {signInDate}</p>
+                    <p className="signature_name_print">Digitally Sign by {singin} {signatureDate} {signatureTime}</p>
                   )
                 }
               </div>
-              
-            </div>
 
             {
               showSingIn && (<SingInUpdateModel 
                 onClose={()=>setShowSingIn(false)}
                 singin={singin}
                 setSingIn={setSingIn}
-                setDateAndTime={setSignInDate}
+                setDateAndTime={setSignatureDate}
+                setSignatureTime={setSignatureTime}
                 />)
             }
             {/* <div class="file-upload-box">
@@ -896,11 +993,11 @@ const SafetyPlan = () => {
               </div>
             </div> */}
           </div>
-          {/* <div className="form-actions">
-            <button type="submit"  className="initalsubmit">
+          <div className="form-actions">
+            <button type="submit"  className="hidePrint" style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem"}}>
               SUBMIT DETAILS
             </button>
-          </div> */}
+          </div>
         </form>
       </div>
       {/* {showSingIn && (

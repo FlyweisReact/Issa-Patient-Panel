@@ -9,7 +9,7 @@ import { BaseUrl, show_notification as ShowMsg   } from "../../Api_Collection/Ap
 import MyImg from "./issa_logo_login.jpg"
 import logo from "../../img/OasisNotes.png"
 //login form 
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 

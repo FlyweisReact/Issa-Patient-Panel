@@ -54,8 +54,8 @@ const BookAppointment = () => {
               <h1>BOOK NEW APPOINTMENT</h1>
             </div>
           </div>
-          <form onSubmit={handlePostData}>
-            <div className="booking-section">
+          <form onSubmit={handlePostData} style={{textAlign:"center"}}>
+            <div className="booking-section" >
               <h2>Booking Details</h2>
               <div className="form-field">
                 <label htmlFor="AHCCCS">Name</label>

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./SingInModel.css"; // Import your modal styles if needed
 import { IoMdClose } from "react-icons/io";
 
-const SingInUpdateModel = ({ onClose, singin, setSingIn,setDateAndTime,setSegnatureTime }) => {
+const SingInUpdateModel = ({ onClose, singin, setSingIn,setDateAndTime,setSignatureTime }) => {
   const [date,setDate]=useState("")
   const [time,setTime]=useState();
   //handle state data
@@ -66,8 +66,8 @@ const SingInUpdateModel = ({ onClose, singin, setSingIn,setDateAndTime,setSegnat
         <div className="sing_in_submit_button">
           <button type="button" onClick={()=>{
             setSingIn(signatureData);
-            setDateAndTime(`${date} ${time}`);
-            // setSegnatureTime(time);
+            setDateAndTime(date);
+            setSignatureTime(time);
             onClose(false);
           }}>
             Submit

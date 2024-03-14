@@ -11,8 +11,6 @@ const Navbar = () => {
     setShowMenu(!showMenu);
   };
 
-
-
   return (
     <>
       <nav className={`navbar ${showMenu ? "responsive" : ""}`}>

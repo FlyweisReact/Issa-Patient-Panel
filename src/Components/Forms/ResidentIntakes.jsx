@@ -231,24 +231,33 @@ const ResidentIntakes = () => {
   //state
   const [userDetail, setUserDetail] = useState("");
   const [user, setUser] = useState("");
-  const [userId, setUserId] = useState("");
+  
   const [companyName, setCompanyName] = useState("");
+
+  // useState value is start
+  const [userId, setUserId] = useState("");
+  const [iAgree,setiAgree]=useState(false)
   const [residentName, setResidentName] = useState("");
   const [residentSignature, setResidentSignature] = useState("");
   const [residentDate, setResidentDate] = useState("");
+  const [residentSignatureTime, setResidentSignatureTime] = useState("");
   const [guardianRepresentativeName, setGuardianRepresentativeName] =
     useState("");
   const [guardianRepresentativeSignature, setGuardianRepresentativeSignature] =
     useState("");
   const [guardianRepresentativeDate, setGuardianRepresentativeDate] =
     useState("");
+  const [guardianRepresentativeTime,setGuardianRepresentativeTime]=useState("")
   const [staffName, setStaffName] = useState("");
   const [staffSignature, setStaffSignature] = useState("");
   const [staffDate, setStaffDate] = useState("");
-  const [internalResidentDate, setInternalResidentDate] = useState("");
+  const [staffTime,setStaffTime]=useState("");
+ 
+  // not present
   const [internalName, setInternalName] = useState("");
   const [internalRelationship, setInternalRelationship] = useState("");
   const [internalContect, setInternalContect] = useState("");
+
   const [internalDisclosureList, setInternalDisclosureList] = useState([]);
   const [internalDisclosureListExpire, setInternalDisclosureListExpire] =
     useState("");
@@ -264,6 +273,7 @@ const ResidentIntakes = () => {
     internalDisclosureListResidentDate,
     setInternalDisclosureListResidentDate,
   ] = useState("");
+  const [internalDisclosureListResidentTime,setInternalDisclosureListResidentTime]=useState("")
   const [
     internalDisclosureListGuardianRepresentativeName,
     setInternalDisclosureListGuardianRepresentativeName,
@@ -276,6 +286,7 @@ const ResidentIntakes = () => {
     internalDisclosureListGuardianRepresentativeDate,
     setInternalDisclosureListGuardianRepresentativeDate,
   ] = useState("");
+  const [internalDisclosureListGuardianRepresentativeTime,setInternalDisclosureListGuardianRepresentativeTime]=useState("")
   const [internalDisclosureListStaffName, setInternalDisclosureListStaffName] =
     useState("");
   const [
@@ -284,7 +295,22 @@ const ResidentIntakes = () => {
   ] = useState("");
   const [internalDisclosureListStaffDate, setInternalDisclosureListStaffDate] =
     useState("");
+  const [internalDisclosureListStaffTime,setInternalDisclosureListStaffTime]=useState("")
   //add some patemeter
+  const [residentRightsResidentName, setResidentRightsResidentName] =
+  useState("");
+const [residentRightsResidentSignature, setResidentRightsResidentSignature] =
+  useState();
+
+const [residentRightsResidentDate, setResidentRightsResidentDate] =
+  useState("");
+  const [residentRightsResidentTime,setResidentRightsResidentTime]=useState("")
+const [residentRightsGuardianRepresentativeName,setResidentRightsGuardianRepresentativeName]=useState()
+const [residentRightsGuardianRepresentativeSignature,setResidentRightsGuardianRepresentativeSignature]=useState("")
+const [residentRightsGuardianRepresentativeDate,setResidentRightsGuardianRepresentativeDate]=useState("")
+const [residentRightsGuardianRepresentativeTime,setResidentRightsGuardianRepresentativeTime]=useState("")
+
+// not present in state
   const [
     residentRightsResidentSignatureValue,
     setResidentRightsResidentSignatureValue,
@@ -294,13 +320,7 @@ const ResidentIntakes = () => {
     setResidentRightsResidentSignatureValueDate,
   ] = useState("");
 
-  const [residentRightsResidentName, setResidentRightsResidentName] =
-    useState("");
-  const [residentRightsResidentSignature, setResidentRightsResidentSignature] =
-    useState();
 
-  const [residentRightsResidentDate, setResidentRightsResidentDate] =
-    useState("");
   const [photoVideoConsentResidentName, setPhotoVideoConsentResidentName] =
     useState("");
   const [photoVideoConsentDateOfBirth, setPhotoVideoConsentDateOfBirth] =
@@ -319,6 +339,8 @@ const ResidentIntakes = () => {
   ] = useState("");
   const [photoVideoConsentResidentDate, setPhotoVideoConsentResidentDate] =
     useState("");
+    const [photoVideoConsentResidentTime,setPhotoVideoConsentResidentTime]=useState("")
+
   const [
     photoVideoConsentGuardianRepresentativeName,
     setPhotoVideoConsentGuardianRepresentativeName,
@@ -331,6 +353,8 @@ const ResidentIntakes = () => {
     photoVideoConsentGuardianRepresentativeDate,
     setPhotoVideoConsentGuardianRepresentativeDate,
   ] = useState("");
+
+  const [photoVideoConsentGuardianRepresentativeTime,setPhotoVideoConsentGuardianRepresentativeTime]=useState("")
   const [advanceDirectivesResidentName, setAdvanceDirectivesResidentName] =
     useState("");
   const [advanceDirectivesResidentGender, setAdvanceDirectivesResidentGender] =
@@ -353,6 +377,7 @@ const ResidentIntakes = () => {
     advanceDirectivesProvidedInfoDate,
     setAdvanceDirectivesProvidedInfoDate,
   ] = useState("");
+  const [advanceDirectivesProvidedInfoTime,setAdvanceDirectivesProvidedInfoTime]=useState("")
   const [
     advanceDirectivesProvidedInfoRefusingInitials,
     setAdvanceDirectivesProvidedInfoRefusingInitials,
@@ -361,6 +386,8 @@ const ResidentIntakes = () => {
     advanceDirectivesProvidedInfoRefusingDate,
     setAdvanceDirectivesProvidedInfoRefusingDate,
   ] = useState();
+  const [advanceDirectivesProvidedInfoRefusingTime,setAdvanceDirectivesProvidedInfoRefusingTime]=useState("")
+
   const [advanceDirectivesDeveloped, setAdvanceDirectivesDeveloped] =
     useState();
   const [
@@ -419,6 +446,7 @@ const ResidentIntakes = () => {
     complaintProcessAcknowledgementResidentDate,
     setComplaintProcessAcknowledgementResidentDate,
   ] = useState("");
+  const [complaintProcessAcknowledgementResidentTime,setComplaintProcessAcknowledgementResidentTime]=useState("")
   const [
     complaintProcessAcknowledgementGuardianRepresentativeName,
     setComplaintProcessAcknowledgementGuardianRepresentativeName,
@@ -431,6 +459,8 @@ const ResidentIntakes = () => {
     complaintProcessAcknowledgementGuardianRepresentativeDate,
     setComplaintProcessAcknowledgementGuardianRepresentativeDate,
   ] = useState("");
+  const [complaintProcessAcknowledgementGuardianRepresentativeTime,setComplaintProcessAcknowledgementGuardianRepresentativeTime]=useState("")
+  const [orientationToAgencyCompanyFollowing,setOrientationToAgencyCompanyFollowing]=useState("")
   const [orientationToAgencyCompany, setOrientationToAgencyCompany] =
     useState("");
 
@@ -441,8 +471,10 @@ const ResidentIntakes = () => {
     orientationToAgencyResidentSignature,
     setOrientationToAgencyResidentSignature,
   ] = useState("");
+  //now start yet
   const [orientationToAgencyResidentDate, setOrientationToAgencyResidentDate] =
     useState("");
+    const [orientationToAgencyResidentTime,setOrientationToAgencyResidentTime]=useState("")
   const [
     orientationToAgencyGuardianRepresentativeName,
     setOrientationToAgencyGuardianRepresentativeName,
@@ -455,6 +487,7 @@ const ResidentIntakes = () => {
     orientationToAgencyGuardianRepresentativeDate,
     setOrientationToAgencyGuardianRepresentativeDate,
   ] = useState("");
+  const [orientationToAgencyGuardianRepresentativeTime,setOrientationToAgencyGuardianRepresentativeTime]=useState("")
   const [promotionTalkStrategicApproach, setPromotionTalkStrategicApproach] =
     useState("");
   const [
@@ -489,6 +522,7 @@ const ResidentIntakes = () => {
     lockBoxKeyIssueReturnResidentDate,
     setLockBoxKeyIssueReturnResidentDate,
   ] = useState("");
+  const [lockBoxKeyIssueReturnResidentTime,setLockBoxKeyIssueReturnResidentTime]=useState("")
   const [
     lockBoxKeyIssueReturnGuardianRepresentativeName,
     setLockBoxKeyIssueReturnGuardianRepresentativeName,
@@ -501,6 +535,7 @@ const ResidentIntakes = () => {
     lockBoxKeyIssueReturnGuardianRepresentativeDate,
     setLockBoxKeyIssueReturnGuardianRepresentativeDate,
   ] = useState("");
+  const [lockBoxKeyIssueReturnGuardianRepresentativeTime,setLockBoxKeyIssueReturnGuardianRepresentativeTime]=useState("")
   const [lockBoxKeyIssueReturnStaffName, setLockBoxKeyIssueReturnStaffName] =
     useState("");
   const [
@@ -509,6 +544,7 @@ const ResidentIntakes = () => {
   ] = useState("");
   const [lockBoxKeyIssueReturnStaffDate, setLockBoxKeyIssueReturnStaffDate] =
     useState("");
+    const [lockBoxKeyIssueReturnStaffTime,setLockBoxKeyIssueReturnStaffTime]=useState("")
   const [
     insuranceInformationPrimaryInsurancePolicyholderName,
     setInsuranceInformationPrimaryInsurancePolicyholderName,
@@ -643,6 +679,8 @@ const ResidentIntakes = () => {
     setObligationsAndAuthorizationResidentDate,
   ] = useState("");
 
+  const [obligationsAndAuthorizationResidentTime,setObligationsAndAuthorizationResidentTime]=useState("")
+
   const [
     obligationsAndAuthorizationGuardianRepresentativeName,
     setObligationsAndAuthorizationGuardianRepresentativeName,
@@ -657,6 +695,8 @@ const ResidentIntakes = () => {
     obligationsAndAuthorizationGuardianRepresentativeDate,
     setObligationsAndAuthorizationGuardianRepresentativeDate,
   ] = useState("");
+
+  const [obligationsAndAuthorizationGuardianRepresentativeTime,setObligationsAndAuthorizationGuardianRepresentativeTime]=useState("")
 
   useEffect(() => {
     setUserId(userDetail?._id);
@@ -688,18 +728,19 @@ const ResidentIntakes = () => {
   }
 
   const initializeValues = () => {
-    setUser("");
-    setUserId("");
-    setCompanyName("");
+    setiAgree(false);
     setResidentName("");
     setResidentSignature("");
     setResidentDate("");
+    setResidentSignatureTime("")
     setGuardianRepresentativeName("");
     setGuardianRepresentativeSignature("");
     setGuardianRepresentativeDate("");
+    setGuardianRepresentativeTime("")
     setStaffName("");
     setStaffSignature("");
     setStaffDate("");
+    setStaffTime("")
     setInternalName("");
     setInternalRelationship("");
     setInternalContect("");
@@ -708,17 +749,27 @@ const ResidentIntakes = () => {
     setInternalDisclosureListResidentName("");
     setInternalDisclosureListResidentSignature("");
     setInternalDisclosureListResidentDate("");
+    setInternalDisclosureListResidentTime("")
     setInternalDisclosureListGuardianRepresentativeName("");
     setInternalDisclosureListGuardianRepresentativeSignature("");
     setInternalDisclosureListGuardianRepresentativeDate("");
+    setInternalDisclosureListGuardianRepresentativeTime("")
     setInternalDisclosureListStaffName("");
     setInternalDisclosureListStaffSignature("");
     setInternalDisclosureListStaffDate("");
-    setResidentRightsResidentSignatureValue("");
-    setResidentRightsResidentSignatureValueDate("");
+    setInternalDisclosureListStaffTime("")
+    // setResidentRightsResidentSignatureValue("");
+    // setResidentRightsResidentSignatureValueDate("");
     setResidentRightsResidentName("");
     setResidentRightsResidentSignature("");
     setResidentRightsResidentDate("");
+    // new value
+    setResidentRightsResidentTime("");
+    setResidentRightsGuardianRepresentativeName("");
+    setResidentRightsGuardianRepresentativeSignature("");
+    setResidentRightsGuardianRepresentativeDate("");
+    setResidentRightsGuardianRepresentativeTime("");
+
     setPhotoVideoConsentResidentName("");
     setPhotoVideoConsentDateOfBirth("");
     setPhotoVideoConsentAdmissionDate("");
@@ -726,9 +777,11 @@ const ResidentIntakes = () => {
     setPhotoVideoConsentConsentWithdrawn("");
     setPhotoVideoConsentResidentSignature("");
     setPhotoVideoConsentResidentDate("");
+    setPhotoVideoConsentResidentTime("");
     setPhotoVideoConsentGuardianRepresentativeName("");
     setPhotoVideoConsentGuardianRepresentativeSignature("");
     setPhotoVideoConsentGuardianRepresentativeDate("");
+    setPhotoVideoConsentGuardianRepresentativeTime("");
     setAdvanceDirectivesResidentName("");
     setAdvanceDirectivesResidentGender("");
     setAdvanceDirectivesResidentDateOfBirth("");
@@ -736,9 +789,11 @@ const ResidentIntakes = () => {
     setAdvanceDirectivesResidentDate("");
     setAdvanceDirectivesProvidedInfoInitials("");
     setAdvanceDirectivesProvidedInfoDate("");
+    setAdvanceDirectivesProvidedInfoTime("")
     setAdvanceDirectivesProvidedInfoRefusingInitials("");
-    setAdvanceDirectivesProvidedInfoRefusingDate(undefined);
-    setAdvanceDirectivesDeveloped(undefined);
+    setAdvanceDirectivesProvidedInfoRefusingDate("");
+    setAdvanceDirectivesProvidedInfoRefusingTime("")
+    setAdvanceDirectivesDeveloped("");
     setAdvanceDirectivesDevelopedComment("");
     setAdvanceDirectivesExecutedInRecord("");
     setAdvanceDirectivesExecutedInRecordComment("");
@@ -756,7 +811,10 @@ const ResidentIntakes = () => {
     setComplaintProcessAcknowledgementGuardianRepresentativeName("");
     setComplaintProcessAcknowledgementGuardianRepresentativeSignature("");
     setComplaintProcessAcknowledgementGuardianRepresentativeDate("");
+    setComplaintProcessAcknowledgementGuardianRepresentativeTime("");
+    setOrientationToAgencyCompanyFollowing("");
     setOrientationToAgencyCompany("");
+    setORIENTATIONDropDown("")
     setOrientationToAgencyResidentName("");
     setOrientationToAgencyResidentSignature("");
     setOrientationToAgencyResidentDate("");
@@ -1144,7 +1202,7 @@ const ResidentIntakes = () => {
                 <div
                   style={{ display: "flex", gap: "10px", alignItems: "center" }}
                 >
-                  <input type="checkbox" name="" id="" />
+                  <input type="checkbox" checked={iAgree==true} onChange={()=>setiAgree(!iAgree)}/>
                   <label htmlFor="">I Agree to the Terms & Conditions</label>
                 </div>
               </div>

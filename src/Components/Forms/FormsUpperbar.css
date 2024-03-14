@@ -12,9 +12,10 @@
   margin-top: 20px;
   border: 1px solid #ffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  background-color: rgb(106, 124, 206);
   /* Add your preferred box shadow */
   border-radius: 10px;
-  background: #ffff;
+  
   display: flex;
   justify-content: center;
   text-align: center;
