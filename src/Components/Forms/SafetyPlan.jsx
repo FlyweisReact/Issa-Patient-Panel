@@ -20,10 +20,15 @@ const SafetyPlan = () => {
 
   const handlePrint2 = () => {
     var elements = document.getElementsByClassName("hidePrint");
+    var elements1 = document.getElementsByClassName("form-section");
 
-    // Iterate through each element with the specified class
+    // Iterate through each element with the specified class form-section
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
+    }
+
+    for (var i = 0; i < elements1.length; i++) {
+      elements1[i].style.marginTop = "1rem";
     }
 
     // Trigger the print action
@@ -34,6 +39,10 @@ const SafetyPlan = () => {
       for (var i = 0; i < elements.length; i++) {
         elements[i].style.display = "flex";
         elements[i].style.justifyContent = "center";
+      }
+
+      for (var i = 0; i < elements1.length; i++) {
+        elements1[i].style.marginTop = "0rem";
       }
     }, 1000);
   };
