@@ -33,7 +33,8 @@ const FaceSheet = () => {
     // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
     setTimeout(() => {
       for (var i = 0; i < elements.length; i++) {
-        elements[i].style.display = "block";
+        elements[i].style.display = "flex";
+        elements[i].style.justifyContent = "center";
       }
     }, 1000);
   };
@@ -1249,9 +1250,9 @@ if (getApiDataAdmit) {
               </div>
             </div> */}
           </div>
-            <div class="file-upload-box hidePrint">
+            <div class="file-upload-box ">
               
-              <div className="file-upload-box-child">
+              <div className="file-upload-box-child hidePrint">
                <div >
                   <button className="upload-button1" type="button" onClick={() => { setDraftModel(true) }}>
                   SAVED AS DRAFT
@@ -1268,16 +1269,16 @@ if (getApiDataAdmit) {
                 </button>
                 </div>
               </div> 
-             
-              
-            </div>
-            <div style={{textAlign:"right"}}>
+              <div >
                 {
                   signature && (
                     <p className="signature_name_print">Digitally Sign by {signature} {signatureDate} {signatureTime}</p>
                   )
                 }
               </div>
+              
+            </div>
+          
 
             {
               showSignature && (<SingInUpdateModel 
@@ -1289,8 +1290,8 @@ if (getApiDataAdmit) {
                 />)
             }
     
-            <div className="form-actions">
-              <button type="submit" className="hidePrint" style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem"}} >
+            <div className="form-actions hidePrint">
+              <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center"}} >
               SUBMIT DETAILS
             </button>
             </div>

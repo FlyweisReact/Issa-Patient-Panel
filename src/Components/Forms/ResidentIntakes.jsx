@@ -3884,66 +3884,20 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
                       </span>
                       State:
                       <span>
-                        {/* <AutosizeInput
-                      inputStyle={{
-                        border: "none",
-                        outline: "none",
-                        width: "auto",
-                      }}
-                      type="text"
-                      placeholder="____________________________"
-                      value={
-                        insuranceInformationPrimaryInsurancePolicyholderState
-                      }
-                      onChange={(e) =>
-                        setInsuranceInformationPrimaryInsurancePolicyholderState(
-                          e.target.value
-                        )
-                      }
-                    /> */}
+                     
                      <AutoSize value={insuranceInformationPrimaryInsurancePolicyholderState} setValue={setInsuranceInformationPrimaryInsurancePolicyholderState} placeholder={"____________"}/>
                       </span>
                       Zip:
                       <span>
-                        {/* <AutosizeInput
-                      inputStyle={{
-                        border: "none",
-                        outline: "none",
-                        width: "auto",
-                      }}
-                      type="text"
-                      placeholder="____________________________"
-                      value={
-                        insuranceInformationPrimaryInsurancePolicyholderZip
-                      }
-                      onChange={(e) =>
-                        setInsuranceInformationPrimaryInsurancePolicyholderZip(
-                          e.target.value
-                        )
-                      }
-                    /> */}
+                     
+                     <AutoSize value={insuranceInformationPrimaryInsurancePolicyholderZip} setValue={setInsuranceInformationPrimaryInsurancePolicyholderZip} placeholder={"____________"}/>
                       </span>
                     </p>
                     <p>
                       Phone Number
                       <span>
-                        {/* <AutosizeInput
-                      inputStyle={{
-                        border: "none",
-                        outline: "none",
-                        width: "auto",
-                      }}
-                      type="text"
-                      placeholder="_________________________________________________________"
-                      value={
-                        insuranceInformationPrimaryInsurancePolicyholderPhone
-                      }
-                      onChange={(e) =>
-                        setInsuranceInformationPrimaryInsurancePolicyholderPhone(
-                          e.target.value
-                        )
-                      }
-                    /> */}
+                   
+                     <AutoSize value={insuranceInformationPrimaryInsurancePolicyholderPhone} setValue={setInsuranceInformationPrimaryInsurancePolicyholderPhone} placeholder={"____________"}/>
                       </span>
                     </p>
                     <p>

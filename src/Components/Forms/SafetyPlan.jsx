@@ -32,7 +32,8 @@ const SafetyPlan = () => {
     // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
     setTimeout(() => {
       for (var i = 0; i < elements.length; i++) {
-        elements[i].style.display = "block";
+        elements[i].style.display = "flex";
+        elements[i].style.justifyContent = "center";
       }
     }, 1000);
   };
@@ -944,9 +945,9 @@ const SafetyPlan = () => {
                   onKeyDown={handleKeySelectedValueSpecialPrecautions}
               />
             </div>
-              <div class="file-upload-box hidePrint">
+              <div class="file-upload-box ">
               
-              <div className="file-upload-box-child">
+              <div className="file-upload-box-child hidePrint">
                <div >
                 <button className="upload-button1" type="button" onClick={() => setDraftModel(true)}>
                   SAVED AS DRAFT
@@ -963,15 +964,16 @@ const SafetyPlan = () => {
                 </button>
                 </div>
               </div>
-            </div>
-
-            <div>
+              <div>
                 {
                   singin && (
                     <p className="signature_name_print">Digitally Sign by {singin} {signatureDate} {signatureTime}</p>
                   )
                 }
               </div>
+            </div>
+
+          
 
             {
               showSingIn && (<SingInUpdateModel 
@@ -993,8 +995,8 @@ const SafetyPlan = () => {
               </div>
             </div> */}
           </div>
-          <div className="form-actions">
-            <button type="submit"  className="hidePrint" style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem"}}>
+          <div className="form-actions hidePrint">
+            <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem"}}>
               SUBMIT DETAILS
             </button>
           </div>
