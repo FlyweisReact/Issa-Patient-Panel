@@ -944,16 +944,19 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
 
   const data = {
     patientId: userId,
-    companyName,
+    iAgree,
     residentName,
     residentSignature,
     residentDate,
+    residentSignatureTime,
     guardianRepresentativeName,
     guardianRepresentativeSignature,
     guardianRepresentativeDate,
+    guardianRepresentativeTime,
     staffName,
     staffSignature,
     staffDate,
+    staffTime,
     internalDisclosureList,
     internalDisclosureListExpire,
     internalDisclosureListResidentName,
@@ -962,14 +965,23 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
     internalDisclosureListGuardianRepresentativeName,
     internalDisclosureListGuardianRepresentativeSignature,
     internalDisclosureListGuardianRepresentativeDate,
+    internalDisclosureListGuardianRepresentativeTime,
+    internalDisclosureListResidentTime,
     internalDisclosureListStaffName,
     internalDisclosureListStaffSignature,
     internalDisclosureListStaffDate,
-    residentRightsResidentSignatureValue,
-    residentRightsResidentSignatureValueDate,
+    internalDisclosureListStaffTime,
+    // residentRightsResidentSignatureValue,
+    // residentRightsResidentSignatureValueDate,
     residentRightsResidentName,
     residentRightsResidentSignature,
     residentRightsResidentDate,
+    residentRightsResidentTime,
+    residentRightsGuardianRepresentativeName,
+    residentRightsGuardianRepresentativeSignature,
+    residentRightsGuardianRepresentativeDate,
+    residentRightsGuardianRepresentativeTime,
+
     photoVideoConsentResidentName,
     photoVideoConsentDateOfBirth,
     photoVideoConsentAdmissionDate,
@@ -977,9 +989,11 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
     photoVideoConsentConsentWithdrawn,
     photoVideoConsentResidentSignature,
     photoVideoConsentResidentDate,
+    photoVideoConsentResidentTime,
     photoVideoConsentGuardianRepresentativeName,
     photoVideoConsentGuardianRepresentativeSignature,
     photoVideoConsentGuardianRepresentativeDate,
+    photoVideoConsentGuardianRepresentativeTime,
     advanceDirectivesResidentName,
     advanceDirectivesResidentGender,
     advanceDirectivesResidentDateOfBirth,
@@ -989,6 +1003,8 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
     advanceDirectivesProvidedInfoDate,
     advanceDirectivesProvidedInfoRefusingInitials,
     advanceDirectivesProvidedInfoRefusingDate,
+    advanceDirectivesProvidedInfoRefusingTime,
+    // advanceDirectivesProvidedInfoTime,
     advanceDirectivesDeveloped,
     advanceDirectivesDevelopedComment,
     advanceDirectivesExecutedInRecord,
@@ -1004,16 +1020,21 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
     complaintProcessAcknowledgementResidentName,
     complaintProcessAcknowledgementResidentSignature,
     complaintProcessAcknowledgementResidentDate,
+    complaintProcessAcknowledgementResidentTime,
     complaintProcessAcknowledgementGuardianRepresentativeName,
     complaintProcessAcknowledgementGuardianRepresentativeSignature,
     complaintProcessAcknowledgementGuardianRepresentativeDate,
+    complaintProcessAcknowledgementGuardianRepresentativeTime,
+    // orientationToAgencyCompanyFollowing,
     orientationToAgencyCompany,
     orientationToAgencyResidentName,
     orientationToAgencyResidentSignature,
     orientationToAgencyResidentDate,
+    orientationToAgencyResidentTime,
     orientationToAgencyGuardianRepresentativeName,
     orientationToAgencyGuardianRepresentativeSignature,
     orientationToAgencyGuardianRepresentativeDate,
+    orientationToAgencyGuardianRepresentativeTime,
     promotionTalkStrategicApproach,
     lockBoxKeyIssueReturnDateKeyIssued,
     lockBoxKeyIssueReturnDateKeyReturned,
@@ -1024,12 +1045,15 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
     lockBoxKeyIssueReturnResidentName,
     lockBoxKeyIssueReturnResidentSignature,
     lockBoxKeyIssueReturnResidentDate,
+    lockBoxKeyIssueReturnResidentTime,
     lockBoxKeyIssueReturnGuardianRepresentativeName,
     lockBoxKeyIssueReturnGuardianRepresentativeSignature,
     lockBoxKeyIssueReturnGuardianRepresentativeDate,
+    lockBoxKeyIssueReturnGuardianRepresentativeTime,
     lockBoxKeyIssueReturnStaffName,
     lockBoxKeyIssueReturnStaffSignature,
     lockBoxKeyIssueReturnStaffDate,
+    lockBoxKeyIssueReturnStaffTime,
     insuranceInformationPrimaryInsurancePolicyholderName,
     insuranceInformationPrimaryInsurancePolicyholderDateOfBirth,
     insuranceInformationPrimaryInsurancePolicyholderAddress,
@@ -1048,6 +1072,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
     insuranceInformationSecondaryInsurancePolicyholderAddress,
     insuranceInformationSecondaryInsurancePolicyholderCity,
     insuranceInformationSecondaryInsurancePolicyholderState,
+    // paending
     insuranceInformationSecondaryInsurancePolicyholderZip,
     insuranceInformationSecondaryInsurancePolicyholderPhone,
     insuranceInformationSecondaryInsurancePolicyholderRelationship,
@@ -1137,7 +1162,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
   return (
     <>
       <div ref={componentRef9}>
-        <div className="backbutton">
+        <div className="backbutton hidePrint">
           <IoArrowBackCircle
             style={{
               color: "#1A9FB2",
@@ -3083,15 +3108,8 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
                   <p style={{ color: "#000000" }}>
                     I,{" "}
                     <span>
-                      {/* <AutosizeInput
-                    inputStyle={{ border: "none", outline: "none" }}
-                    type="text"
-                    placeholder="__________________"
-                    value={complaintProcessAcknowledgementCompany}
-                    onChange={(e) =>
-                      setComplaintProcessAcknowledgementCompany(e.target.value)
-                    }
-                  /> */}
+                   
+                  <AutoSize value={complaintProcessAcknowledgementCompany} setValue={setComplaintProcessAcknowledgementCompany} placeholder={"____________"}/>
                     </span>
                     have been explained by facility staff of the facility
                     resident complaint process. Resident/Guardian understands
@@ -3903,378 +3921,122 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
                     <p>
                       Policyholder Relationship to Resident
                       <span>
-                        {/* <AutosizeInput
-                      inputStyle={{
-                        border: "none",
-                        outline: "none",
-                        width: "auto",
-                      }}
-                      type="text"
-                      placeholder="_________________________________________________________"
-                      value={
-                        insuranceInformationPrimaryInsurancePolicyholderRelationship
-                      }
-                      onChange={(e) =>
-                        setInsuranceInformationPrimaryInsurancePolicyholderRelationship(
-                          e.target.value
-                        )
-                      }
-                    /> */}
+                      
+                    <AutoSize value={insuranceInformationPrimaryInsurancePolicyholderRelationship} setValue={setInsuranceInformationPrimaryInsurancePolicyholderRelationship} placeholder={"____________"}/>
                       </span>
                     </p>
                     <p>
                       Insurance Company Name
                       <span>
-                        {/* <AutosizeInput
-                      inputStyle={{
-                        border: "none",
-                        outline: "none",
-                        width: "auto",
-                      }}
-                      type="text"
-                      placeholder="_________________________________________________________"
-                      value={insuranceInformationPrimaryInsuranceCompany}
-                      onChange={(e) =>
-                        setInsuranceInformationPrimaryInsuranceCompany(
-                          e.target.value
-                        )
-                      }
-                    /> */}
+                 
+                    <AutoSize value={insuranceInformationPrimaryInsuranceCompany} setValue={setInsuranceInformationPrimaryInsuranceCompany} placeholder={"____________"}/>
                       </span>
                     </p>
                     <p>
                       Customer Service Phone Number
                       <span>
-                        {/* <AutosizeInput
-                      inputStyle={{
-                        border: "none",
-                        outline: "none",
-                        width: "auto",
-                      }}
-                      type="text"
-                      placeholder="_________________________________________________________"
-                      value={
-                        insuranceInformationPrimaryInsuranceCustomerServicePhone
-                      }
-                      onChange={(e) =>
-                        setInsuranceInformationPrimaryInsuranceCustomerServicePhone(
-                          e.target.value
-                        )
-                      }
-                    /> */}
+                  
+                    <AutoSize value={insuranceInformationPrimaryInsuranceCustomerServicePhone} setValue={setInsuranceInformationPrimaryInsuranceCustomerServicePhone} placeholder={"____________"}/>
                       </span>
                     </p>
                     <p>
                       Subscriber #{" "}
                       <span>
-                        {/* <AutosizeInput
-                      inputStyle={{ border: "none", outline: "none" }}
-                      type="text"
-                      placeholder="_______________"
-                      value={
-                        insuranceInformationPrimaryInsuranceSubscriberNumber
-                      }
-                      onChange={(e) =>
-                        setInsuranceInformationPrimaryInsuranceSubscriberNumber(
-                          e.target.value
-                        )
-                      }
-                    /> */}
+                  
+                    <AutoSize value={insuranceInformationPrimaryInsuranceSubscriberNumber} setValue={setInsuranceInformationPrimaryInsuranceSubscriberNumber} placeholder={"____________"}/>
                       </span>
                       Group#{" "}
                       <span>
-                        {/* <AutosizeInput
-                      inputStyle={{ border: "none", outline: "none" }}
-                      type="text"
-                      placeholder="_______________"
-                      value={
-                        insuranceInformationPrimaryInsuranceSubscriberGroup
-                      }
-                      onChange={(e) =>
-                        setInsuranceInformationPrimaryInsuranceSubscriberGroup(
-                          e.target.value
-                        )
-                      }
-                    /> */}
+                     
+                     <AutoSize value={insuranceInformationPrimaryInsuranceSubscriberGroup} setValue={setInsuranceInformationPrimaryInsuranceSubscriberGroup} placeholder={"____________"}/>
                       </span>
                       Effective Date{" "}
                       <span>
-                        {/* <AutosizeInput
-                      inputStyle={{ border: "none", outline: "none" }}
-                      type="date"
-                      placeholder="_____________"
-                      value={
-                        insuranceInformationPrimaryInsuranceSubscriberEffectiveDate
-                      }
-                      onChange={(e) =>
-                        setInsuranceInformationPrimaryInsuranceSubscriberEffectiveDate(
-                          e.target.value
-                        )
-                      }
-                    /> */}
+                  
+                     <AutoSize  type="date" value={insuranceInformationPrimaryInsuranceSubscriberEffectiveDate} setValue={setInsuranceInformationPrimaryInsuranceSubscriberEffectiveDate} placeholder={"____________"}/>
                       </span>
                     </p>
                     <p>
                       Secondary Insurance Name of Policyholder{" "}
                       <span>
-                        {/* <AutosizeInput
-                      inputStyle={{ border: "none", outline: "none" }}
-                      type="text"
-                      placeholder="_______________"
-                      value={
-                        insuranceInformationSecondaryInsurancePolicyholderName
-                      }
-                      onChange={(e) =>
-                        setInsuranceInformationSecondaryInsurancePolicyholderName(
-                          e.target.value
-                        )
-                      }
-                    /> */}
+                 
+                     <AutoSize value={insuranceInformationSecondaryInsurancePolicyholderName} setValue={setInsuranceInformationSecondaryInsurancePolicyholderName} placeholder={"____________"}/>
                       </span>
                       Policy holder Date of Birth{" "}
                       <span>
-                        {/* <AutosizeInput
-                      inputStyle={{ border: "none", outline: "none" }}
-                      type="date"
-                      placeholder="_______________"
-                      value={
-                        insuranceInformationSecondaryInsurancePolicyholderDateOfBirth
-                      }
-                      onChange={(e) =>
-                        setInsuranceInformationSecondaryInsurancePolicyholderDateOfBirth(
-                          e.target.value
-                        )
-                      }
-                    /> */}
+                  
+                     <AutoSize  type="date" value={insuranceInformationSecondaryInsurancePolicyholderDateOfBirth} setValue={setInsuranceInformationSecondaryInsurancePolicyholderDateOfBirth} placeholder={"____________"}/>
                       </span>
                     </p>
 
                     <p>
                       Policyholder Address (if different than Resident)
                       <span>
-                        {/* <AutosizeInput
-                      inputStyle={{ border: "none", outline: "none" }}
-                      type="text"
-                      placeholder="_______________"
-                      value={
-                        insuranceInformationSecondaryInsurancePolicyholderAddress
-                      }
-                      onChange={(e) =>
-                        setInsuranceInformationSecondaryInsurancePolicyholderAddress(
-                          e.target.value
-                        )
-                      }
-                    /> */}
+                  
+                     <AutoSize value={insuranceInformationSecondaryInsurancePolicyholderAddress} setValue={setInsuranceInformationSecondaryInsurancePolicyholderAddress} placeholder={"____________"}/>
                       </span>
                     </p>
                     <p>
                       City:
                       <span>
-                        {/* <AutosizeInput
-                      inputStyle={{
-                        border: "none",
-                        outline: "none",
-                        width: "auto",
-                      }}
-                      placeholder="______________________"
-                      value={
-                        insuranceInformationSecondaryInsurancePolicyholderCity
-                      }
-                      onChange={(e) =>
-                        setInsuranceInformationSecondaryInsurancePolicyholderCity(
-                          e.target.value
-                        )
-                      }
-                    /> */}
+                
+                     <AutoSize value={insuranceInformationSecondaryInsurancePolicyholderCity} setValue={setInsuranceInformationSecondaryInsurancePolicyholderCity} placeholder={"____________"}/>
                       </span>
                       State:
                       <span>
-                        {/* <AutosizeInput
-                      type="text"
-                      inputStyle={{
-                        border: "none",
-                        outline: "none",
-                        width: "auto",
-                      }}
-                      placeholder="______________________"
-                      value={
-                        insuranceInformationSecondaryInsurancePolicyholderState
-                      }
-                      onChange={(e) =>
-                        setInsuranceInformationSecondaryInsurancePolicyholderState(
-                          e.target.value
-                        )
-                      }
-                    /> */}
+                 
+                     <AutoSize value={insuranceInformationSecondaryInsurancePolicyholderState} setValue={setInsuranceInformationSecondaryInsurancePolicyholderState} placeholder={"____________"}/>
                       </span>
                       Zip
                       <span>
-                        {/* <AutosizeInput
-                      type="text"
-                      inputStyle={{
-                        border: "none",
-                        outline: "none",
-                        width: "auto",
-                      }}
-                      placeholder="______________________"
-                      value={
-                        insuranceInformationSecondaryInsurancePolicyholderZip
-                      }
-                      onChange={(e) =>
-                        setInsuranceInformationSecondaryInsurancePolicyholderZip(
-                          e.target.value
-                        )
-                      }
-                    /> */}
+             
+                     <AutoSize value={insuranceInformationSecondaryInsurancePolicyholderZip} setValue={setInsuranceInformationSecondaryInsurancePolicyholderZip} placeholder={"____________"}/>
                       </span>
                     </p>
                     <p>
                       Phone Number
                       <span>
-                        {/* <AutosizeInput
-                      type="text"
-                      inputStyle={{
-                        border: "none",
-                        outline: "none",
-                        width: "auto",
-                      }}
-                      placeholder="______________________"
-                      value={
-                        insuranceInformationSecondaryInsurancePolicyholderPhone
-                      }
-                      onChange={(e) =>
-                        setInsuranceInformationSecondaryInsurancePolicyholderPhone(
-                          e.target.value
-                        )
-                      }
-                    /> */}
+                     
+                     <AutoSize value={insuranceInformationSecondaryInsurancePolicyholderPhone} setValue={setInsuranceInformationSecondaryInsurancePolicyholderPhone} placeholder={"____________"}/>
                       </span>
                     </p>
                     <p>
                       Policyholder Relationship to Resident
                       <span>
-                        {/* <AutosizeInput
-                      type="text"
-                      inputStyle={{
-                        border: "none",
-                        outline: "none",
-                        width: "auto",
-                      }}
-                      placeholder="______________________"
-                      value={
-                        insuranceInformationSecondaryInsurancePolicyholderRelationship
-                      }
-                      onChange={(e) =>
-                        setInsuranceInformationSecondaryInsurancePolicyholderRelationship(
-                          e.target.value
-                        )
-                      }
-                    /> */}
+                
+                     <AutoSize value={insuranceInformationSecondaryInsurancePolicyholderRelationship} setValue={setInsuranceInformationSecondaryInsurancePolicyholderRelationship} placeholder={"____________"}/>
                       </span>
                       <span></span>
                     </p>
                     <p>
                       Insurance Company Name{" "}
                       <span>
-                        {/* <AutosizeInput
-                      type="text"
-                      inputStyle={{
-                        border: "none",
-                        outline: "none",
-                        width: "auto",
-                      }}
-                      placeholder="______________________"
-                      value={insuranceInformationSecondaryInsuranceCompany}
-                      onChange={(e) =>
-                        setInsuranceInformationSecondaryInsuranceCompany(
-                          e.target.value
-                        )
-                      }
-                    /> */}
+                
+                     <AutoSize value={insuranceInformationSecondaryInsuranceCompany} setValue={setInsuranceInformationSecondaryInsuranceCompany} placeholder={"____________"}/>
                       </span>
                     </p>
                     <p>
                       Customer Service Phone Number
                       <span>
-                        {/* <AutosizeInput
-                      type="text"
-                      inputStyle={{
-                        border: "none",
-                        outline: "none",
-                        width: "auto",
-                      }}
-                      placeholder="______________________"
-                      value={
-                        insuranceInformationSecondaryInsuranceCustomerServicePhone
-                      }
-                      onChange={(e) =>
-                        setInsuranceInformationSecondaryInsuranceCustomerServicePhone(
-                          e.target.value
-                        )
-                      }
-                    /> */}
+                  
+                     <AutoSize value={insuranceInformationSecondaryInsuranceCustomerServicePhone} setValue={setInsuranceInformationSecondaryInsuranceCustomerServicePhone} placeholder={"____________"}/>
                       </span>
                     </p>
                     <p>
                       Subscriber #
                       <span>
-                        {/* <AutosizeInput
-                      type="text"
-                      inputStyle={{
-                        border: "none",
-                        outline: "none",
-                        width: "auto",
-                      }}
-                      placeholder="______________________"
-                      value={
-                        insuranceInformationSecondaryInsuranceSubscriberNumber
-                      }
-                      onChange={(e) =>
-                        setInsuranceInformationSecondaryInsuranceSubscriberNumber(
-                          e.target.value
-                        )
-                      }
-                    /> */}
+              
+                     <AutoSize value={insuranceInformationSecondaryInsuranceSubscriberNumber} setValue={setInsuranceInformationSecondaryInsuranceSubscriberNumber} placeholder={"____________"}/>
                       </span>
                       Group#{" "}
                       <span>
-                        {/* <AutosizeInput
-                      type="text"
-                      inputStyle={{
-                        border: "none",
-                        outline: "none",
-                        width: "auto",
-                      }}
-                      placeholder="______________________"
-                      value={
-                        insuranceInformationSecondaryInsuranceSubscriberGroup
-                      }
-                      onChange={(e) =>
-                        setInsuranceInformationSecondaryInsuranceSubscriberGroup(
-                          e.target.value
-                        )
-                      }
-                    /> */}
+          
+                     <AutoSize value={insuranceInformationSecondaryInsuranceSubscriberGroup} setValue={setInsuranceInformationSecondaryInsuranceSubscriberGroup} placeholder={"____________"}/>
                       </span>
                       Effective Date{" "}
                       <span>
-                        {/* <AutosizeInput
-                      type="date"
-                      inputStyle={{
-                        border: "none",
-                        outline: "none",
-                        width: "auto",
-                      }}
-                      placeholder="______________________"
-                      value={
-                        insuranceInformationSecondaryInsuranceSubscriberEffectiveDate
-                      }
-                      onChange={(e) =>
-                        setInsuranceInformationSecondaryInsuranceSubscriberEffectiveDate(
-                          e.target.value
-                        )
-                      }
-                    /> */}
+                  
+                     <AutoSize type="date" value={insuranceInformationSecondaryInsuranceSubscriberEffectiveDate} setValue={setInsuranceInformationSecondaryInsuranceSubscriberEffectiveDate} placeholder={"____________"}/>
                       </span>
                     </p>
                     <p>

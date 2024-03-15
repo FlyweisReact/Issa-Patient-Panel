@@ -21,14 +21,20 @@ const SafetyPlan = () => {
   const handlePrint2 = () => {
     var elements = document.getElementsByClassName("hidePrint");
     var elements1 = document.getElementsByClassName("form-section");
+    var elements2 = document.getElementsByClassName("signature_Right_Side");
 
-    // Iterate through each element with the specified class form-section
+    // Iterate through each element with the specified class signature_Right_Side
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
     }
 
     for (var i = 0; i < elements1.length; i++) {
       elements1[i].style.marginTop = "1rem";
+    }
+
+    for (var i = 0; i < elements2.length; i++) {
+      elements2[i].style.display = "flex";
+      elements2[i].style.justifyContent = "right";
     }
 
     // Trigger the print action
@@ -877,30 +883,6 @@ const SafetyPlan = () => {
             </div>
 
 
-            {/* <div className="needs-interventions-container">
-              <div className="needs-interventions-column3">
-                {crisisArray.length > 0 && (
-                  <table>
-                    <thead>
-                      <th>Name</th>
-                      <th>Phone</th>
-                      <th>Relationship</th>
-                    </thead>
-                    <tbody>
-                      {crisisArray?.map((i, index) => (
-                        <tr>
-                          <td>{` ${i.clinicianName}`} </td>
-                          <td>{` ${i.phone}`} </td>
-                          <td>{` ${i.relationship}`} </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                )}
-              </div>
-            </div> */}
-
-
             <h5
               style={{
                 fontWeight: "700",
@@ -924,22 +906,7 @@ const SafetyPlan = () => {
                 Emergency: 911
               </h5>
 
-              {/* <div className="form-field">
-                <label >Local Emergency Help: </label>
-                <input
-                  type="text"
-                  value={localEmergencyNumber}
-                  placeholder="Enter number"
-                  onChange={(e) => setLocalEmergencyNumber(e.target.value)}
-                />
-              </div> */}
-
-            {/* <div className="form-actions">
-              <button type="button" className="safetybutton1">
-                <CiCirclePlus style={{ width: "30px", height: "30px" }} /> ADD
-                MORE PEOPLE
-              </button>
-            </div> */}
+      
               <div className="form-field-single-update-bold">
                 <label >
                 Making the Environment Safe :
@@ -973,7 +940,7 @@ const SafetyPlan = () => {
                 </button>
                 </div>
               </div>
-              <div>
+              <div className="signature_Right_Side">
                 {
                   singin && (
                     <p className="signature_name_print">Digitally Sign by {singin} {signatureDate} {signatureTime}</p>
@@ -981,9 +948,7 @@ const SafetyPlan = () => {
                 }
               </div>
             </div>
-
           
-
             {
               showSingIn && (<SingInUpdateModel 
                 onClose={()=>setShowSingIn(false)}
@@ -993,16 +958,7 @@ const SafetyPlan = () => {
                 setSignatureTime={setSignatureTime}
                 />)
             }
-            {/* <div class="file-upload-box">
-              <div style={{ display: "block" }}>
-                <button className="upload-button1" type="button" onClick={() => setShowSingIn(true)}>
-                  SAVED AS DRAFT
-                </button>
-                <button className="upload-button" type="button" onClick={() => setShowSingIn(true)}>
-                  SAVED AND SIGNED
-                </button>
-              </div>
-            </div> */}
+           
           </div>
           <div className="form-actions hidePrint">
             <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem"}}>
@@ -1011,25 +967,7 @@ const SafetyPlan = () => {
           </div>
         </form>
       </div>
-      {/* {showSingIn && (
-        <SingInModel onClose={() => setShowSingIn(false)}>
-          <div className="input_singin_button">
-            <p style={{ color: "white" }}>Digitally Sign by employee name</p>
-            <input
-              type="text"
-              placeholder="Enter Sing in Signature"
-              value={singin}
-              onChange={(e) => setSingIn(e.target.value)}
-            />
-          </div>
-
-          <div className="sing_in_submit_button">
-            <button type="button" onClick={() => setShowSingIn(false)}>
-              Submit
-            </button>
-          </div>
-        </SingInModel>
-      )} */}
+      
 
 
       {

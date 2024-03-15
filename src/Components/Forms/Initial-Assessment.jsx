@@ -10939,9 +10939,7 @@ const [Additional2Description,setAdditional2Description]=useState("");
               <div className="formsheading">
                 <h6 style={{ fontWeight: "bold" }}>Diagnoses:</h6>
               </div>
-              <div className="formsheading">
-                <h6 style={{ fontWeight: "bold" }}>Psychiatric Diagnoses:</h6>
-              </div>
+             
 
               {/* <div className="box-image-container hidePrint" style={{ padding: "10px" }}>
               <div className="form-field-update">
