@@ -17,6 +17,7 @@ import Draftinmodel from "../Modal/Draftinmodel";
 import { useReactToPrint } from "react-to-print";
 import { Form } from "react-bootstrap";
 import AutoSize from "../AutoSize/AutoSize";
+import TextareaAutosize from 'react-textarea-autosize';
 
 const InitialAssessment = () => {
   const navigate = useNavigate();

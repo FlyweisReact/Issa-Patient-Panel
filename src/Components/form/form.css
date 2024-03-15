@@ -37,7 +37,7 @@
 }
 
 .text-center>p:first-child {
-    color: "white";
+    color: #FFFFFF;
     font-size: 2.1rem;
     font-weight: bold;
 
@@ -48,7 +48,7 @@
 }
 
 .text-center>p:last-child {
-    color: "white";
+    color: #FFFFFF;
     font-size: 1rem;
 
     @media screen {}
@@ -70,8 +70,6 @@
 .left-div-login-page {
     position: relative;
     z-index: 1;
-
-
 }
 
 .left-div-login-page::before {
@@ -87,6 +85,13 @@
     filter: blur(2px) brightness(60%);
     z-index: -1;
     overflow: hidden;
+}
+
+.allo {
+    position: relative;
+    top: 30%;
+    width: 90%;
+    margin: auto;
 }
 
 .carousel-item {
@@ -124,4 +129,22 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
 
+}
+
+
+/* CustomSlider.css */
+
+.slider-buttons-container {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.slider-button {
+    width: 30px;
+    height: 2px;
+    background-color: #FFFFFF;
+    cursor: pointer;
 }

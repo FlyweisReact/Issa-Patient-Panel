@@ -1,29 +1,42 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./form.css";
 import { Button, Carousel, Form } from "react-bootstrap";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Store } from "react-notifications-component";
-import { BaseUrl, show_notification as ShowMsg   } from "../../Api_Collection/Api";
-import MyImg from "./issa_logo_login.jpg"
-import logo from "../../img/OasisNotes.png"
-//login form 
-
-
-
+import {
+  BaseUrl,
+  show_notification as ShowMsg,
+} from "../../Api_Collection/Api";
+import MyImg from "./issa_logo_login.jpg";
+import logo from "../../img/OasisNotes.png";
+//login form
+import Slider from "react-slick";
 
 export const LoginForm = () => {
+  // slider setting
+  var settings = {
+    dots: false,
+    infinite: true,
+    speed: 100,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false, // This hides the arrows
+  };
+  const sliderRef = useRef(null);
   const [forgetChange, setForgetChange] = useState("login");
   const [sendLink, setLinkSend] = useState(false);
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-const [otpSend, setOtpSend] = useState(false);
-const [otpNumber, setOtpNumber] = useState("");
-const [newPassword1, setNewPassword1] = useState(false);
-const [newPassword, setNewPassword] = useState("");
-const [userId1, setUserId1] = useState("");
+  const [otpSend, setOtpSend] = useState(false);
+  const [otpNumber, setOtpNumber] = useState("");
+  const [newPassword1, setNewPassword1] = useState(false);
+  const [newPassword, setNewPassword] = useState("");
+  const [userId1, setUserId1] = useState("");
   const loginHandler = async (e) => {
     e.preventDefault();
 
@@ -31,8 +44,7 @@ const [userId1, setUserId1] = useState("");
       const response = await axios.post(`${BaseUrl}Patient/signin`, {
         email: userId,
         password,
-      },
-      );
+      });
 
       localStorage.setItem("token", response.data.accessToken);
       Store.addNotification({
@@ -69,93 +81,99 @@ const [userId1, setUserId1] = useState("");
 
   const handleLinkSend = async (e) => {
     e.preventDefault();
-    if(newPassword1){
-      if(!userId1) return
+    if (newPassword1) {
+      if (!userId1) return;
       try {
-        axios.post(`${BaseUrl}/employee/changePassword/${userId1}`, {
-          newPassword: newPassword,
-          confirmPassword: newPassword
-        })
-        .then((res) => {
-          console.log(res)
-          setLinkSend(true)
-         Store.addNotification({
-           title: "Success",
-           message: res.data.message,
-           type: "success",
-           insert: "top",
-           container: "top-right",
-           animationIn: ["animate__animated", "animate__fadeIn"],
-           animationOut: ["animate__animated", "animate__fadeOut"],
-           dismiss: {
-             duration: 5000,
-             onScreen: true,
-           },
-         
-         })
-          setNewPassword1(false)
-        
-        }).catch((err) => {
-          console.log(err?.response?.data?.msg)
-          ShowMsg("Error", err?.response?.data?.msg, "danger");
-        })
+        axios
+          .post(`${BaseUrl}/employee/changePassword/${userId1}`, {
+            newPassword: newPassword,
+            confirmPassword: newPassword,
+          })
+          .then((res) => {
+            console.log(res);
+            setLinkSend(true);
+            Store.addNotification({
+              title: "Success",
+              message: res.data.message,
+              type: "success",
+              insert: "top",
+              container: "top-right",
+              animationIn: ["animate__animated", "animate__fadeIn"],
+              animationOut: ["animate__animated", "animate__fadeOut"],
+              dismiss: {
+                duration: 5000,
+                onScreen: true,
+              },
+            });
+            setNewPassword1(false);
+          })
+          .catch((err) => {
+            console.log(err?.response?.data?.msg);
+            ShowMsg("Error", err?.response?.data?.msg, "danger");
+          });
       } catch (err) {
         ShowMsg("Error", err.res.data.msg, "danger");
       }
-      return
-      
+      return;
     }
-    if(otpSend){
-try {
-      axios.post(`${BaseUrl}/employee/forgotVerifyOtp`, {
-        email: userId,
-        otp: otpNumber
-      }).then((res) => {
-        
-        setOtpSend(false)
-        setNewPassword1(true)
-        ShowMsg(res.data.message, "success");
-        // setLinkSend(true)
-      }).catch((err) => {
-        console.log(err?.response?.data)
-        ShowMsg("Error", err?.response?.data?.message, "danger");
-      })
-    } catch (error) {
-     ShowMsg("Error",error.msg, "error");
-      if(error.res.data.msg){
-        ShowMsg(error.res.data.msg, "error");
+    if (otpSend) {
+      try {
+        axios
+          .post(`${BaseUrl}/employee/forgotVerifyOtp`, {
+            email: userId,
+            otp: otpNumber,
+          })
+          .then((res) => {
+            setOtpSend(false);
+            setNewPassword1(true);
+            ShowMsg(res.data.message, "success");
+            // setLinkSend(true)
+          })
+          .catch((err) => {
+            console.log(err?.response?.data);
+            ShowMsg("Error", err?.response?.data?.message, "danger");
+          });
+      } catch (error) {
+        ShowMsg("Error", error.msg, "error");
+        if (error.res.data.msg) {
+          ShowMsg(error.res.data.msg, "error");
+        }
       }
-    }
 
-      return
+      return;
     }
     try {
-      axios.post(`${BaseUrl}/employee/forgetPassword`, {
-        email: userId,
-      }).then((res) => {
-        // console.log(res?.data?.data?._id);
-        setUserId1(res?.data?.data?._id)
-        setOtpSend(true)
-        ShowMsg(res.data.message, "success");
-        // setLinkSend(true)
-      }).catch((err) => {
-        console.log(err?.response?.data?.msg)
-        ShowMsg("Error", err?.response?.data?.msg, "danger");
-      })
+      axios
+        .post(`${BaseUrl}/employee/forgetPassword`, {
+          email: userId,
+        })
+        .then((res) => {
+          // console.log(res?.data?.data?._id);
+          setUserId1(res?.data?.data?._id);
+          setOtpSend(true);
+          ShowMsg(res.data.message, "success");
+          // setLinkSend(true)
+        })
+        .catch((err) => {
+          console.log(err?.response?.data?.msg);
+          ShowMsg("Error", err?.response?.data?.msg, "danger");
+        });
     } catch (error) {
-      console.log(error)
-      if(error.res.data.message){
+      console.log(error);
+      if (error.res.data.message) {
         ShowMsg(error.res.data.msg, "error");
       }
       ShowMsg(error.res.data.message, "error");
-      
     }
-  }
+  };
+  const goToSlide = index => {
+    sliderRef.current.slickGoTo(index);
+  };
   return (
     <div>
       <div className="container-login-page">
         <div className="left-div-login-page">
-          <Carousel controls={false}>
+          {/* <Carousel controls={false}>
             <Carousel.Item interval={2000}>
               <Carousel.Caption className="text-center">
                 <p>
@@ -204,7 +222,59 @@ try {
                 </p>
               </Carousel.Caption>
             </Carousel.Item>
-          </Carousel>
+          </Carousel> */}
+          <div className="allo">
+            <Slider ref={sliderRef} {...settings}>
+              <div className="text-center">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Quisque a volutpat arcu
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Quisque a volutpat arcu, sit amet suscipit justo. Integer et
+                  augue quis nibh accumsan ornare. Ut id finibus urna, cursus
+                  rhoncus nisl. Ut accumsan porttitor mi, sed hendrerit felis
+                  rutrum eu. Pellentesque eget velit et ligula volutpat
+                  malesuada quis a tellus. Sed sollicitudin sodales pharetra.
+                </p>
+              </div>
+              <div className="text-center">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Quisque a volutpat arcu
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Quisque a volutpat arcu, sit amet suscipit justo. Integer et
+                  augue quis nibh accumsan ornare. Ut id finibus urna, cursus
+                  rhoncus nisl. Ut accumsan porttitor mi, sed hendrerit felis
+                  rutrum eu. Pellentesque eget velit et ligula volutpat
+                  malesuada quis a tellus. Sed sollicitudin sodales pharetra.
+                </p>
+              </div>
+              <div className="text-center">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Quisque a volutpat arcu
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Quisque a volutpat arcu, sit amet suscipit justo. Integer et
+                  augue quis nibh accumsan ornare. Ut id finibus urna, cursus
+                  rhoncus nisl. Ut accumsan porttitor mi, sed hendrerit felis
+                  rutrum eu. Pellentesque eget velit et ligula volutpat
+                  malesuada quis a tellus. Sed sollicitudin sodales pharetra.
+                </p>
+              </div>
+            </Slider>
+            <div className="slider-buttons-container">
+              <div className="slider-button" onClick={() => goToSlide(0)}></div>
+              <div className="slider-button" onClick={() => goToSlide(1)}></div>
+              <div className="slider-button" onClick={() => goToSlide(2)}></div>
+              {/* Add more buttons as needed */}
+            </div>
+          </div>
         </div>
 
         <div
@@ -220,9 +290,12 @@ try {
         >
           {!sendLink && (
             <>
-
               <img
-                style={{ maxWidth: "155px", maxHeight: "55px",mixBlendMode:"multiply" }}
+                style={{
+                  maxWidth: "155px",
+                  maxHeight: "55px",
+                  mixBlendMode: "multiply",
+                }}
                 src={logo}
                 alt="logo1"
               />
@@ -341,16 +414,33 @@ try {
                     </p>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                       <Form.Label>User ID</Form.Label>
-                      <Form.Control onChange={(e) => setUserId(e.target.value)} type="email" placeholder="Enter email" />
+                      <Form.Control
+                        onChange={(e) => setUserId(e.target.value)}
+                        type="email"
+                        placeholder="Enter email"
+                      />
                     </Form.Group>
-                    {otpSend &&  <Form.Group className="mb-3" controlId="formBasicEmail">
-                      <Form.Label>Verify Otp</Form.Label>
-                      <Form.Control onChange={(e) => setOtpNumber(e.target.value)} type="number" placeholder="Enter email" />
-                    </Form.Group> }
-                    { newPassword1 &&   <Form.Group className="mb-3" controlId="formBasicEmail">
-                      <Form.Label>Enter New Password</Form.Label>
-                      <Form.Control onChange={(e) => setNewPassword(e.target.value)} type="text" placeholder="Enter new password" value={newPassword} />
-                    </Form.Group> }
+                    {otpSend && (
+                      <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Verify Otp</Form.Label>
+                        <Form.Control
+                          onChange={(e) => setOtpNumber(e.target.value)}
+                          type="number"
+                          placeholder="Enter email"
+                        />
+                      </Form.Group>
+                    )}
+                    {newPassword1 && (
+                      <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Enter New Password</Form.Label>
+                        <Form.Control
+                          onChange={(e) => setNewPassword(e.target.value)}
+                          type="text"
+                          placeholder="Enter new password"
+                          value={newPassword}
+                        />
+                      </Form.Group>
+                    )}
 
                     <Form.Group
                       className="mb-3"
@@ -374,7 +464,7 @@ try {
                         }}
                       >
                         <Button
-                          onClick={ handleLinkSend}
+                          onClick={handleLinkSend}
                           style={{
                             backgroundColor: "#0C5C75",
                             color: "white",
@@ -390,7 +480,12 @@ try {
                           SEND LINK
                         </Button>
                         <Button
-                          onClick={() => {setOtpSend(false);setLinkSend(false);setNewPassword1(false);setForgetChange("login")}}
+                          onClick={() => {
+                            setOtpSend(false);
+                            setLinkSend(false);
+                            setNewPassword1(false);
+                            setForgetChange("login");
+                          }}
                           style={{
                             backgroundColor: "transparent",
                             color: "#0C5C75",
@@ -458,7 +553,7 @@ try {
           {sendLink && (
             <>
               <p style={{ color: "#0C5C75", fontWeight: "bold" }}>
-                 Password Reset Sucessfully
+                Password Reset Sucessfully
               </p>
               <img
                 style={{
