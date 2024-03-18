@@ -45,16 +45,16 @@ const BookAppointment = () => {
               height: "40px",
               cursor: "pointer",
             }}
-            onClick={() => navigate("/appointment_scheduling")}
+            onClick={() => navigate(-1)}
           />
         </div>
-        <div className="form-container">
+        <div className="form-container1">
           <div className="formheading1">
             <div className="formsheading2">
               <h1>BOOK NEW APPOINTMENT</h1>
             </div>
           </div>
-          <form onSubmit={handlePostData} style={{textAlign:"center"}}>
+          <form onSubmit={handlePostData} >
             <div className="booking-section" >
               <h2>Booking Details</h2>
               <div className="form-field">

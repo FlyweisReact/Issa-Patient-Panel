@@ -1399,9 +1399,10 @@ const NursingAssessment = () => {
               </div>
 
             <div className="form-field-child-result">
-                <div>
+                <div >
                   <label className="black_space" >Dry skin Is resident’s blood sugar under control? </label>
                 </div>
+                <div className="inner_field_aligment">
                 <div style={{ display: 'flex', gap: "5px", alignItems: "center" }}>
                   <input
                     type="checkbox"
@@ -1429,6 +1430,9 @@ const NursingAssessment = () => {
                   />
                   <label >Unsure</label>
                 </div>
+
+                </div>
+               
               </div>
             {/* <div>
             <input

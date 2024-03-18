@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from '../../Components/SideBar/SideBar';
 import UpperBar from '../../Components/UpperBar/UpperBar';
-import './Home.css';
+import './Home1.css';
 import CompleteIntake from '../../Components/Modal/CompleteIntake'
 import { useNavigate } from 'react-router-dom';
 import intake from '../../img/Mask group.png'
@@ -9,7 +9,7 @@ import intake from '../../img/Mask group.png'
 
 
 
-const Home = ({ Wcomponenet }) => {
+const Home1 = ({ Wcomponenet }) => {
   const navigate = useNavigate()
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -22,8 +22,9 @@ const Home = ({ Wcomponenet }) => {
     const handleResize = () => {
       // Set a threshold for the window width to determine if it's a desktop screen
       const isDesktop = window.innerWidth > 768; // You can adjust this threshold as needed
-
+        const isDeskWidth=window.innerWidth < 480;
       // Set the state based on the condition
+      setIsMenuOpen(isDeskWidth);
       setcompleteintakeModalopne(isDesktop);
     };
 
@@ -93,4 +94,4 @@ const Home = ({ Wcomponenet }) => {
   );
 };
 
-export default Home;
+export default Home1;

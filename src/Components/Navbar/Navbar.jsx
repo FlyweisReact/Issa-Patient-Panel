@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import logo from "../../img/OasisNotes.png";
 import { user_detail } from "../../Api_Collection/Api";
 const Navbar = () => {
-  const [showMenu, setShowMenu] = useState(false);
+  const [showMenu, setShowMenu] = useState(true);
 
 
   const toggleMenu = () => {
-    setShowMenu(!showMenu);
+    setShowMenu(true);
   };
 
   return (

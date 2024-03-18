@@ -30,7 +30,7 @@ const ManageAppointments = () => {
             height: "40px",
             cursor: "pointer",
           }}
-          onClick={() => navigate("/appointment_scheduling")}
+          onClick={() => navigate(-1)}
         />
       </div>
       <div className="form-container">

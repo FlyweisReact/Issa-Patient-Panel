@@ -29,10 +29,10 @@ const AppointmentHistory = () => {
             height: "40px",
             cursor: "pointer",
           }}
-          onClick={() => navigate("/appointment_scheduling")}
+          onClick={() => navigate(-1)}
         />
       </div>
-      <div className="form-container">
+      <div className="form-container1">
         <div className="formheading1">
           <div className="formsheading2">
             <h1>MY APPOINTMENTS</h1>

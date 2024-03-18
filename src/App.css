@@ -8,12 +8,15 @@
 }
 
 .initalsubmit{
-  background-color: #4f8ea1;
+  background-color: #1a9fb2;
   width: 30%;
   color: white;
   height: auto;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  margin-bottom: 2rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {

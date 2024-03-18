@@ -1,0 +1,47 @@
+.Hoc {
+    display: flex;
+    /* flex-wrap: wrap; */
+  }
+
+
+  /* Style for Sidebar */
+  .Hoc > div:first-child {
+    /* order: 1;  */
+    width: 200px; 
+    color: black; /* Example text color */
+  }
+  
+  /* Style for UpperBar */
+  .Hoc > div:nth-child(2) {
+    /* order: 2;  */
+    flex: 1; /* Make UpperBar take the remaining space */
+    color: black; /* Example text color */
+  }
+  
+  /* Style for the content (WrappedComponent) */
+  .Hoc > div:last-child {
+    /* Add specific styling for the content */
+    flex: 1; /* Make the content take the remaining space */
+    padding: 20px; /* Example padding for content */
+  }
+  .Hoc.menu-open > div:nth-child(2) {
+    width: 100%;
+  }
+  
+  .sidebar1{
+    display: none;
+  }
+
+  @media only screen and (max-width: 1300px) {
+    .Hoc > div:first-child {
+        /* order: 1; */
+        /* width: 100%; Sidebar takes full width */
+        z-index: 1;
+        width: 0;
+    }
+
+    .Hoc > div:nth-child(2) {
+        /* order: 1; / */
+    }
+    
+}

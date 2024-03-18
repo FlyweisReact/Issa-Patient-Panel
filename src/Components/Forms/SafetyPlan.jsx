@@ -155,8 +155,7 @@ const SafetyPlan = () => {
   useEffect(()=>{
     Safety_form_get(userId,setGetApiData);
   },[userId])
-  console.log(userId,"user id")
-  console.log("user detail 11111",getApiData)
+ 
 
   useEffect(() => {
     setUserId(userDetail?._id);

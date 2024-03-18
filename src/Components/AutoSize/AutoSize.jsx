@@ -8,7 +8,7 @@ function AutoSize({type: type1,value,setValue,placeholder}) {
       const canvas = document.createElement('canvas');
       const context = canvas.getContext('2d');
       context.font = '16px Arial'; // Set the font size and style
-      return context.measureText(text).width + 40; // Add some padding
+      return context.measureText(text).width + 5; // Add some padding
     };
   
   useEffect(() => {
@@ -29,7 +29,7 @@ function AutoSize({type: type1,value,setValue,placeholder}) {
     padding: '5px',
     fontSize: '16px',
     width: `${calculateWidth(value)}px`, // Dynamic width based on content
-    minWidth: '120px', // Minimum width
+    minWidth: '100px', // Minimum width
     maxWidth: `100%`, // Maximum width
     boxSizing: 'border-box', // Include padding in the width calculation
     border:"none",

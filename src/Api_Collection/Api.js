@@ -155,6 +155,20 @@ export const Resident_form = async (payLoad) => {
   }
 };
 
+export const Resident_form_get = async (id,setGetApiData) => {
+  try {
+    const {data} = await axios.get(
+      `${BaseUrl}Patient/ResidentIntake/${id}`,
+      
+      Token
+    );
+    setGetApiData(data?.data);
+    return data;
+  } catch (e) {
+    // show_notification("fail !", `${e?.response?.data?.message}`, "danger");
+  }
+};
+
 export const Nurssing_form = async (payLoad) => {
   try {
     const res = await axios.post(

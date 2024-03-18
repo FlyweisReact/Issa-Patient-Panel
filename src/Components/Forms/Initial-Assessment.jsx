@@ -17,7 +17,6 @@ import Draftinmodel from "../Modal/Draftinmodel";
 import { useReactToPrint } from "react-to-print";
 import { Form } from "react-bootstrap";
 import AutoSize from "../AutoSize/AutoSize";
-import TextareaAutosize from 'react-textarea-autosize';
 
 const InitialAssessment = () => {
   const navigate = useNavigate();
@@ -7075,15 +7074,16 @@ const [Additional2Description,setAdditional2Description]=useState("");
                 <label style={{ fontWeight: "bold" }}>
                   Active Withdrawal Symptoms:
                 </label>
-                <div class="chechbox12-aligment411">
-                  <div class="checkoptions">
+                {/* chechbox12-aligment411 */}
+                <div class="checkBox_style_update">
+                 
                     <div class="checkboxitem">
                       <input
                         type="checkbox"
                         id="noneReportedOrObserved"
                         value={noneReportedOrObserved}
                         checked={noneReportedOrObserved}
-                        style={{ alignSelf: "start", marginTop: "10px" }}
+                        
                         onChange={() =>
                           setNoneReportedOrObserved(!noneReportedOrObserved)
                         }
@@ -7111,10 +7111,9 @@ const [Additional2Description,setAdditional2Description]=useState("");
                         onChange={() => setAnxiety(!Anxiety)}
                       />
                       <label htmlFor="Anxiety">Anxiety</label>
-                    </div>
                   </div>
-                  <div class="checkoptions">
-                    <div class="checkboxitem">
+
+                  <div class="checkboxitem">
                       <input
                         type="checkbox"
                         id="Agitation"
@@ -7144,8 +7143,7 @@ const [Additional2Description,setAdditional2Description]=useState("");
                       />
                       <label htmlFor="Tremors">Tremors</label>
                     </div>
-                  </div>
-                  <div class="checkoptions">
+                 
                     <div class="checkboxitem">
                       <input
                         type="checkbox"
@@ -7201,7 +7199,7 @@ const [Additional2Description,setAdditional2Description]=useState("");
                       {VisualDisturbancesOtherBoolean && (
                         <AutoSize value={VisualDisturbancesOtherType} setValue={setVisualDisturbancesOtherType} placeholder={"_______________"}/>
                       )}
-                    </div>
+                   
                   </div>
                 </div>
               </div>
@@ -7210,8 +7208,8 @@ const [Additional2Description,setAdditional2Description]=useState("");
                 <label style={{ fontWeight: "bold" }}>
                   Auditory Disturbances:
                 </label>
-                <div class="chechbox12">
-                  <div class="checkoptions">
+                <div class="checkBox_style_update">
+                  
                     <div class="checkboxitem">
                       <input
                         type="checkbox"
@@ -7252,8 +7250,8 @@ const [Additional2Description,setAdditional2Description]=useState("");
                       />
                       <label htmlFor="Seizures">Seizures</label>
                     </div>
-                  </div>
-                  <div class="checkoptions">
+                 
+                 
                     <div class="checkboxitem">
                       <input
                         type="checkbox"
@@ -7317,7 +7315,7 @@ const [Additional2Description,setAdditional2Description]=useState("");
 
                       )}
                     </div>
-                  </div>
+                
                 </div>
               </div>
 
