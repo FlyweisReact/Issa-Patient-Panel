@@ -43,7 +43,7 @@
 
 
   @media screen and (max-width: 480px) {
-    width: 90%;
+    width: 100%;
     max-width: 480px;
     margin: auto;
     padding: 10px;
@@ -1744,6 +1744,10 @@ input[type="checkbox"] {
 
   .black_space{
     white-space: wrap;
+  }
+
+  .form-field-single-update{
+    flex-wrap: wrap;
   }
   
 

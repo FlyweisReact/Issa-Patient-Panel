@@ -7,8 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import intake from '../../img/Mask group.png'
 
 
-
-
 const Home = ({ Wcomponenet }) => {
   const navigate = useNavigate()
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,9 +20,10 @@ const Home = ({ Wcomponenet }) => {
     const handleResize = () => {
       // Set a threshold for the window width to determine if it's a desktop screen
       const isDesktop = window.innerWidth > 768; // You can adjust this threshold as needed
-
+      const isDesktopMobile = window.innerWidth < 480;
       // Set the state based on the condition
       setcompleteintakeModalopne(isDesktop);
+      setIsMenuOpen(isDesktopMobile);
     };
 
     // Add event listener for window resize

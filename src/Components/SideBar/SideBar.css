@@ -82,4 +82,14 @@
     cursor: pointer;
     color: #ffff;
   }
+
+  .sidebar {
+    z-index: 1000; /* Ensure sidebar is above content */
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    height: 100%; 
+    transition: width 0.3s ease; 
+  }
+  
 }

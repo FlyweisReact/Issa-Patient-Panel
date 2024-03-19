@@ -12,7 +12,7 @@ import body6 from "../../img/body6.png";
 import body7 from "../../img/body7.png";
 import body8 from "../../img/body8.png";
 import Select from "react-select";
-import { user_detail, Nurssing_form } from "../../Api_Collection/Api";
+import { user_detail, Nurssing_form, Nurssing_form_get,employ_Detail } from "../../Api_Collection/Api";
 import SingInModel from "../Modal/SingInModel";
 import Draftinmodel from "../Modal/Draftinmodel";
 import SingInUpdateModel from "../Modal/SingInUpdateModel";
@@ -43,22 +43,24 @@ const NursingAssessment = () => {
     // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
     setTimeout(() => {
       for (var i = 0; i < elements.length; i++) {
-        elements[i].style.display = "block";
+        elements[i].style.display = "flex";
       }
     }, 1000);
   };
 
   const navigate = useNavigate();
+  const [employ,setEmploy]=useState([])
+  const [getApiData,setGetApiData]=useState("");
   const [userDetail, setUserDetail] = useState("");
-  const [userId, setUserId] = useState("");
 
   //all useState value
+  const [userId, setUserId] = useState("");
+  const [todayDate, setTodayDate] = useState("");
+  const [admissionDate, setAdmissionDate] = useState("");
   const [name, setName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [age, setAge] = useState("");
   const [sex, setSex] = useState("");
-  const [admissionDate, setAdmissionDate] = useState("");
-  const [todayDate, setTodayDate] = useState("");
   const [admissionDiagnoses, setAdmissionDiagnoses] = useState("");
   const [codeStatus, setCodeStatus] = useState([]);
   const [lastTBScreeningDate, setLastTBScreeningDate] = useState("");
@@ -70,15 +72,6 @@ const NursingAssessment = () => {
   //   setCareProvidedBehavioralHealthServices,
   // ] = useState();
   const [vitalsBloodPressure, setVitalsBloodPressure] = useState('');
-  const [ value , setvalue] = useState("")
-
-  useEffect(() => {
-    if(vitalsBloodPressure){
-      setvalue(`${vitalsBloodPressure} BP`)
-    }
-  },[vitalsBloodPressure])
-
-
   const [vitalsPulse, setVitalsPulse] = useState();
   const [vitalsRespiratoryRate, setVitalsRespiratoryRate] = useState();
   const [vitalsOxygenLevel, setVitalsOxygenLevel] = useState();
@@ -87,46 +80,49 @@ const NursingAssessment = () => {
   const [vitalsHeightFeet, setVitalsHeightFeet] = useState();
   const [vitalsHeightInches, setVitalsHeightInches] = useState();
   const [allergies, setAllergies] = useState("");
-  const [
-    covid19ScreeningSymptomsFeverOrChills,
-    setCovid19ScreeningSymptomsFeverOrChills,
-  ] = useState();
-  const [
-    covid19ScreeningSymptomsShortnessOfBreath,
-    setCovid19ScreeningSymptomsShortnessOfBreath,
-  ] = useState();
-  const [
-    covid19ScreeningSymptomsSoreThroat,
-    setCovid19ScreeningSymptomsSoreThroat,
-  ] = useState();
-  const [
-    covid19ScreeningSymptomsDiarrhea,
-    setCovid19ScreeningSymptomsDiarrhea,
-  ] = useState();
-  const [covid19ScreeningSymptomsCough, setCovid19ScreeningSymptomsCough] =
-    useState();
-  const [
-    covid19ScreeningSymptomsBodyAches,
-    setCovid19ScreeningSymptomsBodyAches,
-  ] = useState();
-  const [
-    covid19ScreeningSymptomsCongestionOrRunnyNose,
-    setCovid19ScreeningSymptomsCongestionOrRunnyNose,
-  ] = useState();
-  const [
-    covid19ScreeningSymptomsLossOfTasteOrSmell,
-    setCovid19ScreeningSymptomsLossOfTasteOrSmell,
-  ] = useState();
-  const [covid19ScreeningSymptomsFatigue, setCovid19ScreeningSymptomsFatigue] =
-    useState();
-  const [
-    covid19ScreeningSymptomsHeadache,
-    setCovid19ScreeningSymptomsHeadache,
-  ] = useState();
-  const [
-    covid19ScreeningSymptomsNauseaOrVomiting,
-    setCovid19ScreeningSymptomsNauseaOrVomiting,
-  ] = useState();
+  // const [
+  //   covid19ScreeningSymptomsFeverOrChills,
+  //   setCovid19ScreeningSymptomsFeverOrChills,
+  // ] = useState();
+  // const [
+  //   covid19ScreeningSymptomsShortnessOfBreath,
+  //   setCovid19ScreeningSymptomsShortnessOfBreath,
+  // ] = useState();
+  // const [
+  //   covid19ScreeningSymptomsSoreThroat,
+  //   setCovid19ScreeningSymptomsSoreThroat,
+  // ] = useState();
+  // const [
+  //   covid19ScreeningSymptomsDiarrhea,
+  //   setCovid19ScreeningSymptomsDiarrhea,
+  // ] = useState();
+  // const [covid19ScreeningSymptomsCough, setCovid19ScreeningSymptomsCough] =
+  //   useState();
+  // const [
+  //   covid19ScreeningSymptomsBodyAches,
+  //   setCovid19ScreeningSymptomsBodyAches,
+  // ] = useState();
+  // const [
+  //   covid19ScreeningSymptomsCongestionOrRunnyNose,
+  //   setCovid19ScreeningSymptomsCongestionOrRunnyNose,
+  // ] = useState();
+  // const [
+  //   covid19ScreeningSymptomsLossOfTasteOrSmell,
+  //   setCovid19ScreeningSymptomsLossOfTasteOrSmell,
+  // ] = useState();
+  // const [covid19ScreeningSymptomsFatigue, setCovid19ScreeningSymptomsFatigue] =
+  //   useState();
+  // const [
+  //   covid19ScreeningSymptomsHeadache,
+  //   setCovid19ScreeningSymptomsHeadache,
+  // ] = useState();
+  // const [
+  //   covid19ScreeningSymptomsNauseaOrVomiting,
+  //   setCovid19ScreeningSymptomsNauseaOrVomiting,
+  // ] = useState();
+  
+  // penging some state
+
   const [reviewOfSystemsConstitutional, setReviewOfSystemsConstitutional] =
     useState("");
     const [reviewOfSystemsConstitutionalOther, setReviewOfSystemsConstitutionalOther] =
@@ -170,6 +166,7 @@ const NursingAssessment = () => {
     setReviewOfSystemsAllergicImmunologic,
   ] = useState("");
   const [reviewOfSystemsAllergicImmunologicOther,setReviewOfSystemsAllergicImmunologicOther]=useState("")
+  // hj
   const [
     suicidalRiskAssessmentDeniesSymptomsBellow,
     setSuicidalRiskAssessmentDeniesSymptomsBellow,
@@ -199,16 +196,114 @@ const NursingAssessment = () => {
   const [bhtName, setBhtName] = useState("");
   const [bhtSignature, setBhtSignature] = useState("");
   const [bhtDate,setbhtDate]=useState("")
+  const [bhpTime,setBhpTime]=useState("")
   const [rnName, setRnName] = useState("");
   const [rnSignature, setRnSignature] = useState("");
   const [rnDate,setrnDate]=useState("");
+  const [rnTime,setRnTime]=useState("");
+
+  useEffect(()=>{
+    setAdmissionDate(getApiData?.admissionDate?getApiData?.admissionDate.slice(0,10):"");
+    setTodayDate(getApiData?.todayDate?getApiData?.todayDate.slice(0,10):"");
+    setAdmissionDiagnoses(getApiData?.admissionDiagnoses);
+    setCodeStatus(getApiData?.codeStatus?getApiData?.codeStatus:[]);
+    setLastTBScreeningDate(getApiData?.lastTBScreeningDate?getApiData.lastTBScreeningDate.slice(0,10):"");
+    setTbScreeningResults(getApiData?.tbScreeningResults);
+    setCareProvidedPhysicalServices(getApiData?.careProvided?getApiData?.careProvided:[]);
+    setVitalsBloodPressure(getApiData?.vitalsBloodPressure);
+    setVitalsPulse(getApiData?.vitalsPulse);
+    setVitalsRespiratoryRate(getApiData?.vitalsRespiratoryRate);
+    setVitalsOxygenLevel(getApiData?.vitalsOxygenLevel);
+    setVitalsTemperature(getApiData?.vitalsTemperature);
+    setVitalsWeight(getApiData?.vitalsWeight);
+    setVitalsHeightFeet(getApiData?.vitalsHeightFeet);
+    setVitalsHeightInches(getApiData?.vitalsHeightInches);
+    setAllergies(getApiData?.allergies);
+    setReviewOfSystemsConstitutional(getApiData?.reviewOfSystemsConstitutional);
+    setReviewOfSystemsConstitutionalOther(getApiData?.reviewOfSystemsConstitutionalComment)
+    setReviewOfSystemsCardiovascular(getApiData?.reviewOfSystemsCardiovascular);
+    setReviewOfSystemsCardiovascularOther(getApiData?.reviewOfSystemsCardiovascularComment)
+    setReviewOfSystemsEndocrine(getApiData?.reviewOfSystemsEndocrine);
+    setReviewOfSystemsEndocrineOther(getApiData?.reviewOfSystemsEndocrineComment)
+    setReviewOfSystemsGastrointestinal(getApiData?.reviewOfSystemsGastrointestinal);
+    setReviewOfSystemsGastrointestinalOther(getApiData?.reviewOfSystemsGastrointestinalComment)
+    setReviewOfSystemsGenitourinary(getApiData?.reviewOfSystemsGenitourinary);
+    setReviewOfSystemsGenitourinaryOther(getApiData?.reviewOfSystemsGenitourinaryComment)
+    setReviewOfSystemsHematologyOncology(getApiData?.reviewOfSystemsHematologyOncology);
+    setReviewOfSystemsHematologyOncologyOther(getApiData?.reviewOfSystemsHematologyOncologyComment)
+    setReviewOfSystemsHeadNeckThroat(getApiData?.reviewOfSystemsHeadNeckThroat);
+    setReviewOfSystemsHeadNeckThroatOther(getApiData?.reviewOfSystemsHeadNeckThroatComment)
+    setReviewOfSystemsIntegumentary(getApiData?.reviewOfSystemsIntegumentary);
+    setReviewOfSystemsIntegumentaryOther(getApiData?.reviewOfSystemsIntegumentaryComment)
+    setReviewOfSystemsMusculoskeletal(getApiData?.reviewOfSystemsMusculoskeletal);
+    setReviewOfSystemsMusculoskeletalOther(getApiData?.reviewOfSystemsMusculoskeletalComment)
+    setReviewOfSystemsPsychiatric(getApiData?.reviewOfSystemsPsychiatric);
+    setReviewOfSystemsPsychiatricOther(getApiData?.reviewOfSystemsPsychiatricComment)
+    setReviewOfSystemsNeurologic(getApiData?.reviewOfSystemsNeurologic);
+    setReviewOfSystemsNeurologicOther(getApiData?.reviewOfSystemsNeurologicComment)
+    setReviewOfSystemsRespiratory(getApiData?.reviewOfSystemsRespiratory);
+    setReviewOfSystemsRespiratoryOther(getApiData?.reviewOfSystemsRespiratoryOther)
+    setReviewOfSystemsAllergicImmunologic(getApiData?.reviewOfSystemsAllergicImmunologic);
+    setReviewOfSystemsAllergicImmunologicOther(getApiData?.reviewOfSystemsAllergicImmunologicComment)
+    setSuicidalRiskAssessmentDeniesSymptomsBellow(getApiData?.suicidalRiskAssessmentDeniesSymptomsBellow);
+    setBehavioralSymptoms(getApiData?.behavioralSymptoms);
+    setPhysicalSymptoms(getApiData?.physicalSymptoms);
+    setPsychosocialSymptoms(getApiData?.psychosocialSymptoms);
+    setCurrentMedications(getApiData?.currentMedications);
+    setNutritionDiet(getApiData?.nutritionDiet);
+    setNutritionSpecialDietOrder(getApiData?.nutritionSpecialDietOrder);
+    setNutritionFluidRestrictions(getApiData?.nutritionFluidRestrictions);
+    setSkinCheck(getApiData?.skinCheck);
+    setResidentDeniesSkinConcerns(getApiData?.residentDeniesSkinConcerns);
+    setFront(getApiData?.front);
+    setBack(getApiData?.back);
+    setSideLeft(getApiData?.sideLeft);
+    setSideRight(getApiData?.sideRight);
+    setLegFront(getApiData?.legFront);
+    setLegBack(getApiData?.legBack);
+    setLegLeft(getApiData?.legLeft);
+    setLegRight(getApiData?.legRight);
+    setCommentFigure(getApiData?.legComment)
+    setBhtName(getApiData?.bhtName?.fullName);
+    setBhtSignature(getApiData?.bhtSignature);
+    setbhtDate(getApiData?.bhpDate?getApiData?.bhpDate.slice(0,10):"")
+    setBhpTime(getApiData?.bhpTime)
+    setRnName(getApiData?.rnName?.fullName);
+    setRnSignature(getApiData?.rnSignature);
+    setrnDate(getApiData?.rnDate?getApiData?.rnDate?.slice(0,10):"")
+    setRnTime(getApiData?.rnTime)
+  },[getApiData])
+  
+
+  useEffect(()=>{
+    Nurssing_form_get(userId,setGetApiData);
+  },[userId])
 
   useEffect(() => {
+    //calculater date
+    const birthDate =new Date(userDetail?.dateOfBirth);
+
+    // Get the current date
+    const currentDate = new Date();
+
+    // Calculate the difference in milliseconds between the current date and the birth date
+    const timeDiff = currentDate.getTime() - birthDate.getTime();
+
+    // Convert the time difference from milliseconds to years
+const ageInMilliseconds = new Date(timeDiff);
+const ageInYears = Math.abs(ageInMilliseconds.getUTCFullYear() - 1970);
+
+    setAge(ageInYears);
+
     setUserId(userDetail?._id);
+    setName(userDetail?.fullName)
+    setSex(userDetail?.gender)
+    setDateOfBirth(userDetail?.dateOfBirth?userDetail?.dateOfBirth.slice(0,10):"")
   }, [userDetail]);
 
   useEffect(() => {
     user_detail(setUserDetail);
+    employ_Detail(setEmploy);
   }, []);
 
   const initialData = () => {
@@ -221,7 +316,6 @@ const NursingAssessment = () => {
     setLastTBScreeningDate("");
     setTbScreeningResults("");
     setCareProvidedPhysicalServices("");
-    // setCareProvidedBehavioralHealthServices();
     setVitalsBloodPressure(0);
     setVitalsPulse(0);
     setVitalsRespiratoryRate(0);
@@ -231,30 +325,31 @@ const NursingAssessment = () => {
     setVitalsHeightFeet(0);
     setVitalsHeightInches(0);
     setAllergies("");
-    setCovid19ScreeningSymptomsFeverOrChills(false);
-    setCovid19ScreeningSymptomsShortnessOfBreath(false);
-    setCovid19ScreeningSymptomsSoreThroat(false);
-    setCovid19ScreeningSymptomsDiarrhea(false);
-    setCovid19ScreeningSymptomsCough(false);
-    setCovid19ScreeningSymptomsBodyAches(false);
-    setCovid19ScreeningSymptomsCongestionOrRunnyNose(false);
-    setCovid19ScreeningSymptomsLossOfTasteOrSmell(false);
-    setCovid19ScreeningSymptomsFatigue(false);
-    setCovid19ScreeningSymptomsHeadache(false);
-    setCovid19ScreeningSymptomsNauseaOrVomiting(false);
     setReviewOfSystemsConstitutional("");
+    setReviewOfSystemsConstitutionalOther("")
     setReviewOfSystemsCardiovascular("");
+    setReviewOfSystemsCardiovascularOther("")
     setReviewOfSystemsEndocrine("");
+    setReviewOfSystemsEndocrineOther("")
     setReviewOfSystemsGastrointestinal("");
     setReviewOfSystemsGenitourinary("");
+    setReviewOfSystemsGastrointestinalOther("")
     setReviewOfSystemsHematologyOncology("");
+    setReviewOfSystemsHematologyOncologyOther("")
     setReviewOfSystemsHeadNeckThroat("");
+    setReviewOfSystemsHeadNeckThroatOther("")
     setReviewOfSystemsIntegumentary("");
+    setReviewOfSystemsIntegumentaryOther("")
     setReviewOfSystemsMusculoskeletal("");
+    setReviewOfSystemsMusculoskeletalOther("")
     setReviewOfSystemsPsychiatric("");
+    setReviewOfSystemsPsychiatricOther("")
     setReviewOfSystemsNeurologic("");
+    setReviewOfSystemsNeurologicOther("")
     setReviewOfSystemsRespiratory("");
+    setReviewOfSystemsRespiratoryOther("")
     setReviewOfSystemsAllergicImmunologic("");
+    setReviewOfSystemsAllergicImmunologicOther("")
     setSuicidalRiskAssessmentDeniesSymptomsBellow(false);
     setBehavioralSymptoms("");
     setPhysicalSymptoms("");
@@ -273,10 +368,15 @@ const NursingAssessment = () => {
     setLegBack("");
     setLegLeft("");
     setLegRight("");
+    setCommentFigure("")
     setBhtName("");
     setBhtSignature("");
+    setbhtDate("")
+    setBhpTime("")
     setRnName("");
     setRnSignature("");
+    setrnDate("")
+    setRnTime("")
   };
 
   const handlePost = (e) => {
@@ -290,7 +390,7 @@ const NursingAssessment = () => {
       codeStatus,
       lastTBScreeningDate,
       tbScreeningResults,
-      careProvidedPhysicalServices,
+      careProvided:careProvidedPhysicalServices,
       // careProvidedBehavioralHealthServices,
       vitalsBloodPressure,
       vitalsPulse,
@@ -301,9 +401,33 @@ const NursingAssessment = () => {
       vitalsHeightFeet,
       vitalsHeightInches,
       allergies,
-      covid19ScreeningSymptomsFeverOrChills,
-      covid19ScreeningSymptomsShortnessOfBreath,
-      reviewOfSystemsConstitutional,
+// add value
+reviewOfSystemsConstitutional,
+reviewOfSystemsConstitutionalComment:reviewOfSystemsConstitutionalOther,
+reviewOfSystemsCardiovascular,
+reviewOfSystemsCardiovascularComment:reviewOfSystemsCardiovascularOther,
+reviewOfSystemsEndocrine,
+reviewOfSystemsEndocrineComment:reviewOfSystemsEndocrineOther,
+reviewOfSystemsGastrointestinal,
+reviewOfSystemsGastrointestinalComment:reviewOfSystemsGastrointestinalOther,
+reviewOfSystemsGenitourinary,
+reviewOfSystemsGenitourinaryComment:reviewOfSystemsGenitourinaryOther,
+reviewOfSystemsHematologyOncology,
+reviewOfSystemsHematologyOncologyComment:reviewOfSystemsHematologyOncologyOther,
+reviewOfSystemsHeadNeckThroat,
+reviewOfSystemsHeadNeckThroatComment:reviewOfSystemsHeadNeckThroatOther,
+reviewOfSystemsIntegumentary,
+reviewOfSystemsIntegumentaryComment:reviewOfSystemsIntegumentaryOther,
+reviewOfSystemsMusculoskeletal,
+reviewOfSystemsMusculoskeletalComment:reviewOfSystemsMusculoskeletalOther,
+reviewOfSystemsPsychiatric,
+reviewOfSystemsPsychiatricComment:reviewOfSystemsPsychiatricOther,
+reviewOfSystemsNeurologic,
+reviewOfSystemsNeurologicComment:reviewOfSystemsNeurologicOther,
+reviewOfSystemsRespiratory,
+reviewOfSystemsRespiratoryOther:reviewOfSystemsRespiratoryOther,
+reviewOfSystemsAllergicImmunologic,
+reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOther,
       suicidalRiskAssessmentDeniesSymptomsBellow,
       behavioralSymptoms,
       physicalSymptoms,
@@ -322,10 +446,15 @@ const NursingAssessment = () => {
       legBack,
       legLeft,
       legRight,
+      legComment:commentFigure,
       bhtName,
       bhtSignature,
+      bhtDate,
+      bhpTime,
       rnName,
       rnSignature,
+      rnDate,
+      rnTime
     };
     Nurssing_form(data);
     initialData();
@@ -438,7 +567,7 @@ const NursingAssessment = () => {
                 <label htmlFor="admissionDate">Enter Age:</label>
             <input
 
-              type="text"
+              type="number"
               id="dateOfBirth"
               value={age}
               placeholder="Enter Age"
@@ -458,7 +587,7 @@ const NursingAssessment = () => {
                     checked={sex === "Male"}
                     onChange={() => setSex("Male")}
                   />
-                  <label >M</label>
+                  <label >Male</label>
                 </div>
                 <div style={{ display: 'flex', gap: "10px", alignItems: "center" }}>
                   <input
@@ -467,7 +596,16 @@ const NursingAssessment = () => {
                     checked={sex === "Female"}
                     onChange={() => setSex("Female")}
                   />
-                  <label >F</label>
+                  <label >Female</label>
+                </div>
+                <div style={{ display: 'flex', gap: "10px", alignItems: "center" }}>
+                  <input
+                    type="checkbox"
+
+                    checked={sex === "Other"}
+                    onChange={() => setSex("Other")}
+                  />
+                  <label >Other</label>
                 </div>
               </div>
             </div>
@@ -475,7 +613,7 @@ const NursingAssessment = () => {
 
 
             <div className="form-field-single-update">
-              <label htmlFor="AHCCCS">Admission Diagnosis: </label>
+              <label >Admission Diagnosis: </label>
               <input
 
                 type="text"
@@ -517,7 +655,7 @@ const NursingAssessment = () => {
               <div className="form-field-child">
                 <label >Date of Last TB Screening:</label>
                 <input
-                  type="text"
+                  type="date"
               value={lastTBScreeningDate}
                   placeholder="MM/DD/YYYY"
               required
@@ -568,17 +706,16 @@ const NursingAssessment = () => {
               <div style={{ display: 'flex', gap: "10px", alignItems: "center" }}>
                 <input
                   type="checkbox"
-
-                  checked={careProvidedPhysicalServices.includes("Physical Services")}
-                  onChange={() => careProvidedPhysicalServicesHandler("Physical Services")}
+                  checked={careProvidedPhysicalServices.includes("PhysicalServices")}
+                  onChange={() => careProvidedPhysicalServicesHandler("PhysicalServices")}
                 />
                 <label >Physical Services</label>
               </div>
               <div style={{ display: 'flex', gap: "10px", alignItems: "center" }}>
                 <input
                   type="checkbox"
-                  checked={careProvidedPhysicalServices.includes("Behavioral Health Services")}
-                  onChange={() => careProvidedPhysicalServicesHandler("Behavioral Health Services")}
+                  checked={careProvidedPhysicalServices.includes("BehavioralHealthServices")}
+                  onChange={() => careProvidedPhysicalServicesHandler("BehavioralHealthServices")}
                 />
                 <label >Behavioral Health Services</label>
               </div>
@@ -623,7 +760,7 @@ const NursingAssessment = () => {
                 <label htmlFor="AHCCCS">Blood Pressure:</label>
               
                <input
-                  type="tel"
+                  type="text"
                   pattern="{0-9}"
                   value={vitalsBloodPressure}
                   required
@@ -640,7 +777,7 @@ const NursingAssessment = () => {
               <div className="form-field-child">
                 <label htmlFor="AHCCCS">Pulse Rate:</label>
                 <input
-                  type="number"
+                  type="text"
                 
                   value={vitalsPulse}
                  
@@ -658,7 +795,7 @@ const NursingAssessment = () => {
               <div className="form-field-child">
                 <label htmlFor="AHCCCS">Respiration Rate:</label>
                 <input
-                  type="number"
+                  type="text"
                 
                   value={vitalsRespiratoryRate}
                   required
@@ -679,7 +816,7 @@ const NursingAssessment = () => {
               <div className="form-field-child ">
                 <label htmlFor="AHCCCS">Body Temperature:</label>
                 <input
-                  type="number"
+                  type="text"
                 
                   value={vitalsTemperature}
                   required
@@ -695,7 +832,7 @@ const NursingAssessment = () => {
               <div className="form-field-child">
                 <label htmlFor="AHCCCS">Blood Oxygen:</label>
                 <input
-                  type="number"
+                  type="text"
                
                   value={vitalsOxygenLevel}
                   required
@@ -1266,7 +1403,7 @@ const NursingAssessment = () => {
             </div>
 
                 {/* state is make is pending */}
-            <div className="form-field-child-result">
+            {/* <div className="form-field-child-result">
                 <div>
                   <label className="black_space" >Is your blood pressure under control? </label>
                 </div>
@@ -1297,7 +1434,7 @@ const NursingAssessment = () => {
                   />
                   <label >Unsure</label>
                 </div>
-              </div>
+              </div> */}
 
             {/* <div>
             <input
@@ -1398,7 +1535,7 @@ const NursingAssessment = () => {
                 <label htmlFor="N/a">N/A</label>
               </div>
 
-            <div className="form-field-child-result">
+            {/* <div className="form-field-child-result">
                 <div >
                   <label className="black_space" >Dry skin Is resident’s blood sugar under control? </label>
                 </div>
@@ -1433,7 +1570,7 @@ const NursingAssessment = () => {
 
                 </div>
                
-              </div>
+              </div> */}
             {/* <div>
             <input
                 type="checkbox"
@@ -2995,19 +3132,30 @@ const NursingAssessment = () => {
            <div className="box-image-container" style={{marginBottom:"2rem"}}>
             <div className="form-field-single-update">
             <label htmlFor="AHCCCS">BHT Name:</label>
-            <input
+            {/* <input
               type="text"
               // id="AHCCCS"
               value={bhtName}
               placeholder="Enter Name"
               required
               onChange={(e) => setBhtName(e.target.value)}
-            />
+            /> */}
+             <select value={bhtName} onChange={(e)=>setBhtName(e.target.value)}>
+             {
+                bhtName ?  <option value="">{bhtName}</option> :  <option value="">Select Employ</option>
+              }
+              {
+                employ.length> 0 && employ.map((item)=>(
+                  <option value={item._id}>{item?.fullName}</option>
+                ))
+              }
+              
+            </select>
           </div>
 
        
-            <div class="file-upload-box hidePrint" style={{marginLeft:"10px"}}> 
-                <div className="file-upload-box-child">
+            <div class="file-upload-box " style={{marginLeft:"10px"}}> 
+                <div className="file-upload-box-child hidePrint">
                 <button className="upload-button1" type="button" onClick={() => setDraftModel(true)}>
                   SAVED AS DRAFT
                 </button>
@@ -3018,7 +3166,7 @@ const NursingAssessment = () => {
               <div>
                 {
                   bhtSignature  && (
-                    <p className="signature_name_print">Digitally Sign by {bhtSignature} {bhtDate}</p>
+                    <p className="signature_name_print">Digitally Sign by {bhtSignature} {bhtDate} {bhpTime}</p>
                   )
                 }
               </div>
@@ -3030,23 +3178,36 @@ const NursingAssessment = () => {
                 singin={bhtSignature}
                 setSingIn={setBhtSignature}
                 setDateAndTime={setbhtDate}
+                setSignatureTime={setBhpTime}
                 />)
             }
             <div className="form-field-single-update">
               <label >RN Name:</label>
-            <input
+            {/* <input
               type="text"
 
               value={rnName}
               placeholder="Enter Name"
               required
               onChange={(e) => setRnName(e.target.value)}
-            />
+            /> */}
+            <select value={rnName} onChange={(e)=>setRnName(e.target.value)}>
+              {
+                rnName ?  <option value="">{rnName}</option> :  <option value="">Select Employ</option>
+              }
+            
+              {
+                employ.length> 0 && employ.map((item)=>(
+                  <option value={item._id}>{item?.fullName}</option>
+                ))
+              }
+              
+            </select>
             </div>
 
-            <div class="file-upload-box hidePrint" style={{marginLeft:"10px",paddingBottom:"1rem"}}>
+            <div class="file-upload-box " style={{marginLeft:"10px",paddingBottom:"1rem"}}>
               
-              <div className="file-upload-box-child">
+              <div className="file-upload-box-child hidePrint">
                <div >
                 <button className="upload-button1" type="button" onClick={() => setDraftModel(true)}>
                   SAVED AS DRAFT
@@ -3066,22 +3227,27 @@ const NursingAssessment = () => {
               <div>
                 {
                   rnSignature && (
-                    <p className="signature_name_print">Digitally Sign by {rnSignature} {rnDate}</p>
+                    <p className="signature_name_print">Digitally Sign by {rnSignature} {rnDate} {rnTime}</p>
                   )
                 }
               </div>
-              
             </div>
-
             {
               showSingInTwo && (<SingInUpdateModel 
                 onClose={()=>setShowSingInTwo(false)}
                 singin={rnSignature}
-                setSingIn={rnDate}
+                setSingIn={setRnSignature}
                 setDateAndTime={setrnDate}
+                setSignatureTime={setRnTime}
                 />)
             }
             </div>
+
+            <div className="form-actions hidePrint">
+            <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem"}}>
+              SUBMIT DETAILS
+            </button>
+          </div>
 
         </form>
       </div>

@@ -183,6 +183,19 @@ export const Nurssing_form = async (payLoad) => {
   }
 };
 
+export const Nurssing_form_get = async (id,setGetApiData) => {
+  try {
+    const {data} = await axios.get(
+      `${BaseUrl}Patient/getNursingAssessment/${id}`,
+      Token
+    );
+    setGetApiData(data?.data);
+    return data;
+  } catch (e) {
+    // show_notification("fail !", `${e?.response?.data?.message}`, "danger");
+  }
+};
+
 export const faceSheet_form = async (payLoad) => {
   try {
     const res = await axios.post(
@@ -292,6 +305,20 @@ export const notification_get = async (setNotification) => {
       Token
     );
     setNotification(res?.data?.data);
+
+  } catch (e) {
+    // show_notification("fail !", `${e?.response?.data?.message}`, "danger");
+  }
+};
+
+export const employ_Detail = async (setEmploy) => {
+  try {
+    const res = await axios.get(
+      // `${BaseUrl}Patient/getOngoingMedications/${patientId}`,
+      `${BaseUrl}Patient/getEmployee`,
+      Token
+    );
+    setEmploy(res?.data?.data);
 
   } catch (e) {
     // show_notification("fail !", `${e?.response?.data?.message}`, "danger");

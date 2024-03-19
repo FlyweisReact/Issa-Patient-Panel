@@ -8,6 +8,8 @@ import Select from "react-select";
 import Draftinmodel from "../Modal/Draftinmodel";
 import SingInUpdateModel from "../Modal/SingInUpdateModel";
 import { useReactToPrint } from "react-to-print";
+import { Button } from "react-bootstrap";
+import AutoSize from "../AutoSize/AutoSize"
 // import AutosizeInput from "react-input-autosize";
 
 const Treatmentplan_update = () => {
@@ -1686,6 +1688,7 @@ const Treatmentplan_update = () => {
                         onChange={(e) => setMentelText(e.target.value)}
                       />
                     )} */}
+                    <AutoSize value={mentelText} setValue={setMentelText}  placeholder="________"/>
                 </div>
               </div>
 
@@ -1751,6 +1754,7 @@ const Treatmentplan_update = () => {
                         onChange={(e) => setMindText(e.target.value)}
                       />
                     )} */}
+                     <AutoSize value={mindText} setValue={setMindText}  placeholder="________"/>
                 </div>
               </div>
 
@@ -2098,17 +2102,18 @@ const Treatmentplan_update = () => {
                     onChange={() => handleCheckboxChangeBehavioral("Other")}
                   />
                   <label htmlFor="other">Other</label>
-                  {/* {behavioralSymptomsBoolean && (
-                      <AutosizeInput
-                        type="text"
-                        inputStyle={{ border: "none", outline: "none" }}
-                        placeholder="________"
-                        value={behavioralSymptomsOther}
-                        onChange={(e) =>
-                          setBehavioralSymptomsOther(e.target.value)
-                        }
-                      />
-                    )} */}
+                  {behavioralSymptomsBoolean && (
+                      // <AutosizeInput
+                      //   type="text"
+                      //   inputStyle={{ border: "none", outline: "none" }}
+                      //   placeholder="________"
+                      //   value={behavioralSymptomsOther}
+                      //   onChange={(e) =>
+                      //     setBehavioralSymptomsOther(e.target.value)
+                      //   }
+                      // />
+                      <AutoSize value={behavioralSymptomsOther}  setValue={setBehavioralSymptomsOther}   placeholder="________"/>
+                    )}
                 </div>
               </div>
 
@@ -2210,15 +2215,16 @@ const Treatmentplan_update = () => {
                     onChange={() => handleCheckboxChangePhysical("Other")}
                   />
                   <label htmlFor="Other">Other</label>
-                  {/* {physicalSymptomsBoolean && (
-                      <AutosizeInput
-                        type="text"
-                        inputStyle={{ border: "none", outline: "none" }}
-                        placeholder="________"
-                        value={physicalSymptomsOther}
-                        onChange={(e) => setPhysicalSymptomsOther(e.target.value)}
-                      />
-                    )} */}
+                  {physicalSymptomsBoolean && (
+                      // <AutosizeInput
+                      //   type="text"
+                      //   inputStyle={{ border: "none", outline: "none" }}
+                      //   placeholder="________"
+                      //   value={physicalSymptomsOther}
+                      //   onChange={(e) => setPhysicalSymptomsOther(e.target.value)}
+                      // />
+                      <AutoSize value={physicalSymptomsOther} setValue={setPhysicalSymptomsOther} placeholder="________"/>
+                    )}
                 </div>
               </div>
 
@@ -2338,17 +2344,18 @@ const Treatmentplan_update = () => {
                     onChange={() => handleCheckboxChangeCognitive("Other")}
                   />
                   <label htmlFor="Other">Other</label>
-                  {/* {consnotiveSymptomsBoolean && (
-                      <AutosizeInput
-                        type="text"
-                        inputStyle={{ border: "none", outline: "none" }}
-                        placeholder="________"
-                        value={consnotiveSymptomsOther}
-                        onChange={(e) =>
-                          setConsnotiveSymptomsOther(e.target.value)
-                        }
-                      />
-                    )} */}
+                  {consnotiveSymptomsBoolean && (
+                      // <AutosizeInput
+                      //   type="text"
+                      //   inputStyle={{ border: "none", outline: "none" }}
+                      //   placeholder="________"
+                      //   value={consnotiveSymptomsOther}
+                      //   onChange={(e) =>
+                      //     setConsnotiveSymptomsOther(e.target.value)
+                      //   }
+                      // />
+                      <AutoSize value={consnotiveSymptomsOther} setValue={setConsnotiveSymptomsOther}  placeholder="________"/>
+                    )}
                 </div>
               </div>
               {/* 
@@ -2460,17 +2467,18 @@ const Treatmentplan_update = () => {
                     onChange={() => handleCheckboxChangePsychosocial("Other")}
                   />
                   <label htmlFor="OtherpsychosocialSymptoms">Other</label>
-                  {/* {psychosocialSymptomsBoolean && (
-                      <AutosizeInput
-                        type="text"
-                        inputStyle={{ border: "none", outline: "none" }}
-                        placeholder="________"
-                        value={psychosocialSymptomssOther}
-                        onChange={(e) =>
-                          setPsychosocialSymptomsOther(e.target.value)
-                        }
-                      />
-                    )} */}
+                  {psychosocialSymptomsBoolean && (
+                      // <AutosizeInput
+                      //   type="text"
+                      //   inputStyle={{ border: "none", outline: "none" }}
+                      //   placeholder="________"
+                      //   value={psychosocialSymptomssOther}
+                      //   onChange={(e) =>
+                      //     setPsychosocialSymptomsOther(e.target.value)
+                      //   }
+                      // />
+                      <AutoSize value={psychosocialSymptomssOther} setValue={setPsychosocialSymptomsOther}  placeholder="________"/>
+                    )}
                 </div>
               </div>
               {/* 
@@ -2702,17 +2710,18 @@ const Treatmentplan_update = () => {
                     onChange={() => handleCheckboxChange("Other")}
                   />
                   <label htmlFor="OtherpsychosocialSymptoms">Other</label>
-                  {/* {interventionsImplementedBoolean && (
-                      <AutosizeInput
-                        type="text"
-                        inputStyle={{ border: "none", outline: "none" }}
-                        placeholder="________"
-                        value={interventionsImplementedOther}
-                        onChange={(e) =>
-                          setInterventionsImplementedOther(e.target.value)
-                        }
-                      />
-                    )} */}
+                  {interventionsImplementedBoolean && (
+                      // <AutosizeInput
+                      //   type="text"
+                      //   inputStyle={{ border: "none", outline: "none" }}
+                      //   placeholder="________"
+                      //   value={interventionsImplementedOther}
+                      //   onChange={(e) =>
+                      //     setInterventionsImplementedOther(e.target.value)
+                      //   }
+                      // />
+                      <AutoSize value={interventionsImplementedOther} setValue={setInterventionsImplementedOther}  placeholder="________"/>
+                    )}
                 </div>
               </div>
               {/* <div className="yeschechbox-review">
@@ -2991,17 +3000,18 @@ const Treatmentplan_update = () => {
                     onChange={() => handleCheckboxChangeCounsiling("Other")}
                   />
                   <label htmlFor="OtherpsychosocialSymptoms">Other</label>
-                  {/* {counselingOptionsTextBoolean && (
-                      <AutosizeInput
-                        type="text"
-                        inputStyle={{ border: "none", outline: "none" }}
-                        placeholder="________"
-                        value={counselingOptionsText}
-                        onChange={(e) =>
-                          setCounselingOptionsOther(e.target.value)
-                        }
-                      />
-                    )} */}
+                  {counselingOptionsTextBoolean && (
+                      // <AutosizeInput
+                      //   type="text"
+                      //   inputStyle={{ border: "none", outline: "none" }}
+                      //   placeholder="________"
+                      //   value={counselingOptionsText}
+                      //   onChange={(e) =>
+                      //     setCounselingOptionsOther(e.target.value)
+                      //   }
+                      // />
+                      <AutoSize value={counselingOptionsText} setValue={setCounselingOptionsOther}  placeholder="________"/>
+                    )}
                 </div>
               </div>
               {/* <div>
@@ -4592,17 +4602,18 @@ const Treatmentplan_update = () => {
                     onChange={() => handleCheckboxChangeSupportSystem("Other")}
                   />
                   <label htmlFor="OtherpsychosocialSymptoms">Other</label>
-                  {/* {supportSystemOtherTextBoolean && (
-                      <AutosizeInput
-                        type="text"
-                        inputStyle={{ border: "none", outline: "none" }}
-                        placeholder="________"
-                        value={supportSystemOtherText}
-                        onChange={(e) =>
-                          setSupportSystemOtherText(e.target.value)
-                        }
-                      />
-                    )} */}
+                  {supportSystemOtherTextBoolean && (
+                      // <AutosizeInput
+                      //   type="text"
+                      //   inputStyle={{ border: "none", outline: "none" }}
+                      //   placeholder="________"
+                      //   value={supportSystemOtherText}
+                      //   onChange={(e) =>
+                      //     setSupportSystemOtherText(e.target.value)
+                      //   }
+                      // />
+                      <AutoSize value={supportSystemOtherText} setValue={setSupportSystemOtherText}  placeholder="________"/>
+                    )}
                 </div>
               </div>
               {/* <div className="yeschechbox-review">
@@ -4742,17 +4753,18 @@ const Treatmentplan_update = () => {
                     onChange={() => setreligiousPreference("Other")}
                   />
                   <label htmlFor="Other">Other</label>
-                  {/* {religiousPreference === "Other" && (
-                      <AutosizeInput
-                        type="text"
-                        inputStyle={{ border: "none", outline: "none" }}
-                        placeholder="________"
-                        value={religiousPreferenceText}
-                        onChange={(e) =>
-                          setReligiousPreferenceText(e.target.value)
-                        }
-                      />
-                    )} */}
+                  {religiousPreference === "Other" && (
+                      // <AutosizeInput
+                      //   type="text"
+                      //   inputStyle={{ border: "none", outline: "none" }}
+                      //   placeholder="________"
+                      //   value={religiousPreferenceText}
+                      //   onChange={(e) =>
+                      //     setReligiousPreferenceText(e.target.value)
+                      //   }
+                      // />
+                      <AutoSize value={religiousPreferenceText} setValue={setReligiousPreferenceText}  placeholder="________"/>
+                    )}
                 </div>
               </div>
 
@@ -5113,19 +5125,20 @@ const Treatmentplan_update = () => {
                     }
                   />
                   <label htmlFor="OtherpsychosocialSymptoms">Other</label>
-                  {/* {recommendationsForFurtherProgramsBoolean && (
-                      <AutosizeInput
-                        type="text"
-                        inputStyle={{ border: "none", outline: "none" }}
-                        placeholder="________"
-                        value={recommendationsForFurtherProgramsOther}
-                        onChange={(e) =>
-                          setRecommendationsForFurtherProgramsOther(
-                            e.target.value
-                          )
-                        }
-                      />
-                    )} */}
+                  {recommendationsForFurtherProgramsBoolean && (
+                      // <AutosizeInput
+                      //   type="text"
+                      //   inputStyle={{ border: "none", outline: "none" }}
+                      //   placeholder="________"
+                      //   value={recommendationsForFurtherProgramsOther}
+                      //   onChange={(e) =>
+                      //     setRecommendationsForFurtherProgramsOther(
+                      //       e.target.value
+                      //     )
+                      //   }
+                      // />
+                      <AutoSize value={recommendationsForFurtherProgramsOther} setValue={setRecommendationsForFurtherProgramsOther}  placeholder="________"/>
+                    )}
                 </div>
               </div>
 
@@ -5250,13 +5263,7 @@ const Treatmentplan_update = () => {
                     completed. It will be review and updated on an on-going
                     basis according to the review date{" "}
                     <span>
-                      {/* <AutosizeInput
-                          type="text"
-                          inputStyle={{ border: "none", outline: "none" }}
-                          placeholder="________"
-                          value={textData}
-                          onChange={(e) => setTextData(e.target.value)}
-                        /> */}
+                        <AutoSize value={textData} onChange={(e) => setTextData(e.target.value)}  placeholder="________"/>
                     </span>
                     specified in the treatment plan, when a treatment goal is
                     accomplished or changed, when additional information that
