@@ -63,17 +63,28 @@ const ResidentIntakes = () => {
   //handle print data
   const handlePrintUpdate1 = () => {
     var elements = document.getElementsByClassName("hidePrint");
-
+    var addButton= document.getElementsByClassName("addButton");
     // Iterate through each element with the specified class
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
     }
+
+    for (var i = 0; i < addButton.length; i++) {
+      elements[i].style.display = "none";
+    }
+
     handlePrint1();
     // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
     setTimeout(() => {
       for (var i = 0; i < elements.length; i++) {
         elements[i].style.display = "flex";
       }
+
+      for (var i = 0; i < addButton.length; i++) {
+        elements[i].style.display = "flex";
+        elements[i].style.justifyContent = "center";
+      }
+  
     }, 500);
   };
 

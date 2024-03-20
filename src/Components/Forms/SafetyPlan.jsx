@@ -383,6 +383,7 @@ const SafetyPlan = () => {
         <div className="formheading1">
           <div className="formsheading2">
             <h1>Resident Safety Plan</h1>
+            <h1>RESIDENT SAFETY PLAN</h1>
           </div>
         </div>
         <form onSubmit={handlePost}>
@@ -891,7 +892,7 @@ const SafetyPlan = () => {
               }}
             >
               {" "}
-              Suicide Prevention Lifeline: 1-800-273-TALK (8255)
+              Suicide Prevention Lifeline: 1-800-273-TALK (8255) / 988
             </h5>
               <h5
                 style={{

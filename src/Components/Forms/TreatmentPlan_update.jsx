@@ -1948,8 +1948,7 @@ const Treatmentplan_update = () => {
                     onChange={() => setAdls("personalCareLevel")}
                   />
                   <label htmlFor="personalCareLevel">
-                    Personal care level – See Attached personal care treatment
-                    plan
+                    Personal care level 
                   </label>
                 </div>
               </div>
@@ -2814,15 +2813,7 @@ const Treatmentplan_update = () => {
                   />
                   <label htmlFor="Redirection">Redirection</label>
                 </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="None reported"
-                    checked={interventionsImplemented.includes("None reported")}
-                    onChange={() => handleCheckboxChange("None reported")}
-                  />
-                  <label htmlFor="None reported">None reported</label>
-                </div>
+             
                 <div>
                   <input
                     type="checkbox"
@@ -4753,7 +4744,7 @@ const Treatmentplan_update = () => {
                 />
               </div>
               <label htmlFor="" className="label-review">
-                Religious Preference:
+                Religious/Cultural Preference:
               </label>
               <div className="yeschechbox-review">
                 <div>
@@ -4828,15 +4819,7 @@ const Treatmentplan_update = () => {
                   />
                   <label htmlFor="Other">Other</label>
                   {religiousPreference === "Other" && (
-                      // <AutosizeInput
-                      //   type="text"
-                      //   inputStyle={{ border: "none", outline: "none" }}
-                      //   placeholder="________"
-                      //   value={religiousPreferenceText}
-                      //   onChange={(e) =>
-                      //     setReligiousPreferenceText(e.target.value)
-                      //   }
-                      // />
+                  
                       <AutoSize value={religiousPreferenceText} setValue={setReligiousPreferenceText}  placeholder="________"/>
                     )}
                 </div>
@@ -5473,7 +5456,7 @@ const Treatmentplan_update = () => {
                     }
                   />
                   <label htmlFor="isReason">
-                    Yes{" "}
+                    Yes,{" "}
                     <span>
                       I am in the agreement with the services included in this
                       treatment Plan
@@ -5500,9 +5483,9 @@ const Treatmentplan_update = () => {
                     }
                   />
                   <label htmlFor="refusalReason">
-                    No{" "}
+                    No,{" "}
                     <span>
-                      I am in the agreement with the services included in this
+                      I am not in the agreement with the services included in this
                       treatment Plan
                     </span>
                   </label>

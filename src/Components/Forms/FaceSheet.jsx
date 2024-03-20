@@ -21,6 +21,7 @@ const FaceSheet = () => {
 
   const handlePrint2 = () => {
     var elements = document.getElementsByClassName("hidePrint");
+    
 
     // Iterate through each element with the specified class
     for (var i = 0; i < elements.length; i++) {
@@ -424,8 +425,8 @@ if (getApiDataAdmit) {
       </div>
         <div className="Boss">
         <div className="formheading1">
-          <div className="formsheading2">
-            <h1>Face sheet/Resident Emergency Information</h1>
+          <div className="formsheading2" style={{marginTop:"1.5rem"}}>
+            <h1>FACE SHEET/RESIDENT EMERGENCY INFORMATION</h1>
           </div>
         </div>
           <form onSubmit={handleData}>

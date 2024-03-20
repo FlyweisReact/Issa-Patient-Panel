@@ -701,7 +701,7 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
 
             <div className="form-field-single-update-care">
               <div>
-                <label >Care to be provided at Devine Care: </label>
+                <label >Care to be provided: </label>
               </div>
               <div style={{ display: 'flex', gap: "10px", alignItems: "center" }}>
                 <input
