@@ -121,7 +121,7 @@ const FileUpload = () => {
       <div className='appointmentcontent'>
         <p style={{fontSize:"24px"}}>File Upload</p>
       </div>
-      kjfgojko
+      
 
       <div className="file_parent">
 

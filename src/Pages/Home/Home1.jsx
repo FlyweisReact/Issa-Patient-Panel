@@ -24,8 +24,9 @@ const Home1 = ({ Wcomponenet }) => {
       const isDesktop = window.innerWidth > 768; // You can adjust this threshold as needed
         const isDeskWidth=window.innerWidth < 480;
       // Set the state based on the condition
-      setIsMenuOpen(isDeskWidth);
+      
       setcompleteintakeModalopne(isDesktop);
+      setIsMenuOpen(isDeskWidth);
     };
 
     // Add event listener for window resize
@@ -47,12 +48,14 @@ const Home1 = ({ Wcomponenet }) => {
     if (!hasModalBeenShown) {
       // If not shown before, set the state to true and mark the modal as shown
       setcompleteintakeModalopne(true);
+      setIsMenuOpen(true);
       localStorage.setItem('hasModalBeenShown', 'true');
     }
   }, []); // Empty dependency array ensures this effect runs only once when the component mounts
 
   const closeCompleteIntakeModal = () => {
     setcompleteintakeModalopne(false);
+    setIsMenuOpen(false)
   };
 
   const handleCompleteIntake = () => {
@@ -65,18 +68,17 @@ const Home1 = ({ Wcomponenet }) => {
     <>
       <div className={`Hoc ${isMenuOpen ? 'menu-open' : ''}`}>
         {/* <div className={` ${isMenuOpen ? 'sidebar1' : ''}`}>
-          <Sidebar  isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
-        </div> */}
+         <Sidebar  isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+        </div>  */}
         <div>
           <UpperBar isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
           {Wcomponenet && <Wcomponenet />}
         </div>
-        {/* <div> </div> */}
+       
       </div>
-
       
       {/* Notification Modal */}
-      {iscompleteintakeModalopne && (
+      {/* {iscompleteintakeModalopne && (
         <CompleteIntake >
           <div className='completeintake'>
             <div>
@@ -89,7 +91,7 @@ const Home1 = ({ Wcomponenet }) => {
             </div>
           </div>
         </CompleteIntake>
-      )}
+      )} */}
     </>
   );
 };

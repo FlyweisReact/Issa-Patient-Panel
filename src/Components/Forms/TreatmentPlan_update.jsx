@@ -8,9 +8,7 @@ import Select from "react-select";
 import Draftinmodel from "../Modal/Draftinmodel";
 import SingInUpdateModel from "../Modal/SingInUpdateModel";
 import { useReactToPrint } from "react-to-print";
-import { Button } from "react-bootstrap";
 import AutoSize from "../AutoSize/AutoSize"
-// import AutosizeInput from "react-input-autosize";
 
 const Treatmentplan_update = () => {
   const componentRef = React.useRef();
@@ -43,40 +41,27 @@ const Treatmentplan_update = () => {
   const [signatureModel3, setSignatureModel3] = useState(false);
   //user Detail
   const [user, setUser] = useState("");
-  const [userId, setUserId] = useState("");
-  const [userDetails, setUserDetails] = useState("");
+
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [address, setAddress] = useState("");
-  const [number, setNumber] = useState("");
-  //chosse option
-  const [intial, setInitial] = useState("");
-  const [update, setUpdate] = useState("");
-  //restdent detail
+
+
+  //from satart now ------------------------------->
+  const [userId, setUserId] = useState("");
   const [residentName, setResidentName] = useState("");
-  const [dob, setDof] = useState("");
+  const [dob, setDob] = useState("");
   const [date, setDate] = useState("");
   const [admitDate, setAdminDate] = useState("");
-  const [care, setCare] = useState("");
-  // care services
-  const [physicalService, setPhysicalService] = useState(false);
-  const [behavior, setBehavior] = useState(false);
-  const [presentingPrice, setPresentingPrice] = useState([]);
-  const [presentingPriceBoolean, setPresentingPriceBoolean] = useState(false);
-  const [presentingPriceBooleanType, setpresentingPriceBooleanType] =
-    useState("");
 
-  useEffect(() => {
-    // setTypeOfOtherBoolean()
-    for (let i = 0; i < presentingPrice.length; i++) {
-      if (presentingPrice[i].value === "Other") {
-        setPresentingPriceBoolean(true);
-        break;
-      } else {
-        setPresentingPriceBoolean(false);
-      }
-    }
-  }, [presentingPrice]);
+  // care services
+  const [physicalService, setPhysicalService] = useState("");
+  const [behavior, setBehavior] = useState("");
+  //medication service
+  const [medicationAdministation,setMedicationAdministation]=useState("");
+  const [medicationAssistance,setMedicationAssistence]=useState("");
+  const [presentingPrice, setPresentingPrice] = useState([]);
+
+  // diagonsis
+  const [diagonsis,setDiagonsis]=useState("");
 
   // Mental Status
   const [mendelHealth, setMentelHealth] = useState("");
@@ -98,40 +83,9 @@ const Treatmentplan_update = () => {
   const [residentGoal, setResidentGoal] = useState("");
   const [allergies, setAllergies] = useState("");
   const [Triggers, setTriggers] = useState("");
-  const [goalAllergies, setGoalAllergies] = useState("");
   const [strengths, setStrengths] = useState([]);
-  const [strengthsBoolean, setStrengthsBoolean] = useState(false);
-  const [strengthsType, setStrengthsType] = useState("");
-
-  useEffect(() => {
-    for (let i = 0; i < strengths.length; i++) {
-      if (strengths[i].value === "Other") {
-        setStrengthsBoolean(true);
-        break;
-      } else {
-        setStrengthsBoolean(false);
-      }
-    }
-  }, [strengths]);
 
   const [Barriers, setBarriers] = useState([]);
-  const [BarriersBoolean, setBarriersBoolean] = useState(false);
-  const [BarriersOther, setBarriersOther] = useState("");
-
-  useEffect(() => {
-    // Check if "Other" is present in the Barriers array
-    const isOtherSelected = Barriers.some(
-      (barrier) => barrier.value === "Other"
-    );
-
-    // Set BarriersBoolean accordingly
-    setBarriersBoolean(isOtherSelected);
-
-    // Update BarriersOther only when "Other" is selected
-    if (!isOtherSelected) {
-      setBarriersOther("");
-    }
-  }, [Barriers]);
 
   // Risk Assessment / Warning Signs & Symptoms of Suicidal Ideations
   const [behavioralSymptoms, setBehavioralSymptoms] = useState([]);
@@ -149,9 +103,11 @@ const Treatmentplan_update = () => {
     setBehavioralSymptomsBoolean(isOtherSelected);
 
     // Update BarriersOther only when "Other" is selected
-    if (!isOtherSelected) {
-      setBehavioralSymptomsOther("");
-    }
+  if (isOtherSelected) {
+    setBehavioralSymptomsOther("");
+  } else {
+    setBehavioralSymptomsOther("");
+  }
   }, [behavioralSymptoms]);
 
   const [physicalSymptoms, setPhysicalSymptoms] = useState([]);
@@ -376,12 +332,12 @@ const Treatmentplan_update = () => {
     setOtherArray(updatedArray);
   };
 
-  //Resident overall participation in treatment:
+  //Resident overall participation in treatment: other statement is not add
   const [residentParticipation, setResidentParticipation] = useState("");
   const [residentAttitute, setResidentAttitute] = useState("");
   const [residentProgress, setResidentProgress] = useState("");
+  const [supportSystemPhoneNumber, setSupportSystemPhoneNumber] = useState("");
   const [supportSystem, setSupportSystem] = useState([]);
-  const [supportSystemPhone, setSupportSystemPhone] = useState("");
   const [supportSystemOtherText, setSupportSystemOtherText] = useState("");
   const [supportSystemOtherTextBoolean, setSupportSystemOtherTextBoolean] =
     useState(false);
@@ -443,27 +399,32 @@ const Treatmentplan_update = () => {
   const [commentIndividual, setCommentIndividual] = useState("");
   //isReason
   const [isReason, setIsReason] = useState("no");
-  const [refusalReason, setrefusalReason] = useState("");
+  const [refusalReason, setrefusalReason] = useState("no");
   //signaturesResident
   const [nameResident, setNameResident] = useState("");
   const [credentialsResident, setCredentialsResident] = useState("");
   const [signatureResident, setsignatureResident] = useState("");
   const [dateResident, setDateResident] = useState("");
+  const [timeResident,setTimeResident]=useState("");
   // "signaturesFacilityRep"
   const [nameFacilityRep, setNameFacilityRep] = useState("");
   const [credentialsFacilityRep, setCredentialsFacilityRep] = useState("");
   const [signatureFacilityRep, setsignatureFacilityRep] = useState("");
   const [dateFacilityRep, setDateFacilityRep] = useState("");
+  const [timeFacality,setTimeFacality]=useState("")
   //signaturesBhp"
   const [nameBhp, setNameBhp] = useState("");
   const [credentialsBhp, setCredentialsBhp] = useState("");
   const [signatureBhp, setsignatureBhp] = useState("");
   const [dateBhp, setDateBhp] = useState("");
+  const [timeBhp,setTimeBhp]=useState("");
 
   useEffect(() => {
     setUserId(user?._id);
-    setName(user?.fullName);
+    setResidentName(user?.fullName);
+    setDob(user?.dateOfBirth?user?.dateOfBirth?.slice(0,10):"");
   }, [user]);
+
 
   useEffect(() => {
     user_detail(setUser);
@@ -471,49 +432,226 @@ const Treatmentplan_update = () => {
 
   const handlePost = (e) => {
     e.preventDefault();
+
+    let presentingPriceArray = [];
+
+    presentingPrice.forEach(item => {
+      presentingPriceArray.push(item?.value);
+    });
+
+    let strengthsArray=[];
+    strengths.forEach(item => {
+      strengthsArray.push(item?.value);
+    });
+
+    let BarriersArray=[]
+    Barriers.forEach(item => {
+      BarriersArray.push(item?.value);
+    });
+
+    let option1Array=[]
+    option1.forEach(item => {
+      option1Array.push(item?.value);
+    });
+
+    let option2Array=[]
+    option2.forEach(item => {
+      option2Array.push(item?.value);
+    });
+
+    let option3Array=[]
+    option3.forEach(item => {
+      option3Array.push(item?.value);
+    });
+
+    let option4Array=[]
+    option4.forEach(item => {
+      option4Array.push(item?.value);
+    });
+
+    let option5Array=[]
+    option5.forEach(item => {
+      option5Array.push(item?.value);
+    });
+
+    let option6Array=[]
+    option6.forEach(item => {
+      option6Array.push(item?.value);
+    });
+
+    let option7Array=[]
+    option7.forEach(item => {
+      option7Array.push(item?.value);
+    });
+
+    let option8Array=[]
+    option8.forEach(item => {
+      option8Array.push(item?.value);
+    });
+
+    let clinicalSummaryArray=[];
+    clinicalSummary.forEach((item)=>{
+      clinicalSummaryArray.push(item?.value);
+    })
+
+
     const data = {
       patientId: userId,
-      residentName: address,
+      
       dateOfBirth: dob,
       date: date,
       admitDate: admitDate,
-      care: {
-        physicalServices: physicalService,
-        behavioralServices: behavior,
-      },
-
-      presentingProblems: presentingPrice,
+      care: [
+        physicalService,
+        behavior,
+      ] ,
+      medicationService:[
+        medicationAdministation,
+        medicationAssistance
+    ],
+      presentingProblems: presentingPriceArray,
+      diagonsis,
       mentalStatus: mendelHealth,
       mentalStatusOther: mentelText,
       moodLevel: mind,
       moodLevelOther: mindText,
       adls: adls,
       behavioralHealthServices: BHealth,
+      behavioralHealthServicesOther:Btext,
       primaryCareProvider: primaryCare,
-
+      psychiatricProvider:psychiatricProvider,
+      residentGoals:residentGoal,
       allergies: allergies,
       triggers: Triggers,
-      strengths: strengths,
-      barriers: Barriers,
+      strengths: strengthsArray,
+      barriers: BarriersArray,
       riskAssessment: {
         behavioralSymptoms: behavioralSymptoms,
         physicalSymptoms: physicalSymptoms,
         cognitiveSymptoms: consnotiveSymptoms,
         psychosocialSymptoms: psychosocialSymptoms,
       },
-      //miss some value
+      interventions:interventionsImplemented,
+      interventionsComment:interventionsImplementedOther,
+      counselingFrequency:counselingOptions,
+      counselingFrequencyMinimum:minimumHoure,
+      counselingFrequencyComment:counselingOptionsText,
+
+      maintainSobriety:{
+        type:option1Array,
+        admissionMeasure:admissionMeasure1,
+        currentMeasure:currentMeasure1,
+        estimatedDateOfCompletion:estimatedDateOfCompletion1,
+        comments:comments1
+      },
+
+      independentLivingSkills:{
+        type:option2Array,
+        admissionMeasure:admissionMeasure2,
+        currentMeasure:currentMeasure2,
+        estimatedDateOfCompletion:estimatedDateOfCompletion2,
+        comments:comments2
+      },
+
+      employment:{
+        type:option3Array,
+        admissionMeasure:admissionMeasure3,
+        currentMeasure:currentMeasure3,
+        estimatedDateOfCompletion:estimatedDateOfCompletion3,
+        comments:comments3
+      },
+
+      adlsSecond:{
+        type:option4Array,
+        admissionMeasure:admissionMeasure4,
+        currentMeasure:currentMeasure4,
+        estimatedDateOfCompletion:estimatedDateOfCompletion4,
+        comments:comments4
+      },
+
+      safety:{
+        type:option5Array,
+        admissionMeasure:admissionMeasure5,
+        currentMeasure:currentMeasure5,
+        estimatedDateOfCompletion:estimatedDateOfCompletion5,
+        comments:comments5
+      },
+
+      medicationEducation:{
+        type:option6Array,
+        admissionMeasure:admissionMeasure6,
+        currentMeasure:currentMeasure6,
+        estimatedDateOfCompletion:estimatedDateOfCompletion6,
+        comments:comments6
+      },
+
+      managingMentalHealth:{
+        type:option7Array,
+        admissionMeasure:admissionMeasure7,
+        currentMeasure:currentMeasure7,
+        estimatedDateOfCompletion:estimatedDateOfCompletion7,
+        comments:comments7
+      },
+
+      legal:{
+        type:option8Array,
+        admissionMeasure:admissionMeasure8,
+        currentMeasure:currentMeasure8,
+        estimatedDateOfCompletion:estimatedDateOfCompletion8,
+        comments:comments8
+      },
+
+      // other: [
+      //   {
+      //     type:option1,
+      //     admissionMeasure:admissionMeasure1,
+      //     currentMeasure:currentMeasure1,
+      //     estimatedDateOfCompletion:estimatedDateOfCompletion1,
+      //     comments:comments1
+      //   }
+      // ],
+      residentParticipation,
+      residentAttitude:residentAttitute,
+      residentProgress,
+      supportSystem,
+      supportSystemPhoneNumber:supportSystemPhoneNumber,
+      currentMedications,
+      religiousPreference,
+      nutritionAndWellnessPlanning,
+      recommendationToExtendResidentialTreatment,
+      personalFinances,
+      dischargePlanning,
+      additionalComment,
+      recommendationsForFurtherPrograms,
+      afterCareAndTransitionPlanning,
+      clinicalSummary:clinicalSummaryArray,
+      treatmentPlanReviewDate,
+      dischargePlanDate,
+
+      individualsParticipatingInServicePlan:{
+        resident:resident,
+        guardian:guardian,
+        staff:staff,
+        bhp:bpn,
+        comment:commentIndividual
+      },
+
+      residentAgreementIsReason:isReason,
+      residentAgreementRefusalReason:refusalReason,
 
       signaturesResident: {
         name: nameResident,
         credentials: credentialsResident,
         signature: signatureResident,
         date: dateResident,
+        time:timeResident
       },
       signaturesFacilityRep: {
         name: nameFacilityRep,
         credentials: credentialsFacilityRep,
         signature: signatureFacilityRep,
         date: dateFacilityRep,
+        time:timeFacality
       },
       signaturesBhp: {
         name: nameBhp,
@@ -535,44 +673,93 @@ const Treatmentplan_update = () => {
     setMind(value);
   };
 
-  //set the answer
+  //set the answer handleCheckboxChangeBehavioral
   const handleCheckboxChangeBehavioral = (symptom) => {
-    setBehavioralSymptoms((prevSelectedSymptoms) => {
-      if (prevSelectedSymptoms.includes(symptom)) {
-        return prevSelectedSymptoms.filter((selected) => selected !== symptom);
-      } else {
-        return [...prevSelectedSymptoms, symptom];
-      }
-    });
+    if (symptom === "Other") {
+      // Toggle "Other" symptom
+      setBehavioralSymptoms(prevState => {
+        if (prevState.includes("Other")) {
+          return prevState.filter(item => item !== "Other");
+        } else {
+          return [...prevState, "Other"];
+        }
+      });
+    } else {
+      // Toggle other symptoms
+      setBehavioralSymptoms(prevState => {
+        if (prevState.includes(symptom)) {
+          return prevState.filter(item => item !== symptom);
+        } else {
+          return [...prevState, symptom];
+        }
+      });
+    }
   };
+
   const handleCheckboxChangePhysical = (symptom) => {
-    setPhysicalSymptoms((prevSelectedSymptoms) => {
-      if (prevSelectedSymptoms.includes(symptom)) {
-        return prevSelectedSymptoms.filter((selected) => selected !== symptom);
-      } else {
-        return [...prevSelectedSymptoms, symptom];
-      }
-    });
+    if (symptom === "Other") {
+      // Toggle "Other" symptom
+      setPhysicalSymptoms(prevState => {
+        if (prevState.includes("Other")) {
+          return prevState.filter(item => item !== "Other");
+        } else {
+          return [...prevState, "Other"];
+        }
+      });
+    }else{
+      setPhysicalSymptoms((prevSelectedSymptoms) => {
+        if (prevSelectedSymptoms.includes(symptom)) {
+          return prevSelectedSymptoms.filter((selected) => selected !== symptom);
+        } else {
+          return [...prevSelectedSymptoms, symptom];
+        }
+      });
+    }
+   
   };
 
   const handleCheckboxChangeCognitive = (symptom) => {
-    setConsnotiveSymptoms((prevSelectedSymptoms) => {
-      if (prevSelectedSymptoms.includes(symptom)) {
-        return prevSelectedSymptoms.filter((selected) => selected !== symptom);
-      } else {
-        return [...prevSelectedSymptoms, symptom];
-      }
-    });
+    if (symptom === "Other") {
+      // Toggle "Other" symptom
+      setConsnotiveSymptoms(prevState => {
+        if (prevState.includes("Other")) {
+          return prevState.filter(item => item !== "Other");
+        } else {
+          return [...prevState, "Other"];
+        }
+      });
+    }else{
+      setConsnotiveSymptoms((prevSelectedSymptoms) => {
+        if (prevSelectedSymptoms.includes(symptom)) {
+          return prevSelectedSymptoms.filter((selected) => selected !== symptom);
+        } else {
+          return [...prevSelectedSymptoms, symptom];
+        }
+      });
+    }
+
   };
 
   const handleCheckboxChangePsychosocial = (symptom) => {
-    setPsychosocialSymptoms((prevSelectedSymptoms) => {
-      if (prevSelectedSymptoms.includes(symptom)) {
-        return prevSelectedSymptoms.filter((selected) => selected !== symptom);
-      } else {
-        return [...prevSelectedSymptoms, symptom];
-      }
-    });
+    if (symptom === "Other") {
+      // Toggle "Other" symptom
+      setPsychosocialSymptoms(prevState => {
+        if (prevState.includes("Other")) {
+          return prevState.filter(item => item !== "Other");
+        } else {
+          return [...prevState, "Other"];
+        }
+      });
+    }else{
+      setPsychosocialSymptoms((prevSelectedSymptoms) => {
+        if (prevSelectedSymptoms.includes(symptom)) {
+          return prevSelectedSymptoms.filter((selected) => selected !== symptom);
+        } else {
+          return [...prevSelectedSymptoms, symptom];
+        }
+      });
+    }
+
   };
 
   const handleCheckboxChange = (value) => {
@@ -1502,10 +1689,10 @@ const Treatmentplan_update = () => {
                     <label>Date:</label>
                     <input
                       type="date"
-                      value={dob}
+                      value={date}
                       placeholder="DD/MM/YYYY"
                       required
-                      onChange={(e) => setDof(e.target.value)}
+                      onChange={(e) => setDate(e.target.value)}
                     />
                   </div>
                 </div>
@@ -1516,10 +1703,10 @@ const Treatmentplan_update = () => {
                     <input
                       type="date"
                       id="dateOfBirth"
-                      value={date}
+                      value={dob}
                       placeholder="DD/MM/YYYY"
                       required
-                      onChange={(e) => setDate(e.target.value)}
+                      onChange={(e) => setDob(e.target.value)}
                     />
                   </div>
 
@@ -1545,8 +1732,8 @@ const Treatmentplan_update = () => {
                   <div className="form-field-child">
                     <input
                       type="checkbox"
-                      checked={physicalService}
-                      onChange={() => setPhysicalService(!physicalService)}
+                      checked={physicalService==="physicalService"}
+                      onChange={() => setPhysicalService(physicalService==="physicalService"?"":"physicalService")}
                       id="behavioralCheckbox"
                     />
                     <label>Physical Services</label>
@@ -1554,8 +1741,8 @@ const Treatmentplan_update = () => {
                   <div className="form-field-child">
                     <input
                       type="checkbox"
-                      checked={behavior}
-                      onChange={() => setBehavior(!behavior)}
+                      checked={behavior==="behavior"}
+                      onChange={() => setBehavior(behavior==="behavior"?"":"behavior")}
                       id="behavioralCheckbox"
                     />
                     <label>Behavioral Services</label>
@@ -1578,13 +1765,16 @@ const Treatmentplan_update = () => {
                   <div className="form-field-update-care">
                     <div className="form-field-child">
                       <input
-                        type="checkbox"
-                        onChange={() => setBehavior(!behavior)}
+                      type="checkbox"
+                       checked={medicationAdministation==="MedicationAdministration"}
+                       onChange={() => setMedicationAdministation(medicationAdministation==="MedicationAdministration"?"":"behMedicationAdministrationavior")}
                       />
                       <label>Medication Administration</label>
                     </div>
                     <div className="form-field-child">
-                      <input type="checkbox" />
+                      <input type="checkbox" 
+                      checked={medicationAssistance==="AssistanceintheselfAdministrationofmedication"}
+                      onChange={() => setMedicationAssistence(medicationAssistance==="AssistanceintheselfAdministrationofmedication"?"":"AssistanceintheselfAdministrationofmedication")}/>
                       <label>
                         Assistance in the self-Administration of medication
                       </label>
@@ -1605,30 +1795,11 @@ const Treatmentplan_update = () => {
                 />
               </div>
 
-              {presentingPriceBoolean && (
-                <div className="form-field">
-                  <label
-                    htmlFor="programlocation&address"
-                    style={{ fontSize: "14px" }}
-                  >
-                    Comments
-                  </label>
-                  <textarea
-                    value={presentingPriceBooleanType}
-                    onChange={(e) =>
-                      setpresentingPriceBooleanType(e.target.value)
-                    }
-                    placeholder="Enter text"
-                    rows={2}
-                    cols={82}
-                    required
-                  />
-                </div>
-              )}
+       
 
               <div className="form-field-single-update">
                 <label>Diagnoses:</label>
-                <input type="text" required />
+                <input type="text" required value={diagonsis} onChange={(e)=>setDiagonsis(e.target.value)}/>
               </div>
               <label
                 htmlFor=""
@@ -1679,15 +1850,7 @@ const Treatmentplan_update = () => {
                     onChange={() => handleCheckboxChangeMentalHealth("other")}
                   />
                   <label htmlFor="other">Other </label>
-                  {/* {mendelHealth === "other" && (
-                      <AutosizeInput
-                        type="text"
-                        inputStyle={{ border: "none", outline: "none" }}
-                        placeholder="________"
-                        value={mentelText}
-                        onChange={(e) => setMentelText(e.target.value)}
-                      />
-                    )} */}
+                
                     <AutoSize value={mentelText} setValue={setMentelText}  placeholder="________"/>
                 </div>
               </div>
@@ -1935,22 +2098,6 @@ const Treatmentplan_update = () => {
                 />
               </div>
 
-              {/* {strengthsBoolean && (
-                  <div className="form-field">
-                    <label htmlFor="programlocation&addresstypeOfOtherBoolean">
-                      Comments
-                    </label>
-                    <textarea
-                      id="programlocation&addresstypeOfOtherBoolean"
-                      value={strengthsType}
-                      placeholder="Enter text"
-                      rows={2}
-                      cols={82}
-                      required
-                      onChange={(e) => setStrengthsType(e.target.value)}
-                    />
-                  </div>
-                )} */}
 
               <div className="form-field">
                 <label className="label-review">Barriers:</label>
@@ -1964,23 +2111,6 @@ const Treatmentplan_update = () => {
                   onKeyDown={handleKeyBarriers}
                 />
               </div>
-
-              {/* {BarriersBoolean && (
-                  <div className="form-field">
-                    <label htmlFor="programlocation&addresstypeOfOtherBoolean">
-                      Comments
-                    </label>
-                    <textarea
-                      id="programlocation&addresstypeOfOtherBoolean"
-                      value={BarriersOther}
-                      placeholder="Enter text"
-                      rows={2}
-                      cols={82}
-                      required
-                      onChange={(e) => setBarriersOther(e.target.value)}
-                    />
-                  </div>
-                )} */}
 
               <div className="formsheading">
                 <h6>
@@ -2052,7 +2182,7 @@ const Treatmentplan_update = () => {
                     )}
                     onChange={() =>
                       handleCheckboxChangeBehavioral(
-                        "Nolongerenjoyingpreviousactivities"
+                        "nolongerenjoyingpreviousactivities"
                       )
                     }
                   />
@@ -2103,15 +2233,6 @@ const Treatmentplan_update = () => {
                   />
                   <label htmlFor="other">Other</label>
                   {behavioralSymptomsBoolean && (
-                      // <AutosizeInput
-                      //   type="text"
-                      //   inputStyle={{ border: "none", outline: "none" }}
-                      //   placeholder="________"
-                      //   value={behavioralSymptomsOther}
-                      //   onChange={(e) =>
-                      //     setBehavioralSymptomsOther(e.target.value)
-                      //   }
-                      // />
                       <AutoSize value={behavioralSymptomsOther}  setValue={setBehavioralSymptomsOther}   placeholder="________"/>
                     )}
                 </div>
@@ -2317,13 +2438,13 @@ const Treatmentplan_update = () => {
                 <div>
                   <input
                     type="checkbox"
-                    id="inabilityToFocus"
-                    checked={consnotiveSymptoms.includes("specifictasks ")}
+                    id="specifictasks"
+                    checked={consnotiveSymptoms.includes("specifictasks")}
                     onChange={() =>
                       handleCheckboxChangeCognitive("specifictasks")
                     }
                   />
-                  <label htmlFor="inabilityToFocus">Specific tasks</label>
+                  <label htmlFor="specifictasks">Specific tasks</label>
                 </div>
                 <div>
                   <input
@@ -2784,9 +2905,8 @@ const Treatmentplan_update = () => {
                   <p>Total of minimum </p>{" "}
                   <div>
                     <input
-                      style={{ outline: "none", border: "none" }}
+                      style={{ outline: "none", border: "none" ,width:"50px"}}
                       placeholder="__________"
-                      id="input-text_value3"
                       type="text"
                       value={minimumHoure}
                       required
@@ -2953,7 +3073,7 @@ const Treatmentplan_update = () => {
                     id="AA"
                     checked={counselingOptions.includes("AA")}
                     onChange={() =>
-                      handleCheckboxChangeCounsiling("Nonereported")
+                      handleCheckboxChangeCounsiling("AA")
                     }
                   />
                   <label htmlFor="AA">AA</label>
@@ -3805,7 +3925,7 @@ const Treatmentplan_update = () => {
                             className="treatment_plan_table"
                             required
                             onChange={(e) =>
-                              estimatedDateOfCompletion2(e.target.value)
+                              setEstimatedDateOfCompletion2(e.target.value)
                             }
                           />
                         </td>
@@ -4603,68 +4723,22 @@ const Treatmentplan_update = () => {
                   />
                   <label htmlFor="OtherpsychosocialSymptoms">Other</label>
                   {supportSystemOtherTextBoolean && (
-                      // <AutosizeInput
-                      //   type="text"
-                      //   inputStyle={{ border: "none", outline: "none" }}
-                      //   placeholder="________"
-                      //   value={supportSystemOtherText}
-                      //   onChange={(e) =>
-                      //     setSupportSystemOtherText(e.target.value)
-                      //   }
-                      // />
+                   
                       <AutoSize value={supportSystemOtherText} setValue={setSupportSystemOtherText}  placeholder="________"/>
                     )}
                 </div>
               </div>
-              {/* <div className="yeschechbox-review">
-                  {[
-                    "Family",
-                    "Friends",
-                    "BHRF staff",
-                    "Clinical seam",
-                    "Guardian",
-                    "Sponsor name",
-                    "Other",
-                  ].map((support, index) => (
-                    <div key={index}>
-                      <input
-                        type="checkbox"
-                        id={`supportSystemCheckbox${index}`}
-                        checked={supportSystem.includes(support)}
-                        onChange={() =>
-                          handleCheckboxChangeSupportSystem(support)
-                        }
-                      />
-                      <label htmlFor={`supportSystemCheckbox${index}`}>
-                        {support}
-                      </label>
-                    </div>
-                  ))}
-                </div> */}
+           
 
-              {/* {supportSystemOtherTextBoolean && (
-                  <div className="form-field">
-                    <label htmlFor="supportSystemOtherText">Comment:</label>
-                    <textarea
-                      id="supportSystemOtherText"
-                      value={supportSystemOtherText}
-                      placeholder="Enter text"
-                      rows={2}
-                      cols={82}
-                      required
-                      onChange={(e) => setSupportSystemOtherText(e.target.value)}
-                    />
-                  </div>
-                )} */}
 
               <div className="form-field-single-update">
                 <label>Phone Number: </label>
                 <input
                   placeholder="Type number"
                   type="number"
-                  value={supportSystemPhone}
+                  value={supportSystemPhoneNumber}
                   required
-                  onChange={(e) => setSupportSystemPhone(e.target.value)}
+                  onChange={(e) => setSupportSystemPhoneNumber(e.target.value)}
                 />
               </div>
 
@@ -5126,17 +5200,7 @@ const Treatmentplan_update = () => {
                   />
                   <label htmlFor="OtherpsychosocialSymptoms">Other</label>
                   {recommendationsForFurtherProgramsBoolean && (
-                      // <AutosizeInput
-                      //   type="text"
-                      //   inputStyle={{ border: "none", outline: "none" }}
-                      //   placeholder="________"
-                      //   value={recommendationsForFurtherProgramsOther}
-                      //   onChange={(e) =>
-                      //     setRecommendationsForFurtherProgramsOther(
-                      //       e.target.value
-                      //     )
-                      //   }
-                      // />
+                 
                       <AutoSize value={recommendationsForFurtherProgramsOther} setValue={setRecommendationsForFurtherProgramsOther}  placeholder="________"/>
                     )}
                 </div>
@@ -5263,7 +5327,7 @@ const Treatmentplan_update = () => {
                     completed. It will be review and updated on an on-going
                     basis according to the review date{" "}
                     <span>
-                        <AutoSize value={textData} onChange={(e) => setTextData(e.target.value)}  placeholder="________"/>
+                        <AutoSize value={textData} setValue={setTextData}  placeholder="________"/>
                     </span>
                     specified in the treatment plan, when a treatment goal is
                     accomplished or changed, when additional information that
@@ -5302,7 +5366,7 @@ const Treatmentplan_update = () => {
                 <div className="form-field-child">
                   <label>Treatment plan review date:</label>
                   <input
-                    type="text"
+                    type="date"
                     onChange={(e) => setTreatmentPlanReviewDate(e.target.value)}
                     value={treatmentPlanReviewDate}
                     placeholder="Enter text"
@@ -5362,7 +5426,7 @@ const Treatmentplan_update = () => {
                 <div className="form-field-child">
                   <label>Staff:</label>
                   <input
-                    style={{ color: "#1A9FB2" }}
+                    
                     type="text"
                     value={staff}
                     placeholder="Enter name"
@@ -5373,7 +5437,7 @@ const Treatmentplan_update = () => {
                 <div className="form-field-child">
                   <label>BHP:</label>
                   <input
-                    style={{ color: "#1A9FB2" }}
+                
                     type="text"
                     value={bpn}
                     placeholder="Enter name"
@@ -5430,13 +5494,9 @@ const Treatmentplan_update = () => {
                   <input
                     type="checkbox"
                     id="refusalReason"
-                    checked={refusalReason === "Not applicable"}
+                    checked={refusalReason === "yes"}
                     onChange={() =>
-                      setrefusalReason(
-                        refusalReason === "Not applicable"
-                          ? ""
-                          : "Not applicable"
-                      )
+                      setrefusalReason(refusalReason === "yes" ? "no" : "yes")
                     }
                   />
                   <label htmlFor="refusalReason">
@@ -5513,7 +5573,7 @@ const Treatmentplan_update = () => {
                 <div>
                   {signatureResident && (
                     <p className="signature_name_print">
-                      Digitally Sign by {signatureResident} {dateResident}
+                      Digitally Sign by {signatureResident} {dateResident} {timeResident}
                     </p>
                   )}
                 </div>
@@ -5525,6 +5585,7 @@ const Treatmentplan_update = () => {
                   singin={signatureResident}
                   setSingIn={setsignatureResident}
                   setDateAndTime={setDateResident}
+                  setSignatureTime={setTimeResident}
                 />
               )}
               {/* <div className="form-field">
@@ -5584,7 +5645,7 @@ const Treatmentplan_update = () => {
               <div>
                 {signatureFacilityRep && (
                   <p className="signature_name_print">
-                    Digitally Sign by {signatureFacilityRep} {dateFacilityRep}
+                    Digitally Sign by {signatureFacilityRep} {dateFacilityRep} {timeFacality}
                   </p>
                 )}
               </div>
@@ -5596,6 +5657,7 @@ const Treatmentplan_update = () => {
                 singin={signatureFacilityRep}
                 setSingIn={setsignatureFacilityRep}
                 setDateAndTime={setDateFacilityRep}
+                setSignatureTime={setTimeFacality}
               />
             )}
 
@@ -5655,7 +5717,7 @@ const Treatmentplan_update = () => {
               <div>
                 {signatureBhp && (
                   <p className="signature_name_print">
-                    Digitally Sign by {signatureBhp} {dateBhp}
+                    Digitally Sign by {signatureBhp} {dateBhp} {timeBhp}
                   </p>
                 )}
               </div>
@@ -5667,86 +5729,17 @@ const Treatmentplan_update = () => {
                 singin={signatureBhp}
                 setSingIn={setsignatureBhp}
                 setDateAndTime={setDateBhp}
+                setSignatureTime={setTimeBhp}
               />
             )}
-            {/* <div className="form-field">
-              <label htmlFor="dateOfBirth">Date:</label>
-              <input
-                style={{ color: "#1A9FB2" }}
-                type="date"
-                id="dateOfBirth"
-                value={dateBhp}
-                placeholder="DD/MM/YYYY"
-                required
-                onChange={(e) => setDateBhp(e.target.value)}
-              />
-            </div> */}
-            {/* <div className="form-actions">
-              <button type="submit" className="initalsubmit">
+          
+            <div className="form-actions">
+              <button type="submit" style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center"}}>
                 SUBMIT DETAILS
               </button>
-            </div> */}
+            </div>
           </form>
-        {/* signature 1 */}
-        {/* {signatureModel1 && (
-          <SingInModel onClose={() => setSignatureModel1(false)}>
-            <div className="input_singin_button">
-              <p style={{ color: "white" }}>Digitally Sign by employee name</p>
-              <input
-                type="text"
-                placeholder="Enter Sing in Signature"
-                value={signatureResident}
-                onChange={(e) => setsignatureResident(e.target.value)}
-              />
-            </div>
-  
-            <div className="sing_in_submit_button">
-              <button type="button" onClick={() => setSignatureModel1(false)}>
-                Submit
-              </button>
-            </div>
-          </SingInModel>
-        )} */}
-        {/* signature 2 */}
-        {/* {signatureModel2 && (
-          <SingInModel onClose={() => setSignatureModel2(false)}>
-            <div className="input_singin_button">
-              <p style={{ color: "white" }}>Digitally Sign by employee name</p>
-              <input
-                type="text"
-                placeholder="Enter Sing in Signature"
-                value={signatureFacilityRep}
-                onChange={(e) => setsignatureFacilityRep(e.target.value)}
-              />
-            </div>
-  
-            <div className="sing_in_submit_button">
-              <button type="button" onClick={() => setSignatureModel2(false)}>
-                Submit
-              </button>
-            </div>
-          </SingInModel>
-        )} */}
-        {/* signature3 */}
-        {/* {signatureModel3 && (
-          <SingInModel onClose={() => setSignatureModel3(false)}>
-            <div className="input_singin_button">
-              <p style={{ color: "white" }}>Digitally Sign by employee name</p>
-              <input
-                type="text"
-                placeholder="Enter Sing in Signature"
-                value={signatureBhp}
-                onChange={(e) => setsignatureBhp(e.target.value)}
-              />
-            </div>
-  
-            <div className="sing_in_submit_button">
-              <button type="button" onClick={() => setSignatureModel3(false)}>
-                Submit
-              </button>
-            </div>
-          </SingInModel>
-        )} */}
+
 
         {draftModel && <Draftinmodel onClose={() => setDraftModel(false)} />}
       </div>
