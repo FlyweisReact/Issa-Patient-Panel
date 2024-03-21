@@ -386,6 +386,26 @@
   margin-left: 1rem;
 }
 
+.form-field-child-face-sheet-table-add-delete {
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.form-field-child-face-sheet-table-add-delete button {
+  border: none;
+  width: auto;
+  outline: none;
+  padding: 5px 15px;
+  background-color: #0c5c75;
+  color: white;
+  border-radius: 0;
+  border-radius: 3px;
+  font-size: 14px;
+
+}
+
+
 
 
 
@@ -663,7 +683,7 @@ input[type="checkbox"] {
   font-weight: 500;
   font-size: 20px;
   color: #000000;
-  margin-bottom: 20px;
+
 }
 
 .formsheading p {
