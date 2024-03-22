@@ -424,7 +424,7 @@ const Treatmentplan_update = () => {
     setDate();
     setAdminDate()
     setPhysicalService("")
-
+    setBehavior("")
 
 
 
