@@ -67,7 +67,8 @@
 
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 0px 10px
+  padding: 0px 10px;
+  flex-wrap: wrap;
 }
 
 .form-field-update-care{
@@ -174,9 +175,8 @@
 
 .form-field-single-update {
   display: flex;
-  /* margin-top: 1rem; */
   align-items: center;
-  padding: 10px;
+ 
 }
 
 .form-field-single-update label {

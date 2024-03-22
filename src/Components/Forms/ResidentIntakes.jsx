@@ -62,11 +62,15 @@ const ResidentIntakes = () => {
 
   //handle print data
   const handlePrintUpdate1 = () => {
-   
+    var hidePrint = document.getElementsByClassName("hidePrint");
     var formheading1=document.getElementsByClassName("formheading1-hide")
     // Iterate through each element with the specified class
     var formsheading2=document.getElementsByClassName("formsheading2");
     var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
+
+    for (var i = 0; i < hidePrint.length; i++) {
+      hidePrint[i].style.display = "none";
+    }
 
     for (let i = 0; i < signatureRightAndSide.length; i++) {
       signatureRightAndSide[i].style.justifyContent = "right";
@@ -86,6 +90,9 @@ const ResidentIntakes = () => {
     handlePrint1();
     // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
     setTimeout(() => {
+      for (var i = 0; i < hidePrint.length; i++) {
+        hidePrint[i].style.display = "flex";
+      }
 
 
       for (let i = 0; i < signatureRightAndSide.length; i++) {
@@ -1819,7 +1826,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
                    <AutoSize value={companyName} setValue={setCompanyName} placeholder={"Company Name"}/>
                     </span>{" "}
                     may acknowledge and accept telephone calls from the
-                    following family members, individuals and / or significant
+                    following family members, individuals and / All significant
                     others in my life each of whom is directly involved in my
                     care and are concerned about my well being who may want to
                     talk to me while at{" "}

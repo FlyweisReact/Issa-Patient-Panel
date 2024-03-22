@@ -429,7 +429,7 @@ const SafetyPlan = () => {
 
 
             <h5
-              style={{ fontWeight: "700", fontSize: "20px", color: "#000000" ,marginTop:"1.5rem"}}
+              style={{ fontWeight: "700", fontSize: "20px", color: "#000000" ,marginTop:"0.5rem"}}
             >
               {" "}
               <span style={{ color: "#0C5C75" }}>STEP 1 :</span> Warning Signs{" "}

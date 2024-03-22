@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { IoArrowBackCircle } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { AiFillDelete } from "react-icons/ai";
-import { user_detail, patient_form } from "../../Api_Collection/Api";
+import { user_detail, patient_form,patient_form_treatment_get } from "../../Api_Collection/Api";
 import SingInModel from "../Modal/SingInModel";
 import Select from "react-select";
 import Draftinmodel from "../Modal/Draftinmodel";
@@ -46,6 +46,7 @@ const Treatmentplan_update = () => {
 
 
   //from satart now ------------------------------->
+  const [getApiData,setGetApiData]=useState("");
   const [userId, setUserId] = useState("");
   const [residentName, setResidentName] = useState("");
   const [dob, setDob] = useState("");
@@ -418,6 +419,50 @@ const Treatmentplan_update = () => {
   const [signatureBhp, setsignatureBhp] = useState("");
   const [dateBhp, setDateBhp] = useState("");
   const [timeBhp,setTimeBhp]=useState("");
+
+  useEffect(()=>{
+    setDate();
+    setAdminDate()
+    setPhysicalService("")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  },[getApiData])
+
+useEffect(()=>{
+  patient_form_treatment_get(userId,setGetApiData)
+},[userId])
 
   useEffect(() => {
     setUserId(user?._id);
@@ -5508,7 +5553,8 @@ const Treatmentplan_update = () => {
                 </h6>
               </div>
 
-              <div className="form-field-single-update">
+              <div className="form-field-update">
+              <div className="form-field-child">
                 <label>First and Last Name:</label>
                 <input
                   type="text"
@@ -5518,7 +5564,8 @@ const Treatmentplan_update = () => {
                   onChange={(e) => setNameResident(e.target.value)}
                 />
               </div>
-              <div className="form-field">
+
+              <div className="form-field-child">
                 <label style={{ fontWeight: "bold" }}>
                   Resident or Resident’s representative{" "}
                   <span style={{ fontSize: "15px", color: "gray" }}>
@@ -5535,6 +5582,11 @@ const Treatmentplan_update = () => {
                   onChange={(e) => setCredentialsResident(e.target.value)}
                 />
               </div>
+              </div>
+
+
+          
+             
 
               <div class="file-upload-box hidePrint" style={{marginTop:"0.5rem"}}>
                 <div className="file-upload-box-child">
