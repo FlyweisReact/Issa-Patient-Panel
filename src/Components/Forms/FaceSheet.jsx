@@ -759,9 +759,15 @@ console.log(patientId,"knhfijdjdji fhi");
             
 
 
+
+            
+
+
             <div className="border-bootom-line"></div>
 
             <div className="form-field-child-face-sheet-table table_inner_padding">
+                  <label style={{fontWeight:"bold"}}>Other Specialist - please specify:</label>
+                  {/* <input
                   <label style={{fontWeight:"bold"}}>Other Specialist - please specify:</label>
                   {/* <input
                     type="text"
