@@ -1648,8 +1648,8 @@ const Treatmentplan_update = () => {
 
   return (
     <>
-      <div className="top1" ref={componentRef}>
-        <div className="top11">
+      <div  ref={componentRef}>
+        <div >
           <div className="backbutton hidePrint">
             <IoArrowBackCircle
               style={{
@@ -1662,15 +1662,15 @@ const Treatmentplan_update = () => {
             />
           </div>
 
-          <div className="top2">
-            <div className="ravindra1">
-              <div >
-                <h2>TREATMENT PLAN</h2>
+          <div className="Boss">
+            <div className="formheading1">
+              <div className="formsheading2" style={{marginTop:"1.5rem"}}>
+                <h1>TREATMENT PLAN</h1>
               </div>
             </div>
-          </div>
-        </div>
-          <form className="formMain" onSubmit={handlePost}>
+         
+        
+          <form  onSubmit={handlePost}>
             <div className="form-section">
               <div className="box-image-container">
                 <div className="form-field-update">
@@ -5536,7 +5536,7 @@ const Treatmentplan_update = () => {
                 />
               </div>
 
-              <div class="file-upload-box hidePrint">
+              <div class="file-upload-box hidePrint" style={{marginTop:"0.5rem"}}>
                 <div className="file-upload-box-child">
                   <button
                     className="upload-button1"
@@ -5608,7 +5608,7 @@ const Treatmentplan_update = () => {
               </div>
             </div>
 
-            <div class="file-upload-box hidePrint">
+            <div class="file-upload-box hidePrint" style={{marginTop:"0.2rem"}}>
               <div className="file-upload-box-child">
                 <button
                   className="upload-button1"
@@ -5667,7 +5667,7 @@ const Treatmentplan_update = () => {
               </div>
             </div>
 
-            <div class="file-upload-box hidePrint">
+            <div class="file-upload-box hidePrint" style={{marginTop:"0.2rem"}}>
               <div className="file-upload-box-child">
                 <div>
                   <button
@@ -5716,14 +5716,14 @@ const Treatmentplan_update = () => {
               />
             )}
           
-            <div className="form-actions">
+            <div className="form-actions hidePrint">
               <button type="submit" style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center"}}>
                 SUBMIT DETAILS
               </button>
             </div>
           </form>
-
-
+          </div>
+          </div>
         {draftModel && <Draftinmodel onClose={() => setDraftModel(false)} />}
       </div>
     </>

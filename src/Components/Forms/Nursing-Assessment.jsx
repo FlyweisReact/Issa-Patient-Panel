@@ -31,8 +31,26 @@ const NursingAssessment = () => {
 
   const handlePrint2 = () => {
     var elements = document.getElementsByClassName("hidePrint");
-
+    var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
+    var formsheading2=document.getElementsByClassName("formsheading2");
+    var submitButton=document.getElementsByClassName("form-actions");
     // Iterate through each element with the specified class
+
+    for (let i = 0; i < signatureRightAndSide.length; i++) {
+      signatureRightAndSide[i].style.justifyContent = "right";
+    }
+
+    for (let i = 0; i < formsheading2.length; i++) {
+      formsheading2[i].style.backgroundColor="white"
+    }
+
+    
+    for (let i = 0; i < submitButton.length; i++) {
+      submitButton[i].style.display = "flex";
+      submitButton[i].style.justifyContent = "center";
+      submitButton[i].style.alignItems = "center";
+    }
+
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
     }
@@ -44,6 +62,19 @@ const NursingAssessment = () => {
     setTimeout(() => {
       for (var i = 0; i < elements.length; i++) {
         elements[i].style.display = "flex";
+      }
+      for (let i = 0; i < signatureRightAndSide.length; i++) {
+        signatureRightAndSide[i].style.justifyContent = "space-between";
+      }
+
+      for (let i = 0; i < formsheading2.length; i++) {
+        formsheading2[i].style.backgroundColor="#1a9fb2"
+      }
+
+      for (let i = 0; i < submitButton.length; i++) {
+        submitButton[i].style.display = "flex";
+        submitButton[i].style.justifyContent = "center";
+        submitButton[i].style.alignItems = "center";
       }
     }, 1000);
   };
@@ -230,7 +261,7 @@ const NursingAssessment = () => {
     setReviewOfSystemsGenitourinary(getApiData?.reviewOfSystemsGenitourinary);
     setReviewOfSystemsGenitourinaryOther(getApiData?.reviewOfSystemsGenitourinaryComment)
     setReviewOfSystemsHematologyOncology(getApiData?.reviewOfSystemsHematologyOncology);
-    setReviewOfSystemsHematologyOncologyOther(getApiData?.reviewOfSystemsHematologyOncologyComment)
+    setReviewOfSystemsHematologyOncologyOther(getApiData?.reviewOfSystemsHematologyOncologyomment)
     setReviewOfSystemsHeadNeckThroat(getApiData?.reviewOfSystemsHeadNeckThroat);
     setReviewOfSystemsHeadNeckThroatOther(getApiData?.reviewOfSystemsHeadNeckThroatComment)
     setReviewOfSystemsIntegumentary(getApiData?.reviewOfSystemsIntegumentary);
@@ -242,7 +273,7 @@ const NursingAssessment = () => {
     setReviewOfSystemsNeurologic(getApiData?.reviewOfSystemsNeurologic);
     setReviewOfSystemsNeurologicOther(getApiData?.reviewOfSystemsNeurologicComment)
     setReviewOfSystemsRespiratory(getApiData?.reviewOfSystemsRespiratory);
-    setReviewOfSystemsRespiratoryOther(getApiData?.reviewOfSystemsRespiratoryOther)
+    setReviewOfSystemsRespiratoryOther(getApiData?.reviewOfSystemsRespiratoryComment)
     setReviewOfSystemsAllergicImmunologic(getApiData?.reviewOfSystemsAllergicImmunologic);
     setReviewOfSystemsAllergicImmunologicOther(getApiData?.reviewOfSystemsAllergicImmunologicComment)
     setSuicidalRiskAssessmentDeniesSymptomsBellow(getApiData?.suicidalRiskAssessmentDeniesSymptomsBellow);
@@ -413,7 +444,7 @@ reviewOfSystemsGastrointestinalComment:reviewOfSystemsGastrointestinalOther,
 reviewOfSystemsGenitourinary,
 reviewOfSystemsGenitourinaryComment:reviewOfSystemsGenitourinaryOther,
 reviewOfSystemsHematologyOncology,
-reviewOfSystemsHematologyOncologyComment:reviewOfSystemsHematologyOncologyOther,
+reviewOfSystemsHematologyOncologyomment:reviewOfSystemsHematologyOncologyOther,
 reviewOfSystemsHeadNeckThroat,
 reviewOfSystemsHeadNeckThroatComment:reviewOfSystemsHeadNeckThroatOther,
 reviewOfSystemsIntegumentary,
@@ -425,7 +456,7 @@ reviewOfSystemsPsychiatricComment:reviewOfSystemsPsychiatricOther,
 reviewOfSystemsNeurologic,
 reviewOfSystemsNeurologicComment:reviewOfSystemsNeurologicOther,
 reviewOfSystemsRespiratory,
-reviewOfSystemsRespiratoryOther:reviewOfSystemsRespiratoryOther,
+reviewOfSystemsRespiratoryComment:reviewOfSystemsRespiratoryOther,
 reviewOfSystemsAllergicImmunologic,
 reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOther,
       suicidalRiskAssessmentDeniesSymptomsBellow,
@@ -492,7 +523,7 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
   return (
     <>
     <div ref={componentRef} >
-      <div className="backbutton">
+      <div className="backbutton hidePrint">
         <IoArrowBackCircle
           style={{
             color: "#1A9FB2",

@@ -62,54 +62,99 @@ const ResidentIntakes = () => {
 
   //handle print data
   const handlePrintUpdate1 = () => {
-    var elements = document.getElementsByClassName("hidePrint");
-    var addButton= document.getElementsByClassName("addButton");
+   
+    var formheading1=document.getElementsByClassName("formheading1-hide")
     // Iterate through each element with the specified class
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].style.display = "none";
+    var formsheading2=document.getElementsByClassName("formsheading2");
+    var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
+
+    for (let i = 0; i < signatureRightAndSide.length; i++) {
+      signatureRightAndSide[i].style.justifyContent = "right";
     }
 
-    for (var i = 0; i < addButton.length; i++) {
-      elements[i].style.display = "none";
+    for (let i = 0; i < formheading1.length; i++) {
+      formheading1[i].style.display = "block";
     }
+
+    
+    for (let i = 0; i < formsheading2.length; i++) {
+      formsheading2[i].style.backgroundColor="white"
+    }
+
+
 
     handlePrint1();
     // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
     setTimeout(() => {
-      for (var i = 0; i < elements.length; i++) {
-        elements[i].style.display = "flex";
+
+
+      for (let i = 0; i < signatureRightAndSide.length; i++) {
+        signatureRightAndSide[i].style.justifyContent = "space-between";
       }
 
-      for (var i = 0; i < addButton.length; i++) {
-        elements[i].style.display = "flex";
-        elements[i].style.justifyContent = "center";
+      for (let i = 0; i < formheading1.length; i++) {
+        formheading1[i].style.display = "none";
+      }
+
+      for (let i = 0; i < formsheading2.length; i++) {
+        formsheading2[i].style.backgroundColor="#1a9fb2"
       }
   
     }, 500);
   };
 
   const handlePrintUpdate2 = () => {
-    var elements = document.getElementsByClassName("hidePrint");
-
+    var hidePrint = document.getElementsByClassName("hidePrint");
+    var addButton= document.getElementsByClassName("addButton");
+    var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
     // Iterate through each element with the specified class
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].style.display = "none";
+    for (var i = 0; i < hidePrint.length; i++) {
+      hidePrint[i].style.display = "none";
     }
+
+    
+    for (var i = 0; i < addButton.length; i++) {
+      addButton[i].style.display = "none";
+    }
+
+    for (let i = 0; i < signatureRightAndSide.length; i++) {
+      signatureRightAndSide[i].style.justifyContent = "right";
+    }
+
+
+
+
     handlePrint2();
     // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
     setTimeout(() => {
-      for (var i = 0; i < elements.length; i++) {
-        elements[i].style.display = "flex";
+      for (var i = 0; i < hidePrint.length; i++) {
+        hidePrint[i].style.display = "flex";
       }
+
+      for (var i = 0; i < addButton.length; i++) {
+        addButton[i].style.display = "flex";
+        addButton[i].style.justifyContent = "center";
+      }
+
+      for (let i = 0; i < signatureRightAndSide.length; i++) {
+        signatureRightAndSide[i].style.justifyContent = "space-between";
+      }
+
+
     }, 1000);
   };
 
   const handlePrintUpdate3 = () => {
     var elements = document.getElementsByClassName("hidePrint");
+    var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
 
     // Iterate through each element with the specified class
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
+    }
+
+    for (let i = 0; i < signatureRightAndSide.length; i++) {
+      signatureRightAndSide[i].style.justifyContent = "right";
     }
     handlePrint3();
     // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
@@ -117,63 +162,102 @@ const ResidentIntakes = () => {
       for (var i = 0; i < elements.length; i++) {
         elements[i].style.display = "flex";
       }
+
+      for (let i = 0; i < signatureRightAndSide.length; i++) {
+        signatureRightAndSide[i].style.justifyContent = "space-between";
+      }
     }, 1000);
   };
 
   const handlePrintUpdate4 = () => {
     var elements = document.getElementsByClassName("hidePrint");
+    var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
 
     // Iterate through each element with the specified class
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
     }
+
+    for (let i = 0; i < signatureRightAndSide.length; i++) {
+      signatureRightAndSide[i].style.justifyContent = "right";
+    }
+
     handlePrint4();
     // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
     setTimeout(() => {
       for (var i = 0; i < elements.length; i++) {
         elements[i].style.display = "flex";
       }
+
+      for (let i = 0; i < signatureRightAndSide.length; i++) {
+        signatureRightAndSide[i].style.justifyContent = "space-between";
+      }
     }, 1000);
   };
 
   const handlePrintUpdate5 = () => {
     var elements = document.getElementsByClassName("hidePrint");
+    var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
 
     // Iterate through each element with the specified class
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
     }
+
+    for (let i = 0; i < signatureRightAndSide.length; i++) {
+      signatureRightAndSide[i].style.justifyContent = "right";
+    }
+
     handlePrint5();
     // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
     setTimeout(() => {
       for (var i = 0; i < elements.length; i++) {
         elements[i].style.display = "flex";
       }
+      for (let i = 0; i < signatureRightAndSide.length; i++) {
+        signatureRightAndSide[i].style.justifyContent = "space-between";
+      }
+
     }, 1000);
   };
 
   const handlePrintUpdate6 = () => {
     var elements = document.getElementsByClassName("hidePrint");
+    var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
 
     // Iterate through each element with the specified class
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
     }
+    
+    for (let i = 0; i < signatureRightAndSide.length; i++) {
+      signatureRightAndSide[i].style.justifyContent = "right";
+    }
+
     handlePrint6();
     // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
     setTimeout(() => {
       for (var i = 0; i < elements.length; i++) {
         elements[i].style.display = "flex";
       }
+
+      for (let i = 0; i < signatureRightAndSide.length; i++) {
+        signatureRightAndSide[i].style.justifyContent = "space-between";
+      }
     }, 1000);
   };
 
   const handlePrintUpdate7 = () => {
     var elements = document.getElementsByClassName("hidePrint");
+    var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
 
     // Iterate through each element with the specified class
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
+    }
+    
+    for (let i = 0; i < signatureRightAndSide.length; i++) {
+      signatureRightAndSide[i].style.justifyContent = "right";
     }
     handlePrint7();
     // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
@@ -181,22 +265,48 @@ const ResidentIntakes = () => {
       for (var i = 0; i < elements.length; i++) {
         elements[i].style.display = "flex";
       }
+      for (let i = 0; i < signatureRightAndSide.length; i++) {
+        signatureRightAndSide[i].style.justifyContent = "space-between";
+      }
     }, 1000);
   };
 
   const handlePrintUpdate8 = () => {
     var elements = document.getElementsByClassName("hidePrint");
+    var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
+    var submitButton=document.getElementsByClassName("form-actions");
 
     // Iterate through each element with the specified class
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
     }
+    for (let i = 0; i < signatureRightAndSide.length; i++) {
+      signatureRightAndSide[i].style.justifyContent = "right";
+    }
+
+    for (let i = 0; i < submitButton.length; i++) {
+      submitButton[i].style.display = "flex";
+      submitButton[i].style.justifyContent = "center";
+      submitButton[i].style.alignItems = "center";
+    }
+
+
     handlePrint8();
     // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
     setTimeout(() => {
       for (var i = 0; i < elements.length; i++) {
         elements[i].style.display = "flex";
       }
+      for (let i = 0; i < signatureRightAndSide.length; i++) {
+        signatureRightAndSide[i].style.justifyContent = "space-between";
+      }
+
+      for (let i = 0; i < submitButton.length; i++) {
+        submitButton[i].style.display = "flex";
+        submitButton[i].style.justifyContent = "center";
+        submitButton[i].style.alignItems = "center";
+      }
+  
     }, 1000);
   };
 
@@ -1355,7 +1465,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
         <div className="Boss">
           <div className="formheading1">
             <div className="formsheading2">
-              <h1>Consent for Treatment</h1>
+              <h1>CONSENT FOR TREATMENT</h1>
             </div>
           </div>
 
@@ -1366,6 +1476,13 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
                   ref={componentRef1}
                   style={{ width: "95%", margin: "auto" }}
                 >
+
+               <div className="formheading1-hide">
+                 <div className="formsheading2">
+                 <h1>CONSENT FOR TREATMENT</h1>
+               </div>
+               </div>
+                  
                   <div className="residentdiv">
               
                     <h6>
@@ -1473,15 +1590,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
                     </div>
                   </div>
 
-                  <h2
-                    style={{
-                      fontWeight: "500",
-                      fontSize: "20px",
-                      color: "#0C5C75",
-                    }}
-                  >
-                    Resident’s Details
-                  </h2>
+               
 
                   <label
                     htmlFor=""
@@ -1528,17 +1637,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
                     />
                   )}
 
-                  <h2
-                    style={{
-                      fontWeight: "500",
-                      fontSize: "20px",
-                      color: "#0C5C75",
-                      marginTop: "20px",
-                      marginBottom: "20px",
-                    }}
-                  >
-                    Guardian/Representative Details
-                  </h2>
+               
                   <div className="form-field-single-update">
                     <label>Guardian/Representative Name:</label>
                     <input
@@ -1553,7 +1652,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
                     />
                   </div>
 
-                  <div class="file-upload-box ">
+                  <div class="file-upload-box">
                     <div className="file-upload-box-child hidePrint">
                       <button
                         className="upload-button1"
@@ -1591,17 +1690,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
                     />
                   )}
 
-                  <h2
-                    style={{
-                      fontWeight: "500",
-                      fontSize: "20px",
-                      color: "#0C5C75",
-                      marginTop: "20px",
-                      marginBottom: "20px",
-                    }}
-                  >
-                    Staff Details
-                  </h2>
+            
                   <div className="form-field-single-update">
                     <label>Staff Name:</label>
                     <input
@@ -1770,7 +1859,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
                       />
                     </div>
                   </div>
-                  <div className="form-actions hidePrint">
+                  <div className="form-actions hidePrint addButton">
                     <button
                       type="button"
                       className="safetybutton"
@@ -2241,7 +2330,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
                     </p>
                   </div>
                   <label
-                    htmlFor=""
+                  
                     className="label-review-resitent"
                     style={{ fontWeight: "bold" }}
                   >
@@ -3780,7 +3869,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
                   </div>
                   <div
                     className="Residentrights"
-                    style={{ marginTop: "1.5rem" }}
+                 
                   >
                     <p>
                       I,{" "}

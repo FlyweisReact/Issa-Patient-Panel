@@ -21,7 +21,8 @@ const SafetyPlan = () => {
   const handlePrint2 = () => {
     var elements = document.getElementsByClassName("hidePrint");
     var elements1 = document.getElementsByClassName("form-section");
-    var elements2 = document.getElementsByClassName("signature_Right_Side");
+    var signatureRightAndSide = document.getElementsByClassName("file-upload-box");
+    var formsheading2=document.getElementsByClassName("formsheading2");
 
     // Iterate through each element with the specified class signature_Right_Side
     for (var i = 0; i < elements.length; i++) {
@@ -32,9 +33,12 @@ const SafetyPlan = () => {
       elements1[i].style.marginTop = "1rem";
     }
 
-    for (var i = 0; i < elements2.length; i++) {
-      elements2[i].style.display = "flex";
-      elements2[i].style.justifyContent = "right";
+    for (let i = 0; i < signatureRightAndSide.length; i++) {
+      signatureRightAndSide[i].style.justifyContent = "right";
+    }
+
+    for (let i = 0; i < formsheading2.length; i++) {
+      formsheading2[i].style.backgroundColor="white"
     }
 
     // Trigger the print action
@@ -49,6 +53,14 @@ const SafetyPlan = () => {
 
       for (var i = 0; i < elements1.length; i++) {
         elements1[i].style.marginTop = "0rem";
+      }
+
+      for (let i = 0; i < signatureRightAndSide.length; i++) {
+        signatureRightAndSide[i].style.justifyContent = "space-between";
+      }
+
+      for (let i = 0; i < formsheading2.length; i++) {
+        formsheading2[i].style.backgroundColor="#1a9fb2"
       }
     }, 1000);
   };
@@ -160,7 +172,10 @@ const SafetyPlan = () => {
   useEffect(() => {
     setUserId(userDetail?._id);
     setUser(userDetail?.fullName);
+    setDate(userDetail?.dateOfBirth?userDetail?.dateOfBirth.slice(0,10):"")
   }, [userDetail]);
+
+
 
   useEffect(() => {
     user_detail(setUserDetail);
@@ -382,7 +397,6 @@ const SafetyPlan = () => {
         <div className="Boss">
         <div className="formheading1">
           <div className="formsheading2">
-            <h1>Resident Safety Plan</h1>
             <h1>RESIDENT SAFETY PLAN</h1>
           </div>
         </div>
@@ -698,7 +712,7 @@ const SafetyPlan = () => {
               <span style={{ color: "#0C5C75" }}>STEP 4 :</span> People whom I
                 can ask for Help:
             </h5>
-              <div className="form-field-update">
+              <div className="form-field-update hidePrint">
                 <div className="form-field-child">
                   <label htmlFor="AHCCCS">Name:</label>
                 <input
@@ -940,7 +954,7 @@ const SafetyPlan = () => {
                 </button>
                 </div>
               </div>
-              <div className="signature_Right_Side">
+              <div >
                 {
                   singin && (
                     <p className="signature_name_print">Digitally Sign by {singin} {signatureDate} {signatureTime}</p>

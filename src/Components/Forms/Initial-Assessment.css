@@ -64,7 +64,7 @@
 
 .form-field-update {
   display: flex;
-  grid-gap: 20px;
+
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 0px 10px
@@ -72,7 +72,7 @@
 
 .form-field-update-care{
   display: flex;
-  grid-gap: 20px;
+
   flex-wrap: wrap;
   padding: 0px 10px
 }
@@ -386,6 +386,26 @@
   margin-left: 1rem;
 }
 
+.form-field-child-face-sheet-table-add-delete {
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.form-field-child-face-sheet-table-add-delete button {
+  border: none;
+  width: auto;
+  outline: none;
+  padding: 5px 15px;
+  background-color: #0c5c75;
+  color: white;
+  border-radius: 0;
+  border-radius: 3px;
+  font-size: 14px;
+
+}
+
+
 
 
 
@@ -451,7 +471,7 @@ select {
 
 .form-actions {
   text-align: center;
-  margin-top: 0.8rem;
+  margin-top: 0.2rem;
 }
 
 .form-actions-next {
@@ -663,7 +683,7 @@ input[type="checkbox"] {
   font-weight: 500;
   font-size: 20px;
   color: #000000;
-  margin-bottom: 20px;
+
 }
 
 .formsheading p {
@@ -731,7 +751,7 @@ input[type="checkbox"] {
   border-radius: 8px;
   width: 100%;
   height: auto;
-  margin-top: 1rem;
+  
   box-shadow: rgba(26, 159, 178, 0.1);
 }
 
@@ -745,7 +765,6 @@ input[type="checkbox"] {
   border-radius: 8px;
   width: auto;
   height: auto;
-  margin-top: 1rem;
   box-shadow: rgba(26, 159, 178, 0.1);
 }
 
@@ -1356,6 +1375,7 @@ input[type="checkbox"] {
 
 .yeschechbox-review {
   display: grid;
+  flex-wrap: wrap;
   grid-gap: 0.5rem;
   column-gap: auto;
   margin-top: 0.5rem;
@@ -1449,7 +1469,7 @@ input[type="checkbox"] {
 }
 
 .label-review-resitent {
-  margin-top: 1.5rem;
+  margin-top: 0.5rem;
   font-size: 1rem;
 }
 

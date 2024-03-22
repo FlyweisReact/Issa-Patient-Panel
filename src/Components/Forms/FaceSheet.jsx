@@ -21,12 +21,28 @@ const FaceSheet = () => {
 
   const handlePrint2 = () => {
     var elements = document.getElementsByClassName("hidePrint");
-    
-
+    var hidePrintButton=document.getElementsByClassName("hidePrintButton");
+    var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
+    var formsheading2=document.getElementsByClassName("formsheading2");
     // Iterate through each element with the specified class
+   
+
+    for (let i = 0; i < hidePrintButton.length; i++) {
+      hidePrintButton[i].style.display = "none";
+    }
+
+    for (let i = 0; i < signatureRightAndSide.length; i++) {
+      signatureRightAndSide[i].style.justifyContent = "right";
+    }
+
+    for (let i = 0; i < formsheading2.length; i++) {
+      formsheading2[i].style.backgroundColor="white"
+    }
+    
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
     }
+
 
     // Trigger the print action
     handlePrint();
@@ -37,6 +53,20 @@ const FaceSheet = () => {
         elements[i].style.display = "flex";
         elements[i].style.justifyContent = "center";
       }
+
+      for (let i = 0; i < hidePrintButton.length; i++) {
+        hidePrintButton[i].style.display = "flex";
+      }
+
+      for (let i = 0; i < signatureRightAndSide.length; i++) {
+        signatureRightAndSide[i].style.justifyContent = "space-between";
+      }
+
+      for (let i = 0; i < formsheading2.length; i++) {
+        formsheading2[i].style.backgroundColor="#1a9fb2"
+      }
+  
+
     }, 1000);
   };
 
@@ -75,33 +105,37 @@ const FaceSheet = () => {
   const [
     primaryCareProviderOtherSpecialists,
     setPrimaryCareProviderOtherSpecialists,
-  ] = useState(""); 
+  ] = useState("");
+  const [primarySpacelistName,setPrimarySpacelistName]=useState("");
+  const [primarySpacelistPhone,setPrimarySpacelistPhone]=useState("");
+  const [primarySpacelistAddress,setPrimarySpacelistAddress]=useState("");
+  const [
+    primaryCareProviderOtherSpecialistsArray,
+    setPrimaryCareProviderOtherSpecialistsArray,
+  ] = useState([]); 
   const [preferredHospitalName, setPreferredHospitalName] = useState("");
   const [preferredHospitalPhone, setPreferredHospitalPhone] = useState("");
   const [preferredHospitalAddress, setPreferredHospitalAddress] = useState("");
 
 
-  // const handlePrimaryCareArray=()=>{
-  //   const newData={
-  //     primaryCareProviderOtherSpecialists,
-  //     primaryCareProviderName,
-  //     primaryCareProviderPhone,
-  //     primaryCareProviderAddress,
-  //     preferredHospitalName,
-  //     preferredHospitalPhone,
-  //     preferredHospitalAddress
-  //   }
-  //   setPrimaryCareProviderArray((prev)=> [...prev,newData]);
-  //   setPrimaryCareProviderOtherSpecialists("")
-  //   setPrimaryCareProviderName("");
-  //   setPrimaryCareProviderPhone("");
-  //   setPrimaryCareProviderAddress("");
-  //   setPreferredHospitalName("");
-  //   setPreferredHospitalPhone("");
-  //   setPreferredHospitalAddress("");
-  // }
+  const handlePrimaryCareArray=()=>{
+    if(primarySpacelistName && primarySpacelistPhone && primarySpacelistAddress){
+      const newData={
+        name: primarySpacelistName,
+        phone: primarySpacelistPhone,
+        address: primarySpacelistAddress,
+      }
+      setPrimaryCareProviderOtherSpecialistsArray((prev)=> [...prev,newData]);
+      setPrimarySpacelistName("")
+      setPrimarySpacelistPhone("");
+      setPrimarySpacelistAddress("");
+    }
+    
+  }
 
-
+  const handlePrimaryCareArrayDelete = (index) => {
+    setPrimaryCareProviderOtherSpecialistsArray((prev) => prev.filter((_, i) => i !== index));
+  }
 
 
   const [psychiatricProviderName, setPsychiatricProviderName] = useState("");
@@ -112,29 +146,36 @@ const FaceSheet = () => {
     psychiatricProviderOtherSpecialists,
     setPsychiatricProviderOtherSpecialists,
   ] = useState("");
+  const [psychiatricSpacelistName,setpsychiatricSpacelistName]=useState("");
+  const [psychiatricSpacelistPhone,setpsychiatricSpacelistPhone]=useState("");
+  const [psychiatricSpacelistAddress,setpsychiatricSpacelistAddress]=useState("");
+  const [
+    psychiatricProviderOtherSpecialistsArray,
+    setPsychiatricProviderOtherSpecialistsArray,
+  ] = useState([]);
   
   const [healthPlan, setHealthPlan] = useState("");
   const [healthPlanId, setHealthPlanId] = useState("");
 
 
   
-  // const handlePsychiatricArray=()=>{
-  //   const newData={
-  //     psychiatricProviderName,
-  //     psychiatricProviderPhone,
-  //     psychiatricProviderAddress,
-  //     psychiatricProviderOtherSpecialists,
-  //     healthPlan,
-  //     healthPlanId
-  //   }
-  //   setPsychiatricArray((prev)=> [...prev,newData]);
-  //   setPsychiatricProviderName("")
-  //   setPsychiatricProviderPhone("");
-  //   setPsychiatricProviderAddress("");
-  //   setPsychiatricProviderOtherSpecialists("");
-  //   setHealthPlan("");
-  //   setHealthPlanId("");
-  // }
+  const handlePsychiatricArray=()=>{
+    if(psychiatricSpacelistName && psychiatricSpacelistPhone && psychiatricSpacelistAddress){
+      const newData={
+       name: psychiatricSpacelistName,
+        phone: psychiatricSpacelistPhone,
+        address: psychiatricSpacelistAddress,
+      }
+      setPsychiatricProviderOtherSpecialistsArray((prev)=> [...prev,newData]);
+      setpsychiatricSpacelistName("")
+      setpsychiatricSpacelistPhone("");
+      setpsychiatricSpacelistAddress("");
+    }
+  }
+
+  const handlePsychiatricArrayDelete = (index) => {
+    setPsychiatricProviderOtherSpecialistsArray((prev) => prev.filter((_, i) => i !== index));
+  }
 
   const [caseManagerName, setCaseManagerName] = useState("");
   const [caseManagerPhone, setCaseManagerPhone] = useState("");
@@ -225,7 +266,7 @@ if (getApiDataAdmit) {
     setPrimaryCareProviderName(getApiData?.primaryCareProvider?.[0]?.name);
     setPrimaryCareProviderPhone(getApiData?.primaryCareProvider?.[0]?.phone);
     setPrimaryCareProviderAddress(getApiData?.primaryCareProvider?.[0]?.address);
-    setPrimaryCareProviderOtherSpecialists(getApiData?.primaryCareProvider?.[0]?.OtherSpecialists)
+    setPrimaryCareProviderOtherSpecialistsArray(getApiData?.primaryCareProviderOtherSpecialists?getApiData?.primaryCareProviderOtherSpecialists:[])
     setPreferredHospitalName(getApiData?.primaryCareProvider?.[0]?.preferredHospitalName);
     setPreferredHospitalPhone(getApiData?.primaryCareProvider?.[0]?.preferredHospitalPhone);
     setPreferredHospitalAddress(getApiData?.primaryCareProvider?.[0]?.preferredHospitalAddress);
@@ -234,7 +275,7 @@ if (getApiDataAdmit) {
     setPsychiatricProviderName(getApiData?.psychiatricProvider?.[0]?.name);
     setPsychiatricProviderPhone(getApiData?.psychiatricProvider?.[0]?.phone);
     setPsychiatricProviderAddress(getApiData?.psychiatricProvider?.[0]?.address);
-    setPsychiatricProviderOtherSpecialists(getApiData?.psychiatricProvider?.[0]?.OtherSpecialists);
+    setPsychiatricProviderOtherSpecialistsArray(getApiData?.psychiatricProviderOtherSpecialists?getApiData?.psychiatricProviderOtherSpecialists:[]);
     // set data 2 state is pending
     setHealthPlan(getApiData?.psychiatricProvider?.[0]?.name);
     setHealthPlanId(getApiData?.psychiatricProvider?.[0]?.name);
@@ -249,7 +290,7 @@ if (getApiDataAdmit) {
     setMedicalDiagnosesHistory(getApiData?.medicalDiagnosesHistory);
     setPastSurgeries(getApiData?.pastSurgeries);
     setSignature(getApiData?.bhpSignature);
-    setSignatureDate(getApiData?.residentName);
+    setSignatureDate(getApiData?.bhpDate?getApiData?.bhpDate.slice(0,10):"");
     setSegnatureTime(getApiData?.time);
   },[getApiData])
 
@@ -257,6 +298,7 @@ if (getApiDataAdmit) {
     faceSheet_form_get(patientId,setGetApiData);
   },[patientId])
 
+console.log(patientId,"knhfijdjdji fhi");
 
   useEffect(() => {
     setPatientId(userDetail?._id);
@@ -289,21 +331,20 @@ if (getApiDataAdmit) {
     setPrimaryCareProviderName("");
     setPrimaryCareProviderPhone("");
     setPrimaryCareProviderAddress("");
-
+   
     setPrimaryCareProviderName("")
     setPrimaryCareProviderPhone("")
     setPrimaryCareProviderAddress("")
-    setPrimaryCareProviderOtherSpecialists("")
     setPreferredHospitalName("");
     setPreferredHospitalPhone("");
     setPreferredHospitalAddress("");
-  
+    setPrimaryCareProviderOtherSpecialistsArray([]);
     setPsychiatricProviderName("");
     setPsychiatricProviderPhone("");
     setPsychiatricProviderAddress("");
-    setPsychiatricProviderOtherSpecialists("")
     setHealthPlan("");
     setHealthPlanId("");
+    setPsychiatricProviderOtherSpecialistsArray([])
 
     setCaseManagerName("");
     setCaseManagerPhone("");
@@ -347,18 +388,18 @@ if (getApiDataAdmit) {
           name: primaryCareProviderName,
           phone: primaryCareProviderPhone,
           address: primaryCareProviderAddress,
-          OtherSpecialists: primaryCareProviderOtherSpecialists,
           preferredHospitalName: preferredHospitalName,
           preferredHospitalPhone: preferredHospitalPhone,
           preferredHospitalAddress: preferredHospitalAddress
         }
       ],
+      primaryCareProviderOtherSpecialists:primaryCareProviderOtherSpecialistsArray,
+      psychiatricProviderOtherSpecialists:psychiatricProviderOtherSpecialistsArray,
       psychiatricProvider:[
         {
           name: psychiatricProviderName,
           phone: psychiatricProviderPhone,
           address: psychiatricProviderAddress,
-          OtherSpecialists: psychiatricProviderOtherSpecialists,
           preferredHospitalName: healthPlan,
           preferredHospitalPhone: healthPlanId,
         }
@@ -679,7 +720,7 @@ if (getApiDataAdmit) {
             <div className="box-image-container face_sheet_table" >
                 <div className="face_sheet_table_child_left">
                 <div className="formsheading">
-                <h6 style={{ fontWeight: "bold",padding:"10px" }}>Primary Care Provider:</h6>
+                <h6 style={{ fontWeight: "bold",padding:"0 10px" }}>Primary Care Provider:</h6>
               </div>
 
               <div className="form-field-child-face-sheet-table table_inner_padding" >
@@ -714,19 +755,93 @@ if (getApiDataAdmit) {
                 onChange={(e) => setPrimaryCareProviderAddress(e.target.value)}
               />
             </div>
+
+            
+
+
             <div className="border-bootom-line"></div>
 
             <div className="form-field-child-face-sheet-table table_inner_padding">
-                  <label>Other Specialist - please specify:</label>
-                  <input
+                  <label style={{fontWeight:"bold"}}>Other Specialist - please specify:</label>
+                  {/* <input
                     type="text"
                     required
                     value={primaryCareProviderOtherSpecialists}
                     placeholder="Type Here....."
 
                     onChange={(e) => setPrimaryCareProviderOtherSpecialists(e.target.value)}
-                  />
+                  /> */}
                 </div>
+
+                {
+                  primaryCareProviderOtherSpecialistsArray.length>0 && primaryCareProviderOtherSpecialistsArray.map((item,index)=>(
+                    <>
+                    <div className="form-field-child-face-sheet-table table_inner_padding" >
+                  <label >Name:</label>
+              <input
+                    type="text"
+                value={item?.name}
+              />
+            </div>
+            <div className="form-field-child-face-sheet-table table_inner_padding">
+                  <label >Phone Number:</label>
+              <input
+                type="number"
+                value={item?.phone}
+              />
+            </div>
+            <div className="form-field-child-face-sheet-table table_inner_padding">
+                  <label >Address:</label>
+              <input
+                type="text"       
+                value={item?.address}
+              />
+            </div>
+            <div className="form-field-child-face-sheet-table-add-delete table_inner_padding hidePrintButton">
+              <button type="button" onClick={()=>handlePrimaryCareArrayDelete(index)}>Delete</button>
+            </div>
+                    </>
+                  ))
+                }
+
+
+
+                <div className="form-field-child-face-sheet-table table_inner_padding hidePrintButton" >
+                  <label >Name:</label>
+              <input
+                    type="text"
+                value={primarySpacelistName}
+                placeholder="Type Here....."
+                
+                onChange={(e) => setPrimarySpacelistName(e.target.value)}
+              />
+            </div>
+            <div className="form-field-child-face-sheet-table table_inner_padding hidePrintButton">
+                  <label >Phone Number:</label>
+              <input
+                type="number"
+                
+                value={primarySpacelistPhone}
+                placeholder="Type number....."
+                
+                onChange={(e) => setPrimarySpacelistPhone(e.target.value)}
+              />
+            </div>
+            <div className="form-field-child-face-sheet-table table_inner_padding hidePrintButton">
+                  <label >Address:</label>
+              <input
+                type="text"
+                
+                value={primarySpacelistAddress}
+                placeholder="Type Here....."
+                
+                onChange={(e) => setPrimarySpacelistAddress(e.target.value)}
+              />
+            </div>
+            <div className="form-field-child-face-sheet-table-add-delete table_inner_padding hidePrintButton">
+              <button type="button" onClick={handlePrimaryCareArray}>Add</button>
+            </div>
+
                 <div className="border-bootom-line "></div>
                 <div className="form-field-child-face-sheet-table table_inner_padding">
                   <label >Preferred Hospital:</label>
@@ -766,7 +881,7 @@ if (getApiDataAdmit) {
                 </div>
                 <div className="face_sheet_table_child_right">
                 <div className="formsheading">
-                <h6 style={{ fontWeight: "bold",padding:"10px" }}>Psychiatric Provider:</h6>
+                <h6 style={{ fontWeight: "bold",padding:"0 10px" }}>Psychiatric Provider:</h6>
               </div> 
               <div className="form-field-child-face-sheet-table table_inner_padding">
                   <label >Name:</label>
@@ -807,15 +922,85 @@ if (getApiDataAdmit) {
             <div className="border-bootom-line"></div>
 
             <div className="form-field-child-face-sheet-table table_inner_padding">
-                  <label >Other Specialist - please specify:</label>
-              <input
+                  <label style={{fontWeight:"bold"}}>Other Specialist - please specify:</label>
+              {/* <input
                 type="text"
                 required
                 value={psychiatricProviderOtherSpecialists}
                 placeholder="Type Here....."
                 
                 onChange={(e)=>setPsychiatricProviderOtherSpecialists(e.target.value)}
+              /> */}
+            </div>
+
+            {
+                  psychiatricProviderOtherSpecialistsArray.length>0 && psychiatricProviderOtherSpecialistsArray.map((item,index)=>(
+                    <>
+                    <div className="form-field-child-face-sheet-table table_inner_padding" >
+                  <label >Name:</label>
+              <input
+                    type="text"
+                value={item?.name}
               />
+            </div>
+            <div className="form-field-child-face-sheet-table table_inner_padding">
+                  <label >Phone Number:</label>
+              <input
+                type="number"
+                value={item?.phone}
+              />
+            </div>
+            <div className="form-field-child-face-sheet-table table_inner_padding">
+                  <label >Address:</label>
+              <input
+                type="text"       
+                value={item?.address}
+              />
+            </div>
+            <div className="form-field-child-face-sheet-table-add-delete table_inner_padding hidePrintButton">
+              <button type="button" onClick={()=>handlePsychiatricArrayDelete(index)}>Delete</button>
+            </div>
+                    </>
+                  ))
+                }
+
+<div className="form-field-child-face-sheet-table table_inner_padding hidePrintButton">
+                  <label >Name:</label>
+              <input
+                type="text"
+                
+                value={psychiatricSpacelistName}
+                placeholder="Type Here....."
+                
+                onChange={(e) => setpsychiatricSpacelistName(e.target.value)}
+              />
+            </div>
+
+            <div className="form-field-child-face-sheet-table table_inner_padding hidePrintButton ">
+                  <label >Phone Number:</label>
+              <input
+                type="number"
+                
+                value={psychiatricSpacelistPhone}
+                placeholder="Type number....."
+                
+                onChange={(e) => setpsychiatricSpacelistPhone(e.target.value)}
+              />
+            </div>
+
+            <div className="form-field-child-face-sheet-table table_inner_padding hidePrintButton">
+                  <label >Address:</label>
+              <input
+                type="text"
+                
+                value={psychiatricSpacelistAddress}
+                placeholder="Type Here....."
+                
+                onChange={(e) => setpsychiatricSpacelistAddress(e.target.value)}
+              />
+            </div>
+            <div className="form-field-child-face-sheet-table-add-delete table_inner_padding hidePrintButton">
+              <button type="button" onClick={handlePsychiatricArray}>Add</button>
             </div>
 
             <div className="border-bootom-line"></div>
@@ -951,41 +1136,7 @@ if (getApiDataAdmit) {
               </button>
             </div> */}
 
-            {/* <div className="needs-interventions-container">
-  <div className="needs-interventions-column3">
-    {primaryCareProviderArray.length > 0 && (
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Phone Number</th>
-            <th>Address</th>
-            <th>Other Specify</th>
-                          <th>Hospital Name</th>
-                          <th>Hospital Phone</th>
-                          <th>Hospital Address</th>
-          </tr>
-        </thead>
-        <tbody>
-          {primaryCareProviderArray?.map((i, index) => (
-            <tr key={index}>
-              <td>
-                {i?.primaryCareProviderName}
-              </td>
-         
-              <td> {i?.primaryCareProviderPhone} </td>
-              <td>  {i?.primaryCareProviderAddress}</td>
-              <td>  {i?.primaryCareProviderOtherSpecialists}</td>
-              <td>  {i?.preferredHospitalName}</td>
-              <td>  {i?.preferredHospitalPhone}</td>
-              <td>  {i?.preferredHospitalAddress}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    )}
-  </div>
-</div> */}
+
             
             {/* <div className="formsheading">
                 <h6 style={{ fontWeight: "bold" }}>Psychiatric Provider:</h6>
