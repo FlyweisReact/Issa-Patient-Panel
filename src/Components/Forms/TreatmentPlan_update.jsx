@@ -426,37 +426,228 @@ const Treatmentplan_update = () => {
     setPhysicalService("")
     setBehavior("")
 
+    // Resetting medication service state variables
+setMedicationAdministation("");
+setMedicationAssistence("");
+setPresentingPrice([]);
 
+// Resetting diagnosis state variable
+setDiagonsis("");
 
+// Resetting mental status state variables
+setMentelHealth("");
+setMentelText("");
 
+// Resetting mood level state variables
+setMind("");
+setMindText("");
 
+// Resetting ADLS state variables
+setAdls("");
+setAldsText("");
 
+// Resetting behavioral health services state variables
+setBHealth("");
+setBtext("");
 
+// Resetting primary care provider state variables
+setPrimaryCare("");
+setPsychiatricProvider("");
 
+// Resetting resident goals state variables
+setResidentGoal("");
+setAllergies("");
+setTriggers("");
+setStrengths([]);
 
+// Resetting barriers state variables
+setBarriers([]);
 
+// Resetting risk assessment state variables
+setBehavioralSymptoms([]);
+setBehavioralSymptomsBoolean(false);
+setBehavioralSymptomsOther("");
 
+// Resetting physical symptoms state variables
+setPhysicalSymptoms([]);
+setPhysicalSymptomsBoolean(false);
+setPhysicalSymptomsOther("");
 
+// Resetting cognitive symptoms state variables
+setConsnotiveSymptoms([]);
+setConsnotiveSymptomsBoolean(false);
+setConsnotiveSymptomsOther("");
 
+// Resetting psychosocial symptoms state variables
+setPsychosocialSymptoms([]);
+setPsychosocialSymptomsBoolean(false);
+setPsychosocialSymptomsOther("");
 
+// Resetting interventions implemented state variables
+setInterventionsImplemented([]);
+setInterventionsImplementedBoolean(false);
+setInterventionsImplementedOther("");
 
+// Resetting counseling and frequency state variables
+setMinimumHoure("");
+setCounselingOptions([]);
+setCounselingOptionsOther("");
+setCounselingOptionsTextBoolean(false);
 
+// Resetting goals for changes state variables
+setOption1([]);
+setOption1Boolean(false);
+setoption1Other("");
 
+// Resetting option2 state variables
+setOption2([]);
 
+// Resetting option3 state variables
+setOption3([]);
 
+// Resetting option4 state variables
+setOption4([]);
 
+// Resetting option5 state variables
+setOption5([]);
 
+// Resetting option6 state variables
+setOption6([]);
 
+// Resetting option7 state variables
+setOption7([]);
 
+// Resetting option8 state variables
+setOption8([]);
 
+// Resetting admissionMeasure1 state variables
+setAdmissionMeasure1("");
+setPreviousMeasure1("");
+setCurrentMeasure1("");
+setEstimatedDateOfCompletion1("");
+setComment1("");
 
+// Resetting admissionMeasure2 state variables
+setAdmissionMeasure2("");
+setPreviousMeasure2("");
+setCurrentMeasure2("");
+setEstimatedDateOfCompletion2("");
+setComment2("");
 
+// Resetting admissionMeasure3 state variables
+setAdmissionMeasure3("");
+setPreviousMeasure3("");
+setCurrentMeasure3("");
+setEstimatedDateOfCompletion3("");
+setComment3("");
 
+// Resetting admissionMeasure4 state variables
+setAdmissionMeasure4("");
+setPreviousMeasure4("");
+setCurrentMeasure4("");
+setEstimatedDateOfCompletion4("");
+setComment4("");
 
+// Resetting admissionMeasure5 state variables
+setAdmissionMeasure5("");
+setPreviousMeasure5("");
+setCurrentMeasure5("");
+setEstimatedDateOfCompletion5("");
+setComment5("");
 
+// Resetting admissionMeasure6 state variables
+setAdmissionMeasure6("");
+setPreviousMeasure6("");
+setCurrentMeasure6("");
+setEstimatedDateOfCompletion6("");
+setComment6("");
 
+// Resetting admissionMeasure7 state variables
+setAdmissionMeasure7("");
+setPreviousMeasure7("");
+setCurrentMeasure7("");
+setEstimatedDateOfCompletion7("");
+setComment7("");
 
+// Resetting admissionMeasure8 state variables
+setAdmissionMeasure8("");
+setPreviousMeasure8("");
+setCurrentMeasure8("");
+setEstimatedDateOfCompletion8("");
+setComment8("");
 
+// Resetting optionOther state variables
+setOptionOther("");
+setAdmissionMeasureOther("");
+setCurrentMeasureOther("");
+setEstimatedDateOfCompletionOther("");
+setCommentOther("");
+
+// Resetting otherArray state variables
+setOtherArray([]);
+setShowOther(false);
+
+// Resetting resident overall participation state variables
+setResidentParticipation("");
+setResidentAttitute("");
+setResidentProgress("");
+setSupportSystemPhoneNumber("");
+setSupportSystem([]);
+setSupportSystemOtherText("");
+setSupportSystemOtherTextBoolean(false);
+setCurrentMedications("");
+setreligiousPreference("");
+setReligiousPreferenceText("");
+setNutritionAndWellnessPlanning("");
+setRecommendationToExtendResidentialTreatment("");
+setPersonalFinances(false);
+setDischargePlanning("");
+setAdditionalComment("");
+setRecommendationsForFurtherPrograms([]);
+setrecommendationsForFurtherProgramsBoolean(false);
+setRecommendationsForFurtherProgramsOther("");
+
+// Resetting afterCareAndTransitionPlanning state variables
+setAfterCareAndTransitionPlanning([]);
+
+// Resetting theory input state variable
+setTextData("");
+
+// Resetting clinicalSummary state variables
+setClinicalSummary([]);
+setTreatmentPlanReviewDate("");
+setDischargePlanDate("");
+// Resetting individual participating state variables
+setResident("");
+setGuardian("");
+setStaff("");
+setBph("");
+setCommentIndividual("");
+
+// Resetting isReason state variable
+setIsReason("no");
+setrefusalReason("no");
+
+// Resetting signaturesResident state variables
+setNameResident("");
+setCredentialsResident("");
+setsignatureResident("");
+setDateResident("");
+setTimeResident("");
+
+// Resetting signaturesFacilityRep state variables
+setNameFacilityRep("");
+setCredentialsFacilityRep("");
+setsignatureFacilityRep("");
+setDateFacilityRep("");
+setTimeFacality("");
+
+// Resetting signaturesBhp state variables
+setNameBhp("");
+setCredentialsBhp("");
+setsignatureBhp("");
+setDateBhp("");
+setTimeBhp("");
 
   },[getApiData])
 
