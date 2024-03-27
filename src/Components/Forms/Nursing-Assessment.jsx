@@ -782,7 +782,7 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
             </select>
        
           </div> */}
-            <h2 style={{ marginTop: "1rem", fontWeight: "bold" }}>Vitals:</h2>
+            <h2 style={{ marginTop: "0.5rem", fontWeight: "bold" }}>Vitals:</h2>
 
           <div className="box-image-container">
             <div className="form-field-update">
@@ -1564,86 +1564,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 onChange={() => setReviewOfSystemsEndocrine("N/a")}
               />
                 <label htmlFor="N/a">N/A</label>
-              </div>
-
-            {/* <div className="form-field-child-result">
-                <div >
-                  <label className="black_space" >Dry skin Is resident’s blood sugar under control? </label>
-                </div>
-                <div className="inner_field_aligment">
-                <div style={{ display: 'flex', gap: "5px", alignItems: "center" }}>
-                  <input
-                    type="checkbox"
-
-                    checked={tbScreeningResults === "Negative"}
-                    onChange={() => setTbScreeningResults("Negative")}
-                  />
-                  <label >Yes</label>
-                </div>
-                <div style={{ display: 'flex', gap: "5px", alignItems: "center" }}>
-                  <input
-                    type="checkbox"
-
-                    checked={tbScreeningResults === "Positive"}
-                    onChange={() => setTbScreeningResults("Positive")}
-                  />
-                  <label >No</label>
-                </div>
-                <div style={{ display: 'flex', gap: "5px", alignItems: "center" }}>
-                  <input
-                    type="checkbox"
-
-                    checked={tbScreeningResults === "Pending"}
-                    onChange={() => setTbScreeningResults("Pending")}
-                  />
-                  <label >Unsure</label>
-                </div>
-
-                </div>
-               
-              </div> */}
-            {/* <div>
-            <input
-                type="checkbox"
-                id="Dry skin Is resident’s blood sugar under control?"
-                checked={reviewOfSystemsEndocrine === "Dry skin Is resident’s blood sugar under control?"}
-                onChange={() => setReviewOfSystemsEndocrine("Dry skin Is resident’s blood sugar under control?")}
-              />
-                <label htmlFor="Dry skin Is resident’s blood sugar under control?">Dry skin Is resident’s blood sugar under control?</label>
-              </div> */}
-              {/* <div>
-              <input
-                type="checkbox"
-                id="Yes"
-                checked={reviewOfSystemsEndocrine === "Yes"}
-                onChange={() => setReviewOfSystemsEndocrine("Yes")}
-              />
-                <label htmlFor="Yes">Yes</label>
-              </div> */}
-              {/* <div>
-              <input
-                type="checkbox"
-                id="no"
-                checked={reviewOfSystemsEndocrine === "No"}
-                onChange={() => setReviewOfSystemsEndocrine("No")}
-              />
-                <label htmlFor="no">No</label>
-              </div> */}
-              {/* <div>
-              <input
-                type="checkbox"
-                id="Unsure"
-                checked={reviewOfSystemsEndocrine === "Unsure"}
-                onChange={() => setReviewOfSystemsEndocrine("Unsure")}
-              />
-                <label htmlFor="Unsure">Unsure</label>
-              </div> */}
-             
+              </div> 
           </div>
           
-          {/* <div className="yeschechbox-review">
-        
-            </div>  */}
            <div className="form-field">
               <label htmlFor="reviewOfSystemsEndocrineOther">Comment:</label>
               <textarea
@@ -2782,7 +2705,7 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 }
               />
               <label htmlFor="helplessnessHopelessness">
-                  Helplessness/hopelessness    
+                  Helplessness    
               </label>
             </div>
             <div>

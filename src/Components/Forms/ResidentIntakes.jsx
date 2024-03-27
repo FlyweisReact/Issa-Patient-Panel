@@ -78,6 +78,7 @@ const ResidentIntakes = () => {
 
     for (let i = 0; i < formheading1.length; i++) {
       formheading1[i].style.display = "block";
+      formheading1[i].style.marginTop = "1rem";
     }
 
     
@@ -1481,7 +1482,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
               <>
                 <div
                   ref={componentRef1}
-                  style={{ width: "95%", margin: "auto" }}
+                  style={{ width: "90%", margin: "auto" }}
                 >
 
                <div className="formheading1-hide">
@@ -1792,8 +1793,8 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
             {page === 2 && (
               <>
                 <div
-                  ref={componentRef2}
-                  style={{ width: "95%", margin: "auto" }}
+                  ref={componentRef2} className="print-content"
+                  style={{ width: "90%", margin: "auto" }}
                 >
                   <h6
                     style={{
@@ -1933,14 +1934,15 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
                     style={{
                       fontWeight: "600",
                       fontSize: "18px",
-                      marginTop: "20px",
-                      marginBottom: "20px",
+                      marginTop: "0.5rem",
+                      marginBottom: "0.5rem",
+                      padding: "0 10px"
                     }}
                   >
                     Please Provide the Expiry Date Below :
                   </h6>
 
-                  <div className="form-field"></div>
+                 
 
                   <div class="file-upload-box ">
                     <div className="file-upload-box-child hidePrint">
@@ -2101,8 +2103,8 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
                     style={{
                       fontWeight: "600",
                       fontSize: "18px",
-                      marginTop: "20px",
-                      marginBottom: "20px",
+                      marginTop: "0.5rem",
+                      marginBottom: "0.5rem",
                     }}
                   >
                     R9-10-711. Resident Rights
@@ -2336,8 +2338,9 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
                       right
                     </p>
                   </div>
+
+                  <div className="signatureIsSameLine">
                   <label
-                  
                     className="label-review-resitent"
                     style={{ fontWeight: "bold" }}
                   >
@@ -2370,6 +2373,8 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
                         </p>
                       )}
                     </div>
+                  </div>
+
                   </div>
 
                   {signInModel7 && (
@@ -2488,7 +2493,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
               <>
                 <div
                   ref={componentRef3}
-                  style={{ width: "95%", margin: "auto" }}
+                  style={{ width: "90%", margin: "auto" }}
                 >
                   <h6
                     style={{
@@ -2819,7 +2824,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
               <>
                 <div
                   ref={componentRef4}
-                  style={{ width: "95%", margin: "auto" }}
+                  style={{ width: "90%", margin: "auto" }}
                 >
                   <h6
                     style={{
@@ -3309,7 +3314,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
                       )}
                     </div>
                   </div>
-                  <div class="file-upload-box hidePrint">
+                  <div class="file-upload-box hidePrint" style={{marginTop:"0.5rem"}}>
                     <div className="file-upload-box-child ">
                       <div>
                         <button
@@ -3366,7 +3371,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
               <>
                 <div
                   ref={componentRef5}
-                  style={{ width: "95%", margin: "auto" }}
+                  style={{ width: "90%", margin: "auto" }}
                 >
                   <h6
                     style={{
@@ -3613,7 +3618,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
               <>
                 <div
                   ref={componentRef6}
-                  style={{ width: "95%", margin: "auto" }}
+                  style={{ width: "90%", margin: "auto" }}
                 >
                   <h6
                     style={{
@@ -3806,7 +3811,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
               <>
                 <div
                   ref={componentRef7}
-                  style={{ width: "95%", margin: "auto" }}
+                  style={{ width: "90%", margin: "auto" }}
                 >
                   <h6
                     style={{
@@ -4131,7 +4136,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
               <>
                 <div
                   ref={componentRef8}
-                  style={{ width: "95%", margin: "auto" }}
+                  style={{ width: "90%", margin: "auto" }}
                 >
                   <h6
                     style={{

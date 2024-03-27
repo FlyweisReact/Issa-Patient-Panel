@@ -35,6 +35,7 @@ const SafetyPlan = () => {
 
     for (let i = 0; i < signatureRightAndSide.length; i++) {
       signatureRightAndSide[i].style.justifyContent = "right";
+      signatureRightAndSide[i].style.fontSize = "24px";
     }
 
     for (let i = 0; i < formsheading2.length; i++) {
@@ -57,6 +58,7 @@ const SafetyPlan = () => {
 
       for (let i = 0; i < signatureRightAndSide.length; i++) {
         signatureRightAndSide[i].style.justifyContent = "space-between";
+        signatureRightAndSide[i].style.fontSize = "16px";
       }
 
       for (let i = 0; i < formsheading2.length; i++) {
@@ -493,7 +495,7 @@ const SafetyPlan = () => {
                 fontSize: "20px",
                 color: "#000000",
                 textAlign: "start",
-                marginTop:"1.5rem"
+                marginTop:"0.5rem"
               }}
             >
               {" "}
@@ -557,7 +559,7 @@ const SafetyPlan = () => {
                 fontSize: "20px",
                 color: "#000000",
                 textAlign: "start",
-                marginTop:"1.5rem"
+                marginTop:"0.5rem"
               }}
             >
               {" "}
@@ -705,7 +707,7 @@ const SafetyPlan = () => {
                 fontSize: "20px",
                 color: "#000000",
                 textAlign: "start",
-                marginTop:"1.5rem"
+                marginTop:"0.5rem"
               }}
             >
               {" "}
@@ -903,6 +905,7 @@ const SafetyPlan = () => {
                 fontSize: "20px",
                 color: "#000000",
                 textAlign: "start",
+                marginTop:'0.5rem'
               }}
             >
               {" "}

@@ -145,7 +145,7 @@ export const patient_form = async (payLoad) => {
 export const patient_form_treatment_get = async (id,setGetApiData) => {
   try {
     const {data} = await axios.get(
-      `${BaseUrl}Patient/ResidentIntake/${id}`,
+      `${BaseUrl}Patient/getTreatmentPlan/${id}`,
       Token
     );
     setGetApiData(data?.data);

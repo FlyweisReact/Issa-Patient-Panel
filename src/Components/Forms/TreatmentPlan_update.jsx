@@ -421,161 +421,213 @@ const Treatmentplan_update = () => {
   const [timeBhp,setTimeBhp]=useState("");
 
   useEffect(()=>{
-    setDate();
-    setAdminDate()
-    setPhysicalService("")
-    setBehavior("")
+    setDate(getApiData?.date?getApiData?.date?.slice(0,10):"");
+    setAdminDate(getApiData?.admitDate?getApiData?.admitDate.slice(0,10):"")
+    setPhysicalService(getApiData?.care?getApiData?.care?.[0]:"")
+    setBehavior(getApiData?.care?getApiData?.care?.[1]:"")
 
     // Resetting medication service state variables
-setMedicationAdministation("");
-setMedicationAssistence("");
-setPresentingPrice([]);
+setMedicationAdministation(getApiData?.medicationService?getApiData?.medicationService?.[0]:"");
+setMedicationAssistence(getApiData?.medicationService?getApiData?.medicationService?.[1]:"");
+setPresentingPrice(getApiData?.presentingProblems
+  ? getApiData.presentingProblems.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
 
 // Resetting diagnosis state variable
-setDiagonsis("");
+setDiagonsis(getApiData?.diagonsis);
 
 // Resetting mental status state variables
-setMentelHealth("");
-setMentelText("");
+setMentelHealth(getApiData?.mentalStatus);
+setMentelText(getApiData?.mentalStatusOther);
 
 // Resetting mood level state variables
-setMind("");
-setMindText("");
+setMind(getApiData?.moodLevel);
+setMindText(getApiData?.moodLevelOther);
 
 // Resetting ADLS state variables
-setAdls("");
-setAldsText("");
+setAdls(getApiData?.adls);
+setAldsText(getApiData?.adlsOther);
 
 // Resetting behavioral health services state variables
-setBHealth("");
-setBtext("");
+setBHealth(getApiData?.behavioralHealthServices);
+setBtext(getApiData?.behavioralHealthServicesOther);
 
 // Resetting primary care provider state variables
-setPrimaryCare("");
-setPsychiatricProvider("");
+setPrimaryCare(getApiData?.primaryCareProvider);
+setPsychiatricProvider(getApiData?.psychiatricProvider);
 
 // Resetting resident goals state variables
-setResidentGoal("");
-setAllergies("");
-setTriggers("");
-setStrengths([]);
+setResidentGoal(getApiData?.residentGoals);
+setAllergies(getApiData?.allergies);
+setTriggers(getApiData?.triggers);
+setStrengths(getApiData?.strengths
+  ? getApiData.strengths.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
 
 // Resetting barriers state variables
-setBarriers([]);
+setBarriers(getApiData?.barriers
+  ? getApiData.barriers.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
 
 // Resetting risk assessment state variables
-setBehavioralSymptoms([]);
+setBehavioralSymptoms(getApiData?.riskAssessment?.behavioralSymptoms?getApiData?.riskAssessment?.behavioralSymptoms:[]);
 setBehavioralSymptomsBoolean(false);
 setBehavioralSymptomsOther("");
 
 // Resetting physical symptoms state variables
-setPhysicalSymptoms([]);
+setPhysicalSymptoms(getApiData?.riskAssessment?.physicalSymptoms?getApiData?.riskAssessment?.physicalSymptoms:[]);
 setPhysicalSymptomsBoolean(false);
 setPhysicalSymptomsOther("");
 
 // Resetting cognitive symptoms state variables
-setConsnotiveSymptoms([]);
+setConsnotiveSymptoms(getApiData?.riskAssessment?.cognitiveSymptoms?getApiData?.riskAssessment?.cognitiveSymptoms:[]);
 setConsnotiveSymptomsBoolean(false);
 setConsnotiveSymptomsOther("");
 
 // Resetting psychosocial symptoms state variables
-setPsychosocialSymptoms([]);
+setPsychosocialSymptoms(getApiData?.riskAssessment?.psychosocialSymptoms?getApiData?.riskAssessment?.psychosocialSymptoms:[]);
 setPsychosocialSymptomsBoolean(false);
 setPsychosocialSymptomsOther("");
 
 // Resetting interventions implemented state variables
-setInterventionsImplemented([]);
-setInterventionsImplementedBoolean(false);
-setInterventionsImplementedOther("");
+setInterventionsImplemented(getApiData?.interventions?getApiData?.interventions:[]);
+setInterventionsImplementedBoolean(getApiData?.interventionsComment?true:false);
+setInterventionsImplementedOther(getApiData?.interventionsComment);
 
 // Resetting counseling and frequency state variables
-setMinimumHoure("");
-setCounselingOptions([]);
-setCounselingOptionsOther("");
-setCounselingOptionsTextBoolean(false);
+setMinimumHoure(getApiData?.counselingFrequencyMinimum);
+setCounselingOptions(getApiData?.counselingFrequency?getApiData?.counselingFrequency:[]);
+setCounselingOptionsOther(getApiData?.counselingFrequencyComment);
+setCounselingOptionsTextBoolean(getApiData?.counselingFrequencyComment?true:false);
 
 // Resetting goals for changes state variables
-setOption1([]);
-setOption1Boolean(false);
-setoption1Other("");
+setOption1(getApiData?.maintainSobrietyType
+  ? getApiData.maintainSobrietyType.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+
 
 // Resetting option2 state variables
-setOption2([]);
+setOption2(getApiData?.independentLivingSkillsType
+  ? getApiData.independentLivingSkillsType.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
 
 // Resetting option3 state variables
-setOption3([]);
+setOption3(getApiData?.employmentType
+  ? getApiData.employmentType.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
 
 // Resetting option4 state variables
-setOption4([]);
+setOption4(getApiData?.adlsSecondType
+  ? getApiData.adlsSecondType.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
 
 // Resetting option5 state variables
-setOption5([]);
+setOption5(getApiData?.safetyType
+  ? getApiData.safetyType.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
 
 // Resetting option6 state variables
-setOption6([]);
+setOption6(getApiData?.medicationEducationType
+  ? getApiData.medicationEducationType.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
 
 // Resetting option7 state variables
-setOption7([]);
+setOption7(getApiData?.managingMentalHealthType
+  ? getApiData.managingMentalHealthType.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
 
 // Resetting option8 state variables
-setOption8([]);
+setOption8(getApiData?.legalType
+  ? getApiData.legalType.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
 
 // Resetting admissionMeasure1 state variables
-setAdmissionMeasure1("");
-setPreviousMeasure1("");
-setCurrentMeasure1("");
-setEstimatedDateOfCompletion1("");
-setComment1("");
+setAdmissionMeasure1(getApiData?.maintainSobrietyAdmissionMeasure);
+
+setCurrentMeasure1(getApiData?.maintainSobrietyCurrentMeasure);
+setEstimatedDateOfCompletion1(getApiData?.maintainSobrietyEstimatedDateOfCompletion?getApiData?.maintainSobrietyEstimatedDateOfCompletion?.slice(0,10):"");
+setComment1(getApiData?.maintainSobrietyComments);
 
 // Resetting admissionMeasure2 state variables
-setAdmissionMeasure2("");
-setPreviousMeasure2("");
-setCurrentMeasure2("");
-setEstimatedDateOfCompletion2("");
-setComment2("");
+setAdmissionMeasure2(getApiData?.independentLivingSkillsAdmissionMeasure);
+
+setCurrentMeasure2(getApiData?.independentLivingSkillsCurrentMeasure);
+setEstimatedDateOfCompletion2(getApiData?.independentLivingSkillsEstimatedDateOfCompletion?getApiData?.independentLivingSkillsEstimatedDateOfCompletion?.slice(0,10):"")
+setComment2(getApiData?.independentLivingSkillsComments);
 
 // Resetting admissionMeasure3 state variables
-setAdmissionMeasure3("");
-setPreviousMeasure3("");
-setCurrentMeasure3("");
-setEstimatedDateOfCompletion3("");
-setComment3("");
+setAdmissionMeasure3(getApiData?.employmentAdmissionMeasure);
+
+setCurrentMeasure3(getApiData?.employmentCurrentMeasure);
+setEstimatedDateOfCompletion3(getApiData?.employmentEstimatedDateOfCompletion?getApiData?.employmentEstimatedDateOfCompletion?.slice(0,10):"")
+setComment3(getApiData?.employmentComments);
 
 // Resetting admissionMeasure4 state variables
-setAdmissionMeasure4("");
-setPreviousMeasure4("");
-setCurrentMeasure4("");
-setEstimatedDateOfCompletion4("");
-setComment4("");
+setAdmissionMeasure4(getApiData?.adlsSecondAdmissionMeasure);
+
+setCurrentMeasure4(getApiData?.adlsSecondCurrentMeasure);
+setEstimatedDateOfCompletion4(getApiData?.adlsSecondEstimatedDateOfCompletion?getApiData?.adlsSecondEstimatedDateOfCompletion?.slice(0,10):"")
+setComment4(getApiData?.adlsSecondComments);
 
 // Resetting admissionMeasure5 state variables
-setAdmissionMeasure5("");
-setPreviousMeasure5("");
-setCurrentMeasure5("");
-setEstimatedDateOfCompletion5("");
-setComment5("");
+setAdmissionMeasure5(getApiData?.safetyAdmissionMeasure);
+
+setCurrentMeasure5(getApiData?.safetyCurrentMeasure);
+setEstimatedDateOfCompletion5(getApiData?.safetyEstimatedDateOfCompletion?getApiData?.safetyEstimatedDateOfCompletion?.slice(0,10):"")
+setComment5(getApiData?.safetyComments);
 
 // Resetting admissionMeasure6 state variables
-setAdmissionMeasure6("");
-setPreviousMeasure6("");
-setCurrentMeasure6("");
-setEstimatedDateOfCompletion6("");
-setComment6("");
+setAdmissionMeasure6(getApiData?.medicationEducationAdmissionMeasure);
+
+setCurrentMeasure6(getApiData?.medicationEducationCurrentMeasure);
+setEstimatedDateOfCompletion6(getApiData?.medicationEducationEstimatedDateOfCompletion?getApiData?.medicationEducationEstimatedDateOfCompletion?.slice(0,10):"")
+setComment6(getApiData?.medicationEducationComments);
 
 // Resetting admissionMeasure7 state variables
-setAdmissionMeasure7("");
-setPreviousMeasure7("");
-setCurrentMeasure7("");
-setEstimatedDateOfCompletion7("");
-setComment7("");
+setAdmissionMeasure7(getApiData?.managingMentalHealthAdmissionMeasure);
+
+setCurrentMeasure7(getApiData?.managingMentalHealthCurrentMeasure);
+setEstimatedDateOfCompletion7(getApiData?.managingMentalHealthEstimatedDateOfCompletion?getApiData?.managingMentalHealthEstimatedDateOfCompletion?.slice(0,10):"")
+setComment7(getApiData?.managingMentalHealthComments);
 
 // Resetting admissionMeasure8 state variables
-setAdmissionMeasure8("");
-setPreviousMeasure8("");
-setCurrentMeasure8("");
-setEstimatedDateOfCompletion8("");
-setComment8("");
-
+setAdmissionMeasure8(getApiData?.legalAdmissionMeasure);
+setCurrentMeasure8(getApiData?.legalCurrentMeasure);
+setEstimatedDateOfCompletion8(getApiData?.legalEstimatedDateOfCompletion?getApiData?.legalEstimatedDateOfCompletion?.slice(0,10):"")
+setComment8(getApiData?.legalComments);
 // Resetting optionOther state variables
 setOptionOther("");
 setAdmissionMeasureOther("");
@@ -588,35 +640,40 @@ setOtherArray([]);
 setShowOther(false);
 
 // Resetting resident overall participation state variables
-setResidentParticipation("");
-setResidentAttitute("");
-setResidentProgress("");
-setSupportSystemPhoneNumber("");
-setSupportSystem([]);
-setSupportSystemOtherText("");
-setSupportSystemOtherTextBoolean(false);
-setCurrentMedications("");
-setreligiousPreference("");
-setReligiousPreferenceText("");
-setNutritionAndWellnessPlanning("");
-setRecommendationToExtendResidentialTreatment("");
-setPersonalFinances(false);
-setDischargePlanning("");
-setAdditionalComment("");
-setRecommendationsForFurtherPrograms([]);
-setrecommendationsForFurtherProgramsBoolean(false);
-setRecommendationsForFurtherProgramsOther("");
+setResidentParticipation(getApiData?.residentParticipation);
+setResidentAttitute(getApiData?.residentAttitude);
+setResidentProgress(getApiData?.residentProgress);
+setSupportSystemPhoneNumber(getApiData?.supportSystemPhoneNumber);
+setSupportSystem(getApiData?.supportSystem?getApiData?.supportSystem:[]);
+// setSupportSystemOtherText(getApiData?.residentAttitude);
+// setSupportSystemOtherTextBoolean(false);
+setCurrentMedications(getApiData?.currentMedications);
+setreligiousPreference(getApiData?.religiousPreference);
+// setReligiousPreferenceText(getApiData?.residentAttitude);
+setNutritionAndWellnessPlanning(getApiData?.nutritionAndWellnessPlanning?getApiData?.nutritionAndWellnessPlanning:[]);
+setRecommendationToExtendResidentialTreatment(getApiData?.recommendationToExtendResidentialTreatment);
+setPersonalFinances(getApiData?.personalFinances);
+setDischargePlanning(getApiData?.dischargePlanning);
+setAdditionalComment(getApiData?.additionalComment);
+setRecommendationsForFurtherPrograms(getApiData?.recommendationsForFurtherPrograms?getApiData?.recommendationsForFurtherPrograms:[]);
+setrecommendationsForFurtherProgramsBoolean(getApiData?.recommendationsForFurtherPrograms?.length>0?true:false);
+// setRecommendationsForFurtherProgramsOther(getApiData?.residentAttitude);
 
 // Resetting afterCareAndTransitionPlanning state variables
-setAfterCareAndTransitionPlanning([]);
+setAfterCareAndTransitionPlanning(getApiData?.afterCareAndTransitionPlanning?getApiData?.afterCareAndTransitionPlanning:[]);
 
 // Resetting theory input state variable
 setTextData("");
 
 // Resetting clinicalSummary state variables
-setClinicalSummary([]);
-setTreatmentPlanReviewDate("");
-setDischargePlanDate("");
+setClinicalSummary(getApiData?.clinicalSummary
+  ? getApiData.clinicalSummary.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+setTreatmentPlanReviewDate(getApiData?.treatmentPlanReviewDate?getApiData?.treatmentPlanReviewDate.slice(0,10):"");
+setDischargePlanDate(getApiData?.dischargePlanDate?getApiData?.dischargePlanDate.slice(0,10):"");
 // Resetting individual participating state variables
 setResident("");
 setGuardian("");
@@ -655,12 +712,13 @@ useEffect(()=>{
   patient_form_treatment_get(userId,setGetApiData)
 },[userId])
 
+console.log(getApiData,"api data");
+
   useEffect(() => {
     setUserId(user?._id);
     setResidentName(user?.fullName);
     setDob(user?.dateOfBirth?user?.dateOfBirth?.slice(0,10):"");
   }, [user]);
-
 
   useEffect(() => {
     user_detail(setUser);
@@ -773,69 +831,123 @@ useEffect(()=>{
       counselingFrequencyMinimum:minimumHoure,
       counselingFrequencyComment:counselingOptionsText,
 
-      maintainSobriety:{
-        type:option1Array,
-        admissionMeasure:admissionMeasure1,
-        currentMeasure:currentMeasure1,
-        estimatedDateOfCompletion:estimatedDateOfCompletion1,
-        comments:comments1
-      },
+      // maintainSobriety:{
+      //   type:option1Array,
+      //   admissionMeasure:admissionMeasure1,
+      //   currentMeasure:currentMeasure1,
+      //   estimatedDateOfCompletion:estimatedDateOfCompletion1,
+      //   comments:comments1
+      // },
+      maintainSobrietyType:option1Array,
+      maintainSobrietyAdmissionMeasure:admissionMeasure1,
+      maintainSobrietyCurrentMeasure:currentMeasure1,
+      maintainSobrietyEstimatedDateOfCompletion:estimatedDateOfCompletion1,
+      maintainSobrietyComments:comments1,
 
-      independentLivingSkills:{
-        type:option2Array,
-        admissionMeasure:admissionMeasure2,
-        currentMeasure:currentMeasure2,
-        estimatedDateOfCompletion:estimatedDateOfCompletion2,
-        comments:comments2
-      },
 
-      employment:{
-        type:option3Array,
-        admissionMeasure:admissionMeasure3,
-        currentMeasure:currentMeasure3,
-        estimatedDateOfCompletion:estimatedDateOfCompletion3,
-        comments:comments3
-      },
 
-      adlsSecond:{
-        type:option4Array,
-        admissionMeasure:admissionMeasure4,
-        currentMeasure:currentMeasure4,
-        estimatedDateOfCompletion:estimatedDateOfCompletion4,
-        comments:comments4
-      },
 
-      safety:{
-        type:option5Array,
-        admissionMeasure:admissionMeasure5,
-        currentMeasure:currentMeasure5,
-        estimatedDateOfCompletion:estimatedDateOfCompletion5,
-        comments:comments5
-      },
 
-      medicationEducation:{
-        type:option6Array,
-        admissionMeasure:admissionMeasure6,
-        currentMeasure:currentMeasure6,
-        estimatedDateOfCompletion:estimatedDateOfCompletion6,
-        comments:comments6
-      },
 
-      managingMentalHealth:{
-        type:option7Array,
-        admissionMeasure:admissionMeasure7,
-        currentMeasure:currentMeasure7,
-        estimatedDateOfCompletion:estimatedDateOfCompletion7,
-        comments:comments7
-      },
+      // independentLivingSkills:{
+      //   type:option2Array,
+      //   admissionMeasure:admissionMeasure2,
+      //   currentMeasure:currentMeasure2,
+      //   estimatedDateOfCompletion:estimatedDateOfCompletion2,
+      //   comments:comments2
+      // },
 
-      legal:{
-        type:option8Array,
-        admissionMeasure:admissionMeasure8,
-        currentMeasure:currentMeasure8,
-        estimatedDateOfCompletion:estimatedDateOfCompletion8,
-        comments:comments8
-      },
+      independentLivingSkillsType:option2Array,
+      independentLivingSkillsAdmissionMeasure:admissionMeasure2,
+      independentLivingSkillsCurrentMeasure:currentMeasure2,
+      independentLivingSkillsEstimatedDateOfCompletion:estimatedDateOfCompletion2,
+      independentLivingSkillsComments:comments2,
+
+
+      // employment:{
+      //   type:option3Array,
+      //   admissionMeasure:admissionMeasure3,
+      //   currentMeasure:currentMeasure3,
+      //   estimatedDateOfCompletion:estimatedDateOfCompletion3,
+      //   comments:comments3
+      // },
+
+      employmentType:option3Array,
+      employmentAdmissionMeasure:admissionMeasure3,
+      employmentCurrentMeasure:currentMeasure3,
+      employmentEstimatedDateOfCompletion:estimatedDateOfCompletion3,
+      employmentComments:comments3,
+
+
+      // adlsSecond:{
+      //   type:option4Array,
+      //   admissionMeasure:admissionMeasure4,
+      //   currentMeasure:currentMeasure4,
+      //   estimatedDateOfCompletion:estimatedDateOfCompletion4,
+      //   comments:comments4
+      // },
+
+      adlsSecondType:option4Array,
+      adlsSecondAdmissionMeasure:admissionMeasure4,
+      adlsSecondCurrentMeasure:currentMeasure4,
+      adlsSecondEstimatedDateOfCompletion:estimatedDateOfCompletion4,
+      adlsSecondComments:comments4,
+
+      // safety:{
+      //   type:option5Array,
+      //   admissionMeasure:admissionMeasure5,
+      //   currentMeasure:currentMeasure5,
+      //   estimatedDateOfCompletion:estimatedDateOfCompletion5,
+      //   comments:comments5
+      // },
+
+      safetyType:option5Array,
+      safetyAdmissionMeasure:admissionMeasure5,
+      safetyCurrentMeasure:currentMeasure5,
+      safetyEstimatedDateOfCompletion:estimatedDateOfCompletion5,
+      safetyComments:comments5,
+
+      // medicationEducation:{
+      //   type:option6Array,
+      //   admissionMeasure:admissionMeasure6,
+      //   currentMeasure:currentMeasure6,
+      //   estimatedDateOfCompletion:estimatedDateOfCompletion6,
+      //   comments:comments6
+      // },
+
+      medicationEducationType:option6Array,
+      medicationEducationAdmissionMeasure:admissionMeasure6,
+      medicationEducationCurrentMeasure:currentMeasure6,
+      medicationEducationEstimatedDateOfCompletion:estimatedDateOfCompletion6,
+      medicationEducationComments:comments6,
+
+      // managingMentalHealth:{
+      //   type:option7Array,
+      //   admissionMeasure:admissionMeasure7,
+      //   currentMeasure:currentMeasure7,
+      //   estimatedDateOfCompletion:estimatedDateOfCompletion7,
+      //   comments:comments7
+      // },
+
+      managingMentalHealthType:option7Array,
+      managingMentalHealthAdmissionMeasure:admissionMeasure7,
+      managingMentalHealthCurrentMeasure:currentMeasure7,
+      managingMentalHealthEstimatedDateOfCompletion:estimatedDateOfCompletion7,
+      managingMentalHealthComments:comments7,
+
+      // legal:{
+      //   type:option8Array,
+      //   admissionMeasure:admissionMeasure8,
+      //   currentMeasure:currentMeasure8,
+      //   estimatedDateOfCompletion:estimatedDateOfCompletion8,
+      //   comments:comments8
+      // },
+
+      legalType:option8Array,
+      legalAdmissionMeasure:admissionMeasure8,
+      legalCurrentMeasure:currentMeasure8,
+      legalEstimatedDateOfCompletion:estimatedDateOfCompletion8,
+      legalComments:comments8,
 
       // other: [
       //   {
@@ -2003,7 +2115,7 @@ useEffect(()=>{
                       <input
                       type="checkbox"
                        checked={medicationAdministation==="MedicationAdministration"}
-                       onChange={() => setMedicationAdministation(medicationAdministation==="MedicationAdministration"?"":"behMedicationAdministrationavior")}
+                       onChange={() => setMedicationAdministation(medicationAdministation==="MedicationAdministration"?"":"MedicationAdministration")}
                       />
                       <label>Medication Administration</label>
                     </div>
@@ -2033,12 +2145,12 @@ useEffect(()=>{
 
        
 
-              <div className="form-field-single-update">
+              <div className="form-field-single-update" style={{marginTop:"0.5rem"}}>
                 <label>Diagnoses:</label>
                 <input type="text" required value={diagonsis} onChange={(e)=>setDiagonsis(e.target.value)}/>
               </div>
               <label
-                htmlFor=""
+               
                 className="label-review"
                 style={{ fontWeight: "bold" }}
               >
@@ -2081,11 +2193,11 @@ useEffect(()=>{
                 <div>
                   <input
                     type="checkbox"
-                    id="other"
+                  
                     checked={mendelHealth === "other"}
                     onChange={() => handleCheckboxChangeMentalHealth("other")}
                   />
-                  <label htmlFor="other">Other </label>
+                  <label >Other </label>
                 
                     <AutoSize value={mentelText} setValue={setMentelText}  placeholder="________"/>
                 </div>
@@ -2138,21 +2250,11 @@ useEffect(()=>{
                 <div>
                   <input
                     type="checkbox"
-                    id="other"
+                  
                     checked={mind === "other"}
                     onChange={() => handleCheckboxChangeMind("other")}
                   />
-                  <label htmlFor="other">Other :</label>
-
-                  {/* {mind === "other" && (
-                      <AutosizeInput
-                        type="text"
-                        inputStyle={{ border: "none", outline: "none" }}
-                        placeholder="________"
-                        value={mindText}
-                        onChange={(e) => setMindText(e.target.value)}
-                      />
-                    )} */}
+                  <label >Other</label>
                      <AutoSize value={mindText} setValue={setMindText}  placeholder="________"/>
                 </div>
               </div>
@@ -2462,11 +2564,11 @@ useEffect(()=>{
                 <div>
                   <input
                     type="checkbox"
-                    id="other"
+             
                     checked={behavioralSymptoms.includes("Other")}
                     onChange={() => handleCheckboxChangeBehavioral("Other")}
                   />
-                  <label htmlFor="other">Other</label>
+                  <label >Other</label>
                   {behavioralSymptomsBoolean && (
                       <AutoSize value={behavioralSymptomsOther}  setValue={setBehavioralSymptomsOther}   placeholder="________"/>
                     )}
@@ -2566,11 +2668,11 @@ useEffect(()=>{
                 <div>
                   <input
                     type="checkbox"
-                    id="Other"
+                   
                     checked={physicalSymptoms.includes("Other")}
                     onChange={() => handleCheckboxChangePhysical("Other")}
                   />
-                  <label htmlFor="Other">Other</label>
+                  <label >Other</label>
                   {physicalSymptomsBoolean && (
                       // <AutosizeInput
                       //   type="text"
@@ -2695,11 +2797,11 @@ useEffect(()=>{
                 <div>
                   <input
                     type="checkbox"
-                    id="Other"
+                  
                     checked={consnotiveSymptoms.includes("Other")}
                     onChange={() => handleCheckboxChangeCognitive("Other")}
                   />
-                  <label htmlFor="Other">Other</label>
+                  <label >Other</label>
                   {consnotiveSymptomsBoolean && (
                       // <AutosizeInput
                       //   type="text"
@@ -3053,11 +3155,11 @@ useEffect(()=>{
                 <div>
                   <input
                     type="checkbox"
-                    id="OtherpsychosocialSymptoms"
+              
                     checked={interventionsImplemented.includes("Other")}
                     onChange={() => handleCheckboxChange("Other")}
                   />
-                  <label htmlFor="OtherpsychosocialSymptoms">Other</label>
+                  <label>Other</label>
                   {interventionsImplementedBoolean && (
                       // <AutosizeInput
                       //   type="text"
@@ -3342,11 +3444,11 @@ useEffect(()=>{
                 <div>
                   <input
                     type="checkbox"
-                    id="OtherpsychosocialSymptoms"
+               
                     checked={counselingOptions.includes("Other")}
                     onChange={() => handleCheckboxChangeCounsiling("Other")}
                   />
-                  <label htmlFor="OtherpsychosocialSymptoms">Other</label>
+                  <label >Other</label>
                   {counselingOptionsTextBoolean && (
                       // <AutosizeInput
                       //   type="text"
@@ -4094,8 +4196,8 @@ useEffect(()=>{
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(comments1.split("\n").length, 1)}
-                            value={comments1}
+                            rows={Math.max((comments1 ? comments1.split("\n").length : 1), 1)}
+                            value={comments1 || ''}
                             placeholder="___________"
                             onChange={(e) => setComment1(e.target.value)}
                             onKeyDown={(e) => {
@@ -4159,8 +4261,9 @@ useEffect(()=>{
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(comments2.split("\n").length, 1)}
-                            value={comments2}
+                            rows={Math.max((comments2 ? comments2.split("\n").length : 1), 1)}
+                            value={comments2 || ''}
+                         
                             placeholder="___________"
                             onChange={(e) => setComment2(e.target.value)}
                             onKeyDown={(e) => {
@@ -4224,8 +4327,9 @@ useEffect(()=>{
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(comments3.split("\n").length, 1)}
-                            value={comments3}
+                           
+                            rows={Math.max((comments3 ? comments3.split("\n").length : 1), 1)}
+                            value={comments3 || ''}
                             placeholder="___________"
                             onChange={(e) => setComment3(e.target.value)}
                             onKeyDown={(e) => {
@@ -4289,8 +4393,9 @@ useEffect(()=>{
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(comments4.split("\n").length, 1)}
-                            value={comments4}
+                            
+                            rows={Math.max((comments4 ? comments4.split("\n").length : 1), 1)}
+                            value={comments4 || ''}
                             placeholder="___________"
                             onChange={(e) => setComment4(e.target.value)}
                             onKeyDown={(e) => {
@@ -4354,8 +4459,9 @@ useEffect(()=>{
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(comments5.split("\n").length, 1)}
-                            value={comments5}
+                        
+                            rows={Math.max((comments5 ? comments5.split("\n").length : 1), 1)}
+                            value={comments5 || ''}
                             placeholder="___________"
                             onChange={(e) => setComment5(e.target.value)}
                             onKeyDown={(e) => {
@@ -4419,8 +4525,9 @@ useEffect(()=>{
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(comments6.split("\n").length, 1)}
-                            value={comments6}
+                          
+                            rows={Math.max((comments6 ? comments6.split("\n").length : 1), 1)}
+                            value={comments6 || ''}
                             placeholder="___________"
                             onChange={(e) => setComment6(e.target.value)}
                             onKeyDown={(e) => {
@@ -4484,8 +4591,9 @@ useEffect(()=>{
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(comments7.split("\n").length, 1)}
-                            value={comments7}
+                            rows={Math.max((comments7 ? comments7.split("\n").length : 1), 1)}
+                            value={comments7 || ''}
+                          
                             placeholder="___________"
                             onChange={(e) => setComment7(e.target.value)}
                             onKeyDown={(e) => {
@@ -4549,8 +4657,9 @@ useEffect(()=>{
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(comments8.split("\n").length, 1)}
-                            value={comments8}
+                            rows={Math.max((comments8 ? comments8.split("\n").length : 1), 1)}
+                            value={comments8 || ''}
+                          
                             placeholder="___________"
                             onChange={(e) => setComment8(e.target.value)}
                             onKeyDown={(e) => {
@@ -4586,8 +4695,9 @@ useEffect(()=>{
                             <p>{otherArray.length + 9}: Other:</p>
                             <textarea
                               className="treatment_plan_table"
-                              rows={Math.max(optionOther.split("\n").length, 1)}
-                              value={optionOther}
+                              rows={Math.max((optionOther ? optionOther.split("\n").length : 1), 1)}
+                              value={optionOther || ''}
+                            
                               placeholder="___________"
                               onChange={(e) => setOptionOther(e.target.value)}
                               onKeyDown={(e) => {
@@ -4944,11 +5054,11 @@ useEffect(()=>{
                 <div>
                   <input
                     type="checkbox"
-                    id="OtherpsychosocialSymptoms"
+              
                     checked={supportSystem.includes("Other")}
                     onChange={() => handleCheckboxChangeSupportSystem("Other")}
                   />
-                  <label htmlFor="OtherpsychosocialSymptoms">Other</label>
+                  <label >Other</label>
                   {supportSystemOtherTextBoolean && (
                    
                       <AutoSize value={supportSystemOtherText} setValue={setSupportSystemOtherText}  placeholder="________"/>
@@ -5407,7 +5517,7 @@ useEffect(()=>{
                 <div>
                   <input
                     type="checkbox"
-                    id="OtherpsychosocialSymptoms"
+                  
                     checked={recommendationsForFurtherPrograms.includes(
                       "Other"
                     )}
@@ -5417,7 +5527,7 @@ useEffect(()=>{
                       )
                     }
                   />
-                  <label htmlFor="OtherpsychosocialSymptoms">Other</label>
+                  <label >Other</label>
                   {recommendationsForFurtherProgramsBoolean && (
                  
                       <AutoSize value={recommendationsForFurtherProgramsOther} setValue={setRecommendationsForFurtherProgramsOther}  placeholder="________"/>
@@ -5606,8 +5716,10 @@ useEffect(()=>{
                 style={{
                   fontWeight: "500",
                   fontSize: "16px",
-                  marginTop: "20px",
-                  marginBottom: "20px",
+                  margin: "0",
+                  marginBottom: "0",
+                  marginTop :"0",
+                  marginTop: "0.5rems",
                   color: "#00000099",
                 }}
               >
@@ -5814,17 +5926,7 @@ useEffect(()=>{
                   setSignatureTime={setTimeResident}
                 />
               )}
-              {/* <div className="form-field">
-                <label>Date:</label>
-                <input
-                  style={{ color: "#1A9FB2" }}
-                  type="date"
-                  value={dateResident}
-                  placeholder="DD/MM/YYYY"
-                  required
-                  onChange={(e) => setDateResident(e.target.value)}
-                />
-              </div> */}
+             
             </div>
 
             <div className="form-field-update">
@@ -5889,7 +5991,7 @@ useEffect(()=>{
 
             <div className="form-field-update ">
               <div className="form-field-child">
-                <label htmlFor="AHCCCS">First and Last Name:</label>
+                <label >First and Last Name:</label>
                 <input
                   type="text"
                   value={nameBhp}

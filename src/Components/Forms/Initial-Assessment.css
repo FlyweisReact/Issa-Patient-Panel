@@ -21,7 +21,7 @@
 }
 
 .form-section {
-  margin-bottom: 20px;
+  margin-bottom: 0.5rem;
 }
 
 .form-section h2 {
@@ -32,7 +32,7 @@
 }
 
 .form-field {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 /* update css  new*/
@@ -53,7 +53,7 @@
 .box-image-container {
   border: 1px solid black;
   /* padding: 10px; */
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 .border-bootom-line {
@@ -67,7 +67,7 @@
 
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 0px 10px;
+  padding: 0px 0.5rem;
   flex-wrap: wrap;
 }
 
@@ -176,7 +176,7 @@
 .form-field-single-update {
   display: flex;
   align-items: center;
- 
+  padding: 0 10px;
 }
 
 .form-field-single-update label {
@@ -239,7 +239,7 @@
 
 .form-field-single-update-bold {
   /* margin-top: 1.5rem; */
-  padding: 10px;
+  padding: 0.5rem;
 }
 
 .form-field-single-update-bold label {
@@ -670,13 +670,12 @@ input[type="checkbox"] {
 .yeschechbox2 div {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 /* formsheading */
 .formsheading {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 0.5rem;
+
 }
 
 .formsheading h6 {
@@ -751,7 +750,7 @@ input[type="checkbox"] {
   border-radius: 8px;
   width: 100%;
   height: auto;
-  
+  margin: 0 10px;
   box-shadow: rgba(26, 159, 178, 0.1);
 }
 
@@ -835,7 +834,7 @@ input[type="checkbox"] {
   /* Center horizontally */
   align-items: center;
   /* Center vertically */
-  margin: 20px 0;
+  margin: 0.5rem 0;
 }
 
 .needs-interventions-table {
@@ -1095,7 +1094,7 @@ input[type="checkbox"] {
 .residentdiv p {
   font-weight: 500;
   font-size: 16px;
-  margin-top: 20px;
+  margin-top: 0.5rem;
   margin-bottom: 20px;
   color: #1e1e1eb2;
 }
@@ -1103,7 +1102,7 @@ input[type="checkbox"] {
 .residentdiv h6 {
   font-weight: 400;
   font-size: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 0.5rem;
   color: #000000;
 }
 
@@ -1111,13 +1110,16 @@ input[type="checkbox"] {
   font-weight: 400;
   font-size: 16px;
   color: #000000;
-  margin-bottom: 20px;
+  margin-bottom: 0.5rem;
 }
 
 .Residentrights p {
   font-weight: 500;
   font-size: 16px;
   color: #000000;
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  margin-bottom: 0.5em
 }
 
 .booking-container {
@@ -1362,13 +1364,13 @@ input[type="checkbox"] {
 /* reivew of systems */
 
 .label-review {
-  margin-top: 1.5rem;
+  /* margin-top: 0.5rem; */
   font-size: 1.2rem;
   font-weight: bold;
 }
 
 .label-review-clinical {
-  margin-top: 1.5rem;
+  margin-top: 0.5rem;
   font-size: 1.2rem;
   font-weight: bold;
 }
@@ -1378,7 +1380,7 @@ input[type="checkbox"] {
   flex-wrap: wrap;
   grid-gap: 0.5rem;
   column-gap: auto;
-  margin-top: 0.5rem;
+  /* margin-top: 0.5rem; */
   margin-right: 10px;
   grid-template-columns: repeat(5, 20%);
 }
@@ -1404,14 +1406,14 @@ input[type="checkbox"] {
   display: flex;
   width: 100%;
   gap: 5%;
-  margin-top: 1.5rem;
+  margin-top: 0.5rem;
 }
 
 .yeschechbox-review-Nutrition {
   display: flex;
   width: 100%;
   gap: 10%;
-  margin-top: 1.5rem;
+  margin-top: 0.5rem;
   /* justify-content: space-between; */
 }
 
@@ -1453,7 +1455,7 @@ input[type="checkbox"] {
 
 .yeschechbox-skin-check {
   display: flex;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   gap: 10%;
 }
 
@@ -1471,6 +1473,7 @@ input[type="checkbox"] {
 .label-review-resitent {
   margin-top: 0.5rem;
   font-size: 1rem;
+  margin: 0 10px
 }
 
 @media screen and (max-width: 767px) {
@@ -1606,7 +1609,7 @@ input[type="checkbox"] {
 
 
   .form-field-child {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     display: flex;
     align-items: center;
   }
@@ -1748,6 +1751,10 @@ input[type="checkbox"] {
     align-items: left;
   }
 
+  .form-field-child-face-sheet-table input {
+    margin-left: 0rem;
+  }
+
   .form-field-update-care{
     display: block;
     grid-gap: 10px;
@@ -1775,6 +1782,17 @@ input[type="checkbox"] {
 
 }
 
+@media print {
+  .print-content {
+    page-break-inside: avoid;
+  }
+
+  @page {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+}
 /* treatment form */
 /* Discharge planning & Re-evaluation of initial symptoms,
                 behaviours & Goals */

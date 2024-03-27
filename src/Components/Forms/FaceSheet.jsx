@@ -452,7 +452,7 @@ console.log(patientId,"knhfijdjdji fhi");
 
   return (
     <>
-    <div ref={componentRef}>
+    <div ref={componentRef} >
       <div className="backbutton hidePrint">
         <IoArrowBackCircle
           style={{
