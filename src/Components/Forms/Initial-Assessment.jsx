@@ -59,7 +59,7 @@ const InitialAssessment = () => {
   const [user, setUser] = useState("");
   const [userData, setUserData] = useState("");
 
-  //state
+  //state define
   const [hasNotified, setHasNotified] = useState("");
   const [assessmentOn, setAssessmentOn] = useState("");
   const [patientId, setPatientId] = useState("");
@@ -82,54 +82,25 @@ const InitialAssessment = () => {
     useState("");
   const [approvedBy, setApprovedBy] = useState("");
   const [reasonForAdmission, setReasonForAdmission] = useState([]);
-  const [reasonForAdmissionBoolean, setReasonForAdmissionBoolean] =
-    useState(false);
-  const [reasonForAdmissionOther, setReasonForAdmissionOther] = useState("");
+ 
   const [residentGoals, setResidentGoals] = useState("");
-
-  useEffect(() => {
-    // setTypeOfOtherBoolean()
-    for (let i = 0; i < reasonForAdmission.length; i++) {
-      if (reasonForAdmission[i].value === "Other") {
-        setReasonForAdmissionBoolean(true);
-        break;
-      } else {
-        setReasonForAdmissionBoolean(false);
-      }
-    }
-  }, [reasonForAdmission]);
 
   // Resident Strengths (Array)
   const [residentStrengths, setResidentStrengths] = useState([]);
-  const [residentStrengthsOther, setResidentStrengthsOther] = useState("");
-  const [residentStrengthsBoolean, setResidentStrengthsBoolean] =
-    useState(false);
-
-  useEffect(() => {
-    // setTypeOfOtherBoolean()
-    for (let i = 0; i < residentStrengths.length; i++) {
-      if (residentStrengths[i].value === "Other") {
-        setResidentStrengthsBoolean(true);
-        break;
-      } else {
-        setResidentStrengthsBoolean(false);
-        break;
-      }
-    }
-  }, [residentStrengths]);
 
   const [residentLimitations, setResidentLimitations] = useState("");
   const [currentBehavioralIssues, setCurrentBehavioralIssues] = useState("");
 
-  // Behavioral Interventions (Array of Objects)
+  // Behavioral Interventions (Array of Objects)==> check i think remove this section by client
   const [need, setNeed] = useState("");
   const [intervention, setIntervention] = useState("");
+  // 1
   const [behavioralInterventionsArray, setbehavioralInterventionsArray] =
     useState([]);
 
-  // final array
+  // 1
   const [behavioralInterventions, setBehavioralInterventions] = useState([]);
-
+// 1
   const behavioralInterventionaArrayHandle = () => {
     setbehavioralInterventionsArray((prev) => [
       ...prev,
@@ -152,92 +123,81 @@ const InitialAssessment = () => {
   ] = useState("");
   const [residentGuardianAgreementDate, setResidentGuardianAgreementDate] =
     useState("");
-  // const [residentGuardianAgreement, setResidentGuardianAgreement] = useState({});
+  const [residentGuardianAgreementTime, setResidentGuardianAgreementTime] = useState("");
 
   // Staff Agreement
   const [staffAgreementname, setStaffAgreementName] = useState("");
   const [staffAgreementSignature, setStaffAgreementSignature] = useState("");
   const [staffAgreementDate, setStaffAgreementDate] = useState("");
-  // const [staffAgreement, setStaffAgreement] = useState({});
+  const [staffAgreementTime, setStaffAgreementTime] = useState("");
 
   // BHP Agreement
   const [bhpAgreementName, setBhpAgreementName] = useState("");
   const [bhpAgreementSignature, setBhpAgreementSignature] = useState("");
   const [bhpAgreementDate, setBhpAgreementDate] = useState("");
-  // const [bhpAgreement, setBhpAgreement] = useState({});
+  const [bhpAgreementTime, setBhpAgreementTime] = useState("");
 
   // Other
   const [otherName, setOtherName] = useState("");
   const [otherRelationship, setOtherRelationship] = useState("");
   const [otherSignature, setOtherSignature] = useState("");
   const [otherDate, setOtherDate] = useState("");
-  // const [other, setOther] = useState({});
+  const [otherTime, setOtherTime] = useState("");
 
-  // Medical Conditions (Array of Objects) array
-  // diabetes
-  const [diabetes, setDiabetes] = useState("");
+  // Medical Conditions (Array of Objects) array second section is start ===>
+  // diabetes =======>
   const [yesDiabetes, setYesDiabetes] = useState();
-  const [noDiabetes, setNoDiabetes] = useState(false);
+  const [noDiabetes, setNoDiabetes] = useState();
   const [commentDiabety, setCommentDeabetes] = useState("");
 
   //Heart disease / heart attack
-  const [heart, setHeart] = useState("");
   const [yesHeart, setYesHeart] = useState();
-  const [noHeart, setNoHeart] = useState(false);
   const [commentHeart, setCommentHeart] = useState("");
 
   //History
-  const [history, setHistory] = useState("");
   const [yesHistory, setYesHistory] = useState();
-  const [noHistory, setNoHistory] = useState(false);
   const [commentHistory, setCommentHistory] = useState("");
 
   //High Blood Pressure
-  const [High, setHigh] = useState("");
   const [yesHigh, setYesHigh] = useState();
-  const [noHigh, setNoHigh] = useState(false);
+  const [noHigh, setNoHigh] = useState();
   const [commentHigh, setCommentHigh] = useState("");
 
   //Lung disease (ie asthma, COPD, emphysema)
-  const [Lung, setLung] = useState("");
   const [yesLung, setYesLung] = useState();
-  const [noLung, setNoLung] = useState(false);
+  const [noLung, setNoLung] = useState();
   const [commentLung, setCommentLung] = useState("");
 
   //Seizures
-  const [SeizuresMental, setSeizuresMental] = useState("");
   const [yesSeizures, setYesSeizures] = useState();
-  const [noSeizures, setNoSeizures] = useState(false);
+  const [noSeizures, setNoSeizures] = useState();
   const [commentSeizures, setCommentSeizures] = useState("");
 
   //Cancer
-  const [Cancer, setCancer] = useState("");
   const [yesCancer, setYesCancer] = useState();
-  const [noCancer, setNoCancer] = useState(false);
+  const [noCancer, setNoCancer] = useState();
   const [commentCancer, setCommentCancer] = useState("");
 
   // Liver/kidney disease
-  const [Liver, setLiver] = useState("");
   const [yesLiver, setYesLiver] = useState();
-  const [noLiver, setNoLiver] = useState(false);
+  const [noLiver, setNoLiver] = useState();
   const [commentLiver, setCommentLiver] = useState("");
 
   //Thyroid disorder
-  const [Thyroid, setThyroid] = useState("");
   const [yesThyroid, setYesThyroid] = useState();
-  const [noThyroid, setNoThyroid] = useState(false);
+  const [noThyroid, setNoThyroid] = useState();
+  const [thyroidDisorder, setThyroidDisorder] = useState([]);
   //dropdown
 
   // History of head trauma/traumatic brain injury
-  const [brain, setBrain] = useState("");
   const [yesbrain, setYesBrain] = useState();
-  const [nobrain, setNoBrain] = useState(false);
+  const [nobrain, setNoBrain] = useState();
   const [commentbrain, setbrain] = useState("");
 
   // injury
-  // const [injury,setInjury] =useState("")
+  // const [injury,setInjury] =useState("") not present remove it
   const [yesInjury, setYesInjury] = useState();
-  const [noInjury, setNoInjury] = useState(false);
+  const [noInjury, setNoInjury] = useState();
   const [commentInjury, setCommentInjury] = useState("");
 
   //Chronic painChronic pain
@@ -302,11 +262,8 @@ const InitialAssessment = () => {
   const [InfectionYes, setInfectionYes] = useState();
   // drop down c
   const [infectionDiseases, setInfectionDiseases] = useState([]);
-  const [infectionDiseasesBoolean, setInfectionDiseasesBoolean] =
-    useState(false);
-  const [infectionDiseasesOther, setInfectionDiseasesOther] = useState("");
 
-  //section 2 condition other array
+  //section 2 condition other array 
  const [OtherConditionOther,setOtherConditionOther]=useState("")
  const [otherConditionYesNO,setOtherConditionYesNo]=useState();
  const [otherConditionDiscription,setOtherConditionDiscription]=useState("")
@@ -315,9 +272,9 @@ const InitialAssessment = () => {
   const handleAddCondition=()=>{
     if(OtherConditionOther || otherConditionYesNO || otherConditionDiscription ){
       const data={
-        OtherConditionOther,
-        otherConditionYesNO,
-        otherConditionDiscription
+        condition:OtherConditionOther,
+        yes:otherConditionYesNO,
+        comments:otherConditionDiscription
       }
       setOtherConditionArray((prev)=>[...prev,data]);
       setOtherConditionOther("");
@@ -327,75 +284,17 @@ const InitialAssessment = () => {
   }
 
 
-  useEffect(() => {
-    // setTypeOfOtherBoolean()
-    for (let i = 0; i < infectionDiseases.length; i++) {
-      if (infectionDiseases[i].value === "Other") {
-        setInfectionDiseasesBoolean(true);
-        break;
-      } else {
-        setInfectionDiseasesBoolean(false);
-        break;
-      }
-    }
-  }, [infectionDiseases]);
-
-  const [medicalConditions, setMedicalConditions] = useState([]);
-
-  // miss the value between the 79 to 99
   const [
     SignificantFamilyMedicalPsychiatricHistory,
     setSignificantFamilyMedicalPsychiatricHistory,
   ] = useState([]);
-  const [
-    significantFamilyMedicalPsychiatricHistoryBoolean,
-    setSignificantFamilyMedicalPsychiatricHistoryBoolean,
-  ] = useState(false);
-  const [
-    SignificantFamilyMedicalPsychiatricHistoryType,
-    setSignificantFamilyMedicalPsychiatricHistoryType,
-  ] = useState("");
 
-  useEffect(() => {
-    for (
-      let i = 0;
-      i < SignificantFamilyMedicalPsychiatricHistory.length;
-      i++
-    ) {
-      if (SignificantFamilyMedicalPsychiatricHistory[i].value === "Other") {
-        setSignificantFamilyMedicalPsychiatricHistoryBoolean(true);
-        break;
-      } else {
-        setSignificantFamilyMedicalPsychiatricHistoryBoolean(false);
-        break;
-      }
-    }
-  }, [SignificantFamilyMedicalPsychiatricHistory]);
 
+  // array 
   const [
     mentalHealthTreatmentHistoryTypeOfService,
     setMentalHealthTreatmentHistoryTypeOfService,
   ] = useState([]);
-  const [
-    mentalHealthTreatmentHistoryTypeOfServiceType,
-    setMentalHealthTreatmentHistoryTypeOfServiceType,
-  ] = useState("");
-  const [
-    mentalHealthTreatmentHistoryTypeOfServiceBoolean,
-    setMentalHealthTreatmentHistoryTypeOfServiceBoolean,
-  ] = useState(false);
-
-  useEffect(() => {
-    for (let i = 0; i < mentalHealthTreatmentHistoryTypeOfService.length; i++) {
-      if (mentalHealthTreatmentHistoryTypeOfService[i].value === "Other") {
-        setMentalHealthTreatmentHistoryTypeOfServiceBoolean(true);
-        break;
-      } else {
-        setMentalHealthTreatmentHistoryTypeOfServiceBoolean(false);
-        break;
-      }
-    }
-  }, [mentalHealthTreatmentHistoryTypeOfService]);
 
   const [
     mentalHealthTreatmentHistoryWhere,
@@ -409,51 +308,12 @@ const InitialAssessment = () => {
     mentalHealthTreatmentHistoryDiagnosisReason,
     setMentalHealthTreatmentHistoryDiagnosisReason,
   ] = useState([]);
-  const [
-    mentalHealthTreatmentHistoryDiagnosisReasonBoolean,
-    setMentalHealthTreatmentHistoryDiagnosisReasonBoolean,
-  ] = useState(false);
-  const [
-    mentalHealthTreatmentHistoryDiagnosisReasonType,
-    setMentalHealthTreatmentHistoryDiagnosisReasonType,
-  ] = useState("");
 
-  useEffect(() => {
-    for (
-      let i = 0;
-      i < mentalHealthTreatmentHistoryDiagnosisReason.length;
-      i++
-    ) {
-      if (
-        mentalHealthTreatmentHistoryDiagnosisReason[i].value ===
-        "DTS/DTO Other (Please specify)"
-      ) {
-        setMentalHealthTreatmentHistoryDiagnosisReasonBoolean(true);
-        break;
-      } else {
-        setMentalHealthTreatmentHistoryDiagnosisReasonBoolean(false);
-        break;
-      }
-    }
-  }, [mentalHealthTreatmentHistoryDiagnosisReason]);
-
-  // const [mentalHealthTreatmentHistory, setMentalHealthTreatmentHistory] =
-  //   useState([]);
 
   const [substanceAbuseHistory, setSubstanceAbuseHistory] = useState("");
   const [substanceAbuseDenies, setSubstanceAbuseDenies] = useState("");
-  // substanceAbuseHistoryData array
-  const [substanceAbuseHistoryDataTypes, setSubstanceAbuseHistoryDataTypes] =
-    useState([]);
-  const [
-    substanceAbuseHistoryDataTypesBoolean,
-    setSubstanceAbuseHistoryDataTypesBoolean,
-  ] = useState(false);
-  const [
-    substanceAbuseHistoryDataTypesType,
-    setSubstanceAbuseHistoryDataTypesType,
-  ] = useState("");
 
+// 2 pendinggggggg
   //type of service
   const [typeOfServiceArray, setTypeOfServicesArray] = useState([]);
   const handleTypeOfService = () => {
@@ -485,7 +345,7 @@ const InitialAssessment = () => {
   };
 
   // type of age, frequancy,last use, length of soberty
-  //Alcohol
+  //Alcohol data
   const [
     substanceAbuseHistoryDataAgeOfFirstUseAlcohol,
     setSubstanceAbuseHistoryDataAgeOfFirstUseAlcohol,
@@ -690,7 +550,7 @@ const InitialAssessment = () => {
     setSubstanceAbuseHistoryDataLengthOfSobrietyOTC,
   ] = useState("");
 
-  // arrthe value in array
+  // arr the value in array
   const [typeArray, setTypeArray] = useState([]);
   // other array
   const [otherTypeOther, setOtherTypeOther] = useState("");
@@ -708,11 +568,11 @@ const InitialAssessment = () => {
       OtherlengthOfSobrifty
     ) {
       const data = {
-        otherTypeOther,
-        otherAgeOfFirstUse,
-        otherLastUse,
-        otherFrequancy,
-        OtherlengthOfSobrifty,
+        types:otherTypeOther,
+        ageOfFirstUse:otherAgeOfFirstUse,
+        lastUse:otherLastUse,
+        frequency:otherFrequancy,
+        lengthOfSobriety:OtherlengthOfSobrifty,
       };
       setTypeArray((prev) => [...prev, data]);
       setOtherAgeOfFirstUse("");
@@ -754,12 +614,7 @@ const InitialAssessment = () => {
   const [LossofMuscleCoordinationOtherType, setLossofMuscleCoordinationType] =
     useState("");
 
-  const [activeWithdrawalSymptoms, setActiveWithdrawalSymptoms] = useState({});
-
-  // Mental Status Exam (Nested Object)
-  //peding more satte (__ to 283)
-  //mental state value
-
+// mentalStatusExam
   //apparentAge
   const [consistent, setConsistent] = useState(false);
   const [younger, setYounger] = useState(false);
@@ -978,7 +833,6 @@ const InitialAssessment = () => {
   const [otherAbilityToConcentration, setOtherAbilityToConcentration] =
     useState("");
 
-  const [mentalStatusExam, setMentalStatusExam] = useState();
 
   // Significant Social Developmental History
   const [
@@ -987,34 +841,33 @@ const InitialAssessment = () => {
   ] = useState("");
 
   // Personal Information (Nested Object)
+  const [educationalHistory,setEducationalHistory]=useState("");
   const [highestEducation, setHighestEducation] = useState("");
   const [specialEducation, setSpecialEducation] = useState();
   const [currentStudent, setCurrentStudent] = useState();
-  const [currentStudentLocation, setCurrentStudentLocation] = useState("");
-  const [personalInformation, setPersonalInformation] = useState({});
-
   const [ifYesWhere, setIfYesWhere] = useState("");
+
   // Employment History (Nested Object)
   const [currentlyEmployed, setCurrentlyEmployed] = useState();
+
   const [employmentLocation, setEmploymentLocation] = useState("");
-  const [fullTime, setFullTime] = useState();
-  const [employmentHistory, setEmploymentHistory] = useState({});
 
   const [workHistory, setWorkHistory] = useState("");
 
-  // Military History (Nested Object)
+  // Military History (Nested Object)  
   const [militaryService, setMilitaryService] = useState();
   const [activeDuty, setActiveDuty] = useState("");
-  const [militaryHistory, setMilitaryHistory] = useState({});
 
-  // Arrested History (Multiple Fields)
+  // Arrested History (Multiple Fields) legalHistory
   const [selectedValue, setSelectedValue] = useState([]);
 
-  // Activities of Daily Living (ADLs)
+  // 2
+  // Activities of Daily Living (ADLs)  jai maa kali
   const [bathingShoweringGood, setBathingShoweringGood] = useState([]);
   const [typesOfActivityOther, setTypesOfActivityOther] = useState("");
   //implment type of other activity
   const [typeOfOtherBoolean, setTypeOfOtherBoolean] = useState(false);
+  // 2
   useEffect(() => {
     // setTypeOfOtherBoolean()
     for (let i = 0; i < bathingShoweringGood.length; i++) {
@@ -1027,9 +880,60 @@ const InitialAssessment = () => {
     }
   }, [bathingShoweringGood]);
 
-  // const [bathingShoweringFair, setBathingShoweringFair] = useState();
-  // const [bathingShoweringNeedAssist, setBathingShoweringNeedAssist] =
-    // useState();
+  // Current Independent Living Skills:
+  const [BathingGood,setBathingGood]=useState("");
+  const [BathingFair,setBathingFair]=useState("");
+  const [BathingNotSoGood,setBathingNotSoGood]=useState("");
+  const [BathingGoodNeedAssist,setBathingGoodNeedAssist]=useState("");
+  const [BathingComments,setBathingComments]=useState("");
+
+  const [GroomingGood,setGroomingGood]=useState("");
+  const [GroomingFair,setGroomingFair]=useState("");
+  const [GroomingNotSoGood,setGroomingNotSoGood]=useState("");
+  const [GroomingGoodNeedAssist,setGroomingGoodNeedAssist]=useState("");
+  const [GroomingComments,setGroomingComments]=useState("");
+
+  const [MobilityGood,setMobilityGood]=useState("");
+  const [MobilityFair,setMobilityFair]=useState("");
+  const [MobilityNotSoGood,setMobilityNotSoGood]=useState("");
+  const [MobilityGoodNeedAssist,setMobilityGoodNeedAssist]=useState("");
+  const [MobilityComments,setMobilityComments]=useState("");
+
+  const [HouseworkGood,setHouseworkGood]=useState("");
+  const [HouseworkFair,setHouseworkFair]=useState("");
+  const [HouseworkNotSoGood,setHouseworkNotSoGood]=useState("");
+  const [HouseworkGoodNeedAssist,setHouseworkGoodNeedAssist]=useState("");
+  const [HouseworkComments,setHouseworkComments]=useState("");
+
+  const [ShoppingGood,setShoppingGood]=useState("");
+  const [ShoppingFair,setShoppingFair]=useState("");
+  const [ShoppingNotSoGood,setShoppingNotSoGood]=useState("");
+  const [ShoppingGoodNeedAssist,setShoppingGoodNeedAssist]=useState("");
+  const [ShoppingComments,setShoppingComments]=useState("");
+
+  const [ManagingGood,setManagingGood]=useState("");
+  const [ManagingFair,setManagingFair]=useState("");
+  const [ManagingNotSoGood,setManagingNotSoGood]=useState("");
+  const [ManagingGoodNeedAssist,setManagingGoodNeedAssist]=useState("");
+  const [ManagingComments,setManagingComments]=useState("");
+
+  const [PreparingGood,setPreparingGood]=useState("");
+  const [PreparingFair,setPreparingFair]=useState("");
+  const [PreparingNotSoGood,setPreparingNotSoGood]=useState("");
+  const [PreparingGoodNeedAssist,setPreparingGoodNeedAssist]=useState("");
+  const [PreparingComments,setPreparingComments]=useState("");
+
+  const [EatingGood,setEatingGood]=useState("");
+  const [EatingFair,setEatingFair]=useState("");
+  const [EatingNotSoGood,setEatingNotSoGood]=useState("");
+  const [EatingGoodNeedAssist,setEatingGoodNeedAssist]=useState("");
+  const [EatingComments,setEatingComments]=useState("");
+
+  const [ToiletingGood,setToiletingGood]=useState("");
+  const [ToiletingFair,setToiletingFair]=useState("");
+  const [ToiletingNotSoGood,setToiletingNotSoGood]=useState("");
+  const [ToiletingGoodNeedAssist,setToiletingGoodNeedAssist]=useState("");
+  const [ToiletingComments,setToiletingComments]=useState("");
 
     // Current Independent Living Skills:
     const [otherCurrentOther,setOtherCurrentOther]=useState("");
@@ -1046,12 +950,12 @@ const InitialAssessment = () => {
 
   const handleRiskFactorActivity = () => {
     const newData = {
-      otherCurrentOther,
-      otherCurrentGood,
-      otherCurrentFair,
+      type:otherCurrentOther,
+      good:otherCurrentGood,
+      fair:otherCurrentFair,
       otherCurrentNotSoGood,
-      otherCurrentNeed,
-      otherCurrentComment
+      needAssist:otherCurrentNeed,
+      comments:otherCurrentComment
     };
     setHandleRiskFactorActivityArray((prev) => [...prev, newData]);
     setOtherCurrentOther("");
@@ -1070,10 +974,12 @@ const InitialAssessment = () => {
 
   // Medical Equipment
   const [selectedValueMedical, setSelectedValueMedical] = useState([]);
+  // 2
   const [selectedValueMedicalBoolean, setselectedValueMedicalBoolean] =
     useState(false);
+    // 2
   const [selectedValueMedicalType, setselectedValueMedicalType] = useState("");
-
+// 2
   useEffect(() => {
     // setTypeOfOtherBoolean()
     for (let i = 0; i < selectedValueMedical.length; i++) {
@@ -1085,13 +991,15 @@ const InitialAssessment = () => {
       }
     }
   }, [selectedValueMedical]);
+
   // Special Precautions (Nested Object)
   const [selectedValueSpecialPrecautions, setSelectedValueSpecialPrecautions] =
     useState([]);
 
-  // jigjok
+  // Safety and Risk Assessment
   const [currentThoughtsOfHarmingSelf, setCurrentThoughtsOfHarmingSelf] =
     useState();
+    // pendingggggggggggg
   const [suicidalIdeation, setSuicidalIdeation] = useState("");
   const [suicidalIdeationUrgency, setSuicidalIdeationUrgency] = useState();
   const [suicidalIdeationSeverity, setSuicidalIdeationSeverity] = useState();
@@ -1099,15 +1007,49 @@ const InitialAssessment = () => {
     useState();
 
   // Risk Factors (Nested Object)
-  const [selectedValueRiskFactors, setSelectedValueRiskFactors] = useState([]);
+
   const [riskYesNo, setRiskYesNo] = useState();
   const [riskComment, setRiskComment] = useState("");
+
+  const [PriorYesNo, setPriorYesNo] = useState();
+  const [PriorComment, setPriorComment] = useState("");
+
+  const [AccessYesNo, setAccessYesNo] = useState();
+  const [AccessComment, setAccessComment] = useState("");
+
+
+  const [SubstanceYesNo, setSubstanceYesNo] = useState();
+  const [SubstanceAbuseComment, setSubstanceCommentAbuse] = useState("");
+
+  const [abusingYesNo, setabusingYesNo] = useState();
+  const [abusingComment, setabusingComment] = useState("");
+
+
+  const [RecentYesNo, setRecentYesNo] = useState();
+  const [RecentComment, setRecentComment] = useState("");
+
+  const [behaviourYesNO,setBehaviourYesNo]=useState()
+  const [behaviorcuesDropDown, setBehaviorcuesDropDown] = useState([]);
+
+  const [SymptomsYesNO,setSymptomsYesNo]=useState()
+  const [symptomsOfPsychosisDropDown, setSymptomsOfPsychosisDropDown] =
+  useState([]);
+
+  const [FamilyYesNO,setFamilyYesNo]=useState()
+  const [Family,setFamily]=useState("")
+
+   
+  const [TerminalYesNO,setTerminalYesNo]=useState()
+  const [Terminal,setTerminal]=useState("")
+
+  const [CurrentYesNO,setCurrentYesNo]=useState()
+  const [Current,setCurrent]=useState("")
+
+  const [ChronicYesNO,setChronicYesNo]=useState()
+  const [ChronicPain,setChronicPain]=useState("")
+
   const [riskFactorArray, setRiskFactoeArray] = useState([]);
 
-  // drop down
-  const [behaviorcuesDropDown, setBehaviorcuesDropDown] = useState([]);
-  const [symptomsOfPsychosisDropDown, setSymptomsOfPsychosisDropDown] =
-    useState([]);
 
     //risk factor other
     const [otherRiskOther,setOtherRiskOther ]=useState("")
@@ -1116,35 +1058,45 @@ const InitialAssessment = () => {
 
   const handleRiskFactor = () => {
     const newData = {
-      otherRiskOther,
-      otherRiskYesOrNot,
-      otherRiskComment,
+      type:otherRiskOther,
+      yesNo:otherRiskYesOrNot,
+      comment:otherRiskComment,
     };
     setRiskFactoeArray((prev) => [...prev, newData]);
     setOtherRiskOther("");
     setOtherRiskOtherYesOrNot();
     setOtherRiskComment("");
   };
-  const [riskFactors, setRiskFactors] = useState({});
 
   // State variables for protectiveFactors
-  const [selectedValueProtectiveFactors, setSelectedValueProtectiveFactors] =
-    useState([]);
-  const [protectiveYesNo, setProtectiveYesNo] = useState();
-  const [protectiveComment, setprotectiveComment] = useState("");
+  const [SupportsYesNo, setSupportsYesNo] = useState();
+  const [SupportsComment, setSupportsComment] = useState("");
+
+  const [SpiritualYesNo, setSpiritualYesNo] = useState();
+  const [SpiritualComment, setSpiritualComment] = useState("");
+
+  const [ReligiousYesNo, setReligiousYesNo] = useState();
+  const [ReligiousComment, setReligiousComment] = useState("");
+
+  const [FearYesNo, setFearYesNo] = useState();
+  const [FearComment, setFearComment] = useState("");
+
+  const [WillingYesNo, setWillingYesNo] = useState();
+  const [WillingComment, setWillingComment] = useState("");
 
 
   // protectiveFactors other
   const [otherProtectiveFactorsApply,setOtherProtectiveFactorsApply]=useState("")
   const [otherProtectiveFactorsYesNo,setOtherProtectiveFactorsYesNO]=useState()
   const [otherProtectiveFactorsDescription,setOtherProtectiveFactorsDescription]=useState("")
+
   const [protectiveFactorsArray, setProtectiveFactorsArray] = useState([]);
 
   const handleProtectiveFactors = () => {
     const newData = {
-      otherProtectiveFactorsApply,
-      otherProtectiveFactorsYesNo,
-      otherProtectiveFactorsDescription,
+      type:otherProtectiveFactorsApply,
+      yesNo:otherProtectiveFactorsYesNo,
+      comment:otherProtectiveFactorsDescription,
     };
     setProtectiveFactorsArray((prev) => [...prev, newData]);
     setOtherProtectiveFactorsApply("");
@@ -1152,7 +1104,6 @@ const InitialAssessment = () => {
     setOtherProtectiveFactorsDescription("");
   };
 
-  const [protectiveFactors, setProtectiveFactors] = useState({});
 
   // State variable for riskLevel
   const [riskLevel, setRiskLevel] = useState("");
@@ -1180,9 +1131,9 @@ const [othericdCode, setOtherIcdCode] = useState("");
     setPsychiatricDiagnosesArray((prev) => [
       ...prev,
       {
-        otherPsychiatricOption,
-        othericdCode,
-        otherdescription,
+        name:otherPsychiatricOption,
+        icdCode:othericdCode,
+        description:otherdescription,
       },
     ]);
     setOtherPsychiatricOption("");
@@ -1216,9 +1167,9 @@ const [Additional2Description,setAdditional2Description]=useState("");
     setMedicalDiagnosesArray((prev) => [
       ...prev,
       {
-        OtherMedicalOption,
-        OthericdCodeMedicalDiagnoses,
-        OtherdescriptionMedicalDiagnoses,
+        name:OtherMedicalOption,
+        icdCode:OthericdCodeMedicalDiagnoses,
+        description:OtherdescriptionMedicalDiagnoses,
 
       },
     ]);
@@ -1264,7 +1215,9 @@ const [Additional2Description,setAdditional2Description]=useState("");
   // State variables for significantRecentLosses
   const [no, setNo] = useState(false);
   const [yes, setYes] = useState(false);
+  // 2
   const [setNoAndYes, setSetNoAndYes] = useState();
+
   const [death, setDeath] = useState(false);
   const [job, setJob] = useState("");
   const [childRemovedFromHouse, setChildRemovedFromHouse] = useState("");
@@ -1280,33 +1233,38 @@ const [Additional2Description,setAdditional2Description]=useState("");
     otherSignificantRecentLossesType,
     setOtherSignificantRecentLossesType,
   ] = useState("");
-  // const [significantRecentLosses, setSignificantRecentLosses] = useState({});
 
   const [additionalNotes, setAdditionalNotes] = useState("");
+
+  const [acceptResident,setAcceptResident]=useState()
 
   //gresedent gaudent name and information
   const [residentGuardianName, setResidentGuardianName] = useState("");
   const [residentGauardianSignature, setResidentGauardianSignature] =
     useState("");
   const [residentGuardianDate, setResidentGuardianDate] = useState("");
+  const [residentGuardianTime, setResidentGuardianTime] = useState("");
 
   // State variables for staffInformation
   const [staffName, setStaffName] = useState("");
-  const [staffTitle, setStaffTitle] = useState("");
   const [staffSignature, setStaffSignature] = useState("");
   const [staffDate, setStaffDate] = useState("");
-  const [staffInformation, setStaffInformation] = useState({});
+  const [staffDateTime, setStaffDateTime] = useState("");
 
   // State variables for bhpInformation
   const [bhpName, setBhpName] = useState("");
   const [bhpCredentials, setBhpCredentials] = useState("");
   const [bhpSignature, setBhpSignature] = useState("");
   const [bhpDate, setBhpDate] = useState("");
-  const [bhpInformation, setBhpInformation] = useState({});
+  const [bhpTime, setBhpTime] = useState("");
 
   useEffect(() => {
     setPatientId(userData?._id);
     setUser(userData?.fullName);
+    setSex(userData?.gender)
+    setCompanyName(userData?.companyName)
+    setDob(userData?.dateOfBirth?userData.dateOfBirth.slice(0,10):"")
+    setResidentName(userData?.fullName)
   }, [userData]);
 
   useEffect(() => {
@@ -1581,7 +1539,6 @@ const [Additional2Description,setAdditional2Description]=useState("");
   };
 
   //state Thyroid disorder
-  const [thyroidDisorder, setThyroidDisorder] = useState([]);
 
   const thyroidOptions = [
     { label: "Hypothyroidism", value: "Hypothyroidism" },
@@ -2075,55 +2032,6 @@ const [Additional2Description,setAdditional2Description]=useState("");
     setSelectedValue(selectedOptions);
   };
 
-  // Current Independent Living Skills:
-  const bathingShoweringGoodOptions = [
-    { label: "Bathing/Showering", value: "Bathing/Showering" },
-    { label: "Grooming/hygiene", value: "Grooming/hygiene" },
-    { label: "Mobility", value: "Mobility" },
-    { label: "Housework", value: "Housework" },
-    { label: "Shopping", value: "Shopping" },
-    { label: "Managing money/budget", value: "Managing money/budget" },
-    { label: "Taking medications", value: "Taking medications" },
-    { label: "Preparing food", value: "Preparing food" },
-    { label: "Eating", value: "Eating" },
-    { label: "Toileting", value: "Toileting" },
-  ];
-
-  const handleKeyBathingShoweringGood = (event) => {
-    if (event.key === "Enter" && event.target.value) {
-      const inputValue = event.target.value.trim();
-
-      // Check if the input value already exists in the options array
-      const optionExists = bathingShoweringGoodOptions.some(
-        (option) => option.value === inputValue
-      );
-
-      // If the input value doesn't exist, add it to the array
-      if (!optionExists) {
-        const newOptions = [
-          ...bathingShoweringGoodOptions,
-          { value: inputValue, label: inputValue },
-        ];
-
-        // Update the state with the new options
-        setBathingShoweringGood(newOptions);
-
-        // Update the selected values to include the newly created option
-        const newSelectedValues = [
-          ...bathingShoweringGood,
-          { value: inputValue, label: inputValue },
-        ];
-        setBathingShoweringGood(newSelectedValues);
-      }
-
-      // Clear the input value after adding the option
-      event.target.value = "";
-    }
-  };
-
-  const bathingShoweringGoodJHandler = (optionValue) => {
-    setBathingShoweringGood(optionValue);
-  };
 
   //Medical Equipment:
   const selectedValueMedicalOption = [
@@ -2244,40 +2152,7 @@ const [Additional2Description,setAdditional2Description]=useState("");
     { label: "Chronic pain", value: "Chronic pain" },
   ];
 
-  const handleKeySelectedValueRiskFactors = (event) => {
-    if (event.key === "Enter" && event.target.value) {
-      const inputValue = event.target.value.trim();
 
-      // Check if the input value already exists in the options array
-      const optionExists = selectedValueRiskFactorsOption.some(
-        (option) => option.value === inputValue
-      );
-
-      // If the input value doesn't exist, add it to the array
-      if (!optionExists) {
-        const newOptions = [
-          ...selectedValueRiskFactorsOption,
-          { value: inputValue, label: inputValue },
-        ];
-
-        // Update the state with the new options
-        setSelectedValueRiskFactors(newOptions);
-
-        // Update the selected values to include the newly created option
-        const newSelectedValues = [
-          ...selectedValueRiskFactors,
-          { value: inputValue, label: inputValue },
-        ];
-        setSelectedValueRiskFactors(newSelectedValues);
-      }
-
-      // Clear the input value after adding the option
-      event.target.value = "";
-    }
-  };
-  const selectedValueRiskFactorsHandler = (optionValue) => {
-    setSelectedValueRiskFactors(optionValue);
-  };
 
   //Select risk factors that apply dropdown 1
   const selectedValueRiskFactorsOption1 = [
@@ -2368,65 +2243,6 @@ const [Additional2Description,setAdditional2Description]=useState("");
     setSymptomsOfPsychosisDropDown(optionValue);
   };
 
-  //Protective factors that apply:
-  const selectedValueProtectiveFactorsOption = [
-    {
-      label: "Supports available (family friends)",
-      value: "Supports available (family friends)",
-    },
-    {
-      label: "Spiritual / religious support",
-      value: "Spiritual / religious support",
-    },
-    {
-      label: "Religious/cultural prohibitions",
-      value: "Religious/cultural prohibitions",
-    },
-    { label: " Fear of consequences", value: " Fear of consequences" },
-    {
-      label: " Able to be engaged in intervention",
-      value: " Able to be engaged in intervention",
-    },
-    {
-      label: "Willing to commit to keeping self safe",
-      value: "Willing to commit to keeping self safe",
-    },
-  ];
-
-  const handleKeySelectedValueProtectiveFactors = (event) => {
-    if (event.key === "Enter" && event.target.value) {
-      const inputValue = event.target.value.trim();
-
-      // Check if the input value already exists in the options array
-      const optionExists = selectedValueProtectiveFactorsOption.some(
-        (option) => option.value === inputValue
-      );
-
-      // If the input value doesn't exist, add it to the array
-      if (!optionExists) {
-        const newOptions = [
-          ...selectedValueProtectiveFactorsOption,
-          { value: inputValue, label: inputValue },
-        ];
-
-        // Update the state with the new options
-        setSelectedValueProtectiveFactors(newOptions);
-
-        // Update the selected values to include the newly created option
-        const newSelectedValues = [
-          ...selectedValueProtectiveFactors,
-          { value: inputValue, label: inputValue },
-        ];
-        setSelectedValueProtectiveFactors(newSelectedValues);
-      }
-
-      // Clear the input value after adding the option
-      event.target.value = "";
-    }
-  };
-  const selectedValueProtectiveFactorsHandler = (optionValue) => {
-    setSelectedValueProtectiveFactors(optionValue);
-  };
 
   return (
     <>
@@ -2475,12 +2291,10 @@ const [Additional2Description,setAdditional2Description]=useState("");
                     <input
                       type="text"
                       id="residentFullName"
-                      // value={user}
                       className="borderless_input"
                       value={residentName}
-                      // placeholder="Enter full name"
+                      placeholder="Enter full name"
                       required
-                      // onChange={(e) => setUser(e.target.value)}
                       onChange={(e) => setResidentName(e.target.value)}
                     />
                   </div>
@@ -2537,10 +2351,9 @@ const [Additional2Description,setAdditional2Description]=useState("");
                     />
                   </div>
                   <div className="form-field-child">
-                    <label htmlFor="admissionDate">Admission Date:</label>
+                    <label>Admission Date:</label>
                     <input
                       type="date"
-                      id="admissionDate"
                       value={dateOfAssessment}
                       placeholder="Enter Date"
                       required
@@ -3121,16 +2934,16 @@ const [Additional2Description,setAdditional2Description]=useState("");
                           <input
                             type="checkbox"
                             id="diabetes"
-                            checked={diabetes === true}
-                            onChange={() => setDiabetes(true)}
+                            checked={yesDiabetes === true}
+                            onChange={() => setYesDiabetes(true)}
                           />
                         </td>
                         <td>
                           <input
                             type="checkbox"
                             id="diabetesno"
-                            checked={diabetes === false}
-                            onChange={() => setDiabetes(false)}
+                            checked={yesDiabetes === false}
+                            onChange={() => setYesDiabetes(false)}
                           />
                         </td>
                         <td>
@@ -3329,7 +3142,7 @@ const [Additional2Description,setAdditional2Description]=useState("");
                             type="checkbox"
                             id="diabetes"
                             checked={yesSeizures === true}
-                            onChange={() => setDiabetes(true)}
+                            // onChange={() => setDiabetes(true)}
                           />
                         </td>
                         <td>
@@ -3884,18 +3697,18 @@ const [Additional2Description,setAdditional2Description]=useState("");
                               resize: "none",
                             }}
                             rows={Math.max(
-                              healthConditionsYesComment.split("\n").length,
+                              InsomniaComment.split("\n").length,
                               1
                             )}
-                            value={healthConditionsYesComment}
+                            value={InsomniaComment}
                             placeholder="___________"
                             onChange={(e) =>
-                              sethealthConditionsYesComment(e.target.value)
+                              setInsomniaComment(e.target.value)
                             }
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
                                 e.preventDefault();
-                                sethealthConditionsYesComment(
+                                setInsomniaComment(
                                   (prevComment) => prevComment + "\n"
                                 );
                               }
@@ -4202,10 +4015,10 @@ const [Additional2Description,setAdditional2Description]=useState("");
                       {
                         
                           otherConditionArray.map((i)=><tr>
-                            <td>Other: {i.OtherConditionOther}</td>
-                           <td><input type="checkbox" checked={i.otherConditionYesNO===true} /></td>
-                           <td><input type="checkbox" checked={i.otherConditionYesNO===false} /></td>
-                            <td>{i.otherConditionDiscription}</td>
+                            <td>{i.condition}</td>
+                           <td><input type="checkbox" checked={i.yes===true} /></td>
+                           <td><input type="checkbox" checked={i.yes===false} /></td>
+                            <td>{i.comments}</td>
                           </tr>)
                         
                       }
@@ -5234,7 +5047,6 @@ const [Additional2Description,setAdditional2Description]=useState("");
                     <label>Where:</label>
                     <input
                       type="text"
-                      id="approvedby"
                       value={mentalHealthTreatmentHistoryWhere}
                       placeholder="Enter text"
                       required
@@ -5262,7 +5074,7 @@ const [Additional2Description,setAdditional2Description]=useState("");
                 <div className="border-bootom-line"></div>
 
                 <div className="form-field-single-update-bold">
-                  <label htmlFor="reasonadmission">
+                  <label >
                     Diagnosis/Reason for Treatment:
                   </label>
 
@@ -5386,116 +5198,6 @@ const [Additional2Description,setAdditional2Description]=useState("");
                 </div>
               </div>
 
-              {/* <div className="box-image-container hidePrint">
-
-              <div className="form-field-single-update-bold">
-                <label htmlFor="reasonadmission">Type:</label>
-                <Select
-                  isMulti
-                  placeholder="Select Multiple Type"
-                  value={substanceAbuseHistoryDataTypes}
-                  onChange={substanceAbuseHistoryDataTypesHandler}
-                  options={substanceAbuseHistoryDataTypesOption}
-                  isCreatable={true}
-                  onKeyDown={handleKeySubstanceAbuseHistoryDataTypes}
-                />
-              </div>
-
-                <div className="border-bootom-line"></div>
-
-
-              <div className="form-field-single-update-bold">
-                <label>Age of First use:</label>
-                <input
-                  type="text"
-                  id=""
-                  value={substanceAbuseHistoryDataAgeOfFirstUse}
-                  placeholder="Enter age"
-
-                  onChange={(e) =>
-                    setSubstanceAbuseHistoryDataAgeOfFirstUse(e.target.value)
-                  }
-                />
-              </div>
-                <div className="border-bootom-line"></div>
-
-              <div className="form-field-single-update-bold">
-                <label htmlFor="">Last Use:</label>
-
-                <Select
-                  isMulti
-                  value={substanceAbuseHistoryDataLastUse}
-                  onChange={substanceAbuseHistoryDataLastUseHandler}
-                  options={substanceAbuseHistoryDataLastUseOption}
-                  isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLastUse}
-                />
-              </div>
-
-                <div className="border-bootom-line"></div>
-
-              <div className="form-field-single-update-bold">
-                <label htmlFor="">Frequency:</label>
-                <Select
-                  isMulti
-                  value={substanceAbuseHistoryDataFrequency}
-                  onChange={substanceAbuseHistoryDataFrequencyHandler}
-                  options={substanceAbuseHistoryDataFrequencyOption}
-                  isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataFrequency}
-                />
-              </div>
-
-                <div className="border-bootom-line"></div>
-
-              <div className="form-field-single-update-bold">
-                <label htmlFor="reasonadmission">Length of Sobriety:</label>
-                <Select
-                  value={substanceAbuseHistoryDataLengthOfSobriety}
-                  isMulti
-                  onChange={substanceAbuseHistoryDataLengthOfSobrietyHandler}
-                  options={substanceAbuseHistoryDataLengthOfSobrietyOption}
-                  isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLengthOfSobriety}
-                />
-              </div>
-              </div> */}
-
-              {/* <div className="needs-interventions-container2">
-                <div className="needs-interventions-column2">
-                  {typeArray.length > 0 && (
-                    <table>
-                      <thead>
-                        <th>Type</th>
-                        <th>Age of First use</th>
-                        <th>Last Use</th>
-                        <th>Frequency </th>
-                        <th>Length of Sobriety</th>
-                      </thead>
-                      <tbody>
-                        {typeArray?.map((i) => (
-                          <tr>
-                            <td>{i?.substanceAbuseHistoryDataTypes?.map((item) => (
-                              <p key={item?.value}>{item?.value}</p>
-                            ))}</td>
-                            <td>{`${i.substanceAbuseHistoryDataAgeOfFirstUse}`} </td>
-                            <td>{i?.substanceAbuseHistoryDataLastUse?.map((item) => (
-                              <p key={item?.value}>{item?.value}</p>
-                            ))}</td>
-                            <td>{i?.substanceAbuseHistoryDataFrequency?.map((item) => (
-                              <p key={item?.value}>{item?.value}</p>
-                            ))}</td>
-                            <td>{i?.substanceAbuseHistoryDataLengthOfSobriety?.map((item) => (
-                              <p key={item?.value}>{item?.value}</p>
-                            ))}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  )}
-                </div>
-              </div> */}
-
               <div className="needs-interventions-container2 table-respnosive">
                 <div className="needs-interventions-column2">
                   <table>
@@ -5525,14 +5227,7 @@ const [Additional2Description,setAdditional2Description]=useState("");
                           />
                         </td>
                         <td>
-                          {/* <Select
-                  
-                  value={substanceAbuseHistoryDataLastUse}
-                  onChange={substanceAbuseHistoryDataLastUseHandler}
-                  options={substanceAbuseHistoryDataLastUseOption}
-                  isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLastUse}
-                /> */}
+                          
                           <Form.Select
                             as="select"
                             value={substanceAbuseHistoryDataLastUseAlcohol}
@@ -5552,14 +5247,7 @@ const [Additional2Description,setAdditional2Description]=useState("");
                           </Form.Select>
                         </td>
                         <td>
-                          {/* <Select
-                  
-                  value={substanceAbuseHistoryDataFrequency}
-                  onChange={substanceAbuseHistoryDataFrequencyHandler}
-                  options={substanceAbuseHistoryDataFrequencyOption}
-                  isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataFrequency}
-                /> */}
+                      
 
                           <Form.Select
                             value={substanceAbuseHistoryDataFrequencyAlcohol}
@@ -6959,11 +6647,11 @@ const [Additional2Description,setAdditional2Description]=useState("");
 
                       {typeArray?.map((i) => (
                         <tr>
-                          <td>Other: {i.otherTypeOther}</td>
-                          <td>{i.otherAgeOfFirstUse} </td>
-                          <td>{i.otherLastUse} </td>
-                          <td>{i.otherFrequancy} </td>
-                          <td>{i.OtherlengthOfSobrifty} </td>
+                          <td>{i.types}</td>
+                          <td>{i.ageOfFirstUse} </td>
+                          <td>{i.lastUse} </td>
+                          <td>{i.frequency} </td>
+                          <td>{i.lengthOfSobriety} </td>
                         </tr>
                       ))}
 
@@ -9234,10 +8922,10 @@ const [Additional2Description,setAdditional2Description]=useState("");
                 <input
                   type="text"
                   id="approvedby"
-                  value={currentStudentLocation}
-                  placeholder="Enter "
+                  value={educationalHistory}
+                  placeholder="Enter here"
                   required
-                  onChange={(e) => setCurrentStudentLocation(e.target.value)}
+                  onChange={(e) => setEducationalHistory(e.target.value)}
                 />
               </div>
 
@@ -9279,8 +8967,8 @@ const [Additional2Description,setAdditional2Description]=useState("");
                         type="checkbox"
                         name=""
                         id=""
-                        checked={specialEducation === true}
-                        onChange={() => setSpecialEducation(true)}
+                        checked={specialEducation === false}
+                        onChange={() => setSpecialEducation(false)}
                       />
                       <label>No</label>
                     </div>
@@ -9868,20 +9556,20 @@ const [Additional2Description,setAdditional2Description]=useState("");
                         <tr key={index}>
                       
                           <td>Other:{" "}
-                        {i?.otherCurrentOther}
+                        {i?.type}
                           </td>
                          
                           <td>
                             <input
                               type="checkbox"
-                              checked={i.otherCurrentGood === true}
+                              checked={i.good === true}
                             
                             />
                           </td>
                           <td>
                             <input
                               type="checkbox"
-                              checked={i.otherCurrentFair === true}
+                              checked={i.fair === true}
                             
                             />
                           </td>
@@ -9894,12 +9582,12 @@ const [Additional2Description,setAdditional2Description]=useState("");
                           </td>
                           <td>
                             {` ${
-                              i.otherCurrentNeed === "Yes"
+                              i.needAssist === "Yes"
                                 ? "Yes"
                                 : "No"
                             }`}{" "}
                           </td>
-                          <td> {i.otherCurrentComment} </td>
+                          <td> {i.comments} </td>
                         </tr>
                       ))}
                       <tr>
@@ -10534,11 +10222,11 @@ const [Additional2Description,setAdditional2Description]=useState("");
                         riskFactorArray?.map((i, index) => (
                           <tr key={index}>
                             <td>
-                              Other : {i.otherRiskOther}
+                              {i.type}
                             </td>
-                            <td><input type="checkbox" checked={i.otherRiskYesOrNot===true}/></td>
-                            <td><input type="checkbox" checked={i.otherRiskYesOrNot===false}/></td>
-                            <td>{` ${i.otherRiskComment}`} </td>
+                            <td><input type="checkbox" checked={i.yesNo===true}/></td>
+                            <td><input type="checkbox" checked={i.yesNo===false}/></td>
+                            <td>{` ${i.comment}`} </td>
                           </tr>
                         ))
                    
@@ -10807,11 +10495,11 @@ const [Additional2Description,setAdditional2Description]=useState("");
                        {protectiveFactorsArray?.map((i, index) => (
                           <tr key={index}>
                             <td>
-                              Other: {i?.otherProtectiveFactorsApply}
+                              {i?.type}
                             </td>
-                           <td><input type="checkbox" checked={i.otherProtectiveFactorsYesNo===true}/></td>
-                           <td><input type="checkbox" checked={i.otherProtectiveFactorsYesNo===false}/></td>
-                            <td>{` ${i.otherProtectiveFactorsDescription}`} </td>
+                           <td><input type="checkbox" checked={i.yesNo===true}/></td>
+                           <td><input type="checkbox" checked={i.yesNo===false}/></td>
+                            <td>{` ${i.comment}`} </td>
                           </tr>
                         ))} 
                            <tr>
@@ -11129,9 +10817,9 @@ const [Additional2Description,setAdditional2Description]=useState("");
                         {
                           psychiatricDiagnosesArray.map((i)=>
                           <tr>
-                            <td>Other: {i?.otherPsychiatricOption}</td>
-                            <td>{i?.othericdCode}</td>
-                            <td>{i?.otherdescription}</td>
+                            <td>{i?.name}</td>
+                            <td>{i?.icdCode}</td>
+                            <td>{i?.description}</td>
                             
                           </tr>)
                         }
@@ -11413,9 +11101,9 @@ const [Additional2Description,setAdditional2Description]=useState("");
                       {
                           medicalDiagnosesArray.map((i)=>
                           <tr>
-                            <td>Other: {i?.OtherMedicalOption}</td>
-                            <td>{i?.OthericdCodeMedicalDiagnoses}</td>
-                            <td>{i?.OtherdescriptionMedicalDiagnoses}</td>
+                            <td>{i?.name}</td>
+                            <td>{i?.icdCode}</td>
+                            <td>{i?.description}</td>
                             
                           </tr>)
                         }
@@ -12005,14 +11693,12 @@ const [Additional2Description,setAdditional2Description]=useState("");
               </div>
             </div>
 
-            {/* <div className="form-actions">
-            <button
-              type="submit"
-              className="initalsubmit"
-            >
+          
+          <div className="form-actions hidePrint">
+              <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
               SUBMIT DETAILS
             </button>
-          </div> */}
+            </div>
           </form>
         </div>
         {draftModel && <Draftinmodel onClose={() => setDraftModel(false)} />}

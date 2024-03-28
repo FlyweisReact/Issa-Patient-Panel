@@ -480,23 +480,23 @@ setBarriers(getApiData?.barriers
 
 // Resetting risk assessment state variables
 setBehavioralSymptoms(getApiData?.riskAssessment?.behavioralSymptoms?getApiData?.riskAssessment?.behavioralSymptoms:[]);
-setBehavioralSymptomsBoolean(false);
-setBehavioralSymptomsOther("");
+setBehavioralSymptomsBoolean(getApiData?.riskAssessment?.behavioralSymptoms?true:false);
+setBehavioralSymptomsOther(getApiData?.behavioralSymptomsOther);
 
 // Resetting physical symptoms state variables
 setPhysicalSymptoms(getApiData?.riskAssessment?.physicalSymptoms?getApiData?.riskAssessment?.physicalSymptoms:[]);
-setPhysicalSymptomsBoolean(false);
-setPhysicalSymptomsOther("");
+setPhysicalSymptomsBoolean(getApiData?.riskAssessment?.physicalSymptoms?true:false);
+setPhysicalSymptomsOther(getApiData?.physicalSymptomsOther);
 
 // Resetting cognitive symptoms state variables
 setConsnotiveSymptoms(getApiData?.riskAssessment?.cognitiveSymptoms?getApiData?.riskAssessment?.cognitiveSymptoms:[]);
-setConsnotiveSymptomsBoolean(false);
-setConsnotiveSymptomsOther("");
+setConsnotiveSymptomsBoolean(getApiData?.riskAssessment?.cognitiveSymptoms?true:false);
+setConsnotiveSymptomsOther(getApiData?.cognitiveSymptomsOther);
 
 // Resetting psychosocial symptoms state variables
 setPsychosocialSymptoms(getApiData?.riskAssessment?.psychosocialSymptoms?getApiData?.riskAssessment?.psychosocialSymptoms:[]);
-setPsychosocialSymptomsBoolean(false);
-setPsychosocialSymptomsOther("");
+setPsychosocialSymptomsBoolean(getApiData?.riskAssessment?.psychosocialSymptoms?true:false);
+setPsychosocialSymptomsOther(getApiData?.psychosocialSymptomsOther);
 
 // Resetting interventions implemented state variables
 setInterventionsImplemented(getApiData?.interventions?getApiData?.interventions:[]);
@@ -820,9 +820,13 @@ useEffect(()=>{
       barriers: BarriersArray,
       riskAssessment: {
         behavioralSymptoms: behavioralSymptoms,
+        behavioralSymptomsOther:behavioralSymptomsOther,
         physicalSymptoms: physicalSymptoms,
+        physicalSymptomsOther:physicalSymptomsOther,
         cognitiveSymptoms: consnotiveSymptoms,
+        cognitiveSymptomsOther:consnotiveSymptomsOther,
         psychosocialSymptoms: psychosocialSymptoms,
+        psychosocialSymptomsOther:psychosocialSymptomssOther,
       },
       interventions:interventionsImplemented,
       interventionsComment:interventionsImplementedOther,
@@ -898,6 +902,7 @@ useEffect(()=>{
       additionalComment,
       recommendationsForFurtherPrograms,
       afterCareAndTransitionPlanning,
+      clinicalSummaryBeforeDate:textData,
       clinicalSummary:clinicalSummaryArray,
       treatmentPlanReviewDate,
       dischargePlanDate,
@@ -3161,7 +3166,7 @@ useEffect(()=>{
                   <p>Total of minimum </p>{" "}
                   <div>
                     <input
-                      style={{ outline: "none", border: "none" ,width:"50px"}}
+                      style={{ outline: "none", border: "none" ,width:"40px",marginBottom:"10px"}}
                       placeholder="__________"
                       type="text"
                       value={minimumHoure}
@@ -5583,7 +5588,7 @@ useEffect(()=>{
                     completed. It will be review and updated on an on-going
                     basis according to the review date{" "}
                     <span>
-                        <AutoSize value={textData} setValue={setTextData}  placeholder="________"/>
+                        <AutoSize type="date" value={textData} setValue={setTextData}  placeholder="________"/>
                     </span>
                     specified in the treatment plan, when a treatment goal is
                     accomplished or changed, when additional information that

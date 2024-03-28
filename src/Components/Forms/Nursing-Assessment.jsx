@@ -1799,7 +1799,7 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               />
             </div> 
 
-            <label htmlFor="" className="label-review" style={{fontWeight:"bold"}}>Hematology/Oncology:</label>
+            <label className="label-review" style={{fontWeight:"bold"}}>Hematology/Oncology:</label>
           <div className="yeschechbox-review">
             
             <div>
@@ -1838,9 +1838,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
           </div>
 
           <div className="form-field">
-              <label htmlFor="programlocation&address">Comment:</label>
+              <label >Comment:</label>
               <textarea
-                id="programlocation&address"
+        
                 value={reviewOfSystemsHematologyOncologyOther}
                 placeholder="Enter text"
                 rows={2}

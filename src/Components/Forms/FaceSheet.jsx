@@ -23,7 +23,7 @@ const FaceSheet = () => {
     var elements = document.getElementsByClassName("hidePrint");
     var hidePrintButton=document.getElementsByClassName("hidePrintButton");
     var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
-    var formsheading2=document.getElementsByClassName("formsheading2");
+    // var formsheading2=document.getElementsByClassName("formsheading2");
     // Iterate through each element with the specified class
    
 
@@ -35,9 +35,9 @@ const FaceSheet = () => {
       signatureRightAndSide[i].style.justifyContent = "right";
     }
 
-    for (let i = 0; i < formsheading2.length; i++) {
-      formsheading2[i].style.backgroundColor="white"
-    }
+    // for (let i = 0; i < formsheading2.length; i++) {
+    //   formsheading2[i].style.backgroundColor="white"
+    // }
     
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
@@ -62,10 +62,9 @@ const FaceSheet = () => {
         signatureRightAndSide[i].style.justifyContent = "space-between";
       }
 
-      for (let i = 0; i < formsheading2.length; i++) {
-        formsheading2[i].style.backgroundColor="#1a9fb2"
-      }
-  
+      // for (let i = 0; i < formsheading2.length; i++) {
+      //   formsheading2[i].style.backgroundColor="#1a9fb2"
+      // }
 
     }, 1000);
   };
@@ -298,7 +297,6 @@ if (getApiDataAdmit) {
     faceSheet_form_get(patientId,setGetApiData);
   },[patientId])
 
-console.log(patientId,"knhfijdjdji fhi");
 
   useEffect(() => {
     setPatientId(userDetail?._id);
