@@ -307,11 +307,11 @@ const Treatmentplan_update = () => {
       commentsOther
     ) {
       const newData = {
-        optionOther,
-        admissionMeasureOther,
-        currentMeasureOther,
-        estimatedDateOfCompletionOther,
-        commentsOther,
+        otherType:optionOther,
+        admissionMeasure:admissionMeasureOther,
+        currentMeasure:currentMeasureOther,
+        estimatedDateOfCompletion:estimatedDateOfCompletionOther,
+        comments:commentsOther,
       };
 
       // Update the array state with the new data
@@ -629,14 +629,14 @@ setCurrentMeasure8(getApiData?.legalCurrentMeasure);
 setEstimatedDateOfCompletion8(getApiData?.legalEstimatedDateOfCompletion?getApiData?.legalEstimatedDateOfCompletion?.slice(0,10):"")
 setComment8(getApiData?.legalComments);
 // Resetting optionOther state variables
-setOptionOther("");
-setAdmissionMeasureOther("");
-setCurrentMeasureOther("");
-setEstimatedDateOfCompletionOther("");
-setCommentOther("");
+// setOptionOther("");
+// setAdmissionMeasureOther("");
+// setCurrentMeasureOther("");
+// setEstimatedDateOfCompletionOther("");
+// setCommentOther("");
 
 // Resetting otherArray state variables
-setOtherArray([]);
+setOtherArray(getApiData?.other?getApiData?.other:[]);
 setShowOther(false);
 
 // Resetting resident overall participation state variables
@@ -675,36 +675,36 @@ setClinicalSummary(getApiData?.clinicalSummary
 setTreatmentPlanReviewDate(getApiData?.treatmentPlanReviewDate?getApiData?.treatmentPlanReviewDate.slice(0,10):"");
 setDischargePlanDate(getApiData?.dischargePlanDate?getApiData?.dischargePlanDate.slice(0,10):"");
 // Resetting individual participating state variables
-setResident("");
-setGuardian("");
-setStaff("");
-setBph("");
-setCommentIndividual("");
+setResident(getApiData?.individualsParticipatingInServicePlan?.resident);
+setGuardian(getApiData?.individualsParticipatingInServicePlan?.guardian);
+setStaff(getApiData?.individualsParticipatingInServicePlan?.staff);
+setBph(getApiData?.individualsParticipatingInServicePlan?.bhp);
+setCommentIndividual(getApiData?.individualsParticipatingInServicePlan?.comment);
 
 // Resetting isReason state variable
-setIsReason("no");
-setrefusalReason("no");
+setIsReason(getApiData?.residentAgreementIsReason);
+setrefusalReason(getApiData?.residentAgreementRefusalReason);
 
 // Resetting signaturesResident state variables
-setNameResident("");
-setCredentialsResident("");
-setsignatureResident("");
-setDateResident("");
-setTimeResident("");
+setNameResident(getApiData?.signaturesResident?.name);
+setCredentialsResident(getApiData?.signaturesResident?.credentials);
+setsignatureResident(getApiData?.signaturesResident?.signature);
+setDateResident(getApiData?.signaturesResident?.date?getApiData?.signaturesResident?.date.slice(0,10):"");
+setTimeResident(getApiData?.signaturesResident?.time);
 
 // Resetting signaturesFacilityRep state variables
-setNameFacilityRep("");
-setCredentialsFacilityRep("");
-setsignatureFacilityRep("");
-setDateFacilityRep("");
-setTimeFacality("");
+setNameFacilityRep(getApiData?.signaturesFacilityRep?.name);
+setCredentialsFacilityRep(getApiData?.signaturesFacilityRep?.credentials);
+setsignatureFacilityRep(getApiData?.signaturesFacilityRep?.signature);
+setDateFacilityRep(getApiData?.signaturesFacilityRep?.date?getApiData?.signaturesFacilityRep?.date.slice(0,10):"");
+setTimeFacality(getApiData?.signaturesFacilityRep?.time);
 
 // Resetting signaturesBhp state variables
-setNameBhp("");
-setCredentialsBhp("");
-setsignatureBhp("");
-setDateBhp("");
-setTimeBhp("");
+setNameBhp(getApiData?.signaturesBhp?.name);
+setCredentialsBhp(getApiData?.signaturesBhp?.credentials);
+setsignatureBhp(getApiData?.signaturesBhp?.signature);
+setDateBhp(getApiData?.signaturesBhp?.date?getApiData?.signaturesBhp?.date.slice(0,10):"");
+setTimeBhp(getApiData?.signaturesBhp?.time);
 
   },[getApiData])
 
@@ -712,7 +712,6 @@ useEffect(()=>{
   patient_form_treatment_get(userId,setGetApiData)
 },[userId])
 
-console.log(getApiData,"api data");
 
   useEffect(() => {
     setUserId(user?._id);
@@ -831,13 +830,7 @@ console.log(getApiData,"api data");
       counselingFrequencyMinimum:minimumHoure,
       counselingFrequencyComment:counselingOptionsText,
 
-      // maintainSobriety:{
-      //   type:option1Array,
-      //   admissionMeasure:admissionMeasure1,
-      //   currentMeasure:currentMeasure1,
-      //   estimatedDateOfCompletion:estimatedDateOfCompletion1,
-      //   comments:comments1
-      // },
+
       maintainSobrietyType:option1Array,
       maintainSobrietyAdmissionMeasure:admissionMeasure1,
       maintainSobrietyCurrentMeasure:currentMeasure1,
@@ -845,32 +838,11 @@ console.log(getApiData,"api data");
       maintainSobrietyComments:comments1,
 
 
-
-
-
-
-      // independentLivingSkills:{
-      //   type:option2Array,
-      //   admissionMeasure:admissionMeasure2,
-      //   currentMeasure:currentMeasure2,
-      //   estimatedDateOfCompletion:estimatedDateOfCompletion2,
-      //   comments:comments2
-      // },
-
       independentLivingSkillsType:option2Array,
       independentLivingSkillsAdmissionMeasure:admissionMeasure2,
       independentLivingSkillsCurrentMeasure:currentMeasure2,
       independentLivingSkillsEstimatedDateOfCompletion:estimatedDateOfCompletion2,
       independentLivingSkillsComments:comments2,
-
-
-      // employment:{
-      //   type:option3Array,
-      //   admissionMeasure:admissionMeasure3,
-      //   currentMeasure:currentMeasure3,
-      //   estimatedDateOfCompletion:estimatedDateOfCompletion3,
-      //   comments:comments3
-      // },
 
       employmentType:option3Array,
       employmentAdmissionMeasure:admissionMeasure3,
@@ -878,28 +850,11 @@ console.log(getApiData,"api data");
       employmentEstimatedDateOfCompletion:estimatedDateOfCompletion3,
       employmentComments:comments3,
 
-
-      // adlsSecond:{
-      //   type:option4Array,
-      //   admissionMeasure:admissionMeasure4,
-      //   currentMeasure:currentMeasure4,
-      //   estimatedDateOfCompletion:estimatedDateOfCompletion4,
-      //   comments:comments4
-      // },
-
       adlsSecondType:option4Array,
       adlsSecondAdmissionMeasure:admissionMeasure4,
       adlsSecondCurrentMeasure:currentMeasure4,
       adlsSecondEstimatedDateOfCompletion:estimatedDateOfCompletion4,
       adlsSecondComments:comments4,
-
-      // safety:{
-      //   type:option5Array,
-      //   admissionMeasure:admissionMeasure5,
-      //   currentMeasure:currentMeasure5,
-      //   estimatedDateOfCompletion:estimatedDateOfCompletion5,
-      //   comments:comments5
-      // },
 
       safetyType:option5Array,
       safetyAdmissionMeasure:admissionMeasure5,
@@ -907,13 +862,6 @@ console.log(getApiData,"api data");
       safetyEstimatedDateOfCompletion:estimatedDateOfCompletion5,
       safetyComments:comments5,
 
-      // medicationEducation:{
-      //   type:option6Array,
-      //   admissionMeasure:admissionMeasure6,
-      //   currentMeasure:currentMeasure6,
-      //   estimatedDateOfCompletion:estimatedDateOfCompletion6,
-      //   comments:comments6
-      // },
 
       medicationEducationType:option6Array,
       medicationEducationAdmissionMeasure:admissionMeasure6,
@@ -921,13 +869,6 @@ console.log(getApiData,"api data");
       medicationEducationEstimatedDateOfCompletion:estimatedDateOfCompletion6,
       medicationEducationComments:comments6,
 
-      // managingMentalHealth:{
-      //   type:option7Array,
-      //   admissionMeasure:admissionMeasure7,
-      //   currentMeasure:currentMeasure7,
-      //   estimatedDateOfCompletion:estimatedDateOfCompletion7,
-      //   comments:comments7
-      // },
 
       managingMentalHealthType:option7Array,
       managingMentalHealthAdmissionMeasure:admissionMeasure7,
@@ -935,29 +876,14 @@ console.log(getApiData,"api data");
       managingMentalHealthEstimatedDateOfCompletion:estimatedDateOfCompletion7,
       managingMentalHealthComments:comments7,
 
-      // legal:{
-      //   type:option8Array,
-      //   admissionMeasure:admissionMeasure8,
-      //   currentMeasure:currentMeasure8,
-      //   estimatedDateOfCompletion:estimatedDateOfCompletion8,
-      //   comments:comments8
-      // },
-
       legalType:option8Array,
       legalAdmissionMeasure:admissionMeasure8,
       legalCurrentMeasure:currentMeasure8,
       legalEstimatedDateOfCompletion:estimatedDateOfCompletion8,
       legalComments:comments8,
 
-      // other: [
-      //   {
-      //     type:option1,
-      //     admissionMeasure:admissionMeasure1,
-      //     currentMeasure:currentMeasure1,
-      //     estimatedDateOfCompletion:estimatedDateOfCompletion1,
-      //     comments:comments1
-      //   }
-      // ],
+      other: otherArray,
+
       residentParticipation,
       residentAttitude:residentAttitute,
       residentProgress,
@@ -1006,6 +932,7 @@ console.log(getApiData,"api data");
         credentials: credentialsBhp,
         signature: signatureBhp,
         date: dateBhp,
+        time: timeBhp
       },
     };
     patient_form(data);
@@ -4678,13 +4605,13 @@ console.log(getApiData,"api data");
                         otherArray.map((data, index) => (
                           <tr key={index}>
                             <td>
-                              <p>{9 + index}: Other:</p>
-                              {data?.optionOther}
+                              <p>{9 + index}: </p>
+                              {data?.otherType}
                             </td>
-                            <td>{data?.admissionMeasureOther}</td>
-                            <td>{data?.currentMeasureOther}</td>
-                            <td>{data?.estimatedDateOfCompletionOther}</td>
-                            <td>{data?.commentsOther}</td>
+                            <td>{data?.admissionMeasure}</td>
+                            <td>{data?.currentMeasure}</td>
+                            <td>{data?.estimatedDateOfCompletion?data?.estimatedDateOfCompletion.slice(0,10):''}</td>
+                            <td>{data?.comments}</td>
                           </tr>
                         ))}
 
