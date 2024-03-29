@@ -22,7 +22,7 @@ const SafetyPlan = () => {
     var elements = document.getElementsByClassName("hidePrint");
     var elements1 = document.getElementsByClassName("form-section");
     var signatureRightAndSide = document.getElementsByClassName("file-upload-box");
-    var formsheading2=document.getElementsByClassName("formsheading2");
+    // var formsheading2=document.getElementsByClassName("formsheading2");
 
     // Iterate through each element with the specified class signature_Right_Side
     for (var i = 0; i < elements.length; i++) {
@@ -38,9 +38,9 @@ const SafetyPlan = () => {
       signatureRightAndSide[i].style.fontSize = "24px";
     }
 
-    for (let i = 0; i < formsheading2.length; i++) {
-      formsheading2[i].style.backgroundColor="white"
-    }
+    // for (let i = 0; i < formsheading2.length; i++) {
+    //   formsheading2[i].style.backgroundColor="white"
+    // }
 
     // Trigger the print action
     handlePrint();
@@ -61,9 +61,9 @@ const SafetyPlan = () => {
         signatureRightAndSide[i].style.fontSize = "16px";
       }
 
-      for (let i = 0; i < formsheading2.length; i++) {
-        formsheading2[i].style.backgroundColor="#1a9fb2"
-      }
+      // for (let i = 0; i < formsheading2.length; i++) {
+      //   formsheading2[i].style.backgroundColor="#1a9fb2"
+      // }
     }, 1000);
   };
 
@@ -118,6 +118,17 @@ const SafetyPlan = () => {
   const [singin, setSingIn] = useState("");
   const [signatureDate,setSignatureDate]=useState("");
   const [signatureTime,setSignatureTime]=useState("");
+
+
+    // Function to format the date as MM-DD-YYYY
+function formatDate(dateString) {
+  if (!dateString) return ''; // handle null or undefined value
+  const dateObj = new Date(dateString);
+  const month = ('0' + (dateObj.getMonth() + 1)).slice(-2);
+  const day = ('0' + dateObj.getDate()).slice(-2);
+  const year = dateObj.getFullYear();
+  return `${month}-${day}-${year}`;
+}
   
   useEffect(()=>{
     // add patient name key and date key
@@ -162,7 +173,7 @@ const SafetyPlan = () => {
         }))
       : []);
     setSingIn(getApiData?.signature);
-    setSignatureDate(getApiData?.signatureDate?.slice(0,10));
+    setSignatureDate(formatDate(getApiData?.signatureDate));
     setSignatureTime(getApiData?.signatureTime);
   },[getApiData])
 

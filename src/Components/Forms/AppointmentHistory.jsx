@@ -17,6 +17,10 @@ const AppointmentHistory = () => {
     appointment_Upcoming(setAppoinmentUpcoming);
     appointment_get(setAppoinmentPast);
   }, []);
+
+  const again_Call_appointment=async()=>{
+    await appointment_Upcoming(setAppoinmentUpcoming);
+  }
  
   const navigate = useNavigate();
   return (
@@ -48,6 +52,8 @@ const AppointmentHistory = () => {
                 from={history.from}
                 visit={history.reasonForVisit}
                 referenceId={history.patientId}
+                id={history._id}
+                again_Call_appointment={again_Call_appointment}
               />
             ))}
           </div>

@@ -68,7 +68,7 @@ const Home1 = ({ Wcomponenet }) => {
     <>
       <div className={`Hoc ${isMenuOpen ? 'menu-open' : ''}`}>
         {/* <div className={` ${isMenuOpen ? 'sidebar1' : ''}`}>
-         <Sidebar  isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+         <Sidebar   isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
         </div>  */}
         <div>
           <UpperBar isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />

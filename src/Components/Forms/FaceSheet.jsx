@@ -206,43 +206,20 @@ const FaceSheet = () => {
 const getApiDataDob = getApiData?.dob;
 const getApiDataAdmit = getApiData?.dateOfAdmit;
 
-const formatDate = (date) => {
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const year = date.getFullYear();
-  
-  const formattedMonth = month < 10 ? '0' + month : month;
-  const formattedDay = day < 10 ? '0' + day : day;
-
-  return `${year}-${formattedMonth}-${formattedDay}`;
-};
-
-if (getApiDataDob) {
-  // Parse the date string into a Date object
-  const date1 = new Date(getApiDataDob);
-  
-  // Format the date as MM/DD/YYYY
-  const formattedDate1 = formatDate(date1);
-  
-  // Set the formatted date in the state
-  setDob(formattedDate1);
-}
-
-if (getApiDataAdmit) {
-  // Parse the date string into a Date object
-  const date2 = new Date(getApiDataAdmit);
-  
-  // Format the date as MM/DD/YYYY
-  const formattedDate2 = formatDate(date2);
-  
-  // Set the formatted date in the state
-  setDateOfAdmit(formattedDate2);
+// Function to format the date as MM-DD-YYYY
+function formatDate(dateString) {
+  if (!dateString) return ''; // handle null or undefined value
+  const dateObj = new Date(dateString);
+  const month = ('0' + (dateObj.getMonth() + 1)).slice(-2);
+  const day = ('0' + dateObj.getDate()).slice(-2);
+  const year = dateObj.getFullYear();
+  return `${month}-${day}-${year}`;
 }
 
 
     setResidentName(getApiData?.residentName);
-    // setDob(getApiData?.dob);
-    // setDateOfAdmit(getApiData?.dateOfAdmit);
+    setDob(getApiData?.dob?getApiData?.dob.slice(0,10):"");
+    setDateOfAdmit(getApiData?.dateOfAdmit?getApiData?.dateOfAdmit.slice(0,10):0);
     setFacilityAddress(getApiData?.facilityAddress);
     setFacilityPhoneNumber(getApiData?.facilityPhoneNumber);
     setPlaceOfBirth(getApiData?.placeOfBirth);
@@ -289,7 +266,7 @@ if (getApiDataAdmit) {
     setMedicalDiagnosesHistory(getApiData?.medicalDiagnosesHistory);
     setPastSurgeries(getApiData?.pastSurgeries);
     setSignature(getApiData?.bhpSignature);
-    setSignatureDate(getApiData?.bhpDate?getApiData?.bhpDate.slice(0,10):"");
+    setSignatureDate(getApiData?.bhpDate?formatDate(getApiData?.bhpDate):"");
     setSegnatureTime(getApiData?.time);
   },[getApiData])
 
@@ -1406,7 +1383,7 @@ if (getApiDataAdmit) {
               </div>
             </div> */}
           </div>
-            <div class="file-upload-box ">
+            <div class="file-upload-box" style={{marginTop:"0.5rem"}}>
               
               <div className="file-upload-box-child hidePrint">
                <div >

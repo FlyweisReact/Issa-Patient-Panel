@@ -147,7 +147,6 @@ const InitialAssessment = () => {
   // Medical Conditions (Array of Objects) array second section is start ===>
   // diabetes =======>
   const [yesDiabetes, setYesDiabetes] = useState();
-  const [noDiabetes, setNoDiabetes] = useState();
   const [commentDiabety, setCommentDeabetes] = useState("");
 
   //Heart disease / heart attack
@@ -201,7 +200,6 @@ const InitialAssessment = () => {
   const [commentInjury, setCommentInjury] = useState("");
 
   //Chronic painChronic pain
-  const [Chronic, setChronic] = useState("");
   const [yesChronic, setYesChronic] = useState();
   const [chronicCommit, setChronicCommit] = useState("");
 
@@ -245,7 +243,7 @@ const InitialAssessment = () => {
   const [ObsessiveYes, setObsessiveYes] = useState();
   const [ObsessiveComment, setObsessiveComment] = useState("");
 
-  // Personality disorder (please specify
+  // Personality disorder (please specify)
   const [PersonalityYes, setPersonalityYes] = useState();
   const [PersonalityComment, setPersonalityComment] = useState("");
 
@@ -310,9 +308,6 @@ const InitialAssessment = () => {
   ] = useState([]);
 
 
-  const [substanceAbuseHistory, setSubstanceAbuseHistory] = useState("");
-  const [substanceAbuseDenies, setSubstanceAbuseDenies] = useState("");
-
 // 2 pendinggggggg
   //type of service
   const [typeOfServiceArray, setTypeOfServicesArray] = useState([]);
@@ -324,10 +319,10 @@ const InitialAssessment = () => {
       mentalHealthTreatmentHistoryTypeOfService
     ) {
       const data = {
-        mentalHealthTreatmentHistoryDiagnosisReason,
-        mentalHealthTreatmentHistoryDates,
-        mentalHealthTreatmentHistoryWhere,
-        mentalHealthTreatmentHistoryTypeOfService,
+        diagnosisReason:mentalHealthTreatmentHistoryDiagnosisReason,
+        dates:mentalHealthTreatmentHistoryDates,
+        where:mentalHealthTreatmentHistoryWhere,
+        typeOfService:mentalHealthTreatmentHistoryTypeOfService,
       };
       setTypeOfServicesArray((prev) => [...prev, data]);
       setMentalHealthTreatmentHistoryTypeOfService([]);
@@ -343,6 +338,10 @@ const InitialAssessment = () => {
     updatedArray.splice(index, 1);
     setTypeOfServicesArray(updatedArray);
   };
+
+  
+  const [substanceAbuseHistory, setSubstanceAbuseHistory] = useState("");
+  const [substanceAbuseDenies, setSubstanceAbuseDenies] = useState("");
 
   // type of age, frequancy,last use, length of soberty
   //Alcohol data
@@ -657,7 +656,6 @@ const InitialAssessment = () => {
   const [elevated, setElevated] = useState(false);
   const [depressedMood, setDepressedMood] = useState(false);
   const [anxious, setAnxious] = useState(false);
-
   const [euthymicOtherBoolean, seteuthymicOtherBoolean] = useState(false);
   const [euthymicOtherBooleanType, seteuthymicOtherBooleanType] = useState("");
   //Affect
@@ -881,57 +879,57 @@ const InitialAssessment = () => {
   }, [bathingShoweringGood]);
 
   // Current Independent Living Skills:
-  const [BathingGood,setBathingGood]=useState("");
-  const [BathingFair,setBathingFair]=useState("");
-  const [BathingNotSoGood,setBathingNotSoGood]=useState("");
+  const [BathingGood,setBathingGood]=useState(false);
+  const [BathingFair,setBathingFair]=useState(false);
+  const [BathingNotSoGood,setBathingNotSoGood]=useState(false);
   const [BathingGoodNeedAssist,setBathingGoodNeedAssist]=useState("");
   const [BathingComments,setBathingComments]=useState("");
 
-  const [GroomingGood,setGroomingGood]=useState("");
-  const [GroomingFair,setGroomingFair]=useState("");
-  const [GroomingNotSoGood,setGroomingNotSoGood]=useState("");
+  const [GroomingGood,setGroomingGood]=useState(false);
+  const [GroomingFair,setGroomingFair]=useState(false);
+  const [GroomingNotSoGood,setGroomingNotSoGood]=useState(false);
   const [GroomingGoodNeedAssist,setGroomingGoodNeedAssist]=useState("");
   const [GroomingComments,setGroomingComments]=useState("");
 
-  const [MobilityGood,setMobilityGood]=useState("");
-  const [MobilityFair,setMobilityFair]=useState("");
-  const [MobilityNotSoGood,setMobilityNotSoGood]=useState("");
+  const [MobilityGood,setMobilityGood]=useState(false);
+  const [MobilityFair,setMobilityFair]=useState(false);
+  const [MobilityNotSoGood,setMobilityNotSoGood]=useState(false);
   const [MobilityGoodNeedAssist,setMobilityGoodNeedAssist]=useState("");
   const [MobilityComments,setMobilityComments]=useState("");
 
-  const [HouseworkGood,setHouseworkGood]=useState("");
-  const [HouseworkFair,setHouseworkFair]=useState("");
-  const [HouseworkNotSoGood,setHouseworkNotSoGood]=useState("");
+  const [HouseworkGood,setHouseworkGood]=useState(false);
+  const [HouseworkFair,setHouseworkFair]=useState(false);
+  const [HouseworkNotSoGood,setHouseworkNotSoGood]=useState(false);
   const [HouseworkGoodNeedAssist,setHouseworkGoodNeedAssist]=useState("");
   const [HouseworkComments,setHouseworkComments]=useState("");
 
-  const [ShoppingGood,setShoppingGood]=useState("");
-  const [ShoppingFair,setShoppingFair]=useState("");
-  const [ShoppingNotSoGood,setShoppingNotSoGood]=useState("");
+  const [ShoppingGood,setShoppingGood]=useState(false);
+  const [ShoppingFair,setShoppingFair]=useState(false);
+  const [ShoppingNotSoGood,setShoppingNotSoGood]=useState(false);
   const [ShoppingGoodNeedAssist,setShoppingGoodNeedAssist]=useState("");
   const [ShoppingComments,setShoppingComments]=useState("");
 
-  const [ManagingGood,setManagingGood]=useState("");
-  const [ManagingFair,setManagingFair]=useState("");
-  const [ManagingNotSoGood,setManagingNotSoGood]=useState("");
+  const [ManagingGood,setManagingGood]=useState(false);
+  const [ManagingFair,setManagingFair]=useState(false);
+  const [ManagingNotSoGood,setManagingNotSoGood]=useState(false);
   const [ManagingGoodNeedAssist,setManagingGoodNeedAssist]=useState("");
   const [ManagingComments,setManagingComments]=useState("");
 
-  const [PreparingGood,setPreparingGood]=useState("");
-  const [PreparingFair,setPreparingFair]=useState("");
-  const [PreparingNotSoGood,setPreparingNotSoGood]=useState("");
+  const [PreparingGood,setPreparingGood]=useState(false);
+  const [PreparingFair,setPreparingFair]=useState(false);
+  const [PreparingNotSoGood,setPreparingNotSoGood]=useState(false);
   const [PreparingGoodNeedAssist,setPreparingGoodNeedAssist]=useState("");
   const [PreparingComments,setPreparingComments]=useState("");
 
-  const [EatingGood,setEatingGood]=useState("");
-  const [EatingFair,setEatingFair]=useState("");
-  const [EatingNotSoGood,setEatingNotSoGood]=useState("");
+  const [EatingGood,setEatingGood]=useState(false);
+  const [EatingFair,setEatingFair]=useState(false);
+  const [EatingNotSoGood,setEatingNotSoGood]=useState(false);
   const [EatingGoodNeedAssist,setEatingGoodNeedAssist]=useState("");
   const [EatingComments,setEatingComments]=useState("");
 
-  const [ToiletingGood,setToiletingGood]=useState("");
-  const [ToiletingFair,setToiletingFair]=useState("");
-  const [ToiletingNotSoGood,setToiletingNotSoGood]=useState("");
+  const [ToiletingGood,setToiletingGood]=useState(false);
+  const [ToiletingFair,setToiletingFair]=useState(false);
+  const [ToiletingNotSoGood,setToiletingNotSoGood]=useState(false);
   const [ToiletingGoodNeedAssist,setToiletingGoodNeedAssist]=useState("");
   const [ToiletingComments,setToiletingComments]=useState("");
 
@@ -1000,7 +998,7 @@ const InitialAssessment = () => {
   const [currentThoughtsOfHarmingSelf, setCurrentThoughtsOfHarmingSelf] =
     useState();
     // pendingggggggggggg
-  const [suicidalIdeation, setSuicidalIdeation] = useState("");
+  const [suicidalIdeation, setSuicidalIdeation] = useState();
   const [suicidalIdeationUrgency, setSuicidalIdeationUrgency] = useState();
   const [suicidalIdeationSeverity, setSuicidalIdeationSeverity] = useState();
   const [currentThoughtsOfHarmingOthers, setCurrentThoughtsOfHarmingOthers] =
@@ -1081,6 +1079,10 @@ const InitialAssessment = () => {
   const [FearYesNo, setFearYesNo] = useState();
   const [FearComment, setFearComment] = useState("");
 
+  // dharmu code
+  const [interventionYesNo, setInterventionYesNo] = useState();
+  const [interventionComment, setInterventionComment] = useState("");
+
   const [WillingYesNo, setWillingYesNo] = useState();
   const [WillingComment, setWillingComment] = useState("");
 
@@ -1151,8 +1153,8 @@ const [TertiaryIcdCode,setTertiaryIcdCode]=useState("")
 const [TertiaryDescription,setTertiaryDescription]=useState("")
 const [Additional1icdCode,setAdditional1IcdCode]=useState("");
 const [Additional1Description,setAdditional1Description]=useState("");
-const [Additional2icdCode,setAdditional2IcdCode]=useState("");
-const [Additional2Description,setAdditional2Description]=useState("");
+// const [Additional2icdCode,setAdditional2IcdCode]=useState("");
+// const [Additional2Description,setAdditional2Description]=useState("");
 
 
 
@@ -1213,16 +1215,14 @@ const [Additional2Description,setAdditional2Description]=useState("");
   const [otherStressors, setOtherStressors] = useState("");
 
   // State variables for significantRecentLosses
-  const [no, setNo] = useState(false);
-  const [yes, setYes] = useState(false);
-  // 2
+  // set this value in api calling
   const [setNoAndYes, setSetNoAndYes] = useState();
 
   const [death, setDeath] = useState(false);
-  const [job, setJob] = useState("");
-  const [childRemovedFromHouse, setChildRemovedFromHouse] = useState("");
+  const [job, setJob] = useState(false);
+  const [childRemovedFromHouse, setChildRemovedFromHouse] = useState(false);
   const [injury, setInjury] = useState(false);
-  const [divorceSeparation, setDivorceSeparation] = useState("");
+  const [divorceSeparation, setDivorceSeparation] = useState(false);
   const [violentActsAgainstPersonFamily, setViolentActsAgainstPersonFamily] =
     useState(false);
   const [medicalSurgical, setMedicalSurgical] = useState(false);
@@ -1331,6 +1331,27 @@ const [Additional2Description,setAdditional2Description]=useState("");
 
     const stringValues = residentStrengths.map((item) => item.value);
 
+    let SignificantFamilyMedicalPsychiatricHistoryArray=[];
+    SignificantFamilyMedicalPsychiatricHistory.forEach((item)=>{
+      SignificantFamilyMedicalPsychiatricHistoryArray.push(item?.value);
+    })
+
+    const selectedValueArray=[];
+    selectedValue.forEach((item)=>{
+      selectedValueArray.push(item?.value)
+    })
+
+    const selectedValueMedicalArray=[];
+    selectedValueMedical.forEach((item)=>{
+      selectedValueMedicalArray.push(item?.value);
+    })
+
+    const selectedValueSpecialPrecautionsArray=[];
+    selectedValueSpecialPrecautions.forEach((item)=>{
+      selectedValueSpecialPrecautionsArray.push(item?.value)
+    })
+
+
     const data = {
       patientId,
       dob,
@@ -1355,48 +1376,757 @@ const [Additional2Description,setAdditional2Description]=useState("");
       residentStrengths: stringValues,
       residentLimitations,
       currentBehavioralIssues,
-      // missing
-      dischargePlan,
-      estimateDateOfDischarge,
-      agreementWithPlan,
-      residentGuardianAgreement: {
-        name: residentGuardianAgreementName,
-        signature: residentGuardianAgreementSignature,
-        date: residentGuardianAgreementDate,
-      },
-      staffAgreement: {
-        name: staffAgreementname,
-        signature: staffAgreementSignature,
-        date: staffAgreementDate,
-      },
-      bhpAgreement: {
-        name: bhpAgreementName,
-        signature: bhpAgreementSignature,
-        date: bhpAgreementDate,
-      },
-      other: {
-        name: otherName,
-        relationship: otherRelationship,
-        signature: otherSignature,
-        date: otherDate,
-      },
-      // missing
-      // mentalHealthTreatmentHistory,
-
-      //missing
-
-      significantRecentLosses: {
-        typeOfLoss: {
-          death,
-          job,
-          childRemovedFromHouse,
-          injury,
-          divorceSeparation,
-          violentActsAgainstPersonFamily,
-          medicalSurgical,
-          accidentInjury,
-          other: otherSignificantRecentLosses,
+      medicalConditions: [
+        {
+          condition: "diabetes",
+          yes: yesDiabetes,
+          comments: commentDiabety,
         },
+        {
+          condition: "Heart disease / heart attack",
+          yes: yesHeart,
+          comments: commentHeart,
+        },
+        {
+          condition: "History",
+          yes: yesHistory,
+          comments: commentHistory,
+        }
+        ,
+        {
+          condition: "High Blood Pressure",
+          yes: yesHigh,
+          comments: commentHigh,
+        }
+        ,
+        {
+          condition: "Lung disease (ie asthma, COPD, emphysema)",
+          yes: yesLung,
+          comments: commentLung,
+        }
+        ,
+        {
+          condition: "Seizures",
+          yes: yesSeizures,
+          comments: commentSeizures,
+        }
+        ,
+        {
+          condition: "Cancer",
+          yes: yesCancer,
+          comments: commentCancer,
+        }
+        ,
+        {
+          condition: "Liver/kidney disease",
+          yes: yesLiver,
+          comments: commentLiver,
+        }
+        ,
+        {
+          condition: "Thyroid disorder",
+          yes: yesThyroid,
+          comments: thyroidDisorder,
+        }
+        ,
+        {
+          condition: "History of head trauma/traumatic brain injury",
+          yes: yesbrain,
+          comments: commentbrain,
+        }
+        ,
+        {
+          condition: "injury",
+          yes: yesInjury,
+          comments: commentInjury,
+        }
+        ,
+        {
+          condition: "Chronic painChronic pain",
+          yes: yesChronic,
+          comments: chronicCommit,
+        },  {
+          condition: "Allergies",
+          yes: AllergiesYes,
+          comments: AllergiesComment,
+        },  {
+          condition: "Surgeries",
+          yes: SurgeriesYes,
+          comments: SurgeriesComment,
+        }
+        ,  {
+          condition: "Number of pregnancies / births",
+          yes: pregnanciesYes,
+          comments: pregnanciesComment,
+        }
+        ,  {
+          condition: "Substance use disorder (please specify)",
+          yes: SubstanceYes,
+          comments: SubstanceComment,
+        }
+        ,  {
+          condition: "Depression",
+          yes: DepressionYes,
+          comments: DepressionComment,
+        }
+        ,  {
+          condition: "Anxiety/panic attacks",
+          yes: AnxietyYes,
+          comments: AnxietyComment,
+        }
+        ,  {
+          condition: "Insomnia",
+          yes: InsomniaYes,
+          comments: InsomniaComment,
+        }
+        ,  {
+          condition: "Bipolar disorder",
+          yes: BipolarYes,
+          comments: BipolarComment,
+        }
+        ,  {
+          condition: "Schizophrenia",
+          yes: SchizophreniaYes,
+          comments: SchizophreniaComment,
+        }
+        ,  {
+          condition: "Obsessive compulsive disorder",
+          yes: ObsessiveYes,
+          comments: ObsessiveComment,
+        }
+        ,  {
+          condition: "Personality disorder (please specify)",
+          yes: PersonalityYes,
+          comments: PersonalityComment,
+        }
+        ,  {
+          condition: "Phobias",
+          yes: PhobiasYes,
+          comments: PhobiasComment,
+        }
+        ,  {
+          condition: "Any other health conditions",
+          yes: healthConditionsYes,
+          comments: healthConditionsYesComment,
+        }
+        ,  {
+          condition: "Infection or Diseases",
+          yes: healthConditionsYes,
+          comments: infectionDiseases,
+        },
+        otherConditionArray
+      ],
+      SignificantFamilyMedicalPsychiatricHistory:SignificantFamilyMedicalPsychiatricHistoryArray,
+      // insidee the array handle by backend
+      mentalHealthTreatmentHistory:typeOfServiceArray,
+     
+      substanceAbuseHistory,
+      substanceAbuseDenies,
+// need t be array
+      substanceAbuseHistoryData : [
+        {
+          types: "Alcohol",
+          ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseAlcohol,
+          lastUse: substanceAbuseHistoryDataLastUseAlcohol,
+          frequency: substanceAbuseHistoryDataFrequencyAlcohol,
+          lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyAlcohol
+        },
+        {
+          types: "Benzodiazepines",
+          ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines,
+          lastUse: substanceAbuseHistoryDataLastUseBenzodiazepines,
+          frequency: substanceAbuseHistoryDataFrequencyBenzodiazepines,
+          lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines
+        },
+        {
+          types: "Crack",
+          ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseCrack,
+          lastUse: substanceAbuseHistoryDataLastUseCrack,
+          frequency: substanceAbuseHistoryDataFrequencyCrack,
+          lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyCrack
+        },
+        {
+          types: "Heroin",
+          ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseHeroin,
+          lastUse: substanceAbuseHistoryDataLastUseHeroin,
+          frequency: substanceAbuseHistoryDataFrequencyHeroin,
+          lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyHeroin
+        },
+        {
+          types: "Inhalants",
+          ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseInhalants,
+          lastUse: substanceAbuseHistoryDataLastUseInhalants,
+          frequency: substanceAbuseHistoryDataFrequencyInhalants,
+          lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyInhalants
+        },
+        {
+          types: "Marijuana",
+          ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMarijuana,
+          lastUse: substanceAbuseHistoryDataLastUseMarijuana,
+          frequency: substanceAbuseHistoryDataFrequencyMarijuana,
+          lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMarijuana
+        },
+        {
+          types: "Methamphetamine",
+          ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMethamphetamine,
+          lastUse: substanceAbuseHistoryDataLastUseMethamphetamine,
+          frequency: substanceAbuseHistoryDataFrequencyMethamphetamine,
+          lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMethamphetamine
+        },
+        {
+          types: "Methadone",
+          ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMethadone,
+          lastUse: substanceAbuseHistoryDataLastUseMethadone,
+          frequency: substanceAbuseHistoryDataFrequencyMethadone,
+          lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMethadone
+        },
+        {
+          types: "MDMA (ecstasy)",
+          ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMDMA,
+          lastUse: substanceAbuseHistoryDataLastUseMDMA,
+          frequency: substanceAbuseHistoryDataFrequencyMDMA,
+          lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMDMA
+        },
+        {
+          types: "PCP (angel dust)",
+          ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUsePCP,
+          lastUse: substanceAbuseHistoryDataLastUsePCP,
+          frequency: substanceAbuseHistoryDataFrequencyPCP,
+          lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyPCP
+        },
+        {
+          types: "Prescription medicine",
+          ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUsePrescription,
+          lastUse: substanceAbuseHistoryDataLastUsePrescription,
+          frequency: substanceAbuseHistoryDataFrequencyPrescription,
+          lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyPrescription
+        },
+        {
+          types: "OTC medicine",
+          ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseOTC,
+          lastUse: substanceAbuseHistoryDataLastUseOTC,
+          frequency: substanceAbuseHistoryDataFrequencyOTC,
+          lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyOTC
+        },
+        typeArray
+      ],
+      ActiveWithdrawalSymptoms :{
+        noneReportedOrObserved,
+        Agitation,
+        Nausea,
+        Vomiting,
+        Headache,
+        TactileDisturbances,
+        Anxiety,
+        Tremors,
+        VisualDisturbances,
+        // remove VisualDisturbancesOtherType and add other
+        AuditoryDisturbances:VisualDisturbancesOtherType,
+        Sweats,
+        Paranoia,
+        GooseBumps,
+        Runningnose,
+        BonePain,
+        Tearing,
+        Seizures,
+        LossofMuscleCoordination,
+        LossofMuscleCoordinationOtherType
+      },
+      mentalStatusExam: {
+        apparentAge:{
+          consistent:consistent,
+          younger,
+          older,
+          
+          olderOther
+        },
+        height:{
+          average:averageHeight,
+          short,
+          tall,
+          
+          otherComment:heigthOther
+        },
+        weight:{
+          average:averageWeight,
+          obese,
+          overweight,
+          thin,
+          emaciated,
+          otherComment:WeightOther
+        },
+        attire:{
+          Casual:casual,
+          Neat:neat,
+          Tattered:tattered,
+          Dirty:dirty,
+          otherComment:attireOther
+        },
+        grooming:{
+          wellGroomed:wellGroomed,
+          adequate:adequateGrooming,
+          unkempt,
+          disheveled,
+          otherComment:GroomingOther
+        },
+        Mood:{
+          Euthymic:euthymic,
+          Irritable:irritable,
+          Elevated: elevated,
+          Depressed:depressedMood,
+          Anxious:anxious,
+          otherComment:euthymicOtherBooleanType
+        },
+        Affect:{
+          normalRange,
+          Depressed:depressedAffect,
+          Labile:labile,
+          Constricted:constricted,
+          otherComment:otherText
+        },
+        EyeContact:{
+          Appropriate:appropriate,
+          Minimal:minimal,
+          Poor:poor,
+          Adequate:adequateEyeContact,
+          otherComment:EyeContactOtherBooleanType
+        },
+        Cooperation:{
+          Appropriate:appropriateCooperation,
+          Hostile:hostile,
+          Evasive: evasive,
+          Defensive:defensive,
+          Indifferent:indifferent,
+          otherComment: CooperationOtherBooleanType
+        },
+        Articulation:{
+          Normal:normalArticulation,
+          Unintelligible:unintelligible,
+          Mumbled:mumbled,
+          Slurred:slurred,
+          Stuttered:stuttered,
+          otherComment:ArticulationOtherBooleanOther
+        },
+        Tone:{
+          Normal:normalTone,
+          Soft:soft,
+          Loud:loud,
+          Pressured:pressured,
+          otherComment:ToneOtherBooleanOther
+        },
+        Rate:{
+          Normal:normalRate,
+          Slow:slow,
+          Fast:fast,
+          otherComment:RateOtherBooleanOther
+        },
+        Quantity:{
+          Normal:normalQuantity,
+          Verbose:verbose,
+          Mutism:mutism,
+          otherComment:QuantityOtherBooleanOther,
+
+        },
+        responseLatency:{
+          Normal:normalresponseLatency,
+          Delayed:delayed,
+          Shortened:shortened,
+          otherComment:responseLatencyOtherBooleanOther
+        },
+
+        thoughtContent:{
+          Unremarkable:unremarkablethoughtContent,
+          Suspicious:suspicious,
+          Negative:negative,
+          Concrete:concrete,
+          otherComment:thoughtContentOther
+        },
+
+        thoughtProcesses:{
+          logicalCoherent:logicalCoherent,
+          Tangential:tangential,
+          Circumstantial:circumstantial,
+          Vague:vague,
+          otherComment:thoughtProcessesOther
+        },
+
+        Delusions:{
+          No:noDelusions,
+          YesPersecutory: yesPersecutory,
+          YesSomatic:yesSomatic,
+          YesGrandiose:yesGrandiose,
+          otherComment:yesOtherDelusionsText
+        },
+
+        Hallucinations:{
+          Unremarkable:unremarkableHallucinations,
+          VisualHallucinations:visualHallucinations,
+          AuditoryHallucinations:auditoryHallucinations,
+          TactileHallucinations:tactileHallucinations,
+          otherComment:yesOtherHallucinationsText
+        },
+
+        Gait:{
+          Normal:normalGait,
+          Staggering:staggering,
+          Shuffling:shuffling,
+          Slow:slowGait,
+          Awkward:awkward
+        },
+
+        Posture:{
+          Normal:normalPosture,
+          Relaxed:relaxed,
+          Rigid:rigid,
+          Tense:tense,
+          Slouched:slouched
+        },
+
+        PsychomotorActivity:{
+          Withinnormallimits:withinNormalLimits,
+          Calm:calm,
+          Hyperactive:hyperactive,
+          Agitated:agitated,
+          Hypoactive:hypoactive
+        },
+
+        Mannerisms:{
+          None:none,
+          Tics:tics,
+          Tremors:tremorsMannerisms,
+          Rocking:rocking,
+          Picking:picking
+        },
+
+        orientation:{
+          person,
+          place,
+          time,
+          circumstances:circumstances
+        },
+
+        Judgment:{
+          Good:goodJudgment,
+          Fair:fairJudgment,
+          Poor:poorJudgment
+        },
+
+        Insight:{
+          Good:goodInsight,
+          Fair:fairInsight,
+          Poor:poorInsight
+        },
+        Memory:{
+          Good:goodMemory,
+          Fair:fairMemory,
+          Poor:poorMemory
+        },
+        AbilityToConcentration:{
+          Intact:intactAbilityToConcentration,
+          Other:otherAbilityToConcentration
+        },
+      },
+
+      significantSocialDevelopmentalHistory,
+
+      personalInformation:{
+        educationalHistory,
+        highestEducation,
+        specialEducation,
+        currentStudent,
+        currentStudentLocation:ifYesWhere
+      },
+
+      employmentHistory:{
+        currentlyEmployed,
+        employmentLocation,
+        // fullTime,
+      },
+      workHistory,
+      militaryHistory:{
+        militaryService,
+        activeDuty
+      },
+      legalHistory:selectedValueArray,
+      independentLivingSkills:[
+        {
+          type: "Bathing/Showering",
+          good: BathingGood,
+          fair: BathingFair,
+          otherCurrentNotSoGood:BathingNotSoGood,
+          needAssist: BathingGoodNeedAssist,
+          comments: BathingComments
+        },
+        {
+          type: "Grooming/hygiene",
+          good: GroomingGood,
+          fair: GroomingFair,
+          otherCurrentNotSoGood:GroomingNotSoGood,
+          needAssist: GroomingGoodNeedAssist,
+          comments: GroomingComments
+        },
+        {
+          type: "Mobility",
+          good: MobilityGood,
+          fair: MobilityFair,
+          otherCurrentNotSoGood:MobilityNotSoGood,
+          needAssist: MobilityGoodNeedAssist,
+          comments: MobilityComments
+        },
+        {
+          type: "Housework",
+          good: HouseworkGood,
+          fair: HouseworkFair,
+          otherCurrentNotSoGood:HouseworkNotSoGood,
+          needAssist: HouseworkGoodNeedAssist,
+          comments: HouseworkComments
+        },
+        {
+          type: "Shopping",
+          good: ShoppingGood,
+          fair: ShoppingFair,
+          otherCurrentNotSoGood:ShoppingNotSoGood,
+          needAssist: ShoppingGoodNeedAssist,
+          comments: ShoppingComments
+        },
+        {
+          type: "Managing money/budget",
+          good: ManagingGood,
+          fair: ManagingFair,
+          otherCurrentNotSoGood:ManagingNotSoGood,
+          needAssist:ManagingGoodNeedAssist ,
+          comments: ManagingComments
+        },
+        {
+          type: "Preparing food",
+          good: PreparingGood,
+          fair: PreparingFair,
+          otherCurrentNotSoGood:PreparingNotSoGood,
+          needAssist: PreparingGoodNeedAssist,
+          comments: PreparingComments
+        },
+        {
+          type: "Eating",
+          good: EatingGood,
+          fair: EatingFair,
+          otherCurrentNotSoGood:EatingNotSoGood,
+          needAssist: EatingGoodNeedAssist,
+          comments: EatingComments
+        },
+        {
+          type: "Toileting",
+          good: ToiletingGood,
+          fair: ToiletingFair,
+          otherCurrentNotSoGood:ToiletingNotSoGood,
+          needAssist: ToiletingGoodNeedAssist,
+          comments: ToiletingComments
+        },
+        handleRiskFactorActivityArray,
+      ],
+      triggers,
+      fallRisk,
+      fallRiskExplanation,
+      hobbiesLeisureActivities,
+      medicalEquipmentArray:selectedValueMedicalArray,
+      specialPrecautions:selectedValueSpecialPrecautionsArray,
+      currentThoughtsOfHarmingSelf,
+      suicidalIdeation,
+      suicidalIdeationUrgency,
+      suicidalIdeationSeverity,
+      currentThoughtsOfHarmingOthers,
+      riskFactors:[
+        {
+          type:"Current suicidal ideation",
+          yesNo:riskYesNo,
+          comment:riskComment
+        },
+        {
+          type:"Prior suicide attempt",
+          yesNo:PriorYesNo,
+          comment:PriorComment
+        },
+        {
+          type:"Access to means (i.e. weapon)",
+          yesNo:AccessYesNo,
+          comment:AccessComment
+        },
+        {
+          type:"Substance abuse",
+          yesNo:SubstanceYesNo,
+          comment:SubstanceAbuseComment
+        },
+        {
+          type:"Other self-abusing behavior",
+          yesNo:abusingYesNo,
+          comment:abusingComment
+        },
+        {
+          type:"Recent losses/lack of support",
+          yesNo:RecentYesNo,
+          comment:RecentComment
+        },
+        {
+          type:"Behavior cues",
+          yesNo:behaviourYesNO,
+          comment:behaviorcuesDropDown
+        },
+        {
+          type:"Symptoms of psychosis",
+          yesNo:SymptomsYesNO,
+          comment:symptomsOfPsychosisDropDown
+        },
+        {
+          type:"Family history of suicide",
+          yesNo:FamilyYesNO,
+          comment:Family
+        },
+        {
+          type:"Terminal physical illness",
+          yesNo:TerminalYesNO,
+          comment:Terminal
+        },
+        {
+          type:"Current stressors (specify)",
+          yesNo:CurrentYesNO,
+          comment:Current
+        },
+        {
+          type:"Chronic pain",
+          yesNo:ChronicYesNO,
+          comment:ChronicPain
+        },
+        riskFactorArray,
+
+      ],
+      protectiveFactors:[
+        {
+          type:"Supports available (family friends)",
+          yesNo:SupportsYesNo,
+          comment:SupportsComment
+        },
+        {
+          type:"Spiritual / religious support",
+          yesNo:SpiritualYesNo,
+          comment:SpiritualComment
+        },
+        {
+          type:"Religious/cultural prohibitions",
+          yesNo:ReligiousYesNo,
+          comment:ReligiousComment
+        },
+        {
+          type:"Fear of consequences",
+          yesNo:FearYesNo,
+          comment:FearComment
+        },
+        {
+          type:"Able to be engaged in intervention",
+          yesNo:interventionYesNo,
+          comment:interventionComment
+        },
+        {
+          type:"Willing to commit to keeping self safe",
+          yesNo:WillingYesNo,
+          comment:WillingComment
+        },
+        protectiveFactorsArray,
+      ],
+      riskLevel,
+      psychiatricDiagnoses:[
+        {
+          icdCode:"Primary",
+          description:psychiatricPrimaryIcdCode,
+          name:psychiatricPrimaryDescription
+        },
+        {
+          icdCode:"Secondary",
+          description:psychiatricSecondaryicdCode,
+          name:psychiatricSecondaryDescription
+        },
+        {
+          icdCode:"Tertiary",
+          description:psychiatricTertiaryIcdCode,
+          name:psychiatricTertiaryDescription
+        },
+        {
+          icdCode:"Additional",
+          description:psychiatricAdditionalicdCode,
+          name:psychiatricAdditionalDescription
+        },
+        psychiatricDiagnosesArray,
+      ],
+      medicalDiagnoses:[
+        {
+          icdCode:"Primary",
+          description:primaryIcdCode,
+          name:primaryDescription
+        },
+        {
+          icdCode:"Secondary",
+          description:secondaryicdCode,
+          name:secondaryDescription
+        },
+        {
+          icdCode:"Tertiary",
+          description:TertiaryIcdCode,
+          name:TertiaryDescription
+        },
+        {
+          icdCode:"Additional",
+          description:Additional1icdCode,
+          name:Additional1Description
+        },
+        medicalDiagnosesArray,
+      ],
+
+      primarySupportGroup,
+      maritalProblems,
+      accessToHealthCareServices,
+      educationalProblems,
+      housingProblems,
+      familyProblems,
+      occupationalProblems,
+      interactionWithLegalSystem,
+      substanceUseInHome,
+      sexualProblems,
+      otherStressors,
+
+      significantRecentLosses:{
+        yes:setNoAndYes,
+        typeOfLoss:{
+          death,
+          injury,
+          medicalSurgical,
+          job,
+          divorceSeparation,
+          accidentInjury,
+          childRemovedFromHouse,
+          divorceSeparation:violentActsAgainstPersonFamily,
+          comment:otherSignificantRecentLossesType,
+        }
+      },
+
+      additionalNotes,
+      acceptResident,
+
+      residentInformation: {
+        ResidentName: residentGuardianName,
+        ResidentSignature: residentGauardianSignature,
+        ResidentDate: residentGuardianAgreementDate,
+        time:residentGuardianTime,
+      },
+      staffInformation: {
+        staffName: staffName,
+        staffSignature: staffSignature,
+        staffDate: staffDate,
+        time:staffDateTime
+      },
+      bhpInformation: {
+        bhpName: bhpName,
+        bhpCredentials: bhpCredentials,
+        bhpSignature: bhpSignature,
+        bhpDate:bhpDate,
+        time:bhpTime,
       },
     };
 
@@ -2260,7 +2990,7 @@ const [Additional2Description,setAdditional2Description]=useState("");
         </div>
         <div className="Boss">
           <FormUpper />
-          <p style={{ marginTop: "1rem" }}>
+          <p style={{ marginTop: "0.5rem", marginBottom: "0"}}>
             <span>
             
             <AutoSize value={companyName} setValue={setCompanyName} placeholder={"Company Name"}/>
@@ -2277,7 +3007,7 @@ const [Additional2Description,setAdditional2Description]=useState("");
                <AutoSize value={assessmentOn} setValue={setAssessmentOn} placeholder={"_______________"}/>
             </span>
           </p>
-          <form onSubmit={handleSubmit} style={{ marginTop: "2rem" }}>
+          <form onSubmit={handleSubmit} style={{ marginTop: "0.5rem " }}>
             <h5 style={{ textAlign: "center", fontWeight: "bold" }}>
               SECTION I
             </h5>
@@ -2613,295 +3343,10 @@ const [Additional2Description,setAdditional2Description]=useState("");
                 </div>
               </div>
 
-              {/*
-              <label className="label-review">
-                Identified Needs/targeted Behaviors Intervention(s) to Meet
-                Objectives
-              </label>
-              <div className="safetyplandiv">
-                <div className="form-field" style={{ marginBottom: "10px" }}>
-                  <label >Needs</label>
-                  <input
-                    type="text"
-
-                    value={need}
-                    placeholder="Enter Needs"
-                    onChange={(e) => setNeed(e.target.value)}
-                  />
-                </div>
-                <div className="form-field">
-                  <label >Interventions</label>
-                  <input
-                    type="text"
-
-                    value={intervention}
-                    placeholder="Enter Interventions"
-                    onChange={(e) => setIntervention(e.target.value)}
-                  />
-                </div>
-
-                <div className="form-actions">
-                  <button
-                    type="button"
-                    className="safetybutton"
-                    onClick={behavioralInterventionaArrayHandle}
-                  >
-                    Add
-                  </button>
-                </div>
-              </div>
-              <div className="needs-interventions-container">
-                <div className="needs-interventions-column1">
-                  {behavioralInterventionsArray.length > 0 && (
-                    <table>
-                      <thead>
-
-                        <th>Need</th>
-                        <th>Intervention</th>
-                      </thead>
-                      <tbody>
-                        {behavioralInterventionsArray?.map((i, index) => (
-                          <tr>
-
-                            <td>{`${i.need}`} </td>
-                            <td>{`${i.intervention}`} </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  )}
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="approvedby">Discharge Plan</label>
-                <input
-                  type="text"
-                  id="approvedby"
-                  value={dischargePlan}
-                  placeholder="Enter text"
-                  required
-                  onChange={(e) => setDischargePlan(e.target.value)}
-                />
-              </div>
-              <div className="form-field">
-                <label htmlFor="todaydate">Estimated Date of Discharge</label>
-                <input
-                  type="date"
-                  id="todaydate"
-                  value={estimateDateOfDischarge}
-                  placeholder="DD/MM/YYYY"
-                  required
-                  onChange={(e) => setEstimateDateOfDischarge(e.target.value)}
-                />
-              </div>
-
-              <div class="checkbox-container1">
-                <div class="checkoptions1" style={{ marginTop: "1.2rem" }}>
-
-                  <div class="checkboxitem1">
-                    <input
-                      type="checkbox"
-                      checked={agreementWithPlan === true}
-                      onChange={() => setAgreementWithPlan(true)}
-                    />
-                    <span style={{ paddingLeft: "10px" }}>
-                      {" "}
-                      Yes, I (Resident/guardian) am in agreement with the types
-                      and levels of services included in my behavior plan.
-                    </span>
-                  </div>
-                  <div
-                    class="checkboxitem12"
-                    style={{ display: "flex" }}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={agreementWithPlan === false}
-                      onChange={() => setAgreementWithPlan(false)}
-                    />
-                    <span style={{ paddingLeft: "10px" }}>
-                      No, I (Resident/guardian) disagree with the types and/or
-                      levels of some or all of the services included in my
-                      behavioral health treatment plan. By checking this box, I
-                      (Resident/guardian) will receive the services that I have
-                      agreed to receive and may appeal the treatment team’s
-                      decision to not include all the types and/ or levels of
-                      services that I have requested. *
-                    </span>
-                  </div>
-                </div>
-              </div> */}
-
-              {/* <div className="form-field">
-                <label htmlFor="approvedby">Resident/Guardian name:</label>
-                <input
-                  type="text"
-                  id="approvedby"
-                  value={residentGuardianAgreementName}
-                  placeholder="Enter name"
-                  required
-                  onChange={(e) =>
-                    setResidentGuardianAgreementName(e.target.value)
-                  }
-                />
-              </div> */}
-              {/*
-              <div class="file-upload-box hidePrint">
-                <div className="file-upload-box-child">
-                  <button className="upload-button1" type="button" onClick={() => setDraftModel(true)}>
-                    SAVED AS DRAFT
-                  </button>
-                  <button className="upload-button" type="button" onClick={() => setSigInModel1(true)}>
-                    SAVED AND SIGNED
-                  </button>
-                </div>
-                <div>
-                  {
-                    residentGuardianAgreementSignature && (
-                      <p className="signature_name_print">Digitally Sign by {residentGuardianAgreementSignature} {residentGuardianAgreementDate}</p>
-                    )
-                  }
-                </div>
-              </div> */}
-
-              {/* {
-                signInModel1 && (<SingInUpdateModel
-                  onClose={() => setSigInModel1(false)}
-                  singin={residentGuardianAgreementSignature}
-                  setSingIn={setResidentGuardianAgreementSignature}
-                  setDateAndTime={setResidentGuardianAgreementDate}
-                />)
-              } */}
-
-              {/* <div className="form-field">
-                <label htmlFor="approvedby">Staff Name, Title :</label>
-                <input
-                  type="text"
-                  id="approvedby"
-                  value={staffAgreementname}
-                  placeholder="Enter name"
-                  required
-                  onChange={(e) => setStaffAgreementName(e.target.value)}
-                />
-              </div> */}
-              {/* <div class="file-upload-box hidePrint">
-                <div className="file-upload-box-child">
-                  <button className="upload-button1" type="button" onClick={() => setDraftModel(true)}>
-                    SAVED AS DRAFT
-                  </button>
-                  <button className="upload-button" type="button" onClick={() => setSigInModel2(true)}>
-                    SAVED AND SIGNED
-                  </button>
-                </div>
-                <div>
-                  {
-                    staffAgreementSignature && (
-                      <p className="signature_name_print">Digitally Sign by {staffAgreementSignature} {staffAgreementDate}</p>
-                    )
-                  }
-                </div>
-              </div> */}
-
-              {/* {
-                signInModel2 && (<SingInUpdateModel
-                  onClose={() => setSigInModel2(false)}
-                  singin={staffAgreementSignature}
-                  setSingIn={setStaffAgreementSignature}
-                  setDateAndTime={setStaffAgreementDate}
-                />)
-              } */}
-
-              {/* <div className="form-field">
-                <label htmlFor="approvedby">BHP Name, Credentials:</label>
-                <input
-                  type="text"
-                  id="approvedby"
-                  value={bhpAgreementName}
-                  placeholder="Enter name"
-                  required
-                  onChange={(e) => setBhpAgreementName(e.target.value)}
-                />
-              </div> */}
-              {/* <div class="file-upload-box hidePrint">
-                <div className="file-upload-box-child">
-                  <button className="upload-button1" type="button" onClick={() => setDraftModel(true)}>
-                    SAVED AS DRAFT
-                  </button>
-                  <button className="upload-button" type="button" onClick={() => setSigInModel3(true)}>
-                    SAVED AND SIGNED
-                  </button>
-                </div>
-                <div>
-                  {
-                    bhpAgreementSignature && (
-                      <p className="signature_name_print">Digitally Sign by {bhpAgreementSignature} {bhpAgreementDate}</p>
-                    )
-                  }
-                </div>
-              </div> */}
-
-              {/* {
-                signInModel3 && (<SingInUpdateModel
-                  onClose={() => setSigInModel3(false)}
-                  singin={bhpAgreementSignature}
-                  setSingIn={setBhpAgreementSignature}
-                  setDateAndTime={setBhpAgreementDate}
-                />)
-              } */}
-              {/*
-              <div className="form-field">
-                <label htmlFor="approvedby">Other Name:</label>
-                <input
-                  type="text"
-                  id="approvedby"
-                  value={otherName}
-                  placeholder="Enter name"
-                  required
-                  onChange={(e) => setOtherName(e.target.value)}
-                />
-              </div> */}
-
-              {/* <div className="form-field">
-                <label htmlFor="approvedby">Relationship to Resident</label>
-                <input
-                  type="text"
-                  id="approvedby"
-                  value={otherRelationship}
-                  placeholder="Enter text"
-                  required
-                  onChange={(e) => setOtherRelationship(e.target.value)}
-                />
-              </div>
-              <div class="file-upload-box hidePrint">
-                <div className="file-upload-box-child">
-                  <button className="upload-button1" type="button" onClick={() => setDraftModel(true)}>
-                    SAVED AS DRAFT
-                  </button>
-                  <button className="upload-button" type="button" onClick={() => setSigInModel5(true)}>
-                    SAVED AND SIGNED
-                  </button>
-                </div>
-                <div>
-                  {
-                    otherSignature && (
-                      <p className="signature_name_print">Digitally Sign by {otherSignature} {otherDate}</p>
-                    )
-                  }
-                </div>
-              </div> */}
-
-              {/* {
-                signInModel5 && (<SingInUpdateModel
-                  onClose={() => setSigInModel5(false)}
-                  singin={otherSignature}
-                  setSingIn={setOtherSignature}
-                  setDateAndTime={setOtherDate}
-                />)
-              } */}
-
+           
               <h5
                 style={{
-                  marginTop: "1.5rem",
+                  marginTop: "0.5rem",
                   fontWeight: "bold",
                   textAlign: "center",
                 }}
@@ -4083,917 +4528,6 @@ const [Additional2Description,setAdditional2Description]=useState("");
                 </button>
               </div>
 
-
-
-              {/* <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>Diabetes:</label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="diabetes"
-                      checked={diabetes === true}
-                      onChange={() => setDiabetes(true)}
-                    />
-                    <label htmlFor="diabetes">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="diabetesno"
-                      checked={diabetes === false}
-                      onChange={() => setDiabetes(false)}
-                    />
-                    <label htmlFor="diabetesno">No</label>
-                  </div>
-                </div>
-
-              </div>
-
-              <div className="form-field">
-                <label htmlFor="programlocation&address" style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-                  id="programlocation&address"
-                  value={commentDiabety}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                  onChange={(e) => setCommentDeabetes(e.target.value)}
-                />
-              </div>
-
-
-              <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>Heart disease / heart attack</label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="yesHeart"
-                      checked={yesHeart === true}
-                      onChange={() => setYesHeart(true)}
-                    />
-                    <label htmlFor="yesHeart">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="yesHeartno"
-                      checked={yesHeart === false}
-                      onChange={() => setYesHeart(false)}
-                    />
-                    <label htmlFor="yesHeartno">No</label>
-                  </div>
-                </div>
-              </div>
-
-              <div className="form-field">
-                <label style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-
-                  value={commentHeart}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                  onChange={(e) => setCommentHeart(e.target.value)}
-                />
-              </div>
-              <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>History of stroke:</label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="yesHistory"
-                      checked={yesHistory === true}
-                      onChange={() => setYesHistory(true)}
-                    />
-                    <label htmlFor="yesHistory">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="yesHistoryno"
-                      checked={yesHistory === false}
-                      onChange={() => setYesHistory(false)}
-                    />
-                    <label htmlFor="yesHistoryno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="programlocation&address" style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-                  id="programlocation&address"
-                  value={commentHistory}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                  onChange={(e) => setCommentHistory(e.target.value)}
-                />
-              </div>
-              <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>High Blood Pressure:</label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="yesHigh"
-                      checked={yesHigh === true}
-                      onChange={() => setYesHigh(true)}
-                    />
-                    <label htmlFor="yesHigh">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="yesHighno"
-                      checked={yesHigh === false}
-                      onChange={() => setYesHigh(false)}
-                    />
-                    <label htmlFor="yesHighno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="programlocation&address" style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-                  id="programlocation&address"
-                  value={commentHigh}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                  onChange={(e) => setCommentHigh(e.target.value)}
-                />
-              </div>
-              <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>
-                  Lung disease (ie asthma, COPD, emphysema):
-                </label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="yesLung"
-                      checked={diabetes === true}
-                      onChange={() => setYesLung(true)}
-                    />
-                    <label htmlFor="yesLung">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="yesLungno"
-                      checked={yesLung === false}
-                      onChange={() => setYesLung(false)}
-                    />
-                    <label htmlFor="yesLungno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="programlocation&address" style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-                  id="programlocation&address"
-                  value={commentLung}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                  onChange={(e) => setCommentLung(e.target.value)}
-                />
-              </div>
-              <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>Seizures:</label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="diabetes"
-                      checked={diabetes === true}
-                      onChange={() => setDiabetes(true)}
-                    />
-                    <label htmlFor="diabetes">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="yesSeizuresno"
-                      checked={yesSeizures === false}
-                      onChange={() => setYesSeizures(false)}
-                    />
-                    <label htmlFor="yesSeizuresno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="programlocation&address" style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-                  id="programlocation&address"
-                  value={commentSeizures}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                  onChange={(e) => setCommentSeizures(e.target.value)}
-                />
-              </div>
-              <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>Cancer:</label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="yesCancer"
-                      checked={yesCancer === true}
-                      onChange={() => setYesCancer(true)}
-                    />
-                    <label htmlFor="yesCancer">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="yesCancerno"
-                      checked={yesCancer === false}
-                      onChange={() => setYesCancer(false)}
-                    />
-                    <label htmlFor="yesCancerno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="programlocation&address" style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-                  id="programlocation&address"
-                  value={commentCancer}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                  onChange={(e) => setCommentCancer(e.target.value)}
-                />
-              </div>
-              <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>Liver/kidney disease:</label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="yesLiver"
-                      checked={yesLiver === true}
-                      onChange={() => setYesLiver(true)}
-                    />
-                    <label htmlFor="yesLiver">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="yesLiverno"
-                      checked={yesLiver === false}
-                      onChange={() => setYesLiver(false)}
-                    />
-                    <label htmlFor="yesLiverno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="programlocation&address" style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-                  id="programlocation&address"
-                  value={commentLiver}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                  onChange={(e) => setCommentLiver(e.target.value)}
-                />
-              </div>
-              <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>Thyroid disorder:</label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="yesThyroid"
-                      checked={yesThyroid === true}
-                      onChange={() => setYesThyroid(true)}
-                    />
-                    <label htmlFor="yesThyroid">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="setYesThyroidno"
-                      checked={yesThyroid === false}
-                      onChange={() => setYesThyroid(false)}
-                    />
-                    <label htmlFor="setYesThyroidno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="programlocation&address" style={{ fontSize: "20px", marginTop: "1.5rem" }}>
-                  Select thyroid disorder:{" "}
-                </label>
-
-                <Select
-                  isMulti
-                  value={thyroidDisorder}
-                  onChange={thyroiddisorderhnadler}
-                  options={thyroidOptions}
-                />
-              </div>
-              <div className="yeschechbox" style={{ marginTop: "1.5rem" }}>
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>History of head trauma/traumatic brain:</label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="yesbrain"
-                      checked={yesbrain === true}
-                      onChange={() => setYesBrain(true)}
-                    />
-                    <label htmlFor="yesbrain">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-
-                      type="checkbox"
-                      id="yesbrainno"
-                      checked={yesbrain === false}
-                      onChange={() => setYesBrain(false)}
-                    />
-                    <label htmlFor="yesbrainno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="programlocation&address" style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-                  value={commentbrain}
-                  onChange={(e) => setbrain(e.target.value)}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                />
-              </div>
-              <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>History of head trauma/traumatic brain injury:</label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="yesInjury"
-                      checked={yesInjury === true}
-                      onChange={() => setYesInjury(true)}
-                    />
-                    <label htmlFor="yesInjury">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="yesInjuryno"
-                      checked={yesInjury === false}
-                      onChange={() => setYesInjury(false)}
-                    />
-                    <label htmlFor="yesInjuryno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="programlocation&address" style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-                  value={commentInjury}
-                  onChange={(e) => setCommentInjury(e.target.value)}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                />
-              </div>
-              <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>Chronic pain:</label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="Chronic"
-                      checked={yesChronic === true}
-                      onChange={() => setYesChronic(true)}
-                    />
-                    <label htmlFor="Chronic">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="Chronicno"
-                      checked={yesChronic === false}
-                      onChange={() => setYesChronic(false)}
-                    />
-                    <label htmlFor="Chronicno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="programlocation&address" style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-                  value={chronicCommit}
-                  onChange={(e) => setChronicCommit(e.target.value)}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                />
-              </div>
-              <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>
-                  Allergies (food, environment, medications):
-                </label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="AllergiesYes"
-                      checked={AllergiesYes === true}
-                      onChange={() => setAllergiesYes(true)}
-                    />
-                    <label htmlFor="AllergiesYes">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="AllergiesYesno"
-                      checked={AllergiesYes === false}
-                      onChange={() => setAllergiesYes(false)}
-                    />
-                    <label htmlFor="AllergiesYesno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="programlocation&address" style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-                  value={AllergiesComment}
-                  onChange={(e) => setAllergiesComment(e.target.value)}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                />
-              </div>
-              <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>Surgeries:</label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="SurgeriesYes"
-                      checked={SurgeriesYes === true}
-                      onChange={() => setSurgeriessYes(true)}
-                    />
-                    <label htmlFor="SurgeriesYes">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="SurgeriesYesno"
-                      checked={SurgeriesYes === false}
-                      onChange={() => setSurgeriessYes(false)}
-                    />
-                    <label htmlFor="SurgeriesYesno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="programlocation&address" style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-                  value={SurgeriesComment}
-                  onChange={(e) => setSurgeriesComment(e.target.value)}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                />
-              </div>
-              <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>Number of pregnancies / births:</label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="pregnanciesYes"
-                      checked={pregnanciesYes === true}
-                      onChange={() => setPregnanciesYes(true)}
-                    />
-                    <label htmlFor="pregnanciesYes">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="pregnanciesYesno"
-                      checked={pregnanciesYes === false}
-                      onChange={() => setPregnanciesYes(false)}
-                    />
-                    <label htmlFor="pregnanciesYesno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="programlocation&address" style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-                  value={pregnanciesComment}
-                  onChange={(e) => setPregnanciesComment(e.target.value)}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                />
-              </div>
-              <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>Substance use disorder (please specify):</label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="SubstanceYes"
-                      checked={SubstanceYes === true}
-                      onChange={() => setSubstanceYes(true)}
-                    />
-                    <label htmlFor="SubstanceYes">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="SubstanceYesno"
-                      checked={SubstanceYes === false}
-                      onChange={() => setSubstanceYes(false)}
-                    />
-                    <label htmlFor="SubstanceYesno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="programlocation&address" style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-                  value={SubstanceComment}
-                  onChange={(e) => setSubstanceComment(e.target.value)}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                />
-              </div>
-              <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>Depression:</label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="DepressionYes"
-                      checked={DepressionYes === true}
-                      onChange={() => setDepressionYes(true)}
-                    />
-                    <label htmlFor="DepressionYes">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="DepressionYesno"
-                      checked={DepressionYes === false}
-                      onChange={() => setDepressionYes(false)}
-                    />
-                    <label htmlFor="DepressionYesno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="programlocation&address" style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-                  value={DepressionComment}
-                  onChange={(e) => setDepressionComment(e.target.value)}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                />
-              </div>
-              <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>Anxiety/panic attacks:</label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="AnxietyYes"
-                      checked={AnxietyYes === true}
-                      onChange={() => setAnxietyYes(true)}
-                    />
-                    <label htmlFor="AnxietyYes">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="AnxietyYesno"
-                      checked={AnxietyYes === false}
-                      onChange={() => setAnxietyYes(false)}
-                    />
-                    <label htmlFor="AnxietyYesno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="programlocation&address" style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-                  value={AnxietyComment}
-                  onChange={(e) => setAnxietyComment(e.target.value)}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                />
-              </div>
-              <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>Insomnia:</label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="InsomniaYes"
-                      checked={InsomniaYes === true}
-                      onChange={() => setInsomniaYes(true)}
-                    />
-                    <label htmlFor="InsomniaYes">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="InsomniaYesno"
-                      checked={InsomniaYes === false}
-                      onChange={() => setInsomniaYes(false)}
-                    />
-                    <label htmlFor="InsomniaYesno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="programlocation&address" style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-                  value={healthConditionsYesComment}
-                  onChange={(e) => sethealthConditionsYesComment(e.target.value)}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                />
-              </div>
-              <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>Bipolar disorder:</label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="BipolarYes"
-                      checked={BipolarYes === true}
-                      onChange={() => setBipolarYes(true)}
-                    />
-                    <label htmlFor="BipolarYes">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="BipolarYesno"
-                      checked={BipolarYes === false}
-                      onChange={() => setBipolarYes(false)}
-                    />
-                    <label htmlFor="BipolarYesno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="programlocation&address" style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-                  value={BipolarComment}
-                  onChange={(e) => setBipolarComment(e.target.value)}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                />
-              </div>
-              <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>Schizophrenia:</label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="SchizophreniaYes"
-                      checked={SchizophreniaYes === true}
-                      onChange={() => setSchizophreniaYes(true)}
-                    />
-                    <label htmlFor="SchizophreniaYes">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="SchizophreniaYesno"
-                      checked={SchizophreniaYes === false}
-                      onChange={() => setSchizophreniaYes(false)}
-                    />
-                    <label htmlFor="SchizophreniaYesno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="" style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-                  value={SchizophreniaComment}
-                  onChange={(e) => setSchizophreniaComment(e.target.value)}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                />
-              </div>
-              <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>Obsessive compulsive disorder:</label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="ObsessiveYes"
-                      checked={ObsessiveYes === true}
-                      onChange={() => setObsessiveYes(true)}
-                    />
-                    <label htmlFor="ObsessiveYes">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="ObsessiveYesno"
-                      checked={ObsessiveYes === false}
-                      onChange={() => setObsessiveYes(false)}
-                    />
-                    <label htmlFor="ObsessiveYesno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="programlocation&address" style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-                  value={ObsessiveComment}
-                  onChange={(e) => setObsessiveComment(e.target.value)}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                />
-              </div>
-              <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>Personality disorder (please specify):</label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="PersonalityYes"
-                      checked={PersonalityYes === true}
-                      onChange={() => setPersonalityYes(true)}
-                    />
-                    <label htmlFor="PersonalityYes">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="PersonalityYesno"
-                      checked={PersonalityYes === false}
-                      onChange={() => setPersonalityYes(false)}
-                    />
-                    <label htmlFor="PersonalityYesno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="programlocation&address" style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-                  value={PersonalityComment}
-                  onChange={(e) => setPersonalityComment(e.target.value)}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                />
-              </div>
-              <div className="yeschechbox">
-                <label style={{ fontSize: "20px", marginTop: "1.5rem" }}>Phobias:</label>
-
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="PhobiasYes"
-                      checked={PhobiasYes === true}
-                      onChange={() => setPhobiasYes(true)}
-                    />
-                    <label htmlFor="PhobiasYes">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="PhobiasYesno"
-                      checked={PhobiasYes === false}
-                      onChange={() => setPhobiasYes(false)}
-                    />
-                    <label htmlFor="PhobiasYesno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="programlocation&address" style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-                  value={PhobiasComment}
-                  onChange={(e) => setPhobiasComment(e.target.value)}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                />
-              </div>
-              <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>Any other health conditions:</label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="healthConditionsYes"
-                      checked={healthConditionsYes === true}
-                      onChange={() => setHealthConditionsYes(true)}
-                    />
-                    <label htmlFor="healthConditionsYes">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="healthConditionsYesno"
-                      checked={healthConditionsYes === false}
-                      onChange={() => setHealthConditionsYes(false)}
-                    />
-                    <label htmlFor="healthConditionsYesno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field">
-                <label htmlFor="programlocation&address" style={{ fontSize: "14px" }}>Comments</label>
-                <textarea
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                  value={healthConditionsYesComment}
-                  onChange={(e) => sethealthConditionsYesComment(e.target.value)}
-                />
-              </div>
-              <div className="yeschechbox">
-                <label htmlFor="" style={{ fontSize: "20px", marginTop: "1.5rem" }}>Infection or Diseases:</label>
-                <div className="checkbox654">
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="InfectionYes"
-                      checked={InfectionYes === true}
-                      onChange={() => setInfectionYes(true)}
-                    />
-                    <label htmlFor="InfectionYes">Yes</label>
-                  </div>
-                  <div className="checkBox-aligment">
-                    <input
-                      type="checkbox"
-                      id="InfectionYesno"
-                      checked={InfectionYes === false}
-                      onChange={() => setInfectionYes(false)}
-                    />
-                    <label htmlFor="InfectionYesno">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field-single-update-bold">
-                <label >
-                  Select Infection or Diseases:{" "}
-                </label>
-
-                <Select
-                  isMulti
-                  placeholder="Select Multiple Type"
-                  value={infectionDiseases}
-                  onChange={infectionDiseasesHandler}
-                  options={infectionDiseasesOptions}
-                  isCreatable={true}
-                  onKeyDown={handleKeyInfectionDiseases}
-                />
-              </div> */}
-
               <div className="box-image-container">
                 <div className="form-field-single-update-bold">
                   <label>Significant Family Medical/Psychiatric History:</label>
@@ -5119,18 +4653,18 @@ const [Additional2Description,setAdditional2Description]=useState("");
                         {typeOfServiceArray?.map((i, index) => (
                           <tr>
                             <td>
-                              {i?.mentalHealthTreatmentHistoryTypeOfService?.map(
+                              {i?.typeOfService?.map(
                                 (item) => (
                                   <p key={item?.value}>{item?.value}</p>
                                 )
                               )}
                             </td>
                             <td>
-                              {`${i?.mentalHealthTreatmentHistoryWhere}`}{" "}
+                              {`${i?.where}`}{" "}
                             </td>
-                            <td>{`${i?.mentalHealthTreatmentHistoryDates}`}</td>
+                            <td>{`${i?.dates}`}</td>
                             <td>
-                              {i?.mentalHealthTreatmentHistoryDiagnosisReason?.map(
+                              {i?.diagnosisReason?.map(
                                 (item) => (
                                   <p key={item?.value}>{item?.value}</p>
                                 )
@@ -9068,12 +8602,12 @@ const [Additional2Description,setAdditional2Description]=useState("");
                 </div>
               </div> */}
                 <div className="form-field-child">
-                  <label htmlFor="approvedby">
+                  <label >
                     If employed, where? FT or PT?:
                   </label>
                   <input
                     type="text"
-                    id="approvedby"
+                
                     value={employmentLocation}
                     placeholder="Enter text"
                     required
@@ -9166,80 +8700,7 @@ const [Additional2Description,setAdditional2Description]=useState("");
                 </h6>
               </div>
 
-              {/* <div className="box-image-container hidePrint" style={{ padding: "10px" }}>
-              <div className="form-field">
-                <label >Type of Activity</label>
-                <Select
-                  value={bathingShoweringGood}
-                  isMulti
-                  onChange={bathingShoweringGoodJHandler}
-                  options={bathingShoweringGoodOptions}
-                  isCreatable={true}
-                  onKeyDown={handleKeyBathingShoweringGood}
-                />
-              </div>
-
-
-              <div className="yeschechbox employment-Aligmantfall-risk">
-                <div>
-                  <input
-                    type="checkbox"
-                    checked={bathingShoweringFair === true}
-                    onChange={() => setBathingShoweringFair(true)}
-                  />
-                  <label>Good</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    checked={bathingShoweringFair === false}
-                    onChange={() => setBathingShoweringFair(false)}
-                  />
-                  <label>Fair</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-
-                  />
-                  <label>Not so good</label>
-                </div>
-              </div>
-              <div className="yeschechbox">
-                <label htmlFor="">Need assist?</label>
-                <div className="employment-Aligmant">
-                  <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                    <input
-                      type="checkbox"
-                      checked={bathingShoweringNeedAssist === true}
-                      onChange={() => setBathingShoweringNeedAssist(true)}
-                    />
-                    <label>Yes</label>
-                  </div>
-                  <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                    <input
-                      type="checkbox"
-                      checked={bathingShoweringNeedAssist === false}
-                      onChange={() => setBathingShoweringNeedAssist(false)}
-                    />
-                    <label>No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-field-single-update-notBold">
-                <label >Comments:</label>
-                <input
-                  type="text"
-
-                  placeholder="Enter text"
-                  value={bathingShoweringComments}
-                  onChange={(e) => setBathingShoweringComments(e.target.value)}
-
-                />
-
-              </div>
-              </div> */}
-
+             
               <div className="needs-interventions-container table-respnosive">
                 <div className="needs-interventions-column3">
                   <table>
@@ -9257,16 +8718,17 @@ const [Additional2Description,setAdditional2Description]=useState("");
                       <tr>
                         <td>Bathing/Showering</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={BathingGood===true} onChange={()=>setBathingGood(!BathingGood)} />
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={BathingFair===true} onChange={()=>setBathingFair(!BathingFair)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={BathingNotSoGood===true} onChange={()=>setBathingNotSoGood(!BathingNotSoGood)}/>
                         </td>
                         <td>
-                          <select>
+                          <select value={BathingGoodNeedAssist} onChange={(e)=>setBathingGoodNeedAssist(e.target.value)}>
+                            <option disabled>Select value</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                           </select>
@@ -9274,14 +8736,14 @@ const [Additional2Description,setAdditional2Description]=useState("");
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            // rows={Math.max(commentDiabety.split("\n").length, 1)}
-                            // value={commentDiabety}
+                            rows={Math.max(BathingComments.split("\n").length, 1)}
+                            value={BathingComments}
                             placeholder="___________"
-                            // onChange={(e) => setCommentDeabetes(e.target.value)}
+                            onChange={(e) => setBathingComments(e.target.value)}
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
                                 e.preventDefault();
-                                // setCommentDeabetes((prevComment) => prevComment + "\n");
+                                setBathingComments((prevComment) => prevComment + "\n");
                               }
                             }}
                           />
@@ -9290,16 +8752,17 @@ const [Additional2Description,setAdditional2Description]=useState("");
                       <tr>
                         <td>Grooming/hygiene</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={GroomingGood===true} onChange={()=>setGroomingGood(!GroomingGood)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={GroomingFair===true} onChange={()=>setGroomingFair(!GroomingFair)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={GroomingNotSoGood===true} onChange={()=>setGroomingNotSoGood(!GroomingNotSoGood)}/>
                         </td>
                         <td>
-                          <select>
+                          <select value={GroomingGoodNeedAssist} onChange={(e)=>setGroomingGoodNeedAssist(e.target.value)}>
+                          <option disabled>Select value</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                           </select>
@@ -9307,14 +8770,14 @@ const [Additional2Description,setAdditional2Description]=useState("");
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            // rows={Math.max(commentDiabety.split("\n").length, 1)}
-                            // value={commentDiabety}
+                            rows={Math.max(GroomingComments.split("\n").length, 1)}
+                            value={GroomingComments}
                             placeholder="___________"
-                            // onChange={(e) => setCommentDeabetes(e.target.value)}
+                            onChange={(e) => setGroomingComments(e.target.value)}
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
                                 e.preventDefault();
-                                // setCommentDeabetes((prevComment) => prevComment + "\n");
+                                setGroomingComments((prevComment) => prevComment + "\n");
                               }
                             }}
                           />
@@ -9323,16 +8786,17 @@ const [Additional2Description,setAdditional2Description]=useState("");
                       <tr>
                         <td>Mobility</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox"checked={MobilityGood===true} onChange={()=>setMobilityGood(!MobilityGood)} />
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={MobilityFair===true} onChange={()=>setMobilityFair(!MobilityFair)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={MobilityNotSoGood===true} onChange={()=>setMobilityNotSoGood(!MobilityNotSoGood)}/>
                         </td>
                         <td>
-                          <select>
+                          <select value={MobilityGoodNeedAssist} onChange={(e)=>setMobilityGoodNeedAssist(e.target.value)}>
+                          <option disabled>Select value</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                           </select>
@@ -9340,14 +8804,14 @@ const [Additional2Description,setAdditional2Description]=useState("");
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            // rows={Math.max(commentDiabety.split("\n").length, 1)}
-                            // value={commentDiabety}
+                            rows={Math.max(MobilityComments.split("\n").length, 1)}
+                            value={MobilityComments}
                             placeholder="___________"
-                            // onChange={(e) => setCommentDeabetes(e.target.value)}
+                            onChange={(e) => setMobilityComments(e.target.value)}
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
                                 e.preventDefault();
-                                // setCommentDeabetes((prevComment) => prevComment + "\n");
+                                setMobilityComments((prevComment) => prevComment + "\n");
                               }
                             }}
                           />
@@ -9356,16 +8820,17 @@ const [Additional2Description,setAdditional2Description]=useState("");
                       <tr>
                         <td>Housework</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={HouseworkGood===true} onChange={()=>setHouseworkGood(!HouseworkGood)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={HouseworkFair===true} onChange={()=>setHouseworkFair(!HouseworkFair)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={HouseworkNotSoGood===true} onChange={()=>setHouseworkNotSoGood(!HouseworkNotSoGood)}/>
                         </td>
                         <td>
-                          <select>
+                          <select value={HouseworkGoodNeedAssist} onChange={(e)=>setHouseworkGoodNeedAssist(e.target.value)}>
+                          <option disabled>Select value</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                           </select>
@@ -9373,14 +8838,14 @@ const [Additional2Description,setAdditional2Description]=useState("");
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            // rows={Math.max(commentDiabety.split("\n").length, 1)}
-                            // value={commentDiabety}
+                            rows={Math.max(HouseworkComments.split("\n").length, 1)}
+                            value={HouseworkComments}
                             placeholder="___________"
-                            // onChange={(e) => setCommentDeabetes(e.target.value)}
+                            onChange={(e) => setHouseworkComments(e.target.value)}
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
                                 e.preventDefault();
-                                // setCommentDeabetes((prevComment) => prevComment + "\n");
+                                setHouseworkComments((prevComment) => prevComment + "\n");
                               }
                             }}
                           />
@@ -9389,16 +8854,17 @@ const [Additional2Description,setAdditional2Description]=useState("");
                       <tr>
                         <td>Shopping</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={ShoppingGood===true} onChange={()=>setShoppingGood(!ShoppingGood)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={ShoppingFair===true} onChange={()=>setShoppingFair(!ShoppingFair)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={ShoppingNotSoGood===true} onChange={()=>setShoppingNotSoGood(!ShoppingNotSoGood)}/>
                         </td>
                         <td>
-                          <select>
+                          <select value={ShoppingGoodNeedAssist} onChange={(e)=>setShoppingGoodNeedAssist(e.target.value)}>
+                          <option disabled>Select value</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                           </select>
@@ -9406,14 +8872,14 @@ const [Additional2Description,setAdditional2Description]=useState("");
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            // rows={Math.max(commentDiabety.split("\n").length, 1)}
-                            // value={commentDiabety}
+                            rows={Math.max(ShoppingComments.split("\n").length, 1)}
+                            value={ShoppingComments}
                             placeholder="___________"
-                            // onChange={(e) => setCommentDeabetes(e.target.value)}
+                            onChange={(e) => setShoppingComments(e.target.value)}
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
                                 e.preventDefault();
-                                // setCommentDeabetes((prevComment) => prevComment + "\n");
+                                setShoppingComments((prevComment) => prevComment + "\n");
                               }
                             }}
                           />
@@ -9422,16 +8888,17 @@ const [Additional2Description,setAdditional2Description]=useState("");
                       <tr>
                         <td>Managing money/budget</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={ManagingGood===true} onChange={()=>setManagingGood(!ManagingGood)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={ManagingFair===true} onChange={()=>setManagingFair(!ManagingFair)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={ManagingNotSoGood===true} onChange={()=>setManagingNotSoGood(!ManagingNotSoGood)}/>
                         </td>
                         <td>
-                          <select>
+                          <select value={ManagingGoodNeedAssist} onChange={(e)=>setManagingGoodNeedAssist(e.target.value)}>
+                          <option disabled>Select value</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                           </select>
@@ -9439,14 +8906,14 @@ const [Additional2Description,setAdditional2Description]=useState("");
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            // rows={Math.max(commentDiabety.split("\n").length, 1)}
-                            // value={commentDiabety}
+                            rows={Math.max(ManagingComments.split("\n").length, 1)}
+                            value={ManagingComments}
                             placeholder="___________"
-                            // onChange={(e) => setCommentDeabetes(e.target.value)}
+                            onChange={(e) => setManagingComments(e.target.value)}
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
                                 e.preventDefault();
-                                // setCommentDeabetes((prevComment) => prevComment + "\n");
+                                setManagingComments((prevComment) => prevComment + "\n");
                               }
                             }}
                           />
@@ -9455,16 +8922,17 @@ const [Additional2Description,setAdditional2Description]=useState("");
                       <tr>
                         <td>Preparing food</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={PreparingGood===true} onChange={()=>setPreparingGood(!PreparingGood)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={PreparingFair===true} onChange={()=>setPreparingFair(!PreparingFair)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={PreparingNotSoGood===true} onChange={()=>setPreparingNotSoGood(!PreparingNotSoGood)}/>
                         </td>
                         <td>
-                          <select>
+                          <select value={PreparingGoodNeedAssist} onChange={(e)=>setPreparingGoodNeedAssist(e.target.value)}>
+                          <option disabled>Select value</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                           </select>
@@ -9472,14 +8940,14 @@ const [Additional2Description,setAdditional2Description]=useState("");
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            // rows={Math.max(commentDiabety.split("\n").length, 1)}
-                            // value={commentDiabety}
+                            rows={Math.max(PreparingComments.split("\n").length, 1)}
+                            value={PreparingComments}
                             placeholder="___________"
-                            // onChange={(e) => setCommentDeabetes(e.target.value)}
+                            onChange={(e) => setPreparingComments(e.target.value)}
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
                                 e.preventDefault();
-                                // setCommentDeabetes((prevComment) => prevComment + "\n");
+                                setPreparingComments((prevComment) => prevComment + "\n");
                               }
                             }}
                           />
@@ -9488,16 +8956,17 @@ const [Additional2Description,setAdditional2Description]=useState("");
                       <tr>
                         <td>Eating</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={EatingGood===true} onChange={()=>setEatingGood(!EatingGood)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={EatingFair===true} onChange={()=>setEatingFair(!EatingFair)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={EatingNotSoGood===true} onChange={()=>setEatingNotSoGood(!EatingNotSoGood)}/>
                         </td>
                         <td>
-                          <select>
+                          <select value={EatingGoodNeedAssist} onChange={(e)=>setEatingGoodNeedAssist(e.target.value)}>
+                          <option disabled>Select value</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                           </select>
@@ -9505,14 +8974,14 @@ const [Additional2Description,setAdditional2Description]=useState("");
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            // rows={Math.max(commentDiabety.split("\n").length, 1)}
-                            // value={commentDiabety}
+                            rows={Math.max(EatingComments.split("\n").length, 1)}
+                            value={EatingComments}
                             placeholder="___________"
-                            // onChange={(e) => setCommentDeabetes(e.target.value)}
+                            onChange={(e) => setEatingComments(e.target.value)}
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
                                 e.preventDefault();
-                                // setCommentDeabetes((prevComment) => prevComment + "\n");
+                                setEatingComments((prevComment) => prevComment + "\n");
                               }
                             }}
                           />
@@ -9521,16 +8990,17 @@ const [Additional2Description,setAdditional2Description]=useState("");
                       <tr>
                         <td>Toileting</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={ToiletingGood===true} onChange={()=>setToiletingGood(!ToiletingGood)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={ToiletingFair===true} onChange={()=>setToiletingFair(!ToiletingFair)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={ToiletingNotSoGood===true} onChange={()=>setToiletingNotSoGood(!ToiletingNotSoGood)}/>
                         </td>
                         <td>
-                          <select>
+                          <select value={ToiletingGoodNeedAssist} onChange={(e)=>setToiletingGoodNeedAssist(e.target.value)}>
+                          <option disabled>Select value</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                           </select>
@@ -9538,14 +9008,14 @@ const [Additional2Description,setAdditional2Description]=useState("");
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            // rows={Math.max(commentDiabety.split("\n").length, 1)}
-                            // value={commentDiabety}
+                            rows={Math.max(ToiletingComments.split("\n").length, 1)}
+                            value={ToiletingComments}
                             placeholder="___________"
-                            // onChange={(e) => setCommentDeabetes(e.target.value)}
+                            onChange={(e) => setToiletingComments(e.target.value)}
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
                                 e.preventDefault();
-                                // setCommentDeabetes((prevComment) => prevComment + "\n");
+                                setToiletingComments((prevComment) => prevComment + "\n");
                               }
                             }}
                           />
@@ -9835,8 +9305,8 @@ const [Additional2Description,setAdditional2Description]=useState("");
                   >
                     <input
                       type="checkbox"
-                      // checked={bathingShoweringNeedAssist===true}
-                      // onChange={()=>setBathingShoweringNeedAssist(true)}
+                      checked={suicidalIdeation===true}
+                      onChange={()=>setSuicidalIdeation(true)}
                     />
                     <label>Fleeting</label>
                   </div>
@@ -9850,8 +9320,8 @@ const [Additional2Description,setAdditional2Description]=useState("");
                   >
                     <input
                       type="checkbox"
-                      // checked={bathingShoweringNeedAssist===false}
-                      // onChange={()=>setBathingShoweringNeedAssist(false)}
+                      checked={suicidalIdeation===true}
+                      onChange={()=>setSuicidalIdeation(true)}
                     />
                     <label>Periodic</label>
                   </div>
@@ -9865,8 +9335,8 @@ const [Additional2Description,setAdditional2Description]=useState("");
                   >
                     <input
                       type="checkbox"
-                      // checked={bathingShoweringNeedAssist===false}
-                      // onChange={()=>setBathingShoweringNeedAssist(false)}
+                      checked={suicidalIdeation===true}
+                      onChange={()=>setSuicidalIdeation(true)}
                     />
                     <label>Constant</label>
                   </div>
@@ -9880,8 +9350,8 @@ const [Additional2Description,setAdditional2Description]=useState("");
                   >
                     <input
                       type="checkbox"
-                      // checked={bathingShoweringNeedAssist===false}
-                      // onChange={()=>setBathingShoweringNeedAssist(false)}
+                      checked={suicidalIdeation===false}
+                      onChange={()=>setSuicidalIdeation(false)}
                     />
                     <label>N/A</label>
                   </div>
@@ -9937,7 +9407,7 @@ const [Additional2Description,setAdditional2Description]=useState("");
                       <input
                         type="checkbox"
                         id="currentThoughtsOfHarmingSelf"
-                        checked={currentThoughtsOfHarmingSelf === true}
+                        checked={suicidalIdeationSeverity === true}
                         onChange={() => setSuicidalIdeationSeverity(true)}
                       />
                       <label htmlFor="currentThoughtsOfHarmingSelf">Yes</label>
@@ -10014,106 +9484,141 @@ const [Additional2Description,setAdditional2Description]=useState("");
                       <tr>
                         <td>Current suicidal ideation </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox"  checked={riskYesNo === true}
+                      onChange={() => setRiskYesNo(true)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox"  checked={riskYesNo === false}
+                      onChange={() => setRiskYesNo(false)} />
                         </td>
                         <td>
                           <input
                             style={{ border: "none", outline: "none" }}
                             type="text"
                             placeholder="____________"
+                            value={riskComment}
+                            onChange={(e)=>{setRiskComment(e.target.value)}}
                           />
                         </td>
                       </tr>
                       <tr>
                         <td>Prior suicide attempt</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={PriorYesNo === true}
+                      onChange={() => setPriorYesNo(true)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={PriorYesNo === false}
+                      onChange={() => setPriorYesNo(false)}/>
                         </td>
                         <td>
                           <input
                             style={{ border: "none", outline: "none" }}
                             type="text"
                             placeholder="____________"
+                            value={PriorComment}
+                            onChange={(e)=>{setPriorComment(e.target.value)}}
                           />
                         </td>
                       </tr>
                       <tr>
                         <td>Access to means (i.e. weapon)</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={AccessYesNo === true}
+                          onChange={() => setAccessYesNo(true)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" checked={AccessYesNo === true}
+                      onChange={() => setAccessYesNo(true)}/>
                         </td>
                         <td>
                           <input
                             style={{ border: "none", outline: "none" }}
                             type="text"
                             placeholder="____________"
+                            value={AccessComment}
+                            onChange={(e)=>{setAccessComment(e.target.value)}}
                           />
                         </td>
                       </tr>
                       <tr>
                         <td>Substance abuse</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={SubstanceYesNo === true}
+                          onChange={() => setSubstanceYesNo(true)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={SubstanceYesNo === false}
+                          onChange={() => setSubstanceYesNo(false)}/>
                         </td>
                         <td>
                           <input
                             style={{ border: "none", outline: "none" }}
                             type="text"
                             placeholder="____________"
+                            value={SubstanceAbuseComment}
+                            onChange={(e)=>{setSubstanceCommentAbuse(e.target.value)}}
                           />
                         </td>
                       </tr>
                       <tr>
                         <td>Other self-abusing behavior</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={abusingYesNo === true}
+                          onChange={() => setabusingYesNo(true)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={abusingYesNo === false}
+                          onChange={() => setabusingYesNo(false)}/>
                         </td>
                         <td>
                           <input
                             style={{ border: "none", outline: "none" }}
                             type="text"
                             placeholder="____________"
+                            value={abusingComment}
+                            onChange={(e)=>{setabusingComment(e.target.value)}}
                           />
                         </td>
                       </tr>
                       <tr>
                         <td>Recent losses/lack of support</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={RecentYesNo === true}
+                          onChange={() => setRecentYesNo(true)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={RecentYesNo === false}
+                          onChange={() => setRecentYesNo(false)}/>
                         </td>
                         <td>
                           <input
                             style={{ border: "none", outline: "none" }}
                             type="text"
                             placeholder="____________"
+                            value={RecentComment}
+                            onChange={(e)=>{setRecentComment(e.target.value)}}
                           />
                         </td>
                       </tr>
                       <tr>
                         <td>Behavior cues</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={behaviourYesNO === true}
+                          onChange={() => setBehaviourYesNo(true)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={behaviourYesNO === false}
+                          onChange={() => setBehaviourYesNo(false)}/>
                         </td>
                         <td>
                           {/* setBehaviorcuesDropDown */}
@@ -10134,10 +9639,14 @@ const [Additional2Description,setAdditional2Description]=useState("");
                       <tr>
                         <td>Symptoms of psychosis </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={SymptomsYesNO === true}
+                          onChange={() => setSymptomsYesNo(true)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={SymptomsYesNO === false}
+                          onChange={() => setSymptomsYesNo(false)}/>
                         </td>
                         <td>
                           {/* setSymptomsOfPsychosisDropDown */}
@@ -10156,64 +9665,88 @@ const [Additional2Description,setAdditional2Description]=useState("");
                       <tr>
                         <td>Family history of suicide</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox"
+                         checked={FamilyYesNO === true}
+                          onChange={() => setFamilyYesNo(true)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={FamilyYesNO === false}
+                          onChange={() => setFamilyYesNo(false)}/>
                         </td>
                         <td>
                           <input
                             style={{ border: "none", outline: "none" }}
                             type="text"
                             placeholder="____________"
+                            value={Family}
+                            onChange={(e)=>{setFamily(e.target.value)}}
                           />
                         </td>
                       </tr>
                       <tr>
                         <td>Terminal physical illness</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={TerminalYesNO === true}
+                          onChange={() => setTerminalYesNo(true)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={TerminalYesNO === false}
+                          onChange={() => setTerminalYesNo(false)}/>
                         </td>
                         <td>
                           <input
                             style={{ border: "none", outline: "none" }}
                             type="text"
                             placeholder="____________"
+                            value={Terminal}
+                            onChange={(e)=>{setTerminal(e.target.value)}}
                           />
                         </td>
                       </tr>
                       <tr>
                         <td>Current stressors (specify)</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={CurrentYesNO === true}
+                          onChange={() => setCurrentYesNo(true)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={CurrentYesNO === false}
+                          onChange={() => setCurrentYesNo(false)}/>
                         </td>
                         <td>
                           <input
                             style={{ border: "none", outline: "none" }}
                             type="text"
                             placeholder="____________"
+                            value={Current}
+                            onChange={(e)=>{setCurrent(e.target.value)}}
                           />
                         </td>
                       </tr>
                       <tr>
                         <td>Chronic pain</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={ChronicYesNO === true}
+                          onChange={() => setChronicYesNo(true)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={ChronicYesNO === false}
+                          onChange={() => setChronicYesNo(false)}/>
                         </td>
                         <td>
                           <input
                             style={{ border: "none", outline: "none" }}
                             type="text"
                             placeholder="____________"
+                            value={ChronicPain}
+                            onChange={(e)=>{setChronicPain(e.target.value)}}
                           />
                         </td>
                       </tr>
@@ -10399,96 +9932,132 @@ const [Additional2Description,setAdditional2Description]=useState("");
                       <tr>
                         <td>Supports available (family friends)</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={SupportsYesNo === true}
+                          onChange={() => setSupportsYesNo(true)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={SupportsYesNo === false}
+                          onChange={() => setSupportsYesNo(false)}/>
                         </td>
                         <td>
                           <input
                             type="text"
                             placeholder="__________"
                             className="treatment_plan_table"
+                            value={SupportsComment}
+                            onChange={(e)=>{setSupportsComment(e.target.value)}}
                           />
                         </td>
                       </tr>
                       <tr>
                         <td>Spiritual / religious support</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={SpiritualYesNo === true}
+                          onChange={() => setSpiritualYesNo(true)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={SpiritualYesNo === false}
+                          onChange={() => setSpiritualYesNo(false)}/>
                         </td>
                         <td>
                           <input
                             type="text"
                             placeholder="__________"
                             className="treatment_plan_table"
+                            value={SpiritualComment}
+                            onChange={(e)=>{setSpiritualComment(e.target.value)}}
                           />
                         </td>
                       </tr>
                       <tr>
                         <td>Religious/cultural prohibitions</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                           checked={ReligiousYesNo === true}
+                           onChange={() => setReligiousYesNo(true)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                           checked={ReligiousYesNo === false}
+                           onChange={() => setReligiousYesNo(false)}/>
                         </td>
                         <td>
                           <input
                             type="text"
                             placeholder="__________"
                             className="treatment_plan_table"
+                            value={ReligiousComment}
+                            onChange={(e)=>{setReligiousComment(e.target.value)}}
                           />
                         </td>
                       </tr>
                       <tr>
                         <td>Fear of consequences</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={FearYesNo === true}
+                          onChange={() => setFearYesNo(true)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={FearYesNo === false}
+                          onChange={() => setFearYesNo(false)}/>
                         </td>
                         <td>
                           <input
                             type="text"
                             placeholder="__________"
                             className="treatment_plan_table"
+                            value={FearComment}
+                            onChange={(e)=>{setFearComment(e.target.value)}}
                           />
                         </td>
                       </tr>
                       <tr>
                         <td>Able to be engaged in intervention</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={interventionYesNo === true}
+                          onChange={() => setInterventionYesNo(true)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox" 
+                          checked={interventionYesNo === false}
+                          onChange={() => setInterventionYesNo(false)}/>
                         </td>
                         <td>
                           <input
                             type="text"
                             placeholder="__________"
                             className="treatment_plan_table"
+                            value={interventionComment}
+                            onChange={(e)=>{setInterventionComment(e.target.value)}}
                           />
                         </td>
                       </tr>
                       <tr>
                         <td>Willing to commit to keeping self safe</td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox"  
+                          checked={WillingYesNo === true}
+                          onChange={() => setWillingYesNo(true)}/>
                         </td>
                         <td>
-                          <input type="checkbox" />
+                          <input type="checkbox"  
+                          checked={WillingYesNo === false}
+                          onChange={() => setWillingYesNo(false)}/>
                         </td>
                         <td>
                           <input
                             type="text"
                             placeholder="__________"
                             className="treatment_plan_table"
+                            value={WillingComment}
+                            onChange={(e)=>{setWillingComment(e.target.value)}}
                           />
                         </td>
                       </tr>
@@ -11065,7 +10634,7 @@ const [Additional2Description,setAdditional2Description]=useState("");
                           />
                         </td>
                       </tr>
-                      <tr>
+                      {/* <tr>
                         <td>Additional</td>
                         <td>
                           <input
@@ -11097,7 +10666,7 @@ const [Additional2Description,setAdditional2Description]=useState("");
                             }}
                           />
                         </td>
-                      </tr>
+                      </tr> */}
                       {
                           medicalDiagnosesArray.map((i)=>
                           <tr>
@@ -11483,8 +11052,8 @@ const [Additional2Description,setAdditional2Description]=useState("");
                   <div class="checkboxitem1">
                     <input
                       type="checkbox"
-                      checked={agreementWithPlan === true}
-                      onChange={() => setAgreementWithPlan(true)}
+                      checked={acceptResident === true}
+                      onChange={() => setAcceptResident(true)}
                     />
                     <span style={{ paddingLeft: "10px" }}>
                       {" "}
@@ -11495,8 +11064,8 @@ const [Additional2Description,setAdditional2Description]=useState("");
                   <div class="checkboxitem12" style={{ display: "flex" }}>
                     <input
                       type="checkbox"
-                      checked={agreementWithPlan === false}
-                      onChange={() => setAgreementWithPlan(false)}
+                      checked={acceptResident === false}
+                      onChange={() => setAcceptResident(false)}
                     />
                     <span style={{ paddingLeft: "10px" }}>
                       No, I (Resident/guardian) disagree with the types and/or
@@ -11551,6 +11120,7 @@ const [Additional2Description,setAdditional2Description]=useState("");
                       <p className="signature_name_print">
                         Digitally Sign by {residentGauardianSignature}{" "}
                         {residentGuardianDate}
+                        {residentGuardianTime}
                       </p>
                     )}
                   </div>
@@ -11562,6 +11132,7 @@ const [Additional2Description,setAdditional2Description]=useState("");
                     singin={residentGauardianSignature}
                     setSingIn={setResidentGauardianSignature}
                     setDateAndTime={setResidentGuardianDate}
+                    setSignatureTime={setResidentGuardianTime}
                   />
                 )}
                 {/* please care full write some think is change so api will work */}
@@ -11601,6 +11172,7 @@ const [Additional2Description,setAdditional2Description]=useState("");
                     {staffSignature && (
                       <p className="signature_name_print">
                         Digitally Sign by {staffSignature} {staffDate}
+                        {staffDateTime}
                       </p>
                     )}
                   </div>
@@ -11612,6 +11184,7 @@ const [Additional2Description,setAdditional2Description]=useState("");
                     singin={staffSignature}
                     setSingIn={setStaffSignature}
                     setDateAndTime={setStaffDate}
+                    setSignatureTime={setStaffDateTime}
                   />
                 )}
 
@@ -11635,7 +11208,7 @@ const [Additional2Description,setAdditional2Description]=useState("");
                       type="text"
                       required
                       value={bhpCredentials}
-                      onChange={(e) => setBhpCredentials(e.target.vaue)}
+                      onChange={(e) => setBhpCredentials(e.target.value)}
                     />
                   </div>
                 </div>
@@ -11677,6 +11250,7 @@ const [Additional2Description,setAdditional2Description]=useState("");
                     {bhpSignature && (
                       <p className="signature_name_print">
                         Digitally Sign by {bhpSignature} {bhpDate}
+                        {bhpTime}
                       </p>
                     )}
                   </div>
@@ -11688,6 +11262,7 @@ const [Additional2Description,setAdditional2Description]=useState("");
                     singin={bhpSignature}
                     setSingIn={setBhpSignature}
                     setDateAndTime={setBhpDate}
+                    setSignatureTime={setBhpTime}
                   />
                 )}
               </div>

@@ -11,10 +11,12 @@ import {change_appointment_status} from "../../Api_Collection/Api"
 
 const HistoryCard = ({name, imageUrl, from, visit,  referenceId ,status=null,id,again_Call_appointment}) => {
 
-const handleStatus=async(referenceId)=>{
-  await change_appointment_status(referenceId);
+const handleStatus=async(id)=>{
+  await change_appointment_status(id);
   await again_Call_appointment();
 }
+
+console.log(id,"jbdfiod;ogfjk;gj;ijm")
 
   return (
     <div className="card">
@@ -23,7 +25,7 @@ const handleStatus=async(referenceId)=>{
       <div className="card-content">
       
         <h6>{name}</h6>
-        <RiDeleteBin6Fill style={{ color: "red" }} className='delete_button' onClick={()=>handleStatus(referenceId)}/>
+        <RiDeleteBin6Fill style={{ color: "red" }} className='delete_button' onClick={()=>handleStatus(id)}/>
         <p><CiCalendar  style={{color:'#1E1E1E99', fontSize:'20px'}}/>FROM: <span style={{color:'#1A9FB2'}}>{new Date(from).toLocaleDateString()}</span></p>
         <p><SlLocationPin   style={{color:'#1E1E1E99', fontSize:'20px'}}/>VISIT: {visit}</p>
         {

@@ -12,7 +12,7 @@ const FormUpper = () => {;
   return (
     <>
       <div >
-        <div className='formsheading2' >
+        <div className='formsheading-initial-assestment' >
           <div className="checkboxitem125555">
 
             <label>Annual Assessment</label>

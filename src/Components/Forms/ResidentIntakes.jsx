@@ -67,6 +67,7 @@ const ResidentIntakes = () => {
     // Iterate through each element with the specified class
     var formsheading2=document.getElementsByClassName("formsheading2");
     var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
+    var increaseWidth=document.getElementsByClassName("increase-print-width");
 
     for (var i = 0; i < hidePrint.length; i++) {
       hidePrint[i].style.display = "none";
@@ -79,6 +80,11 @@ const ResidentIntakes = () => {
     for (let i = 0; i < formheading1.length; i++) {
       formheading1[i].style.display = "block";
       formheading1[i].style.marginTop = "1rem";
+    }
+
+    for (let i = 0; i < increaseWidth.length; i++) {
+      increaseWidth[i].style.width="80%";
+      increaseWidth[i].style.margin="auto";
     }
 
     
@@ -107,6 +113,10 @@ const ResidentIntakes = () => {
       for (let i = 0; i < formsheading2.length; i++) {
         formsheading2[i].style.backgroundColor="#1a9fb2"
       }
+
+      for (let i = 0; i < increaseWidth.length; i++) {
+        increaseWidth[i].style.width="100%"
+      }
   
     }, 500);
   };
@@ -115,6 +125,9 @@ const ResidentIntakes = () => {
     var hidePrint = document.getElementsByClassName("hidePrint");
     var addButton= document.getElementsByClassName("addButton");
     var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
+    var increaseWidth=document.getElementsByClassName("increase-print-width");
+   
+
     // Iterate through each element with the specified class
     for (var i = 0; i < hidePrint.length; i++) {
       hidePrint[i].style.display = "none";
@@ -129,6 +142,10 @@ const ResidentIntakes = () => {
       signatureRightAndSide[i].style.justifyContent = "right";
     }
 
+    for (let i = 0; i < increaseWidth.length; i++) {
+      increaseWidth[i].style.width="80%";
+      increaseWidth[i].style.margin="auto";
+    }
 
 
 
@@ -148,6 +165,9 @@ const ResidentIntakes = () => {
         signatureRightAndSide[i].style.justifyContent = "space-between";
       }
 
+      for (let i = 0; i < increaseWidth.length; i++) {
+        increaseWidth[i].style.width="100%"
+      }
 
     }, 1000);
   };
@@ -155,6 +175,7 @@ const ResidentIntakes = () => {
   const handlePrintUpdate3 = () => {
     var elements = document.getElementsByClassName("hidePrint");
     var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
+    var increaseWidth=document.getElementsByClassName("increase-print-width");
 
     // Iterate through each element with the specified class
     for (var i = 0; i < elements.length; i++) {
@@ -163,6 +184,10 @@ const ResidentIntakes = () => {
 
     for (let i = 0; i < signatureRightAndSide.length; i++) {
       signatureRightAndSide[i].style.justifyContent = "right";
+    }
+    for (let i = 0; i < increaseWidth.length; i++) {
+      increaseWidth[i].style.width="80%";
+      increaseWidth[i].style.margin="auto";
     }
     handlePrint3();
     // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
@@ -174,12 +199,16 @@ const ResidentIntakes = () => {
       for (let i = 0; i < signatureRightAndSide.length; i++) {
         signatureRightAndSide[i].style.justifyContent = "space-between";
       }
+      for (let i = 0; i < increaseWidth.length; i++) {
+        increaseWidth[i].style.width="100%"
+      }
     }, 1000);
   };
 
   const handlePrintUpdate4 = () => {
     var elements = document.getElementsByClassName("hidePrint");
     var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
+    var increaseWidth=document.getElementsByClassName("increase-print-width");
 
     // Iterate through each element with the specified class
     for (var i = 0; i < elements.length; i++) {
@@ -188,6 +217,10 @@ const ResidentIntakes = () => {
 
     for (let i = 0; i < signatureRightAndSide.length; i++) {
       signatureRightAndSide[i].style.justifyContent = "right";
+    }
+    for (let i = 0; i < increaseWidth.length; i++) {
+      increaseWidth[i].style.width="80%";
+      increaseWidth[i].style.margin="auto";
     }
 
     handlePrint4();
@@ -200,12 +233,18 @@ const ResidentIntakes = () => {
       for (let i = 0; i < signatureRightAndSide.length; i++) {
         signatureRightAndSide[i].style.justifyContent = "space-between";
       }
+
+      
+      for (let i = 0; i < increaseWidth.length; i++) {
+        increaseWidth[i].style.width="100%"
+      }
     }, 1000);
   };
 
   const handlePrintUpdate5 = () => {
     var elements = document.getElementsByClassName("hidePrint");
     var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
+    var increaseWidth=document.getElementsByClassName("increase-print-width");
 
     // Iterate through each element with the specified class
     for (var i = 0; i < elements.length; i++) {
@@ -214,6 +253,10 @@ const ResidentIntakes = () => {
 
     for (let i = 0; i < signatureRightAndSide.length; i++) {
       signatureRightAndSide[i].style.justifyContent = "right";
+    }
+    for (let i = 0; i < increaseWidth.length; i++) {
+      increaseWidth[i].style.width="80%";
+      increaseWidth[i].style.margin="auto";
     }
 
     handlePrint5();
@@ -225,6 +268,9 @@ const ResidentIntakes = () => {
       for (let i = 0; i < signatureRightAndSide.length; i++) {
         signatureRightAndSide[i].style.justifyContent = "space-between";
       }
+      for (let i = 0; i < increaseWidth.length; i++) {
+        increaseWidth[i].style.width="100%"
+      }
 
     }, 1000);
   };
@@ -232,6 +278,7 @@ const ResidentIntakes = () => {
   const handlePrintUpdate6 = () => {
     var elements = document.getElementsByClassName("hidePrint");
     var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
+    var increaseWidth=document.getElementsByClassName("increase-print-width");
 
     // Iterate through each element with the specified class
     for (var i = 0; i < elements.length; i++) {
@@ -241,6 +288,12 @@ const ResidentIntakes = () => {
     for (let i = 0; i < signatureRightAndSide.length; i++) {
       signatureRightAndSide[i].style.justifyContent = "right";
     }
+
+    for (let i = 0; i < increaseWidth.length; i++) {
+      increaseWidth[i].style.width="80%";
+      increaseWidth[i].style.margin="auto";
+    }
+
 
     handlePrint6();
     // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
@@ -252,16 +305,25 @@ const ResidentIntakes = () => {
       for (let i = 0; i < signatureRightAndSide.length; i++) {
         signatureRightAndSide[i].style.justifyContent = "space-between";
       }
+
+      for (let i = 0; i < increaseWidth.length; i++) {
+        increaseWidth[i].style.width="100%"
+      }
     }, 1000);
   };
 
   const handlePrintUpdate7 = () => {
     var elements = document.getElementsByClassName("hidePrint");
     var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
+    var increaseWidth=document.getElementsByClassName("increase-print-width");
 
     // Iterate through each element with the specified class
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
+    }
+    for (let i = 0; i < increaseWidth.length; i++) {
+      increaseWidth[i].style.width="80%";
+      increaseWidth[i].style.margin="auto";
     }
     
     for (let i = 0; i < signatureRightAndSide.length; i++) {
@@ -276,6 +338,10 @@ const ResidentIntakes = () => {
       for (let i = 0; i < signatureRightAndSide.length; i++) {
         signatureRightAndSide[i].style.justifyContent = "space-between";
       }
+      
+    for (let i = 0; i < increaseWidth.length; i++) {
+      increaseWidth[i].style.width="100%"
+    }
     }, 1000);
   };
 
@@ -283,6 +349,7 @@ const ResidentIntakes = () => {
     var elements = document.getElementsByClassName("hidePrint");
     var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
     var submitButton=document.getElementsByClassName("form-actions");
+    var increaseWidth=document.getElementsByClassName("increase-print-width");
 
     // Iterate through each element with the specified class
     for (var i = 0; i < elements.length; i++) {
@@ -296,6 +363,10 @@ const ResidentIntakes = () => {
       submitButton[i].style.display = "flex";
       submitButton[i].style.justifyContent = "center";
       submitButton[i].style.alignItems = "center";
+    }
+    for (let i = 0; i < increaseWidth.length; i++) {
+      increaseWidth[i].style.width="80%";
+      increaseWidth[i].style.margin="auto";
     }
 
 
@@ -313,6 +384,10 @@ const ResidentIntakes = () => {
         submitButton[i].style.display = "flex";
         submitButton[i].style.justifyContent = "center";
         submitButton[i].style.alignItems = "center";
+      }
+      
+      for (let i = 0; i < increaseWidth.length; i++) {
+        increaseWidth[i].style.width="100%"
       }
   
     }, 1000);
@@ -892,20 +967,31 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
     setObligationsAndAuthorizationGuardianRepresentativeTime,
   ] = useState("");
 
+
+    // Function to format the date as MM-DD-YYYY
+function formatDate(dateString) {
+  if (!dateString) return ''; // handle null or undefined value
+  const dateObj = new Date(dateString);
+  const month = ('0' + (dateObj.getMonth() + 1)).slice(-2);
+  const day = ('0' + dateObj.getDate()).slice(-2);
+  const year = dateObj.getFullYear();
+  return `${month}-${day}-${year}`;
+}
+
   useEffect(()=>{
     setiAgree(getApiData?.iAgree);
     // setResidentName("");
     setCompanyName(userDetail?.companyName)
     setResidentSignature(getApiData?.residentSignature);
-    setResidentDate(getApiData?.residentDate? getApiData?.residentDate.slice(0,10): "");
+    setResidentDate(getApiData?.residentDate? formatDate(getApiData?.residentDate): "");
     setResidentSignatureTime(getApiData?.residentSignatureTime);
     setGuardianRepresentativeName(getApiData?.guardianRepresentativeName);
     setGuardianRepresentativeSignature(getApiData?.guardianRepresentativeSignature);
-    setGuardianRepresentativeDate(getApiData?.guardianRepresentativeDate? getApiData?.guardianRepresentativeDate.slice(0,10): "");
+    setGuardianRepresentativeDate(getApiData?.guardianRepresentativeDate? formatDate(getApiData?.guardianRepresentativeDate): "");
     setGuardianRepresentativeTime(getApiData?.guardianRepresentativeTime);
     setStaffName(getApiData?.staffName);
     setStaffSignature(getApiData?.staffSignature);
-    setStaffDate(getApiData?.staffDate? getApiData?.staffDate.slice(0,10): "");
+    setStaffDate(getApiData?.staffDate? formatDate(getApiData?.staffDate): "");
     setStaffTime(getApiData?.staffTime);
     // setInternalName(getApiData?.guardianRepresentativeTime);
     // setInternalRelationship(getApiData?.guardianRepresentativeTime);
@@ -914,40 +1000,40 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
     setInternalDisclosureListExpire(getApiData?.internalDisclosureListExpire);
     setInternalDisclosureListResidentName(getApiData?.internalDisclosureListResidentName);
     setInternalDisclosureListResidentSignature(getApiData?.internalDisclosureListResidentSignature);
-    setInternalDisclosureListResidentDate(getApiData?.internalDisclosureListResidentDate? getApiData?.internalDisclosureListResidentDate.slice(0,10): "");
+    setInternalDisclosureListResidentDate(getApiData?.internalDisclosureListResidentDate?formatDate(getApiData?.internalDisclosureListResidentDate): "");
     setInternalDisclosureListResidentTime(getApiData?.internalDisclosureListResidentTime);
     setInternalDisclosureListGuardianRepresentativeName(getApiData?.internalDisclosureListGuardianRepresentativeName);
     setInternalDisclosureListGuardianRepresentativeSignature(getApiData?.internalDisclosureListGuardianRepresentativeSignature);
-    setInternalDisclosureListGuardianRepresentativeDate(getApiData?.internalDisclosureListGuardianRepresentativeDate? getApiData?.internalDisclosureListGuardianRepresentativeDate.slice(0,10): "");
+    setInternalDisclosureListGuardianRepresentativeDate(getApiData?.internalDisclosureListGuardianRepresentativeDate? formatDate(getApiData?.internalDisclosureListGuardianRepresentativeDate): "");
     setInternalDisclosureListGuardianRepresentativeTime(getApiData?.internalDisclosureListGuardianRepresentativeTime);
     // setInternalDisclosureListStaffName(getApiData?.guardianRepresentativeTime);
     setInternalDisclosureListStaffSignature(getApiData?.internalDisclosureListStaffSignature);
-    setInternalDisclosureListStaffDate(getApiData?.internalDisclosureListStaffDate? getApiData?.internalDisclosureListStaffDate.slice(0,10): "");
+    setInternalDisclosureListStaffDate(getApiData?.internalDisclosureListStaffDate? formatDate(getApiData?.internalDisclosureListStaffDate): "");
     setInternalDisclosureListStaffTime(getApiData?.internalDisclosureListStaffTime);
     // setResidentRightsResidentSignatureValue("");
     // setResidentRightsResidentSignatureValueDate("");
     // residentRightsResidentSignatureValueTime("")
     setResidentRightsResidentName(getApiData?.residentRightsResidentName);
     setResidentRightsResidentSignature(getApiData?.residentRightsResidentSignature);
-    setResidentRightsResidentDate(getApiData?.residentRightsResidentDate? getApiData?.residentRightsResidentDate.slice(0,10): "");
+    setResidentRightsResidentDate(getApiData?.residentRightsResidentDate? formatDate(getApiData?.residentRightsResidentDate): "");
     // new value
     setResidentRightsResidentTime(getApiData?.residentRightsResidentTime);
     // setResidentRightsGuardianRepresentativeName(getApiData?.guardianRepresentativeTime);
     setResidentRightsGuardianRepresentativeSignature(getApiData?.residentRightsGuardianRepresentativeSignature);
-    setResidentRightsGuardianRepresentativeDate(getApiData?.residentRightsGuardianRepresentativeDate? getApiData?.residentRightsGuardianRepresentativeDate.slice(0,10): "");
+    setResidentRightsGuardianRepresentativeDate(getApiData?.residentRightsGuardianRepresentativeDate? formatDate(getApiData?.residentRightsGuardianRepresentativeDate): "");
     setResidentRightsGuardianRepresentativeTime(getApiData?.residentRightsGuardianRepresentativeTime);
 
     setPhotoVideoConsentResidentName(getApiData?.photoVideoConsentResidentName);
-    setPhotoVideoConsentDateOfBirth(getApiData?.photoVideoConsentDateOfBirth?getApiData?.photoVideoConsentDateOfBirth.slice(0,10):"");
+    setPhotoVideoConsentDateOfBirth(getApiData?.photoVideoConsentDateOfBirth? getApiData?.photoVideoConsentDateOfBirth.slice(0,10):"");
     setPhotoVideoConsentAdmissionDate(getApiData?.photoVideoConsentAdmissionDate? getApiData?.photoVideoConsentAdmissionDate.slice(0,10): "");
     setPhotoVideoConsentConsentGiven(getApiData?.photoVideoConsentConsentGiven);
     setPhotoVideoConsentConsentWithdrawn(getApiData?.photoVideoConsentConsentWithdrawn);
     setPhotoVideoConsentResidentSignature(getApiData?.photoVideoConsentResidentSignature);
-    setPhotoVideoConsentResidentDate(getApiData?.photoVideoConsentResidentDate? getApiData?.photoVideoConsentResidentDate.slice(0,10): "");
+    setPhotoVideoConsentResidentDate(getApiData?.photoVideoConsentResidentDate? formatDate(getApiData?.photoVideoConsentResidentDate): "");
     setPhotoVideoConsentResidentTime(getApiData?.photoVideoConsentResidentTime);
     setPhotoVideoConsentGuardianRepresentativeName(getApiData?.photoVideoConsentGuardianRepresentativeName);
     setPhotoVideoConsentGuardianRepresentativeSignature(getApiData?.photoVideoConsentGuardianRepresentativeSignature);
-    setPhotoVideoConsentGuardianRepresentativeDate(getApiData?.photoVideoConsentGuardianRepresentativeDate? getApiData?.photoVideoConsentGuardianRepresentativeDate.slice(0,10): "");
+    setPhotoVideoConsentGuardianRepresentativeDate(getApiData?.photoVideoConsentGuardianRepresentativeDate? formatDate(getApiData?.photoVideoConsentGuardianRepresentativeDate): "");
     setPhotoVideoConsentGuardianRepresentativeTime(getApiData?.photoVideoConsentGuardianRepresentativeTime);
     setAdvanceDirectivesResidentName(getApiData?.advanceDirectivesResidentName);
     setAdvanceDirectivesResidentGender(getApiData?.advanceDirectivesResidentGender);
@@ -974,22 +1060,22 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
     setComplaintProcessAcknowledgementCompany(getApiData?.complaintProcessAcknowledgementCompany);
     setComplaintProcessAcknowledgementResidentName(getApiData?.complaintProcessAcknowledgementResidentName);
     setComplaintProcessAcknowledgementResidentSignature(getApiData?.complaintProcessAcknowledgementResidentSignature);
-    setComplaintProcessAcknowledgementResidentDate(getApiData?.complaintProcessAcknowledgementResidentDate? getApiData?.complaintProcessAcknowledgementResidentDate.slice(0,10): "");
+    setComplaintProcessAcknowledgementResidentDate(getApiData?.complaintProcessAcknowledgementResidentDate? formatDate(getApiData?.complaintProcessAcknowledgementResidentDate): "");
     setComplaintProcessAcknowledgementResidentTime(getApiData?.complaintProcessAcknowledgementResidentTime)
     setComplaintProcessAcknowledgementGuardianRepresentativeName(getApiData?.complaintProcessAcknowledgementGuardianRepresentativeName);
     setComplaintProcessAcknowledgementGuardianRepresentativeSignature(getApiData?.complaintProcessAcknowledgementGuardianRepresentativeSignature);
-    setComplaintProcessAcknowledgementGuardianRepresentativeDate(getApiData?.complaintProcessAcknowledgementGuardianRepresentativeDate? getApiData?.complaintProcessAcknowledgementGuardianRepresentativeDate.slice(0,10): "");
+    setComplaintProcessAcknowledgementGuardianRepresentativeDate(getApiData?.complaintProcessAcknowledgementGuardianRepresentativeDate? formatDate(getApiData?.complaintProcessAcknowledgementGuardianRepresentativeDate): "");
     setComplaintProcessAcknowledgementGuardianRepresentativeTime(getApiData?.complaintProcessAcknowledgementGuardianRepresentativeTime);
     // setOrientationToAgencyCompanyFollowing(getApiData?.guardianRepresentativeTime);
     setOrientationToAgencyCompany(getApiData?.orientationToAgencyCompany);
     setORIENTATIONDropDown(getApiData?.guardianRepresentativeTime);
     // setOrientationToAgencyResidentName("");
     setOrientationToAgencyResidentSignature(getApiData?.orientationToAgencyResidentSignature);
-    setOrientationToAgencyResidentDate(getApiData?.orientationToAgencyResidentDate? getApiData?.orientationToAgencyResidentDate.slice(0,10): "");
+    setOrientationToAgencyResidentDate(getApiData?.orientationToAgencyResidentDate? formatDate(getApiData?.orientationToAgencyResidentDate): "");
     setOrientationToAgencyResidentTime(getApiData?.orientationToAgencyResidentTime);
     setOrientationToAgencyGuardianRepresentativeName(getApiData?.orientationToAgencyGuardianRepresentativeName);
     setOrientationToAgencyGuardianRepresentativeSignature(getApiData?.orientationToAgencyGuardianRepresentativeSignature);
-    setOrientationToAgencyGuardianRepresentativeDate(getApiData?.orientationToAgencyGuardianRepresentativeDate? getApiData?.orientationToAgencyGuardianRepresentativeDate.slice(0,10): "");
+    setOrientationToAgencyGuardianRepresentativeDate(getApiData?.orientationToAgencyGuardianRepresentativeDate? formatDate(getApiData?.orientationToAgencyGuardianRepresentativeDate): "");
     setOrientationToAgencyGuardianRepresentativeTime(getApiData?.orientationToAgencyGuardianRepresentativeTime);
     setPromotionTalkStrategicApproach(getApiData?.promotionTalkStrategicApproach);
     setLockBoxKeyIssueReturnDateKeyIssued(getApiData?.lockBoxKeyIssueReturnDateKeyIssued);
@@ -1000,15 +1086,15 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
     setLockBoxKeyIssueReturnCharged(getApiData?.lockBoxKeyIssueReturnCharged);
     // setLockBoxKeyIssueReturnResidentName(getApiData?.lockBoxKeyIssueReturnResidentName);
     setLockBoxKeyIssueReturnResidentSignature(getApiData?.lockBoxKeyIssueReturnResidentSignature);
-    setLockBoxKeyIssueReturnResidentDate(getApiData?.lockBoxKeyIssueReturnResidentDate? getApiData?.lockBoxKeyIssueReturnResidentDate.slice(0,10): "");
+    setLockBoxKeyIssueReturnResidentDate(getApiData?.lockBoxKeyIssueReturnResidentDate? formatDate(getApiData?.lockBoxKeyIssueReturnResidentDate): "");
     setLockBoxKeyIssueReturnResidentTime(getApiData?.lockBoxKeyIssueReturnResidentTime);
     setLockBoxKeyIssueReturnGuardianRepresentativeName(getApiData?.lockBoxKeyIssueReturnGuardianRepresentativeName);
     setLockBoxKeyIssueReturnGuardianRepresentativeSignature(getApiData?.lockBoxKeyIssueReturnGuardianRepresentativeSignature);
-    setLockBoxKeyIssueReturnGuardianRepresentativeDate(getApiData?.lockBoxKeyIssueReturnGuardianRepresentativeDate? getApiData?.lockBoxKeyIssueReturnGuardianRepresentativeDate.slice(0,10): "");
+    setLockBoxKeyIssueReturnGuardianRepresentativeDate(getApiData?.lockBoxKeyIssueReturnGuardianRepresentativeDate? formatDate(getApiData?.lockBoxKeyIssueReturnGuardianRepresentativeDate): "");
     setLockBoxKeyIssueReturnGuardianRepresentativeTime(getApiData?.lockBoxKeyIssueReturnGuardianRepresentativeTime);
     setLockBoxKeyIssueReturnStaffName(getApiData?.lockBoxKeyIssueReturnStaffName);
     setLockBoxKeyIssueReturnStaffSignature(getApiData?.lockBoxKeyIssueReturnStaffSignature);
-    setLockBoxKeyIssueReturnStaffDate(getApiData?.lockBoxKeyIssueReturnStaffDate? getApiData?.lockBoxKeyIssueReturnStaffDate.slice(0,10): "");
+    setLockBoxKeyIssueReturnStaffDate(getApiData?.lockBoxKeyIssueReturnStaffDate?formatDate(getApiData?.lockBoxKeyIssueReturnStaffDate): "");
     setLockBoxKeyIssueReturnStaffTime(getApiData?.lockBoxKeyIssueReturnStaffTime);
     setInsuranceInformationPrimaryInsurancePolicyholderName(getApiData?.insuranceInformationPrimaryInsurancePolicyholderName);
     setInsuranceInformationPrimaryInsurancePolicyholderDateOfBirth(getApiData?.insuranceInformationPrimaryInsurancePolicyholderDateOfBirth? getApiData?.insuranceInformationPrimaryInsurancePolicyholderDateOfBirth.slice(0,10): "");
@@ -1038,11 +1124,11 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
     setInsuranceInformationSecondaryInsuranceSubscriberEffectiveDate(getApiData?.insuranceInformationSecondaryInsuranceSubscriberEffectiveDate?getApiData?.insuranceInformationSecondaryInsuranceSubscriberEffectiveDate.slice(0,10):'');
     setObligationsAndAuthorizationResidentName(getApiData?.obligationsAndAuthorizationResidentName);
     setObligationsAndAuthorizationResidentSignature(getApiData?.obligationsAndAuthorizationResidentSignature);
-    setObligationsAndAuthorizationResidentDate(getApiData?.obligationsAndAuthorizationResidentDate? getApiData?.obligationsAndAuthorizationResidentDate.slice(0,10): "");
+    setObligationsAndAuthorizationResidentDate(getApiData?.obligationsAndAuthorizationResidentDate? formatDate(getApiData?.obligationsAndAuthorizationResidentDate): "");
     setObligationsAndAuthorizationResidentTime(getApiData?.obligationsAndAuthorizationResidentTime);
     setObligationsAndAuthorizationGuardianRepresentativeName(getApiData?.obligationsAndAuthorizationGuardianRepresentativeName);
     setObligationsAndAuthorizationGuardianRepresentativeSignature(getApiData?.obligationsAndAuthorizationGuardianRepresentativeSignature);
-    setObligationsAndAuthorizationGuardianRepresentativeDate(getApiData?.obligationsAndAuthorizationGuardianRepresentativeDate? getApiData?.obligationsAndAuthorizationGuardianRepresentativeDate.slice(0,10): "");
+    setObligationsAndAuthorizationGuardianRepresentativeDate(getApiData?.obligationsAndAuthorizationGuardianRepresentativeDate? formatDate(getApiData?.obligationsAndAuthorizationGuardianRepresentativeDate): "");
     setObligationsAndAuthorizationGuardianRepresentativeTime(getApiData?.obligationsAndAuthorizationGuardianRepresentativeTime);
   },[getApiData])
 
@@ -1482,7 +1568,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
               <>
                 <div
                   ref={componentRef1}
-                  style={{ width: "90%", margin: "auto" }}
+                  className="increase-print-width"
                 >
 
                <div className="formheading1-hide">
@@ -1793,8 +1879,8 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
             {page === 2 && (
               <>
                 <div
-                  ref={componentRef2} className="print-content"
-                  style={{ width: "90%", margin: "auto" }}
+                  ref={componentRef2} className="print-content increase-print-width"
+                 
                 >
                   <h6
                     style={{
@@ -2493,7 +2579,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
               <>
                 <div
                   ref={componentRef3}
-                  style={{ width: "90%", margin: "auto" }}
+                  className="increase-print-width"
                 >
                   <h6
                     style={{
@@ -2824,7 +2910,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
               <>
                 <div
                   ref={componentRef4}
-                  style={{ width: "90%", margin: "auto" }}
+                 className="increase-print-width"
                 >
                   <h6
                     style={{
@@ -3371,7 +3457,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
               <>
                 <div
                   ref={componentRef5}
-                  style={{ width: "90%", margin: "auto" }}
+                className="increase-print-width"
                 >
                   <h6
                     style={{
@@ -3618,7 +3704,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
               <>
                 <div
                   ref={componentRef6}
-                  style={{ width: "90%", margin: "auto" }}
+                 className="increase-print-width"
                 >
                   <h6
                     style={{
@@ -3811,7 +3897,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
               <>
                 <div
                   ref={componentRef7}
-                  style={{ width: "90%", margin: "auto" }}
+                  className="increase-print-width"
                 >
                   <h6
                     style={{
@@ -4136,7 +4222,7 @@ const [residentRightsResidentTime, setResidentRightsResidentTime] =
               <>
                 <div
                   ref={componentRef8}
-                  style={{ width: "90%", margin: "auto" }}
+                  className="increase-print-width"
                 >
                   <h6
                     style={{

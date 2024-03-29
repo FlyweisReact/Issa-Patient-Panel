@@ -420,6 +420,16 @@ const Treatmentplan_update = () => {
   const [dateBhp, setDateBhp] = useState("");
   const [timeBhp,setTimeBhp]=useState("");
 
+    // Function to format the date as MM-DD-YYYY
+function formatDate(dateString) {
+  if (!dateString) return ''; // handle null or undefined value
+  const dateObj = new Date(dateString);
+  const month = ('0' + (dateObj.getMonth() + 1)).slice(-2);
+  const day = ('0' + dateObj.getDate()).slice(-2);
+  const year = dateObj.getFullYear();
+  return `${month}-${day}-${year}`;
+}
+
   useEffect(()=>{
     setDate(getApiData?.date?getApiData?.date?.slice(0,10):"");
     setAdminDate(getApiData?.admitDate?getApiData?.admitDate.slice(0,10):"")
@@ -689,21 +699,21 @@ setrefusalReason(getApiData?.residentAgreementRefusalReason);
 setNameResident(getApiData?.signaturesResident?.name);
 setCredentialsResident(getApiData?.signaturesResident?.credentials);
 setsignatureResident(getApiData?.signaturesResident?.signature);
-setDateResident(getApiData?.signaturesResident?.date?getApiData?.signaturesResident?.date.slice(0,10):"");
+setDateResident(getApiData?.signaturesResident?.date?formatDate(getApiData?.signaturesResident?.date):"");
 setTimeResident(getApiData?.signaturesResident?.time);
 
 // Resetting signaturesFacilityRep state variables
 setNameFacilityRep(getApiData?.signaturesFacilityRep?.name);
 setCredentialsFacilityRep(getApiData?.signaturesFacilityRep?.credentials);
 setsignatureFacilityRep(getApiData?.signaturesFacilityRep?.signature);
-setDateFacilityRep(getApiData?.signaturesFacilityRep?.date?getApiData?.signaturesFacilityRep?.date.slice(0,10):"");
+setDateFacilityRep(getApiData?.signaturesFacilityRep?.date?formatDate(getApiData?.signaturesFacilityRep?.date):"");
 setTimeFacality(getApiData?.signaturesFacilityRep?.time);
 
 // Resetting signaturesBhp state variables
 setNameBhp(getApiData?.signaturesBhp?.name);
 setCredentialsBhp(getApiData?.signaturesBhp?.credentials);
 setsignatureBhp(getApiData?.signaturesBhp?.signature);
-setDateBhp(getApiData?.signaturesBhp?.date?getApiData?.signaturesBhp?.date.slice(0,10):"");
+setDateBhp(getApiData?.signaturesBhp?.date?formatDate(getApiData?.signaturesBhp?.date):"");
 setTimeBhp(getApiData?.signaturesBhp?.time);
 
   },[getApiData])
