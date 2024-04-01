@@ -5771,20 +5771,13 @@ useEffect(()=>{
                   <label htmlFor="isReason">
                     Yes,{" "}
                     <span>
-                      I am in the agreement with the services included in this
+                      I am in agreement with the services included in this
                       treatment Plan
                     </span>
                   </label>
                 </div>
               </div>
-              {/* <div className="yeschechbox2">
-                <div>
-                  <span>
-                    I am in the agreement with the services included in this
-                    treatment Plan
-                  </span>
-                </div>
-              </div> */}
+          
               <div className="yeschechbox-review-yes-no">
                 <div>
                   <input
@@ -5798,7 +5791,7 @@ useEffect(()=>{
                   <label htmlFor="refusalReason">
                     No,{" "}
                     <span>
-                      I am not in the agreement with the services included in this
+                      I am not in agreement with the services included in this
                       treatment Plan
                     </span>
                   </label>

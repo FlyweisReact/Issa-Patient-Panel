@@ -3483,22 +3483,28 @@ function formatDate(dateString) {
                     facility.
                   </p>
 
+                    <div style={{lineHeight:"10px"}}>
                   <p style={{ color: "#000000" }}>
-                    Arizone Department of Health Services: 150 North 18th
-                    Avenue, Suite 420, Phonenix, AZ 85007 Phone: 602-364-2639.
+
+                  <p >Bureau of Behavioral Health Facilities Licensing</p>
+                  <p>150 N. 18th Ave, Suite 420</p> 
+                  <p>Phoenix AZ, 85007</p>
                   </p>
                   <p style={{ color: "#000000" }}>
                     <a
                       target="_blank"
-                      href="https://issa-website-website.vercel.app/"
+                      href="BehavioralHealth.Licensing@azdhs.gov"
                     >
-                      https://issa-website-website.vercel.app/
+                      BehavioralHealth.Licensing@azdhs.gov
                     </a>
                   </p>
+                  <p>Phone Number : 602-542-3422</p>
                   <p style={{ color: "#000000" }}>
                     By signing below, resident acknowledge to have been informed
                     of the complaint process.
                   </p>
+                  </div>
+
                   {/* <label
               htmlFor=""
               style={{

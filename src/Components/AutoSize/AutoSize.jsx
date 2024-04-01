@@ -29,7 +29,7 @@ function AutoSize({type: type1,value,setValue,placeholder}) {
     padding: '5px',
     fontSize: '16px',
     width: `${calculateWidth(value)}px`, // Dynamic width based on content
-    minWidth: '100px', // Minimum width
+    minWidth: '25px', // Minimum width
     maxWidth: `100%`, // Maximum width
     boxSizing: 'border-box', // Include padding in the width calculation
     border:"none",
