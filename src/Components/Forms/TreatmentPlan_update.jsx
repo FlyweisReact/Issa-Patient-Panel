@@ -44,10 +44,10 @@ const Treatmentplan_update = () => {
 
   const navigate = useNavigate();
 
-
   //from satart now ------------------------------->
   const [getApiData,setGetApiData]=useState("");
   const [userId, setUserId] = useState("");
+  const [initialUpdate,setInitialUpdate]=useState("")
   const [residentName, setResidentName] = useState("");
   const [dob, setDob] = useState("");
   const [date, setDate] = useState("");
@@ -1954,8 +1954,31 @@ useEffect(()=>{
 
           <div className="Boss">
             <div className="formheading1">
-              <div className="formsheading2" style={{marginTop:"1.5rem"}}>
+              <div className="formsheading2" style={{marginTop:"1.5rem", padding:" 0 10px"}}>
+                <div className="treatment_plan_header">
                 <h1>TREATMENT PLAN</h1>
+                <div className="treatment_plan_header_inner_div">
+                  <input
+                    type="checkbox"
+                  
+                    checked={initialUpdate==="Initial"}
+                    onChange={() =>
+                      setInitialUpdate("Initial")
+                    }
+                  />
+                  <label >Initial</label>
+                </div>
+                <div className="treatment_plan_header_inner_div">
+                  <input
+                    type="checkbox"
+                    checked={initialUpdate==="Update"}
+                    onChange={() =>
+                      setInitialUpdate("Update")
+                    }
+                  />
+                  <label >Update</label>
+                </div>
+                </div>
               </div>
             </div>
          

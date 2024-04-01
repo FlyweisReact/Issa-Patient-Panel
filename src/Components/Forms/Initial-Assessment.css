@@ -405,6 +405,19 @@
 
 }
 
+/* treatment plan header */
+.treatment_plan_header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.treatment_plan_header_inner_div {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
 
 
 
@@ -1424,6 +1437,8 @@ input[type="checkbox"] {
   align-items: center;
 }
 
+
+
 .yeschechbox-review-treatment {
   display: flex;
   width: 100%;
@@ -1778,6 +1793,18 @@ input[type="checkbox"] {
     flex-wrap: wrap;
   }
   
+  .treatment_plan_header{
+    display: block;
+    padding-top: 10px;
+  }
+
+  .treatment_plan_header_inner_div {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    justify-content: center;
+  }
+  
 
 
 
@@ -1851,8 +1878,6 @@ width: 100%;
 box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 border-radius: 8px 8px 8px 8px;
 padding: 5px;
-
-
 }
 
 .formMain{
