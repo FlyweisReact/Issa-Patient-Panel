@@ -9,7 +9,7 @@ import { AiFillDelete } from "react-icons/ai";
 import locate from "../../img/locate.png";
 import { IoArrowBackCircle } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import { user_detail, initialAssestment_form } from "../../Api_Collection/Api";
+import { user_detail, initialAssestment_form,initial_assestment_get } from "../../Api_Collection/Api";
 import Select from "react-select";
 import SingInUpdateModel from "../Modal/SingInUpdateModel";
 import Draftinmodel from "../Modal/Draftinmodel";
@@ -58,7 +58,7 @@ const InitialAssessment = () => {
 
   const [user, setUser] = useState("");
   const [userData, setUserData] = useState("");
-
+  const [getApiData,setGetApiData]=useState([]);
   //state define
   const [hasNotified, setHasNotified] = useState("");
   const [assessmentOn, setAssessmentOn] = useState("");
@@ -159,44 +159,36 @@ const InitialAssessment = () => {
 
   //High Blood Pressure
   const [yesHigh, setYesHigh] = useState();
-  const [noHigh, setNoHigh] = useState();
   const [commentHigh, setCommentHigh] = useState("");
 
   //Lung disease (ie asthma, COPD, emphysema)
   const [yesLung, setYesLung] = useState();
-  const [noLung, setNoLung] = useState();
   const [commentLung, setCommentLung] = useState("");
 
   //Seizures
   const [yesSeizures, setYesSeizures] = useState();
-  const [noSeizures, setNoSeizures] = useState();
   const [commentSeizures, setCommentSeizures] = useState("");
 
   //Cancer
   const [yesCancer, setYesCancer] = useState();
-  const [noCancer, setNoCancer] = useState();
   const [commentCancer, setCommentCancer] = useState("");
 
   // Liver/kidney disease
   const [yesLiver, setYesLiver] = useState();
-  const [noLiver, setNoLiver] = useState();
   const [commentLiver, setCommentLiver] = useState("");
 
   //Thyroid disorder
   const [yesThyroid, setYesThyroid] = useState();
-  const [noThyroid, setNoThyroid] = useState();
   const [thyroidDisorder, setThyroidDisorder] = useState([]);
   //dropdown
 
   // History of head trauma/traumatic brain injury
   const [yesbrain, setYesBrain] = useState();
-  const [nobrain, setNoBrain] = useState();
   const [commentbrain, setbrain] = useState("");
 
   // injury
   // const [injury,setInjury] =useState("") not present remove it
   const [yesInjury, setYesInjury] = useState();
-  const [noInjury, setNoInjury] = useState();
   const [commentInjury, setCommentInjury] = useState("");
 
   //Chronic painChronic pain
@@ -595,7 +587,7 @@ const InitialAssessment = () => {
   const [VisualDisturbancesOtherBoolean, setVisualDisturbancesOtherBoolean] =
     useState(false);
   const [VisualDisturbancesOtherType, setVisualDisturbancesOtherType] =
-    useState();
+    useState("");
   // const [AuditoryDisturbances, setAuditoryDisturbances] = useState(false);
   const [Sweats, setSweats] = useState(false);
   const [Paranoia, setParanoia] = useState(false);
@@ -859,25 +851,6 @@ const InitialAssessment = () => {
   // Arrested History (Multiple Fields) legalHistory
   const [selectedValue, setSelectedValue] = useState([]);
 
-  // 2
-  // Activities of Daily Living (ADLs)  jai maa kali
-  const [bathingShoweringGood, setBathingShoweringGood] = useState([]);
-  const [typesOfActivityOther, setTypesOfActivityOther] = useState("");
-  //implment type of other activity
-  const [typeOfOtherBoolean, setTypeOfOtherBoolean] = useState(false);
-  // 2
-  useEffect(() => {
-    // setTypeOfOtherBoolean()
-    for (let i = 0; i < bathingShoweringGood.length; i++) {
-      if (bathingShoweringGood[i].value === "Other(specify)") {
-        setTypeOfOtherBoolean(true);
-        break;
-      } else {
-        setTypeOfOtherBoolean(false);
-      }
-    }
-  }, [bathingShoweringGood]);
-
   // Current Independent Living Skills:
   const [BathingGood,setBathingGood]=useState(false);
   const [BathingFair,setBathingFair]=useState(false);
@@ -972,24 +945,6 @@ const InitialAssessment = () => {
 
   // Medical Equipment
   const [selectedValueMedical, setSelectedValueMedical] = useState([]);
-  // 2
-  const [selectedValueMedicalBoolean, setselectedValueMedicalBoolean] =
-    useState(false);
-    // 2
-  const [selectedValueMedicalType, setselectedValueMedicalType] = useState("");
-// 2
-  useEffect(() => {
-    // setTypeOfOtherBoolean()
-    for (let i = 0; i < selectedValueMedical.length; i++) {
-      if (selectedValueMedical[i].value === "Other") {
-        setselectedValueMedicalBoolean(true);
-        break;
-      } else {
-        setselectedValueMedicalBoolean(false);
-      }
-    }
-  }, [selectedValueMedical]);
-
   // Special Precautions (Nested Object)
   const [selectedValueSpecialPrecautions, setSelectedValueSpecialPrecautions] =
     useState([]);
@@ -1181,8 +1136,6 @@ const [Additional1Description,setAdditional1Description]=useState("");
 
   };
 
-  // State variable for additionalDiagnoses
-  const [additionalDiagnoses, setAdditionalDiagnoses] = useState("");
 
   // State variable for primarySupportGroup
   const [primarySupportGroup, setPrimarySupportGroup] = useState(false);
@@ -1257,6 +1210,772 @@ const [Additional1Description,setAdditional1Description]=useState("");
   const [bhpSignature, setBhpSignature] = useState("");
   const [bhpDate, setBhpDate] = useState("");
   const [bhpTime, setBhpTime] = useState("");
+
+  // get array in api
+  function getApiArrayData(startIndex,arrayLength,array){
+    if (arrayLength <= startIndex) {
+      // Return an empty array if invalid parameters are provided
+      return [];
+  }
+
+  const arr = [];
+
+  for (let i = startIndex; i < arrayLength; i++) {
+    arr.push(array[i]);
+}
+return arr;
+
+  }
+
+  function formatDate(dateString) {
+    if (!dateString) return ''; // handle null or undefined value
+    const dateObj = new Date(dateString);
+    const month = ('0' + (dateObj.getMonth() + 1)).slice(-2);
+    const day = ('0' + dateObj.getDate()).slice(-2);
+    const year = dateObj.getFullYear();
+    return `${month}-${day}-${year}`;
+  }
+
+  useEffect(()=>{
+    setHasNotified(getApiData?.hasNotified);
+setAssessmentOn(getApiData?.assessmentOn);
+setPatientId(patientId?.hasNotified);
+setDob(getApiData?.dob);
+setCompanyName(getApiData?.companyName);
+setResidentName(getApiData?.hasNotified);
+setSex(getApiData?.sex);
+setDateOfAssessment(getApiData?.dateOfAssessment);
+setAhcccsNumber(getApiData?.ahcccsNumber);
+setPreferredLanguage(getApiData?.preferredLanguage);
+setEthnicity(getApiData?.ethnicity);
+setAdmissionStatus(getApiData?.admissionStatus?getApiData?.admissionStatus:[]);
+setProgramLocation(getApiData?.programLocation);
+setGuardianship(getApiData?.guardianship);
+setPowerOfAttorneyStatus(getApiData?.powerOfAttorneyStatus);
+setTodayDate(getApiData?.todayDate?getApiData?.todayDate?.slice(0,10):"");
+setGuardianshipPoaPubFidName(getApiData?.guardianshipPoaPubFidName);
+setApprovedBy(getApiData?.approvedBy);
+setReasonForAdmission(getApiData?.reasonForAdmission?getApiData?.reasonForAdmission:[]);
+setResidentGoals(getApiData?.residentGoals);
+setResidentStrengths(getApiData?.residentStrengths?getApiData?.residentStrengths:[]);
+setResidentLimitations(getApiData?.residentLimitations);
+setCurrentBehavioralIssues(getApiData?.currentBehavioralIssues);
+
+setYesDiabetes(getApiData?.medicalConditions?.[0]?.yes);
+setCommentDeabetes(getApiData?.medicalConditions?.[0]?.comments);
+
+setYesHeart(getApiData?.medicalConditions?.[1]?.yes);
+setCommentHeart(getApiData?.medicalConditions?.[1]?.comments);
+
+setYesHistory(getApiData?.medicalConditions?.[2]?.yes);
+setCommentHistory(getApiData?.medicalConditions?.[2]?.comments);
+
+setYesHigh(getApiData?.medicalConditions?.[3]?.yes);
+setCommentHigh(getApiData?.medicalConditions?.[3]?.comments);
+
+setYesLung(getApiData?.medicalConditions?.[4]?.yes);
+setCommentLung(getApiData?.medicalConditions?.[4]?.comments);
+
+setYesSeizures(getApiData?.medicalConditions?.[5]?.yes);
+setCommentSeizures(getApiData?.medicalConditions?.[5]?.comments);
+
+setYesCancer(getApiData?.medicalConditions?.[6]?.yes);
+setCommentCancer(getApiData?.medicalConditions?.[6]?.comments);
+
+setYesLiver(getApiData?.medicalConditions?.[7]?.yes);
+setCommentLiver(getApiData?.medicalConditions?.[7]?.comments);
+
+setYesThyroid(getApiData?.medicalConditions?.[8]?.yes);
+setThyroidDisorder(getApiData?.medicalConditions?.[8].comment
+  ? getApiData?.medicalConditions?.[8].comment?.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+
+setYesBrain(getApiData?.medicalConditions?.[9]?.yes);
+setbrain(getApiData?.medicalConditions?.[9]?.comments);
+
+setYesInjury(getApiData?.medicalConditions?.[10]?.yes);
+setCommentInjury(getApiData?.medicalConditions?.[10]?.comments);
+
+setYesChronic(getApiData?.medicalConditions?.[11]?.yes);
+setChronicCommit(getApiData?.medicalConditions?.[11]?.comments);
+
+setAllergiesYes(getApiData?.medicalConditions?.[12]?.yes);
+setAllergiesComment(getApiData?.medicalConditions?.[12]?.comments);
+
+setSurgeriessYes(getApiData?.medicalConditions?.[13]?.yes);
+setSurgeriesComment(getApiData?.medicalConditions?.[13]?.comments);
+
+setPregnanciesYes(getApiData?.medicalConditions?.[14]?.yes);
+setPregnanciesComment(getApiData?.medicalConditions?.[14]?.comments);
+
+setSubstanceYes(getApiData?.medicalConditions?.[15]?.yes);
+setSubstanceComment(getApiData?.medicalConditions?.[15]?.comments);
+
+setDepressionYes(getApiData?.medicalConditions?.[16]?.yes);
+setDepressionComment(getApiData?.medicalConditions?.[16]?.comments);
+
+setAnxietyYes(getApiData?.medicalConditions?.[17]?.yes);
+setAnxietyComment(getApiData?.medicalConditions?.[17]?.comments);
+
+setInsomniaYes(getApiData?.medicalConditions?.[18]?.yes);
+setInsomniaComment(getApiData?.medicalConditions?.[18]?.comments);
+
+setBipolarYes(getApiData?.medicalConditions?.[19]?.yes);
+setBipolarComment(getApiData?.medicalConditions?.[19]?.comments);
+
+setSchizophreniaYes(getApiData?.medicalConditions?.[20]?.yes);
+setSchizophreniaComment(getApiData?.medicalConditions?.[20]?.comments);
+
+setObsessiveYes(getApiData?.medicalConditions?.[21]?.yes);
+setObsessiveComment(getApiData?.medicalConditions?.[21]?.comments);
+
+setPersonalityYes(getApiData?.medicalConditions?.[22]?.yes);
+setPersonalityComment(getApiData?.medicalConditions?.[22]?.comments);
+
+setPhobiasYes(getApiData?.medicalConditions?.[23]?.yes);
+setPhobiasComment(getApiData?.medicalConditions?.[23]?.comments);
+
+setHealthConditionsYes(getApiData?.medicalConditions?.[24]?.yes);
+sethealthConditionsYesComment(getApiData?.medicalConditions?.[24]?.comments);
+
+setInfectionYes(getApiData?.medicalConditions?.[25]?.yes);
+setInfectionDiseases(getApiData?.medicalConditions?.[25].comment
+  ? getApiData?.medicalConditions?.[8].comment?.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+// jai maa kali
+setOtherConditionArray(getApiData?.medicalConditions?getApiArrayData(26,getApiData?.medicalConditions?.length,getApiData?.medicalConditions):[]);
+setSignificantFamilyMedicalPsychiatricHistory(getApiData?.SignificantFamilyMedicalPsychiatricHistory
+  ? getApiData?.SignificantFamilyMedicalPsychiatricHistory.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+// jai maa kali
+setMentalHealthTreatmentHistoryTypeOfService([]);
+
+setMentalHealthTreatmentHistoryWhere("");
+setMentalHealthTreatmentHistoryDates("");
+setMentalHealthTreatmentHistoryDiagnosisReason([]);
+setTypeOfServicesArray([])
+
+setSubstanceAbuseHistory(getApiData?.substanceAbuseHistory);
+setSubstanceAbuseDenies(getApiData?.substanceAbuseDenies);
+
+setSubstanceAbuseHistoryDataAgeOfFirstUseAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUseAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.lastUse);
+setSubstanceAbuseHistoryDataFrequencyAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.frequency);
+setSubstanceAbuseHistoryDataLengthOfSobrietyAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.lengthOfSobriety);
+
+setSubstanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines(getApiData?.substanceAbuseHistoryData?.[1]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUseBenzodiazepines(getApiData?.substanceAbuseHistoryData?.[1]?.lastUse);
+setSubstanceAbuseHistoryDataFrequencyBenzodiazepines(getApiData?.substanceAbuseHistoryData?.[1]?.frequency);
+setSubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines(getApiData?.substanceAbuseHistoryData?.[1]?.lengthOfSobriety);
+
+setSubstanceAbuseHistoryDataAgeOfFirstUseCrack(getApiData?.substanceAbuseHistoryData?.[2]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUseCrack(getApiData?.substanceAbuseHistoryData?.[2]?.lastUse);
+setSubstanceAbuseHistoryDataFrequencyCrack(getApiData?.substanceAbuseHistoryData?.[2]?.frequency);
+setSubstanceAbuseHistoryDataLengthOfSobrietyCrack(getApiData?.substanceAbuseHistoryData?.[2]?.lengthOfSobriety);
+
+setSubstanceAbuseHistoryDataAgeOfFirstUseHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUseHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.lastUse);
+setSubstanceAbuseHistoryDataFrequencyHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.frequency);
+setSubstanceAbuseHistoryDataLengthOfSobrietyHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.lengthOfSobriety);
+
+setSubstanceAbuseHistoryDataAgeOfFirstUseInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUseInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.lastUse);
+setSubstanceAbuseHistoryDataFrequencyInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.frequency);
+setSubstanceAbuseHistoryDataLengthOfSobrietyInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.lengthOfSobriety);
+
+setSubstanceAbuseHistoryDataAgeOfFirstUseMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUseMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.lastUse);
+setSubstanceAbuseHistoryDataFrequencyMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.frequency);
+setSubstanceAbuseHistoryDataLengthOfSobrietyMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.lengthOfSobriety);
+
+setSubstanceAbuseHistoryDataAgeOfFirstUseMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUseMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.lastUse);
+setSubstanceAbuseHistoryDataFrequencyMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.frequency);
+setSubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.lengthOfSobriety);
+
+setSubstanceAbuseHistoryDataAgeOfFirstUseMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUseMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.lastUse);
+setSubstanceAbuseHistoryDataFrequencyMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.frequency);
+setSubstanceAbuseHistoryDataLengthOfSobrietyMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.lengthOfSobriety);
+
+setSubstanceAbuseHistoryDataAgeOfFirstUseMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUseMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.lastUse);
+setSubstanceAbuseHistoryDataFrequencyMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.frequency);
+setSubstanceAbuseHistoryDataLengthOfSobrietyMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.lengthOfSobriety);
+
+setSubstanceAbuseHistoryDataAgeOfFirstUsePCP(getApiData?.substanceAbuseHistoryData?.[9]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUsePCP(getApiData?.substanceAbuseHistoryData?.[9]?.lastUse);
+setSubstanceAbuseHistoryDataFrequencyPCP(getApiData?.substanceAbuseHistoryData?.[9]?.frequency);
+setSubstanceAbuseHistoryDataLengthOfSobrietyPCP(getApiData?.substanceAbuseHistoryData?.[9]?.lengthOfSobriety);
+
+setSubstanceAbuseHistoryDataAgeOfFirstUsePrescription(getApiData?.substanceAbuseHistoryData?.[10]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUsePrescription(getApiData?.substanceAbuseHistoryData?.[10]?.lastUse);
+setSubstanceAbuseHistoryDataFrequencyPrescription(getApiData?.substanceAbuseHistoryData?.[10]?.frequency);
+setSubstanceAbuseHistoryDataLengthOfSobrietyPrescription(getApiData?.substanceAbuseHistoryData?.[10]?.lengthOfSobriety);
+
+setSubstanceAbuseHistoryDataAgeOfFirstUseOTC(getApiData?.substanceAbuseHistoryData?.[11]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUseOTC(getApiData?.substanceAbuseHistoryData?.[11]?.lastUse);
+setSubstanceAbuseHistoryDataFrequencyOTC(getApiData?.substanceAbuseHistoryData?.[11]?.frequency);
+setSubstanceAbuseHistoryDataLengthOfSobrietyOTC(getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety);
+setTypeArray(getApiData?.substanceAbuseHistoryData?getApiArrayData(12,getApiData?.substanceAbuseHistoryData?.length,getApiData?.substanceAbuseHistoryData):[]);
+
+setNoneReportedOrObserved(
+      getApiData?.ActiveWithdrawalSymptoms?.noneReportedOrObserved
+    );
+    setAgitation(getApiData?.ActiveWithdrawalSymptoms?.Agitation);
+    setNausea(getApiData?.ActiveWithdrawalSymptoms?.Nausea);
+    setVomiting(getApiData?.ActiveWithdrawalSymptoms?.Vomiting);
+    setHeadache(getApiData?.ActiveWithdrawalSymptoms?.Headache);
+    setTactileDisturbances(
+      getApiData?.ActiveWithdrawalSymptoms?.TactileDisturbances
+    );
+    setAnxiety(getApiData?.ActiveWithdrawalSymptoms?.Anxiety);
+    setTremors(getApiData?.ActiveWithdrawalSymptoms?.Tremors);
+    setVisualDisturbances(
+      getApiData?.ActiveWithdrawalSymptoms?.VisualDisturbances
+    );
+    // jai maa kali
+    setVisualDisturbancesOtherBoolean(
+      getApiData?.ActiveWithdrawalSymptoms?.AuditoryDisturbances
+    );
+    setVisualDisturbancesOtherType("");
+
+    setSweats(getApiData?.ActiveWithdrawalSymptoms?.Sweats);
+    setParanoia(getApiData?.ActiveWithdrawalSymptoms?.Paranoia);
+    setGooseBumps(getApiData?.ActiveWithdrawalSymptoms?.GooseBumps);
+    setRunningnose(getApiData?.ActiveWithdrawalSymptoms?.Runningnose);
+    setBonePain(getApiData?.ActiveWithdrawalSymptoms?.BonePain);
+    setTearing(getApiData?.ActiveWithdrawalSymptoms?.Tearing);
+    setSeizures(getApiData?.ActiveWithdrawalSymptoms?.Seizures);
+    setLossofMuscleCoordination(
+      getApiData?.ActiveWithdrawalSymptoms?.LossofMuscleCoordination
+    );
+    //jai maa kali
+    setLossofMuscleCoordinationBoolean(false);
+    setLossofMuscleCoordinationType("");
+
+    setConsistent(getApiData?.mentalStatusExam?.apparentAge?.consistent);
+    setYounger(getApiData?.mentalStatusExam?.apparentAge?.younger);
+    setOlder(getApiData?.mentalStatusExam?.apparentAge?.older);
+    //jai maa kali
+    setOlderOtherBoolean(false);
+    setOlderOther("");
+
+    setAverageHeight(
+      getApiData?.mentalStatusExam?.apparentAge?.height?.average
+    );
+    setShort(getApiData?.mentalStatusExam?.apparentAge?.height?.short);
+    setTall(getApiData?.mentalStatusExam?.apparentAge?.height?.tall);
+    //jai maa kali
+    setHeigthBoolean(false);
+    setHeigthOther("");
+
+    setAverageWeight(
+      getApiData?.mentalStatusExam?.apparentAge?.weight?.average
+    );
+    setObese(getApiData?.mentalStatusExam?.apparentAge?.weight?.obese);
+    setOverweight(
+      getApiData?.mentalStatusExam?.apparentAge?.weight?.overweight
+    );
+    setThin(getApiData?.mentalStatusExam?.apparentAge?.weight?.thin);
+    setEmaciated(getApiData?.mentalStatusExam?.apparentAge?.weight?.emaciated);
+    // jai maa kali
+    setWeightBoolean(false);
+    setWeightOther("");
+
+    setCasual(getApiData?.mentalStatusExam?.apparentAge?.attire?.Casual);
+    setNeat(getApiData?.mentalStatusExam?.apparentAge?.attire?.Neat);
+    setTattered(getApiData?.mentalStatusExam?.apparentAge?.attire?.Tattered);
+    setDirty(getApiData?.mentalStatusExam?.apparentAge?.attire?.Dirty);
+    // jai maa kali
+    setAttireBoolaen(false);
+    setAttireOther("");
+
+    setWellGroomed(
+      getApiData?.mentalStatusExam?.apparentAge?.grooming?.wellGroomed
+    );
+    setAdequateGrooming(
+      getApiData?.mentalStatusExam?.apparentAge?.grooming?.adequate
+    );
+    setUnkempt(getApiData?.mentalStatusExam?.apparentAge?.grooming?.unkempt);
+    setDisheveled(
+      getApiData?.mentalStatusExam?.apparentAge?.grooming?.disheveled
+    );
+    //jai ma kali
+    setGroomingBoolean(false);
+    setGroomingOther("");
+
+    setEuthymic(getApiData?.mentalStatusExam?.apparentAge?.Mood?.Euthymic);
+    setIrritable(getApiData?.mentalStatusExam?.apparentAge?.Mood?.Irritable);
+    setElevated(getApiData?.mentalStatusExam?.apparentAge?.Mood?.Elevated);
+    setDepressedMood(
+      getApiData?.mentalStatusExam?.apparentAge?.Mood?.Depressed
+    );
+    setAnxious(getApiData?.mentalStatusExam?.apparentAge?.Mood?.Anxious);
+    // jai maa kali
+    seteuthymicOtherBoolean(false);
+    seteuthymicOtherBooleanType("");
+
+    setNormalRange(
+      getApiData?.mentalStatusExam?.apparentAge?.Affect?.normalRange
+    );
+    setDepressedAffect(
+      getApiData?.mentalStatusExam?.apparentAge?.Affect?.Depressed
+    );
+    setLabile(getApiData?.mentalStatusExam?.apparentAge?.Affect?.Labile);
+    setConstricted(
+      getApiData?.mentalStatusExam?.apparentAge?.Affect?.Constricted
+    );
+    // jai ma kali
+    setOther(false);
+    setOtherText("");
+
+    setAppropriate(
+      getApiData?.mentalStatusExam?.apparentAge?.EyeContact?.Appropriate
+    );
+    setMinimal(getApiData?.mentalStatusExam?.apparentAge?.EyeContact?.Minimal);
+    setPoor(getApiData?.mentalStatusExam?.apparentAge?.EyeContact?.Poor);
+    setAdequateEyeContact(
+      getApiData?.mentalStatusExam?.apparentAge?.EyeContact?.Adequate
+    );
+    setEyeContactOtherBoolean(false);
+    setEyeContactOtherBooleanType("");
+
+    setAppropriateCooperation(
+      getApiData?.mentalStatusExam?.apparentAge?.Cooperation?.Appropriate
+    );
+    setHostile(getApiData?.mentalStatusExam?.apparentAge?.Cooperation?.Hostile);
+    setEvasive(getApiData?.mentalStatusExam?.apparentAge?.Cooperation?.Evasive);
+    setDefensive(
+      getApiData?.mentalStatusExam?.apparentAge?.Cooperation?.Defensive
+    );
+    setIndifferent(
+      getApiData?.mentalStatusExam?.apparentAge?.Cooperation?.Indifferent
+    );
+    // jai maa kali
+    setCooperationOtherBoolean(false);
+    setCooperationOtherBooleanType("");
+
+    setNormalArticulation(
+      getApiData?.mentalStatusExam?.apparentAge?.Articulation?.Normal
+    );
+    setUnintelligible(
+      getApiData?.mentalStatusExam?.apparentAge?.Articulation?.Unintelligible
+    );
+    setMumbled(
+      getApiData?.mentalStatusExam?.apparentAge?.Articulation?.Mumbled
+    );
+    setSlurred(
+      getApiData?.mentalStatusExam?.apparentAge?.Articulation?.Slurred
+    );
+    setStuttered(
+      getApiData?.mentalStatusExam?.apparentAge?.Articulation?.Stuttered
+    );
+    setArticulationOtherBoolean(false);
+    setArticulationOtherBooleanOther("");
+
+    setNormalTone(getApiData?.mentalStatusExam?.apparentAge?.Tone?.Normal);
+    setSoft(getApiData?.mentalStatusExam?.apparentAge?.Tone?.Soft);
+    setLoud(getApiData?.mentalStatusExam?.apparentAge?.Tone?.Loud);
+    setPressured(getApiData?.mentalStatusExam?.apparentAge?.Tone?.Pressured);
+    //jai ma kali
+    setToneOtherBoolean(false);
+    setToneOtherBooleanOther("");
+
+    setNormalRate(getApiData?.mentalStatusExam?.apparentAge?.Rate?.Normal);
+    setSlow(getApiData?.mentalStatusExam?.apparentAge?.Rate?.Slow);
+    setFast(getApiData?.mentalStatusExam?.apparentAge?.Rate?.Fast);
+    // jai ma kali
+    setRateOtherBoolean(false);
+    setRateOtherBooleanOther("");
+
+    setNormalQuantity(
+      getApiData?.mentalStatusExam?.apparentAge?.Quantity?.Normal
+    );
+    setVerbose(getApiData?.mentalStatusExam?.apparentAge?.Quantity?.Verbose);
+    setMutism(getApiData?.mentalStatusExam?.apparentAge?.Quantity?.Mutism);
+    // jai ma kali
+    setQuantityOtherBoolean(false);
+    setQuantityOtherBooleanOther("");
+
+    setNormalresponseLatency(
+      getApiData?.mentalStatusExam?.apparentAge?.responseLatency?.Normal
+    );
+    setDelayed(
+      getApiData?.mentalStatusExam?.apparentAge?.responseLatency?.Delayed
+    );
+    setShortened(
+      getApiData?.mentalStatusExam?.apparentAge?.responseLatency?.Shortened
+    );
+    // jai maa kali
+    setresponseLatencyOtherBoolean(false);
+    setresponseLatencyOtherBooleanOther("");
+
+    setUnremarkablethoughtContent(
+      getApiData?.mentalStatusExam?.apparentAge?.thoughtContent?.Unremarkable
+    );
+    setSuspicious(
+      getApiData?.mentalStatusExam?.apparentAge?.thoughtContent?.Suspicious
+    );
+    setNegative(
+      getApiData?.mentalStatusExam?.apparentAge?.thoughtContent?.Negative
+    );
+    setConcrete(
+      getApiData?.mentalStatusExam?.apparentAge?.thoughtContent?.Concrete
+    );
+    // jai maa kali
+    setthoughtContentBoolean(false);
+    setThoughtContentOther("");
+
+    setLogicalCoherent(
+      getApiData?.mentalStatusExam?.apparentAge?.thoughtProcesses
+        ?.logicalCoherent
+    );
+    setTangential(
+      getApiData?.mentalStatusExam?.apparentAge?.thoughtProcesses?.Tangential
+    );
+    setCircumstantial(
+      getApiData?.mentalStatusExam?.apparentAge?.thoughtProcesses
+        ?.Circumstantial
+    );
+    setVague(
+      getApiData?.mentalStatusExam?.apparentAge?.thoughtProcesses?.Vague
+    );
+    // jai ma kali
+    setThoughtProcessesBoolaen(false);
+    setThoughtProcessesOther("");
+
+    setNoDelusions(getApiData?.mentalStatusExam?.apparentAge?.Delusions?.No);
+    setYesPersecutory(
+      getApiData?.mentalStatusExam?.apparentAge?.Delusions?.YesPersecutory
+    );
+    setYesSomatic(
+      getApiData?.mentalStatusExam?.apparentAge?.Delusions?.YesSomatic
+    );
+    setYesGrandiose(
+      getApiData?.mentalStatusExam?.apparentAge?.Delusions?.YesGrandiose
+    );
+    // jai ma kali
+    setYesOtherDelusionsBoolean(false);
+    setYesOtherDelusionsText("");
+
+    setUnremarkableHallucinations(
+      getApiData?.mentalStatusExam?.apparentAge?.Hallucinations?.Unremarkable
+    );
+    setVisualHallucinations(
+      getApiData?.mentalStatusExam?.apparentAge?.Hallucinations
+        ?.VisualHallucinations
+    );
+    setAuditoryHallucinations(
+      getApiData?.mentalStatusExam?.apparentAge?.Hallucinations
+        ?.AuditoryHallucinations
+    );
+    setTactileHallucinations(
+      getApiData?.mentalStatusExam?.apparentAge?.Hallucinations
+        ?.TactileHallucinations
+    );
+    // jai maa kali
+    setYesOtherHallucinationsBoolean(false);
+    setYesOtherHallucinationsText("");
+
+    setNormalGait(getApiData?.mentalStatusExam?.apparentAge?.Gait?.Normal);
+    setStaggering(getApiData?.mentalStatusExam?.apparentAge?.Gait?.Staggering);
+    setShuffling(getApiData?.mentalStatusExam?.apparentAge?.Gait?.Shuffling);
+    setSlowGait(getApiData?.mentalStatusExam?.apparentAge?.Gait?.Slow);
+    setAwkward(getApiData?.mentalStatusExam?.apparentAge?.Gait?.Awkward);
+    // jai ma kali
+    setNormalPosture(
+      getApiData?.mentalStatusExam?.apparentAge?.Posture?.Normal
+    );
+    setRelaxed(getApiData?.mentalStatusExam?.apparentAge?.Posture?.Relaxed);
+    setRigid(getApiData?.mentalStatusExam?.apparentAge?.Posture?.Rigid);
+    setTense(getApiData?.mentalStatusExam?.apparentAge?.Posture?.Tense);
+    setSlouched(getApiData?.mentalStatusExam?.apparentAge?.Posture?.Slouched);
+
+    setWithinNormalLimits(
+      getApiData?.mentalStatusExam?.apparentAge?.PsychomotorActivity
+        ?.Withinnormallimits
+    );
+    setCalm(
+      getApiData?.mentalStatusExam?.apparentAge?.PsychomotorActivity?.Calm
+    );
+    setHyperactive(
+      getApiData?.mentalStatusExam?.apparentAge?.PsychomotorActivity
+        ?.Hyperactive
+    );
+    setAgitated(
+      getApiData?.mentalStatusExam?.apparentAge?.PsychomotorActivity?.Agitated
+    );
+    setHypoactive(
+      getApiData?.mentalStatusExam?.apparentAge?.PsychomotorActivity?.Hypoactive
+    );
+    setNone(false);
+    setTics(false);
+
+    // jai ma kali
+    setTremorsMannerisms(
+      getApiData?.mentalStatusExam?.apparentAge?.Mannerisms?.Tremors
+    );
+    setRocking(getApiData?.mentalStatusExam?.apparentAge?.Mannerisms?.Rocking);
+    setPicking(getApiData?.mentalStatusExam?.apparentAge?.Mannerisms?.Picking);
+
+// jai shiv shakti
+setPerson(getApiArrayData?.mentalStatusExam?.orientation?.person);
+setPlace(getApiArrayData?.mentalStatusExam?.orientation?.place);
+setTime(getApiArrayData?.mentalStatusExam?.orientation?.time);
+setCircumstances(getApiArrayData?.mentalStatusExam?.orientation?.circumstances);
+setGoodJudgment(getApiArrayData?.mentalStatusExam?.Judgment?.Good);
+setFairJudgment(getApiArrayData?.mentalStatusExam?.Judgment?.Fair);
+setPoorJudgment(getApiArrayData?.mentalStatusExam?.Insight?.Poor);
+setGoodInsight(getApiArrayData?.mentalStatusExam?.Judgment?.Good);
+setFairInsight(getApiArrayData?.mentalStatusExam?.Insight?.Fair);
+setPoorInsight(getApiArrayData?.mentalStatusExam?.Insight?.Poor);
+setGoodMemory(getApiArrayData?.mentalStatusExam?.Memory?.Good);
+setFairMemory(getApiArrayData?.mentalStatusExam?.Memory?.Fair);
+setPoorMemory(getApiArrayData?.mentalStatusExam?.Memory?.Poor);
+setIntactAbilityToConcentration(getApiArrayData?.mentalStatusExam?.AbilityToConcentration?.Intact);
+setIntactAbilityToConcentrationOtherBoolean(getApiArrayData?.mentalStatusExam?.AbilityToConcentration?.Other?true:false);
+setOtherAbilityToConcentration(getApiArrayData?.mentalStatusExam?.AbilityToConcentration?.Other);
+setSignificantSocialDevelopmentalHistory(getApiArrayData?.significantSocialDevelopmentalHistory);
+setEducationalHistory(getApiArrayData?.personalInformation?.educationalHistory);
+setHighestEducation(getApiArrayData?.personalInformation?.highestEducation);
+setSpecialEducation(getApiArrayData?.personalInformation?.specialEducation);
+setCurrentStudent(getApiArrayData?.personalInformation?.currentStudent);
+setIfYesWhere(getApiArrayData?.personalInformation?.currentStudentLocation);
+
+setCurrentlyEmployed(getApiArrayData?.employmentHistory?.currentlyEmployed);
+setEmploymentLocation(getApiArrayData?.employmentHistory?.employmentLocation);
+
+setWorkHistory(getApiArrayData?.workHistory);
+
+setMilitaryService(getApiArrayData?.militaryHistory?.militaryService);
+setActiveDuty(getApiArrayData?.militaryHistory?.activeDuty);
+
+setSelectedValue(getApiData?.legalHistory
+  ? getApiData?.legalHistory.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+
+setBathingGood(getApiArrayData?.independentLivingSkills?.[0]?.good);
+setBathingFair(getApiArrayData?.independentLivingSkills?.[0]?.fair);
+setBathingNotSoGood(getApiArrayData?.independentLivingSkills?.[0]?.otherCurrentNotSoGood);
+setBathingGoodNeedAssist(getApiArrayData?.independentLivingSkills?.[0]?.needAssist );
+setBathingComments(getApiArrayData?.independentLivingSkills?.[0]?.comments);
+
+setGroomingGood(getApiArrayData?.independentLivingSkills?.[1]?.good);
+setGroomingFair(getApiArrayData?.independentLivingSkills?.[1]?.fair);
+setGroomingNotSoGood(getApiArrayData?.independentLivingSkills?.[1]?.otherCurrentNotSoGood);
+setGroomingGoodNeedAssist(getApiArrayData?.independentLivingSkills?.[1]?.needAssist);
+setGroomingComments(getApiArrayData?.independentLivingSkills?.[1]?.comments);
+
+setMobilityGood(getApiArrayData?.independentLivingSkills?.[2]?.good);
+setMobilityFair(getApiArrayData?.independentLivingSkills?.[2]?.fair);
+setMobilityNotSoGood(getApiArrayData?.independentLivingSkills?.[2]?.otherCurrentNotSoGood);
+setMobilityGoodNeedAssist(getApiArrayData?.independentLivingSkills?.[2]?.needAssist);
+setMobilityComments(getApiArrayData?.independentLivingSkills?.[2]?.comments);
+
+setHouseworkGood(getApiArrayData?.independentLivingSkills?.[3]?.good);
+setHouseworkFair(getApiArrayData?.independentLivingSkills?.[3]?.fair);
+setHouseworkNotSoGood(getApiArrayData?.independentLivingSkills?.[3]?.otherCurrentNotSoGood);
+setHouseworkGoodNeedAssist(getApiArrayData?.independentLivingSkills?.[3]?.needAssist);
+setHouseworkComments(getApiArrayData?.independentLivingSkills?.[3]?.comments);
+
+setShoppingGood(getApiArrayData?.independentLivingSkills?.[4]?.good);
+setShoppingFair(getApiArrayData?.independentLivingSkills?.[4]?.fair);
+setShoppingNotSoGood(getApiArrayData?.independentLivingSkills?.[4]?.otherCurrentNotSoGood);
+setShoppingGoodNeedAssist(getApiArrayData?.independentLivingSkills?.[4]?.needAssist);
+setShoppingComments(getApiArrayData?.independentLivingSkills?.[4]?.comments);
+
+setManagingGood(getApiArrayData?.independentLivingSkills?.[5]?.good);
+setManagingFair(getApiArrayData?.independentLivingSkills?.[5]?.fair);
+setManagingNotSoGood(getApiArrayData?.independentLivingSkills?.[5]?.otherCurrentNotSoGood);
+setManagingGoodNeedAssist(getApiArrayData?.independentLivingSkills?.[5]?.needAssist);
+setManagingComments(getApiArrayData?.independentLivingSkills?.[5]?.comments);
+
+setPreparingGood(getApiArrayData?.independentLivingSkills?.[6]?.good);
+setPreparingFair(getApiArrayData?.independentLivingSkills?.[6]?.fair);
+setPreparingNotSoGood(getApiArrayData?.independentLivingSkills?.[6]?.otherCurrentNotSoGood);
+setPreparingGoodNeedAssist(getApiArrayData?.independentLivingSkills?.[6]?.needAssist);
+setPreparingComments(getApiArrayData?.independentLivingSkills?.[6]?.comments);
+
+setEatingGood(getApiArrayData?.independentLivingSkills?.[7]?.good);
+setEatingFair(getApiArrayData?.independentLivingSkills?.[7]?.fair);
+setEatingNotSoGood(getApiArrayData?.independentLivingSkills?.[7]?.otherCurrentNotSoGood);
+setEatingGoodNeedAssist(getApiArrayData?.independentLivingSkills?.[7]?.needAssist);
+setEatingComments(getApiArrayData?.independentLivingSkills?.[7]?.comments);
+
+setToiletingGood(getApiArrayData?.independentLivingSkills?.[8]?.good);
+setToiletingFair(getApiArrayData?.independentLivingSkills?.[8]?.fair);
+setToiletingNotSoGood(getApiArrayData?.independentLivingSkills?.[8]?.otherCurrentNotSoGood);
+setToiletingGoodNeedAssist(getApiArrayData?.independentLivingSkills?.[8]?.needAssist);
+setToiletingComments(getApiArrayData?.independentLivingSkills?.[8]?.comments);
+// setOtherCurrentOther(getApiArrayData?.independentLivingSkills?.[0]?.comments);
+
+setOtherCurrentGood(getApiArrayData?.independentLivingSkills?.[9]?.good);
+setOtherCurrentFair(getApiArrayData?.independentLivingSkills?.[9]?.fair);
+setOtherCurrentNotSoGood(getApiArrayData?.independentLivingSkills?.[9]?.otherCurrentNotSoGood);
+setOtherCurrentNeed(getApiArrayData?.independentLivingSkills?.[9]?.needAssist);
+setOtherCurrentComment(getApiArrayData?.independentLivingSkills?.[9]?.comments);
+
+setHandleRiskFactorActivityArray(getApiData?.independentLivingSkills?getApiArrayData(10,getApiData?.independentLivingSkills?.length,getApiData?.independentLivingSkills):[]);
+
+setTriggers(getApiArrayData?.triggers);
+setFallRisk(getApiArrayData?.fallRiskData?.fallRisk);
+setFallRiskExplanation(getApiArrayData?.fallRiskData?.fallRiskExplanation);
+setHobbiesLeisureActivities(getApiArrayData?.hobbiesLeisureActivities);
+setSelectedValueMedical(getApiData?.medicalEquipmentArray
+  ? getApiData?.medicalEquipmentArray.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+setSelectedValueSpecialPrecautions(getApiData?.specialPrecautions
+  ? getApiData?.specialPrecautions.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+setCurrentThoughtsOfHarmingSelf(getApiArrayData?.currentThoughtsOfHarmingSelf);
+setSuicidalIdeation(getApiArrayData?.suicidalIdeation?.ideation);
+setSuicidalIdeationUrgency(getApiArrayData?.suicidalIdeation?.increasingIn?.urgency);
+setSuicidalIdeationSeverity(getApiArrayData?.suicidalIdeation?.increasingIn?.severity);
+setCurrentThoughtsOfHarmingOthers(getApiArrayData?.currentThoughtsOfHarmingOthers);
+
+setRiskYesNo(getApiArrayData?.riskFactors?.[0]?.yesNo);
+setRiskComment(getApiArrayData?.riskFactors?.[0]?.comment);
+setPriorYesNo(getApiArrayData?.riskFactors?.[1]?.yesNo);
+setPriorComment(getApiArrayData?.riskFactors?.[1]?.comment);
+setAccessYesNo(getApiArrayData?.riskFactors?.[2]?.yesNo);
+setAccessComment(getApiArrayData?.riskFactors?.[2]?.comment);
+setSubstanceYesNo(getApiArrayData?.riskFactors?.[3]?.yesNo);
+setSubstanceCommentAbuse(getApiArrayData?.riskFactors?.[3]?.comment);
+setabusingYesNo(getApiArrayData?.riskFactors?.[4]?.yesNo);
+setabusingComment(getApiArrayData?.riskFactors?.[4]?.comment);
+setRecentYesNo(getApiArrayData?.riskFactors?.[5]?.yesNo);
+setRecentComment(getApiArrayData?.riskFactors?.[5]?.comment);
+setBehaviourYesNo(getApiArrayData?.riskFactors?.[6]?.yesNo);
+setBehaviorcuesDropDown(getApiData?.riskFactors?.[6]?.comments
+  ? getApiData?.riskFactors?.[6]?.comments.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+setSymptomsYesNo(getApiArrayData?.riskFactors?.[7]?.yesNo);
+setSymptomsOfPsychosisDropDown(getApiData?.riskFactors?.[7]?.comments
+  ? getApiData?.riskFactors?.[7]?.comments.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+setFamilyYesNo(getApiArrayData?.riskFactors?.[8]?.yesNo);
+setFamily(getApiArrayData?.riskFactors?.[8]?.comment);
+setTerminalYesNo(getApiArrayData?.riskFactors?.[9]?.yesNo);
+setTerminal(getApiArrayData?.riskFactors?.[9]?.comment);
+setCurrentYesNo(getApiArrayData?.riskFactors?.[10]?.yesNo);
+setCurrent(getApiArrayData?.riskFactors?.[10]?.comment);
+setChronicYesNo(getApiArrayData?.riskFactors?.[11]?.yesNo);
+setChronicPain(getApiArrayData?.riskFactors?.[11]?.comment);
+
+setRiskFactoeArray(getApiData?.riskFactors?getApiArrayData(12,getApiData?.riskFactors?.length,getApiData?.riskFactors):[]);
+
+setSupportsYesNo(getApiArrayData?.protectiveFactors?.[0]?.yesNo);
+setSupportsComment(getApiArrayData?.protectiveFactors?.[0]?.comment);
+setSpiritualYesNo(getApiArrayData?.riskFactors?.[1]?.yesNo);
+setSpiritualComment(getApiArrayData?.protectiveFactors?.[1]?.comment);
+setReligiousYesNo(getApiArrayData?.riskFactors?.[2]?.yesNo);
+setReligiousComment(getApiArrayData?.protectiveFactors?.[2]?.comment);
+setFearYesNo(getApiArrayData?.riskFactors?.[3]?.yesNo);
+setFearComment(getApiArrayData?.protectiveFactors?.[3]?.comment);
+setInterventionYesNo(getApiArrayData?.riskFactors?.[4]?.yesNo);
+setInterventionComment(getApiArrayData?.protectiveFactors?.[4]?.comment);
+setWillingYesNo(getApiArrayData?.riskFactors?.[5]?.yesNo);
+setWillingComment(getApiArrayData?.protectiveFactors?.[5]?.comment);
+
+setProtectiveFactorsArray(getApiData?.protectiveFactors?getApiArrayData(6,getApiData?.protectiveFactors?.length,getApiData?.protectiveFactors):[]);
+
+setRiskLevel(getApiArrayData?.riskLevel);
+
+setPsychiatricPrimaryIcdCode(getApiArrayData?.psychiatricDiagnoses?.[0]?.icdCode);
+setPsychiatricPrimaryDescription(getApiArrayData?.psychiatricDiagnoses?.[0]?.description);
+setPsychiatricSecondaryIcdCode(getApiArrayData?.psychiatricDiagnoses?.[1]?.icdCode);
+setPsychiatricSecondaryDescription(getApiArrayData?.psychiatricDiagnoses?.[1]?.description);
+setPsychiatricTertiaryIcdCode(getApiArrayData?.psychiatricDiagnoses?.[2]?.icdCode);
+setPsychiatricTertiaryDescription(getApiArrayData?.psychiatricDiagnoses?.[2]?.description);
+setPsychiatricAdditionalIcdCode(getApiArrayData?.psychiatricDiagnoses?.[3]?.icdCode);
+setPsychiatricAdditionalDescription(getApiArrayData?.psychiatricDiagnoses?.[3]?.description);
+
+setPsychiatricDiagnosesArray(getApiData?.psychiatricDiagnoses?getApiArrayData(4,getApiData?.psychiatricDiagnoses?.length,getApiData?.psychiatricDiagnoses):[]);
+
+setPrimaryIcdCode(getApiArrayData?.medicalDiagnoses?.[0]?.icdCode);
+setPrimaryDescription(getApiArrayData?.medicalDiagnoses?.[0]?.description);
+setSecondaryIcdCode(getApiArrayData?.medicalDiagnoses?.[1]?.icdCode);
+setSecondaryDescription(getApiArrayData?.medicalDiagnoses?.[1]?.description);
+setTertiaryIcdCode(getApiArrayData?.medicalDiagnoses?.[2]?.icdCode);
+setTertiaryDescription(getApiArrayData?.medicalDiagnoses?.[2]?.description);
+setAdditional1IcdCode(getApiArrayData?.medicalDiagnoses?.[3]?.icdCode);
+setAdditional1Description(getApiArrayData?.medicalDiagnoses?.[3]?.description);
+setMedicalDiagnosesArray(getApiData?.medicalDiagnoses?getApiArrayData(4,getApiData?.medicalDiagnoses?.length,getApiData?.medicalDiagnoses):[])
+
+setPrimarySupportGroup(getApiArrayData?.psychosocialStressors?.primarySupportGroup);
+setMaritalProblems(getApiArrayData?.psychosocialStressors?.maritalProblems);
+setAccessToHealthCareServices(getApiArrayData?.psychosocialStressors?.accessToHealthCareServices);
+setEducationalProblems(getApiArrayData?.psychosocialStressors?.educationalProblems);
+setHousingProblems(getApiArrayData?.psychosocialStressors?.housingProblems);
+setFamilyProblems(getApiArrayData?.psychosocialStressors?.familyProblems);
+setOccupationalProblems(getApiArrayData?.psychosocialStressors?.occupationalProblems);
+setInteractionWithLegalSystem(getApiArrayData?.psychosocialStressors?.interactionWithLegalSystem);
+setSubstanceUseInHome(getApiArrayData?.psychosocialStressors?.substanceUseInHome);
+setSexualProblems(getApiArrayData?.psychosocialStressors?.sexualProblems);
+setOtherBoolean(getApiArrayData?.psychosocialStressors?.otherStressors?true:false);
+setOtherStressors(getApiArrayData?.psychosocialStressors?.otherStressors);
+
+setSetNoAndYes(getApiArrayData?.significantRecentLosses?.yes);
+
+setDeath(getApiArrayData?.significantRecentLosses?.typeOfLoss?.death);
+setJob(getApiArrayData?.significantRecentLosses?.typeOfLoss?.job);
+setChildRemovedFromHouse(getApiArrayData?.significantRecentLosses?.typeOfLoss?.childRemovedFromHouse);
+setInjury(getApiArrayData?.significantRecentLosses?.typeOfLoss?.injury);
+setDivorceSeparation(getApiArrayData?.significantRecentLosses?.typeOfLoss?.divorceSeparation);
+setViolentActsAgainstPersonFamily(getApiArrayData?.significantRecentLosses?.typeOfLoss?.violentActsAgainstPersonFamily);
+setMedicalSurgical(getApiArrayData?.significantRecentLosses?.typeOfLoss?.medicalSurgical);
+setAccidentInjury(getApiArrayData?.significantRecentLosses?.typeOfLoss?.accidentInjury);
+setOtherSignificantRecentLosses(getApiArrayData?.significantRecentLosses?.typeOfLoss?.other?true:false);
+setOtherSignificantRecentLossesType(getApiArrayData?.significantRecentLosses?.typeOfLoss?.other);
+
+setAdditionalNotes(getApiArrayData?.additionalNotes);
+
+setResidentGuardianName(getApiArrayData?.residentInformation?.ResidentName);
+setResidentGauardianSignature(getApiArrayData?.residentInformation?.ResidentSignature);
+setResidentGuardianDate(getApiArrayData?.residentInformation?.ResidentDate?formatDate(getApiArrayData?.residentInformation?.ResidentDate):"");
+setResidentGuardianTime(getApiArrayData?.residentInformation?.time);
+
+setStaffName(getApiArrayData?.staffInformation?.staffName);
+setStaffSignature(getApiArrayData?.staffInformation?.staffSignature);
+setStaffDate(getApiArrayData?.staffInformation?.staffDate?formatDate(getApiArrayData?.staffInformation?.staffDate):"");
+setStaffDateTime(getApiArrayData?.staffInformation?.time);
+
+setBhpName(getApiArrayData?.bhpInformation?.bhpName);
+setBhpCredentials(getApiArrayData?.bhpInformation?.bhpCredentials);
+setBhpSignature(getApiArrayData?.bhpInformation?.bhpSignature);
+setBhpDate(getApiArrayData?.bhpInformation?.bhpDate?formatDate(getApiArrayData?.bhpInformation?.bhpDate):"");
+setBhpTime(getApiArrayData?.bhpInformation?.time);
+
+  },[getApiData])
+
+  useEffect(()=>{
+    initial_assestment_get(patientId,setGetApiData);
+  },[patientId])
 
   useEffect(() => {
     setPatientId(userData?._id);
@@ -1351,8 +2070,25 @@ const [Additional1Description,setAdditional1Description]=useState("");
       selectedValueSpecialPrecautionsArray.push(item?.value)
     })
 
+    const thyroidDisorderArray=[];
+    thyroidDisorder.forEach((item)=>{
+      thyroidDisorderArray.push(item.value)
+    })
+
+    const infectionDiseasesArray=[];
+    infectionDiseases.forEach((item)=>{
+      infectionDiseasesArray.push(item.value)
+    })
+
+    const reasonForAdmissionArray=[];
+    reasonForAdmission.forEach((item)=>{
+      reasonForAdmissionArray.push(item?.value);
+    })
+
 
     const data = {
+      // jai maa kali
+      // assessmentType,
       patientId,
       dob,
       hasNotified,
@@ -1371,7 +2107,7 @@ const [Additional1Description,setAdditional1Description]=useState("");
       todayDate,
       guardianshipPoaPubFidName,
       approvedBy,
-      reasonForAdmission,
+      reasonForAdmission:reasonForAdmissionArray,
       residentGoals,
       residentStrengths: stringValues,
       residentLimitations,
@@ -1426,7 +2162,7 @@ const [Additional1Description,setAdditional1Description]=useState("");
         {
           condition: "Thyroid disorder",
           yes: yesThyroid,
-          comments: thyroidDisorder,
+          comments: thyroidDisorderArray,
         }
         ,
         {
@@ -1512,7 +2248,7 @@ const [Additional1Description,setAdditional1Description]=useState("");
         ,  {
           condition: "Infection or Diseases",
           yes: healthConditionsYes,
-          comments: infectionDiseases,
+          comment: infectionDiseasesArray,
         },
         otherConditionArray
       ],
@@ -1930,9 +2666,14 @@ const [Additional1Description,setAdditional1Description]=useState("");
       medicalEquipmentArray:selectedValueMedicalArray,
       specialPrecautions:selectedValueSpecialPrecautionsArray,
       currentThoughtsOfHarmingSelf,
-      suicidalIdeation,
-      suicidalIdeationUrgency,
-      suicidalIdeationSeverity,
+      // jai  maa kali
+      suicidalIdeation:{
+        ideation:suicidalIdeation,
+        increasingIn:{
+          urgency:suicidalIdeation,
+          severity:suicidalIdeationSeverity
+        }
+      },
       currentThoughtsOfHarmingOthers,
       riskFactors:[
         {
@@ -1968,12 +2709,12 @@ const [Additional1Description,setAdditional1Description]=useState("");
         {
           type:"Behavior cues",
           yesNo:behaviourYesNO,
-          comment:behaviorcuesDropDown
+          comments:behaviorcuesDropDown
         },
         {
           type:"Symptoms of psychosis",
           yesNo:SymptomsYesNO,
-          comment:symptomsOfPsychosisDropDown
+          comments:symptomsOfPsychosisDropDown
         },
         {
           type:"Family history of suicide",
@@ -2078,18 +2819,21 @@ const [Additional1Description,setAdditional1Description]=useState("");
         },
         medicalDiagnosesArray,
       ],
-
-      primarySupportGroup,
-      maritalProblems,
-      accessToHealthCareServices,
-      educationalProblems,
-      housingProblems,
-      familyProblems,
-      occupationalProblems,
-      interactionWithLegalSystem,
-      substanceUseInHome,
-      sexualProblems,
-      otherStressors,
+// jai maa kali
+psychosocialStressors:{
+                primarySupportGroup: { type: Boolean },
+                maritalProblems: { type: Boolean },
+                accessToHealthCareServices: { type: Boolean },
+                educationalProblems: { type: Boolean },
+                housingProblems: { type: Boolean },
+                familyProblems: { type: Boolean },
+                occupationalProblems: { type: Boolean },
+                interactionWithLegalSystem: { type: Boolean },
+                substanceUseInHome: { type: Boolean },
+                sexualProblems: { type: Boolean },
+                otherStressors: { type: String },
+},
+     
 
       significantRecentLosses:{
         yes:setNoAndYes,
@@ -2515,186 +3259,6 @@ const [Additional1Description,setAdditional1Description]=useState("");
   ) => {
     setMentalHealthTreatmentHistoryDiagnosisReason(selectedOptions);
   };
-
-  // Type of services drop down
-  // const substanceAbuseHistoryDataTypesOption = [
-  //   { label: "Alcohol", value: "Alcohol" },
-  //   { label: "Benzodiazepines", value: "Benzodiazepines" },
-  //   { label: "Cocaine", value: "Cocaine" },
-  //   { label: "Crack", value: "Crack" },
-  //   {
-  //     label: "Hallucinogens (LSD,mescaline,etc.)",
-  //     value: "Hallucinogens (LSD,mescaline,etc.)",
-  //   },
-  //   { label: "Heroin", value: "Heroin" },
-  //   { label: "Crack", value: "Crack" },
-  //   { label: "Inhalants", value: "Inhalants" },
-  //   { label: "Marijuana", value: "Marijuana" },
-  //   { label: "Methamphetamine", value: "Methamphetamine" },
-  //   { label: "Methadone", value: "Methadone" },
-  //   { label: "MDMA (ecstasy)", value: "MDMA (ecstasy)" },
-  //   { label: "PCP (angel dust)", value: "PCP (angel dust)" },
-  //   { label: "Prescription medicine", value: "Prescription medicine" },
-  //   { label: "OTC medicine", value: "OTC medicine" },
-
-  // ];
-
-  // const handleKeySubstanceAbuseHistoryDataTypes = (event) => {
-  //   if (event.key === 'Enter' && event.target.value) {
-  //     const inputValue = event.target.value.trim();
-
-  //     const optionExists = substanceAbuseHistoryDataTypesOption.some(
-  //       (option) => option.value === inputValue
-  //     );
-
-  //     if (!optionExists) {
-  //       const newOptions = [
-  //         ...substanceAbuseHistoryDataTypesOption,
-  //         { value: inputValue, label: inputValue }
-  //       ];
-
-  //       setSubstanceAbuseHistoryDataTypes(newOptions);
-
-  //       const newSelectedValues = [
-  //         ...substanceAbuseHistoryDataTypes,
-  //         { value: inputValue, label: inputValue }
-  //       ];
-  //       setSubstanceAbuseHistoryDataTypes(newSelectedValues);
-  //     }
-
-  //     event.target.value = "";
-  //   }
-  // }
-
-  // const substanceAbuseHistoryDataTypesHandler = (selectedOptions) => {
-  //   setSubstanceAbuseHistoryDataTypes(selectedOptions);
-  // };
-
-  // //// Type of services Last use
-  // const substanceAbuseHistoryDataLastUseOption = [
-  //   { label: "Weeks ago", value: "Weeks ago" },
-  //   { label: "Days ago", value: "Days ago" },
-  //   { label: "Yesterday", value: "Yesterday" },
-  //   { label: "Months ago", value: "Months ago" },
-  //   { label: "Few hours ago", value: "Few hours ago" },
-  //   { label: "Unsure", value: "Unsure" },
-  // ];
-
-  // const handleKeyDownSubstanceAbuseHistoryDataLastUse = (event) => {
-  //   if (event.key === 'Enter' && event.target.value) {
-  //     const inputValue = event.target.value.trim();
-
-  //     const optionExists = substanceAbuseHistoryDataLastUseOption.some(
-  //       (option) => option.value === inputValue
-  //     );
-
-  //     if (!optionExists) {
-  //       const newOptions = [
-  //         ...substanceAbuseHistoryDataLastUseOption,
-  //         { value: inputValue, label: inputValue }
-  //       ];
-
-  //       setSubstanceAbuseHistoryDataLastUse(newOptions);
-
-  //       const newSelectedValues = [
-  //         ...substanceAbuseHistoryDataLastUse,
-  //         { value: inputValue, label: inputValue }
-  //       ];
-  //       setSubstanceAbuseHistoryDataLastUse(newSelectedValues);
-  //     }
-
-  //     event.target.value = "";
-  //   }
-  // };
-  // const substanceAbuseHistoryDataLastUseHandler = (selectedOptions) => {
-  //   setSubstanceAbuseHistoryDataLastUse(selectedOptions);
-  // };
-
-  // const substanceAbuseHistoryDataFrequencyOption = [
-  //   { label: "Daily", value: "Daily" },
-  //   { label: "Two to four times weekly", value: "Two to four times weekly" },
-  //   { label: "Multiple times a day", value: "Multiple times a day" },
-  //   { label: "Chronic", value: "Chronic" },
-  //   { label: "Intermittent", value: "Intermittent" },
-  //   { label: "Only on social events", value: "Only on social events" },
-  //   { label: "Only on weekends", value: "Only on weekends" },
-  //   { label: "Few times a month", value: "Few times a month" },
-  // ];
-
-  // const handleKeyDownSubstanceAbuseHistoryDataFrequency = (event) => {
-  //   if (event.key === 'Enter' && event.target.value) {
-  //     const inputValue = event.target.value.trim();
-
-  //     const optionExists = substanceAbuseHistoryDataFrequencyOption.some(
-  //       (option) => option.value === inputValue
-  //     );
-
-  //     if (!optionExists) {
-  //       const newOptions = [
-  //         ...substanceAbuseHistoryDataFrequency,
-  //         { value: inputValue, label: inputValue }
-  //       ];
-
-  //       setSubstanceAbuseHistoryDataFrequency(newOptions);
-
-  //       const newSelectedValues = [
-  //         ...substanceAbuseHistoryDataFrequency,
-  //         { value: inputValue, label: inputValue }
-  //       ];
-  //       setSubstanceAbuseHistoryDataFrequency(newSelectedValues);
-  //     }
-
-  //     event.target.value = "";
-  //   }
-  // };
-
-  // const substanceAbuseHistoryDataFrequencyHandler = (selectedOptions) => {
-  //   setSubstanceAbuseHistoryDataFrequency(selectedOptions);
-  // };
-
-  // const substanceAbuseHistoryDataLengthOfSobrietyOption = [
-  //   { label: "One week", value: "One week" },
-  //   { label: "A few days ago, One month", value: "A few days ago, One month" },
-  //   { label: "One month", value: "One month" },
-  //   { label: "Two months", value: "Two months" },
-  //   { label: "Three months", value: "Three months" },
-  //   { label: "Four months", value: "Four months" },
-  //   { label: "Five to Six months", value: "Five to Six months" },
-  //   { label: "One year", value: "One year" },
-  //   { label: "Two years", value: "Two years" },
-  //   { label: "Many years", value: "Many years" },
-  // ];
-
-  // const handleKeyDownSubstanceAbuseHistoryDataLengthOfSobriety = (event) => {
-  //   if (event.key === 'Enter' && event.target.value) {
-  //     const inputValue = event.target.value.trim();
-
-  //     const optionExists = substanceAbuseHistoryDataLengthOfSobrietyOption.some(
-  //       (option) => option.value === inputValue
-  //     );
-
-  //     if (!optionExists) {
-  //       const newOptions = [
-  //         ...substanceAbuseHistoryDataLengthOfSobrietyOption,
-  //         { value: inputValue, label: inputValue }
-  //       ];
-
-  //       setSubstanceAbuseHistoryDataLengthOfSobriety(newOptions);
-
-  //       const newSelectedValues = [
-  //         ...substanceAbuseHistoryDataLengthOfSobriety,
-  //         { value: inputValue, label: inputValue }
-  //       ];
-  //       setSubstanceAbuseHistoryDataLengthOfSobriety(newSelectedValues);
-  //     }
-
-  //     event.target.value = "";
-  //   }
-  // };
-
-  // const substanceAbuseHistoryDataLengthOfSobrietyHandler = (selectedOptions) => {
-  //   setSubstanceAbuseHistoryDataLengthOfSobriety(selectedOptions);
-  // };
 
   //Criminal Justice Legal History
   const selectedValueOption = [
@@ -3399,11 +3963,8 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               resize: "none",
                               width: "50%",
                             }}
-                            rows={Math.max(
-                              commentDiabety.split("\n").length,
-                              1
-                            )}
-                            value={commentDiabety}
+                            rows={Math.max((commentDiabety ? commentDiabety.split("\n").length : 1), 1)}
+                            value={commentDiabety || ''}
                             placeholder="___________"
                             onChange={(e) => setCommentDeabetes(e.target.value)}
                             onKeyDown={(e) => {
@@ -3442,8 +4003,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               outline: "none",
                               resize: "none",
                             }}
-                            rows={Math.max(commentHeart.split("\n").length, 1)}
-                            value={commentHeart}
+                            rows={Math.max((commentHeart ? commentHeart.split("\n").length : 1), 1)}
+                            value={commentHeart || ''}
+                           
                             placeholder="___________"
                             onChange={(e) => setCommentHeart(e.target.value)}
                             onKeyDown={(e) => {
@@ -3482,11 +4044,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               outline: "none",
                               resize: "none",
                             }}
-                            rows={Math.max(
-                              commentHistory.split("\n").length,
-                              1
-                            )}
-                            value={commentHistory}
+                            rows={Math.max((commentHistory ? commentHistory.split("\n").length : 1), 1)}
+                            value={commentHistory || ''}
+                           
                             placeholder="___________"
                             onChange={(e) => setCommentHistory(e.target.value)}
                             onKeyDown={(e) => {
@@ -3525,8 +4085,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               outline: "none",
                               resize: "none",
                             }}
-                            rows={Math.max(commentHigh.split("\n").length, 1)}
-                            value={commentHigh}
+                            rows={Math.max((commentHigh ? commentHigh.split("\n").length : 1), 1)}
+                            value={commentHigh || ''}
+                        
                             placeholder="___________"
                             onChange={(e) => setCommentHigh(e.target.value)}
                             onKeyDown={(e) => {
@@ -3565,8 +4126,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               outline: "none",
                               resize: "none",
                             }}
-                            rows={Math.max(commentLung.split("\n").length, 1)}
-                            value={commentLung}
+                            rows={Math.max((commentLung ? commentLung.split("\n").length : 1), 1)}
+                            value={commentLung || ''}
+                          
                             placeholder="___________"
                             onChange={(e) => setCommentLung(e.target.value)}
                             onKeyDown={(e) => {
@@ -3605,11 +4167,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               outline: "none",
                               resize: "none",
                             }}
-                            rows={Math.max(
-                              commentSeizures.split("\n").length,
-                              1
-                            )}
-                            value={commentSeizures}
+                            rows={Math.max((commentSeizures ? commentSeizures.split("\n").length : 1), 1)}
+                            value={commentSeizures || ''}
+                           
                             placeholder="___________"
                             onChange={(e) => setCommentSeizures(e.target.value)}
                             onKeyDown={(e) => {
@@ -3649,8 +4209,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               outline: "none",
                               resize: "none",
                             }}
-                            rows={Math.max(commentCancer.split("\n").length, 1)}
-                            value={commentCancer}
+                            rows={Math.max((commentCancer ? commentCancer.split("\n").length : 1), 1)}
+                            value={commentCancer || ''}
+                          
                             placeholder="___________"
                             onChange={(e) => setCommentCancer(e.target.value)}
                             onKeyDown={(e) => {
@@ -3689,8 +4250,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               outline: "none",
                               resize: "none",
                             }}
-                            rows={Math.max(commentLiver.split("\n").length, 1)}
-                            value={commentLiver}
+                            rows={Math.max((commentLiver ? commentLiver.split("\n").length : 1), 1)}
+                            value={commentLiver || ''}
+                           
                             placeholder="___________"
                             onChange={(e) => setCommentLiver(e.target.value)}
                             onKeyDown={(e) => {
@@ -3733,7 +4295,7 @@ const [Additional1Description,setAdditional1Description]=useState("");
                           />
                         </td>
                       </tr>
-                      {/* <tr>
+                       <tr>
                         <td>History of head trauma/traumatic brain</td>
                         <td>
                           <input
@@ -3755,8 +4317,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
                         <td>
                           <textarea
                             style={{ border: "none", outline: "none", resize: "none" }}
-                            rows={Math.max(commentbrain.split("\n").length, 1)}
-                            value={commentbrain}
+                            rows={Math.max((commentbrain ? commentbrain.split("\n").length : 1), 1)}
+                            value={commentbrain || ''}
+                            
                             placeholder="___________"
                             onChange={(e) => setbrain(e.target.value)}
                             onKeyDown={(e) => {
@@ -3767,7 +4330,7 @@ const [Additional1Description,setAdditional1Description]=useState("");
                             }}
                           />
                         </td>
-                      </tr> */}
+                      </tr> 
                       <tr>
                         <td>History of head trauma/traumatic brain injury</td>
                         <td>
@@ -3793,8 +4356,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               outline: "none",
                               resize: "none",
                             }}
-                            rows={Math.max(commentInjury.split("\n").length, 1)}
-                            value={commentInjury}
+                            rows={Math.max((commentInjury ? commentInjury.split("\n").length : 1), 1)}
+                            value={commentInjury || ''}
+                            
                             placeholder="___________"
                             onChange={(e) => setCommentInjury(e.target.value)}
                             onKeyDown={(e) => {
@@ -3833,8 +4397,10 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               outline: "none",
                               resize: "none",
                             }}
-                            rows={Math.max(chronicCommit.split("\n").length, 1)}
-                            value={chronicCommit}
+                            rows={Math.max((chronicCommit ? chronicCommit.split("\n").length : 1), 1)}
+                            value={chronicCommit || ''}
+                            
+                            
                             placeholder="___________"
                             onChange={(e) => setChronicCommit(e.target.value)}
                             onKeyDown={(e) => {
@@ -3873,11 +4439,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               outline: "none",
                               resize: "none",
                             }}
-                            rows={Math.max(
-                              AllergiesComment.split("\n").length,
-                              1
-                            )}
-                            value={AllergiesComment}
+                            rows={Math.max((AllergiesComment ? AllergiesComment.split("\n").length : 1), 1)}
+                            value={AllergiesComment || ''}
+                         
                             placeholder="___________"
                             onChange={(e) =>
                               setAllergiesComment(e.target.value)
@@ -3918,11 +4482,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               outline: "none",
                               resize: "none",
                             }}
-                            rows={Math.max(
-                              SurgeriesComment.split("\n").length,
-                              1
-                            )}
-                            value={SurgeriesComment}
+                            rows={Math.max((SurgeriesComment ? SurgeriesComment.split("\n").length : 1), 1)}
+                            value={SurgeriesComment || ''}
+                            
                             placeholder="___________"
                             onChange={(e) =>
                               setSurgeriesComment(e.target.value)
@@ -3963,11 +4525,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               outline: "none",
                               resize: "none",
                             }}
-                            rows={Math.max(
-                              pregnanciesComment.split("\n").length,
-                              1
-                            )}
-                            value={pregnanciesComment}
+                            rows={Math.max((pregnanciesComment ? pregnanciesComment.split("\n").length : 1), 1)}
+                            value={pregnanciesComment || ''}
+                           
                             placeholder="___________"
                             onChange={(e) =>
                               setPregnanciesComment(e.target.value)
@@ -4008,11 +4568,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               outline: "none",
                               resize: "none",
                             }}
-                            rows={Math.max(
-                              SubstanceComment.split("\n").length,
-                              1
-                            )}
-                            value={SubstanceComment}
+                            rows={Math.max((SubstanceComment ? SubstanceComment.split("\n").length : 1), 1)}
+                            value={SubstanceComment || ''}
+                           
                             placeholder="___________"
                             onChange={(e) =>
                               setSubstanceComment(e.target.value)
@@ -4053,11 +4611,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               outline: "none",
                               resize: "none",
                             }}
-                            rows={Math.max(
-                              DepressionComment.split("\n").length,
-                              1
-                            )}
-                            value={DepressionComment}
+                            rows={Math.max((DepressionComment ? DepressionComment.split("\n").length : 1), 1)}
+                            value={DepressionComment || ''}
+                         
                             placeholder="___________"
                             onChange={(e) =>
                               setDepressionComment(e.target.value)
@@ -4098,11 +4654,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               outline: "none",
                               resize: "none",
                             }}
-                            rows={Math.max(
-                              AnxietyComment.split("\n").length,
-                              1
-                            )}
-                            value={AnxietyComment}
+                            rows={Math.max((AnxietyComment ? AnxietyComment.split("\n").length : 1), 1)}
+                            value={AnxietyComment || ''}
+                         
                             placeholder="___________"
                             onChange={(e) => setAnxietyComment(e.target.value)}
                             onKeyDown={(e) => {
@@ -4141,11 +4695,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               outline: "none",
                               resize: "none",
                             }}
-                            rows={Math.max(
-                              InsomniaComment.split("\n").length,
-                              1
-                            )}
-                            value={InsomniaComment}
+                            rows={Math.max((InsomniaComment ? InsomniaComment.split("\n").length : 1), 1)}
+                            value={InsomniaComment || ''}
+                        
                             placeholder="___________"
                             onChange={(e) =>
                               setInsomniaComment(e.target.value)
@@ -4186,11 +4738,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               outline: "none",
                               resize: "none",
                             }}
-                            rows={Math.max(
-                              BipolarComment.split("\n").length,
-                              1
-                            )}
-                            value={BipolarComment}
+                            rows={Math.max((BipolarComment ? BipolarComment.split("\n").length : 1), 1)}
+                            value={BipolarComment || ''}
+                         
                             placeholder="___________"
                             onChange={(e) => setBipolarComment(e.target.value)}
                             onKeyDown={(e) => {
@@ -4229,11 +4779,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               outline: "none",
                               resize: "none",
                             }}
-                            rows={Math.max(
-                              SchizophreniaComment.split("\n").length,
-                              1
-                            )}
-                            value={SchizophreniaComment}
+                            rows={Math.max((SchizophreniaComment ? SchizophreniaComment.split("\n").length : 1), 1)}
+                            value={SchizophreniaComment || ''}
+                         
                             placeholder="___________"
                             onChange={(e) =>
                               setSchizophreniaComment(e.target.value)
@@ -4274,11 +4822,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               outline: "none",
                               resize: "none",
                             }}
-                            rows={Math.max(
-                              ObsessiveComment.split("\n").length,
-                              1
-                            )}
-                            value={ObsessiveComment}
+                            rows={Math.max((ObsessiveComment ? ObsessiveComment.split("\n").length : 1), 1)}
+                            value={ObsessiveComment || ''}
+                         
                             placeholder="___________"
                             onChange={(e) =>
                               setObsessiveComment(e.target.value)
@@ -4319,11 +4865,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               outline: "none",
                               resize: "none",
                             }}
-                            rows={Math.max(
-                              PersonalityComment.split("\n").length,
-                              1
-                            )}
-                            value={PersonalityComment}
+                            rows={Math.max((PersonalityComment ? PersonalityComment.split("\n").length : 1), 1)}
+                            value={PersonalityComment || ''}
+                           
                             placeholder="___________"
                             onChange={(e) =>
                               setPersonalityComment(e.target.value)
@@ -4364,11 +4908,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               outline: "none",
                               resize: "none",
                             }}
-                            rows={Math.max(
-                              PhobiasComment.split("\n").length,
-                              1
-                            )}
-                            value={PhobiasComment}
+                            rows={Math.max((PhobiasComment ? PhobiasComment.split("\n").length : 1), 1)}
+                            value={PhobiasComment || ''}
+                          
                             placeholder="___________"
                             onChange={(e) => setPhobiasComment(e.target.value)}
                             onKeyDown={(e) => {
@@ -4407,11 +4949,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               outline: "none",
                               resize: "none",
                             }}
-                            rows={Math.max(
-                              healthConditionsYesComment.split("\n").length,
-                              1
-                            )}
-                            value={healthConditionsYesComment}
+                            rows={Math.max((healthConditionsYesComment ? healthConditionsYesComment.split("\n").length : 1), 1)}
+                            value={healthConditionsYesComment || ''}
+                          
                             placeholder="___________"
                             onChange={(e) =>
                               sethealthConditionsYesComment(e.target.value)
@@ -4493,11 +5033,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
                               outline: "none",
                               resize: "none",
                             }}
-                            rows={Math.max(
-                              otherConditionDiscription.split("\n").length,
-                              1
-                            )}
-                            value={otherConditionDiscription}
+                            rows={Math.max((otherConditionDiscription ? otherConditionDiscription.split("\n").length : 1), 1)}
+                            value={otherConditionDiscription || ''}
+                           
                             placeholder="___________"
                             onChange={(e) => setOtherConditionDiscription(e.target.value)}
                             onKeyDown={(e) => {
@@ -7690,6 +8228,24 @@ const [Additional1Description,setAdditional1Description]=useState("");
                       <label htmlFor="awkward">Awkward</label>
                     </div>
 
+                    <div class="checkboxitem">
+                      <input
+                        type="checkbox"
+                        id="yesOtherHallucinations"
+                        checked={yesOtherHallucinationsBoolean}
+                        onChange={() =>
+                          setYesOtherHallucinationsBoolean(
+                            !yesOtherHallucinationsBoolean
+                          )
+                        }
+                      />
+                      <label htmlFor="yesOtherHallucinations">other</label>
+                      {yesOtherHallucinationsBoolean && (
+                    
+                        <AutoSize value={yesOtherHallucinationsText} setValue={setYesOtherHallucinationsText} placeholder={"_______________"}/>
+                      )}
+                    </div>
+
                 </div>
                 <div className="border-bootom-line"></div>
                 <div className="checkbox-table-parent">
@@ -7741,6 +8297,23 @@ const [Additional1Description,setAdditional1Description]=useState("");
                         onChange={() => setSlouched(!slouched)}
                       />
                       <label htmlFor="slouched">Slouched</label>
+                    </div>
+                    <div class="checkboxitem">
+                      <input
+                        type="checkbox"
+                        id="yesOtherHallucinations"
+                        checked={yesOtherHallucinationsBoolean}
+                        onChange={() =>
+                          setYesOtherHallucinationsBoolean(
+                            !yesOtherHallucinationsBoolean
+                          )
+                        }
+                      />
+                      <label htmlFor="yesOtherHallucinations">other</label>
+                      {yesOtherHallucinationsBoolean && (
+                    
+                        <AutoSize value={yesOtherHallucinationsText} setValue={setYesOtherHallucinationsText} placeholder={"_______________"}/>
+                      )}
                     </div>
                 </div>
                 <div className="border-bootom-line "></div>
@@ -7798,6 +8371,23 @@ const [Additional1Description,setAdditional1Description]=useState("");
                       />
                       <label htmlFor="hypoactive">Hypoactive</label>
                     </div>
+                    <div class="checkboxitem">
+                      <input
+                        type="checkbox"
+                        id="yesOtherHallucinations"
+                        checked={yesOtherHallucinationsBoolean}
+                        onChange={() =>
+                          setYesOtherHallucinationsBoolean(
+                            !yesOtherHallucinationsBoolean
+                          )
+                        }
+                      />
+                      <label htmlFor="yesOtherHallucinations">other</label>
+                      {yesOtherHallucinationsBoolean && (
+                    
+                        <AutoSize value={yesOtherHallucinationsText} setValue={setYesOtherHallucinationsText} placeholder={"_______________"}/>
+                      )}
+                    </div>
                 </div>
                 <div className="border-bootom-line"></div>
                 <div className="checkbox-table-parent">
@@ -7850,6 +8440,23 @@ const [Additional1Description,setAdditional1Description]=useState("");
                         onChange={() => setPicking(!picking)}
                       />
                       <label htmlFor="picking">Picking</label>
+                    </div>
+                    <div class="checkboxitem">
+                      <input
+                        type="checkbox"
+                        id="yesOtherHallucinations"
+                        checked={yesOtherHallucinationsBoolean}
+                        onChange={() =>
+                          setYesOtherHallucinationsBoolean(
+                            !yesOtherHallucinationsBoolean
+                          )
+                        }
+                      />
+                      <label htmlFor="yesOtherHallucinations">other</label>
+                      {yesOtherHallucinationsBoolean && (
+                    
+                        <AutoSize value={yesOtherHallucinationsText} setValue={setYesOtherHallucinationsText} placeholder={"_______________"}/>
+                      )}
                     </div>
                 </div>
               </div>
@@ -8718,16 +9325,35 @@ const [Additional1Description,setAdditional1Description]=useState("");
                       <tr>
                         <td>Bathing/Showering</td>
                         <td>
-                          <input type="checkbox" checked={BathingGood===true} onChange={()=>setBathingGood(!BathingGood)} />
+                          <input
+                            type="checkbox"
+                            checked={BathingGood === true}
+                            onChange={() => setBathingGood(!BathingGood)}
+                          />
                         </td>
                         <td>
-                          <input type="checkbox" checked={BathingFair===true} onChange={()=>setBathingFair(!BathingFair)}/>
+                          <input
+                            type="checkbox"
+                            checked={BathingFair === true}
+                            onChange={() => setBathingFair(!BathingFair)}
+                          />
                         </td>
                         <td>
-                          <input type="checkbox" checked={BathingNotSoGood===true} onChange={()=>setBathingNotSoGood(!BathingNotSoGood)}/>
+                          <input
+                            type="checkbox"
+                            checked={BathingNotSoGood === true}
+                            onChange={() =>
+                              setBathingNotSoGood(!BathingNotSoGood)
+                            }
+                          />
                         </td>
                         <td>
-                          <select value={BathingGoodNeedAssist} onChange={(e)=>setBathingGoodNeedAssist(e.target.value)}>
+                          <select
+                            value={BathingGoodNeedAssist}
+                            onChange={(e) =>
+                              setBathingGoodNeedAssist(e.target.value)
+                            }
+                          >
                             <option disabled>Select value</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
@@ -8736,14 +9362,21 @@ const [Additional1Description,setAdditional1Description]=useState("");
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(BathingComments.split("\n").length, 1)}
-                            value={BathingComments}
-                            placeholder="___________"
+                            rows={Math.max(
+                              BathingComments
+                                ? BathingComments.split("\n").length
+                                : 1,
+                              1
+                            )}
+                            value={BathingComments || ""}
+                            placeholder="_"
                             onChange={(e) => setBathingComments(e.target.value)}
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
                                 e.preventDefault();
-                                setBathingComments((prevComment) => prevComment + "\n");
+                                setBathingComments(
+                                  (prevComment) => prevComment + "\n"
+                                );
                               }
                             }}
                           />
@@ -8752,17 +9385,36 @@ const [Additional1Description,setAdditional1Description]=useState("");
                       <tr>
                         <td>Grooming/hygiene</td>
                         <td>
-                          <input type="checkbox" checked={GroomingGood===true} onChange={()=>setGroomingGood(!GroomingGood)}/>
+                          <input
+                            type="checkbox"
+                            checked={GroomingGood === true}
+                            onChange={() => setGroomingGood(!GroomingGood)}
+                          />
                         </td>
                         <td>
-                          <input type="checkbox" checked={GroomingFair===true} onChange={()=>setGroomingFair(!GroomingFair)}/>
+                          <input
+                            type="checkbox"
+                            checked={GroomingFair === true}
+                            onChange={() => setGroomingFair(!GroomingFair)}
+                          />
                         </td>
                         <td>
-                          <input type="checkbox" checked={GroomingNotSoGood===true} onChange={()=>setGroomingNotSoGood(!GroomingNotSoGood)}/>
+                          <input
+                            type="checkbox"
+                            checked={GroomingNotSoGood === true}
+                            onChange={() =>
+                              setGroomingNotSoGood(!GroomingNotSoGood)
+                            }
+                          />
                         </td>
                         <td>
-                          <select value={GroomingGoodNeedAssist} onChange={(e)=>setGroomingGoodNeedAssist(e.target.value)}>
-                          <option disabled>Select value</option>
+                          <select
+                            value={GroomingGoodNeedAssist}
+                            onChange={(e) =>
+                              setGroomingGoodNeedAssist(e.target.value)
+                            }
+                          >
+                            <option disabled>Select value</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                           </select>
@@ -8770,14 +9422,24 @@ const [Additional1Description,setAdditional1Description]=useState("");
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(GroomingComments.split("\n").length, 1)}
-                            value={GroomingComments}
-                            placeholder="___________"
-                            onChange={(e) => setGroomingComments(e.target.value)}
+                            rows={Math.max(
+                              GroomingComments
+                                ? GroomingComments.split("\n").length
+                                : 1,
+                              1
+                            )}
+                            value={GroomingComments || ""}
+                           
+                            placeholder="_"
+                            onChange={(e) =>
+                              setGroomingComments(e.target.value)
+                            }
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
                                 e.preventDefault();
-                                setGroomingComments((prevComment) => prevComment + "\n");
+                                setGroomingComments(
+                                  (prevComment) => prevComment + "\n"
+                                );
                               }
                             }}
                           />
@@ -8786,17 +9448,36 @@ const [Additional1Description,setAdditional1Description]=useState("");
                       <tr>
                         <td>Mobility</td>
                         <td>
-                          <input type="checkbox"checked={MobilityGood===true} onChange={()=>setMobilityGood(!MobilityGood)} />
+                          <input
+                            type="checkbox"
+                            checked={MobilityGood === true}
+                            onChange={() => setMobilityGood(!MobilityGood)}
+                          />
                         </td>
                         <td>
-                          <input type="checkbox" checked={MobilityFair===true} onChange={()=>setMobilityFair(!MobilityFair)}/>
+                          <input
+                            type="checkbox"
+                            checked={MobilityFair === true}
+                            onChange={() => setMobilityFair(!MobilityFair)}
+                          />
                         </td>
                         <td>
-                          <input type="checkbox" checked={MobilityNotSoGood===true} onChange={()=>setMobilityNotSoGood(!MobilityNotSoGood)}/>
+                          <input
+                            type="checkbox"
+                            checked={MobilityNotSoGood === true}
+                            onChange={() =>
+                              setMobilityNotSoGood(!MobilityNotSoGood)
+                            }
+                          />
                         </td>
                         <td>
-                          <select value={MobilityGoodNeedAssist} onChange={(e)=>setMobilityGoodNeedAssist(e.target.value)}>
-                          <option disabled>Select value</option>
+                          <select
+                            value={MobilityGoodNeedAssist}
+                            onChange={(e) =>
+                              setMobilityGoodNeedAssist(e.target.value)
+                            }
+                          >
+                            <option disabled>Select value</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                           </select>
@@ -8804,14 +9485,24 @@ const [Additional1Description,setAdditional1Description]=useState("");
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(MobilityComments.split("\n").length, 1)}
-                            value={MobilityComments}
-                            placeholder="___________"
-                            onChange={(e) => setMobilityComments(e.target.value)}
+                            rows={Math.max(
+                              MobilityComments
+                                ? MobilityComments.split("\n").length
+                                : 1,
+                              1
+                            )}
+                            value={MobilityComments || ""}
+                         
+                            placeholder="_"
+                            onChange={(e) =>
+                              setMobilityComments(e.target.value)
+                            }
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
                                 e.preventDefault();
-                                setMobilityComments((prevComment) => prevComment + "\n");
+                                setMobilityComments(
+                                  (prevComment) => prevComment + "\n"
+                                );
                               }
                             }}
                           />
@@ -8820,17 +9511,36 @@ const [Additional1Description,setAdditional1Description]=useState("");
                       <tr>
                         <td>Housework</td>
                         <td>
-                          <input type="checkbox" checked={HouseworkGood===true} onChange={()=>setHouseworkGood(!HouseworkGood)}/>
+                          <input
+                            type="checkbox"
+                            checked={HouseworkGood === true}
+                            onChange={() => setHouseworkGood(!HouseworkGood)}
+                          />
                         </td>
                         <td>
-                          <input type="checkbox" checked={HouseworkFair===true} onChange={()=>setHouseworkFair(!HouseworkFair)}/>
+                          <input
+                            type="checkbox"
+                            checked={HouseworkFair === true}
+                            onChange={() => setHouseworkFair(!HouseworkFair)}
+                          />
                         </td>
                         <td>
-                          <input type="checkbox" checked={HouseworkNotSoGood===true} onChange={()=>setHouseworkNotSoGood(!HouseworkNotSoGood)}/>
+                          <input
+                            type="checkbox"
+                            checked={HouseworkNotSoGood === true}
+                            onChange={() =>
+                              setHouseworkNotSoGood(!HouseworkNotSoGood)
+                            }
+                          />
                         </td>
                         <td>
-                          <select value={HouseworkGoodNeedAssist} onChange={(e)=>setHouseworkGoodNeedAssist(e.target.value)}>
-                          <option disabled>Select value</option>
+                          <select
+                            value={HouseworkGoodNeedAssist}
+                            onChange={(e) =>
+                              setHouseworkGoodNeedAssist(e.target.value)
+                            }
+                          >
+                            <option disabled>Select value</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                           </select>
@@ -8838,14 +9548,24 @@ const [Additional1Description,setAdditional1Description]=useState("");
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(HouseworkComments.split("\n").length, 1)}
-                            value={HouseworkComments}
-                            placeholder="___________"
-                            onChange={(e) => setHouseworkComments(e.target.value)}
+                            rows={Math.max(
+                              HouseworkComments
+                                ? HouseworkComments.split("\n").length
+                                : 1,
+                              1
+                            )}
+                            value={HouseworkComments || ""}
+                          
+                            placeholder="_"
+                            onChange={(e) =>
+                              setHouseworkComments(e.target.value)
+                            }
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
                                 e.preventDefault();
-                                setHouseworkComments((prevComment) => prevComment + "\n");
+                                setHouseworkComments(
+                                  (prevComment) => prevComment + "\n"
+                                );
                               }
                             }}
                           />
@@ -8854,17 +9574,36 @@ const [Additional1Description,setAdditional1Description]=useState("");
                       <tr>
                         <td>Shopping</td>
                         <td>
-                          <input type="checkbox" checked={ShoppingGood===true} onChange={()=>setShoppingGood(!ShoppingGood)}/>
+                          <input
+                            type="checkbox"
+                            checked={ShoppingGood === true}
+                            onChange={() => setShoppingGood(!ShoppingGood)}
+                          />
                         </td>
                         <td>
-                          <input type="checkbox" checked={ShoppingFair===true} onChange={()=>setShoppingFair(!ShoppingFair)}/>
+                          <input
+                            type="checkbox"
+                            checked={ShoppingFair === true}
+                            onChange={() => setShoppingFair(!ShoppingFair)}
+                          />
                         </td>
                         <td>
-                          <input type="checkbox" checked={ShoppingNotSoGood===true} onChange={()=>setShoppingNotSoGood(!ShoppingNotSoGood)}/>
+                          <input
+                            type="checkbox"
+                            checked={ShoppingNotSoGood === true}
+                            onChange={() =>
+                              setShoppingNotSoGood(!ShoppingNotSoGood)
+                            }
+                          />
                         </td>
                         <td>
-                          <select value={ShoppingGoodNeedAssist} onChange={(e)=>setShoppingGoodNeedAssist(e.target.value)}>
-                          <option disabled>Select value</option>
+                          <select
+                            value={ShoppingGoodNeedAssist}
+                            onChange={(e) =>
+                              setShoppingGoodNeedAssist(e.target.value)
+                            }
+                          >
+                            <option disabled>Select value</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                           </select>
@@ -8872,14 +9611,24 @@ const [Additional1Description,setAdditional1Description]=useState("");
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(ShoppingComments.split("\n").length, 1)}
-                            value={ShoppingComments}
-                            placeholder="___________"
-                            onChange={(e) => setShoppingComments(e.target.value)}
+                            rows={Math.max(
+                              ShoppingComments
+                                ? ShoppingComments.split("\n").length
+                                : 1,
+                              1
+                            )}
+                            value={ShoppingComments || ""}
+              
+                            placeholder="_"
+                            onChange={(e) =>
+                              setShoppingComments(e.target.value)
+                            }
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
                                 e.preventDefault();
-                                setShoppingComments((prevComment) => prevComment + "\n");
+                                setShoppingComments(
+                                  (prevComment) => prevComment + "\n"
+                                );
                               }
                             }}
                           />
@@ -8888,17 +9637,36 @@ const [Additional1Description,setAdditional1Description]=useState("");
                       <tr>
                         <td>Managing money/budget</td>
                         <td>
-                          <input type="checkbox" checked={ManagingGood===true} onChange={()=>setManagingGood(!ManagingGood)}/>
+                          <input
+                            type="checkbox"
+                            checked={ManagingGood === true}
+                            onChange={() => setManagingGood(!ManagingGood)}
+                          />
                         </td>
                         <td>
-                          <input type="checkbox" checked={ManagingFair===true} onChange={()=>setManagingFair(!ManagingFair)}/>
+                          <input
+                            type="checkbox"
+                            checked={ManagingFair === true}
+                            onChange={() => setManagingFair(!ManagingFair)}
+                          />
                         </td>
                         <td>
-                          <input type="checkbox" checked={ManagingNotSoGood===true} onChange={()=>setManagingNotSoGood(!ManagingNotSoGood)}/>
+                          <input
+                            type="checkbox"
+                            checked={ManagingNotSoGood === true}
+                            onChange={() =>
+                              setManagingNotSoGood(!ManagingNotSoGood)
+                            }
+                          />
                         </td>
                         <td>
-                          <select value={ManagingGoodNeedAssist} onChange={(e)=>setManagingGoodNeedAssist(e.target.value)}>
-                          <option disabled>Select value</option>
+                          <select
+                            value={ManagingGoodNeedAssist}
+                            onChange={(e) =>
+                              setManagingGoodNeedAssist(e.target.value)
+                            }
+                          >
+                            <option disabled>Select value</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                           </select>
@@ -8906,14 +9674,24 @@ const [Additional1Description,setAdditional1Description]=useState("");
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(ManagingComments.split("\n").length, 1)}
-                            value={ManagingComments}
-                            placeholder="___________"
-                            onChange={(e) => setManagingComments(e.target.value)}
+                            rows={Math.max(
+                              ManagingComments
+                                ? ManagingComments.split("\n").length
+                                : 1,
+                              1
+                            )}
+                            value={ManagingComments || ""}
+                            
+                            placeholder="_"
+                            onChange={(e) =>
+                              setManagingComments(e.target.value)
+                            }
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
                                 e.preventDefault();
-                                setManagingComments((prevComment) => prevComment + "\n");
+                                setManagingComments(
+                                  (prevComment) => prevComment + "\n"
+                                );
                               }
                             }}
                           />
@@ -8922,17 +9700,36 @@ const [Additional1Description,setAdditional1Description]=useState("");
                       <tr>
                         <td>Preparing food</td>
                         <td>
-                          <input type="checkbox" checked={PreparingGood===true} onChange={()=>setPreparingGood(!PreparingGood)}/>
+                          <input
+                            type="checkbox"
+                            checked={PreparingGood === true}
+                            onChange={() => setPreparingGood(!PreparingGood)}
+                          />
                         </td>
                         <td>
-                          <input type="checkbox" checked={PreparingFair===true} onChange={()=>setPreparingFair(!PreparingFair)}/>
+                          <input
+                            type="checkbox"
+                            checked={PreparingFair === true}
+                            onChange={() => setPreparingFair(!PreparingFair)}
+                          />
                         </td>
                         <td>
-                          <input type="checkbox" checked={PreparingNotSoGood===true} onChange={()=>setPreparingNotSoGood(!PreparingNotSoGood)}/>
+                          <input
+                            type="checkbox"
+                            checked={PreparingNotSoGood === true}
+                            onChange={() =>
+                              setPreparingNotSoGood(!PreparingNotSoGood)
+                            }
+                          />
                         </td>
                         <td>
-                          <select value={PreparingGoodNeedAssist} onChange={(e)=>setPreparingGoodNeedAssist(e.target.value)}>
-                          <option disabled>Select value</option>
+                          <select
+                            value={PreparingGoodNeedAssist}
+                            onChange={(e) =>
+                              setPreparingGoodNeedAssist(e.target.value)
+                            }
+                          >
+                            <option disabled>Select value</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                           </select>
@@ -8940,14 +9737,24 @@ const [Additional1Description,setAdditional1Description]=useState("");
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(PreparingComments.split("\n").length, 1)}
-                            value={PreparingComments}
-                            placeholder="___________"
-                            onChange={(e) => setPreparingComments(e.target.value)}
+                            rows={Math.max(
+                              PreparingComments
+                                ? PreparingComments.split("\n").length
+                                : 1,
+                              1
+                            )}
+                            value={PreparingComments || ""}
+                    
+                            placeholder="_"
+                            onChange={(e) =>
+                              setPreparingComments(e.target.value)
+                            }
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
                                 e.preventDefault();
-                                setPreparingComments((prevComment) => prevComment + "\n");
+                                setPreparingComments(
+                                  (prevComment) => prevComment + "\n"
+                                );
                               }
                             }}
                           />
@@ -8956,17 +9763,36 @@ const [Additional1Description,setAdditional1Description]=useState("");
                       <tr>
                         <td>Eating</td>
                         <td>
-                          <input type="checkbox" checked={EatingGood===true} onChange={()=>setEatingGood(!EatingGood)}/>
+                          <input
+                            type="checkbox"
+                            checked={EatingGood === true}
+                            onChange={() => setEatingGood(!EatingGood)}
+                          />
                         </td>
                         <td>
-                          <input type="checkbox" checked={EatingFair===true} onChange={()=>setEatingFair(!EatingFair)}/>
+                          <input
+                            type="checkbox"
+                            checked={EatingFair === true}
+                            onChange={() => setEatingFair(!EatingFair)}
+                          />
                         </td>
                         <td>
-                          <input type="checkbox" checked={EatingNotSoGood===true} onChange={()=>setEatingNotSoGood(!EatingNotSoGood)}/>
+                          <input
+                            type="checkbox"
+                            checked={EatingNotSoGood === true}
+                            onChange={() =>
+                              setEatingNotSoGood(!EatingNotSoGood)
+                            }
+                          />
                         </td>
                         <td>
-                          <select value={EatingGoodNeedAssist} onChange={(e)=>setEatingGoodNeedAssist(e.target.value)}>
-                          <option disabled>Select value</option>
+                          <select
+                            value={EatingGoodNeedAssist}
+                            onChange={(e) =>
+                              setEatingGoodNeedAssist(e.target.value)
+                            }
+                          >
+                            <option disabled>Select value</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                           </select>
@@ -8974,14 +9800,23 @@ const [Additional1Description,setAdditional1Description]=useState("");
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(EatingComments.split("\n").length, 1)}
-                            value={EatingComments}
-                            placeholder="___________"
+                            rows={Math.max(
+                              EatingComments
+                                ?  EatingComments.split("\n").length
+                                : 1,
+                              1
+                            )}
+                            value={ EatingComments || ""}
+                    
+                      
+                            placeholder="_"
                             onChange={(e) => setEatingComments(e.target.value)}
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
                                 e.preventDefault();
-                                setEatingComments((prevComment) => prevComment + "\n");
+                                setEatingComments(
+                                  (prevComment) => prevComment + "\n"
+                                );
                               }
                             }}
                           />
@@ -8990,17 +9825,36 @@ const [Additional1Description,setAdditional1Description]=useState("");
                       <tr>
                         <td>Toileting</td>
                         <td>
-                          <input type="checkbox" checked={ToiletingGood===true} onChange={()=>setToiletingGood(!ToiletingGood)}/>
+                          <input
+                            type="checkbox"
+                            checked={ToiletingGood === true}
+                            onChange={() => setToiletingGood(!ToiletingGood)}
+                          />
                         </td>
                         <td>
-                          <input type="checkbox" checked={ToiletingFair===true} onChange={()=>setToiletingFair(!ToiletingFair)}/>
+                          <input
+                            type="checkbox"
+                            checked={ToiletingFair === true}
+                            onChange={() => setToiletingFair(!ToiletingFair)}
+                          />
                         </td>
                         <td>
-                          <input type="checkbox" checked={ToiletingNotSoGood===true} onChange={()=>setToiletingNotSoGood(!ToiletingNotSoGood)}/>
+                          <input
+                            type="checkbox"
+                            checked={ToiletingNotSoGood === true}
+                            onChange={() =>
+                              setToiletingNotSoGood(!ToiletingNotSoGood)
+                            }
+                          />
                         </td>
                         <td>
-                          <select value={ToiletingGoodNeedAssist} onChange={(e)=>setToiletingGoodNeedAssist(e.target.value)}>
-                          <option disabled>Select value</option>
+                          <select
+                            value={ToiletingGoodNeedAssist}
+                            onChange={(e) =>
+                              setToiletingGoodNeedAssist(e.target.value)
+                            }
+                          >
+                            <option disabled>Select value</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                           </select>
@@ -9008,14 +9862,24 @@ const [Additional1Description,setAdditional1Description]=useState("");
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(ToiletingComments.split("\n").length, 1)}
-                            value={ToiletingComments}
-                            placeholder="___________"
-                            onChange={(e) => setToiletingComments(e.target.value)}
+                            rows={Math.max(
+                              ToiletingComments
+                                ?  ToiletingComments.split("\n").length
+                                : 1,
+                              1
+                            )}
+                            value={ ToiletingComments || ""}
+                            
+                            placeholder="_"
+                            onChange={(e) =>
+                              setToiletingComments(e.target.value)
+                            }
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
                                 e.preventDefault();
-                                setToiletingComments((prevComment) => prevComment + "\n");
+                                setToiletingComments(
+                                  (prevComment) => prevComment + "\n"
+                                );
                               }
                             }}
                           />
@@ -9024,59 +9888,73 @@ const [Additional1Description,setAdditional1Description]=useState("");
 
                       {handleRiskFactorActivityArray?.map((i, index) => (
                         <tr key={index}>
-                      
-                          <td>Other:{" "}
-                        {i?.type}
-                          </td>
-                         
+                          <td>Other: {i?.type}</td>
+
                           <td>
-                            <input
-                              type="checkbox"
-                              checked={i.good === true}
-                            
-                            />
+                            <input type="checkbox" checked={i.good === true} />
                           </td>
                           <td>
-                            <input
-                              type="checkbox"
-                              checked={i.fair === true}
-                            
-                            />
+                            <input type="checkbox" checked={i.fair === true} />
                           </td>
                           <td>
                             <input
                               type="checkbox"
                               checked={i.otherCurrentNotSoGood === true}
-                             
                             />
                           </td>
                           <td>
-                            {` ${
-                              i.needAssist === "Yes"
-                                ? "Yes"
-                                : "No"
-                            }`}{" "}
+                            {` ${i.needAssist === "Yes" ? "Yes" : "No"}`}{" "}
                           </td>
                           <td> {i.comments} </td>
                         </tr>
                       ))}
                       <tr>
-                        <td>Other: <input type="text"
-                        className="treatment_plan_table"
-                        value={otherCurrentOther}
-                        onChange={(e)=>setOtherCurrentOther(e.target.value)}/></td>
                         <td>
-                          <input type="checkbox" checked={otherCurrentGood} onChange={(e)=>setOtherCurrentGood(!otherCurrentGood)}/>
+                          Other:{" "}
+                          <input
+                            type="text"
+                            className="treatment_plan_table"
+                            value={otherCurrentOther}
+                            onChange={(e) =>
+                              setOtherCurrentOther(e.target.value)
+                            }
+                          />
                         </td>
                         <td>
-                          <input type="checkbox" checked={otherCurrentFair} onChange={(e)=>setOtherCurrentFair(!otherCurrentFair)}/>
+                          <input
+                            type="checkbox"
+                            checked={otherCurrentGood}
+                            onChange={(e) =>
+                              setOtherCurrentGood(!otherCurrentGood)
+                            }
+                          />
                         </td>
                         <td>
-                          <input type="checkbox" checked={otherCurrentNotSoGood} onChange={(e)=>setOtherCurrentNotSoGood(!otherCurrentNotSoGood)}/>
+                          <input
+                            type="checkbox"
+                            checked={otherCurrentFair}
+                            onChange={(e) =>
+                              setOtherCurrentFair(!otherCurrentFair)
+                            }
+                          />
                         </td>
                         <td>
-                          <select value={otherCurrentNeed} onChange={(e)=>setOtherCurrentNeed(e.target.value)}>
-                          <option >Select</option>
+                          <input
+                            type="checkbox"
+                            checked={otherCurrentNotSoGood}
+                            onChange={(e) =>
+                              setOtherCurrentNotSoGood(!otherCurrentNotSoGood)
+                            }
+                          />
+                        </td>
+                        <td>
+                          <select
+                            value={otherCurrentNeed}
+                            onChange={(e) =>
+                              setOtherCurrentNeed(e.target.value)
+                            }
+                          >
+                            <option>Select</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                           </select>
@@ -9084,14 +9962,24 @@ const [Additional1Description,setAdditional1Description]=useState("");
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(otherCurrentComment.split("\n").length, 1)}
-                            value={otherCurrentComment}
-                            placeholder="___________"
-                            onChange={(e) => setOtherCurrentComment(e.target.value)}
+                            rows={Math.max(
+                              otherCurrentComment
+                                ?  otherCurrentComment.split("\n").length
+                                : 1,
+                              1
+                            )}
+                            value={ otherCurrentComment || ""}
+                           
+                            placeholder="_"
+                            onChange={(e) =>
+                              setOtherCurrentComment(e.target.value)
+                            }
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
                                 e.preventDefault();
-                                setOtherCurrentComment((prevComment) => prevComment + "\n");
+                                setOtherCurrentComment(
+                                  (prevComment) => prevComment + "\n"
+                                );
                               }
                             }}
                           />
@@ -9112,40 +10000,7 @@ const [Additional1Description,setAdditional1Description]=useState("");
                 </button>
               </div>
 
-              {/* <div className="needs-interventions-container">
-                <div className="needs-interventions-column3">
-                  {handleRiskFactorActivityArray.length > 0 && (
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Type of Activity</th>
-                          <th>Good</th>
-                          <th>Fair</th>
-                          <th>Need assist</th>
-                          <th>Comments</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {handleRiskFactorActivityArray?.map((i, index) => (
-                          <tr key={index}>
-                            <td>
-
-                              {i?.bathingShoweringGood?.map((item) => (
-                                <p key={item?.value}>{item?.value}</p>
-                              ))}
-
-                            </td>
-                            <td>{`${i.bathingShoweringFair === true ? "Yes" : "No"}`} </td>
-                            <td>{`${i.bathingShoweringFair !== true ? "Yes" : "No"}`} </td>
-                            <td>{` ${i.bathingShoweringNeedAssist === true ? "Yes" : "No"}`} </td>
-                            <td> {i.bathingShoweringComments} </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  )}
-                </div>
-              </div> */}
+    
 
               {/* start working  */}
               <div className="box-image-container">
@@ -10266,10 +11121,13 @@ const [Additional1Description,setAdditional1Description]=useState("");
                           <textarea
                             className="treatment_plan_table"
                             rows={Math.max(
-                              psychiatricPrimaryDescription.split("\n").length,
+                              psychiatricPrimaryDescription
+                                ? psychiatricPrimaryDescription.split("\n").length
+                                : 1,
                               1
                             )}
-                            value={psychiatricPrimaryDescription}
+                            value={psychiatricPrimaryDescription || ""}
+                        
                             placeholder="___________"
                             onChange={(e) => setPsychiatricPrimaryDescription(e.target.value)}
                             onKeyDown={(e) => {
@@ -10299,10 +11157,13 @@ const [Additional1Description,setAdditional1Description]=useState("");
                           <textarea
                             className="treatment_plan_table"
                             rows={Math.max(
-                              psychiatricSecondaryDescription.split("\n").length,
+                              psychiatricSecondaryDescription
+                                ? psychiatricSecondaryDescription.split("\n").length
+                                : 1,
                               1
                             )}
-                            value={psychiatricSecondaryDescription}
+                            value={psychiatricSecondaryDescription || ""}
+                           
                             placeholder="___________"
                             onChange={(e) => setPsychiatricSecondaryDescription(e.target.value)}
                             onKeyDown={(e) => {
@@ -10332,10 +11193,13 @@ const [Additional1Description,setAdditional1Description]=useState("");
                           <textarea
                             className="treatment_plan_table"
                             rows={Math.max(
-                              psychiatricTertiaryDescription.split("\n").length,
+                              psychiatricTertiaryDescription
+                                ? psychiatricTertiaryDescription.split("\n").length
+                                : 1,
                               1
                             )}
-                            value={psychiatricTertiaryDescription}
+                            value={psychiatricTertiaryDescription || ""}
+                            
                             placeholder="___________"
                             onChange={(e) => setPsychiatricTertiaryDescription(e.target.value)}
                             onKeyDown={(e) => {
@@ -10365,10 +11229,13 @@ const [Additional1Description,setAdditional1Description]=useState("");
                           <textarea
                             className="treatment_plan_table"
                             rows={Math.max(
-                              psychiatricAdditionalDescription.split("\n").length,
+                              psychiatricAdditionalDescription
+                                ? psychiatricAdditionalDescription.split("\n").length
+                                : 1,
                               1
                             )}
-                            value={psychiatricAdditionalDescription}
+                            value={psychiatricAdditionalDescription || ""}
+                           
                             placeholder="___________"
                             onChange={(e) => setPsychiatricAdditionalDescription(e.target.value)}
                             onKeyDown={(e) => {
@@ -10446,47 +11313,6 @@ const [Additional1Description,setAdditional1Description]=useState("");
                   Add
                 </button>
               </div>
-
-              {/* <div className="formsheading">
-                <h6 style={{ fontWeight: "bold" }}>Medical Diagnoses:</h6>
-              </div>
-              <div className="box-image-container hidePrint" style={{ padding: "10px" }}>
-              <div className="form-field-update">
-                <div className="form-field-child">
-                  <label htmlFor="icdCode">Medical Diagnoses:</label>
-                  <select value={MedicalOption} onChange={(e) => setMedicalOption(e.target.value)} className="select-same-line-update">
-                    <option value="">Select</option>
-                    <option value="Primary">Primary</option>
-                    <option value="Secondary">Secondary</option>
-                    <option value="Tertiary">Tertiary</option>
-                    <option value="Additional">Additional</option>
-                  </select>
-                </div>
-                <div className="form-field-child">
-                  <label htmlFor="icdCode">ICD Code:</label>
-                  <input
-                    type="text"
-                    required
-                    id="icdCode"
-                    value={icdCodeMedicalDiagnoses}
-                    onChange={(e) => setIcdCodeMedicalDiagnoses(e.target.value)}
-                  />
-
-                </div>
-                <div className="form-field-child">
-                  <label htmlFor="description">Description:</label>
-                  <input
-                    type="text"
-                    required
-                    id="description"
-                    value={descriptionMedicalDiagnoses}
-                    onChange={(e) => setDescriptionMedicalDiagnoses(e.target.value)}
-                  />
-                </div>
-
-              </div>
-              </div> */}
-
            
 
               <div className="formsheading">
@@ -10518,10 +11344,13 @@ const [Additional1Description,setAdditional1Description]=useState("");
                           <textarea
                             className="treatment_plan_table"
                             rows={Math.max(
-                              primaryDescription.split("\n").length,
+                              primaryDescription
+                                ? primaryDescription.split("\n").length
+                                : 1,
                               1
                             )}
-                            value={primaryDescription}
+                            value={primaryDescription || ""}
+                          
                             placeholder="___________"
                             onChange={(e) => setPrimaryDescription(e.target.value)}
                             onKeyDown={(e) => {
@@ -10551,10 +11380,13 @@ const [Additional1Description,setAdditional1Description]=useState("");
                           <textarea
                             className="treatment_plan_table"
                             rows={Math.max(
-                              secondaryDescription.split("\n").length,
+                              secondaryDescription
+                                ? secondaryDescription.split("\n").length
+                                : 1,
                               1
                             )}
-                            value={secondaryDescription}
+                            value={secondaryDescription || ""}
+                           
                             placeholder="___________"
                             onChange={(e) => setSecondaryDescription(e.target.value)}
                             onKeyDown={(e) => {
@@ -10584,10 +11416,13 @@ const [Additional1Description,setAdditional1Description]=useState("");
                           <textarea
                             className="treatment_plan_table"
                             rows={Math.max(
-                              TertiaryDescription.split("\n").length,
+                              TertiaryDescription
+                                ? TertiaryDescription.split("\n").length
+                                : 1,
                               1
                             )}
-                            value={TertiaryDescription}
+                            value={TertiaryDescription || ""}
+                      
                             placeholder="___________"
                             onChange={(e) => setTertiaryDescription(e.target.value)}
                             onKeyDown={(e) => {
@@ -10617,10 +11452,13 @@ const [Additional1Description,setAdditional1Description]=useState("");
                           <textarea
                             className="treatment_plan_table"
                             rows={Math.max(
-                              Additional1Description.split("\n").length,
+                              Additional1Description
+                                ? Additional1Description.split("\n").length
+                                : 1,
                               1
                             )}
-                            value={Additional1Description}
+                            value={Additional1Description || ""}
+                         
                             placeholder="___________"
                             onChange={(e) => setAdditional1Description(e.target.value)}
                             onKeyDown={(e) => {
@@ -11073,7 +11911,7 @@ const [Additional1Description,setAdditional1Description]=useState("");
                       box, I (Resident/guardian) will receive the services that
                       I have agreed to receive and may appeal the treatment
                       team’s decision to not include all the types and/ or
-                      levels of services that I have requested. *
+                      levels of services that I have requested.
                     </span>
                   </div>
                 </div>

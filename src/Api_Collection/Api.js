@@ -127,6 +127,19 @@ export const initialAssestment_form = async (payLoad) => {
   }
 };
 
+export const initial_assestment_get = async (id,setGetApiData) => {
+  try {
+    const {data} = await axios.get(
+      `${BaseUrl}Patient/InitialAssessment/${id}`,
+      Token
+    );
+    setGetApiData(data?.data);
+    return data;
+  } catch (e) {
+    // show_notification("fail !", `${e?.response?.data?.message}`, "danger");
+  }
+};
+
 export const patient_form = async (payLoad) => {
   try {
     const res = await axios.post(
