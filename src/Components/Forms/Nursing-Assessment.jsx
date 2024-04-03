@@ -17,6 +17,7 @@ import SingInModel from "../Modal/SingInModel";
 import Draftinmodel from "../Modal/Draftinmodel";
 import SingInUpdateModel from "../Modal/SingInUpdateModel";
 import { useReactToPrint } from "react-to-print";
+import { Button } from "react-bootstrap";
 
 
 const NursingAssessment = () => {
@@ -157,49 +158,52 @@ const NursingAssessment = () => {
   // penging some state
 
   const [reviewOfSystemsConstitutional, setReviewOfSystemsConstitutional] =
-    useState("");
+    useState([]);
     const [reviewOfSystemsConstitutionalOther, setReviewOfSystemsConstitutionalOther] =
     useState("");
   const [reviewOfSystemsCardiovascular, setReviewOfSystemsCardiovascular] =
-    useState("");
+    useState([]);
     const [reviewOfSystemsCardiovascularOther,setReviewOfSystemsCardiovascularOther]=useState("")
-  const [reviewOfSystemsEndocrine, setReviewOfSystemsEndocrine] = useState("");
+  const [reviewOfSystemsEndocrine, setReviewOfSystemsEndocrine] = useState([]);
   const [reviewOfSystemsEndocrineOther,setReviewOfSystemsEndocrineOther]=useState("")
   const [reviewOfSystemsGastrointestinal, setReviewOfSystemsGastrointestinal] =
-    useState("");
+    useState([]);
   const [reviewOfSystemsGastrointestinalOther,setReviewOfSystemsGastrointestinalOther]=useState("")
   const [reviewOfSystemsGenitourinary, setReviewOfSystemsGenitourinary] =
-    useState("");
+    useState([]);
     const [reviewOfSystemsGenitourinaryOther,setReviewOfSystemsGenitourinaryOther]=useState("")
   const [
     reviewOfSystemsHematologyOncology,
     setReviewOfSystemsHematologyOncology,
-  ] = useState("");
+  ] = useState([]);
   const [reviewOfSystemsHematologyOncologyOther,setReviewOfSystemsHematologyOncologyOther]=useState("")
   const [reviewOfSystemsHeadNeckThroat, setReviewOfSystemsHeadNeckThroat] =
-    useState("");
+    useState([]);
     const [reviewOfSystemsHeadNeckThroatOther,setReviewOfSystemsHeadNeckThroatOther]=useState("")
   const [reviewOfSystemsIntegumentary, setReviewOfSystemsIntegumentary] =
-    useState("");
+    useState([]);
   const [reviewOfSystemsIntegumentaryOther,setReviewOfSystemsIntegumentaryOther]=useState("") 
   const [reviewOfSystemsMusculoskeletal, setReviewOfSystemsMusculoskeletal] =
-    useState("");
+    useState([]);
     const [reviewOfSystemsMusculoskeletalOther,setReviewOfSystemsMusculoskeletalOther]=useState("")
   const [reviewOfSystemsPsychiatric, setReviewOfSystemsPsychiatric] =
-    useState("");
+    useState([]);
     const [reviewOfSystemsPsychiatricOther,setReviewOfSystemsPsychiatricOther]=useState("")
   const [reviewOfSystemsNeurologic, setReviewOfSystemsNeurologic] =
-    useState("");
+    useState([]);
     const [reviewOfSystemsNeurologicOther,setReviewOfSystemsNeurologicOther]=useState("")
   const [reviewOfSystemsRespiratory, setReviewOfSystemsRespiratory] =
-    useState("");
+    useState([]);
     const [reviewOfSystemsRespiratoryOther,setReviewOfSystemsRespiratoryOther]=useState("")
   const [
     reviewOfSystemsAllergicImmunologic,
     setReviewOfSystemsAllergicImmunologic,
-  ] = useState("");
+  ] = useState([]);
   const [reviewOfSystemsAllergicImmunologicOther,setReviewOfSystemsAllergicImmunologicOther]=useState("")
-  // hj
+  
+
+
+
   const [
     suicidalRiskAssessmentDeniesSymptomsBellow,
     setSuicidalRiskAssessmentDeniesSymptomsBellow,
@@ -368,30 +372,30 @@ const ageInYears = Math.abs(ageInMilliseconds.getUTCFullYear() - 1970);
     setVitalsHeightFeet(0);
     setVitalsHeightInches(0);
     setAllergies("");
-    setReviewOfSystemsConstitutional("");
+    setReviewOfSystemsConstitutional([]);
     setReviewOfSystemsConstitutionalOther("")
-    setReviewOfSystemsCardiovascular("");
+    setReviewOfSystemsCardiovascular([]);
     setReviewOfSystemsCardiovascularOther("")
-    setReviewOfSystemsEndocrine("");
+    setReviewOfSystemsEndocrine([]);
     setReviewOfSystemsEndocrineOther("")
     setReviewOfSystemsGastrointestinal("");
-    setReviewOfSystemsGenitourinary("");
+    setReviewOfSystemsGenitourinary();
     setReviewOfSystemsGastrointestinalOther("")
-    setReviewOfSystemsHematologyOncology("");
+    setReviewOfSystemsHematologyOncology([]);
     setReviewOfSystemsHematologyOncologyOther("")
-    setReviewOfSystemsHeadNeckThroat("");
+    setReviewOfSystemsHeadNeckThroat([]);
     setReviewOfSystemsHeadNeckThroatOther("")
-    setReviewOfSystemsIntegumentary("");
+    setReviewOfSystemsIntegumentary([]);
     setReviewOfSystemsIntegumentaryOther("")
-    setReviewOfSystemsMusculoskeletal("");
+    setReviewOfSystemsMusculoskeletal([]);
     setReviewOfSystemsMusculoskeletalOther("")
-    setReviewOfSystemsPsychiatric("");
+    setReviewOfSystemsPsychiatric([]);
     setReviewOfSystemsPsychiatricOther("")
-    setReviewOfSystemsNeurologic("");
+    setReviewOfSystemsNeurologic([]);
     setReviewOfSystemsNeurologicOther("")
-    setReviewOfSystemsRespiratory("");
+    setReviewOfSystemsRespiratory([]);
     setReviewOfSystemsRespiratoryOther("")
-    setReviewOfSystemsAllergicImmunologic("");
+    setReviewOfSystemsAllergicImmunologic([]);
     setReviewOfSystemsAllergicImmunologicOther("")
     setSuicidalRiskAssessmentDeniesSymptomsBellow(false);
     setBehavioralSymptoms("");
@@ -532,6 +536,137 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
   };
 
 
+  // rate of reviews  ========>
+  const handlereviewOfSystemsConstitutional = (symptom) => {
+    setReviewOfSystemsConstitutional(prevState => {
+        if (prevState.includes(symptom)) {
+          return prevState.filter(item => item !== symptom);
+        } else {
+          return [...prevState, symptom];
+        }
+      });
+  };
+
+  const handlereviewOfSystemsCardiovascular = (symptom) => {
+    setReviewOfSystemsCardiovascular(prevState => {
+      if (prevState.includes(symptom)) {
+        return prevState.filter(item => item !== symptom);
+      } else {
+        return [...prevState, symptom];
+      }
+    });
+};
+
+const handlereviewOfSystemsEndocrine = (symptom) => {
+  setReviewOfSystemsEndocrine(prevState => {
+    if (prevState.includes(symptom)) {
+      return prevState.filter(item => item !== symptom);
+    } else {
+      return [...prevState, symptom];
+    }
+  });
+};
+
+const handlereviewOfSystemsGastrointestinal = (symptom) => {
+  setReviewOfSystemsGastrointestinal(prevState => {
+    if (prevState.includes(symptom)) {
+      return prevState.filter(item => item !== symptom);
+    } else {
+      return [...prevState, symptom];
+    }
+  });
+};
+
+const handlereviewOfSystemsGenitourinary = (symptom) => {
+  setReviewOfSystemsGenitourinary(prevState => {
+    if (prevState.includes(symptom)) {
+      return prevState.filter(item => item !== symptom);
+    } else {
+      return [...prevState, symptom];
+    }
+  });
+};
+
+const handlereviewOfSystemsHematologyOncology = (symptom) => {
+  setReviewOfSystemsHematologyOncology(prevState => {
+    if (prevState.includes(symptom)) {
+      return prevState.filter(item => item !== symptom);
+    } else {
+      return [...prevState, symptom];
+    }
+  });
+};
+
+const handlereviewOfSystemsHeadNeckThroat = (symptom) => {
+  setReviewOfSystemsHeadNeckThroat(prevState => {
+    if (prevState.includes(symptom)) {
+      return prevState.filter(item => item !== symptom);
+    } else {
+      return [...prevState, symptom];
+    }
+  });
+};
+
+const handlereviewOfSystemsIntegumentary = (symptom) => {
+  setReviewOfSystemsIntegumentary(prevState => {
+    if (prevState.includes(symptom)) {
+      return prevState.filter(item => item !== symptom);
+    } else {
+      return [...prevState, symptom];
+    }
+  });
+};
+
+const handlereviewOfSystemsMusculoskeletal = (symptom) => {
+  setReviewOfSystemsMusculoskeletal(prevState => {
+    if (prevState.includes(symptom)) {
+      return prevState.filter(item => item !== symptom);
+    } else {
+      return [...prevState, symptom];
+    }
+  });
+};
+
+const handlereviewOfSystemsPsychiatric = (symptom) => {
+  setReviewOfSystemsPsychiatric(prevState => {
+    if (prevState.includes(symptom)) {
+      return prevState.filter(item => item !== symptom);
+    } else {
+      return [...prevState, symptom];
+    }
+  });
+};
+
+const handlereviewOfSystemsNeurologic = (symptom) => {
+  setReviewOfSystemsNeurologic(prevState => {
+    if (prevState.includes(symptom)) {
+      return prevState.filter(item => item !== symptom);
+    } else {
+      return [...prevState, symptom];
+    }
+  });
+};
+
+const handlereviewOfSystemsRespiratory = (symptom) => {
+  setReviewOfSystemsRespiratory(prevState => {
+    if (prevState.includes(symptom)) {
+      return prevState.filter(item => item !== symptom);
+    } else {
+      return [...prevState, symptom];
+    }
+  });
+};
+
+const handlereviewOfSystemsAllergicImmunologic = (symptom) => {
+  setReviewOfSystemsAllergicImmunologic(prevState => {
+    if (prevState.includes(symptom)) {
+      return prevState.filter(item => item !== symptom);
+    } else {
+      return [...prevState, symptom];
+    }
+  });
+};
+
   return (
     <>
     <div ref={componentRef} >
@@ -547,12 +682,15 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
         />
       </div>
         <div className="Boss">
-        <div className="formheading1">
-          <div className="formsheading2">
-    
-              <h1 style={{ fontWeight: "bold" }}> Nursing Assessment</h1>
+     
+          <div className="formsheading_updated_treatment_nursing">
+              <h4 > Nursing Assessment</h4>
           </div>
-        </div>
+          {/* <div className="update_header_link">
+            <Button variant="primary" >Nursing Assessment
+            </Button>
+          </div> */}
+      
         <form onSubmit={handlePost}>
         <div className="box-image-container">
               <div className="form-field-update">
@@ -799,10 +937,11 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
           <div className="box-image-container">
             <div className="form-field-update">
 
-              <div className="form-field-child ">
+              <div className="form-field-child">
                 <label htmlFor="AHCCCS">Blood Pressure:</label>
               
                <input
+                  style={{width:`${vitalsBloodPressure?.length?vitalsBloodPressure?.length*20+"px":"30px"}`}}
                   type="text"
                   pattern="{0-9}"
                   value={vitalsBloodPressure}
@@ -821,7 +960,7 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 <label htmlFor="AHCCCS">Pulse Rate:</label>
                 <input
                   type="text"
-                
+                  style={{width:`${vitalsPulse?.length?vitalsPulse?.length*20+"px":"30px"}`}}
                   value={vitalsPulse}
                  
                   required
@@ -839,7 +978,7 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 <label htmlFor="AHCCCS">Respiration Rate:</label>
                 <input
                   type="text"
-                
+                  style={{width:`${vitalsRespiratoryRate?.length?vitalsRespiratoryRate?.length*20+"px":"30px"}`}}
                   value={vitalsRespiratoryRate}
                   required
 
@@ -860,7 +999,7 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 <label htmlFor="AHCCCS">Body Temperature:</label>
                 <input
                   type="text"
-                
+                  style={{width:`${vitalsTemperature?.length?vitalsTemperature?.length*20+"px":"30px"}`}}
                   value={vitalsTemperature}
                   required
 
@@ -876,7 +1015,7 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 <label htmlFor="AHCCCS">Blood Oxygen:</label>
                 <input
                   type="text"
-               
+                  style={{width:`${vitalsOxygenLevel?.length?vitalsOxygenLevel?.length*20+"px":"30px"}`}}
                   value={vitalsOxygenLevel}
                   required
 
@@ -894,7 +1033,7 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 <label htmlFor="AHCCCS">Weight:</label>
                 <input
                   type="number"
-           
+                  style={{width:`${vitalsWeight?.length?vitalsWeight?.length*20+"px":"30px"}`}}
                   value={vitalsWeight}
                   required
 
@@ -914,7 +1053,7 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 <label htmlFor="AHCCCS">Height:</label>
                 <input
                   type="number"
-               
+                  style={{width:`${vitalsHeightFeet?.length?vitalsHeightFeet?.length*20+"px":"30px"}`}}
                   value={vitalsHeightFeet}
                   required
 
@@ -1262,8 +1401,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 type="checkbox"
                 id="DENIES"
               
-                checked={reviewOfSystemsConstitutional === "DENIES"}
-                onChange={() => setReviewOfSystemsConstitutional("DENIES")}
+                checked={reviewOfSystemsConstitutional?.includes("DENIES")}
+                onChange={() => handlereviewOfSystemsConstitutional("DENIES")}
               />
               <label htmlFor="DENIES">DENIES</label>
             </div>
@@ -1271,8 +1410,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="Fever"
-                checked={reviewOfSystemsConstitutional === "Fever"}
-                onChange={() => setReviewOfSystemsConstitutional("Fever")}
+                checked={reviewOfSystemsConstitutional?.includes("Fever")}
+                onChange={() => handlereviewOfSystemsConstitutional("Fever")}
               />
               <label htmlFor="Fever">Fever</label>
             </div>
@@ -1280,9 +1419,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="Poor appetite"
-                checked={reviewOfSystemsConstitutional === "Poor appetite"}
+                checked={reviewOfSystemsConstitutional?.includes("Poor appetite")}
                 onChange={() =>
-                  setReviewOfSystemsConstitutional("Poor appetite")
+                  handlereviewOfSystemsConstitutional("Poor appetite")
                 }
               />
               <label htmlFor="Poor appetite">Poor appetite</label>
@@ -1292,10 +1431,10 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 type="checkbox"
                 id="Unexplained weight gain"
                 checked={
-                  reviewOfSystemsConstitutional === "Unexplained weight gain"
+                  reviewOfSystemsConstitutional?.includes("Unexplained weight gain")
                 }
                 onChange={() =>
-                  setReviewOfSystemsConstitutional("Unexplained weight gain")
+                  handlereviewOfSystemsConstitutional("Unexplained weight gain")
                 }
               />
               <label htmlFor="Unexplained weight gain">
@@ -1306,8 +1445,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="Fatigue"
-                checked={reviewOfSystemsConstitutional === "Fatigue"}
-                onChange={() => setReviewOfSystemsConstitutional("Fatigue")}
+                checked={reviewOfSystemsConstitutional?.includes("Fatigue")}
+                onChange={() => handlereviewOfSystemsConstitutional("Fatigue")}
               />
               <label htmlFor="Fatigue">Fatigue</label>
             </div>
@@ -1315,8 +1454,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="Chills"
-                checked={reviewOfSystemsConstitutional === "Chills"}
-                onChange={() => setReviewOfSystemsConstitutional("Chills")}
+                checked={reviewOfSystemsConstitutional?.includes("Chills")}
+                onChange={() => handlereviewOfSystemsConstitutional("Chills")}
               />
               <label htmlFor="Chills">Chills</label>
             </div>
@@ -1324,9 +1463,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="Change in appetite"
-                checked={reviewOfSystemsConstitutional === "Change in appetite"}
+                checked={reviewOfSystemsConstitutional?.includes("Change in appetite")}
                 onChange={() =>
-                  setReviewOfSystemsConstitutional("Change in appetite")
+                  handlereviewOfSystemsConstitutional("Change in appetite")
                 }
               />
               <label htmlFor="Change in appetite">Change in appetite</label>
@@ -1335,9 +1474,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="Night Sweats"
-                checked={reviewOfSystemsConstitutional === "Night Sweats"}
+                checked={reviewOfSystemsConstitutional?.includes("Night Sweats")}
                 onChange={() =>
-                  setReviewOfSystemsConstitutional("Night Sweats")
+                  handlereviewOfSystemsConstitutional("Night Sweats")
                 }
               />
               <label htmlFor="Night Sweats">Night Sweats</label>
@@ -1347,10 +1486,10 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 type="checkbox"
                 id="Unexplained weight loss"
                 checked={
-                  reviewOfSystemsConstitutional === "Unexplained weight loss"
+                  reviewOfSystemsConstitutional?.includes("Unexplained weight loss")
                 }
                 onChange={() =>
-                  setReviewOfSystemsConstitutional("Unexplained weight loss")
+                  handlereviewOfSystemsConstitutional("Unexplained weight loss")
                 }
               />
               <label htmlFor="Unexplained weight loss">
@@ -1378,8 +1517,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="DENIES"
-                checked={reviewOfSystemsCardiovascular === "DENIES"}
-                onChange={() => setReviewOfSystemsCardiovascular("DENIES")}
+                checked={reviewOfSystemsCardiovascular?.includes("DENIES")}
+                onChange={() => handlereviewOfSystemsCardiovascular("DENIES")}
               />
               <label htmlFor="DENIES">DENIES</label>
             </div>
@@ -1387,8 +1526,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="Chest pain"
-                checked={reviewOfSystemsCardiovascular === "Chest pain"}
-                onChange={() => setReviewOfSystemsCardiovascular("Chest pain")}
+                checked={reviewOfSystemsCardiovascular?.includes("Chest pain")}
+                onChange={() => handlereviewOfSystemsCardiovascular("Chest pain")}
               />
               <label htmlFor="Chest pain">Chest pain</label>
             </div>
@@ -1397,10 +1536,10 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 type="checkbox"
                 id="Shortness of breath"
                 checked={
-                  reviewOfSystemsCardiovascular === "Shortness of breath"
+                  reviewOfSystemsCardiovascular?.includes("Shortness of breath")
                 }
                 onChange={() =>
-                  setReviewOfSystemsCardiovascular("Shortness of breath")
+                  handlereviewOfSystemsCardiovascular("Shortness of breath")
                 }
               />
               <label htmlFor="Shortness of breath">Shortness of breath</label>
@@ -1409,9 +1548,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="Racing Pulse"
-                checked={reviewOfSystemsCardiovascular === "Racing Pulse"}
+                checked={reviewOfSystemsCardiovascular?.includes("Racing Pulse")}
                 onChange={() =>
-                  setReviewOfSystemsCardiovascular("Racing Pulse")
+                  handlereviewOfSystemsCardiovascular("Racing Pulse")
                 }
               />
               <label htmlFor="Racing Pulse">Racing Pulse</label>
@@ -1421,10 +1560,10 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 type="checkbox"
                 id="Swelling of the feet/hands"
                 checked={
-                  reviewOfSystemsCardiovascular === "Swelling of the feet/hands"
+                  reviewOfSystemsCardiovascular?.includes("Swelling of the feet/hands")
                 }
                 onChange={() =>
-                  setReviewOfSystemsCardiovascular("Swelling of the feet/hands")
+                  handlereviewOfSystemsCardiovascular("Swelling of the feet/hands")
                 }
               />
               <label htmlFor="Swelling of the feet/hands">
@@ -1436,64 +1575,14 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 type="checkbox"
                 id="Irregular heartbeat"
                 checked={
-                  reviewOfSystemsCardiovascular === "Irregular heartbeat"
+                  reviewOfSystemsCardiovascular?.includes("Irregular heartbeat")
                 }
                 onChange={() =>
-                  setReviewOfSystemsCardiovascular("Irregular heartbeat")
+                  handlereviewOfSystemsCardiovascular("Irregular heartbeat")
                 }
               />
               <label htmlFor="Irregular heartbeat">Irregular heartbeat</label>
             </div>
-
-                {/* state is make is pending */}
-            {/* <div className="form-field-child-result">
-                <div>
-                  <label className="black_space" >Is your blood pressure under control? </label>
-                </div>
-                <div style={{ display: 'flex', gap: "5px", alignItems: "center" }}>
-                  <input
-                    type="checkbox"
-
-                    checked={tbScreeningResults === "Negative"}
-                    onChange={() => setTbScreeningResults("Negative")}
-                  />
-                  <label >Yes</label>
-                </div>
-                <div style={{ display: 'flex', gap: "5px", alignItems: "center" }}>
-                  <input
-                    type="checkbox"
-
-                    checked={tbScreeningResults === "Positive"}
-                    onChange={() => setTbScreeningResults("Positive")}
-                  />
-                  <label >No</label>
-                </div>
-                <div style={{ display: 'flex', gap: "5px", alignItems: "center" }}>
-                  <input
-                    type="checkbox"
-
-                    checked={tbScreeningResults === "Pending"}
-                    onChange={() => setTbScreeningResults("Pending")}
-                  />
-                  <label >Unsure</label>
-                </div>
-              </div> */}
-
-            {/* <div>
-            <input
-                type="checkbox"
-                id="itsgoodother"
-                checked={
-                  reviewOfSystemsCardiovascular === "Is your blood pressure under control? Yes / No / Unsure"
-                }
-                onChange={() =>
-                  setReviewOfSystemsCardiovascular("Is your blood pressure under control? Yes / No / Unsure")
-                }
-              />
-                <label htmlFor="itsgoodother">
-                  Is your blood pressure under control? Yes / No / Unsure
-                </label>
-              </div> */}
           </div>
         
             <div className="form-field">
@@ -1515,8 +1604,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="deniesEndocrine"
-                checked={reviewOfSystemsEndocrine === "DENIES"}
-                onChange={() => setReviewOfSystemsEndocrine("DENIES")}
+                checked={reviewOfSystemsEndocrine?.includes("DENIES")}
+                onChange={() => handlereviewOfSystemsEndocrine("DENIES")}
               />
               <label htmlFor="deniesEndocrine">DENIES</label>
             </div>
@@ -1524,8 +1613,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="excessThirst"
-                checked={reviewOfSystemsEndocrine === "Excess thirst"}
-                onChange={() => setReviewOfSystemsEndocrine("Excess thirst")}
+                checked={reviewOfSystemsEndocrine?.includes("Excess thirst")}
+                onChange={() => handlereviewOfSystemsEndocrine("Excess thirst")}
               />
               <label htmlFor="excessThirst">Excess thirst</label>
             </div>
@@ -1533,9 +1622,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="excessiveUrination"
-                checked={reviewOfSystemsEndocrine === "Excessive urination"}
+                checked={reviewOfSystemsEndocrine?.includes("Excessive urination")}
                 onChange={() =>
-                  setReviewOfSystemsEndocrine("Excessive urination")
+                  handlereviewOfSystemsEndocrine("Excessive urination")
                 }
               />
               <label htmlFor="excessiveUrination">Excessive urination</label>
@@ -1544,8 +1633,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="heatIntolerance"
-                checked={reviewOfSystemsEndocrine === "Heat Intolerance"}
-                onChange={() => setReviewOfSystemsEndocrine("Heat Intolerance")}
+                checked={reviewOfSystemsEndocrine?.includes("Heat Intolerance")}
+                onChange={() => handlereviewOfSystemsEndocrine("Heat Intolerance")}
               />
               <label htmlFor="heatIntolerance">Heat Intolerance</label>
             </div>
@@ -1553,8 +1642,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="coldIntolerance"
-                checked={reviewOfSystemsEndocrine === "Cold Intolerance"}
-                onChange={() => setReviewOfSystemsEndocrine("Cold Intolerance")}
+                checked={reviewOfSystemsEndocrine?.includes("Cold Intolerance")}
+                onChange={() => handlereviewOfSystemsEndocrine("Cold Intolerance")}
               />
               <label htmlFor="coldIntolerance">Cold Intolerance</label>
             </div>
@@ -1562,8 +1651,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="hairLoss"
-                checked={reviewOfSystemsEndocrine === "Hair loss"}
-                onChange={() => setReviewOfSystemsEndocrine("Hair loss")}
+                checked={reviewOfSystemsEndocrine?.includes("Hair loss")}
+                onChange={() => handlereviewOfSystemsEndocrine("Hair loss")}
               />
               <label htmlFor="hairLoss">Hair loss</label>
             </div>
@@ -1572,8 +1661,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="N/a"
-                checked={reviewOfSystemsEndocrine === "N/a"}
-                onChange={() => setReviewOfSystemsEndocrine("N/a")}
+                checked={reviewOfSystemsEndocrine?.includes("N/a")}
+                onChange={() => handlereviewOfSystemsEndocrine("N/a")}
               />
                 <label htmlFor="N/a">N/A</label>
               </div> 
@@ -1598,8 +1687,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="deniesGastrointestinal"
-                checked={reviewOfSystemsGastrointestinal === "DENIES"}
-                onChange={() => setReviewOfSystemsGastrointestinal("DENIES")}
+                checked={reviewOfSystemsGastrointestinal?.includes("DENIES")}
+                onChange={() => handlereviewOfSystemsGastrointestinal("DENIES")}
               />
               <label htmlFor="deniesGastrointestinal">DENIES</label>
             </div>
@@ -1607,9 +1696,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="abdominalPain"
-                checked={reviewOfSystemsGastrointestinal === "Abdominal pain"}
+                checked={reviewOfSystemsGastrointestinal?.includes("Abdominal pain")}
                 onChange={() =>
-                  setReviewOfSystemsGastrointestinal("Abdominal pain")
+                  handlereviewOfSystemsGastrointestinal("Abdominal pain")
                 }
               />
               <label htmlFor="abdominalPain">Abdominal pain</label>
@@ -1618,8 +1707,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="nausea"
-                checked={reviewOfSystemsGastrointestinal === "Nausea"}
-                onChange={() => setReviewOfSystemsGastrointestinal("Nausea")}
+                checked={reviewOfSystemsGastrointestinal?.includes("Nausea")}
+                onChange={() => handlereviewOfSystemsGastrointestinal("Nausea")}
               />
               <label htmlFor="nausea">Nausea</label>
             </div>
@@ -1627,8 +1716,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="diarrhea"
-                checked={reviewOfSystemsGastrointestinal === "Diarrhea"}
-                onChange={() => setReviewOfSystemsGastrointestinal("Diarrhea")}
+                checked={reviewOfSystemsGastrointestinal?.includes("Diarrhea")}
+                onChange={() => handlereviewOfSystemsGastrointestinal("Diarrhea")}
               />
               <label htmlFor="diarrhea">Diarrhea</label>
             </div>
@@ -1636,9 +1725,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="bloodyStools"
-                checked={reviewOfSystemsGastrointestinal === "Bloody stools"}
+                checked={reviewOfSystemsGastrointestinal?.includes("Bloody stools")}
                 onChange={() =>
-                  setReviewOfSystemsGastrointestinal("Bloody stools")
+                  handlereviewOfSystemsGastrointestinal("Bloody stools")
                 }
               />
               <label htmlFor="bloodyStools">Bloody stools</label>
@@ -1647,9 +1736,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="stomachUlcers"
-                checked={reviewOfSystemsGastrointestinal === "Stomach Ulcers"}
+                checked={reviewOfSystemsGastrointestinal?.includes("Stomach Ulcers")}
                 onChange={() =>
-                  setReviewOfSystemsGastrointestinal("Stomach Ulcers")
+                  handlereviewOfSystemsGastrointestinal("Stomach Ulcers")
                 }
               />
               <label htmlFor="stomachUlcers">Stomach Ulcers</label>
@@ -1658,9 +1747,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="constipation"
-                checked={reviewOfSystemsGastrointestinal === "Constipation"}
+                checked={reviewOfSystemsGastrointestinal?.includes("Constipation")}
                 onChange={() =>
-                  setReviewOfSystemsGastrointestinal("Constipation")
+                  handlereviewOfSystemsGastrointestinal("Constipation")
                 }
               />
               <label htmlFor="constipation">Constipation</label>
@@ -1670,10 +1759,10 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 type="checkbox"
                 id="troubleSwallowing"
                 checked={
-                  reviewOfSystemsGastrointestinal === "Trouble Swallowing"
+                  reviewOfSystemsGastrointestinal?.includes("Trouble Swallowing")
                 }
                 onChange={() =>
-                  setReviewOfSystemsGastrointestinal("Trouble Swallowing")
+                  handlereviewOfSystemsGastrointestinal("Trouble Swallowing")
                 }
               />
               <label htmlFor="troubleSwallowing">Trouble Swallowing</label>
@@ -1683,10 +1772,10 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 type="checkbox"
                 id="jaundiceYellowSkin"
                 checked={
-                  reviewOfSystemsGastrointestinal === "Jaundice/yellow skin"
+                  reviewOfSystemsGastrointestinal?.includes("Jaundice/yellow skin")
                 }
                 onChange={() =>
-                  setReviewOfSystemsGastrointestinal("Jaundice/yellow skin")
+                  handlereviewOfSystemsGastrointestinal("Jaundice/yellow skin")
                 }
               />
               <label htmlFor="jaundiceYellowSkin">Jaundice/yellow skin</label>
@@ -1713,8 +1802,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="deniesGenitourinary"
-                checked={reviewOfSystemsGenitourinary === "DENIES"}
-                onChange={() => setReviewOfSystemsGenitourinary("DENIES")}
+                checked={reviewOfSystemsGenitourinary?.includes("DENIES")}
+                onChange={() => handlereviewOfSystemsGenitourinary("DENIES")}
               />
               <label htmlFor="deniesGenitourinary">DENIES</label>
             </div>
@@ -1723,10 +1812,10 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 type="checkbox"
                 id="genitalSoresUlcers"
                 checked={
-                  reviewOfSystemsGenitourinary === "Genital sores or ulcers"
+                  reviewOfSystemsGenitourinary?.includes("Genital sores or ulcers")
                 }
                 onChange={() =>
-                  setReviewOfSystemsGenitourinary("Genital sores or ulcers")
+                  handlereviewOfSystemsGenitourinary("Genital sores or ulcers")
                 }
               />
               <label htmlFor="genitalSoresUlcers">
@@ -1738,10 +1827,10 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 type="checkbox"
                 id="kidneyFailureProblems"
                 checked={
-                  reviewOfSystemsGenitourinary === "Kidney failure/problems"
+                  reviewOfSystemsGenitourinary?.includes("Kidney failure/problems")
                 }
                 onChange={() =>
-                  setReviewOfSystemsGenitourinary("Kidney failure/problems")
+                  handlereviewOfSystemsGenitourinary("Kidney failure/problems")
                 }
               />
               <label htmlFor="kidneyFailureProblems">
@@ -1752,9 +1841,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="Kidney stones"
-                checked={reviewOfSystemsGenitourinary === "Kidney stones"}
+                checked={reviewOfSystemsGenitourinary?.includes("Kidney stones")}
                 onChange={() =>
-                  setReviewOfSystemsGenitourinary("Kidney stones")
+                  handlereviewOfSystemsGenitourinary("Kidney stones")
                 }
               />
               <label htmlFor="Kidney stones">Kidney stones</label>
@@ -1764,10 +1853,10 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 type="checkbox"
                 id="Painful/difficult urination"
                 checked={
-                  reviewOfSystemsGenitourinary === "Painful/difficult urination"
+                  reviewOfSystemsGenitourinary?.includes("Painful/difficult urination")
                 }
                 onChange={() =>
-                  setReviewOfSystemsGenitourinary("Painful/difficult urination")
+                  handlereviewOfSystemsGenitourinary("Painful/difficult urination")
                 }
               />
               <label htmlFor="Painful/difficult urination">
@@ -1778,9 +1867,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="Testicular pain"
-                checked={reviewOfSystemsGenitourinary === "Testicular pain"}
+                checked={reviewOfSystemsGenitourinary?.includes("Testicular pain")}
                 onChange={() =>
-                  setReviewOfSystemsGenitourinary("Testicular pain")
+                  handlereviewOfSystemsGenitourinary("Testicular pain")
                 }
               />
               <label htmlFor="Testicular pain">Testicular pain</label>
@@ -1789,9 +1878,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="Urinary discharge"
-                checked={reviewOfSystemsGenitourinary === "Urinary discharge"}
+                checked={reviewOfSystemsGenitourinary?.includes("Urinary discharge")}
                 onChange={() =>
-                  setReviewOfSystemsGenitourinary("Urinary discharge")
+                  handlereviewOfSystemsGenitourinary("Urinary discharge")
                 }
               />
               <label htmlFor="Urinary discharge">Urinary discharge</label>
@@ -1818,8 +1907,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="deniesHematologyOncology"
-                checked={reviewOfSystemsHematologyOncology === "DENIES"}
-                onChange={() => setReviewOfSystemsHematologyOncology("DENIES")}
+                checked={reviewOfSystemsHematologyOncology?.includes("DENIES")}
+                onChange={() => handlereviewOfSystemsHematologyOncology("DENIES")}
               />
               <label htmlFor="deniesHematologyOncology">DENIES</label>
             </div>
@@ -1827,9 +1916,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="easyBruising"
-                checked={reviewOfSystemsHematologyOncology === "Easy bruising"}
+                checked={reviewOfSystemsHematologyOncology?.includes("Easy bruising")}
                 onChange={() =>
-                  setReviewOfSystemsHematologyOncology("Easy bruising")
+                  handlereviewOfSystemsHematologyOncology("Easy bruising")
                 }
               />
               <label htmlFor="easyBruising">Easy bruising</label>
@@ -1839,10 +1928,10 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 type="checkbox"
                 id="prolongedBleeding"
                 checked={
-                  reviewOfSystemsHematologyOncology === "Prolonged bleeding"
+                  reviewOfSystemsHematologyOncology?.includes("Prolongedbleeding")
                 }
                 onChange={() =>
-                  setReviewOfSystemsHematologyOncology("Prolonged bleeding")
+                  handlereviewOfSystemsHematologyOncology("Prolongedbleeding")
                 }
               />
               <label htmlFor="prolongedBleeding">Prolonged bleeding</label>
@@ -1869,8 +1958,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="deniesHeadNeckThroat"
-                checked={reviewOfSystemsHeadNeckThroat === "DENIES"}
-                onChange={() => setReviewOfSystemsHeadNeckThroat("DENIES")}
+                checked={reviewOfSystemsHeadNeckThroat?.includes("DENIES")}
+                onChange={() => handlereviewOfSystemsHeadNeckThroat("DENIES")}
               />
               <label htmlFor="deniesHeadNeckThroat">DENIES</label>
             </div>
@@ -1878,9 +1967,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="hearingLoss"
-                checked={reviewOfSystemsHeadNeckThroat === "Hearing loss"}
+                checked={reviewOfSystemsHeadNeckThroat?.includes("Hearing loss")}
                 onChange={() =>
-                  setReviewOfSystemsHeadNeckThroat("Hearing loss")
+                  handlereviewOfSystemsHeadNeckThroat("Hearing loss")
                 }
               />
               <label htmlFor="hearingLoss">Hearing loss</label>
@@ -1889,8 +1978,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="soreThroat"
-                checked={reviewOfSystemsHeadNeckThroat === "Sore throat"}
-                onChange={() => setReviewOfSystemsHeadNeckThroat("Sore throat")}
+                checked={reviewOfSystemsHeadNeckThroat?.includes("Sore throat")}
+                onChange={() => handlereviewOfSystemsHeadNeckThroat("Sore throat")}
               />
               <label htmlFor="soreThroat">Sore throat</label>
             </div>
@@ -1898,8 +1987,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="runnyNose"
-                checked={reviewOfSystemsHeadNeckThroat === "Runny nose"}
-                onChange={() => setReviewOfSystemsHeadNeckThroat("Runny nose")}
+                checked={reviewOfSystemsHeadNeckThroat?.includes("Runny nose")}
+                onChange={() => handlereviewOfSystemsHeadNeckThroat("Runny nose")}
               />
               <label htmlFor="runnyNose">Runny nose</label>
             </div>
@@ -1907,8 +1996,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="dryMouth"
-                checked={reviewOfSystemsHeadNeckThroat === "Dry mouth"}
-                onChange={() => setReviewOfSystemsHeadNeckThroat("Dry mouth")}
+                checked={reviewOfSystemsHeadNeckThroat?.includes("Dry mouth")}
+                onChange={() => handlereviewOfSystemsHeadNeckThroat("Dry mouth")}
               />
               <label htmlFor="dryMouth">Dry mouth</label>
             </div>
@@ -1917,11 +2006,11 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 type="checkbox"
                 id="jawClaudication"
                 checked={
-                  reviewOfSystemsHeadNeckThroat ===
+                  reviewOfSystemsHeadNeckThroat?.includes ===
                   "Jaw Claudication (pain in jaw when chewing)"
                 }
                 onChange={() =>
-                  setReviewOfSystemsHeadNeckThroat(
+                  handlereviewOfSystemsHeadNeckThroat(
                     "Jaw Claudication (pain in jaw when chewing)"
                   )
                 }
@@ -1934,8 +2023,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="earache"
-                checked={reviewOfSystemsHeadNeckThroat === "Earache"}
-                onChange={() => setReviewOfSystemsHeadNeckThroat("Earache")}
+                checked={reviewOfSystemsHeadNeckThroat?.includes("Earache")}
+                onChange={() => handlereviewOfSystemsHeadNeckThroat("Earache")}
               />
               <label htmlFor="earache">Earache</label>
             </div>
@@ -1943,9 +2032,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="missingTeeth"
-                checked={reviewOfSystemsHeadNeckThroat === "Missing teeth"}
+                checked={reviewOfSystemsHeadNeckThroat?.includes("Missing teeth")}
                 onChange={() =>
-                  setReviewOfSystemsHeadNeckThroat("Missing teeth")
+                  handlereviewOfSystemsHeadNeckThroat("Missing teeth")
                 }
               />
               <label htmlFor="missingTeeth">Missing teeth</label>
@@ -1972,8 +2061,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="deniesIntegumentary"
-                checked={reviewOfSystemsIntegumentary === "DENIES"}
-                onChange={() => setReviewOfSystemsIntegumentary("DENIES")}
+                checked={reviewOfSystemsIntegumentary?.includes("DENIES")}
+                onChange={() => handlereviewOfSystemsIntegumentary("DENIES")}
               />
               <label htmlFor="deniesIntegumentary">DENIES</label>
             </div>
@@ -1981,8 +2070,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="rash"
-                checked={reviewOfSystemsIntegumentary === "Rash"}
-                onChange={() => setReviewOfSystemsIntegumentary("Rash")}
+                checked={reviewOfSystemsIntegumentary?.includes("Rash")}
+                onChange={() => handlereviewOfSystemsIntegumentary("Rash")}
               />
               <label htmlFor="rash">Rash</label>
             </div>
@@ -1990,9 +2079,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="changeInMole"
-                checked={reviewOfSystemsIntegumentary === "Change in mole"}
+                checked={reviewOfSystemsIntegumentary?.includes("Change in mole")}
                 onChange={() =>
-                  setReviewOfSystemsIntegumentary("Change in mole")
+                  handlereviewOfSystemsIntegumentary("Change in mole")
                 }
               />
               <label htmlFor="changeInMole">Change in mole</label>
@@ -2001,8 +2090,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="skinSores"
-                checked={reviewOfSystemsIntegumentary === "Skin sores"}
-                onChange={() => setReviewOfSystemsIntegumentary("Skin sores")}
+                checked={reviewOfSystemsIntegumentary?.includes("Skin sores")}
+                onChange={() => handlereviewOfSystemsIntegumentary("Skin sores")}
               />
               <label htmlFor="skinSores">Skin sores</label>
             </div>
@@ -2010,8 +2099,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="skinCancer"
-                checked={reviewOfSystemsIntegumentary === "Skin cancer"}
-                onChange={() => setReviewOfSystemsIntegumentary("Skin cancer")}
+                checked={reviewOfSystemsIntegumentary?.includes("Skin cancer")}
+                onChange={() => handlereviewOfSystemsIntegumentary("Skin cancer")}
               />
               <label htmlFor="skinCancer">Skin cancer</label>
             </div>
@@ -2019,9 +2108,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="severeItching"
-                checked={reviewOfSystemsIntegumentary === "Severe itching"}
+                checked={reviewOfSystemsIntegumentary?.includes("Severe itching")}
                 onChange={() =>
-                  setReviewOfSystemsIntegumentary("Severe itching")
+                  handlereviewOfSystemsIntegumentary("Severe itching")
                 }
               />
               <label htmlFor="severeItching">Severe itching</label>
@@ -2030,8 +2119,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="lossOfHair"
-                checked={reviewOfSystemsIntegumentary === "Loss of hair"}
-                onChange={() => setReviewOfSystemsIntegumentary("Loss of hair")}
+                checked={reviewOfSystemsIntegumentary?.includes("Loss of hair")}
+                onChange={() => handlereviewOfSystemsIntegumentary("Loss of hair")}
               />
               <label htmlFor="lossOfHair">Loss of hair</label>
             </div>
@@ -2057,8 +2146,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="deniesMusculoskeletal"
-                checked={reviewOfSystemsMusculoskeletal === "DENIES"}
-                onChange={() => setReviewOfSystemsMusculoskeletal("DENIES")}
+                checked={reviewOfSystemsMusculoskeletal?.includes("DENIES")}
+                onChange={() => handlereviewOfSystemsMusculoskeletal("DENIES")}
               />
               <label htmlFor="deniesMusculoskeletal">DENIES</label>
             </div>
@@ -2066,9 +2155,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="muscleAches"
-                checked={reviewOfSystemsMusculoskeletal === "Muscle aches"}
+                checked={reviewOfSystemsMusculoskeletal?.includes("Muscle aches")}
                 onChange={() =>
-                  setReviewOfSystemsMusculoskeletal("Muscle aches")
+                  handlereviewOfSystemsMusculoskeletal("Muscle aches")
                 }
               />
               <label htmlFor="muscleAches">Muscle aches</label>
@@ -2078,11 +2167,10 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 type="checkbox"
                 id="difficultyLayingFlat"
                 checked={
-                  reviewOfSystemsMusculoskeletal ===
-                  "Difficulty laying flat due to muscle pain"
+                  reviewOfSystemsMusculoskeletal?.includes("Difficulty laying flat due to muscle pain")
                 }
                 onChange={() =>
-                  setReviewOfSystemsMusculoskeletal(
+                  handlereviewOfSystemsMusculoskeletal(
                     "Difficulty laying flat due to muscle pain"
                   )
                 }
@@ -2095,8 +2183,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="backPain"
-                checked={reviewOfSystemsMusculoskeletal === "Back pain"}
-                onChange={() => setReviewOfSystemsMusculoskeletal("Back pain")}
+                checked={reviewOfSystemsMusculoskeletal?.includes("Back pain")}
+                onChange={() => handlereviewOfSystemsMusculoskeletal("Back pain")}
               />
               <label htmlFor="backPain">Back pain</label>
             </div>
@@ -2104,8 +2192,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="jointPain"
-                checked={reviewOfSystemsMusculoskeletal === "Joint pain"}
-                onChange={() => setReviewOfSystemsMusculoskeletal("Joint pain")}
+                checked={reviewOfSystemsMusculoskeletal?.includes("Joint pain")}
+                onChange={() => handlereviewOfSystemsMusculoskeletal("Joint pain")}
               />
               <label htmlFor="jointPain">Joint pain</label>
             </div>
@@ -2113,9 +2201,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="deformities"
-                checked={reviewOfSystemsMusculoskeletal === "Deformities"}
+                checked={reviewOfSystemsMusculoskeletal?.includes("Deformities")}
                 onChange={() =>
-                  setReviewOfSystemsMusculoskeletal("Deformities")
+                  handlereviewOfSystemsMusculoskeletal("Deformities")
                 }
               />
               <label htmlFor="deformities">Deformities</label>
@@ -2141,8 +2229,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="deniesPsychiatric"
-                checked={reviewOfSystemsPsychiatric === "DENIES"}
-                onChange={() => setReviewOfSystemsPsychiatric("DENIES")}
+                checked={reviewOfSystemsPsychiatric?.includes("DENIES")}
+                onChange={() => handlereviewOfSystemsPsychiatric("DENIES")}
               />
               <label htmlFor="deniesPsychiatric">DENIES</label>
             </div>
@@ -2150,8 +2238,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="insomnia"
-                checked={reviewOfSystemsPsychiatric === "Insomnia"}
-                onChange={() => setReviewOfSystemsPsychiatric("Insomnia")}
+                checked={reviewOfSystemsPsychiatric?.includes("Insomnia")}
+                onChange={() => handlereviewOfSystemsPsychiatric("Insomnia")}
               />
               <label htmlFor="insomnia">Insomnia</label>
             </div>
@@ -2159,8 +2247,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="irritability"
-                checked={reviewOfSystemsPsychiatric === "Irritability"}
-                onChange={() => setReviewOfSystemsPsychiatric("Irritability")}
+                checked={reviewOfSystemsPsychiatric?.includes("Irritability")}
+                onChange={() => handlereviewOfSystemsPsychiatric("Irritability")}
               />
               <label htmlFor="irritability">Irritability</label>
             </div>
@@ -2168,8 +2256,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="depression"
-                checked={reviewOfSystemsPsychiatric === "Depression"}
-                onChange={() => setReviewOfSystemsPsychiatric("Depression")}
+                checked={reviewOfSystemsPsychiatric?.includes("Depression")}
+                onChange={() => handlereviewOfSystemsPsychiatric("Depression")}
               />
               <label htmlFor="depression">Depression</label>
             </div>
@@ -2177,8 +2265,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="anxiety"
-                checked={reviewOfSystemsPsychiatric === "Anxiety"}
-                onChange={() => setReviewOfSystemsPsychiatric("Anxiety")}
+                checked={reviewOfSystemsPsychiatric?.includes("Anxiety")}
+                onChange={() => handlereviewOfSystemsPsychiatric("Anxiety")}
               />
               <label htmlFor="anxiety">Anxiety</label>
             </div>
@@ -2187,10 +2275,10 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 type="checkbox"
                 id="recurrentBadThoughts"
                 checked={
-                  reviewOfSystemsPsychiatric === "Recurrent bad thoughts"
+                  reviewOfSystemsPsychiatric?.includes("Recurrent bad thoughts")
                 }
                 onChange={() =>
-                  setReviewOfSystemsPsychiatric("Recurrent bad thoughts")
+                  handlereviewOfSystemsPsychiatric("Recurrent bad thoughts")
                 }
               />
               <label htmlFor="recurrentBadThoughts">
@@ -2201,8 +2289,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="moodSwings"
-                checked={reviewOfSystemsPsychiatric === "Mood swings"}
-                onChange={() => setReviewOfSystemsPsychiatric("Mood swings")}
+                checked={reviewOfSystemsPsychiatric?.includes("Mood swings")}
+                onChange={() => handlereviewOfSystemsPsychiatric("Mood swings")}
               />
               <label htmlFor="moodSwings">Mood swings</label>
             </div>
@@ -2210,8 +2298,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="hallucinations"
-                checked={reviewOfSystemsPsychiatric === "Hallucinations"}
-                onChange={() => setReviewOfSystemsPsychiatric("Hallucinations")}
+                checked={reviewOfSystemsPsychiatric?.includes("Hallucinations")}
+                onChange={() => handlereviewOfSystemsPsychiatric("Hallucinations")}
               />
               <label htmlFor="hallucinations">Hallucinations</label>
             </div>
@@ -2219,8 +2307,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="compulsions"
-                checked={reviewOfSystemsPsychiatric === "Compulsions"}
-                onChange={() => setReviewOfSystemsPsychiatric("Compulsions")}
+                checked={reviewOfSystemsPsychiatric?.includes("Compulsions")}
+                onChange={() => handlereviewOfSystemsPsychiatric("Compulsions")}
               />
               <label htmlFor="compulsions">Compulsions</label>
             </div>
@@ -2245,8 +2333,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="deniesNeurologic"
-                checked={reviewOfSystemsNeurologic === "DENIES"}
-                onChange={() => setReviewOfSystemsNeurologic("DENIES")}
+                checked={reviewOfSystemsNeurologic?.includes("DENIES")}
+                onChange={() => handlereviewOfSystemsNeurologic("DENIES")}
               />
               <label htmlFor="deniesNeurologic">DENIES</label>
             </div>
@@ -2254,8 +2342,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="weakness"
-                checked={reviewOfSystemsNeurologic === "Weakness"}
-                onChange={() => setReviewOfSystemsNeurologic("Weakness")}
+                checked={reviewOfSystemsNeurologic?.includes("Weakness")}
+                onChange={() => handlereviewOfSystemsNeurologic("Weakness")}
               />
               <label htmlFor="weakness">Weakness</label>
             </div>
@@ -2263,8 +2351,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="headaches"
-                checked={reviewOfSystemsNeurologic === "Headaches"}
-                onChange={() => setReviewOfSystemsNeurologic("Headaches")}
+                checked={reviewOfSystemsNeurologic?.includes("Headaches")}
+                onChange={() => handlereviewOfSystemsNeurologic("Headaches")}
               />
               <label htmlFor="headaches">Headaches</label>
             </div>
@@ -2272,9 +2360,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="scalpTenderness"
-                checked={reviewOfSystemsNeurologic === "Scalp tenderness"}
+                checked={reviewOfSystemsNeurologic?.includes("Scalp tenderness")}
                 onChange={() =>
-                  setReviewOfSystemsNeurologic("Scalp tenderness")
+                  handlereviewOfSystemsNeurologic("Scalp tenderness")
                 }
               />
               <label htmlFor="scalpTenderness">Scalp tenderness</label>
@@ -2283,8 +2371,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="dizziness"
-                checked={reviewOfSystemsNeurologic === "Dizziness"}
-                onChange={() => setReviewOfSystemsNeurologic("Dizziness")}
+                checked={reviewOfSystemsNeurologic?.includes("Dizziness")}
+                onChange={() => handlereviewOfSystemsNeurologic("Dizziness")}
               />
               <label htmlFor="dizziness">Dizziness</label>
             </div>
@@ -2292,9 +2380,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="balanceProblems"
-                checked={reviewOfSystemsNeurologic === "Problems with balance"}
+                checked={reviewOfSystemsNeurologic?.includes("Problems with balance")}
                 onChange={() =>
-                  setReviewOfSystemsNeurologic("Problems with balance")
+                  handlereviewOfSystemsNeurologic("Problems with balance")
                 }
               />
               <label htmlFor="balanceProblems">Problems with balance</label>
@@ -2304,10 +2392,10 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 type="checkbox"
                 id="paralysis"
                 checked={
-                  reviewOfSystemsNeurologic === "Paralysis of extremities"
+                  reviewOfSystemsNeurologic?.includes("Paralysis of extremities")
                 }
                 onChange={() =>
-                  setReviewOfSystemsNeurologic("Paralysis of extremities")
+                  handlereviewOfSystemsNeurologic("Paralysis of extremities")
                 }
               />
               <label htmlFor="paralysis">Paralysis of extremities</label>
@@ -2316,8 +2404,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="tremor"
-                checked={reviewOfSystemsNeurologic === "Tremor"}
-                onChange={() => setReviewOfSystemsNeurologic("Tremor")}
+                checked={reviewOfSystemsNeurologic?.includes("Tremor")}
+                onChange={() => handlereviewOfSystemsNeurologic("Tremor")}
               />
               <label htmlFor="tremor">Tremor</label>
             </div>
@@ -2325,8 +2413,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="stroke"
-                checked={reviewOfSystemsNeurologic === "Stroke"}
-                onChange={() => setReviewOfSystemsNeurologic("Stroke")}
+                checked={reviewOfSystemsNeurologic?.includes("Stroke")}
+                onChange={() => handlereviewOfSystemsNeurologic("Stroke")}
               />
               <label htmlFor="stroke">Stroke</label>
             </div>
@@ -2334,9 +2422,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="numbnessTingling"
-                checked={reviewOfSystemsNeurologic === "Numbness or tingling"}
+                checked={reviewOfSystemsNeurologic?.includes("Numbness or tingling")}
                 onChange={() =>
-                  setReviewOfSystemsNeurologic("Numbness or tingling")
+                  handlereviewOfSystemsNeurologic("Numbness or tingling")
                 }
               />
               <label htmlFor="numbnessTingling">Numbness or tingling</label>
@@ -2346,10 +2434,10 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 type="checkbox"
                 id="seizures"
                 checked={
-                  reviewOfSystemsNeurologic === "Seizures or convulsions"
+                  reviewOfSystemsNeurologic?.includes("Seizures or convulsions")
                 }
                 onChange={() =>
-                  setReviewOfSystemsNeurologic("Seizures or convulsions")
+                  handlereviewOfSystemsNeurologic("Seizures or convulsions")
                 }
               />
               <label htmlFor="seizures">Seizures or convulsions</label>
@@ -2358,8 +2446,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="fainting"
-                checked={reviewOfSystemsNeurologic === "Fainting"}
-                onChange={() => setReviewOfSystemsNeurologic("Fainting")}
+                checked={reviewOfSystemsNeurologic?.includes("Fainting")}
+                onChange={() => handlereviewOfSystemsNeurologic("Fainting")}
               />
               <label htmlFor="fainting">Fainting</label>
             </div>
@@ -2367,9 +2455,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="walkingProblems"
-                checked={reviewOfSystemsNeurologic === "Problems walking"}
+                checked={reviewOfSystemsNeurologic?.includes("Problems walking")}
                 onChange={() =>
-                  setReviewOfSystemsNeurologic("Problems walking")
+                  handlereviewOfSystemsNeurologic("Problems walking")
                 }
               />
               <label htmlFor="walkingProblems">Problems walking</label>
@@ -2398,8 +2486,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="deniesRespiratory"
-                checked={reviewOfSystemsRespiratory === "DENIES"}
-                onChange={() => setReviewOfSystemsRespiratory("DENIES")}
+                checked={reviewOfSystemsRespiratory?.includes("DENIES")}
+                onChange={() => handlereviewOfSystemsRespiratory("DENIES")}
               />
               <label htmlFor="deniesRespiratory">DENIES</label>
             </div>
@@ -2407,8 +2495,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="wheezing"
-                checked={reviewOfSystemsRespiratory === "Wheezing"}
-                onChange={() => setReviewOfSystemsRespiratory("Wheezing")}
+                checked={reviewOfSystemsRespiratory?.includes("Wheezing")}
+                onChange={() => handlereviewOfSystemsRespiratory("Wheezing")}
               />
               <label htmlFor="wheezing">Wheezing</label>
             </div>
@@ -2416,8 +2504,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="cough"
-                checked={reviewOfSystemsRespiratory === "Cough"}
-                onChange={() => setReviewOfSystemsRespiratory("Cough")}
+                checked={reviewOfSystemsRespiratory?.includes("Cough")}
+                onChange={() => handlereviewOfSystemsRespiratory("Cough")}
               />
               <label htmlFor="cough">Cough</label>
             </div>
@@ -2425,9 +2513,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="coughingUpBlood"
-                checked={reviewOfSystemsRespiratory === "Coughing up blood"}
+                checked={reviewOfSystemsRespiratory?.includes("Coughing up blood")}
                 onChange={() =>
-                  setReviewOfSystemsRespiratory("Coughing up blood")
+                  handlereviewOfSystemsRespiratory("Coughing up blood")
                 }
               />
               <label htmlFor="coughingUpBlood">Coughing up blood</label>
@@ -2437,10 +2525,10 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 type="checkbox"
                 id="severeOrFrequentColds"
                 checked={
-                  reviewOfSystemsRespiratory === "Severe or Frequent colds"
+                  reviewOfSystemsRespiratory?.includes("Severe or Frequent colds")
                 }
                 onChange={() =>
-                  setReviewOfSystemsRespiratory("Severe or Frequent colds")
+                  handlereviewOfSystemsRespiratory("Severe or Frequent colds")
                 }
               />
               <label htmlFor="severeOrFrequentColds">
@@ -2451,9 +2539,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="difficultyBreathing"
-                checked={reviewOfSystemsRespiratory === "Difficulty breathing"}
+                checked={reviewOfSystemsRespiratory?.includes("Difficulty breathing")}
                 onChange={() =>
-                  setReviewOfSystemsRespiratory("Difficulty breathing")
+                  handlereviewOfSystemsRespiratory("Difficulty breathing")
                 }
               />
               <label htmlFor="difficultyBreathing">Difficulty breathing</label>
@@ -2478,8 +2566,8 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="deniesAllergicImmunologic"
-                checked={reviewOfSystemsAllergicImmunologic === "DENIES"}
-                onChange={() => setReviewOfSystemsAllergicImmunologic("DENIES")}
+                checked={reviewOfSystemsAllergicImmunologic?.includes("DENIES")}
+                onChange={() => handlereviewOfSystemsAllergicImmunologic("DENIES")}
               />
               <label htmlFor="deniesAllergicImmunologic">DENIES</label>
             </div>
@@ -2488,10 +2576,10 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 type="checkbox"
                 id="seasonalAllergies"
                 checked={
-                  reviewOfSystemsAllergicImmunologic === "Seasonal allergies"
+                  reviewOfSystemsAllergicImmunologic?.includes("Seasonal allergies")
                 }
                 onChange={() =>
-                  setReviewOfSystemsAllergicImmunologic("Seasonal allergies")
+                  handlereviewOfSystemsAllergicImmunologic("Seasonal allergies")
                 }
               />
               <label htmlFor="seasonalAllergies">Seasonal allergies</label>
@@ -2501,10 +2589,10 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 type="checkbox"
                 id="hayFeverSymptoms"
                 checked={
-                  reviewOfSystemsAllergicImmunologic === "Hay fever symptoms"
+                  reviewOfSystemsAllergicImmunologic?.includes("Hay fever symptoms")
                 }
                 onChange={() =>
-                  setReviewOfSystemsAllergicImmunologic("Hay fever symptoms")
+                  handlereviewOfSystemsAllergicImmunologic("Hay fever symptoms")
                 }
               />
               <label htmlFor="hayFeverSymptoms">Hay fever symptoms</label>
@@ -2513,9 +2601,9 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
               <input
                 type="checkbox"
                 id="itching"
-                checked={reviewOfSystemsAllergicImmunologic === "Itching"}
+                checked={reviewOfSystemsAllergicImmunologic?.includes("Itching")}
                 onChange={() =>
-                  setReviewOfSystemsAllergicImmunologic("Itching")
+                  handlereviewOfSystemsAllergicImmunologic("Itching")
                 }
               />
               <label htmlFor="itching">Itching</label>
@@ -2525,10 +2613,10 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 type="checkbox"
                 id="frequentInfections"
                 checked={
-                  reviewOfSystemsAllergicImmunologic === "Frequent infections"
+                  reviewOfSystemsAllergicImmunologic?.includes("Frequent infections")
                 }
                 onChange={() =>
-                  setReviewOfSystemsAllergicImmunologic("Frequent infections")
+                  handlereviewOfSystemsAllergicImmunologic("Frequent infections")
                 }
               />
               <label htmlFor="frequentInfections">Frequent infections</label>
@@ -2538,10 +2626,10 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
                 type="checkbox"
                 id="exposureToHIV"
                 checked={
-                  reviewOfSystemsAllergicImmunologic === "Exposure to HIV"
+                  reviewOfSystemsAllergicImmunologic?.includes("Exposure to HIV")
                 }
                 onChange={() =>
-                  setReviewOfSystemsAllergicImmunologic("Exposure to HIV")
+                  handlereviewOfSystemsAllergicImmunologic("Exposure to HIV")
                 }
               />
               <label htmlFor="exposureToHIV">Exposure to HIV</label>

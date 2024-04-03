@@ -441,8 +441,8 @@ function formatDate(dateString) {
       </div>
         <div className="Boss">
         <div className="formheading1">
-          <div className="formsheading2" style={{marginTop:"1.5rem"}}>
-            <h1>FACE SHEET/RESIDENT EMERGENCY INFORMATION</h1>
+          <div className="formsheading_faceSheet">
+            <h5>FACE SHEET/RESIDENT EMERGENCY INFORMATION</h5>
           </div>
         </div>
           <form onSubmit={handleData}>

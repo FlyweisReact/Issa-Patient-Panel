@@ -1954,9 +1954,9 @@ useEffect(()=>{
 
           <div className="Boss">
             <div className="formheading1">
-              <div className="formsheading2" style={{marginTop:"1.5rem", padding:" 0 10px"}}>
+              <div className="formsheading_updated_treatment" style={{marginTop:"1.5rem", padding:" 0 10px"}}>
                 <div className="treatment_plan_header">
-                <h1>TREATMENT PLAN</h1>
+                <h5>TREATMENT PLAN</h5>
                 <div className="treatment_plan_header_inner_div">
                   <input
                     type="checkbox"

@@ -7,7 +7,7 @@ import { Form } from 'react-bootstrap';
 
 
 const FormUpper = ({assessmentType,setAssessmentType}) => {;
-    const navigate = useNavigate();
+ 
 
   return (
     <>

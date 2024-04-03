@@ -10,9 +10,9 @@
 
 .formsheading2 {
   text-align: center;
-
-  width: inherit;
+  width: 40%;
   height: 30px;
+  margin: auto;
   margin-bottom: 20px;
   margin-top: 20px;
   border: 1px solid #ffff;
@@ -20,24 +20,95 @@
   background-color: #1a9fb2;
   /* Add your preferred box shadow */
   border-radius: 10px;
-  
 }
+
+.formsheading_faceSheet{
+  text-align: center;
+  width: 60%;
+  height: 30px;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border: 1px solid #ffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  background-color: #1a9fb2;
+  /* Add your preferred box shadow */
+  border-radius: 10px;
+}
+
+.formsheading_safety_plane{
+  text-align: center;
+  width: 30%;
+  height: 30px;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border: 1px solid #ffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  background-color: #1a9fb2;
+  /* Add your preferred box shadow */
+  border-radius: 10px;
+}
+
+.formsheading_updated_treatment{
+  text-align: center;
+  width: 50%;
+  height: 30px;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border: 1px solid #ffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  background-color: #1a9fb2;
+  /* Add your preferred box shadow */
+  border-radius: 10px;
+}
+
+.formsheading_updated_treatment_nursing{
+  text-align: center;
+  width: 40%;
+  height: 30px;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border: 1px solid #ffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  background-color: #1a9fb2;
+  /* Add your preferred box shadow */
+  border-radius: 10px;
+}
+
+
+.update_header_link{
+  text-align: center;
+}
+
+.update_header_link Button{
+  padding: 5px 3rem;
+  font-size: 25px;
+  background-color: #1a9fb2;
+  color: black;
+}
+
+
+
+
 
 .formsheading-initial-assestment{
   text-align: center;
-  width: inherit;
+  width: 50%;
   margin-bottom: 20px;
   margin-top: 20px;
   height: 30px;
   border: 1px solid #ffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   background-color: #1a9fb2;
-  /* Add your preferred box shadow */
+  margin: auto;
   border-radius: 10px;
   display: flex;
-  justify-content: center;
+  column-gap: 2rem;
   align-items: center;
-  gap: 10px;
+ padding: 5px 30px;
 }
 
 .formsheading2 h1 {
@@ -104,4 +175,24 @@
     color: #000000;
 
   }
+
+  .formsheading_updated_treatment{
+    width: 100%;
+  }
+  
+  .formsheading_updated_treatment_nursing{
+    width: 100%;
+  }
+
+  .formsheading_faceSheet{
+    width: 100%;
+  }
+  .formsheading_safety_plane{
+    width: 100%;
+  }
+
+  .formsheading-initial-assestment{
+    width: 100%;
+  }
+
 }

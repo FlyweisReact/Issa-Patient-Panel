@@ -409,8 +409,8 @@ function formatDate(dateString) {
       </div>
         <div className="Boss">
         <div className="formheading1">
-          <div className="formsheading2">
-            <h1>RESIDENT SAFETY PLAN</h1>
+          <div className="formsheading_safety_plane">
+            <h5>RESIDENT SAFETY PLAN</h5>
           </div>
         </div>
         <form onSubmit={handlePost}>

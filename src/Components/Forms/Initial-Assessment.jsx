@@ -236,8 +236,8 @@ const InitialAssessment = () => {
   const [ObsessiveYes, setObsessiveYes] = useState();
   const [ObsessiveComment, setObsessiveComment] = useState("");
 
-  // Personality disorder (please specify)
-  const [PersonalityYes, setPersonalityYes] = useState();
+  // Personality disorder (please specify) shishpal
+  const [PersonalityYes, setPersonalityYes] = useState(false);
   const [PersonalityComment, setPersonalityComment] = useState("");
 
   // Phobias
@@ -302,7 +302,7 @@ const InitialAssessment = () => {
 
 
 // 2 pendinggggggg
-  //type of service
+  //type of service shispal 
   const [typeOfServiceArray, setTypeOfServicesArray] = useState([]);
   const handleTypeOfService = () => {
     if (
@@ -798,10 +798,10 @@ const InitialAssessment = () => {
   const [MannerismsOther,setMannerismsOther]=useState("")
   //Orientation to Person:
   //orientation
-  const [person, setPerson] = useState();
-  const [place, setPlace] = useState();
-  const [time, setTime] = useState();
-  const [circumstances, setCircumstances] = useState();
+  const [person, setPerson] = useState(false);
+  const [place, setPlace] = useState(false);
+  const [time, setTime] = useState(false);
+  const [circumstances, setCircumstances] = useState(false);
 
   //Judgment
   const [goodJudgment, setGoodJudgment] = useState(false);
@@ -843,15 +843,15 @@ const InitialAssessment = () => {
   const [currentStudent, setCurrentStudent] = useState();
   const [ifYesWhere, setIfYesWhere] = useState("");
 
-  // Employment History (Nested Object)
-  const [currentlyEmployed, setCurrentlyEmployed] = useState();
+  // Employment History (Nested Object) shishpal
+  const [currentlyEmployed, setCurrentlyEmployed] = useState(false);
 
   const [employmentLocation, setEmploymentLocation] = useState("");
 
   const [workHistory, setWorkHistory] = useState("");
 
-  // Military History (Nested Object)  
-  const [militaryService, setMilitaryService] = useState();
+  // Military History (Nested Object)  shishpal
+  const [militaryService, setMilitaryService] = useState(false);
   const [activeDuty, setActiveDuty] = useState("");
 
   // Arrested History (Multiple Fields) legalHistory
@@ -926,21 +926,25 @@ const InitialAssessment = () => {
     useState([]);
 
   const handleRiskFactorActivity = () => {
-    const newData = {
-      type:otherCurrentOther,
-      good:otherCurrentGood,
-      fair:otherCurrentFair,
-      otherCurrentNotSoGood,
-      needAssist:otherCurrentNeed,
-      comments:otherCurrentComment
-    };
-    setHandleRiskFactorActivityArray((prev) => [...prev, newData]);
-    setOtherCurrentOther("");
-    setOtherCurrentGood("");
-    setOtherCurrentFair("");
-    setOtherCurrentNotSoGood("");
-    setOtherCurrentNeed(false);
-    setOtherCurrentComment("");
+    if(otherCurrentOther || otherCurrentGood || otherCurrentFair ||  otherCurrentNotSoGood || otherCurrentNeed || otherCurrentComment){
+      const newData = {
+        type:otherCurrentOther,
+        good:otherCurrentGood,
+        fair:otherCurrentFair,
+        otherCurrentNotSoGood,
+        needAssist:otherCurrentNeed,
+        comments:otherCurrentComment
+      };
+      setHandleRiskFactorActivityArray((prev) => [...prev, newData]);
+      setOtherCurrentOther("");
+      setOtherCurrentGood("");
+      setOtherCurrentFair("");
+      setOtherCurrentNotSoGood("");
+      setOtherCurrentNeed(false);
+      setOtherCurrentComment("");
+
+    }
+
   };
 
   const [triggers, setTriggers] = useState("");
@@ -955,56 +959,56 @@ const InitialAssessment = () => {
   const [selectedValueSpecialPrecautions, setSelectedValueSpecialPrecautions] =
     useState([]);
 
-  // Safety and Risk Assessment
+  // Safety and Risk Assessment shishpal
   const [currentThoughtsOfHarmingSelf, setCurrentThoughtsOfHarmingSelf] =
-    useState();
-    // pendingggggggggggg
-  const [suicidalIdeation, setSuicidalIdeation] = useState();
-  const [suicidalIdeationUrgency, setSuicidalIdeationUrgency] = useState();
-  const [suicidalIdeationSeverity, setSuicidalIdeationSeverity] = useState();
+    useState(false);
+    // pendingggggggggggg shishpal
+  const [suicidalIdeation, setSuicidalIdeation] = useState("");
+  const [suicidalIdeationUrgency, setSuicidalIdeationUrgency] = useState(false);
+  const [suicidalIdeationSeverity, setSuicidalIdeationSeverity] = useState(false);
   const [currentThoughtsOfHarmingOthers, setCurrentThoughtsOfHarmingOthers] =
-    useState();
+    useState(false);
 
   // Risk Factors (Nested Object)
 
-  const [riskYesNo, setRiskYesNo] = useState();
+  const [riskYesNo, setRiskYesNo] = useState(null);
   const [riskComment, setRiskComment] = useState("");
 
-  const [PriorYesNo, setPriorYesNo] = useState();
+  const [PriorYesNo, setPriorYesNo] = useState(null);
   const [PriorComment, setPriorComment] = useState("");
 
-  const [AccessYesNo, setAccessYesNo] = useState();
+  const [AccessYesNo, setAccessYesNo] = useState(null);
   const [AccessComment, setAccessComment] = useState("");
 
 
-  const [SubstanceYesNo, setSubstanceYesNo] = useState();
+  const [SubstanceYesNo, setSubstanceYesNo] = useState(null);
   const [SubstanceAbuseComment, setSubstanceCommentAbuse] = useState("");
 
-  const [abusingYesNo, setabusingYesNo] = useState();
+  const [abusingYesNo, setabusingYesNo] = useState(null);
   const [abusingComment, setabusingComment] = useState("");
 
 
-  const [RecentYesNo, setRecentYesNo] = useState();
+  const [RecentYesNo, setRecentYesNo] = useState(null);
   const [RecentComment, setRecentComment] = useState("");
 
-  const [behaviourYesNO,setBehaviourYesNo]=useState()
+  const [behaviourYesNO,setBehaviourYesNo]=useState(null)
   const [behaviorcuesDropDown, setBehaviorcuesDropDown] = useState([]);
 
-  const [SymptomsYesNO,setSymptomsYesNo]=useState()
+  const [SymptomsYesNO,setSymptomsYesNo]=useState(null)
   const [symptomsOfPsychosisDropDown, setSymptomsOfPsychosisDropDown] =
   useState([]);
 
-  const [FamilyYesNO,setFamilyYesNo]=useState()
+  const [FamilyYesNO,setFamilyYesNo]=useState(null)
   const [Family,setFamily]=useState("")
 
    
-  const [TerminalYesNO,setTerminalYesNo]=useState()
+  const [TerminalYesNO,setTerminalYesNo]=useState(null)
   const [Terminal,setTerminal]=useState("")
 
-  const [CurrentYesNO,setCurrentYesNo]=useState()
+  const [CurrentYesNO,setCurrentYesNo]=useState(null)
   const [Current,setCurrent]=useState("")
 
-  const [ChronicYesNO,setChronicYesNo]=useState()
+  const [ChronicYesNO,setChronicYesNo]=useState(null)
   const [ChronicPain,setChronicPain]=useState("")
 
   const [riskFactorArray, setRiskFactoeArray] = useState([]);
@@ -1043,28 +1047,32 @@ const InitialAssessment = () => {
   // dharmu code
   const [interventionYesNo, setInterventionYesNo] = useState();
   const [interventionComment, setInterventionComment] = useState("");
-
-  const [WillingYesNo, setWillingYesNo] = useState();
+// shishpal
+  const [WillingYesNo, setWillingYesNo] = useState(false);
   const [WillingComment, setWillingComment] = useState("");
 
 
   // protectiveFactors other
   const [otherProtectiveFactorsApply,setOtherProtectiveFactorsApply]=useState("")
-  const [otherProtectiveFactorsYesNo,setOtherProtectiveFactorsYesNO]=useState()
+  // shispal
+  const [otherProtectiveFactorsYesNo,setOtherProtectiveFactorsYesNO]=useState(false)
   const [otherProtectiveFactorsDescription,setOtherProtectiveFactorsDescription]=useState("")
 
   const [protectiveFactorsArray, setProtectiveFactorsArray] = useState([]);
 
   const handleProtectiveFactors = () => {
-    const newData = {
-      type:otherProtectiveFactorsApply,
-      yesNo:otherProtectiveFactorsYesNo,
-      comment:otherProtectiveFactorsDescription,
-    };
-    setProtectiveFactorsArray((prev) => [...prev, newData]);
-    setOtherProtectiveFactorsApply("");
-    setOtherProtectiveFactorsYesNO("");
-    setOtherProtectiveFactorsDescription("");
+    if(otherProtectiveFactorsApply|| otherProtectiveFactorsYesNo|| otherProtectiveFactorsDescription){
+      const newData = {
+        type:otherProtectiveFactorsApply,
+        yesNo:otherProtectiveFactorsYesNo,
+        comment:otherProtectiveFactorsDescription,
+      };
+      setProtectiveFactorsArray((prev) => [...prev, newData]);
+      setOtherProtectiveFactorsApply("");
+      setOtherProtectiveFactorsYesNO("");
+      setOtherProtectiveFactorsDescription("");
+    }
+  
   };
 
 
@@ -1174,8 +1182,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
   const [otherStressors, setOtherStressors] = useState("");
 
   // State variables for significantRecentLosses
-  // set this value in api calling
-  const [setNoAndYes, setSetNoAndYes] = useState();
+  // set this value in api calling 
+  // shishpal
+  const [setNoAndYes, setSetNoAndYes] = useState(false);
 
   const [death, setDeath] = useState(false);
   const [job, setJob] = useState(false);
@@ -1195,7 +1204,8 @@ const [Additional1Description,setAdditional1Description]=useState("");
 
   const [additionalNotes, setAdditionalNotes] = useState("");
 
-  const [acceptResident,setAcceptResident]=useState()
+  // shishpal
+  const [acceptResident,setAcceptResident]=useState(false)
 
   //gresedent gaudent name and information
   const [residentGuardianName, setResidentGuardianName] = useState("");
@@ -1242,10 +1252,11 @@ return arr;
     return `${month}-${day}-${year}`;
   }
 
+  console.log(getApiData,"initial assestment ")
+
   useEffect(()=>{
     setHasNotified(getApiData?.hasNotified);
 setAssessmentOn(getApiData?.assessmentOn);
-setPatientId(patientId?.hasNotified);
 setDob(getApiData?.dob);
 setCompanyName(getApiData?.companyName);
 setResidentName(getApiData?.hasNotified);
@@ -1254,16 +1265,43 @@ setDateOfAssessment(getApiData?.dateOfAssessment);
 setAhcccsNumber(getApiData?.ahcccsNumber);
 setPreferredLanguage(getApiData?.preferredLanguage);
 setEthnicity(getApiData?.ethnicity);
-setAdmissionStatus(getApiData?.admissionStatus?getApiData?.admissionStatus:[]);
+setAdmissionStatus(
+  
+  getApiData?.admissionStatus
+  ? getApiData?.admissionStatus?.map(item => ({
+      label: item, 
+      value: item    
+    }))
+  : []
+  
+  );
 setProgramLocation(getApiData?.programLocation);
 setGuardianship(getApiData?.guardianship);
 setPowerOfAttorneyStatus(getApiData?.powerOfAttorneyStatus);
 setTodayDate(getApiData?.todayDate?getApiData?.todayDate?.slice(0,10):"");
 setGuardianshipPoaPubFidName(getApiData?.guardianshipPoaPubFidName);
 setApprovedBy(getApiData?.approvedBy);
-setReasonForAdmission(getApiData?.reasonForAdmission?getApiData?.reasonForAdmission:[]);
+setReasonForAdmission(
+  
+  getApiData?.reasonForAdmission
+  ? getApiData?.reasonForAdmission?.map(item => ({
+      label: item, 
+      value: item    
+    }))
+  : []
+  
+  );
 setResidentGoals(getApiData?.residentGoals);
-setResidentStrengths(getApiData?.residentStrengths?getApiData?.residentStrengths:[]);
+setResidentStrengths(
+  
+  getApiData?.residentStrengths
+  ? getApiData?.residentStrengths?.map(item => ({
+      label: item, 
+      value: item    
+    }))
+  : []
+  
+  );
 setResidentLimitations(getApiData?.residentLimitations);
 setCurrentBehavioralIssues(getApiData?.currentBehavioralIssues);
 
@@ -1434,6 +1472,7 @@ setSubstanceAbuseHistoryDataFrequencyOTC(getApiData?.substanceAbuseHistoryData?.
 setSubstanceAbuseHistoryDataLengthOfSobrietyOTC(getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety);
 setTypeArray(getApiData?.substanceAbuseHistoryData?getApiArrayData(12,getApiData?.substanceAbuseHistoryData?.length,getApiData?.substanceAbuseHistoryData):[]);
 
+// start 
 setNoneReportedOrObserved(
       getApiData?.ActiveWithdrawalSymptoms?.noneReportedOrObserved
     );
@@ -1446,14 +1485,15 @@ setNoneReportedOrObserved(
     );
     setAnxiety(getApiData?.ActiveWithdrawalSymptoms?.Anxiety);
     setTremors(getApiData?.ActiveWithdrawalSymptoms?.Tremors);
+   
     setVisualDisturbances(
       getApiData?.ActiveWithdrawalSymptoms?.VisualDisturbances
     );
     // jai maa kali
     setVisualDisturbancesOtherBoolean(
-      getApiData?.ActiveWithdrawalSymptoms?.AuditoryDisturbances
+      getApiData?.ActiveWithdrawalSymptoms?.AuditoryDisturbances?true:false
     );
-    setVisualDisturbancesOtherType("");
+    setVisualDisturbancesOtherType(getApiData?.ActiveWithdrawalSymptoms?.AuditoryDisturbances);
 
     setSweats(getApiData?.ActiveWithdrawalSymptoms?.Sweats);
     setParanoia(getApiData?.ActiveWithdrawalSymptoms?.Paranoia);
@@ -1465,306 +1505,299 @@ setNoneReportedOrObserved(
     setLossofMuscleCoordination(
       getApiData?.ActiveWithdrawalSymptoms?.LossofMuscleCoordination
     );
-    //jai maa kali
-    setLossofMuscleCoordinationBoolean(false);
-    setLossofMuscleCoordinationType("");
+    setLossofMuscleCoordinationBoolean(getApiData?.ActiveWithdrawalSymptoms?.LossofMuscleCoordinationOtherType?true:false);
+    setLossofMuscleCoordinationType(getApiData?.ActiveWithdrawalSymptoms?.LossofMuscleCoordinationOtherType);
 
     setConsistent(getApiData?.mentalStatusExam?.apparentAge?.consistent);
     setYounger(getApiData?.mentalStatusExam?.apparentAge?.younger);
     setOlder(getApiData?.mentalStatusExam?.apparentAge?.older);
-    //jai maa kali
-    setOlderOtherBoolean(false);
-    setOlderOther("");
+    setOlderOtherBoolean(getApiData?.mentalStatusExam?.apparentAge?.otherComment?true:false);
+    setOlderOther(getApiData?.mentalStatusExam?.apparentAge?.otherComment);
 
     setAverageHeight(
-      getApiData?.mentalStatusExam?.apparentAge?.height?.average
+      getApiData?.mentalStatusExam?.height?.average
     );
-    setShort(getApiData?.mentalStatusExam?.apparentAge?.height?.short);
-    setTall(getApiData?.mentalStatusExam?.apparentAge?.height?.tall);
-    //jai maa kali
-    setHeigthBoolean(false);
-    setHeigthOther("");
+    setShort(getApiData?.mentalStatusExam?.height?.short);
+    setTall(getApiData?.mentalStatusExam?.height?.tall);
+    setHeigthBoolean(getApiData?.mentalStatusExam?.height?.otherComment?true:false);
+    setHeigthOther(getApiData?.mentalStatusExam?.height?.otherComment);
 
     setAverageWeight(
-      getApiData?.mentalStatusExam?.apparentAge?.weight?.average
+      getApiData?.mentalStatusExam?.weight?.average
     );
-    setObese(getApiData?.mentalStatusExam?.apparentAge?.weight?.obese);
+    setObese(getApiData?.mentalStatusExam?.weight?.obese);
     setOverweight(
-      getApiData?.mentalStatusExam?.apparentAge?.weight?.overweight
+      getApiData?.mentalStatusExam?.weight?.overweight
     );
-    setThin(getApiData?.mentalStatusExam?.apparentAge?.weight?.thin);
-    setEmaciated(getApiData?.mentalStatusExam?.apparentAge?.weight?.emaciated);
-    // jai maa kali
-    setWeightBoolean(false);
-    setWeightOther("");
+    setThin(getApiData?.mentalStatusExam?.weight?.thin);
+    setEmaciated(getApiData?.mentalStatusExam?.weight?.emaciated);
+    setWeightBoolean(getApiData?.mentalStatusExam?.weight?.otherComment?true:false);
+    setWeightOther(getApiData?.mentalStatusExam?.weight?.otherComment);
 
-    setCasual(getApiData?.mentalStatusExam?.apparentAge?.attire?.Casual);
-    setNeat(getApiData?.mentalStatusExam?.apparentAge?.attire?.Neat);
-    setTattered(getApiData?.mentalStatusExam?.apparentAge?.attire?.Tattered);
-    setDirty(getApiData?.mentalStatusExam?.apparentAge?.attire?.Dirty);
-    // jai maa kali
-    setAttireBoolaen(false);
-    setAttireOther("");
+    setCasual(getApiData?.mentalStatusExam?.attire?.Casual);
+    setNeat(getApiData?.mentalStatusExam?.attire?.Neat);
+    setTattered(getApiData?.mentalStatusExam?.attire?.Tattered);
+    setDirty(getApiData?.mentalStatusExam?.attire?.Dirty);
+    setAttireBoolaen(getApiData?.mentalStatusExam?.attire?.otherComment?true:false);
+    setAttireOther(getApiData?.mentalStatusExam?.attire?.otherComment);
 
     setWellGroomed(
-      getApiData?.mentalStatusExam?.apparentAge?.grooming?.wellGroomed
+      getApiData?.mentalStatusExam?.grooming?.wellGroomed
     );
     setAdequateGrooming(
-      getApiData?.mentalStatusExam?.apparentAge?.grooming?.adequate
+      getApiData?.mentalStatusExam?.grooming?.adequate
     );
-    setUnkempt(getApiData?.mentalStatusExam?.apparentAge?.grooming?.unkempt);
+    setUnkempt(getApiData?.mentalStatusExam?.grooming?.unkempt);
     setDisheveled(
-      getApiData?.mentalStatusExam?.apparentAge?.grooming?.disheveled
+      getApiData?.mentalStatusExam?.grooming?.disheveled
     );
-    //jai ma kali
-    setGroomingBoolean(false);
-    setGroomingOther("");
 
-    setEuthymic(getApiData?.mentalStatusExam?.apparentAge?.Mood?.Euthymic);
-    setIrritable(getApiData?.mentalStatusExam?.apparentAge?.Mood?.Irritable);
-    setElevated(getApiData?.mentalStatusExam?.apparentAge?.Mood?.Elevated);
+    setGroomingBoolean(getApiData?.mentalStatusExam?.grooming?.otherComment?true:false);
+    setGroomingOther(getApiData?.mentalStatusExam?.grooming?.otherComment);
+
+    setEuthymic(getApiData?.mentalStatusExam?.Mood?.Euthymic);
+    setIrritable(getApiData?.mentalStatusExam?.Mood?.Irritable);
+    setElevated(getApiData?.mentalStatusExam?.Mood?.Elevated);
     setDepressedMood(
-      getApiData?.mentalStatusExam?.apparentAge?.Mood?.Depressed
+      getApiData?.mentalStatusExam?.Mood?.Depressed
     );
-    setAnxious(getApiData?.mentalStatusExam?.apparentAge?.Mood?.Anxious);
-    // jai maa kali
-    seteuthymicOtherBoolean(false);
-    seteuthymicOtherBooleanType("");
+    setAnxious(getApiData?.mentalStatusExam?.Mood?.Anxious);
+    seteuthymicOtherBoolean(getApiData?.mentalStatusExam?.Mood?.otherComment?true:false);
+    seteuthymicOtherBooleanType(getApiData?.mentalStatusExam?.Mood?.otherComment);
 
     setNormalRange(
-      getApiData?.mentalStatusExam?.apparentAge?.Affect?.normalRange
+      getApiData?.mentalStatusExam?.Affect?.normalRange
     );
     setDepressedAffect(
-      getApiData?.mentalStatusExam?.apparentAge?.Affect?.Depressed
+      getApiData?.mentalStatusExam?.Affect?.Depressed
     );
-    setLabile(getApiData?.mentalStatusExam?.apparentAge?.Affect?.Labile);
+    setLabile(getApiData?.mentalStatusExam?.Affect?.Labile);
     setConstricted(
-      getApiData?.mentalStatusExam?.apparentAge?.Affect?.Constricted
+      getApiData?.mentalStatusExam?.Affect?.Constricted
     );
-    // jai ma kali
-    setOther(false);
-    setOtherText("");
+    setOther(getApiData?.mentalStatusExam?.Affect?.otherComment?true:false);
+    setOtherText(getApiData?.mentalStatusExam?.Affect?.otherComment);
 
     setAppropriate(
-      getApiData?.mentalStatusExam?.apparentAge?.EyeContact?.Appropriate
+      getApiData?.mentalStatusExam?.EyeContact?.Appropriate
     );
-    setMinimal(getApiData?.mentalStatusExam?.apparentAge?.EyeContact?.Minimal);
-    setPoor(getApiData?.mentalStatusExam?.apparentAge?.EyeContact?.Poor);
+    setMinimal(getApiData?.mentalStatusExam?.EyeContact?.Minimal);
+    setPoor(getApiData?.mentalStatusExam?.EyeContact?.Poor);
     setAdequateEyeContact(
-      getApiData?.mentalStatusExam?.apparentAge?.EyeContact?.Adequate
+      getApiData?.mentalStatusExam?.EyeContact?.Adequate
     );
-    setEyeContactOtherBoolean(false);
-    setEyeContactOtherBooleanType("");
+    setEyeContactOtherBoolean(getApiData?.mentalStatusExam?.EyeContact?.otherComment?true:false);
+    setEyeContactOtherBooleanType(getApiData?.mentalStatusExam?.EyeContact?.otherComment);
 
     setAppropriateCooperation(
-      getApiData?.mentalStatusExam?.apparentAge?.Cooperation?.Appropriate
+      getApiData?.mentalStatusExam?.Cooperation?.Appropriate
     );
-    setHostile(getApiData?.mentalStatusExam?.apparentAge?.Cooperation?.Hostile);
-    setEvasive(getApiData?.mentalStatusExam?.apparentAge?.Cooperation?.Evasive);
+    setHostile(getApiData?.mentalStatusExam?.Cooperation?.Hostile);
+    setEvasive(getApiData?.mentalStatusExam?.Cooperation?.Evasive);
     setDefensive(
-      getApiData?.mentalStatusExam?.apparentAge?.Cooperation?.Defensive
+      getApiData?.mentalStatusExam?.Cooperation?.Defensive
     );
     setIndifferent(
-      getApiData?.mentalStatusExam?.apparentAge?.Cooperation?.Indifferent
+      getApiData?.mentalStatusExam?.Cooperation?.Indifferent
     );
-    // jai maa kali
-    setCooperationOtherBoolean(false);
-    setCooperationOtherBooleanType("");
+    setCooperationOtherBoolean(getApiData?.mentalStatusExam?.Cooperation?.otherComment?true:false);
+    setCooperationOtherBooleanType(getApiData?.mentalStatusExam?.Cooperation?.otherComment);
 
     setNormalArticulation(
-      getApiData?.mentalStatusExam?.apparentAge?.Articulation?.Normal
+      getApiData?.mentalStatusExam?.Articulation?.Normal
     );
     setUnintelligible(
-      getApiData?.mentalStatusExam?.apparentAge?.Articulation?.Unintelligible
+      getApiData?.mentalStatusExam?.Articulation?.Unintelligible
     );
     setMumbled(
-      getApiData?.mentalStatusExam?.apparentAge?.Articulation?.Mumbled
+      getApiData?.mentalStatusExam?.Articulation?.Mumbled
     );
     setSlurred(
-      getApiData?.mentalStatusExam?.apparentAge?.Articulation?.Slurred
+      getApiData?.mentalStatusExam?.Articulation?.Slurred
     );
     setStuttered(
-      getApiData?.mentalStatusExam?.apparentAge?.Articulation?.Stuttered
+      getApiData?.mentalStatusExam?.Articulation?.Stuttered
     );
-    setArticulationOtherBoolean(false);
-    setArticulationOtherBooleanOther("");
+    setArticulationOtherBoolean(getApiData?.mentalStatusExam?.Articulation?.otherComment?true:false);
+    setArticulationOtherBooleanOther(getApiData?.mentalStatusExam?.Articulation?.otherComment);
 
-    setNormalTone(getApiData?.mentalStatusExam?.apparentAge?.Tone?.Normal);
-    setSoft(getApiData?.mentalStatusExam?.apparentAge?.Tone?.Soft);
-    setLoud(getApiData?.mentalStatusExam?.apparentAge?.Tone?.Loud);
-    setPressured(getApiData?.mentalStatusExam?.apparentAge?.Tone?.Pressured);
-    //jai ma kali
-    setToneOtherBoolean(false);
-    setToneOtherBooleanOther("");
+    setNormalTone(getApiData?.mentalStatusExam?.Tone?.Normal);
+    setSoft(getApiData?.mentalStatusExam?.Tone?.Soft);
+    setLoud(getApiData?.mentalStatusExam?.Tone?.Loud);
+    setPressured(getApiData?.mentalStatusExam?.Tone?.Pressured);
+    setToneOtherBoolean(getApiData?.mentalStatusExam?.Tone?.otherComment?true:false);
+    setToneOtherBooleanOther(getApiData?.mentalStatusExam?.Tone?.otherComment);
 
-    setNormalRate(getApiData?.mentalStatusExam?.apparentAge?.Rate?.Normal);
-    setSlow(getApiData?.mentalStatusExam?.apparentAge?.Rate?.Slow);
-    setFast(getApiData?.mentalStatusExam?.apparentAge?.Rate?.Fast);
-    // jai ma kali
-    setRateOtherBoolean(false);
-    setRateOtherBooleanOther("");
+    setNormalRate(getApiData?.mentalStatusExam?.Rate?.Normal);
+    setSlow(getApiData?.mentalStatusExam?.Rate?.Slow);
+    setFast(getApiData?.mentalStatusExam?.Rate?.Fast);
+    setRateOtherBoolean(getApiData?.mentalStatusExam?.Rate?.otherComment?true:false);
+    setRateOtherBooleanOther(getApiData?.mentalStatusExam?.Rate?.otherComment);
 
     setNormalQuantity(
-      getApiData?.mentalStatusExam?.apparentAge?.Quantity?.Normal
+      getApiData?.mentalStatusExam?.Quantity?.Normal
     );
-    setVerbose(getApiData?.mentalStatusExam?.apparentAge?.Quantity?.Verbose);
-    setMutism(getApiData?.mentalStatusExam?.apparentAge?.Quantity?.Mutism);
-    // jai ma kali
-    setQuantityOtherBoolean(false);
-    setQuantityOtherBooleanOther("");
+    setVerbose(getApiData?.mentalStatusExam?.Quantity?.Verbose);
+    setMutism(getApiData?.mentalStatusExam?.Quantity?.Mutism);
+    setQuantityOtherBoolean(getApiData?.mentalStatusExam?.Quantity?.otherComment?true:false);
+    setQuantityOtherBooleanOther(getApiData?.mentalStatusExam?.Quantity?.otherComment);
 
     setNormalresponseLatency(
-      getApiData?.mentalStatusExam?.apparentAge?.responseLatency?.Normal
+      getApiData?.mentalStatusExam?.responseLatency?.Normal
     );
     setDelayed(
-      getApiData?.mentalStatusExam?.apparentAge?.responseLatency?.Delayed
+      getApiData?.mentalStatusExam?.responseLatency?.Delayed
     );
     setShortened(
-      getApiData?.mentalStatusExam?.apparentAge?.responseLatency?.Shortened
+      getApiData?.mentalStatusExam?.responseLatency?.Shortened
     );
-    // jai maa kali
-    setresponseLatencyOtherBoolean(false);
-    setresponseLatencyOtherBooleanOther("");
+    setresponseLatencyOtherBoolean(getApiData?.mentalStatusExam?.responseLatency?.otherComment?true:false);
+    setresponseLatencyOtherBooleanOther(getApiData?.mentalStatusExam?.responseLatency?.otherComment);
 
     setUnremarkablethoughtContent(
-      getApiData?.mentalStatusExam?.apparentAge?.thoughtContent?.Unremarkable
+      getApiData?.mentalStatusExam?.thoughtContent?.Unremarkable
     );
     setSuspicious(
-      getApiData?.mentalStatusExam?.apparentAge?.thoughtContent?.Suspicious
+      getApiData?.mentalStatusExam?.thoughtContent?.Suspicious
     );
     setNegative(
-      getApiData?.mentalStatusExam?.apparentAge?.thoughtContent?.Negative
+      getApiData?.mentalStatusExam?.thoughtContent?.Negative
     );
     setConcrete(
-      getApiData?.mentalStatusExam?.apparentAge?.thoughtContent?.Concrete
+      getApiData?.mentalStatusExam?.thoughtContent?.Concrete
     );
-    // jai maa kali
-    setthoughtContentBoolean(false);
-    setThoughtContentOther("");
+    setthoughtContentBoolean(getApiData?.mentalStatusExam?.thoughtContent?.otherComment?true:false);
+    setThoughtContentOther(getApiData?.mentalStatusExam?.thoughtContent?.otherComment);
 
     setLogicalCoherent(
-      getApiData?.mentalStatusExam?.apparentAge?.thoughtProcesses
+      getApiData?.mentalStatusExam?.thoughtProcesses
         ?.logicalCoherent
     );
     setTangential(
-      getApiData?.mentalStatusExam?.apparentAge?.thoughtProcesses?.Tangential
+      getApiData?.mentalStatusExam?.thoughtProcesses?.Tangential
     );
     setCircumstantial(
-      getApiData?.mentalStatusExam?.apparentAge?.thoughtProcesses
+      getApiData?.mentalStatusExam?.thoughtProcesses
         ?.Circumstantial
     );
     setVague(
-      getApiData?.mentalStatusExam?.apparentAge?.thoughtProcesses?.Vague
+      getApiData?.mentalStatusExam?.thoughtProcesses?.Vague
     );
-    // jai ma kali
-    setThoughtProcessesBoolaen(false);
-    setThoughtProcessesOther("");
+    setThoughtProcessesBoolaen(getApiData?.mentalStatusExam?.thoughtProcesses?.otherComment?true:false);
+    setThoughtProcessesOther(getApiData?.mentalStatusExam?.thoughtProcesses?.otherComment);
 
-    setNoDelusions(getApiData?.mentalStatusExam?.apparentAge?.Delusions?.No);
+    setNoDelusions(getApiData?.mentalStatusExam?.Delusions?.No);
     setYesPersecutory(
-      getApiData?.mentalStatusExam?.apparentAge?.Delusions?.YesPersecutory
+      getApiData?.mentalStatusExam?.Delusions?.YesPersecutory
     );
     setYesSomatic(
-      getApiData?.mentalStatusExam?.apparentAge?.Delusions?.YesSomatic
+      getApiData?.mentalStatusExam?.Delusions?.YesSomatic
     );
     setYesGrandiose(
-      getApiData?.mentalStatusExam?.apparentAge?.Delusions?.YesGrandiose
+      getApiData?.mentalStatusExam?.Delusions?.YesGrandiose
     );
-    // jai ma kali
-    setYesOtherDelusionsBoolean(false);
-    setYesOtherDelusionsText("");
+    setYesOtherDelusionsBoolean(getApiData?.mentalStatusExam?.Delusions?.otherComment?true:false);
+    setYesOtherDelusionsText(getApiData?.mentalStatusExam?.Delusions?.otherComment);
 
     setUnremarkableHallucinations(
-      getApiData?.mentalStatusExam?.apparentAge?.Hallucinations?.Unremarkable
+      getApiData?.mentalStatusExam?.Hallucinations?.Unremarkable
     );
     setVisualHallucinations(
-      getApiData?.mentalStatusExam?.apparentAge?.Hallucinations
+      getApiData?.mentalStatusExam?.Hallucinations
         ?.VisualHallucinations
     );
     setAuditoryHallucinations(
-      getApiData?.mentalStatusExam?.apparentAge?.Hallucinations
+      getApiData?.mentalStatusExam?.Hallucinations
         ?.AuditoryHallucinations
     );
     setTactileHallucinations(
-      getApiData?.mentalStatusExam?.apparentAge?.Hallucinations
+      getApiData?.mentalStatusExam?.Hallucinations
         ?.TactileHallucinations
     );
-    // jai maa kali
-    setYesOtherHallucinationsBoolean(false);
-    setYesOtherHallucinationsText("");
+    setYesOtherHallucinationsBoolean(getApiData?.mentalStatusExam?.Hallucinations
+      ?.otherComment?true:false);
+    setYesOtherHallucinationsText(getApiData?.mentalStatusExam?.Hallucinations
+      ?.otherCommen);
 
-    setNormalGait(getApiData?.mentalStatusExam?.apparentAge?.Gait?.Normal);
-    setStaggering(getApiData?.mentalStatusExam?.apparentAge?.Gait?.Staggering);
-    setShuffling(getApiData?.mentalStatusExam?.apparentAge?.Gait?.Shuffling);
-    setSlowGait(getApiData?.mentalStatusExam?.apparentAge?.Gait?.Slow);
-    setAwkward(getApiData?.mentalStatusExam?.apparentAge?.Gait?.Awkward);
-    // jai ma kali
+    setNormalGait(getApiData?.mentalStatusExam?.Gait?.Normal);
+    setStaggering(getApiData?.mentalStatusExam?.Gait?.Staggering);
+    setShuffling(getApiData?.mentalStatusExam?.Gait?.Shuffling);
+    setSlowGait(getApiData?.mentalStatusExam?.Gait?.Slow);
+    setAwkward(getApiData?.mentalStatusExam?.Gait?.Awkward);
+    setGailOtherBoolen(getApiData?.mentalStatusExam?.Gait?.otherComment?true:false)
+    setgetOther(getApiData?.mentalStatusExam?.Gait?.otherComment)
+
     setNormalPosture(
-      getApiData?.mentalStatusExam?.apparentAge?.Posture?.Normal
+      getApiData?.mentalStatusExam?.Posture?.Normal
     );
-    setRelaxed(getApiData?.mentalStatusExam?.apparentAge?.Posture?.Relaxed);
-    setRigid(getApiData?.mentalStatusExam?.apparentAge?.Posture?.Rigid);
-    setTense(getApiData?.mentalStatusExam?.apparentAge?.Posture?.Tense);
-    setSlouched(getApiData?.mentalStatusExam?.apparentAge?.Posture?.Slouched);
+    setRelaxed(getApiData?.mentalStatusExam?.Posture?.Relaxed);
+    setRigid(getApiData?.mentalStatusExam?.Posture?.Rigid);
+    setTense(getApiData?.mentalStatusExam?.Posture?.Tense);
+    setSlouched(getApiData?.mentalStatusExam?.Posture?.Slouched);
+    setgaitOtherBoolen(getApiData?.mentalStatusExam?.Posture?.otherComment?true:false)
+    setPostureOther(getApiData?.mentalStatusExam?.Posture?.otherComment)
 
     setWithinNormalLimits(
-      getApiData?.mentalStatusExam?.apparentAge?.PsychomotorActivity
+      getApiData?.mentalStatusExam?.PsychomotorActivity
         ?.Withinnormallimits
     );
     setCalm(
-      getApiData?.mentalStatusExam?.apparentAge?.PsychomotorActivity?.Calm
+      getApiData?.mentalStatusExam?.PsychomotorActivity?.Calm
     );
     setHyperactive(
-      getApiData?.mentalStatusExam?.apparentAge?.PsychomotorActivity
+      getApiData?.mentalStatusExam?.PsychomotorActivity
         ?.Hyperactive
     );
     setAgitated(
-      getApiData?.mentalStatusExam?.apparentAge?.PsychomotorActivity?.Agitated
+      getApiData?.mentalStatusExam?.PsychomotorActivity?.Agitated
     );
     setHypoactive(
-      getApiData?.mentalStatusExam?.apparentAge?.PsychomotorActivity?.Hypoactive
+      getApiData?.mentalStatusExam?.PsychomotorActivity?.Hypoactive
     );
-    setNone(false);
-    setTics(false);
+    setPsychomotorActivityOtherBoolen()
+    setPsychomotorActivityOther()
 
-    // jai ma kali
+    setNone(getApiData?.mentalStatusExam?.Mannerisms?.None);
+    setTics(getApiData?.mentalStatusExam?.Mannerisms?.Tics);
     setTremorsMannerisms(
-      getApiData?.mentalStatusExam?.apparentAge?.Mannerisms?.Tremors
+      getApiData?.mentalStatusExam?.Mannerisms?.Tremors
     );
-    setRocking(getApiData?.mentalStatusExam?.apparentAge?.Mannerisms?.Rocking);
-    setPicking(getApiData?.mentalStatusExam?.apparentAge?.Mannerisms?.Picking);
+    setRocking(getApiData?.mentalStatusExam?.Mannerisms?.Rocking);
+    setPicking(getApiData?.mentalStatusExam?.Mannerisms?.Picking);
+    setMannerismsOtherBoolen(getApiData?.mentalStatusExam?.Mannerisms?.otherComment?true:false)
+    setMannerismsOther(getApiData?.mentalStatusExam?.Mannerisms?.otherComment)
 
-// jai shiv shakti
-setPerson(getApiArrayData?.mentalStatusExam?.orientation?.person);
-setPlace(getApiArrayData?.mentalStatusExam?.orientation?.place);
-setTime(getApiArrayData?.mentalStatusExam?.orientation?.time);
-setCircumstances(getApiArrayData?.mentalStatusExam?.orientation?.circumstances);
-setGoodJudgment(getApiArrayData?.mentalStatusExam?.Judgment?.Good);
-setFairJudgment(getApiArrayData?.mentalStatusExam?.Judgment?.Fair);
-setPoorJudgment(getApiArrayData?.mentalStatusExam?.Insight?.Poor);
-setGoodInsight(getApiArrayData?.mentalStatusExam?.Judgment?.Good);
-setFairInsight(getApiArrayData?.mentalStatusExam?.Insight?.Fair);
-setPoorInsight(getApiArrayData?.mentalStatusExam?.Insight?.Poor);
-setGoodMemory(getApiArrayData?.mentalStatusExam?.Memory?.Good);
-setFairMemory(getApiArrayData?.mentalStatusExam?.Memory?.Fair);
-setPoorMemory(getApiArrayData?.mentalStatusExam?.Memory?.Poor);
-setIntactAbilityToConcentration(getApiArrayData?.mentalStatusExam?.AbilityToConcentration?.Intact);
-setIntactAbilityToConcentrationOtherBoolean(getApiArrayData?.mentalStatusExam?.AbilityToConcentration?.Other?true:false);
-setOtherAbilityToConcentration(getApiArrayData?.mentalStatusExam?.AbilityToConcentration?.Other);
-setSignificantSocialDevelopmentalHistory(getApiArrayData?.significantSocialDevelopmentalHistory);
-setEducationalHistory(getApiArrayData?.personalInformation?.educationalHistory);
-setHighestEducation(getApiArrayData?.personalInformation?.highestEducation);
-setSpecialEducation(getApiArrayData?.personalInformation?.specialEducation);
-setCurrentStudent(getApiArrayData?.personalInformation?.currentStudent);
-setIfYesWhere(getApiArrayData?.personalInformation?.currentStudentLocation);
 
-setCurrentlyEmployed(getApiArrayData?.employmentHistory?.currentlyEmployed);
-setEmploymentLocation(getApiArrayData?.employmentHistory?.employmentLocation);
+setPerson(getApiData?.mentalStatusExam?.orientation?.person);
+setPlace(getApiData?.mentalStatusExam?.orientation?.place);
+setTime(getApiData?.mentalStatusExam?.orientation?.time);
+setCircumstances(getApiData?.mentalStatusExam?.orientation?.circumstances);
+setGoodJudgment(getApiData?.mentalStatusExam?.Judgment?.Good);
+setFairJudgment(getApiData?.mentalStatusExam?.Judgment?.Fair);
+setPoorJudgment(getApiData?.mentalStatusExam?.Insight?.Poor);
+setGoodInsight(getApiData?.mentalStatusExam?.Judgment?.Good);
+setFairInsight(getApiData?.mentalStatusExam?.Insight?.Fair);
+setPoorInsight(getApiData?.mentalStatusExam?.Insight?.Poor);
+setGoodMemory(getApiData?.mentalStatusExam?.Memory?.Good);
+setFairMemory(getApiData?.mentalStatusExam?.Memory?.Fair);
+setPoorMemory(getApiData?.mentalStatusExam?.Memory?.Poor);
+setIntactAbilityToConcentration(getApiData?.mentalStatusExam?.AbilityToConcentration?.Intact);
+setIntactAbilityToConcentrationOtherBoolean(getApiData?.mentalStatusExam?.AbilityToConcentration?.Other?true:false);
+setOtherAbilityToConcentration(getApiData?.mentalStatusExam?.AbilityToConcentration?.Other);
+setSignificantSocialDevelopmentalHistory(getApiData?.significantSocialDevelopmentalHistory);
+setEducationalHistory(getApiData?.personalInformation?.educationalHistory);
+setHighestEducation(getApiData?.personalInformation?.highestEducation);
+setSpecialEducation(getApiData?.personalInformation?.specialEducation);
+setCurrentStudent(getApiData?.personalInformation?.currentStudent);
+setIfYesWhere(getApiData?.personalInformation?.currentStudentLocation);
 
-setWorkHistory(getApiArrayData?.workHistory);
+setCurrentlyEmployed(getApiData?.employmentHistory?.currentlyEmployed);
+setEmploymentLocation(getApiData?.employmentHistory?.employmentLocation);
 
-setMilitaryService(getApiArrayData?.militaryHistory?.militaryService);
-setActiveDuty(getApiArrayData?.militaryHistory?.activeDuty);
+setWorkHistory(getApiData?.workHistory);
+
+setMilitaryService(getApiData?.militaryHistory?.militaryService);
+setActiveDuty(getApiData?.militaryHistory?.activeDuty);
 
 setSelectedValue(getApiData?.legalHistory
   ? getApiData?.legalHistory.map(item => ({
@@ -1773,73 +1806,73 @@ setSelectedValue(getApiData?.legalHistory
     }))
   : []);
 
-setBathingGood(getApiArrayData?.independentLivingSkills?.[0]?.good);
-setBathingFair(getApiArrayData?.independentLivingSkills?.[0]?.fair);
-setBathingNotSoGood(getApiArrayData?.independentLivingSkills?.[0]?.otherCurrentNotSoGood);
-setBathingGoodNeedAssist(getApiArrayData?.independentLivingSkills?.[0]?.needAssist );
-setBathingComments(getApiArrayData?.independentLivingSkills?.[0]?.comments);
+setBathingGood(getApiData?.independentLivingSkills?.[0]?.good);
+setBathingFair(getApiData?.independentLivingSkills?.[0]?.fair);
+setBathingNotSoGood(getApiData?.independentLivingSkills?.[0]?.otherCurrentNotSoGood);
+setBathingGoodNeedAssist(getApiData?.independentLivingSkills?.[0]?.needAssist );
+setBathingComments(getApiData?.independentLivingSkills?.[0]?.comments);
 
-setGroomingGood(getApiArrayData?.independentLivingSkills?.[1]?.good);
-setGroomingFair(getApiArrayData?.independentLivingSkills?.[1]?.fair);
-setGroomingNotSoGood(getApiArrayData?.independentLivingSkills?.[1]?.otherCurrentNotSoGood);
-setGroomingGoodNeedAssist(getApiArrayData?.independentLivingSkills?.[1]?.needAssist);
-setGroomingComments(getApiArrayData?.independentLivingSkills?.[1]?.comments);
+setGroomingGood(getApiData?.independentLivingSkills?.[1]?.good);
+setGroomingFair(getApiData?.independentLivingSkills?.[1]?.fair);
+setGroomingNotSoGood(getApiData?.independentLivingSkills?.[1]?.otherCurrentNotSoGood);
+setGroomingGoodNeedAssist(getApiData?.independentLivingSkills?.[1]?.needAssist);
+setGroomingComments(getApiData?.independentLivingSkills?.[1]?.comments);
 
-setMobilityGood(getApiArrayData?.independentLivingSkills?.[2]?.good);
-setMobilityFair(getApiArrayData?.independentLivingSkills?.[2]?.fair);
-setMobilityNotSoGood(getApiArrayData?.independentLivingSkills?.[2]?.otherCurrentNotSoGood);
-setMobilityGoodNeedAssist(getApiArrayData?.independentLivingSkills?.[2]?.needAssist);
-setMobilityComments(getApiArrayData?.independentLivingSkills?.[2]?.comments);
+setMobilityGood(getApiData?.independentLivingSkills?.[2]?.good);
+setMobilityFair(getApiData?.independentLivingSkills?.[2]?.fair);
+setMobilityNotSoGood(getApiData?.independentLivingSkills?.[2]?.otherCurrentNotSoGood);
+setMobilityGoodNeedAssist(getApiData?.independentLivingSkills?.[2]?.needAssist);
+setMobilityComments(getApiData?.independentLivingSkills?.[2]?.comments);
 
-setHouseworkGood(getApiArrayData?.independentLivingSkills?.[3]?.good);
-setHouseworkFair(getApiArrayData?.independentLivingSkills?.[3]?.fair);
-setHouseworkNotSoGood(getApiArrayData?.independentLivingSkills?.[3]?.otherCurrentNotSoGood);
-setHouseworkGoodNeedAssist(getApiArrayData?.independentLivingSkills?.[3]?.needAssist);
-setHouseworkComments(getApiArrayData?.independentLivingSkills?.[3]?.comments);
+setHouseworkGood(getApiData?.independentLivingSkills?.[3]?.good);
+setHouseworkFair(getApiData?.independentLivingSkills?.[3]?.fair);
+setHouseworkNotSoGood(getApiData?.independentLivingSkills?.[3]?.otherCurrentNotSoGood);
+setHouseworkGoodNeedAssist(getApiData?.independentLivingSkills?.[3]?.needAssist);
+setHouseworkComments(getApiData?.independentLivingSkills?.[3]?.comments);
 
-setShoppingGood(getApiArrayData?.independentLivingSkills?.[4]?.good);
-setShoppingFair(getApiArrayData?.independentLivingSkills?.[4]?.fair);
-setShoppingNotSoGood(getApiArrayData?.independentLivingSkills?.[4]?.otherCurrentNotSoGood);
-setShoppingGoodNeedAssist(getApiArrayData?.independentLivingSkills?.[4]?.needAssist);
-setShoppingComments(getApiArrayData?.independentLivingSkills?.[4]?.comments);
+setShoppingGood(getApiData?.independentLivingSkills?.[4]?.good);
+setShoppingFair(getApiData?.independentLivingSkills?.[4]?.fair);
+setShoppingNotSoGood(getApiData?.independentLivingSkills?.[4]?.otherCurrentNotSoGood);
+setShoppingGoodNeedAssist(getApiData?.independentLivingSkills?.[4]?.needAssist);
+setShoppingComments(getApiData?.independentLivingSkills?.[4]?.comments);
 
-setManagingGood(getApiArrayData?.independentLivingSkills?.[5]?.good);
-setManagingFair(getApiArrayData?.independentLivingSkills?.[5]?.fair);
-setManagingNotSoGood(getApiArrayData?.independentLivingSkills?.[5]?.otherCurrentNotSoGood);
-setManagingGoodNeedAssist(getApiArrayData?.independentLivingSkills?.[5]?.needAssist);
-setManagingComments(getApiArrayData?.independentLivingSkills?.[5]?.comments);
+setManagingGood(getApiData?.independentLivingSkills?.[5]?.good);
+setManagingFair(getApiData?.independentLivingSkills?.[5]?.fair);
+setManagingNotSoGood(getApiData?.independentLivingSkills?.[5]?.otherCurrentNotSoGood);
+setManagingGoodNeedAssist(getApiData?.independentLivingSkills?.[5]?.needAssist);
+setManagingComments(getApiData?.independentLivingSkills?.[5]?.comments);
 
-setPreparingGood(getApiArrayData?.independentLivingSkills?.[6]?.good);
-setPreparingFair(getApiArrayData?.independentLivingSkills?.[6]?.fair);
-setPreparingNotSoGood(getApiArrayData?.independentLivingSkills?.[6]?.otherCurrentNotSoGood);
-setPreparingGoodNeedAssist(getApiArrayData?.independentLivingSkills?.[6]?.needAssist);
-setPreparingComments(getApiArrayData?.independentLivingSkills?.[6]?.comments);
+setPreparingGood(getApiData?.independentLivingSkills?.[6]?.good);
+setPreparingFair(getApiData?.independentLivingSkills?.[6]?.fair);
+setPreparingNotSoGood(getApiData?.independentLivingSkills?.[6]?.otherCurrentNotSoGood);
+setPreparingGoodNeedAssist(getApiData?.independentLivingSkills?.[6]?.needAssist);
+setPreparingComments(getApiData?.independentLivingSkills?.[6]?.comments);
 
-setEatingGood(getApiArrayData?.independentLivingSkills?.[7]?.good);
-setEatingFair(getApiArrayData?.independentLivingSkills?.[7]?.fair);
-setEatingNotSoGood(getApiArrayData?.independentLivingSkills?.[7]?.otherCurrentNotSoGood);
-setEatingGoodNeedAssist(getApiArrayData?.independentLivingSkills?.[7]?.needAssist);
-setEatingComments(getApiArrayData?.independentLivingSkills?.[7]?.comments);
+setEatingGood(getApiData?.independentLivingSkills?.[7]?.good);
+setEatingFair(getApiData?.independentLivingSkills?.[7]?.fair);
+setEatingNotSoGood(getApiData?.independentLivingSkills?.[7]?.otherCurrentNotSoGood);
+setEatingGoodNeedAssist(getApiData?.independentLivingSkills?.[7]?.needAssist);
+setEatingComments(getApiData?.independentLivingSkills?.[7]?.comments);
 
-setToiletingGood(getApiArrayData?.independentLivingSkills?.[8]?.good);
-setToiletingFair(getApiArrayData?.independentLivingSkills?.[8]?.fair);
-setToiletingNotSoGood(getApiArrayData?.independentLivingSkills?.[8]?.otherCurrentNotSoGood);
-setToiletingGoodNeedAssist(getApiArrayData?.independentLivingSkills?.[8]?.needAssist);
-setToiletingComments(getApiArrayData?.independentLivingSkills?.[8]?.comments);
+setToiletingGood(getApiData?.independentLivingSkills?.[8]?.good);
+setToiletingFair(getApiData?.independentLivingSkills?.[8]?.fair);
+setToiletingNotSoGood(getApiData?.independentLivingSkills?.[8]?.otherCurrentNotSoGood);
+setToiletingGoodNeedAssist(getApiData?.independentLivingSkills?.[8]?.needAssist);
+setToiletingComments(getApiData?.independentLivingSkills?.[8]?.comments);
 // setOtherCurrentOther(getApiArrayData?.independentLivingSkills?.[0]?.comments);
 
-setOtherCurrentGood(getApiArrayData?.independentLivingSkills?.[9]?.good);
-setOtherCurrentFair(getApiArrayData?.independentLivingSkills?.[9]?.fair);
-setOtherCurrentNotSoGood(getApiArrayData?.independentLivingSkills?.[9]?.otherCurrentNotSoGood);
-setOtherCurrentNeed(getApiArrayData?.independentLivingSkills?.[9]?.needAssist);
-setOtherCurrentComment(getApiArrayData?.independentLivingSkills?.[9]?.comments);
+setOtherCurrentGood(getApiData?.independentLivingSkills?.[9]?.good);
+setOtherCurrentFair(getApiData?.independentLivingSkills?.[9]?.fair);
+setOtherCurrentNotSoGood(getApiData?.independentLivingSkills?.[9]?.otherCurrentNotSoGood);
+setOtherCurrentNeed(getApiData?.independentLivingSkills?.[9]?.needAssist);
+setOtherCurrentComment(getApiData?.independentLivingSkills?.[9]?.comments);
 
 setHandleRiskFactorActivityArray(getApiData?.independentLivingSkills?getApiArrayData(10,getApiData?.independentLivingSkills?.length,getApiData?.independentLivingSkills):[]);
 
-setTriggers(getApiArrayData?.triggers);
-setFallRisk(getApiArrayData?.fallRiskData?.fallRisk);
-setFallRiskExplanation(getApiArrayData?.fallRiskData?.fallRiskExplanation);
-setHobbiesLeisureActivities(getApiArrayData?.hobbiesLeisureActivities);
+setTriggers(getApiData?.triggers);
+setFallRisk(getApiData?.fallRiskData?.fallRisk);
+setFallRiskExplanation(getApiData?.fallRiskData?.fallRiskExplanation);
+setHobbiesLeisureActivities(getApiData?.hobbiesLeisureActivities);
 setSelectedValueMedical(getApiData?.medicalEquipmentArray
   ? getApiData?.medicalEquipmentArray.map(item => ({
       label: item, // Assuming 'name' is the property you want to use as label
@@ -1854,136 +1887,137 @@ setSelectedValueSpecialPrecautions(getApiData?.specialPrecautions
     }))
   : []);
 
-setCurrentThoughtsOfHarmingSelf(getApiArrayData?.currentThoughtsOfHarmingSelf);
-setSuicidalIdeation(getApiArrayData?.suicidalIdeation);
-setSuicidalIdeationUrgency(getApiArrayData?.suicidalIdeationUrgency);
-setSuicidalIdeationSeverity(getApiArrayData?.suicidalIdeationSeverity);
-setCurrentThoughtsOfHarmingOthers(getApiArrayData?.currentThoughtsOfHarmingOthers);
+setCurrentThoughtsOfHarmingSelf(getApiData?.currentThoughtsOfHarmingSelf);
+setSuicidalIdeation(getApiData?.suicidalIdeation);
+setSuicidalIdeationUrgency(getApiData?.suicidalIdeationUrgency);
+setSuicidalIdeationSeverity(getApiData?.suicidalIdeationSeverity);
+setCurrentThoughtsOfHarmingOthers(getApiData?.currentThoughtsOfHarmingOthers);
 
-setRiskYesNo(getApiArrayData?.riskFactors?.[0]?.yesNo);
-setRiskComment(getApiArrayData?.riskFactors?.[0]?.comment);
-setPriorYesNo(getApiArrayData?.riskFactors?.[1]?.yesNo);
-setPriorComment(getApiArrayData?.riskFactors?.[1]?.comment);
-setAccessYesNo(getApiArrayData?.riskFactors?.[2]?.yesNo);
-setAccessComment(getApiArrayData?.riskFactors?.[2]?.comment);
-setSubstanceYesNo(getApiArrayData?.riskFactors?.[3]?.yesNo);
-setSubstanceCommentAbuse(getApiArrayData?.riskFactors?.[3]?.comment);
-setabusingYesNo(getApiArrayData?.riskFactors?.[4]?.yesNo);
-setabusingComment(getApiArrayData?.riskFactors?.[4]?.comment);
-setRecentYesNo(getApiArrayData?.riskFactors?.[5]?.yesNo);
-setRecentComment(getApiArrayData?.riskFactors?.[5]?.comment);
-setBehaviourYesNo(getApiArrayData?.riskFactors?.[6]?.yesNo);
+setRiskYesNo(getApiData?.riskFactors?.[0]?.yesNo);
+setRiskComment(getApiData?.riskFactors?.[0]?.comment);
+setPriorYesNo(getApiData?.riskFactors?.[1]?.yesNo);
+setPriorComment(getApiData?.riskFactors?.[1]?.comment);
+setAccessYesNo(getApiData?.riskFactors?.[2]?.yesNo);
+setAccessComment(getApiData?.riskFactors?.[2]?.comment);
+setSubstanceYesNo(getApiData?.riskFactors?.[3]?.yesNo);
+setSubstanceCommentAbuse(getApiData?.riskFactors?.[3]?.comment);
+setabusingYesNo(getApiData?.riskFactors?.[4]?.yesNo);
+setabusingComment(getApiData?.riskFactors?.[4]?.comment);
+setRecentYesNo(getApiData?.riskFactors?.[5]?.yesNo);
+setRecentComment(getApiData?.riskFactors?.[5]?.comment);
+setBehaviourYesNo(getApiData?.riskFactors?.[6]?.yesNo);
 setBehaviorcuesDropDown(getApiData?.riskFactors?.[6]?.comments
   ? getApiData?.riskFactors?.[6]?.comments.map(item => ({
       label: item, // Assuming 'name' is the property you want to use as label
       value: item    // Assuming 'id' is the property you want to use as value
     }))
   : []);
-setSymptomsYesNo(getApiArrayData?.riskFactors?.[7]?.yesNo);
+setSymptomsYesNo(getApiData?.riskFactors?.[7]?.yesNo);
 setSymptomsOfPsychosisDropDown(getApiData?.riskFactors?.[7]?.comments
   ? getApiData?.riskFactors?.[7]?.comments.map(item => ({
       label: item, // Assuming 'name' is the property you want to use as label
       value: item    // Assuming 'id' is the property you want to use as value
     }))
   : []);
-setFamilyYesNo(getApiArrayData?.riskFactors?.[8]?.yesNo);
-setFamily(getApiArrayData?.riskFactors?.[8]?.comment);
-setTerminalYesNo(getApiArrayData?.riskFactors?.[9]?.yesNo);
-setTerminal(getApiArrayData?.riskFactors?.[9]?.comment);
-setCurrentYesNo(getApiArrayData?.riskFactors?.[10]?.yesNo);
-setCurrent(getApiArrayData?.riskFactors?.[10]?.comment);
-setChronicYesNo(getApiArrayData?.riskFactors?.[11]?.yesNo);
-setChronicPain(getApiArrayData?.riskFactors?.[11]?.comment);
+setFamilyYesNo(getApiData?.riskFactors?.[8]?.yesNo);
+setFamily(getApiData?.riskFactors?.[8]?.comment);
+setTerminalYesNo(getApiData?.riskFactors?.[9]?.yesNo);
+setTerminal(getApiData?.riskFactors?.[9]?.comment);
+setCurrentYesNo(getApiData?.riskFactors?.[10]?.yesNo);
+setCurrent(getApiData?.riskFactors?.[10]?.comment);
+setChronicYesNo(getApiData?.riskFactors?.[11]?.yesNo);
+setChronicPain(getApiData?.riskFactors?.[11]?.comment);
 
 setRiskFactoeArray(getApiData?.riskFactors?getApiArrayData(12,getApiData?.riskFactors?.length,getApiData?.riskFactors):[]);
 
-setSupportsYesNo(getApiArrayData?.protectiveFactors?.[0]?.yesNo);
-setSupportsComment(getApiArrayData?.protectiveFactors?.[0]?.comment);
-setSpiritualYesNo(getApiArrayData?.riskFactors?.[1]?.yesNo);
-setSpiritualComment(getApiArrayData?.protectiveFactors?.[1]?.comment);
-setReligiousYesNo(getApiArrayData?.riskFactors?.[2]?.yesNo);
-setReligiousComment(getApiArrayData?.protectiveFactors?.[2]?.comment);
-setFearYesNo(getApiArrayData?.riskFactors?.[3]?.yesNo);
-setFearComment(getApiArrayData?.protectiveFactors?.[3]?.comment);
-setInterventionYesNo(getApiArrayData?.riskFactors?.[4]?.yesNo);
-setInterventionComment(getApiArrayData?.protectiveFactors?.[4]?.comment);
-setWillingYesNo(getApiArrayData?.riskFactors?.[5]?.yesNo);
-setWillingComment(getApiArrayData?.protectiveFactors?.[5]?.comment);
+setSupportsYesNo(getApiData?.protectiveFactors?.[0]?.yesNo);
+setSupportsComment(getApiData?.protectiveFactors?.[0]?.comment);
+setSpiritualYesNo(getApiData?.riskFactors?.[1]?.yesNo);
+setSpiritualComment(getApiData?.protectiveFactors?.[1]?.comment);
+setReligiousYesNo(getApiData?.riskFactors?.[2]?.yesNo);
+setReligiousComment(getApiData?.protectiveFactors?.[2]?.comment);
+setFearYesNo(getApiData?.riskFactors?.[3]?.yesNo);
+setFearComment(getApiData?.protectiveFactors?.[3]?.comment);
+setInterventionYesNo(getApiData?.riskFactors?.[4]?.yesNo);
+setInterventionComment(getApiData?.protectiveFactors?.[4]?.comment);
+setWillingYesNo(getApiData?.riskFactors?.[5]?.yesNo);
+setWillingComment(getApiData?.protectiveFactors?.[5]?.comment);
 
 setProtectiveFactorsArray(getApiData?.protectiveFactors?getApiArrayData(6,getApiData?.protectiveFactors?.length,getApiData?.protectiveFactors):[]);
 
-setRiskLevel(getApiArrayData?.riskLevel);
+setRiskLevel(getApiData?.riskLevel);
 
-setPsychiatricPrimaryIcdCode(getApiArrayData?.psychiatricDiagnoses?.[0]?.icdCode);
-setPsychiatricPrimaryDescription(getApiArrayData?.psychiatricDiagnoses?.[0]?.description);
-setPsychiatricSecondaryIcdCode(getApiArrayData?.psychiatricDiagnoses?.[1]?.icdCode);
-setPsychiatricSecondaryDescription(getApiArrayData?.psychiatricDiagnoses?.[1]?.description);
-setPsychiatricTertiaryIcdCode(getApiArrayData?.psychiatricDiagnoses?.[2]?.icdCode);
-setPsychiatricTertiaryDescription(getApiArrayData?.psychiatricDiagnoses?.[2]?.description);
-setPsychiatricAdditionalIcdCode(getApiArrayData?.psychiatricDiagnoses?.[3]?.icdCode);
-setPsychiatricAdditionalDescription(getApiArrayData?.psychiatricDiagnoses?.[3]?.description);
+setPsychiatricPrimaryIcdCode(getApiData?.psychiatricDiagnoses?.[0]?.icdCode);
+setPsychiatricPrimaryDescription(getApiData?.psychiatricDiagnoses?.[0]?.description);
+setPsychiatricSecondaryIcdCode(getApiData?.psychiatricDiagnoses?.[1]?.icdCode);
+setPsychiatricSecondaryDescription(getApiData?.psychiatricDiagnoses?.[1]?.description);
+setPsychiatricTertiaryIcdCode(getApiData?.psychiatricDiagnoses?.[2]?.icdCode);
+setPsychiatricTertiaryDescription(getApiData?.psychiatricDiagnoses?.[2]?.description);
+setPsychiatricAdditionalIcdCode(getApiData?.psychiatricDiagnoses?.[3]?.icdCode);
+setPsychiatricAdditionalDescription(getApiData?.psychiatricDiagnoses?.[3]?.description);
 
 setPsychiatricDiagnosesArray(getApiData?.psychiatricDiagnoses?getApiArrayData(4,getApiData?.psychiatricDiagnoses?.length,getApiData?.psychiatricDiagnoses):[]);
 
-setPrimaryIcdCode(getApiArrayData?.medicalDiagnoses?.[0]?.icdCode);
-setPrimaryDescription(getApiArrayData?.medicalDiagnoses?.[0]?.description);
-setSecondaryIcdCode(getApiArrayData?.medicalDiagnoses?.[1]?.icdCode);
-setSecondaryDescription(getApiArrayData?.medicalDiagnoses?.[1]?.description);
-setTertiaryIcdCode(getApiArrayData?.medicalDiagnoses?.[2]?.icdCode);
-setTertiaryDescription(getApiArrayData?.medicalDiagnoses?.[2]?.description);
-setAdditional1IcdCode(getApiArrayData?.medicalDiagnoses?.[3]?.icdCode);
-setAdditional1Description(getApiArrayData?.medicalDiagnoses?.[3]?.description);
+setPrimaryIcdCode(getApiData?.medicalDiagnoses?.[0]?.icdCode);
+setPrimaryDescription(getApiData?.medicalDiagnoses?.[0]?.description);
+setSecondaryIcdCode(getApiData?.medicalDiagnoses?.[1]?.icdCode);
+setSecondaryDescription(getApiData?.medicalDiagnoses?.[1]?.description);
+setTertiaryIcdCode(getApiData?.medicalDiagnoses?.[2]?.icdCode);
+setTertiaryDescription(getApiData?.medicalDiagnoses?.[2]?.description);
+setAdditional1IcdCode(getApiData?.medicalDiagnoses?.[3]?.icdCode);
+setAdditional1Description(getApiData?.medicalDiagnoses?.[3]?.description);
 setMedicalDiagnosesArray(getApiData?.medicalDiagnoses?getApiArrayData(4,getApiData?.medicalDiagnoses?.length,getApiData?.medicalDiagnoses):[])
 
-setPrimarySupportGroup(getApiArrayData?.psychosocialStressors?.primarySupportGroup);
-setMaritalProblems(getApiArrayData?.psychosocialStressors?.maritalProblems);
-setAccessToHealthCareServices(getApiArrayData?.psychosocialStressors?.accessToHealthCareServices);
-setEducationalProblems(getApiArrayData?.psychosocialStressors?.educationalProblems);
-setHousingProblems(getApiArrayData?.psychosocialStressors?.housingProblems);
-setFamilyProblems(getApiArrayData?.psychosocialStressors?.familyProblems);
-setOccupationalProblems(getApiArrayData?.psychosocialStressors?.occupationalProblems);
-setInteractionWithLegalSystem(getApiArrayData?.psychosocialStressors?.interactionWithLegalSystem);
-setSubstanceUseInHome(getApiArrayData?.psychosocialStressors?.substanceUseInHome);
-setSexualProblems(getApiArrayData?.psychosocialStressors?.sexualProblems);
-setOtherBoolean(getApiArrayData?.psychosocialStressors?.otherStressors?true:false);
-setOtherStressors(getApiArrayData?.psychosocialStressors?.otherStressors);
+setPrimarySupportGroup(getApiData?.primarySupportGroup);
+setMaritalProblems(getApiData?.maritalProblems);
+setAccessToHealthCareServices(getApiData?.accessToHealthCareServices);
+setEducationalProblems(getApiData?.educationalProblems);
+setHousingProblems(getApiData?.housingProblems);
+setFamilyProblems(getApiData?.familyProblems);
+setOccupationalProblems(getApiData?.occupationalProblems);
+setInteractionWithLegalSystem(getApiData?.interactionWithLegalSystem);
+setSubstanceUseInHome(getApiData?.substanceUseInHome);
+setSexualProblems(getApiData?.sexualProblems);
+setOtherBoolean(getApiData?.otherStressors?true:false);
+setOtherStressors(getApiData?.otherStressors);
 
-setSetNoAndYes(getApiArrayData?.significantRecentLosses?.yes);
+setSetNoAndYes(getApiData?.significantRecentLosses?.yes);
 
-setDeath(getApiArrayData?.significantRecentLosses?.typeOfLoss?.death);
-setJob(getApiArrayData?.significantRecentLosses?.typeOfLoss?.job);
-setChildRemovedFromHouse(getApiArrayData?.significantRecentLosses?.typeOfLoss?.childRemovedFromHouse);
-setInjury(getApiArrayData?.significantRecentLosses?.typeOfLoss?.injury);
-setDivorceSeparation(getApiArrayData?.significantRecentLosses?.typeOfLoss?.divorceSeparation);
-setViolentActsAgainstPersonFamily(getApiArrayData?.significantRecentLosses?.typeOfLoss?.violentActsAgainstPersonFamily);
-setMedicalSurgical(getApiArrayData?.significantRecentLosses?.typeOfLoss?.medicalSurgical);
-setAccidentInjury(getApiArrayData?.significantRecentLosses?.typeOfLoss?.accidentInjury);
-setOtherSignificantRecentLosses(getApiArrayData?.significantRecentLosses?.typeOfLoss?.other?true:false);
-setOtherSignificantRecentLossesType(getApiArrayData?.significantRecentLosses?.typeOfLoss?.other);
+setDeath(getApiData?.significantRecentLosses?.typeOfLoss?.death);
+setJob(getApiData?.significantRecentLosses?.typeOfLoss?.job);
+setChildRemovedFromHouse(getApiData?.significantRecentLosses?.typeOfLoss?.childRemovedFromHouse);
+setInjury(getApiData?.significantRecentLosses?.typeOfLoss?.injury);
+setDivorceSeparation(getApiData?.significantRecentLosses?.typeOfLoss?.divorceSeparation);
+setViolentActsAgainstPersonFamily(getApiData?.significantRecentLosses?.typeOfLoss?.violentActsAgainstPersonFamily);
+setMedicalSurgical(getApiData?.significantRecentLosses?.typeOfLoss?.medicalSurgical);
+setAccidentInjury(getApiData?.significantRecentLosses?.typeOfLoss?.accidentInjury);
+setOtherSignificantRecentLosses(getApiData?.significantRecentLosses?.typeOfLoss?.other?true:false);
+setOtherSignificantRecentLossesType(getApiData?.significantRecentLosses?.typeOfLoss?.other);
 
-setAdditionalNotes(getApiArrayData?.additionalNotes);
+setAdditionalNotes(getApiData?.additionalNotes);
 
-setResidentGuardianName(getApiArrayData?.residentInformation?.ResidentName);
-setResidentGauardianSignature(getApiArrayData?.residentInformation?.ResidentSignature);
-setResidentGuardianDate(getApiArrayData?.residentInformation?.ResidentDate?formatDate(getApiArrayData?.residentInformation?.ResidentDate):"");
-setResidentGuardianTime(getApiArrayData?.residentInformation?.time);
+setResidentGuardianName(getApiData?.residentInformation?.ResidentName);
+setResidentGauardianSignature(getApiData?.residentInformation?.ResidentSignature);
+setResidentGuardianDate(getApiData?.residentInformation?.ResidentDate?formatDate(getApiArrayData?.residentInformation?.ResidentDate):"");
+setResidentGuardianTime(getApiData?.residentInformation?.time);
 
-setStaffName(getApiArrayData?.staffInformation?.staffName);
-setStaffSignature(getApiArrayData?.staffInformation?.staffSignature);
-setStaffDate(getApiArrayData?.staffInformation?.staffDate?formatDate(getApiArrayData?.staffInformation?.staffDate):"");
-setStaffDateTime(getApiArrayData?.staffInformation?.time);
+setStaffName(getApiData?.staffInformation?.staffName);
+setStaffSignature(getApiData?.staffInformation?.staffSignature);
+setStaffDate(getApiData?.staffInformation?.staffDate?formatDate(getApiArrayData?.staffInformation?.staffDate):"");
+setStaffDateTime(getApiData?.staffInformation?.time);
 
-setBhpName(getApiArrayData?.bhpInformation?.bhpName);
-setBhpCredentials(getApiArrayData?.bhpInformation?.bhpCredentials);
-setBhpSignature(getApiArrayData?.bhpInformation?.bhpSignature);
-setBhpDate(getApiArrayData?.bhpInformation?.bhpDate?formatDate(getApiArrayData?.bhpInformation?.bhpDate):"");
-setBhpTime(getApiArrayData?.bhpInformation?.time);
+setBhpName(getApiData?.bhpInformation?.bhpName);
+setBhpCredentials(getApiData?.bhpInformation?.bhpCredentials);
+setBhpSignature(getApiData?.bhpInformation?.bhpSignature);
+setBhpDate(getApiData?.bhpInformation?.bhpDate?formatDate(getApiArrayData?.bhpInformation?.bhpDate):"");
+setBhpTime(getApiData?.bhpInformation?.time);
 
   },[getApiData])
 
   useEffect(()=>{
     initial_assestment_get(patientId,setGetApiData);
   },[patientId])
+
 
   useEffect(() => {
     setPatientId(userData?._id);
@@ -1993,6 +2027,7 @@ setBhpTime(getApiArrayData?.bhpInformation?.time);
     setDob(userData?.dateOfBirth?userData.dateOfBirth.slice(0,10):"")
     setResidentName(userData?.fullName)
   }, [userData]);
+
 
   useEffect(() => {
     user_detail(setUserData);
@@ -2515,24 +2550,26 @@ setBhpTime(getApiArrayData?.bhpInformation?.time);
     //psychiatricDiagnoses
       const psychiatricDiagnosesArrayTemp=[
         {
-          icdCode:"Primary",
-          description:psychiatricPrimaryIcdCode,
-          name:psychiatricPrimaryDescription
+   
+          icdCode:psychiatricPrimaryIcdCode,
+          description:psychiatricPrimaryDescription,
+          name:"Primary"
         },
         {
-          icdCode:"Secondary",
-          description:psychiatricSecondaryicdCode,
-          name:psychiatricSecondaryDescription
+          icdCode:psychiatricSecondaryicdCode,
+          description:psychiatricSecondaryDescription,
+          name:"Secondary"
         },
         {
-          icdCode:"Tertiary",
-          description:psychiatricTertiaryIcdCode,
-          name:psychiatricTertiaryDescription
+          icdCode:psychiatricTertiaryIcdCode,
+          description:psychiatricTertiaryDescription,
+          name:"Tertiary"
         },
         {
-          icdCode:"Additional",
-          description:psychiatricAdditionalicdCode,
-          name:psychiatricAdditionalDescription
+      
+          icdCode:psychiatricAdditionalicdCode,
+          description:psychiatricAdditionalDescription,
+          name:"Additional"
         },
       ]
 
@@ -2541,35 +2578,35 @@ setBhpTime(getApiArrayData?.bhpInformation?.time);
 
       const medicalDiagnosesArrayTemp=[
         {
-          icdCode:"Primary",
-          description:primaryIcdCode,
-          name:primaryDescription
+          icdCode:primaryIcdCode,
+          description:primaryDescription,
+          name:"Primary",
         },
         {
-          icdCode:"Secondary",
-          description:secondaryicdCode,
-          name:secondaryDescription
+         
+
+          icdCode:secondaryicdCode,
+          description:secondaryDescription,
+          name:"Secondary"
         },
         {
-          icdCode:"Tertiary",
-          description:TertiaryIcdCode,
-          name:TertiaryDescription
+          icdCode:TertiaryIcdCode,
+          description:TertiaryDescription,
+          name:"Tertiary"
         },
         {
-          icdCode:"Additional",
-          description:Additional1icdCode,
-          name:Additional1Description
+          icdCode:Additional1icdCode,
+          description:Additional1Description,
+          name:"Additional"
         },
       ]
 
       const medicalDiagnosesArrayTempAns=[...medicalDiagnosesArrayTemp,...psychiatricDiagnosesArray]
 
 
-
     const data = {
-
       assessmentType,
-      patientId,
+      patientId:patientId,
       dob,
       hasNotified,
       assessmentOn,
@@ -2875,19 +2912,19 @@ setBhpTime(getApiArrayData?.bhpInformation?.time);
 
       medicalDiagnoses:medicalDiagnosesArrayTempAns,
 // jai maa kali
-psychosocialStressors:{
-                primarySupportGroup: { type: Boolean },
-                maritalProblems: { type: Boolean },
-                accessToHealthCareServices: { type: Boolean },
-                educationalProblems: { type: Boolean },
-                housingProblems: { type: Boolean },
-                familyProblems: { type: Boolean },
-                occupationalProblems: { type: Boolean },
-                interactionWithLegalSystem: { type: Boolean },
-                substanceUseInHome: { type: Boolean },
-                sexualProblems: { type: Boolean },
-                otherStressors: { type: String },
-},
+// psychosocialStressors:{
+                primarySupportGroup,
+                maritalProblems,
+                accessToHealthCareServices,
+                educationalProblems,
+                housingProblems,
+                familyProblems,
+                occupationalProblems,
+                interactionWithLegalSystem,
+                substanceUseInHome,
+                sexualProblems,
+                otherStressors,
+// },
      
 
       significantRecentLosses:{
@@ -3592,6 +3629,141 @@ psychosocialStressors:{
     setSymptomsOfPsychosisDropDown(optionValue);
   };
 
+
+  // type of and frequancy
+  // last use
+  const selectedsubstanceAbuseHistoryDataLastUseAlcohol = [
+    { label: "Weeks ago", value: "Weeks ago" },
+    { label: "Days ago", value: "Days ago" },
+    { label: "Yesterday", value: "Yesterday" },
+    { label: "Months ago", value: "Months ago" },
+    { label: "Few hours ago", value: "Few hours ago" },
+    { label: "Unsure", value: "Unsure" }
+  ];
+
+  const handleKeysubstanceAbuseHistoryDataLastUseAlcohol = (event) => {
+    if (event.key === "Enter" && event.target.value) {
+      const inputValue = event.target.value.trim();
+
+   
+      const optionExists = selectedsubstanceAbuseHistoryDataLastUseAlcohol.some(
+        (option) => option.value === inputValue
+      );
+
+      if (!optionExists) {
+        const newOptions = [
+          ...selectedsubstanceAbuseHistoryDataLastUseAlcohol,
+          { value: inputValue, label: inputValue },
+        ];
+
+        setSubstanceAbuseHistoryDataLastUseAlcohol(newOptions);
+
+        const newSelectedValues = [
+          ...symptomsOfPsychosisDropDown,
+          { value: inputValue, label: inputValue },
+        ];
+        setSubstanceAbuseHistoryDataLastUseAlcohol(newSelectedValues);
+      }
+
+      event.target.value = "";
+    }
+  };
+
+  const handlersubstanceAbuseHistoryDataLastUseAlcohol = (optionValue) => {
+    setSubstanceAbuseHistoryDataLastUseAlcohol(optionValue);
+  };
+
+  // frequancy
+  const selectedsubstanceAbuseHistoryDataFrequencyAlcohol = [
+    { label: "Daily", value: "Daily" },
+    { label: "Two to four times weekly", value: "Two to four times weekly" },
+    { label: "Multiple times a day", value: "Multiple times a day" },
+    { label: "Chronic", value: "Chronic" },
+    { label: "Intermittent", value: "Intermittent" },
+    { label: "Only on social events", value: "Only on social events" },
+    { label: "Only on weekends", value: "Only on weekends" },
+    { label: "Few times a month", value: "Few times a month" }
+
+  ];
+
+  const handleKeysubstanceAbuseHistoryDataFrequencyAlcohol = (event) => {
+    if (event.key === "Enter" && event.target.value) {
+      const inputValue = event.target.value.trim();
+
+   
+      const optionExists = selectedsubstanceAbuseHistoryDataFrequencyAlcohol.some(
+        (option) => option.value === inputValue
+      );
+
+      if (!optionExists) {
+        const newOptions = [
+          ...selectedsubstanceAbuseHistoryDataFrequencyAlcohol,
+          { value: inputValue, label: inputValue },
+        ];
+
+        setSubstanceAbuseHistoryDataFrequencyAlcohol(newOptions);
+
+        const newSelectedValues = [
+          ...symptomsOfPsychosisDropDown,
+          { value: inputValue, label: inputValue },
+        ];
+        setSubstanceAbuseHistoryDataFrequencyAlcohol(newSelectedValues);
+      }
+
+      event.target.value = "";
+    }
+  };
+
+  const handlersubstanceAbuseHistoryDataFrequencyAlcohol = (optionValue) => {
+    setSubstanceAbuseHistoryDataFrequencyAlcohol(optionValue);
+  };
+
+  // length of soberty
+  // const optionsubstanceAbuseHistoryDataLengthOfSobrietyAlcohol = [
+  //   { label: "One week", value: "One week" },
+  //   { label: "A few days ago", value: "A few days ago" },
+  //   { label: "One month", value: "One month" },
+  //   { label: "Two months", value: "Two months" },
+  //   { label: "Three months", value: "Three months" },
+  //   { label: "Four months", value: "Four months" },
+  //   { label: "Five to Six months", value: "Five to Six months" },
+  //   { label: "One year", value: "One year" }
+  //   { label: "Two years", value: "Two years" }
+  //   { label: "Many years", value: "Many years" }
+
+  // ];
+
+  // const optionsubstanceAbuseHistoryDataLengthOfSobrietyAlcohol = (event) => {
+  //   if (event.key === "Enter" && event.target.value) {
+  //     const inputValue = event.target.value.trim();
+
+   
+  //     const optionExists = selectedsubstanceAbuseHistoryDataFrequencyAlcohol.some(
+  //       (option) => option.value === inputValue
+  //     );
+
+  //     if (!optionExists) {
+  //       const newOptions = [
+  //         ...selectedsubstanceAbuseHistoryDataFrequencyAlcohol,
+  //         { value: inputValue, label: inputValue },
+  //       ];
+
+  //       setSubstanceAbuseHistoryDataLengthOfSobrietyAlcohol(newOptions);
+
+  //       const newSelectedValues = [
+  //         ...symptomsOfPsychosisDropDown,
+  //         { value: inputValue, label: inputValue },
+  //       ];
+  //       setSubstanceAbuseHistoryDataLengthOfSobrietyAlcohol(newSelectedValues);
+  //     }
+
+  //     event.target.value = "";
+  //   }
+  // };
+
+  // const handlersubstanceAbuseHistoryDataLengthOfSobrietyAlcohol = (optionValue) => {
+  //   setSubstanceAbuseHistoryDataLengthOfSobrietyAlcohol(optionValue);
+  // };
 
   return (
     <>
@@ -5354,8 +5526,16 @@ psychosocialStressors:{
                           />
                         </td>
                         <td>
+
+                        <Select
+                  value={substanceAbuseHistoryDataLastUseAlcohol}
+                  onChange={handlersubstanceAbuseHistoryDataLastUseAlcohol}
+                  options={selectedsubstanceAbuseHistoryDataLastUseAlcohol}
+                  isCreatable={true}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseAlcohol}
+                />
                           
-                          <Form.Select
+                          {/* <Form.Select
                             as="select"
                             value={substanceAbuseHistoryDataLastUseAlcohol}
                             onChange={(e) =>
@@ -5371,12 +5551,20 @@ psychosocialStressors:{
                             <option value="Months ago">Months ago</option>
                             <option value="Few hours ago">Few hours ago</option>
                             <option value="Unsure">Unsure</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
                       
 
-                          <Form.Select
+                        <Select
+                  value={substanceAbuseHistoryDataFrequencyAlcohol}
+                  onChange={handlersubstanceAbuseHistoryDataFrequencyAlcohol}
+                  options={selectedsubstanceAbuseHistoryDataFrequencyAlcohol}
+                  isCreatable={true}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyAlcohol}
+                />
+
+                          {/* <Form.Select
                             value={substanceAbuseHistoryDataFrequencyAlcohol}
                             onChange={(e) =>
                               setSubstanceAbuseHistoryDataFrequencyAlcohol(
@@ -5403,19 +5591,20 @@ psychosocialStressors:{
                             <option value="Few times a month">
                               Few times a month
                             </option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
+
                           {/* <Select
-                  value={substanceAbuseHistoryDataLengthOfSobriety}
+                  value={substanceAbuseHistoryDataLengthOfSobrietyAlcohol}
                   
-                  onChange={substanceAbuseHistoryDataLengthOfSobrietyHandler}
-                  options={substanceAbuseHistoryDataLengthOfSobrietyOption}
+                  onChange={handlersubstanceAbuseHistoryDataLengthOfSobrietyAlcohol}
+                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyAlcohol}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLengthOfSobriety}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyAlcohol}
                 /> */}
 
-                          <Form.Select
+                          {/* <Form.Select
                             value={
                               substanceAbuseHistoryDataLengthOfSobrietyAlcohol
                             }
@@ -5440,7 +5629,7 @@ psychosocialStressors:{
                             <option value="One year">One year</option>
                             <option value="Two years">Two years</option>
                             <option value="Many years">Many years</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                       </tr>
 
@@ -10215,8 +10404,8 @@ psychosocialStressors:{
                   >
                     <input
                       type="checkbox"
-                      checked={suicidalIdeation===true}
-                      onChange={()=>setSuicidalIdeation(true)}
+                      checked={suicidalIdeation==="Fleeting"}
+                      onChange={()=>setSuicidalIdeation("Fleeting")}
                     />
                     <label>Fleeting</label>
                   </div>
@@ -10230,8 +10419,8 @@ psychosocialStressors:{
                   >
                     <input
                       type="checkbox"
-                      checked={suicidalIdeation===true}
-                      onChange={()=>setSuicidalIdeation(true)}
+                      checked={suicidalIdeation==="Periodic"}
+                      onChange={()=>setSuicidalIdeation("Periodic")}
                     />
                     <label>Periodic</label>
                   </div>
@@ -10245,8 +10434,8 @@ psychosocialStressors:{
                   >
                     <input
                       type="checkbox"
-                      checked={suicidalIdeation===true}
-                      onChange={()=>setSuicidalIdeation(true)}
+                      checked={suicidalIdeation==="Constant"}
+                      onChange={()=>setSuicidalIdeation("Constant")}
                     />
                     <label>Constant</label>
                   </div>
@@ -10260,8 +10449,8 @@ psychosocialStressors:{
                   >
                     <input
                       type="checkbox"
-                      checked={suicidalIdeation===false}
-                      onChange={()=>setSuicidalIdeation(false)}
+                      checked={suicidalIdeation==="N/A"}
+                      onChange={()=>setSuicidalIdeation("N/A")}
                     />
                     <label>N/A</label>
                   </div>
