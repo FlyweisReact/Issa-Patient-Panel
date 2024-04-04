@@ -2280,87 +2280,87 @@ setBhpTime(getApiData?.bhpInformation?.time);
     const typeArrayTemp= [
       {
         types: "Alcohol",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseAlcohol,
-        lastUse: substanceAbuseHistoryDataLastUseAlcohol,
-        frequency: substanceAbuseHistoryDataFrequencyAlcohol,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyAlcohol
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseAlcohol?.value,
+        lastUse: substanceAbuseHistoryDataLastUseAlcohol?.value,
+        frequency: substanceAbuseHistoryDataFrequencyAlcohol?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyAlcohol?.value,
       },
       {
         types: "Benzodiazepines",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines,
-        lastUse: substanceAbuseHistoryDataLastUseBenzodiazepines,
-        frequency: substanceAbuseHistoryDataFrequencyBenzodiazepines,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines?.value,
+        lastUse: substanceAbuseHistoryDataLastUseBenzodiazepines?.value,
+        frequency: substanceAbuseHistoryDataFrequencyBenzodiazepines?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines?.value,
       },
       {
         types: "Crack",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseCrack,
-        lastUse: substanceAbuseHistoryDataLastUseCrack,
-        frequency: substanceAbuseHistoryDataFrequencyCrack,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyCrack
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseCrack?.value,
+        lastUse: substanceAbuseHistoryDataLastUseCrack?.value,
+        frequency: substanceAbuseHistoryDataFrequencyCrack?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyCrack?.value,
       },
       {
         types: "Heroin",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseHeroin,
-        lastUse: substanceAbuseHistoryDataLastUseHeroin,
-        frequency: substanceAbuseHistoryDataFrequencyHeroin,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyHeroin
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseHeroin?.value,
+        lastUse: substanceAbuseHistoryDataLastUseHeroin?.value,
+        frequency: substanceAbuseHistoryDataFrequencyHeroin?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyHeroin?.value,
       },
       {
         types: "Inhalants",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseInhalants,
-        lastUse: substanceAbuseHistoryDataLastUseInhalants,
-        frequency: substanceAbuseHistoryDataFrequencyInhalants,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyInhalants
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseInhalants?.value,
+        lastUse: substanceAbuseHistoryDataLastUseInhalants?.value,
+        frequency: substanceAbuseHistoryDataFrequencyInhalants?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyInhalants?.value,
       },
       {
         types: "Marijuana",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMarijuana,
-        lastUse: substanceAbuseHistoryDataLastUseMarijuana,
-        frequency: substanceAbuseHistoryDataFrequencyMarijuana,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMarijuana
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMarijuana?.value,
+        lastUse: substanceAbuseHistoryDataLastUseMarijuana?.value,
+        frequency: substanceAbuseHistoryDataFrequencyMarijuana?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMarijuana?.value,
       },
       {
         types: "Methamphetamine",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMethamphetamine,
-        lastUse: substanceAbuseHistoryDataLastUseMethamphetamine,
-        frequency: substanceAbuseHistoryDataFrequencyMethamphetamine,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMethamphetamine
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMethamphetamine?.value,
+        lastUse: substanceAbuseHistoryDataLastUseMethamphetamine?.value,
+        frequency: substanceAbuseHistoryDataFrequencyMethamphetamine?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMethamphetamine?.value,
       },
       {
         types: "Methadone",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMethadone,
-        lastUse: substanceAbuseHistoryDataLastUseMethadone,
-        frequency: substanceAbuseHistoryDataFrequencyMethadone,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMethadone
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMethadone?.value,
+        lastUse: substanceAbuseHistoryDataLastUseMethadone?.value,
+        frequency: substanceAbuseHistoryDataFrequencyMethadone?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMethadone?.value,
       },
       {
         types: "MDMA (ecstasy)",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMDMA,
-        lastUse: substanceAbuseHistoryDataLastUseMDMA,
-        frequency: substanceAbuseHistoryDataFrequencyMDMA,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMDMA
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMDMA?.value,
+        lastUse: substanceAbuseHistoryDataLastUseMDMA?.value,
+        frequency: substanceAbuseHistoryDataFrequencyMDMA?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMDMA?.value,
       },
       {
         types: "PCP (angel dust)",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUsePCP,
-        lastUse: substanceAbuseHistoryDataLastUsePCP,
-        frequency: substanceAbuseHistoryDataFrequencyPCP,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyPCP
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUsePCP?.value,
+        lastUse: substanceAbuseHistoryDataLastUsePCP?.value,
+        frequency: substanceAbuseHistoryDataFrequencyPCP?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyPCP?.value,
       },
       {
         types: "Prescription medicine",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUsePrescription,
-        lastUse: substanceAbuseHistoryDataLastUsePrescription,
-        frequency: substanceAbuseHistoryDataFrequencyPrescription,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyPrescription
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUsePrescription?.value,
+        lastUse: substanceAbuseHistoryDataLastUsePrescription?.value,
+        frequency: substanceAbuseHistoryDataFrequencyPrescription?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyPrescription?.value,
       },
       {
         types: "OTC medicine",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseOTC,
-        lastUse: substanceAbuseHistoryDataLastUseOTC,
-        frequency: substanceAbuseHistoryDataFrequencyOTC,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyOTC
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseOTC?.value,
+        lastUse: substanceAbuseHistoryDataLastUseOTC?.value,
+        frequency: substanceAbuseHistoryDataFrequencyOTC?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyOTC?.value,
       },
     ]
 
@@ -3631,7 +3631,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
 
   // type of and frequancy
-  // last use
+  // last use 1
   const selectedsubstanceAbuseHistoryDataLastUseAlcohol = [
     { label: "Weeks ago", value: "Weeks ago" },
     { label: "Days ago", value: "Days ago" },
@@ -3645,26 +3645,17 @@ setBhpTime(getApiData?.bhpInformation?.time);
     if (event.key === "Enter" && event.target.value) {
       const inputValue = event.target.value.trim();
 
-   
+      // setSubstanceAbuseHistoryDataLastUseAlcohol(inputValue);
       const optionExists = selectedsubstanceAbuseHistoryDataLastUseAlcohol.some(
         (option) => option.value === inputValue
       );
 
       if (!optionExists) {
-        const newOptions = [
-          ...selectedsubstanceAbuseHistoryDataLastUseAlcohol,
-          { value: inputValue, label: inputValue },
-        ];
-
+        const newOptions =
+          { value: inputValue, label: inputValue }
+        ;
         setSubstanceAbuseHistoryDataLastUseAlcohol(newOptions);
-
-        const newSelectedValues = [
-          ...symptomsOfPsychosisDropDown,
-          { value: inputValue, label: inputValue },
-        ];
-        setSubstanceAbuseHistoryDataLastUseAlcohol(newSelectedValues);
       }
-
       event.target.value = "";
     }
   };
@@ -3696,18 +3687,11 @@ setBhpTime(getApiData?.bhpInformation?.time);
       );
 
       if (!optionExists) {
-        const newOptions = [
-          ...selectedsubstanceAbuseHistoryDataFrequencyAlcohol,
-          { value: inputValue, label: inputValue },
-        ];
-
+        const newOptions = 
+          { value: inputValue, label: inputValue };
+        
         setSubstanceAbuseHistoryDataFrequencyAlcohol(newOptions);
 
-        const newSelectedValues = [
-          ...symptomsOfPsychosisDropDown,
-          { value: inputValue, label: inputValue },
-        ];
-        setSubstanceAbuseHistoryDataFrequencyAlcohol(newSelectedValues);
       }
 
       event.target.value = "";
@@ -3719,51 +3703,1485 @@ setBhpTime(getApiData?.bhpInformation?.time);
   };
 
   // length of soberty
-  // const optionsubstanceAbuseHistoryDataLengthOfSobrietyAlcohol = [
-  //   { label: "One week", value: "One week" },
-  //   { label: "A few days ago", value: "A few days ago" },
-  //   { label: "One month", value: "One month" },
-  //   { label: "Two months", value: "Two months" },
-  //   { label: "Three months", value: "Three months" },
-  //   { label: "Four months", value: "Four months" },
-  //   { label: "Five to Six months", value: "Five to Six months" },
-  //   { label: "One year", value: "One year" }
-  //   { label: "Two years", value: "Two years" }
-  //   { label: "Many years", value: "Many years" }
+  const optionsubstanceAbuseHistoryDataLengthOfSobrietyAlcohol = [
+    { label: "One week", value: "One week" },
+    { label: "A few days ago", value: "A few days ago" },
+    { label: "One month", value: "One month" },
+    { label: "Two months", value: "Two months" },
+    { label: "Three months", value: "Three months" },
+    { label: "Four months", value: "Four months" },
+    { label: "Five to Six months", value: "Five to Six months" },
+    { label: "One year", value: "One year" },
+    { label: "Two years", value: "Two years" },
+    { label: "Many years", value: "Many years" }
+  ];
 
-  // ];
-
-  // const optionsubstanceAbuseHistoryDataLengthOfSobrietyAlcohol = (event) => {
-  //   if (event.key === "Enter" && event.target.value) {
-  //     const inputValue = event.target.value.trim();
+  const handleKeysubstanceAbuseHistoryDataLengthOfSobrietyAlcohol = (event) => {
+    if (event.key === "Enter" && event.target.value) {
+      const inputValue = event.target.value.trim();
 
    
-  //     const optionExists = selectedsubstanceAbuseHistoryDataFrequencyAlcohol.some(
-  //       (option) => option.value === inputValue
-  //     );
+      const optionExists = selectedsubstanceAbuseHistoryDataFrequencyAlcohol.some(
+        (option) => option.value === inputValue
+      );
 
-  //     if (!optionExists) {
-  //       const newOptions = [
-  //         ...selectedsubstanceAbuseHistoryDataFrequencyAlcohol,
-  //         { value: inputValue, label: inputValue },
-  //       ];
+      if (!optionExists) {
+        const newOptions = 
+          
+          { value: inputValue, label: inputValue }
+    
 
-  //       setSubstanceAbuseHistoryDataLengthOfSobrietyAlcohol(newOptions);
+        setSubstanceAbuseHistoryDataLengthOfSobrietyAlcohol(newOptions);
 
-  //       const newSelectedValues = [
-  //         ...symptomsOfPsychosisDropDown,
-  //         { value: inputValue, label: inputValue },
-  //       ];
-  //       setSubstanceAbuseHistoryDataLengthOfSobrietyAlcohol(newSelectedValues);
-  //     }
+      }
 
-  //     event.target.value = "";
-  //   }
-  // };
+      event.target.value = "";
+    }
+  };
 
-  // const handlersubstanceAbuseHistoryDataLengthOfSobrietyAlcohol = (optionValue) => {
-  //   setSubstanceAbuseHistoryDataLengthOfSobrietyAlcohol(optionValue);
-  // };
+  const handlersubstanceAbuseHistoryDataLengthOfSobrietyAlcohol = (optionValue) => {
+    setSubstanceAbuseHistoryDataLengthOfSobrietyAlcohol(optionValue);
+  };
+
+  // 2
+    // last use
+    const optionsubstanceAbuseHistoryDataLastUseBenzodiazepines = [
+      { label: "Weeks ago", value: "Weeks ago" },
+      { label: "Days ago", value: "Days ago" },
+      { label: "Yesterday", value: "Yesterday" },
+      { label: "Months ago", value: "Months ago" },
+      { label: "Few hours ago", value: "Few hours ago" },
+      { label: "Unsure", value: "Unsure" }
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataLastUseBenzodiazepines = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+  
+     
+        const optionExists = optionsubstanceAbuseHistoryDataLastUseBenzodiazepines.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+        
+  
+          setSubstanceAbuseHistoryDataLastUseBenzodiazepines(newOptions);
+  
+      
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const handlesubstanceAbuseHistoryDataLastUseBenzodiazepines = (optionValue) => {
+      setSubstanceAbuseHistoryDataLastUseBenzodiazepines(optionValue);
+    };
+  
+    // frequancy
+    const optionsubstanceAbuseHistoryDataFrequencyBenzodiazepines = [
+      { label: "Daily", value: "Daily" },
+      { label: "Two to four times weekly", value: "Two to four times weekly" },
+      { label: "Multiple times a day", value: "Multiple times a day" },
+      { label: "Chronic", value: "Chronic" },
+      { label: "Intermittent", value: "Intermittent" },
+      { label: "Only on social events", value: "Only on social events" },
+      { label: "Only on weekends", value: "Only on weekends" },
+      { label: "Few times a month", value: "Few times a month" }
+  
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataFrequencyBenzodiazepines = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+  
+     
+        const optionExists = optionsubstanceAbuseHistoryDataFrequencyBenzodiazepines.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+          
+  
+          setSubstanceAbuseHistoryDataFrequencyBenzodiazepines(newOptions);
+  
+         
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const handlesubstanceAbuseHistoryDataFrequencyBenzodiazepines = (optionValue) => {
+      setSubstanceAbuseHistoryDataFrequencyBenzodiazepines(optionValue);
+    };
+  
+    // length of soberty
+    const optionsubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines = [
+      { label: "One week", value: "One week" },
+      { label: "A few days ago", value: "A few days ago" },
+      { label: "One month", value: "One month" },
+      { label: "Two months", value: "Two months" },
+      { label: "Three months", value: "Three months" },
+      { label: "Four months", value: "Four months" },
+      { label: "Five to Six months", value: "Five to Six months" },
+      { label: "One year", value: "One year" },
+      { label: "Two years", value: "Two years" },
+      { label: "Many years", value: "Many years" }
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+  
+     
+        const optionExists = optionsubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+          
+  
+          setSubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines(newOptions);
+  
+     
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const handlesubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines = (optionValue) => {
+      setSubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines(optionValue);
+    };
+
+    // 3
+      // last use
+  const optionsubstanceAbuseHistoryDataLastUseCrack = [
+    { label: "Weeks ago", value: "Weeks ago" },
+    { label: "Days ago", value: "Days ago" },
+    { label: "Yesterday", value: "Yesterday" },
+    { label: "Months ago", value: "Months ago" },
+    { label: "Few hours ago", value: "Few hours ago" },
+    { label: "Unsure", value: "Unsure" }
+  ];
+
+  const handleKeysubstanceAbuseHistoryDataLastUseCrack = (event) => {
+    if (event.key === "Enter" && event.target.value) {
+      const inputValue = event.target.value.trim();
+
+   
+      const optionExists = optionsubstanceAbuseHistoryDataLastUseCrack.some(
+        (option) => option.value === inputValue
+      );
+
+      if (!optionExists) {
+        const newOptions = 
+          
+          { value: inputValue, label: inputValue }
+        
+
+        setSubstanceAbuseHistoryDataLastUseCrack(newOptions);
+
+      
+      }
+
+      event.target.value = "";
+    }
+  };
+
+  const handlesubstanceAbuseHistoryDataLastUseCrack = (optionValue) => {
+    setSubstanceAbuseHistoryDataLastUseCrack(optionValue);
+  };
+
+  // frequancy
+  const optionsubstanceAbuseHistoryDataFrequencyCrack = [
+    { label: "Daily", value: "Daily" },
+    { label: "Two to four times weekly", value: "Two to four times weekly" },
+    { label: "Multiple times a day", value: "Multiple times a day" },
+    { label: "Chronic", value: "Chronic" },
+    { label: "Intermittent", value: "Intermittent" },
+    { label: "Only on social events", value: "Only on social events" },
+    { label: "Only on weekends", value: "Only on weekends" },
+    { label: "Few times a month", value: "Few times a month" }
+
+  ]
+
+  const handleKeysubstanceAbuseHistoryDataFrequencyCrack = (event) => {
+    if (event.key === "Enter" && event.target.value) {
+      const inputValue = event.target.value.trim();
+
+   
+      const optionExists = optionsubstanceAbuseHistoryDataFrequencyCrack.some(
+        (option) => option.value === inputValue
+      );
+
+      if (!optionExists) {
+        const newOptions = 
+          
+          { value: inputValue, label: inputValue }
+        
+
+        setSubstanceAbuseHistoryDataFrequencyCrack(newOptions);
+
+
+      }
+
+      event.target.value = "";
+    }
+  };
+
+  const handlesubstanceAbuseHistoryDataFrequencyCrack = (optionValue) => {
+    setSubstanceAbuseHistoryDataFrequencyCrack(optionValue);
+  };
+
+  // length of soberty
+  const optionsubstanceAbuseHistoryDataLengthOfSobrietyCrack = [
+    { label: "One week", value: "One week" },
+    { label: "A few days ago", value: "A few days ago" },
+    { label: "One month", value: "One month" },
+    { label: "Two months", value: "Two months" },
+    { label: "Three months", value: "Three months" },
+    { label: "Four months", value: "Four months" },
+    { label: "Five to Six months", value: "Five to Six months" },
+    { label: "One year", value: "One year" },
+    { label: "Two years", value: "Two years" },
+    { label: "Many years", value: "Many years" }
+  ];
+
+  const handleKeysubstanceAbuseHistoryDataLengthOfSobrietyCrack = (event) => {
+    if (event.key === "Enter" && event.target.value) {
+      const inputValue = event.target.value.trim();
+
+   
+      const optionExists = optionsubstanceAbuseHistoryDataLengthOfSobrietyCrack.some(
+        (option) => option.value === inputValue
+      );
+
+      if (!optionExists) {
+        const newOptions = 
+          
+          { value: inputValue, label: inputValue }
+        
+
+        setSubstanceAbuseHistoryDataLengthOfSobrietyCrack(newOptions);
+
+      }
+
+      event.target.value = "";
+    }
+  };
+
+  const handlesubstanceAbuseHistoryDataLengthOfSobrietyCrack = (optionValue) => {
+    setSubstanceAbuseHistoryDataLengthOfSobrietyCrack(optionValue);
+  };
+
+  // 4
+    // last use
+    const optionsubstanceAbuseHistoryDataLastUseHeroin = [
+      { label: "Weeks ago", value: "Weeks ago" },
+      { label: "Days ago", value: "Days ago" },
+      { label: "Yesterday", value: "Yesterday" },
+      { label: "Months ago", value: "Months ago" },
+      { label: "Few hours ago", value: "Few hours ago" },
+      { label: "Unsure", value: "Unsure" }
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataLastUseHeroin = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+  
+     
+        const optionExists = optionsubstanceAbuseHistoryDataLastUseHeroin.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+          
+  
+          setSubstanceAbuseHistoryDataLastUseHeroin(newOptions);
+  
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const handlesubstanceAbuseHistoryDataLastUseHeroin = (optionValue) => {
+      setSubstanceAbuseHistoryDataLastUseHeroin(optionValue);
+    };
+  
+    // frequancy
+    const optionsubstanceAbuseHistoryDataFrequencyHeroin = [
+      { label: "Daily", value: "Daily" },
+      { label: "Two to four times weekly", value: "Two to four times weekly" },
+      { label: "Multiple times a day", value: "Multiple times a day" },
+      { label: "Chronic", value: "Chronic" },
+      { label: "Intermittent", value: "Intermittent" },
+      { label: "Only on social events", value: "Only on social events" },
+      { label: "Only on weekends", value: "Only on weekends" },
+      { label: "Few times a month", value: "Few times a month" }
+  
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataFrequencyHeroin = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+  
+     
+        const optionExists = optionsubstanceAbuseHistoryDataFrequencyHeroin.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+          
+  
+          setSubstanceAbuseHistoryDataFrequencyHeroin(newOptions);
+  
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const handlesubstanceAbuseHistoryDataFrequencyHeroin = (optionValue) => {
+      setSubstanceAbuseHistoryDataFrequencyHeroin(optionValue);
+    };
+  
+    // length of soberty
+    const optionsubstanceAbuseHistoryDataLengthOfSobrietyHeroin = [
+      { label: "One week", value: "One week" },
+      { label: "A few days ago", value: "A few days ago" },
+      { label: "One month", value: "One month" },
+      { label: "Two months", value: "Two months" },
+      { label: "Three months", value: "Three months" },
+      { label: "Four months", value: "Four months" },
+      { label: "Five to Six months", value: "Five to Six months" },
+      { label: "One year", value: "One year" },
+      { label: "Two years", value: "Two years" },
+      { label: "Many years", value: "Many years" }
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataLengthOfSobrietyHeroin = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+  
+     
+        const optionExists = optionsubstanceAbuseHistoryDataLengthOfSobrietyHeroin.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+          
+  
+          setSubstanceAbuseHistoryDataLengthOfSobrietyHeroin(newOptions);
+  
+      
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const handlesubstanceAbuseHistoryDataLengthOfSobrietyHeroin = (optionValue) => {
+      setSubstanceAbuseHistoryDataLengthOfSobrietyHeroin(optionValue);
+    };
+
+    // 5
+      // last use
+  const optionsubstanceAbuseHistoryDataLastUseInhalants = [
+    { label: "Weeks ago", value: "Weeks ago" },
+    { label: "Days ago", value: "Days ago" },
+    { label: "Yesterday", value: "Yesterday" },
+    { label: "Months ago", value: "Months ago" },
+    { label: "Few hours ago", value: "Few hours ago" },
+    { label: "Unsure", value: "Unsure" }
+  ];
+
+  const handleKeysubstanceAbuseHistoryDataLastUseInhalants = (event) => {
+    if (event.key === "Enter" && event.target.value) {
+      const inputValue = event.target.value.trim();
+
+   
+      const optionExists = optionsubstanceAbuseHistoryDataLastUseInhalants.some(
+        (option) => option.value === inputValue
+      );
+
+      if (!optionExists) {
+        const newOptions = 
+          
+          { value: inputValue, label: inputValue }
+        
+
+        setSubstanceAbuseHistoryDataLastUseInhalants(newOptions);
+
+      
+      }
+
+      event.target.value = "";
+    }
+  };
+
+  const handlesubstanceAbuseHistoryDataLastUseInhalants = (optionValue) => {
+    setSubstanceAbuseHistoryDataLastUseInhalants(optionValue);
+  };
+
+  // frequancy
+  const optionsubstanceAbuseHistoryDataFrequencyInhalants = [
+    { label: "Daily", value: "Daily" },
+    { label: "Two to four times weekly", value: "Two to four times weekly" },
+    { label: "Multiple times a day", value: "Multiple times a day" },
+    { label: "Chronic", value: "Chronic" },
+    { label: "Intermittent", value: "Intermittent" },
+    { label: "Only on social events", value: "Only on social events" },
+    { label: "Only on weekends", value: "Only on weekends" },
+    { label: "Few times a month", value: "Few times a month" }
+
+  ];
+
+  const handleKeysubstanceAbuseHistoryDataFrequencyInhalants = (event) => {
+    if (event.key === "Enter" && event.target.value) {
+      const inputValue = event.target.value.trim();
+
+   
+      const optionExists = optionsubstanceAbuseHistoryDataFrequencyInhalants.some(
+        (option) => option.value === inputValue
+      );
+
+      if (!optionExists) {
+        const newOptions = 
+          
+          { value: inputValue, label: inputValue }
+        
+
+        setSubstanceAbuseHistoryDataFrequencyInhalants(newOptions);
+
+
+      }
+
+      event.target.value = "";
+    }
+  };
+
+  const handlesubstanceAbuseHistoryDataFrequencyInhalants = (optionValue) => {
+    setSubstanceAbuseHistoryDataFrequencyInhalants(optionValue);
+  }; 
+
+
+  // length of soberty
+  const optionsubstanceAbuseHistoryDataLengthOfSobrietyInhalants = [
+    { label: "One week", value: "One week" },
+    { label: "A few days ago", value: "A few days ago" },
+    { label: "One month", value: "One month" },
+    { label: "Two months", value: "Two months" },
+    { label: "Three months", value: "Three months" },
+    { label: "Four months", value: "Four months" },
+    { label: "Five to Six months", value: "Five to Six months" },
+    { label: "One year", value: "One year" },
+    { label: "Two years", value: "Two years" },
+    { label: "Many years", value: "Many years" }
+  ];
+
+  const handleKeysubstanceAbuseHistoryDataLengthOfSobrietyInhalants = (event) => {
+    if (event.key === "Enter" && event.target.value) {
+      const inputValue = event.target.value.trim();
+
+   
+      const optionExists = optionsubstanceAbuseHistoryDataLengthOfSobrietyInhalants.some(
+        (option) => option.value === inputValue
+      );
+
+      if (!optionExists) {
+        const newOptions = 
+          
+          { value: inputValue, label: inputValue }
+        
+        setSubstanceAbuseHistoryDataLengthOfSobrietyInhalants(newOptions);
+
+
+      }
+
+      event.target.value = "";
+    }
+  };
+
+  const handlesubstanceAbuseHistoryDataLengthOfSobrietyInhalants = (optionValue) => {
+    setSubstanceAbuseHistoryDataLengthOfSobrietyInhalants(optionValue);
+  };
+
+  // 6
+    // last use
+    const optionsubstanceAbuseHistoryDataLastUseMarijuana = [
+      { label: "Weeks ago", value: "Weeks ago" },
+      { label: "Days ago", value: "Days ago" },
+      { label: "Yesterday", value: "Yesterday" },
+      { label: "Months ago", value: "Months ago" },
+      { label: "Few hours ago", value: "Few hours ago" },
+      { label: "Unsure", value: "Unsure" }
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataLastUseMarijuana = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+  
+     
+        const optionExists = optionsubstanceAbuseHistoryDataLastUseMarijuana.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+          
+  
+          setSubstanceAbuseHistoryDataLastUseMarijuana(newOptions);
+  
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const handlesubstanceAbuseHistoryDataLastUseMarijuana = (optionValue) => {
+      setSubstanceAbuseHistoryDataLastUseMarijuana(optionValue);
+    };
+  
+    // frequancy
+    const optionsubstanceAbuseHistoryDataFrequencyMarijuana = [
+      { label: "Daily", value: "Daily" },
+      { label: "Two to four times weekly", value: "Two to four times weekly" },
+      { label: "Multiple times a day", value: "Multiple times a day" },
+      { label: "Chronic", value: "Chronic" },
+      { label: "Intermittent", value: "Intermittent" },
+      { label: "Only on social events", value: "Only on social events" },
+      { label: "Only on weekends", value: "Only on weekends" },
+      { label: "Few times a month", value: "Few times a month" }
+  
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataFrequencyMarijuana = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+  
+     
+        const optionExists = optionsubstanceAbuseHistoryDataFrequencyMarijuana.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+          
+  
+          setSubstanceAbuseHistoryDataFrequencyMarijuana(newOptions);
+  
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const handlesubstanceAbuseHistoryDataFrequencyMarijuana = (optionValue) => {
+      setSubstanceAbuseHistoryDataFrequencyMarijuana(optionValue);
+    };
+  
+    // length of soberty
+    const optionsubstanceAbuseHistoryDataLengthOfSobrietyMarijuana = [
+      { label: "One week", value: "One week" },
+      { label: "A few days ago", value: "A few days ago" },
+      { label: "One month", value: "One month" },
+      { label: "Two months", value: "Two months" },
+      { label: "Three months", value: "Three months" },
+      { label: "Four months", value: "Four months" },
+      { label: "Five to Six months", value: "Five to Six months" },
+      { label: "One year", value: "One year" },
+      { label: "Two years", value: "Two years" },
+      { label: "Many years", value: "Many years" }
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMarijuana = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+  
+     
+        const optionExists = optionsubstanceAbuseHistoryDataLengthOfSobrietyMarijuana.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+          
+  
+          setSubstanceAbuseHistoryDataLengthOfSobrietyMarijuana(newOptions);
+  
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const handlesubstanceAbuseHistoryDataLengthOfSobrietyMarijuana = (optionValue) => {
+      setSubstanceAbuseHistoryDataLengthOfSobrietyMarijuana(optionValue);
+    };
+
+    // 7
+      // last use
+  const optionsubstanceAbuseHistoryDataLastUseMethamphetamine = [
+    { label: "Weeks ago", value: "Weeks ago" },
+    { label: "Days ago", value: "Days ago" },
+    { label: "Yesterday", value: "Yesterday" },
+    { label: "Months ago", value: "Months ago" },
+    { label: "Few hours ago", value: "Few hours ago" },
+    { label: "Unsure", value: "Unsure" }
+  ];
+
+  const handleKeysubstanceAbuseHistoryDataLastUseMethamphetamine = (event) => {
+    if (event.key === "Enter" && event.target.value) {
+      const inputValue = event.target.value.trim();
+
+   
+      const optionExists = optionsubstanceAbuseHistoryDataLastUseMethamphetamine.some(
+        (option) => option.value === inputValue
+      );
+
+      if (!optionExists) {
+        const newOptions = 
+          
+          { value: inputValue, label: inputValue }
+        
+
+        setSubstanceAbuseHistoryDataLastUseMethamphetamine(newOptions);
+
+       
+      }
+
+      event.target.value = "";
+    }
+  };
+
+  const handlesubstanceAbuseHistoryDataLastUseMethamphetamine = (optionValue) => {
+    setSubstanceAbuseHistoryDataLastUseMethamphetamine(optionValue);
+  };
+
+  // frequancy
+  const optionsubstanceAbuseHistoryDataFrequencyMethamphetamine = [
+    { label: "Daily", value: "Daily" },
+    { label: "Two to four times weekly", value: "Two to four times weekly" },
+    { label: "Multiple times a day", value: "Multiple times a day" },
+    { label: "Chronic", value: "Chronic" },
+    { label: "Intermittent", value: "Intermittent" },
+    { label: "Only on social events", value: "Only on social events" },
+    { label: "Only on weekends", value: "Only on weekends" },
+    { label: "Few times a month", value: "Few times a month" }
+
+  ];
+
+  const handleKeysubstanceAbuseHistoryDataFrequencyMethamphetamine = (event) => {
+    if (event.key === "Enter" && event.target.value) {
+      const inputValue = event.target.value.trim();
+
+   
+      const optionExists = optionsubstanceAbuseHistoryDataFrequencyMethamphetamine.some(
+        (option) => option.value === inputValue
+      );
+
+      if (!optionExists) {
+        const newOptions = 
+          
+          { value: inputValue, label: inputValue }
+        
+
+        setSubstanceAbuseHistoryDataFrequencyMethamphetamine(newOptions);
+
+      }
+
+      event.target.value = "";
+    }
+  };
+
+  const handlesubstanceAbuseHistoryDataFrequencyMethamphetamine = (optionValue) => {
+    setSubstanceAbuseHistoryDataFrequencyMethamphetamine(optionValue);
+  };
+
+  // length of soberty
+  const optionsubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine = [
+    { label: "One week", value: "One week" },
+    { label: "A few days ago", value: "A few days ago" },
+    { label: "One month", value: "One month" },
+    { label: "Two months", value: "Two months" },
+    { label: "Three months", value: "Three months" },
+    { label: "Four months", value: "Four months" },
+    { label: "Five to Six months", value: "Five to Six months" },
+    { label: "One year", value: "One year" },
+    { label: "Two years", value: "Two years" },
+    { label: "Many years", value: "Many years" }
+  ];
+
+  const handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine = (event) => {
+    if (event.key === "Enter" && event.target.value) {
+      const inputValue = event.target.value.trim();
+
+   
+      const optionExists = optionsubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine.some(
+        (option) => option.value === inputValue
+      );
+
+      if (!optionExists) {
+        const newOptions = 
+          
+          { value: inputValue, label: inputValue }
+        
+
+        setSubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine(newOptions);
+
+ 
+      }
+
+      event.target.value = "";
+    }
+  };
+
+  const handlesubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine = (optionValue) => {
+    setSubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine(optionValue);
+  };
+
+  // 8
+    // last use
+    const optionsubstanceAbuseHistoryDataLastUseMethadone = [
+      { label: "Weeks ago", value: "Weeks ago" },
+      { label: "Days ago", value: "Days ago" },
+      { label: "Yesterday", value: "Yesterday" },
+      { label: "Months ago", value: "Months ago" },
+      { label: "Few hours ago", value: "Few hours ago" },
+      { label: "Unsure", value: "Unsure" }
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataLastUseMethadone = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+  
+     
+        const optionExists = optionsubstanceAbuseHistoryDataLastUseMethadone.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+          
+  
+          setSubstanceAbuseHistoryDataLastUseMethadone(newOptions);
+  
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const handlesubstanceAbuseHistoryDataLastUseMethadone = (optionValue) => {
+      setSubstanceAbuseHistoryDataLastUseMethadone(optionValue);
+    };
+  
+    // frequancy
+    const optionsubstanceAbuseHistoryDataFrequencyMethadone = [
+      { label: "Daily", value: "Daily" },
+      { label: "Two to four times weekly", value: "Two to four times weekly" },
+      { label: "Multiple times a day", value: "Multiple times a day" },
+      { label: "Chronic", value: "Chronic" },
+      { label: "Intermittent", value: "Intermittent" },
+      { label: "Only on social events", value: "Only on social events" },
+      { label: "Only on weekends", value: "Only on weekends" },
+      { label: "Few times a month", value: "Few times a month" }
+  
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataFrequencyMethadone = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+  
+     
+        const optionExists = optionsubstanceAbuseHistoryDataFrequencyMethadone.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+          
+  
+          setSubstanceAbuseHistoryDataFrequencyMethadone(newOptions);
+  
+        
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const handlesubstanceAbuseHistoryDataFrequencyMethadone = (optionValue) => {
+      setSubstanceAbuseHistoryDataFrequencyMethadone(optionValue);
+    };
+  
+    // length of soberty
+    const optionsubstanceAbuseHistoryDataLengthOfSobrietyMethadone = [
+      { label: "One week", value: "One week" },
+      { label: "A few days ago", value: "A few days ago" },
+      { label: "One month", value: "One month" },
+      { label: "Two months", value: "Two months" },
+      { label: "Three months", value: "Three months" },
+      { label: "Four months", value: "Four months" },
+      { label: "Five to Six months", value: "Five to Six months" },
+      { label: "One year", value: "One year" },
+      { label: "Two years", value: "Two years" },
+      { label: "Many years", value: "Many years" }
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMethadone = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+  
+     
+        const optionExists = optionsubstanceAbuseHistoryDataLengthOfSobrietyMethadone.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+          
+  
+          setSubstanceAbuseHistoryDataLengthOfSobrietyMethadone(newOptions);
+  
+          
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const hnadlesubstanceAbuseHistoryDataLengthOfSobrietyMethadone = (optionValue) => {
+      setSubstanceAbuseHistoryDataLengthOfSobrietyMethadone(optionValue);
+    };
+
+    // 9
+      // last use
+  const optionsubstanceAbuseHistoryDataLastUseMDMA = [
+    { label: "Weeks ago", value: "Weeks ago" },
+    { label: "Days ago", value: "Days ago" },
+    { label: "Yesterday", value: "Yesterday" },
+    { label: "Months ago", value: "Months ago" },
+    { label: "Few hours ago", value: "Few hours ago" },
+    { label: "Unsure", value: "Unsure" }
+  ];
+
+  const handleKeysubstanceAbuseHistoryDataLastUseMDMA = (event) => {
+    if (event.key === "Enter" && event.target.value) {
+      const inputValue = event.target.value.trim();
+
+   
+      const optionExists = optionsubstanceAbuseHistoryDataLastUseMDMA.some(
+        (option) => option.value === inputValue
+      );
+
+      if (!optionExists) {
+        const newOptions = 
+          
+          { value: inputValue, label: inputValue }
+        
+
+        setSubstanceAbuseHistoryDataLastUseMDMA(newOptions);
+
+      }
+
+      event.target.value = "";
+    }
+  };
+
+  const handlesubstanceAbuseHistoryDataLastUseMDMA = (optionValue) => {
+    setSubstanceAbuseHistoryDataLastUseMDMA(optionValue);
+  };
+
+  // frequancy
+  const optionsubstanceAbuseHistoryDataFrequencyMDMA = [
+    { label: "Daily", value: "Daily" },
+    { label: "Two to four times weekly", value: "Two to four times weekly" },
+    { label: "Multiple times a day", value: "Multiple times a day" },
+    { label: "Chronic", value: "Chronic" },
+    { label: "Intermittent", value: "Intermittent" },
+    { label: "Only on social events", value: "Only on social events" },
+    { label: "Only on weekends", value: "Only on weekends" },
+    { label: "Few times a month", value: "Few times a month" }
+
+  ];
+
+  const handleKeysubstanceAbuseHistoryDataFrequencyMDMA = (event) => {
+    if (event.key === "Enter" && event.target.value) {
+      const inputValue = event.target.value.trim();
+
+   
+      const optionExists = optionsubstanceAbuseHistoryDataFrequencyMDMA.some(
+        (option) => option.value === inputValue
+      );
+
+      if (!optionExists) {
+        const newOptions = 
+          
+          { value: inputValue, label: inputValue }
+        
+
+        setSubstanceAbuseHistoryDataFrequencyMDMA(newOptions);
+
+      }
+
+      event.target.value = "";
+    }
+  };
+
+  const handlesubstanceAbuseHistoryDataFrequencyMDMA = (optionValue) => {
+    setSubstanceAbuseHistoryDataFrequencyMDMA(optionValue);
+  };
+
+  // length of soberty
+  const optionsubstanceAbuseHistoryDataLengthOfSobrietyMDMA = [
+    { label: "One week", value: "One week" },
+    { label: "A few days ago", value: "A few days ago" },
+    { label: "One month", value: "One month" },
+    { label: "Two months", value: "Two months" },
+    { label: "Three months", value: "Three months" },
+    { label: "Four months", value: "Four months" },
+    { label: "Five to Six months", value: "Five to Six months" },
+    { label: "One year", value: "One year" },
+    { label: "Two years", value: "Two years" },
+    { label: "Many years", value: "Many years" }
+  ];
+
+  const handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMDMA = (event) => {
+    if (event.key === "Enter" && event.target.value) {
+      const inputValue = event.target.value.trim();
+
+   
+      const optionExists = optionsubstanceAbuseHistoryDataLengthOfSobrietyMDMA.some(
+        (option) => option.value === inputValue
+      );
+
+      if (!optionExists) {
+        const newOptions = 
+          
+          { value: inputValue, label: inputValue }
+        
+
+        setSubstanceAbuseHistoryDataLengthOfSobrietyMDMA(newOptions);
+
+       
+      }
+
+      event.target.value = "";
+    }
+  };
+
+  const handlesubstanceAbuseHistoryDataLengthOfSobrietyMDMA = (optionValue) => {
+    setSubstanceAbuseHistoryDataLengthOfSobrietyMDMA(optionValue);
+  };
+
+  // 10
+    // last use
+    const optionsubstanceAbuseHistoryDataLastUsePCP = [
+      { label: "Weeks ago", value: "Weeks ago" },
+      { label: "Days ago", value: "Days ago" },
+      { label: "Yesterday", value: "Yesterday" },
+      { label: "Months ago", value: "Months ago" },
+      { label: "Few hours ago", value: "Few hours ago" },
+      { label: "Unsure", value: "Unsure" }
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataLastUsePCP = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+  
+     
+        const optionExists = optionsubstanceAbuseHistoryDataLastUsePCP.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+          
+  
+          setSubstanceAbuseHistoryDataLastUsePCP(newOptions)
+  
+      
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const hnadlesubstanceAbuseHistoryDataLastUsePCP = (optionValue) => {
+      setSubstanceAbuseHistoryDataLastUsePCP(optionValue);
+    };
+  
+    // frequancy
+    const optionsubstanceAbuseHistoryDataFrequencyPCP = [
+      { label: "Daily", value: "Daily" },
+      { label: "Two to four times weekly", value: "Two to four times weekly" },
+      { label: "Multiple times a day", value: "Multiple times a day" },
+      { label: "Chronic", value: "Chronic" },
+      { label: "Intermittent", value: "Intermittent" },
+      { label: "Only on social events", value: "Only on social events" },
+      { label: "Only on weekends", value: "Only on weekends" },
+      { label: "Few times a month", value: "Few times a month" }
+  
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataFrequencyPCP = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+  
+     
+        const optionExists = optionsubstanceAbuseHistoryDataFrequencyPCP.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+          
+          setSubstanceAbuseHistoryDataFrequencyPCP(newOptions);
+  
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const handlesubstanceAbuseHistoryDataFrequencyPCP = (optionValue) => {
+      setSubstanceAbuseHistoryDataFrequencyPCP(optionValue);
+    };
+  
+    // length of soberty
+    const optionsubstanceAbuseHistoryDataLengthOfSobrietyPCP = [
+      { label: "One week", value: "One week" },
+      { label: "A few days ago", value: "A few days ago" },
+      { label: "One month", value: "One month" },
+      { label: "Two months", value: "Two months" },
+      { label: "Three months", value: "Three months" },
+      { label: "Four months", value: "Four months" },
+      { label: "Five to Six months", value: "Five to Six months" },
+      { label: "One year", value: "One year" },
+      { label: "Two years", value: "Two years" },
+      { label: "Many years", value: "Many years" }
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataLengthOfSobrietyPCP = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+  
+     
+        const optionExists = optionsubstanceAbuseHistoryDataLengthOfSobrietyPCP.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+          
+  
+          setSubstanceAbuseHistoryDataLengthOfSobrietyPCP(newOptions);
+  
+       
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const handlesubstanceAbuseHistoryDataLengthOfSobrietyPCP = (optionValue) => {
+      setSubstanceAbuseHistoryDataLengthOfSobrietyPCP(optionValue);
+    };
+
+    // 11
+      // last use
+  const optionsubstanceAbuseHistoryDataLastUsePrescription = [
+    { label: "Weeks ago", value: "Weeks ago" },
+    { label: "Days ago", value: "Days ago" },
+    { label: "Yesterday", value: "Yesterday" },
+    { label: "Months ago", value: "Months ago" },
+    { label: "Few hours ago", value: "Few hours ago" },
+    { label: "Unsure", value: "Unsure" }
+  ];
+
+  const handleKeysubstanceAbuseHistoryDataLastUsePrescription = (event) => {
+    if (event.key === "Enter" && event.target.value) {
+      const inputValue = event.target.value.trim();
+
+   
+      const optionExists = optionsubstanceAbuseHistoryDataLastUsePrescription.some(
+        (option) => option.value === inputValue
+      );
+
+      if (!optionExists) {
+        const newOptions = 
+        
+          { value: inputValue, label: inputValue }
+        
+        setSubstanceAbuseHistoryDataLastUsePrescription(newOptions);
+
+       
+      }
+
+      event.target.value = "";
+    }
+  };
+
+  const handlesubstanceAbuseHistoryDataLastUsePrescription = (optionValue) => {
+    setSubstanceAbuseHistoryDataLastUsePrescription(optionValue);
+  };
+
+  // frequancy
+  const optionsubstanceAbuseHistoryDataFrequencyPrescription = [
+    { label: "Daily", value: "Daily" },
+    { label: "Two to four times weekly", value: "Two to four times weekly" },
+    { label: "Multiple times a day", value: "Multiple times a day" },
+    { label: "Chronic", value: "Chronic" },
+    { label: "Intermittent", value: "Intermittent" },
+    { label: "Only on social events", value: "Only on social events" },
+    { label: "Only on weekends", value: "Only on weekends" },
+    { label: "Few times a month", value: "Few times a month" }
+
+  ];
+
+  const handleKeysubstanceAbuseHistoryDataFrequencyPrescription = (event) => {
+    if (event.key === "Enter" && event.target.value) {
+      const inputValue = event.target.value.trim();
+
+   
+      const optionExists = optionsubstanceAbuseHistoryDataFrequencyPrescription.some(
+        (option) => option.value === inputValue
+      );
+
+      if (!optionExists) {
+        const newOptions = 
+          
+          { value: inputValue, label: inputValue }
+        
+
+        setSubstanceAbuseHistoryDataFrequencyPrescription(newOptions);
+
+      }
+
+      event.target.value = "";
+    }
+  };
+
+  const handlesubstanceAbuseHistoryDataFrequencyPrescription = (optionValue) => {
+    setSubstanceAbuseHistoryDataFrequencyPrescription(optionValue);
+  };
+
+  // length of soberty
+  const optionsubstanceAbuseHistoryDataLengthOfSobrietyPrescription = [
+    { label: "One week", value: "One week" },
+    { label: "A few days ago", value: "A few days ago" },
+    { label: "One month", value: "One month" },
+    { label: "Two months", value: "Two months" },
+    { label: "Three months", value: "Three months" },
+    { label: "Four months", value: "Four months" },
+    { label: "Five to Six months", value: "Five to Six months" },
+    { label: "One year", value: "One year" },
+    { label: "Two years", value: "Two years" },
+    { label: "Many years", value: "Many years" }
+  ];
+
+  const handleKeysubstanceAbuseHistoryDataLengthOfSobrietyPrescription = (event) => {
+    if (event.key === "Enter" && event.target.value) {
+      const inputValue = event.target.value.trim();
+
+   
+      const optionExists = optionsubstanceAbuseHistoryDataLengthOfSobrietyPrescription.some(
+        (option) => option.value === inputValue
+      );
+
+      if (!optionExists) {
+        const newOptions = 
+          
+          { value: inputValue, label: inputValue }
+        
+        setSubstanceAbuseHistoryDataLengthOfSobrietyPrescription(newOptions);
+
+      
+      }
+
+      event.target.value = "";
+    }
+  };
+
+  const hnadlesubstanceAbuseHistoryDataLengthOfSobrietyPrescription = (optionValue) => {
+    setSubstanceAbuseHistoryDataLengthOfSobrietyPrescription(optionValue);
+  };
+
+  // 12
+    // last use
+    const optionsubstanceAbuseHistoryDataLastUseOTC = [
+      { label: "Weeks ago", value: "Weeks ago" },
+      { label: "Days ago", value: "Days ago" },
+      { label: "Yesterday", value: "Yesterday" },
+      { label: "Months ago", value: "Months ago" },
+      { label: "Few hours ago", value: "Few hours ago" },
+      { label: "Unsure", value: "Unsure" }
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataLastUseOTC = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+  
+    //  
+        const optionExists = optionsubstanceAbuseHistoryDataLastUseOTC.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+          
+  
+          setSubstanceAbuseHistoryDataLastUseOTC(newOptions);
+  
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const hnadlesubstanceAbuseHistoryDataLastUseOTC = (optionValue) => {
+      setSubstanceAbuseHistoryDataLastUseOTC(optionValue);
+    };
+  
+    // frequancy
+    const optionsubstanceAbuseHistoryDataFrequencyOTC = [
+      { label: "Daily", value: "Daily" },
+      { label: "Two to four times weekly", value: "Two to four times weekly" },
+      { label: "Multiple times a day", value: "Multiple times a day" },
+      { label: "Chronic", value: "Chronic" },
+      { label: "Intermittent", value: "Intermittent" },
+      { label: "Only on social events", value: "Only on social events" },
+      { label: "Only on weekends", value: "Only on weekends" },
+      { label: "Few times a month", value: "Few times a month" }
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataFrequencyOTC = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+     
+        const optionExists = optionsubstanceAbuseHistoryDataFrequencyOTC.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+        
+  
+          setSubstanceAbuseHistoryDataFrequencyOTC(newOptions);
+  
+      
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const handlesubstanceAbuseHistoryDataFrequencyOTC = (optionValue) => {
+      setSubstanceAbuseHistoryDataFrequencyOTC(optionValue);
+    };
+  
+    // length of soberty
+    const optionsubstanceAbuseHistoryDataLengthOfSobrietyOTC = [
+      { label: "One week", value: "One week" },
+      { label: "A few days ago", value: "A few days ago" },
+      { label: "One month", value: "One month" },
+      { label: "Two months", value: "Two months" },
+      { label: "Three months", value: "Three months" },
+      { label: "Four months", value: "Four months" },
+      { label: "Five to Six months", value: "Five to Six months" },
+      { label: "One year", value: "One year" },
+      { label: "Two years", value: "Two years" },
+      { label: "Many years", value: "Many years" }
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataLengthOfSobrietyOTC = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+  
+     
+        const optionExists = optionsubstanceAbuseHistoryDataLengthOfSobrietyOTC.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+          
+  
+          setSubstanceAbuseHistoryDataLengthOfSobrietyOTC(newOptions);
+
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const handlesubstanceAbuseHistoryDataLengthOfSobrietyOTC = (optionValue) => {
+      setSubstanceAbuseHistoryDataLengthOfSobrietyOTC(optionValue);
+    };
+
+    // 13 additional value
+    const optionotherLastUse = [
+      { label: "Weeks ago", value: "Weeks ago" },
+      { label: "Days ago", value: "Days ago" },
+      { label: "Yesterday", value: "Yesterday" },
+      { label: "Months ago", value: "Months ago" },
+      { label: "Few hours ago", value: "Few hours ago" },
+      { label: "Unsure", value: "Unsure" }
+    ];
+  
+    const handleKeyotherLastUse = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+  
+    //  
+        const optionExists = optionotherLastUse.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+          
+  
+            setOtherLastUse(newOptions);
+  
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const handleotherLastUse = (optionValue) => {
+      setOtherLastUse(optionValue);
+    };
+  
+    // frequancy
+    const optionotherFrequancy = [
+      { label: "Daily", value: "Daily" },
+      { label: "Two to four times weekly", value: "Two to four times weekly" },
+      { label: "Multiple times a day", value: "Multiple times a day" },
+      { label: "Chronic", value: "Chronic" },
+      { label: "Intermittent", value: "Intermittent" },
+      { label: "Only on social events", value: "Only on social events" },
+      { label: "Only on weekends", value: "Only on weekends" },
+      { label: "Few times a month", value: "Few times a month" }
+    ];
+  
+    const handleKeyotherFrequancy = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+     
+        const optionExists = optionotherFrequancy.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+        
+  
+            setOtherFrequancy(newOptions);
+  
+      
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const handleotherFrequancy = (optionValue) => {
+      setOtherFrequancy(optionValue);
+    };
+  
+    // length of soberty
+    const optionOtherlengthOfSobrifty = [
+      { label: "One week", value: "One week" },
+      { label: "A few days ago", value: "A few days ago" },
+      { label: "One month", value: "One month" },
+      { label: "Two months", value: "Two months" },
+      { label: "Three months", value: "Three months" },
+      { label: "Four months", value: "Four months" },
+      { label: "Five to Six months", value: "Five to Six months" },
+      { label: "One year", value: "One year" },
+      { label: "Two years", value: "Two years" },
+      { label: "Many years", value: "Many years" }
+    ];
+  
+    const handleKeyOtherlengthOfSobrifty = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+  
+     
+        const optionExists = optionOtherlengthOfSobrifty.some(
+          (option) => option.value === inputValue
+        );
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+          
+  
+            setOtherLengthOfSobirty(newOptions);
+
+        }
+  
+        event.target.value = "";
+      }
+    };
+
+    const handleOtherlengthOfSobrifty = (optionValue) => {
+      setOtherLengthOfSobirty(optionValue);
+    };
+    
 
   return (
     <>
@@ -5526,7 +6944,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-
                         <Select
                   value={substanceAbuseHistoryDataLastUseAlcohol}
                   onChange={handlersubstanceAbuseHistoryDataLastUseAlcohol}
@@ -5595,14 +7012,13 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         </td>
                         <td>
 
-                          {/* <Select
+                          <Select
                   value={substanceAbuseHistoryDataLengthOfSobrietyAlcohol}
-                  
                   onChange={handlersubstanceAbuseHistoryDataLengthOfSobrietyAlcohol}
                   options={optionsubstanceAbuseHistoryDataLengthOfSobrietyAlcohol}
                   isCreatable={true}
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyAlcohol}
-                /> */}
+                />
 
                           {/* <Form.Select
                             value={
@@ -5651,15 +7067,15 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          {/* <Select
+                          <Select
                   
-                  value={substanceAbuseHistoryDataLastUse}
-                  onChange={substanceAbuseHistoryDataLastUseHandler}
-                  options={substanceAbuseHistoryDataLastUseOption}
+                  value={substanceAbuseHistoryDataLastUseBenzodiazepines}
+                  onChange={handlesubstanceAbuseHistoryDataLastUseBenzodiazepines}
+                  options={optionsubstanceAbuseHistoryDataLastUseBenzodiazepines}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLastUse}
-                /> */}
-                          <Form.Select
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseBenzodiazepines}
+                />
+                          {/* <Form.Select
                             as="select"
                             value={
                               substanceAbuseHistoryDataLastUseBenzodiazepines
@@ -5677,19 +7093,20 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Months ago">Months ago</option>
                             <option value="Few hours ago">Few hours ago</option>
                             <option value="Unsure">Unsure</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          {/* <Select
-                  
-                  value={substanceAbuseHistoryDataFrequency}
-                  onChange={substanceAbuseHistoryDataFrequencyHandler}
-                  options={substanceAbuseHistoryDataFrequencyOption}
-                  isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataFrequency}
-                /> */}
 
-                          <Form.Select
+                          <Select
+                  
+                  value={substanceAbuseHistoryDataFrequencyBenzodiazepines}
+                  onChange={handlesubstanceAbuseHistoryDataFrequencyBenzodiazepines}
+                  options={optionsubstanceAbuseHistoryDataFrequencyBenzodiazepines}
+                  isCreatable={true}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyBenzodiazepines}
+                />
+
+                          {/* <Form.Select
                             value={
                               substanceAbuseHistoryDataFrequencyBenzodiazepines
                             }
@@ -5718,19 +7135,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Few times a month">
                               Few times a month
                             </option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          {/* <Select
-                  value={substanceAbuseHistoryDataLengthOfSobriety}
+                          <Select
+                  value={substanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
                   
-                  onChange={substanceAbuseHistoryDataLengthOfSobrietyHandler}
-                  options={substanceAbuseHistoryDataLengthOfSobrietyOption}
+                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
+                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLengthOfSobriety}
-                /> */}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
+                />
 
-                          <Form.Select
+                          {/* <Form.Select
                             value={
                               substanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines
                             }
@@ -5755,7 +7172,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="One year">One year</option>
                             <option value="Two years">Two years</option>
                             <option value="Many years">Many years</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                       </tr>
                       <tr>
@@ -5774,15 +7191,15 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          {/* <Select
+                          <Select
                   
-                  value={substanceAbuseHistoryDataLastUse}
-                  onChange={substanceAbuseHistoryDataLastUseHandler}
-                  options={substanceAbuseHistoryDataLastUseOption}
+                  value={substanceAbuseHistoryDataLastUseCrack}
+                  onChange={handlesubstanceAbuseHistoryDataLastUseCrack}
+                  options={optionsubstanceAbuseHistoryDataLastUseCrack}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLastUse}
-                /> */}
-                          <Form.Select
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseCrack}
+                />
+                          {/* <Form.Select
                             as="select"
                             value={substanceAbuseHistoryDataLastUseCrack}
                             onChange={(e) =>
@@ -5798,19 +7215,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Months ago">Months ago</option>
                             <option value="Few hours ago">Few hours ago</option>
                             <option value="Unsure">Unsure</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          {/* <Select
+                          <Select
                   
-                  value={substanceAbuseHistoryDataFrequency}
-                  onChange={substanceAbuseHistoryDataFrequencyHandler}
-                  options={substanceAbuseHistoryDataFrequencyOption}
+                  value={substanceAbuseHistoryDataFrequencyCrack}
+                  onChange={handlesubstanceAbuseHistoryDataFrequencyCrack}
+                  options={optionsubstanceAbuseHistoryDataFrequencyCrack}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataFrequency}
-                /> */}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyCrack}
+                />
 
-                          <Form.Select
+                          {/* <Form.Select
                             value={substanceAbuseHistoryDataFrequencyCrack}
                             onChange={(e) =>
                               setSubstanceAbuseHistoryDataFrequencyCrack(
@@ -5837,19 +7254,18 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Few times a month">
                               Few times a month
                             </option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          {/* <Select
-                  value={substanceAbuseHistoryDataLengthOfSobriety}
-                  
-                  onChange={substanceAbuseHistoryDataLengthOfSobrietyHandler}
-                  options={substanceAbuseHistoryDataLengthOfSobrietyOption}
+                          <Select
+                  value={substanceAbuseHistoryDataLengthOfSobrietyCrack}
+                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyCrack}
+                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyCrack}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLengthOfSobriety}
-                /> */}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyCrack}
+                />
 
-                          <Form.Select
+                          {/* <Form.Select
                             value={
                               substanceAbuseHistoryDataLengthOfSobrietyCrack
                             }
@@ -5874,7 +7290,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="One year">One year</option>
                             <option value="Two years">Two years</option>
                             <option value="Many years">Many years</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                       </tr>
                       <tr>
@@ -5893,15 +7309,15 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          {/* <Select
+                          <Select
                   
-                  value={substanceAbuseHistoryDataLastUse}
-                  onChange={substanceAbuseHistoryDataLastUseHandler}
-                  options={substanceAbuseHistoryDataLastUseOption}
+                  value={substanceAbuseHistoryDataLastUseHeroin}
+                  onChange={handlesubstanceAbuseHistoryDataLastUseHeroin}
+                  options={optionsubstanceAbuseHistoryDataLastUseHeroin}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLastUse}
-                /> */}
-                          <Form.Select
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseHeroin}
+                />
+                          {/* <Form.Select
                             as="select"
                             value={substanceAbuseHistoryDataLastUseHeroin}
                             onChange={(e) =>
@@ -5917,19 +7333,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Months ago">Months ago</option>
                             <option value="Few hours ago">Few hours ago</option>
                             <option value="Unsure">Unsure</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          {/* <Select
+                          <Select
                   
-                  value={substanceAbuseHistoryDataFrequency}
-                  onChange={substanceAbuseHistoryDataFrequencyHandler}
-                  options={substanceAbuseHistoryDataFrequencyOption}
+                  value={substanceAbuseHistoryDataFrequencyHeroin}
+                  onChange={handlesubstanceAbuseHistoryDataFrequencyHeroin}
+                  options={optionsubstanceAbuseHistoryDataFrequencyHeroin}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataFrequency}
-                /> */}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyHeroin}
+                />
 
-                          <Form.Select
+                          {/* <Form.Select
                             value={substanceAbuseHistoryDataFrequencyHeroin}
                             onChange={(e) =>
                               setSubstanceAbuseHistoryDataFrequencyHeroin(
@@ -5956,19 +7372,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Few times a month">
                               Few times a month
                             </option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          {/* <Select
-                  value={substanceAbuseHistoryDataLengthOfSobriety}
+                          <Select
+                  value={substanceAbuseHistoryDataLengthOfSobrietyHeroin}
                   
-                  onChange={substanceAbuseHistoryDataLengthOfSobrietyHandler}
-                  options={substanceAbuseHistoryDataLengthOfSobrietyOption}
+                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyHeroin}
+                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyHeroin}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLengthOfSobriety}
-                /> */}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyHeroin}
+                />
 
-                          <Form.Select
+                          {/* <Form.Select
                             value={
                               substanceAbuseHistoryDataLengthOfSobrietyHeroin
                             }
@@ -5993,7 +7409,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="One year">One year</option>
                             <option value="Two years">Two years</option>
                             <option value="Many years">Many years</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                       </tr>
                       <tr>
@@ -6014,15 +7430,15 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          {/* <Select
+                          <Select
                   
-                  value={substanceAbuseHistoryDataLastUse}
-                  onChange={substanceAbuseHistoryDataLastUseHandler}
-                  options={substanceAbuseHistoryDataLastUseOption}
+                  value={substanceAbuseHistoryDataLastUseInhalants}
+                  onChange={handlesubstanceAbuseHistoryDataLastUseInhalants}
+                  options={optionsubstanceAbuseHistoryDataLastUseInhalants}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLastUse}
-                /> */}
-                          <Form.Select
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseInhalants}
+                />
+                          {/* <Form.Select
                             as="select"
                             value={substanceAbuseHistoryDataLastUseInhalants}
                             onChange={(e) =>
@@ -6038,19 +7454,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Months ago">Months ago</option>
                             <option value="Few hours ago">Few hours ago</option>
                             <option value="Unsure">Unsure</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          {/* <Select
+                          <Select
                   
-                  value={substanceAbuseHistoryDataFrequency}
-                  onChange={substanceAbuseHistoryDataFrequencyHandler}
-                  options={substanceAbuseHistoryDataFrequencyOption}
+                  value={substanceAbuseHistoryDataFrequencyInhalants}
+                  onChange={handlesubstanceAbuseHistoryDataFrequencyInhalants}
+                  options={optionsubstanceAbuseHistoryDataFrequencyInhalants}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataFrequency}
-                /> */}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyInhalants}
+                />
 
-                          <Form.Select
+                          {/* <Form.Select
                             value={substanceAbuseHistoryDataFrequencyInhalants}
                             onChange={(e) =>
                               setSubstanceAbuseHistoryDataFrequencyInhalants(
@@ -6077,18 +7493,18 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Few times a month">
                               Few times a month
                             </option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          {/* <Select
-                  value={substanceAbuseHistoryDataLengthOfSobriety}
+                          <Select
+                  value={substanceAbuseHistoryDataLengthOfSobrietyInhalants}
                   
-                  onChange={substanceAbuseHistoryDataLengthOfSobrietyHandler}
-                  options={substanceAbuseHistoryDataLengthOfSobrietyOption}
+                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
+                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLengthOfSobriety}
-                /> */}
-
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
+                />
+{/* 
                           <Form.Select
                             value={
                               substanceAbuseHistoryDataLengthOfSobrietyInhalants
@@ -6114,7 +7530,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="One year">One year</option>
                             <option value="Two years">Two years</option>
                             <option value="Many years">Many years</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                       </tr>
                       <tr>
@@ -6135,15 +7551,15 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          {/* <Select
+                          <Select
                   
-                  value={substanceAbuseHistoryDataLastUse}
-                  onChange={substanceAbuseHistoryDataLastUseHandler}
-                  options={substanceAbuseHistoryDataLastUseOption}
+                  value={substanceAbuseHistoryDataLastUseMarijuana}
+                  onChange={handlesubstanceAbuseHistoryDataLastUseMarijuana}
+                  options={optionsubstanceAbuseHistoryDataLastUseMarijuana}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLastUse}
-                /> */}
-                          <Form.Select
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMarijuana}
+                />
+                          {/* <Form.Select
                             as="select"
                             value={substanceAbuseHistoryDataLastUseMarijuana}
                             onChange={(e) =>
@@ -6159,19 +7575,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Months ago">Months ago</option>
                             <option value="Few hours ago">Few hours ago</option>
                             <option value="Unsure">Unsure</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          {/* <Select
+                          <Select
                   
-                  value={substanceAbuseHistoryDataFrequency}
-                  onChange={substanceAbuseHistoryDataFrequencyHandler}
-                  options={substanceAbuseHistoryDataFrequencyOption}
+                  value={substanceAbuseHistoryDataFrequencyMarijuana}
+                  onChange={handlesubstanceAbuseHistoryDataFrequencyMarijuana}
+                  options={optionsubstanceAbuseHistoryDataFrequencyMarijuana}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataFrequency}
-                /> */}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMarijuana}
+                />
 
-                          <Form.Select
+                          {/* <Form.Select
                             value={substanceAbuseHistoryDataFrequencyMarijuana}
                             onChange={(e) =>
                               setSubstanceAbuseHistoryDataFrequencyMarijuana(
@@ -6198,19 +7614,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Few times a month">
                               Few times a month
                             </option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          {/* <Select
-                  value={substanceAbuseHistoryDataLengthOfSobriety}
+                          <Select
+                  value={substanceAbuseHistoryDataLengthOfSobrietyMarijuana}
                   
-                  onChange={substanceAbuseHistoryDataLengthOfSobrietyHandler}
-                  options={substanceAbuseHistoryDataLengthOfSobrietyOption}
+                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
+                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLengthOfSobriety}
-                /> */}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
+                />
 
-                          <Form.Select
+                          {/* <Form.Select
                             value={
                               substanceAbuseHistoryDataLengthOfSobrietyMarijuana
                             }
@@ -6235,7 +7651,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="One year">One year</option>
                             <option value="Two years">Two years</option>
                             <option value="Many years">Many years</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                       </tr>
                       <tr>
@@ -6256,15 +7672,15 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          {/* <Select
+                          <Select
                   
-                  value={substanceAbuseHistoryDataLastUse}
-                  onChange={substanceAbuseHistoryDataLastUseHandler}
-                  options={substanceAbuseHistoryDataLastUseOption}
+                  value={substanceAbuseHistoryDataLastUseMethamphetamine}
+                  onChange={handlesubstanceAbuseHistoryDataLastUseMethamphetamine}
+                  options={optionsubstanceAbuseHistoryDataLastUseMethamphetamine}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLastUse}
-                /> */}
-                          <Form.Select
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMethamphetamine}
+                />
+                          {/* <Form.Select
                             as="select"
                             value={
                               substanceAbuseHistoryDataLastUseMethamphetamine
@@ -6282,18 +7698,18 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Months ago">Months ago</option>
                             <option value="Few hours ago">Few hours ago</option>
                             <option value="Unsure">Unsure</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          {/* <Select
+                          <Select
                   
-                  value={substanceAbuseHistoryDataFrequency}
-                  onChange={substanceAbuseHistoryDataFrequencyHandler}
-                  options={substanceAbuseHistoryDataFrequencyOption}
+                  value={substanceAbuseHistoryDataFrequencyMethamphetamine}
+                  onChange={handlesubstanceAbuseHistoryDataFrequencyMethamphetamine}
+                  options={optionsubstanceAbuseHistoryDataFrequencyMethamphetamine}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataFrequency}
-                /> */}
-
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMethamphetamine}
+                />
+{/* 
                           <Form.Select
                             value={
                               substanceAbuseHistoryDataFrequencyMethamphetamine
@@ -6323,18 +7739,18 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Few times a month">
                               Few times a month
                             </option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          {/* <Select
-                  value={substanceAbuseHistoryDataLengthOfSobriety}
+                          <Select
+                  value={substanceAbuseHistoryDataLengthOfSobrietyMethamphetamine}
                   
-                  onChange={substanceAbuseHistoryDataLengthOfSobrietyHandler}
-                  options={substanceAbuseHistoryDataLengthOfSobrietyOption}
+                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine}
+                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLengthOfSobriety}
-                /> */}
-
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine}
+                />
+{/* 
                           <Form.Select
                             value={
                               substanceAbuseHistoryDataLengthOfSobrietyMethamphetamine
@@ -6360,7 +7776,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="One year">One year</option>
                             <option value="Two years">Two years</option>
                             <option value="Many years">Many years</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                       </tr>
                       <tr>
@@ -6381,15 +7797,15 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          {/* <Select
+                          <Select
                   
-                  value={substanceAbuseHistoryDataLastUse}
-                  onChange={substanceAbuseHistoryDataLastUseHandler}
-                  options={substanceAbuseHistoryDataLastUseOption}
+                  value={substanceAbuseHistoryDataLastUseMethadone}
+                  onChange={handlesubstanceAbuseHistoryDataLastUseMethadone}
+                  options={optionsubstanceAbuseHistoryDataLastUseMethadone}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLastUse}
-                /> */}
-                          <Form.Select
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMethadone}
+                />
+                          {/* <Form.Select
                             as="select"
                             value={substanceAbuseHistoryDataLastUseMethadone}
                             onChange={(e) =>
@@ -6405,19 +7821,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Months ago">Months ago</option>
                             <option value="Few hours ago">Few hours ago</option>
                             <option value="Unsure">Unsure</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          {/* <Select
+                          <Select
                   
-                  value={substanceAbuseHistoryDataFrequency}
-                  onChange={substanceAbuseHistoryDataFrequencyHandler}
-                  options={substanceAbuseHistoryDataFrequencyOption}
+                  value={substanceAbuseHistoryDataFrequencyMethadone}
+                  onChange={handlesubstanceAbuseHistoryDataFrequencyMethadone}
+                  options={optionsubstanceAbuseHistoryDataFrequencyMethadone}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataFrequency}
-                /> */}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMethadone}
+                />
 
-                          <Form.Select
+                          {/* <Form.Select
                             value={substanceAbuseHistoryDataFrequencyMethadone}
                             onChange={(e) =>
                               setSubstanceAbuseHistoryDataFrequencyMethadone(
@@ -6444,19 +7860,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Few times a month">
                               Few times a month
                             </option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          {/* <Select
-                  value={substanceAbuseHistoryDataLengthOfSobriety}
+                          <Select
+                  value={substanceAbuseHistoryDataLengthOfSobrietyMethadone}
                   
-                  onChange={substanceAbuseHistoryDataLengthOfSobrietyHandler}
-                  options={substanceAbuseHistoryDataLengthOfSobrietyOption}
+                  onChange={hnadlesubstanceAbuseHistoryDataLengthOfSobrietyMethadone}
+                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMethadone}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLengthOfSobriety}
-                /> */}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMethadone}
+                />
 
-                          <Form.Select
+                          {/* <Form.Select
                             value={
                               substanceAbuseHistoryDataLengthOfSobrietyMethadone
                             }
@@ -6481,7 +7897,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="One year">One year</option>
                             <option value="Two years">Two years</option>
                             <option value="Many years">Many years</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                       </tr>
                       <tr>
@@ -6500,15 +7916,15 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          {/* <Select
+                          <Select
                   
-                  value={substanceAbuseHistoryDataLastUse}
-                  onChange={substanceAbuseHistoryDataLastUseHandler}
-                  options={substanceAbuseHistoryDataLastUseOption}
+                  value={substanceAbuseHistoryDataLastUseMDMA}
+                  onChange={handlesubstanceAbuseHistoryDataLastUseMDMA}
+                  options={optionsubstanceAbuseHistoryDataLastUseMDMA}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLastUse}
-                /> */}
-                          <Form.Select
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMDMA}
+                />
+                          {/* <Form.Select
                             as="select"
                             value={substanceAbuseHistoryDataLastUseMDMA}
                             onChange={(e) =>
@@ -6524,19 +7940,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Months ago">Months ago</option>
                             <option value="Few hours ago">Few hours ago</option>
                             <option value="Unsure">Unsure</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          {/* <Select
+                          <Select
                   
-                  value={substanceAbuseHistoryDataFrequency}
-                  onChange={substanceAbuseHistoryDataFrequencyHandler}
-                  options={substanceAbuseHistoryDataFrequencyOption}
+                  value={substanceAbuseHistoryDataFrequencyMDMA}
+                  onChange={handlesubstanceAbuseHistoryDataFrequencyMDMA}
+                  options={optionsubstanceAbuseHistoryDataFrequencyMDMA}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataFrequency}
-                /> */}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMDMA}
+                />
 
-                          <Form.Select
+                          {/* <Form.Select
                             value={substanceAbuseHistoryDataFrequencyMDMA}
                             onChange={(e) =>
                               setSubstanceAbuseHistoryDataFrequencyMDMA(
@@ -6563,19 +7979,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Few times a month">
                               Few times a month
                             </option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          {/* <Select
-                  value={substanceAbuseHistoryDataLengthOfSobriety}
+                          <Select
+                  value={substanceAbuseHistoryDataLengthOfSobrietyMDMA}
                   
-                  onChange={substanceAbuseHistoryDataLengthOfSobrietyHandler}
-                  options={substanceAbuseHistoryDataLengthOfSobrietyOption}
+                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
+                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLengthOfSobriety}
-                /> */}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
+                />
 
-                          <Form.Select
+                          {/* <Form.Select
                             value={
                               substanceAbuseHistoryDataLengthOfSobrietyMDMA
                             }
@@ -6600,7 +8016,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="One year">One year</option>
                             <option value="Two years">Two years</option>
                             <option value="Many years">Many years</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                       </tr>
                       <tr>
@@ -6619,15 +8035,15 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          {/* <Select
+                          <Select
                   
-                  value={substanceAbuseHistoryDataLastUse}
-                  onChange={substanceAbuseHistoryDataLastUseHandler}
-                  options={substanceAbuseHistoryDataLastUseOption}
+                  value={substanceAbuseHistoryDataLastUsePCP}
+                  onChange={hnadlesubstanceAbuseHistoryDataLastUsePCP}
+                  options={optionsubstanceAbuseHistoryDataLastUsePCP}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLastUse}
-                /> */}
-                          <Form.Select
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUsePCP}
+                />
+                          {/* <Form.Select
                             as="select"
                             value={substanceAbuseHistoryDataLastUsePCP}
                             onChange={(e) =>
@@ -6643,19 +8059,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Months ago">Months ago</option>
                             <option value="Few hours ago">Few hours ago</option>
                             <option value="Unsure">Unsure</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          {/* <Select
+                          <Select
                   
-                  value={substanceAbuseHistoryDataFrequency}
-                  onChange={substanceAbuseHistoryDataFrequencyHandler}
-                  options={substanceAbuseHistoryDataFrequencyOption}
+                  value={substanceAbuseHistoryDataFrequencyPCP}
+                  onChange={handlesubstanceAbuseHistoryDataFrequencyPCP}
+                  options={optionsubstanceAbuseHistoryDataFrequencyPCP}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataFrequency}
-                /> */}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyPCP}
+                />
 
-                          <Form.Select
+                          {/* <Form.Select
                             value={substanceAbuseHistoryDataFrequencyPCP}
                             onChange={(e) =>
                               setSubstanceAbuseHistoryDataFrequencyPCP(
@@ -6682,19 +8098,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Few times a month">
                               Few times a month
                             </option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          {/* <Select
-                  value={substanceAbuseHistoryDataLengthOfSobriety}
+                          <Select
+                  value={substanceAbuseHistoryDataLengthOfSobrietyPCP}
                   
-                  onChange={substanceAbuseHistoryDataLengthOfSobrietyHandler}
-                  options={substanceAbuseHistoryDataLengthOfSobrietyOption}
+                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyPCP}
+                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyPCP}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLengthOfSobriety}
-                /> */}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyPCP}
+                />
 
-                          <Form.Select
+                          {/* <Form.Select
                             value={substanceAbuseHistoryDataLengthOfSobrietyPCP}
                             onChange={(e) =>
                               setSubstanceAbuseHistoryDataLengthOfSobrietyPCP(
@@ -6717,7 +8133,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="One year">One year</option>
                             <option value="Two years">Two years</option>
                             <option value="Many years">Many years</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                       </tr>
                       <tr>
@@ -6738,15 +8154,15 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          {/* <Select
+                          <Select
                   
-                  value={substanceAbuseHistoryDataLastUse}
-                  onChange={substanceAbuseHistoryDataLastUseHandler}
-                  options={substanceAbuseHistoryDataLastUseOption}
+                  value={substanceAbuseHistoryDataLastUsePrescription}
+                  onChange={handlesubstanceAbuseHistoryDataLastUsePrescription}
+                  options={optionsubstanceAbuseHistoryDataLastUsePrescription}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLastUse}
-                /> */}
-                          <Form.Select
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUsePrescription}
+                />
+                          {/* <Form.Select
                             as="select"
                             value={substanceAbuseHistoryDataLastUsePrescription}
                             onChange={(e) =>
@@ -6762,19 +8178,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Months ago">Months ago</option>
                             <option value="Few hours ago">Few hours ago</option>
                             <option value="Unsure">Unsure</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          {/* <Select
+                          <Select
                   
-                  value={substanceAbuseHistoryDataFrequency}
-                  onChange={substanceAbuseHistoryDataFrequencyHandler}
-                  options={substanceAbuseHistoryDataFrequencyOption}
+                  value={substanceAbuseHistoryDataFrequencyPrescription}
+                  onChange={handlesubstanceAbuseHistoryDataFrequencyPrescription}
+                  options={optionsubstanceAbuseHistoryDataFrequencyPrescription}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataFrequency}
-                /> */}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyPrescription}
+                />
 
-                          <Form.Select
+                          {/* <Form.Select
                             value={
                               substanceAbuseHistoryDataFrequencyPrescription
                             }
@@ -6803,19 +8219,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Few times a month">
                               Few times a month
                             </option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          {/* <Select
-                  value={substanceAbuseHistoryDataLengthOfSobriety}
+                          <Select
+                  value={substanceAbuseHistoryDataLengthOfSobrietyPrescription}
                   
-                  onChange={substanceAbuseHistoryDataLengthOfSobrietyHandler}
-                  options={substanceAbuseHistoryDataLengthOfSobrietyOption}
+                  onChange={hnadlesubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
+                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLengthOfSobriety}
-                /> */}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
+                />
 
-                          <Form.Select
+                          {/* <Form.Select
                             value={
                               substanceAbuseHistoryDataLengthOfSobrietyPrescription
                             }
@@ -6840,7 +8256,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="One year">One year</option>
                             <option value="Two years">Two years</option>
                             <option value="Many years">Many years</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                       </tr>
                       <tr>
@@ -6859,15 +8275,15 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          {/* <Select
+                          <Select
                   
-                  value={substanceAbuseHistoryDataLastUse}
-                  onChange={substanceAbuseHistoryDataLastUseHandler}
-                  options={substanceAbuseHistoryDataLastUseOption}
+                  value={substanceAbuseHistoryDataLastUseOTC}
+                  onChange={hnadlesubstanceAbuseHistoryDataLastUseOTC}
+                  options={optionsubstanceAbuseHistoryDataLastUseOTC}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLastUse}
-                /> */}
-                          <Form.Select
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseOTC}
+                />
+                          {/* <Form.Select
                             as="select"
                             value={substanceAbuseHistoryDataLastUseOTC}
                             onChange={(e) =>
@@ -6883,19 +8299,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Months ago">Months ago</option>
                             <option value="Few hours ago">Few hours ago</option>
                             <option value="Unsure">Unsure</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          {/* <Select
+                          <Select
                   
-                  value={substanceAbuseHistoryDataFrequency}
-                  onChange={substanceAbuseHistoryDataFrequencyHandler}
-                  options={substanceAbuseHistoryDataFrequencyOption}
+                  value={substanceAbuseHistoryDataFrequencyOTC}
+                  onChange={handlesubstanceAbuseHistoryDataFrequencyOTC}
+                  options={optionsubstanceAbuseHistoryDataFrequencyOTC}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataFrequency}
-                /> */}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyOTC}
+                />
 
-                          <Form.Select
+                          {/* <Form.Select
                             value={substanceAbuseHistoryDataFrequencyOTC}
                             onChange={(e) =>
                               setSubstanceAbuseHistoryDataFrequencyOTC(
@@ -6922,19 +8338,18 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Few times a month">
                               Few times a month
                             </option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          {/* <Select
-                  value={substanceAbuseHistoryDataLengthOfSobriety}
-                  
-                  onChange={substanceAbuseHistoryDataLengthOfSobrietyHandler}
-                  options={substanceAbuseHistoryDataLengthOfSobrietyOption}
+                          <Select
+                  value={substanceAbuseHistoryDataLengthOfSobrietyOTC}
+                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyOTC}
+                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyOTC}
                   isCreatable={true}
-                  onKeyDown={handleKeyDownSubstanceAbuseHistoryDataLengthOfSobriety}
-                /> */}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyOTC}
+                />
 
-                          <Form.Select
+                          {/* <Form.Select
                             value={substanceAbuseHistoryDataLengthOfSobrietyOTC}
                             onChange={(e) =>
                               setSubstanceAbuseHistoryDataLengthOfSobrietyOTC(
@@ -6957,7 +8372,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="One year">One year</option>
                             <option value="Two years">Two years</option>
                             <option value="Many years">Many years</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                       </tr>
 
@@ -6971,7 +8386,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         </tr>
                       ))}
 
-                      <tr>
+                      <tr >
                         <td>
                           Other:
                           <input
@@ -6994,7 +8409,15 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <Form.Select
+                        <Select
+                  value={otherLastUse}
+                  
+                  onChange={handleotherLastUse}
+                  options={optionotherLastUse}
+                  isCreatable={true}
+                  onKeyDown={handleKeyotherLastUse}
+                />
+                          {/* <Form.Select
                             as="select"
                             value={otherLastUse}
                             onChange={(e) => setOtherLastUse(e.target.value)}
@@ -7006,10 +8429,18 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Months ago">Months ago</option>
                             <option value="Few hours ago">Few hours ago</option>
                             <option value="Unsure">Unsure</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          <Form.Select
+                        <Select
+                  value={otherFrequancy}
+                  
+                  onChange={handleotherFrequancy}
+                  options={optionotherFrequancy}
+                  isCreatable={true}
+                  onKeyDown={handleKeyotherFrequancy}
+                />
+                          {/* <Form.Select
                             value={otherFrequancy}
                             onChange={(e) => setOtherFrequancy(e.target.value)}
                           >
@@ -7032,10 +8463,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="Few times a month">
                               Few times a month
                             </option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                         <td>
-                          <Form.Select
+
+                        <Select
+                  value={OtherlengthOfSobrifty}
+                  
+                  onChange={handleOtherlengthOfSobrifty}
+                  options={optionOtherlengthOfSobrifty}
+                  isCreatable={true}
+                  onKeyDown={handleKeyOtherlengthOfSobrifty}
+                />
+                          {/* <Form.Select
                             value={OtherlengthOfSobrifty}
                             onChange={(e) =>
                               setOtherLengthOfSobirty(e.target.value)
@@ -7056,7 +8496,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option value="One year">One year</option>
                             <option value="Two years">Two years</option>
                             <option value="Many years">Many years</option>
-                          </Form.Select>
+                          </Form.Select> */}
                         </td>
                       </tr>
                     </tbody>
@@ -12201,7 +13641,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     {residentGauardianSignature && (
                       <p className="signature_name_print">
                         Digitally Sign by {residentGauardianSignature}{" "}
-                        {residentGuardianDate}
+                        {residentGuardianDate}{" "}
                         {residentGuardianTime}
                       </p>
                     )}
@@ -12253,7 +13693,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <div>
                     {staffSignature && (
                       <p className="signature_name_print">
-                        Digitally Sign by {staffSignature} {staffDate}
+                        Digitally Sign by {staffSignature}{" "} {staffDate}{" "}
                         {staffDateTime}
                       </p>
                     )}
@@ -12331,7 +13771,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <div>
                     {bhpSignature && (
                       <p className="signature_name_print">
-                        Digitally Sign by {bhpSignature} {bhpDate}
+                        Digitally Sign by {bhpSignature}{" "} {bhpDate} {" "}
                         {bhpTime}
                       </p>
                     )}

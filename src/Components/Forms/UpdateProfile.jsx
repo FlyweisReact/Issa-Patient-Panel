@@ -69,14 +69,14 @@ const UpdateProfile = () => {
             <div className="booking-section">
               <h2>User Details</h2>
               <div className="form-field">
-                <label >Profile Image</label>
+                <label >Profile Image:</label>
                 <input
                   type="file"
                  onChange={(e)=>setProfileImage(e.target.files[0])}
                 />
               </div>
               <div className="form-field">
-                <label htmlFor="AHCCCS">Name</label>
+                <label htmlFor="AHCCCS">Name:</label>
                 <input
                   type="text"
                   id="AHCCCS"
@@ -87,7 +87,7 @@ const UpdateProfile = () => {
                 />
               </div>
               <div className="form-field">
-                <label htmlFor="AHCCCS">Contact Number</label>
+                <label htmlFor="AHCCCS">Contact Number:</label>
                 <input
                   type="text"
                   id="AHCCCS"
@@ -98,7 +98,7 @@ const UpdateProfile = () => {
                 />
               </div>
               <div className="form-field">
-                <label htmlFor="AHCCCS">Email Id</label>
+                <label htmlFor="AHCCCS">Email:</label>
                 <input
                   type="email"
                   id="AHCCCS"
@@ -109,7 +109,7 @@ const UpdateProfile = () => {
                 />
               </div>
               <div className="form-field">
-                <label htmlFor="AHCCCS">Gender</label>
+                <label htmlFor="AHCCCS">Gender:</label>
                 <select  value={gender} onChange={(e) => setGender(e.target.value)}>
       <option>Open this select menu</option>
       <option value="Male">Male</option>
@@ -128,7 +128,7 @@ const UpdateProfile = () => {
                 /> */}
               </div>
              
-              <h2>Choose your Slot</h2>
+              
               <div className="form-field">
                 <label htmlFor="programlocation&address">Address</label>
                 <textarea

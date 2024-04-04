@@ -208,9 +208,9 @@ const NursingAssessment = () => {
     suicidalRiskAssessmentDeniesSymptomsBellow,
     setSuicidalRiskAssessmentDeniesSymptomsBellow,
   ] = useState(false);
-  const [behavioralSymptoms, setBehavioralSymptoms] = useState("");
-  const [physicalSymptoms, setPhysicalSymptoms] = useState("");
-  const [psychosocialSymptoms, setPsychosocialSymptoms] = useState("");
+  const [behavioralSymptoms, setBehavioralSymptoms] = useState([]);
+  const [physicalSymptoms, setPhysicalSymptoms] = useState([]);
+  const [psychosocialSymptoms, setPsychosocialSymptoms] = useState([]);
   const [currentMedications, setCurrentMedications] = useState(false);
   const [nutritionDiet, setNutritionDiet] = useState("");
   const [nutritionSpecialDietOrder, setNutritionSpecialDietOrder] =
@@ -293,9 +293,9 @@ function formatDate(dateString) {
     setReviewOfSystemsAllergicImmunologic(getApiData?.reviewOfSystemsAllergicImmunologic);
     setReviewOfSystemsAllergicImmunologicOther(getApiData?.reviewOfSystemsAllergicImmunologicComment)
     setSuicidalRiskAssessmentDeniesSymptomsBellow(getApiData?.suicidalRiskAssessmentDeniesSymptomsBellow);
-    setBehavioralSymptoms(getApiData?.behavioralSymptoms);
-    setPhysicalSymptoms(getApiData?.physicalSymptoms);
-    setPsychosocialSymptoms(getApiData?.psychosocialSymptoms);
+    setBehavioralSymptoms(getApiData?.behavioralSymptoms?getApiData?.behavioralSymptoms:[]);
+    setPhysicalSymptoms(getApiData?.physicalSymptoms?getApiData?.physicalSymptoms:[]);
+    setPsychosocialSymptoms(getApiData?.psychosocialSymptoms?getApiData?.psychosocialSymptoms:[]);
     setCurrentMedications(getApiData?.currentMedications);
     setNutritionDiet(getApiData?.nutritionDiet);
     setNutritionSpecialDietOrder(getApiData?.nutritionSpecialDietOrder);
@@ -463,7 +463,7 @@ reviewOfSystemsHematologyOncology,
 reviewOfSystemsHematologyOncologyomment:reviewOfSystemsHematologyOncologyOther,
 reviewOfSystemsHeadNeckThroat,
 reviewOfSystemsHeadNeckThroatComment:reviewOfSystemsHeadNeckThroatOther,
-reviewOfSystemsIntegumentary,
+reviewOfSystemsIntegumentary:reviewOfSystemsIntegumentary,
 reviewOfSystemsIntegumentaryComment:reviewOfSystemsIntegumentaryOther,
 reviewOfSystemsMusculoskeletal,
 reviewOfSystemsMusculoskeletalComment:reviewOfSystemsMusculoskeletalOther,
@@ -659,6 +659,37 @@ const handlereviewOfSystemsRespiratory = (symptom) => {
 
 const handlereviewOfSystemsAllergicImmunologic = (symptom) => {
   setReviewOfSystemsAllergicImmunologic(prevState => {
+    if (prevState.includes(symptom)) {
+      return prevState.filter(item => item !== symptom);
+    } else {
+      return [...prevState, symptom];
+    }
+  });
+};
+
+// changes ====>
+const handlebehavioralSymptoms = (symptom) => {
+  setBehavioralSymptoms(prevState => {
+    if (prevState?.includes(symptom)) {
+      return prevState?.filter(item => item !== symptom);
+    } else {
+      return [...prevState, symptom];
+    }
+  });
+};
+
+const handlephysicalSymptoms = (symptom) => {
+  setPhysicalSymptoms(prevState => {
+    if (prevState.includes(symptom)) {
+      return prevState.filter(item => item !== symptom);
+    } else {
+      return [...prevState, symptom];
+    }
+  });
+};
+
+const handlerepsychosocialSymptoms = (symptom) => {
+  setPsychosocialSymptoms(prevState => {
     if (prevState.includes(symptom)) {
       return prevState.filter(item => item !== symptom);
     } else {
@@ -1393,18 +1424,18 @@ const handlereviewOfSystemsAllergicImmunologic = (symptom) => {
           <div className="formsheading">
               <h6 style={{ fontWeight: "bold" }}>Review Of Systems</h6>
           </div>
-          <label htmlFor="" className="label-review" style={{fontWeight:"bold"}}>Constitutional:</label>
+          <label  className="label-review" style={{fontWeight:"bold"}}>Constitutional:</label>
 
           <div className="yeschechbox-review">
             <div>
               <input
                 type="checkbox"
-                id="DENIES"
+           
               
                 checked={reviewOfSystemsConstitutional?.includes("DENIES")}
                 onChange={() => handlereviewOfSystemsConstitutional("DENIES")}
               />
-              <label htmlFor="DENIES">DENIES</label>
+              <label >DENIES</label>
             </div>
             <div>
               <input
@@ -1510,13 +1541,13 @@ const handlereviewOfSystemsAllergicImmunologic = (symptom) => {
               onChange={(e)=>setReviewOfSystemsConstitutionalOther(e.target.value)}
             />
           </div>
-          <label htmlFor="" className="label-review" style={{fontWeight:"bold"}}>Cardiovascular:</label>
+          <label  className="label-review" style={{fontWeight:"bold"}}>Cardiovascular:</label>
           <div className="yeschechbox-review">
             
             <div>
               <input
                 type="checkbox"
-                id="DENIES"
+              
                 checked={reviewOfSystemsCardiovascular?.includes("DENIES")}
                 onChange={() => handlereviewOfSystemsCardiovascular("DENIES")}
               />
@@ -2006,8 +2037,7 @@ const handlereviewOfSystemsAllergicImmunologic = (symptom) => {
                 type="checkbox"
                 id="jawClaudication"
                 checked={
-                  reviewOfSystemsHeadNeckThroat?.includes ===
-                  "Jaw Claudication (pain in jaw when chewing)"
+                  reviewOfSystemsHeadNeckThroat?.includes("Jaw Claudication (pain in jaw when chewing)")
                 }
                 onChange={() =>
                   handlereviewOfSystemsHeadNeckThroat(
@@ -2678,8 +2708,8 @@ const handlereviewOfSystemsAllergicImmunologic = (symptom) => {
               <input
                 type="checkbox"
                 id="selfInjuring"
-                checked={behavioralSymptoms === "self-injuring"}
-                onChange={() => setBehavioralSymptoms("self-injuring")}
+                checked={behavioralSymptoms?.includes("self-injuring")}
+                onChange={() => handlebehavioralSymptoms("self-injuring")}
               />
               <label htmlFor="selfInjuring">Self-injuring</label>
             </div>
@@ -2687,8 +2717,8 @@ const handlereviewOfSystemsAllergicImmunologic = (symptom) => {
               <input
                 type="checkbox"
                 id="recklessBehavior"
-                checked={behavioralSymptoms === "reckless behavior"}
-                onChange={() => setBehavioralSymptoms("reckless behavior")}
+                checked={behavioralSymptoms?.includes("reckless behavior")}
+                onChange={() => handlebehavioralSymptoms("reckless behavior")}
               />
               <label htmlFor="recklessBehavior">Reckless behavior</label>
             </div>
@@ -2696,8 +2726,8 @@ const handlereviewOfSystemsAllergicImmunologic = (symptom) => {
               <input
                 type="checkbox"
                 id="impulsiveBehaviors"
-                checked={behavioralSymptoms === "impulsive behaviors"}
-                onChange={() => setBehavioralSymptoms("impulsive behaviors")}
+                checked={behavioralSymptoms?.includes("impulsive behaviors")}
+                onChange={() => handlebehavioralSymptoms("impulsive behaviors")}
               />
               <label htmlFor="impulsiveBehaviors">Impulsive behaviors</label>
             </div>
@@ -2705,8 +2735,8 @@ const handlereviewOfSystemsAllergicImmunologic = (symptom) => {
               <input
                 type="checkbox"
                 id="shiftsInTemperament"
-                checked={behavioralSymptoms === "shifts in temperament"}
-                onChange={() => setBehavioralSymptoms("shifts in temperament")}
+                checked={behavioralSymptoms?.includes("shifts in temperament")}
+                onChange={() => handlebehavioralSymptoms("shifts in temperament")}
               />
               <label htmlFor="shiftsInTemperament">Shifts in temperament</label>
             </div>
@@ -2715,11 +2745,11 @@ const handlereviewOfSystemsAllergicImmunologic = (symptom) => {
                 type="checkbox"
                 id="noLongerEnjoyingActivities"
                 checked={
-                  behavioralSymptoms ===
-                  "no longer enjoying previous activities"
+                  behavioralSymptoms?.includes
+                  ("no longer enjoying previous activities")
                 }
                 onChange={() =>
-                  setBehavioralSymptoms(
+                  handlebehavioralSymptoms(
                     "no longer enjoying previous activities"
                   )
                 }
@@ -2733,10 +2763,10 @@ const handlereviewOfSystemsAllergicImmunologic = (symptom) => {
                 type="checkbox"
                 id="talkingOrWritingAboutDeath"
                 checked={
-                  behavioralSymptoms === "talking or writing about death"
+                  behavioralSymptoms?.includes("talking or writing about death")
                 }
                 onChange={() =>
-                  setBehavioralSymptoms("talking or writing about death")
+                  handlebehavioralSymptoms("talking or writing about death")
                 }
               />
               <label htmlFor="talkingOrWritingAboutDeath">
@@ -2751,8 +2781,8 @@ const handlereviewOfSystemsAllergicImmunologic = (symptom) => {
               <input
                 type="checkbox"
                 id="insomniap"
-                checked={physicalSymptoms === "insomnia"}
-                onChange={() => setPhysicalSymptoms("insomnia")}
+                checked={physicalSymptoms?.includes("insomnia")}
+                onChange={() => handlephysicalSymptoms("insomnia")}
               />
               <label htmlFor="insomniap">Insomnia</label>
             </div>
@@ -2760,8 +2790,8 @@ const handlereviewOfSystemsAllergicImmunologic = (symptom) => {
               <input
                 type="checkbox"
                 id="hypersomnia"
-                checked={physicalSymptoms === "hypersomnia"}
-                onChange={() => setPhysicalSymptoms("hypersomnia")}
+                checked={physicalSymptoms?.includes("hypersomnia")}
+                onChange={() => handlephysicalSymptoms("hypersomnia")}
               />
               <label htmlFor="hypersomnia">Hypersomnia</label>
             </div>
@@ -2769,8 +2799,8 @@ const handlereviewOfSystemsAllergicImmunologic = (symptom) => {
               <input
                 type="checkbox"
                 id="changesInAppetite"
-                checked={physicalSymptoms === "changes in appetite"}
-                onChange={() => setPhysicalSymptoms("changes in appetite")}
+                checked={physicalSymptoms?.includes("changes in appetite")}
+                onChange={() => handlephysicalSymptoms("changes in appetite")}
               />
               <label htmlFor="changesInAppetite">Changes in appetite</label>
             </div>
@@ -2778,8 +2808,8 @@ const handlereviewOfSystemsAllergicImmunologic = (symptom) => {
               <input
                 type="checkbox"
                 id="weightLossGain"
-                checked={physicalSymptoms === "weight loss/gain"}
-                onChange={() => setPhysicalSymptoms("weight loss/gain")}
+                checked={physicalSymptoms?.includes("weight loss/gain")}
+                onChange={() => handlephysicalSymptoms("weight loss/gain")}
               />
               <label htmlFor="weightLossGain">Weight loss/gain</label>
             </div>
@@ -2787,8 +2817,8 @@ const handlereviewOfSystemsAllergicImmunologic = (symptom) => {
               <input
                 type="checkbox"
                 id="panicAttacks"
-                checked={physicalSymptoms === "panic attacks"}
-                onChange={() => setPhysicalSymptoms("panic attacks")}
+                checked={physicalSymptoms?.includes("panic attacks")}
+                onChange={() => handlephysicalSymptoms("panic attacks")}
               />
               <label htmlFor="panicAttacks">Panic attacks</label>
             </div>
@@ -2799,9 +2829,9 @@ const handlereviewOfSystemsAllergicImmunologic = (symptom) => {
               <input
                 type="checkbox"
                 id="helplessnessHopelessness"
-                checked={psychosocialSymptoms === "helplessness/hopelessness"}
+                checked={psychosocialSymptoms?.includes("helplessness/hopelessness")}
                 onChange={() =>
-                  setPsychosocialSymptoms("helplessness/hopelessness")
+                  handlerepsychosocialSymptoms("helplessness/hopelessness")
                 }
               />
               <label htmlFor="helplessnessHopelessness">
@@ -2812,8 +2842,8 @@ const handlereviewOfSystemsAllergicImmunologic = (symptom) => {
               <input
                 type="checkbox"
                 id="worthlessness"
-                checked={psychosocialSymptoms === "worthlessness"}
-                onChange={() => setPsychosocialSymptoms("worthlessness")}
+                checked={psychosocialSymptoms?.includes("worthlessness")}
+                onChange={() => handlerepsychosocialSymptoms("worthlessness")}
               />
               <label htmlFor="worthlessness">Worthlessness</label>
             </div>
@@ -2821,8 +2851,8 @@ const handlereviewOfSystemsAllergicImmunologic = (symptom) => {
               <input
                 type="checkbox"
                 id="depression"
-                checked={psychosocialSymptoms === "depression"}
-                onChange={() => setPsychosocialSymptoms("depression")}
+                checked={psychosocialSymptoms?.includes("depression")}
+                onChange={() => handlerepsychosocialSymptoms("depression")}
               />
               <label htmlFor="depression">Depression</label>
             </div>
@@ -2830,26 +2860,26 @@ const handlereviewOfSystemsAllergicImmunologic = (symptom) => {
               <input
                 type="checkbox"
                 id="anxiety"
-                checked={psychosocialSymptoms === "anxiety"}
-                onChange={() => setPsychosocialSymptoms("anxiety")}
+                checked={psychosocialSymptoms?.includes("anxiety")}
+                onChange={() => handlerepsychosocialSymptoms("anxiety")}
               />
               <label htmlFor="anxiety">Anxiety</label>
             </div>
             <div>
               <input
                 type="checkbox"
-                id="moodSwings"
-                checked={psychosocialSymptoms === "mood swings"}
-                onChange={() => setPsychosocialSymptoms("mood swings")}
+                id="moodSwings1111"
+                checked={psychosocialSymptoms?.includes("mood swings")}
+                onChange={() => handlerepsychosocialSymptoms("mood swings")}
               />
-              <label htmlFor="moodSwings">Mood swings</label>
+              <label htmlFor="moodSwings1111">Mood swings</label>
             </div>
             <div>
               <input
                 type="checkbox"
                 id="irritable"
-                checked={psychosocialSymptoms === "Irritable"}
-                onChange={() => setPsychosocialSymptoms("Irritable")}
+                checked={psychosocialSymptoms?.includes("Irritable")}
+                onChange={() => handlerepsychosocialSymptoms("Irritable")}
               />
               <label htmlFor="irritable">Irritable</label>
             </div>
@@ -2858,10 +2888,10 @@ const handlereviewOfSystemsAllergicImmunologic = (symptom) => {
                 type="checkbox"
                 id="residentContractsForSafety"
                 checked={
-                  psychosocialSymptoms === "Resident contracts for safety"
+                  psychosocialSymptoms?.includes("Resident contracts for safety")
                 }
                 onChange={() =>
-                  setPsychosocialSymptoms("Resident contracts for safety")
+                  handlerepsychosocialSymptoms("Resident contracts for safety")
                 }
               />
               <label htmlFor="residentContractsForSafety">
@@ -2873,11 +2903,11 @@ const handlereviewOfSystemsAllergicImmunologic = (symptom) => {
                 type="checkbox"
                 id="residentSafetyPlanCompleted"
                 checked={
-                  psychosocialSymptoms ===
-                  "Resident Safety Plan to be completed within 48 hours of admission"
+                  psychosocialSymptoms?.includes
+                  ("Resident Safety Plan to be completed within 48 hours of admission")
                 }
                 onChange={() =>
-                  setPsychosocialSymptoms(
+                  handlerepsychosocialSymptoms(
                     "Resident Safety Plan to be completed within 48 hours of admission"
                   )
                 }

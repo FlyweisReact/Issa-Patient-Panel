@@ -18,11 +18,22 @@ const Treatmentplan_update = () => {
 
   const handlePrint2 = () => {
     var elements = document.getElementsByClassName("hidePrint");
+    var hidePrintButton=document.getElementsByClassName("hidePrintButton");
+    var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
 
     // Iterate through each element with the specified class
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
     }
+
+    for (let i = 0; i < hidePrintButton.length; i++) {
+      hidePrintButton[i].style.display = "none";
+    }
+
+    for (let i = 0; i < signatureRightAndSide.length; i++) {
+      signatureRightAndSide[i].style.justifyContent = "right";
+    }
+
 
     // Trigger the print action
     handlePrint();
@@ -30,8 +41,19 @@ const Treatmentplan_update = () => {
     // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
     setTimeout(() => {
       for (var i = 0; i < elements.length; i++) {
-        elements[i].style.display = "block";
+        elements[i].style.display = "flex";
+        elements[i].style.justifyContent = "center";
       }
+
+      for (let i = 0; i < hidePrintButton.length; i++) {
+        hidePrintButton[i].style.display = "flex";
+      }
+
+      for (let i = 0; i < signatureRightAndSide.length; i++) {
+        signatureRightAndSide[i].style.justifyContent = "space-between";
+      }
+
+
     }, 1000);
   };
   // model data
@@ -3126,80 +3148,19 @@ useEffect(()=>{
                   />
                   <label>Other</label>
                   {interventionsImplementedBoolean && (
-                      // <AutosizeInput
-                      //   type="text"
-                      //   inputStyle={{ border: "none", outline: "none" }}
-                      //   placeholder="________"
-                      //   value={interventionsImplementedOther}
-                      //   onChange={(e) =>
-                      //     setInterventionsImplementedOther(e.target.value)
-                      //   }
-                      // />
                       <AutoSize value={interventionsImplementedOther} setValue={setInterventionsImplementedOther}  placeholder="________"/>
                     )}
                 </div>
               </div>
-              {/* <div className="yeschechbox-review">
-                  {[
-                    "Psychiatric services",
-                    "Communication Skills",
-                    "Verbal Prompt",
-                    "Interactive Feedback",
-                    "Encouragement",
-                    "Role-Play",
-                    "Sponsors, and support programs & people",
-                    "Review of Treatment Plan",
-                    "Relaxation techniques",
-                    "Reframing",
-                    "Conflict resolution",
-                    "Rehearsal, Spiritual exploration",
-                    "Values clarification, Psycho-education",
-                    "Exploring feelings",
-                    "Distraction",
-                    "Redirection",
-                    "None reported",
-                    "Other",
-                  ].map((intervention, index) => (
-                    <div key={index}>
-                      <input
-                        type="checkbox"
-                        id={`interventionCheckbox${index}`}
-                        checked={interventionsImplemented.includes(intervention)}
-                        onChange={() => handleCheckboxChange(intervention)}
-                      />
-                      <label htmlFor={`interventionCheckbox${index}`}>
-                        {intervention}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-  
-                {interventionsImplementedBoolean && (
-                  <div className="form-field">
-                    <label htmlFor="programlocation&addresstypeOfOtherBoolean">
-                      Comments
-                    </label>
-                    <textarea
-                      id="programlocation&addresstypeOfOtherBoolean"
-                      value={interventionsImplementedOther}
-                      placeholder="Enter text"
-                      rows={2}
-                      cols={82}
-                      required
-                      onChange={(e) =>
-                        setInterventionsImplementedOther(e.target.value)
-                      }
-                    />
-                  </div>
-                )} */}
+           
 
               <label className="label-review">Counseling and Frequency:</label>
-              <div className="formsheading">
-                <p className="inLine_box_style">
+              <div className="formsheading-treatment">
+                <div className="inLine_box_style">
                   <p>Total of minimum </p>{" "}
                   <div>
                     <input
-                      style={{ outline: "none", border: "none" ,width:"40px",marginBottom:"10px"}}
+                      style={{ outline: "none", border: "none" ,width:"40px",marginBottom:"13px"}}
                       placeholder="__________"
                       type="text"
                       value={minimumHoure}
@@ -3208,7 +3169,7 @@ useEffect(()=>{
                     />
                   </div>
                   <p>hours daily.</p>
-                </p>
+                </div>
               </div>
               {/* <div className="yeschechbox-review">
                 <div>
@@ -5849,8 +5810,8 @@ useEffect(()=>{
           
              
 
-              <div class="file-upload-box hidePrint" style={{marginTop:"0.5rem"}}>
-                <div className="file-upload-box-child">
+              <div class="file-upload-box" style={{marginTop:"0.5rem"}}>
+                <div className="file-upload-box-child hidePrint">
                   <button
                     className="upload-button1"
                     type="button"
@@ -5911,8 +5872,8 @@ useEffect(()=>{
               </div>
             </div>
 
-            <div class="file-upload-box hidePrint" style={{marginTop:"0.2rem"}}>
-              <div className="file-upload-box-child">
+            <div class="file-upload-box " style={{marginTop:"0.2rem"}}>
+              <div className="file-upload-box-child hidePrint">
                 <button
                   className="upload-button1"
                   type="button"
@@ -5970,8 +5931,8 @@ useEffect(()=>{
               </div>
             </div>
 
-            <div class="file-upload-box hidePrint" style={{marginTop:"0.2rem"}}>
-              <div className="file-upload-box-child">
+            <div class="file-upload-box " style={{marginTop:"0.2rem"}}>
+              <div className="file-upload-box-child hidePrint">
                 <div>
                   <button
                     className="upload-button1"

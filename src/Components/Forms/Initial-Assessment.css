@@ -691,6 +691,11 @@ input[type="checkbox"] {
 
 }
 
+.formsheading-treatment{
+  margin-top: 0rem;
+  margin-bottom: 0.5rem;
+}
+
 .formsheading h6 {
   font-weight: 500;
   font-size: 20px;
