@@ -21,12 +21,13 @@ const Home1 = ({ Wcomponenet }) => {
   useEffect(() => {
     const handleResize = () => {
       // Set a threshold for the window width to determine if it's a desktop screen
-      const isDesktop = window.innerWidth > 768; // You can adjust this threshold as needed
-        const isDeskWidth=window.innerWidth < 480;
+      const isDesktop = window.innerWidth < 768; // You can adjust this threshold as needed
+        const isDesktopMobile=window.innerWidth < 480;
       // Set the state based on the condition
       
       setcompleteintakeModalopne(isDesktop);
-      setIsMenuOpen(isDeskWidth);
+      setIsMenuOpen(isDesktop);
+      setIsMenuOpen(isDesktopMobile);
     };
 
     // Add event listener for window resize
@@ -66,15 +67,14 @@ const Home1 = ({ Wcomponenet }) => {
   // Return a new component that wraps the provided WrappedComponent
   return (
     <>
-      <div className={`Hoc ${isMenuOpen ? 'menu-open' : ''}`}>
+      <div className={`Hoc ${isMenuOpen ? 'menu-open' : 'menu-open'}`}>
         <div className={` ${isMenuOpen ? 'sidebar1' : ''}`}>
          <Sidebar   isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
         </div> 
-        <div>
+        <div >
           <UpperBar isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
           {Wcomponenet && <Wcomponenet />}
         </div>
-       
       </div>
       
       {/* Notification Modal */}

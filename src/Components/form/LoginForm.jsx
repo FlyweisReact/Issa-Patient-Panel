@@ -3,7 +3,7 @@ import "./form.css";
 import { Button, Carousel, Form } from "react-bootstrap";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import Loader from "../../Pages/LandingPage/Loader";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Store } from "react-notifications-component";
@@ -37,9 +37,13 @@ export const LoginForm = () => {
   const [newPassword1, setNewPassword1] = useState(false);
   const [newPassword, setNewPassword] = useState("");
   const [userId1, setUserId1] = useState("");
+
+  // loading state
+  const [loading,setLoading]=useState(false);
+
   const loginHandler = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
       const response = await axios.post(`${BaseUrl}Patient/signin`, {
         email: userId,
@@ -61,6 +65,7 @@ export const LoginForm = () => {
         },
       });
       navigate("/patient_panel");
+      setLoading(false);
     } catch (error) {
       console.log(error);
       Store.addNotification({
@@ -76,6 +81,7 @@ export const LoginForm = () => {
           onScreen: true,
         },
       });
+      setLoading(false);
     }
   };
 
@@ -173,7 +179,7 @@ export const LoginForm = () => {
     <div>
       <div className="container-login-page">
         <div className="left-div-login-page">
-          {/* <Carousel controls={false}>
+        <Carousel controls={false}>
             <Carousel.Item interval={2000}>
               <Carousel.Caption className="text-center">
                 <p>
@@ -203,14 +209,20 @@ export const LoginForm = () => {
                   rhoncus nisl. Ut accumsan porttitor mi, sed hendrerit felis
                   rutrum eu. Pellentesque eget velit et ligula volutpat
                   malesuada quis a tellus. Sed sollicitudin sodales pharetra.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Quisque a volutpat arcu, sit amet suscipit justo. Integer et
+                  augue quis nibh accumsan ornare. Ut id finibus urna, cursus
+                  rhoncus nisl. Ut accumsan porttitor mi, sed hendrerit felis
+                  rutrum eu. Pellentesque eget velit et ligula volutpat
+                  malesuada quis a tellus. Sed sollicitudin sodales pharetra.
+                  
                 </p>
               </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item interval={2000}>
               <Carousel.Caption className="text-center">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Quisque a volutpat arcu
+                  Lorem ipsum 
                 </p>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -222,8 +234,8 @@ export const LoginForm = () => {
                 </p>
               </Carousel.Caption>
             </Carousel.Item>
-          </Carousel> */}
-          <div className="allo">
+          </Carousel>
+          {/* <div className="allo">
             <Slider ref={sliderRef} {...settings}>
               <div className="text-center">
                 <p>
@@ -272,9 +284,9 @@ export const LoginForm = () => {
               <div className="slider-button" onClick={() => goToSlide(0)}></div>
               <div className="slider-button" onClick={() => goToSlide(1)}></div>
               <div className="slider-button" onClick={() => goToSlide(2)}></div>
-              {/* Add more buttons as needed */}
+            
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div
@@ -337,8 +349,10 @@ export const LoginForm = () => {
                       marginTop: "2rem",
                     }}
                   >
+                    <div style={{marginTop:"0.5rem",marginBottom:"0.5rem",textAlign:"center"}}>
+                      {loading && <Loader/>}
+                    </div>
                     <Button
-                      // onClick={() => navigate("/dashboard/contacts")}
                       onClick={loginHandler}
                       style={{
                         backgroundColor: "#0C5C75",
@@ -351,7 +365,7 @@ export const LoginForm = () => {
                       variant="primary"
                       type="submit"
                     >
-                      LOG IN
+                      LOG IN 
                     </Button>
 
                     <p

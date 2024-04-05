@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../img/OasisNotes.png"
 import { show_notification } from "../../Api_Collection/Api.js";
 
+
 const Sidebar = ({ isMenuOpen, toggleMenu }) => {
   const navigate = useNavigate();
   const [activeItem, setActiveItem] = useState(null);
@@ -25,10 +26,11 @@ const Sidebar = ({ isMenuOpen, toggleMenu }) => {
   };
 
   return (
+    
     <div  className="sidebar">
       <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
       <div className="logo" >
-          <img src={logo} />
+          <img src={logo} alt="image not found"/>
       </div>
       </div>
       <span className="closeButton" onClick={toggleMenu}>
@@ -56,30 +58,7 @@ const Sidebar = ({ isMenuOpen, toggleMenu }) => {
         </Link>
         <div className={`text ${isItemActive("home")}`}>Intake</div>
       </div>
-      {/* <div
-        className={`menu-item ${isItemActive("appointment_scheduling")}`}
-        onClick={() => handleItemClick("appointment_scheduling")}
-      >
-        <Link to={"/appointment_scheduling"}>
-          <div className="icon1">
-            <IoPeopleOutline />
-          </div>
-        </Link>
-        <div className={`text ${isItemActive("home")}`}>
-          Appointment Scheduling
-        </div>
-      </div> */}
-      {/* <div
-        className={`menu-item ${isItemActive("profile")}`}
-        onClick={() => handleItemClick("profile")}
-      >
-        <Link to={"/profile"}>
-          <div className="icon1">
-            <CgProfile />
-          </div>
-        </Link>
-        <div className={`text ${isItemActive("home")}`}>Profile</div>
-      </div> */}
+     
       <div
         className={`menu-item ${isItemActive("logout")}`}
         onClick={() => handleItemClick("logout")}
@@ -100,6 +79,7 @@ const Sidebar = ({ isMenuOpen, toggleMenu }) => {
         <div className={`text ${isItemActive("home")}`}>Logout</div>
       </div>
     </div>
+
   );
 };
 

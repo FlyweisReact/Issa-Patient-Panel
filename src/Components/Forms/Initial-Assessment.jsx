@@ -2631,6 +2631,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
       currentBehavioralIssues,
       medicalConditions: otherConditionArrayTempAns,
       SignificantFamilyMedicalPsychiatricHistory:SignificantFamilyMedicalPsychiatricHistoryArray,
+      
       // insidee the array handle by backend
       mentalHealthTreatmentHistory:typeOfServiceArray,
      

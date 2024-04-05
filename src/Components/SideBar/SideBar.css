@@ -123,4 +123,13 @@
     font-size: 50px;
   }
   
+.sidebar {
+  height: 100;
+  width: 70%;
+  background-color: #1A9FB2;
+  color: #fff;
+  padding-top: 20px;
+  position: fixed;
+}
+  
 }

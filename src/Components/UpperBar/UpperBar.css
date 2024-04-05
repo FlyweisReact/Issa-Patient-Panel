@@ -73,6 +73,10 @@
     flex-direction: column;
   }
 
+  .right-section img {
+    margin-top: 5px;
+  }
+
 }
 
 /* Add this rule to your CSS */

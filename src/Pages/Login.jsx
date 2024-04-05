@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./login.css";
 import logo from "../img/OnlyLogo.png"
 import logoWithOssianNotes from "../img/OasisNotes.png"
 import { Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { login_user } from "../Api_Collection/Api.js";
+import Loader from './LandingPage/Loader';
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,7 +19,7 @@ const Login = () => {
       email,
       password,
     };
-    login_user(data, navigate);
+    login_user(data, navigate,);
   };
   return (
     <div className="main-div-login">
@@ -59,7 +61,7 @@ const Login = () => {
             />
           </Form.Group>
           <button className="login-btn" type="submit">
-            Login
+            Login fgfh
           </button>
         </Form>
       </div>

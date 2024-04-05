@@ -113,19 +113,19 @@ const Appointments = () => {
       </div>
       <div className='Schedulingcards'>
         <div className="Scheduling-card">
-          <img src={scheduling1} alt="Icon" className="card-icon" />
+          <img src={scheduling1} alt="Icon" className="card-icon-appointment" />
           <Link to={'/booknewappointment'}>
             <p>Book New Appointment</p>
           </Link>
         </div>
         <div className="Scheduling-card">
-          <img src={scheduling2} alt="Icon" className="card-icon" />
+          <img src={scheduling2} alt="Icon" className="card-icon-appointment" />
           <Link to={'/appointmenthistory'}>
             <p>Appointment History</p>
           </Link>
         </div>
         <div className="Scheduling-card">
-          <img src={scheduling3} alt="Icon" className="card-icon" />
+          <img src={scheduling3} alt="Icon" className="card-icon-appointment" />
           <Link to={'/manageappointment'}>
             <p>Manage Appointments</p>
           </Link>

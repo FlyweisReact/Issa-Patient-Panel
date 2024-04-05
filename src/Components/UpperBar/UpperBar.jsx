@@ -120,13 +120,15 @@ const UpperBar = ({ isMenuOpen, toggleMenu }) => {
   return (
     <>
       <div className="navbar1">
+        <div>
         <div className="left-section">
           <span>
             <MdOutlineSegment onClick={toggleMenu} color="#1A9FB2" size={25} style={{cursor:"pointer"}}/>
           </span>
           <span>Welcome,</span>
           <h6>{user?.fullName}</h6>
-          <img src={sun} alt="" />
+        </div>
+        <p>How can we help you today?</p>
         </div>
         <div className="right-section">
           <img src={profile} alt="" onClick={openProfileModal} />

@@ -179,6 +179,7 @@
 
   .formsheading_updated_treatment{
     width: 100%;
+    height: auto;
   }
   
   .formsheading_updated_treatment_nursing{
@@ -187,6 +188,8 @@
 
   .formsheading_faceSheet{
     width: 100%;
+    height: auto;
+    padding: 10px 0;
   }
   .formsheading_safety_plane{
     width: 100%;
@@ -194,6 +197,7 @@
 
   .formsheading-initial-assestment{
     width: 100%;
+    height: auto;
   }
 
 }
