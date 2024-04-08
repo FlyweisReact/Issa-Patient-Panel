@@ -13,97 +13,19 @@ import { user_detail, initialAssestment_form,initial_assestment_get } from "../.
 import Select from "react-select";
 import SingInUpdateModel from "../Modal/SingInUpdateModel";
 import Draftinmodel from "../Modal/Draftinmodel";
-import Initial_Assessment_print from "./Initial_Assessment_print"
-
 import { useReactToPrint } from "react-to-print";
-import { Form } from "react-bootstrap";
+
 import AutoSize from "../AutoSize/AutoSize";
 
-const InitialAssessment = () => {
+const Initial_Assessment_print = ({componentRef}) => {
   const navigate = useNavigate();
-  const componentRef = React.useRef();
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-  });
 
-  let hideData = document.getElementsByClassName("hidaData");
+  
 
-  for (let i = 0; i < hideData.length; i++) {
-    hideData[i].style.display = "none";
-  }
-
-
-  // const handlePrint2 = () => {
-  //   var elements = document.getElementsByClassName("hidePrint");
-
-  //   for (var i = 0; i < elements.length; i++) {
-  //     elements[i].style.display = "none";
-  //   }
-
-  //       for (let i = 0; i < hideData.length; i++) {
-  //         hideData[i].style.display = "block";
-  //       }
-    
-  //   handlePrint();
-
-  //   setTimeout(() => {
-  //     for (var i = 0; i < elements.length; i++) {
-  //       elements[i].style.display = "block";
-  //     }
-
-  //   for (let i = 0; i < hideData.length; i++) {
-  //     hideData[i].style.display = "none";
-  //   }
-
-  //   }, 1000);
-  // };
-
-  const handlePrint2 = () => {
-    var elements = document.getElementsByClassName("hidePrint");
-    var hidePrintButton = document.getElementsByClassName("hidePrintButton");
-    var signatureRightAndSide =
-      document.getElementsByClassName("file-upload-box");
-
-    for (let i = 0; i < hideData.length; i++) {
-      hideData[i].style.display = "block";
-    }
-
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].style.display = "none";
-    }
-
-    for (let i = 0; i < hidePrintButton.length; i++) {
-      hidePrintButton[i].style.display = "none";
-    }
-
-    for (let i = 0; i < signatureRightAndSide.length; i++) {
-      signatureRightAndSide[i].style.justifyContent = "right";
-    }
-
-    handlePrint();
-
-    setTimeout(() => {
-      for (var i = 0; i < elements.length; i++) {
-        elements[i].style.display = "flex";
-        elements[i].style.justifyContent = "center";
-      }
-
-      for (let i = 0; i < hidePrintButton.length; i++) {
-        hidePrintButton[i].style.display = "flex";
-      }
-
-      for (let i = 0; i < signatureRightAndSide.length; i++) {
-        signatureRightAndSide[i].style.justifyContent = "space-between";
-      }
-
-      for (let i = 0; i < hideData.length; i++) {
-        hideData[i].style.display = "none";
-      }
-    }, 1000);
-  };
 
   //singin model
   const [draftModel, setDraftModel] = useState(false);
+  //  all model
   const [signInModel1, setSigInModel1] = useState(false);
   const [signInModel2, setSigInModel2] = useState(false);
   const [signInModel3, setSigInModel3] = useState(false);
@@ -2143,889 +2065,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
   const handleSelectChange = (selectedOptions) => {
     setResidentStrengths(selectedOptions);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const stringValues = residentStrengths.map((item) => item.value);
-
-    let SignificantFamilyMedicalPsychiatricHistoryArray=[];
-    SignificantFamilyMedicalPsychiatricHistory.forEach((item)=>{
-      SignificantFamilyMedicalPsychiatricHistoryArray.push(item?.value);
-    })
-
-    const admissionStatusArray=[];
-    admissionStatus.forEach((item)=>{
-      admissionStatusArray.push(item?.value)
-    })
-
-    const selectedValueArray=[];
-    selectedValue.forEach((item)=>{
-      selectedValueArray.push(item?.value)
-    })
-
-    const selectedValueMedicalArray=[];
-    selectedValueMedical.forEach((item)=>{
-      selectedValueMedicalArray.push(item?.value);
-    })
-
-    const selectedValueSpecialPrecautionsArray=[];
-    selectedValueSpecialPrecautions.forEach((item)=>{
-      selectedValueSpecialPrecautionsArray.push(item?.value)
-    })
-
-    const thyroidDisorderArray=[];
-    thyroidDisorder.forEach((item)=>{
-      thyroidDisorderArray.push(item.value)
-    })
-
-    const infectionDiseasesArray=[];
-    infectionDiseases.forEach((item)=>{
-      infectionDiseasesArray.push(item.value)
-    })
-
-    const reasonForAdmissionArray=[];
-    reasonForAdmission.forEach((item)=>{
-      reasonForAdmissionArray.push(item?.value);
-    })
-
-    // medical condition
-    const otherConditionArrayTemp=[
-      {
-        condition: "diabetes",
-        yes: yesDiabetes,
-        comments: commentDiabety,
-      },
-      {
-        condition: "Heart disease / heart attack",
-        yes: yesHeart,
-        comments: commentHeart,
-      },
-      {
-        condition: "History",
-        yes: yesHistory,
-        comments: commentHistory,
-      }
-      ,
-      {
-        condition: "High Blood Pressure",
-        yes: yesHigh,
-        comments: commentHigh,
-      }
-      ,
-      {
-        condition: "Lung disease (ie asthma, COPD, emphysema)",
-        yes: yesLung,
-        comments: commentLung,
-      }
-      ,
-      {
-        condition: "Seizures",
-        yes: yesSeizures,
-        comments: commentSeizures,
-      }
-      ,
-      {
-        condition: "Cancer",
-        yes: yesCancer,
-        comments: commentCancer,
-      }
-      ,
-      {
-        condition: "Liver/kidney disease",
-        yes: yesLiver,
-        comments: commentLiver,
-      }
-      ,
-      {
-        condition: "Thyroid disorder",
-        yes: yesThyroid,
-        comment: thyroidDisorderArray,
-      }
-      ,
-      {
-        condition: "History of head trauma/traumatic brain injury",
-        yes: yesbrain,
-        comments: commentbrain,
-      }
-      ,
-      {
-        condition: "injury",
-        yes: yesInjury,
-        comments: commentInjury,
-      }
-      ,
-      {
-        condition: "Chronic painChronic pain",
-        yes: yesChronic,
-        comments: chronicCommit,
-      },  {
-        condition: "Allergies",
-        yes: AllergiesYes,
-        comments: AllergiesComment,
-      },  {
-        condition: "Surgeries",
-        yes: SurgeriesYes,
-        comments: SurgeriesComment,
-      }
-      ,  {
-        condition: "Number of pregnancies / births",
-        yes: pregnanciesYes,
-        comments: pregnanciesComment,
-      }
-      ,  {
-        condition: "Substance use disorder (please specify)",
-        yes: SubstanceYes,
-        comments: SubstanceComment,
-      }
-      ,  {
-        condition: "Depression",
-        yes: DepressionYes,
-        comments: DepressionComment,
-      }
-      ,  {
-        condition: "Anxiety/panic attacks",
-        yes: AnxietyYes,
-        comments: AnxietyComment,
-      }
-      ,  {
-        condition: "Insomnia",
-        yes: InsomniaYes,
-        comments: InsomniaComment,
-      }
-      ,  {
-        condition: "Bipolar disorder",
-        yes: BipolarYes,
-        comments: BipolarComment,
-      }
-      ,  {
-        condition: "Schizophrenia",
-        yes: SchizophreniaYes,
-        comments: SchizophreniaComment,
-      }
-      ,  {
-        condition: "Obsessive compulsive disorder",
-        yes: ObsessiveYes,
-        comments: ObsessiveComment,
-      }
-      ,  {
-        condition: "Personality disorder (please specify)",
-        yes: PersonalityYes,
-        comments: PersonalityComment,
-      }
-      ,  {
-        condition: "Phobias",
-        yes: PhobiasYes,
-        comments: PhobiasComment,
-      }
-      ,  {
-        condition: "Any other health conditions",
-        yes: healthConditionsYes,
-        comments: healthConditionsYesComment,
-      }
-      ,  {
-        condition: "Infection or Diseases",
-        yes: healthConditionsYes,
-        comment: infectionDiseasesArray,
-      }
-    ]
-
-    const otherConditionArrayTempAns=[...otherConditionArrayTemp,...otherConditionArray]
-
-    // substance array
-    const typeArrayTemp= [
-      {
-        types: "Alcohol",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseAlcohol?.value,
-        lastUse: substanceAbuseHistoryDataLastUseAlcohol?.value,
-        frequency: substanceAbuseHistoryDataFrequencyAlcohol?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyAlcohol?.value,
-      },
-      {
-        types: "Benzodiazepines",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines?.value,
-        lastUse: substanceAbuseHistoryDataLastUseBenzodiazepines?.value,
-        frequency: substanceAbuseHistoryDataFrequencyBenzodiazepines?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines?.value,
-      },
-      {
-        types: "Crack",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseCrack?.value,
-        lastUse: substanceAbuseHistoryDataLastUseCrack?.value,
-        frequency: substanceAbuseHistoryDataFrequencyCrack?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyCrack?.value,
-      },
-      {
-        types: "Heroin",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseHeroin?.value,
-        lastUse: substanceAbuseHistoryDataLastUseHeroin?.value,
-        frequency: substanceAbuseHistoryDataFrequencyHeroin?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyHeroin?.value,
-      },
-      {
-        types: "Inhalants",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseInhalants?.value,
-        lastUse: substanceAbuseHistoryDataLastUseInhalants?.value,
-        frequency: substanceAbuseHistoryDataFrequencyInhalants?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyInhalants?.value,
-      },
-      {
-        types: "Marijuana",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMarijuana?.value,
-        lastUse: substanceAbuseHistoryDataLastUseMarijuana?.value,
-        frequency: substanceAbuseHistoryDataFrequencyMarijuana?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMarijuana?.value,
-      },
-      {
-        types: "Methamphetamine",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMethamphetamine?.value,
-        lastUse: substanceAbuseHistoryDataLastUseMethamphetamine?.value,
-        frequency: substanceAbuseHistoryDataFrequencyMethamphetamine?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMethamphetamine?.value,
-      },
-      {
-        types: "Methadone",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMethadone?.value,
-        lastUse: substanceAbuseHistoryDataLastUseMethadone?.value,
-        frequency: substanceAbuseHistoryDataFrequencyMethadone?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMethadone?.value,
-      },
-      {
-        types: "MDMA (ecstasy)",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMDMA?.value,
-        lastUse: substanceAbuseHistoryDataLastUseMDMA?.value,
-        frequency: substanceAbuseHistoryDataFrequencyMDMA?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMDMA?.value,
-      },
-      {
-        types: "PCP (angel dust)",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUsePCP?.value,
-        lastUse: substanceAbuseHistoryDataLastUsePCP?.value,
-        frequency: substanceAbuseHistoryDataFrequencyPCP?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyPCP?.value,
-      },
-      {
-        types: "Prescription medicine",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUsePrescription?.value,
-        lastUse: substanceAbuseHistoryDataLastUsePrescription?.value,
-        frequency: substanceAbuseHistoryDataFrequencyPrescription?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyPrescription?.value,
-      },
-      {
-        types: "OTC medicine",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseOTC?.value,
-        lastUse: substanceAbuseHistoryDataLastUseOTC?.value,
-        frequency: substanceAbuseHistoryDataFrequencyOTC?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyOTC?.value,
-      },
-    ]
-
-    const typeArrayTempAns=[ ...typeArrayTemp,...typeArray]
-
-    const handleRiskFactorActivityArrayTemp= [
-        {
-          type: "Bathing/Showering",
-          good: BathingGood,
-          fair: BathingFair,
-          otherCurrentNotSoGood:BathingNotSoGood,
-          needAssist: BathingGoodNeedAssist,
-          comments: BathingComments
-        },
-        {
-          type: "Grooming/hygiene",
-          good: GroomingGood,
-          fair: GroomingFair,
-          otherCurrentNotSoGood:GroomingNotSoGood,
-          needAssist: GroomingGoodNeedAssist,
-          comments: GroomingComments
-        },
-        {
-          type: "Mobility",
-          good: MobilityGood,
-          fair: MobilityFair,
-          otherCurrentNotSoGood:MobilityNotSoGood,
-          needAssist: MobilityGoodNeedAssist,
-          comments: MobilityComments
-        },
-        {
-          type: "Housework",
-          good: HouseworkGood,
-          fair: HouseworkFair,
-          otherCurrentNotSoGood:HouseworkNotSoGood,
-          needAssist: HouseworkGoodNeedAssist,
-          comments: HouseworkComments
-        },
-        {
-          type: "Shopping",
-          good: ShoppingGood,
-          fair: ShoppingFair,
-          otherCurrentNotSoGood:ShoppingNotSoGood,
-          needAssist: ShoppingGoodNeedAssist,
-          comments: ShoppingComments
-        },
-        {
-          type: "Managing money/budget",
-          good: ManagingGood,
-          fair: ManagingFair,
-          otherCurrentNotSoGood:ManagingNotSoGood,
-          needAssist:ManagingGoodNeedAssist ,
-          comments: ManagingComments
-        },
-        {
-          type: "Preparing food",
-          good: PreparingGood,
-          fair: PreparingFair,
-          otherCurrentNotSoGood:PreparingNotSoGood,
-          needAssist: PreparingGoodNeedAssist,
-          comments: PreparingComments
-        },
-        {
-          type: "Eating",
-          good: EatingGood,
-          fair: EatingFair,
-          otherCurrentNotSoGood:EatingNotSoGood,
-          needAssist: EatingGoodNeedAssist,
-          comments: EatingComments
-        },
-        {
-          type: "Toileting",
-          good: ToiletingGood,
-          fair: ToiletingFair,
-          otherCurrentNotSoGood:ToiletingNotSoGood,
-          needAssist: ToiletingGoodNeedAssist,
-          comments: ToiletingComments
-        },
-      ]
-
-      const handleRiskFactorActivityArrayTempAns= [...handleRiskFactorActivityArrayTemp,...handleRiskFactorActivityArray]
-
-    // riskFactors
-    const riskFactorsTemp= [
-      {
-        type:"Current suicidal ideation",
-        yesNo:riskYesNo,
-        comment:riskComment
-      },
-      {
-        type:"Prior suicide attempt",
-        yesNo:PriorYesNo,
-        comment:PriorComment
-      },
-      {
-        type:"Access to means (i.e. weapon)",
-        yesNo:AccessYesNo,
-        comment:AccessComment
-      },
-      {
-        type:"Substance abuse",
-        yesNo:SubstanceYesNo,
-        comment:SubstanceAbuseComment
-      },
-      {
-        type:"Other self-abusing behavior",
-        yesNo:abusingYesNo,
-        comment:abusingComment
-      },
-      {
-        type:"Recent losses/lack of support",
-        yesNo:RecentYesNo,
-        comment:RecentComment
-      },
-      {
-        type:"Behavior cues",
-        yesNo:behaviourYesNO,
-        comments:behaviorcuesDropDown
-      },
-      {
-        type:"Symptoms of psychosis",
-        yesNo:SymptomsYesNO,
-        comments:symptomsOfPsychosisDropDown
-      },
-      {
-        type:"Family history of suicide",
-        yesNo:FamilyYesNO,
-        comment:Family
-      },
-      {
-        type:"Terminal physical illness",
-        yesNo:TerminalYesNO,
-        comment:Terminal
-      },
-      {
-        type:"Current stressors (specify)",
-        yesNo:CurrentYesNO,
-        comment:Current
-      },
-      {
-        type:"Chronic pain",
-        yesNo:ChronicYesNO,
-        comment:ChronicPain
-      },
-    ]
-
-    const riskFactorArrayTempAns=[...riskFactorsTemp,...riskFactorArray]
-
-    // protectiveFactorsArray
-    const protectiveFactorsArrayTemp=[
-      {
-        type:"Supports available (family friends)",
-        yesNo:SupportsYesNo,
-        comment:SupportsComment
-      },
-      {
-        type:"Spiritual / religious support",
-        yesNo:SpiritualYesNo,
-        comment:SpiritualComment
-      },
-      {
-        type:"Religious/cultural prohibitions",
-        yesNo:ReligiousYesNo,
-        comment:ReligiousComment
-      },
-      {
-        type:"Fear of consequences",
-        yesNo:FearYesNo,
-        comment:FearComment
-      },
-      {
-        type:"Able to be engaged in intervention",
-        yesNo:interventionYesNo,
-        comment:interventionComment
-      },
-      {
-        type:"Willing to commit to keeping self safe",
-        yesNo:WillingYesNo,
-        comment:WillingComment
-      },
-    ]
-
-
-    
-    const protectiveFactorsArrayTempAns=[...protectiveFactorsArrayTemp,...protectiveFactorsArray]
-
-    //psychiatricDiagnoses
-      const psychiatricDiagnosesArrayTemp=[
-        {
-   
-          icdCode:psychiatricPrimaryIcdCode,
-          description:psychiatricPrimaryDescription,
-          name:"Primary"
-        },
-        {
-          icdCode:psychiatricSecondaryicdCode,
-          description:psychiatricSecondaryDescription,
-          name:"Secondary"
-        },
-        {
-          icdCode:psychiatricTertiaryIcdCode,
-          description:psychiatricTertiaryDescription,
-          name:"Tertiary"
-        },
-        {
-      
-          icdCode:psychiatricAdditionalicdCode,
-          description:psychiatricAdditionalDescription,
-          name:"Additional"
-        },
-      ]
-
-
-      const psychiatricDiagnosesArrayAns=[...psychiatricDiagnosesArrayTemp,...psychiatricDiagnosesArray]
-
-      const medicalDiagnosesArrayTemp=[
-        {
-          icdCode:primaryIcdCode,
-          description:primaryDescription,
-          name:"Primary",
-        },
-        {
-         
-
-          icdCode:secondaryicdCode,
-          description:secondaryDescription,
-          name:"Secondary"
-        },
-        {
-          icdCode:TertiaryIcdCode,
-          description:TertiaryDescription,
-          name:"Tertiary"
-        },
-        {
-          icdCode:Additional1icdCode,
-          description:Additional1Description,
-          name:"Additional"
-        },
-      ]
-
-      const medicalDiagnosesArrayTempAns=[...medicalDiagnosesArrayTemp,...psychiatricDiagnosesArray]
-
-
-    const data = {
-      assessmentType,
-      patientId:patientId,
-      dob,
-      hasNotified,
-      assessmentOn,
-      companyName,
-      residentName,
-      sex,
-      dateOfAssessment,
-      ahcccsNumber,
-      preferredLanguage,
-      ethnicity,
-      admissionStatus:admissionStatusArray,
-      programLocation,
-      guardianship,
-      powerOfAttorneyStatus,
-      todayDate,
-      guardianshipPoaPubFidName,
-      approvedBy,
-      reasonForAdmission:reasonForAdmissionArray,
-      residentGoals,
-      residentStrengths: stringValues,
-      residentLimitations,
-      currentBehavioralIssues,
-      medicalConditions: otherConditionArrayTempAns,
-      SignificantFamilyMedicalPsychiatricHistory:SignificantFamilyMedicalPsychiatricHistoryArray,
-      
-      // insidee the array handle by backend
-      mentalHealthTreatmentHistory:typeOfServiceArray,
-     
-      substanceAbuseHistory,
-      substanceAbuseDenies,
-// need t be array
-      substanceAbuseHistoryData : typeArrayTempAns,
-
-      ActiveWithdrawalSymptoms :{
-        noneReportedOrObserved,
-        Agitation,
-        Nausea,
-        Vomiting,
-        Headache,
-        TactileDisturbances,
-        Anxiety,
-        Tremors,
-        VisualDisturbances,
-        // remove VisualDisturbancesOtherType and add other
-        AuditoryDisturbances:VisualDisturbancesOtherType,
-        Sweats,
-        Paranoia,
-        GooseBumps,
-        Runningnose,
-        BonePain,
-        Tearing,
-        Seizures,
-        LossofMuscleCoordination,
-        LossofMuscleCoordinationOtherType
-      },
-      mentalStatusExam: {
-        apparentAge:{
-          consistent:consistent,
-          younger,
-          older,
-          
-          otherComment:olderOther
-        },
-        height:{
-          average:averageHeight,
-          short,
-          tall,
-          
-          otherComment:heigthOther
-        },
-        weight:{
-          average:averageWeight,
-          obese,
-          overweight,
-          thin,
-          emaciated,
-          otherComment:WeightOther
-        },
-        attire:{
-          Casual:casual,
-          Neat:neat,
-          Tattered:tattered,
-          Dirty:dirty,
-          otherComment:attireOther
-        },
-        grooming:{
-          wellGroomed:wellGroomed,
-          adequate:adequateGrooming,
-          unkempt,
-          disheveled,
-          otherComment:GroomingOther
-        },
-        Mood:{
-          Euthymic:euthymic,
-          Irritable:irritable,
-          Elevated: elevated,
-          Depressed:depressedMood,
-          Anxious:anxious,
-          otherComment:euthymicOtherBooleanType
-        },
-        Affect:{
-          normalRange,
-          Depressed:depressedAffect,
-          Labile:labile,
-          Constricted:constricted,
-          otherComment:otherText
-        },
-        EyeContact:{
-          Appropriate:appropriate,
-          Minimal:minimal,
-          Poor:poor,
-          Adequate:adequateEyeContact,
-          otherComment:EyeContactOtherBooleanType
-        },
-        Cooperation:{
-          Appropriate:appropriateCooperation,
-          Hostile:hostile,
-          Evasive: evasive,
-          Defensive:defensive,
-          Indifferent:indifferent,
-          otherComment: CooperationOtherBooleanType
-        },
-        Articulation:{
-          Normal:normalArticulation,
-          Unintelligible:unintelligible,
-          Mumbled:mumbled,
-          Slurred:slurred,
-          Stuttered:stuttered,
-          otherComment:ArticulationOtherBooleanOther
-        },
-        Tone:{
-          Normal:normalTone,
-          Soft:soft,
-          Loud:loud,
-          Pressured:pressured,
-          otherComment:ToneOtherBooleanOther
-        },
-        Rate:{
-          Normal:normalRate,
-          Slow:slow,
-          Fast:fast,
-          otherComment:RateOtherBooleanOther
-        },
-        Quantity:{
-          Normal:normalQuantity,
-          Verbose:verbose,
-          Mutism:mutism,
-          otherComment:QuantityOtherBooleanOther,
-
-        },
-        responseLatency:{
-          Normal:normalresponseLatency,
-          Delayed:delayed,
-          Shortened:shortened,
-          otherComment:responseLatencyOtherBooleanOther
-        },
-
-        thoughtContent:{
-          Unremarkable:unremarkablethoughtContent,
-          Suspicious:suspicious,
-          Negative:negative,
-          Concrete:concrete,
-          otherComment:thoughtContentOther
-        },
-
-        thoughtProcesses:{
-          logicalCoherent:logicalCoherent,
-          Tangential:tangential,
-          Circumstantial:circumstantial,
-          Vague:vague,
-          otherComment:thoughtProcessesOther
-        },
-
-        Delusions:{
-          No:noDelusions,
-          YesPersecutory: yesPersecutory,
-          YesSomatic:yesSomatic,
-          YesGrandiose:yesGrandiose,
-          otherComment:yesOtherDelusionsText
-        },
-
-        Hallucinations:{
-          Unremarkable:unremarkableHallucinations,
-          VisualHallucinations:visualHallucinations,
-          AuditoryHallucinations:auditoryHallucinations,
-          TactileHallucinations:tactileHallucinations,
-          otherComment:yesOtherHallucinationsText
-        },
-
-        Gait:{
-          Normal:normalGait,
-          Staggering:staggering,
-          Shuffling:shuffling,
-          Slow:slowGait,
-          Awkward:awkward,
-          otherComment:gaitOther,
-        },
-
-        Posture:{
-          Normal:normalPosture,
-          Relaxed:relaxed,
-          Rigid:rigid,
-          Tense:tense,
-          Slouched:slouched,
-          otherComment:PostureOther,
-        },
-
-        PsychomotorActivity:{
-          Withinnormallimits:withinNormalLimits,
-          Calm:calm,
-          Hyperactive:hyperactive,
-          Agitated:agitated,
-          Hypoactive:hypoactive,
-          otherComment:PsychomotorActivityOther,
-        },
-
-        Mannerisms:{
-          None:none,
-          Tics:tics,
-          Tremors:tremorsMannerisms,
-          Rocking:rocking,
-          Picking:picking,
-          otherComment:MannerismsOther,
-        },
-
-        orientation:{
-          person,
-          place,
-          time,
-          circumstances:circumstances
-        },
-
-        Judgment:{
-          Good:goodJudgment,
-          Fair:fairJudgment,
-          Poor:poorJudgment
-        },
-
-        Insight:{
-          Good:goodInsight,
-          Fair:fairInsight,
-          Poor:poorInsight
-        },
-        Memory:{
-          Good:goodMemory,
-          Fair:fairMemory,
-          Poor:poorMemory
-        },
-        AbilityToConcentration:{
-          Intact:intactAbilityToConcentration,
-          Other:otherAbilityToConcentration
-        },
-      },
-
-      significantSocialDevelopmentalHistory,
-
-      personalInformation:{
-        educationalHistory,
-        highestEducation,
-        specialEducation,
-        currentStudent,
-        currentStudentLocation:ifYesWhere
-      },
-
-      employmentHistory:{
-        currentlyEmployed,
-        employmentLocation,
-        // fullTime, jai maa kali
-      },
-      workHistory,
-      militaryHistory:{
-        militaryService,
-        activeDuty
-      },
-      legalHistory:selectedValueArray,
-
-      independentLivingSkills:handleRiskFactorActivityArrayTempAns,
-      triggers,
-      fallRisk,
-      fallRiskExplanation,
-      hobbiesLeisureActivities,
-      medicalEquipmentArray:selectedValueMedicalArray,
-      specialPrecautions:selectedValueSpecialPrecautionsArray,
-      currentThoughtsOfHarmingSelf,
-      // jai  maa kali
-      // suicidalIdeation:{
-      //   ideation:suicidalIdeation,
-      //   increasingIn:{
-      //     urgency:suicidalIdeation,
-      //     severity:suicidalIdeationSeverity
-      //   }
-      // },
-      suicidalIdeation,
-      suicidalIdeationUrgency,
-      suicidalIdeationSeverity,
-      currentThoughtsOfHarmingOthers,
-
-      riskFactors:riskFactorArrayTempAns,
-      protectiveFactors:protectiveFactorsArrayTempAns,
-
-      riskLevel,
-
-      psychiatricDiagnoses:psychiatricDiagnosesArrayAns,
-
-      medicalDiagnoses:medicalDiagnosesArrayTempAns,
-// jai maa kali
-// psychosocialStressors:{
-                primarySupportGroup,
-                maritalProblems,
-                accessToHealthCareServices,
-                educationalProblems,
-                housingProblems,
-                familyProblems,
-                occupationalProblems,
-                interactionWithLegalSystem,
-                substanceUseInHome,
-                sexualProblems,
-                otherStressors,
-// },
-     
-
-      significantRecentLosses:{
-        yes:setNoAndYes,
-        typeOfLoss:{
-          death,
-          injury,
-          medicalSurgical,
-          job,
-          divorceSeparation,
-          accidentInjury,
-          childRemovedFromHouse,
-          divorceSeparation:violentActsAgainstPersonFamily,
-          comment:otherSignificantRecentLossesType,
-        }
-      },
-
-      additionalNotes,
-      acceptResident,
-
-      residentInformation: {
-        ResidentName: residentGuardianName,
-        ResidentSignature: residentGauardianSignature,
-        ResidentDate: residentGuardianAgreementDate,
-        time:residentGuardianTime,
-      },
-      staffInformation: {
-        staffName: staffName,
-        staffSignature: staffSignature,
-        staffDate: staffDate,
-        time:staffDateTime
-      },
-      bhpInformation: {
-        bhpName: bhpName,
-        bhpCredentials: bhpCredentials,
-        bhpSignature: bhpSignature,
-        bhpDate:bhpDate,
-        time:bhpTime,
-      },
-    };
-
-    initialAssestment_form(data);
-    navigate("/intake");
   };
 
   const option_value_Admission = [
@@ -5274,7 +4313,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                <AutoSize value={assessmentOn} setValue={setAssessmentOn} placeholder={"_______________"}/>
             </span>
           </p>
-          <form onSubmit={handleSubmit} style={{ marginTop: "0.5rem " }}>
+          <form style={{ marginTop: "0.5rem " }}>
             <h5 style={{ textAlign: "center", fontWeight: "bold" }}>
               SECTION I
             </h5>
@@ -11090,16 +10129,9 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <select
-                            value={BathingGoodNeedAssist}
-                            onChange={(e) =>
-                              setBathingGoodNeedAssist(e.target.value)
-                            }
-                          >
-                            <option disabled>Select value</option>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                          </select>
+                         
+                          <p>{BathingGoodNeedAssist===true?"Yes":"No"}</p>
+
                         </td>
                         <td>
                           <textarea
@@ -11150,16 +10182,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <select
-                            value={GroomingGoodNeedAssist}
-                            onChange={(e) =>
-                              setGroomingGoodNeedAssist(e.target.value)
-                            }
-                          >
-                            <option disabled>Select value</option>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                          </select>
+                    
+                          <p>{GroomingGoodNeedAssist===true?"Yes":"No"}</p>
                         </td>
                         <td>
                           <textarea
@@ -11213,16 +10237,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <select
-                            value={MobilityGoodNeedAssist}
-                            onChange={(e) =>
-                              setMobilityGoodNeedAssist(e.target.value)
-                            }
-                          >
-                            <option disabled>Select value</option>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                          </select>
+                        
+                          <p>{MobilityGoodNeedAssist===true?"Yes":"No"}</p>
                         </td>
                         <td>
                           <textarea
@@ -11276,16 +10292,9 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <select
-                            value={HouseworkGoodNeedAssist}
-                            onChange={(e) =>
-                              setHouseworkGoodNeedAssist(e.target.value)
-                            }
-                          >
-                            <option disabled>Select value</option>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                          </select>
+                         
+
+                          <p>{HouseworkGoodNeedAssist===true?"Yes":"No"}</p>
                         </td>
                         <td>
                           <textarea
@@ -11339,16 +10348,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <select
-                            value={ShoppingGoodNeedAssist}
-                            onChange={(e) =>
-                              setShoppingGoodNeedAssist(e.target.value)
-                            }
-                          >
-                            <option disabled>Select value</option>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                          </select>
+                      
+                          <p>{ShoppingGoodNeedAssist===true?"Yes":"No"}</p>
                         </td>
                         <td>
                           <textarea
@@ -11402,16 +10403,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <select
-                            value={ManagingGoodNeedAssist}
-                            onChange={(e) =>
-                              setManagingGoodNeedAssist(e.target.value)
-                            }
-                          >
-                            <option disabled>Select value</option>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                          </select>
+                    
+                          <p>{ManagingGoodNeedAssist===true?"Yes":"No"}</p>
                         </td>
                         <td>
                           <textarea
@@ -11465,16 +10458,9 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <select
-                            value={PreparingGoodNeedAssist}
-                            onChange={(e) =>
-                              setPreparingGoodNeedAssist(e.target.value)
-                            }
-                          >
-                            <option disabled>Select value</option>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                          </select>
+                     
+
+                          <p>{PreparingGoodNeedAssist===true?"Yes":"No"}</p>
                         </td>
                         <td>
                           <textarea
@@ -11528,16 +10514,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <select
-                            value={EatingGoodNeedAssist}
-                            onChange={(e) =>
-                              setEatingGoodNeedAssist(e.target.value)
-                            }
-                          >
-                            <option disabled>Select value</option>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                          </select>
+                  
+                          <p>{EatingGoodNeedAssist===true?"Yes":"No"}</p>
                         </td>
                         <td>
                           <textarea
@@ -11590,16 +10568,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <select
-                            value={ToiletingGoodNeedAssist}
-                            onChange={(e) =>
-                              setToiletingGoodNeedAssist(e.target.value)
-                            }
-                          >
-                            <option disabled>Select value</option>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                          </select>
+                      
+                          <p>{ToiletingGoodNeedAssist===true?"Yes":"No"}</p>
                         </td>
                         <td>
                           <textarea
@@ -11690,16 +10660,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <select
-                            value={otherCurrentNeed}
-                            onChange={(e) =>
-                              setOtherCurrentNeed(e.target.value)
-                            }
-                          >
-                            <option>Select</option>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                          </select>
+                      
+                          <p>{otherCurrentNeed===true?"Yes":"No"}</p>
                         </td>
                         <td>
                           <textarea
@@ -13676,10 +12638,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </div>
 
                 <div
-                  class="file-upload-box hidePrint"
+                  class="file-upload-box "
                   style={{ marginLeft: "10px" }}
                 >
-                  <div className="file-upload-box-child">
+                  <div className="file-upload-box-child hidePrint">
                     <button
                       className="upload-button1"
                       type="button"
@@ -13729,10 +12691,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </div>
 
                 <div
-                  class="file-upload-box hidePrint"
+                  class="file-upload-box "
                   style={{ marginLeft: "10px" }}
                 >
-                  <div className="file-upload-box-child">
+                  <div className="file-upload-box-child hidePrint">
                     <button
                       className="upload-button1"
                       type="button"
@@ -13794,10 +12756,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </div>
 
                 <div
-                  class="file-upload-box hidePrint"
+                  class="file-upload-box "
                   style={{ marginLeft: "10px" }}
                 >
-                  <div className="file-upload-box-child">
+                  <div className="file-upload-box-child hidePrint">
                     <div>
                       <button
                         className="upload-button1"
@@ -13820,7 +12782,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       <button
                         className="upload-button signature_shift_margin"
                         type="button"
-                        onClick={handlePrint2}
+                        // onClick={handlePrint2}
                       >
                         PRINT THIS FORM
                       </button>
@@ -13858,13 +12820,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
         </div>
         {draftModel && <Draftinmodel onClose={() => setDraftModel(false)} />}
       </div>
-
-
-      <div className="hidaData">
-      <Initial_Assessment_print componentRef={componentRef}/>
-      </div>
     </>
   );
 };
 
-export default InitialAssessment;
+export default Initial_Assessment_print;

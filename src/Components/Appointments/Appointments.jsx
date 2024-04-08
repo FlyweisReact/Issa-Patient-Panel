@@ -18,12 +18,17 @@ import Vital from "../VitalNew/Vital";
 import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
 import { useNavigate } from "react-router-dom";
 // import Vitals from "../Vitals/Vitals";
 
 
 const Appointments = () => {
+
+  // document model
+  const [show, setShow] = useState(false);
+
   //navigate
   const navigate=useNavigate();
   //model 
@@ -38,7 +43,6 @@ const Appointments = () => {
 
   //view panel
   const [view,setView]=useState(false);
-  const [view1,setView1]=useState(false);
 
   //add script 
   const [addScript, setAddScript] = useState("");
@@ -106,8 +110,145 @@ const Appointments = () => {
     );
   }
 
+  function DocumentUploader(props) {
+    const [fileType, setFileType] = useState("");
+    const [file, setFile] = useState("");
+    const [arr, setArr] = useState([]);
+    const [uploading, setUploading] = useState(false);
+    const [submitLoading, setSubmitLoading] = useState(false);
+
+    const removeFile = (index) => {
+      const filterThis = arr?.filter((_, i) => index !== i);
+      setArr(filterThis);
+    };
+
+    // File Upload
+    const filePayload = new FormData();
+    filePayload.append("file", file);
+    filePayload.append("type", fileType);
+    const uploadFiles = (e) => {
+      e.preventDefault();
+      // uploadDocument({
+      //   payload: filePayload,
+      //   setArr,
+      //   setLoading: setUploading,
+      // });
+    };
+
+    // const payload = {
+    //   patientId: id,
+    //   data: arr,
+    // };
+
+    // const submitHandler = () => {
+    //   const additionalFunctions = [props.onHide, fetchDocument];
+    //   createApi({
+    //     url: `employee/createUploadDocument1`,
+    //     payload,
+    //     successMsg: "Uploaded !",
+    //     setLoading: setSubmitLoading,
+    //     additionalFunctions,
+    //   });
+    // };
+
+    return (
+      <Modal
+        {...props}
+        size="xl"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Body className="file-upload-modal">
+          <Container className="full-width-container">
+            <form onSubmit={uploadFiles}>
+              <div className="close-header">
+                <h5>File Upload </h5>
+                <i
+                  className="fa-solid fa-xmark"
+                  onClick={() => props.onHide()}
+                ></i>
+              </div>
+              <div className="wrapper">
+                <div className="flexbox">
+                  <div className="items">
+                    <p className="head">Actions</p>
+                    {/* <button type="submit">
+                      {uploading ? (
+                        <ClipLoader color="#fff" />
+                      ) : (
+                        "Add Additional files"
+                      )}
+                    </button> */}
+                  </div>
+                  <div className="items">
+                    <p className="head">File Type</p>
+                    <select onChange={(e) => setFileType(e.target.value)}>
+                      <option value=""> Select Prefrence </option>
+                      <option vale="First Type"> First Type </option>
+                      <option vale="Second Type">Second Type </option>
+                    </select>
+                  </div>
+                  <div className="items">
+                    <p className="head">File Name</p>
+                    <input
+                      type="file"
+                      onChange={(e) => setFile(e.target.files[0])}
+                    />
+                  </div>
+                </div>
+
+                <table className="colored_table mt-3">
+                  <thead>
+                    <tr>
+                      <th className="text-start">Type</th>
+                      <th className="text-start">File</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {arr?.map((i, index) => (
+                      <tr key={index}>
+                        <td className="text-start"> {i.type} </td>
+                        <td className="text-start">
+                          <a href={i.document} target="_blank" rel="noreferrer">
+                            View File
+                          </a>
+                        </td>
+                        <td>
+                          <i
+                            className="fa-solid fa-trash-can cursor-pointer"
+                            onClick={() => removeFile(index)}
+                          />
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+
+                <div className="btn-container">
+                  <button
+                    className="upload_files"
+                    // onClick={() => submitHandler()}
+                    type="button"
+                  >
+                    {/* {submitLoading ? (
+                      <ClipLoader color="#fff" />
+                    ) : (
+                      "Upload Files"
+                    )} */}
+                  </button>
+                </div>
+              </div>
+            </form>
+          </Container>
+        </Modal.Body>
+      </Modal>
+    );
+  }
+
   return (
     <div className="appointmentcontainer">
+         <DocumentUploader show={show} onHide={() => setShow(false)} />
       <div className='appointmentcontent'>
         <p>Appointment Scheduling</p>
       </div>

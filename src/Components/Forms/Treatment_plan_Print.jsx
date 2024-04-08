@@ -2,27 +2,40 @@ import React, { useEffect, useState } from "react";
 import { IoArrowBackCircle } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { AiFillDelete } from "react-icons/ai";
-import { user_detail, patient_form } from "../../Api_Collection/Api";
+import { user_detail, patient_form,patient_form_treatment_get } from "../../Api_Collection/Api";
 import SingInModel from "../Modal/SingInModel";
 import Select from "react-select";
 import Draftinmodel from "../Modal/Draftinmodel";
 import SingInUpdateModel from "../Modal/SingInUpdateModel";
 import { useReactToPrint } from "react-to-print";
-// import AutosizeInput from "react-input-autosize";
+import AutoSize from "../AutoSize/AutoSize"
 
-const TreatmentPlan = () => {
+const Treatment_plan_Print = () => {
   const componentRef = React.useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
 
+  const [printData,setPrintData]=useState(false);
+
   const handlePrint2 = () => {
     var elements = document.getElementsByClassName("hidePrint");
+    var hidePrintButton=document.getElementsByClassName("hidePrintButton");
+    var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
 
     // Iterate through each element with the specified class
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
     }
+
+    for (let i = 0; i < hidePrintButton.length; i++) {
+      hidePrintButton[i].style.display = "none";
+    }
+
+    for (let i = 0; i < signatureRightAndSide.length; i++) {
+      signatureRightAndSide[i].style.justifyContent = "right";
+    }
+
 
     // Trigger the print action
     handlePrint();
@@ -30,8 +43,19 @@ const TreatmentPlan = () => {
     // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
     setTimeout(() => {
       for (var i = 0; i < elements.length; i++) {
-        elements[i].style.display = "block";
+        elements[i].style.display = "flex";
+        elements[i].style.justifyContent = "center";
       }
+
+      for (let i = 0; i < hidePrintButton.length; i++) {
+        hidePrintButton[i].style.display = "flex";
+      }
+
+      for (let i = 0; i < signatureRightAndSide.length; i++) {
+        signatureRightAndSide[i].style.justifyContent = "space-between";
+      }
+
+
     }, 1000);
   };
   // model data
@@ -41,40 +65,28 @@ const TreatmentPlan = () => {
   const [signatureModel3, setSignatureModel3] = useState(false);
   //user Detail
   const [user, setUser] = useState("");
-  const [userId, setUserId] = useState("");
-  const [userDetails, setUserDetails] = useState("");
+
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [address, setAddress] = useState("");
-  const [number, setNumber] = useState("");
-  //chosse option
-  const [intial, setInitial] = useState("");
-  const [update, setUpdate] = useState("");
-  //restdent detail
+
+  //from satart now ------------------------------->
+  const [getApiData,setGetApiData]=useState("");
+  const [userId, setUserId] = useState("");
+  const [initialUpdate,setInitialUpdate]=useState("")
   const [residentName, setResidentName] = useState("");
-  const [dob, setDof] = useState("");
+  const [dob, setDob] = useState("");
   const [date, setDate] = useState("");
   const [admitDate, setAdminDate] = useState("");
-  const [care, setCare] = useState("");
-  // care services
-  const [physicalService, setPhysicalService] = useState(false);
-  const [behavior, setBehavior] = useState(false);
-  const [presentingPrice, setPresentingPrice] = useState([]);
-  const [presentingPriceBoolean, setPresentingPriceBoolean] = useState(false);
-  const [presentingPriceBooleanType, setpresentingPriceBooleanType] =
-    useState("");
 
-  useEffect(() => {
-    // setTypeOfOtherBoolean()
-    for (let i = 0; i < presentingPrice.length; i++) {
-      if (presentingPrice[i].value === "Other") {
-        setPresentingPriceBoolean(true);
-        break;
-      } else {
-        setPresentingPriceBoolean(false);
-      }
-    }
-  }, [presentingPrice]);
+  // care services
+  const [physicalService, setPhysicalService] = useState("");
+  const [behavior, setBehavior] = useState("");
+  //medication service
+  const [medicationAdministation,setMedicationAdministation]=useState("");
+  const [medicationAssistance,setMedicationAssistence]=useState("");
+  const [presentingPrice, setPresentingPrice] = useState([]);
+
+  // diagonsis
+  const [diagonsis,setDiagonsis]=useState("");
 
   // Mental Status
   const [mendelHealth, setMentelHealth] = useState("");
@@ -96,40 +108,9 @@ const TreatmentPlan = () => {
   const [residentGoal, setResidentGoal] = useState("");
   const [allergies, setAllergies] = useState("");
   const [Triggers, setTriggers] = useState("");
-  const [goalAllergies, setGoalAllergies] = useState("");
   const [strengths, setStrengths] = useState([]);
-  const [strengthsBoolean, setStrengthsBoolean] = useState(false);
-  const [strengthsType, setStrengthsType] = useState("");
-
-  useEffect(() => {
-    for (let i = 0; i < strengths.length; i++) {
-      if (strengths[i].value === "Other") {
-        setStrengthsBoolean(true);
-        break;
-      } else {
-        setStrengthsBoolean(false);
-      }
-    }
-  }, [strengths]);
 
   const [Barriers, setBarriers] = useState([]);
-  const [BarriersBoolean, setBarriersBoolean] = useState(false);
-  const [BarriersOther, setBarriersOther] = useState("");
-
-  useEffect(() => {
-    // Check if "Other" is present in the Barriers array
-    const isOtherSelected = Barriers.some(
-      (barrier) => barrier.value === "Other"
-    );
-
-    // Set BarriersBoolean accordingly
-    setBarriersBoolean(isOtherSelected);
-
-    // Update BarriersOther only when "Other" is selected
-    if (!isOtherSelected) {
-      setBarriersOther("");
-    }
-  }, [Barriers]);
 
   // Risk Assessment / Warning Signs & Symptoms of Suicidal Ideations
   const [behavioralSymptoms, setBehavioralSymptoms] = useState([]);
@@ -147,9 +128,11 @@ const TreatmentPlan = () => {
     setBehavioralSymptomsBoolean(isOtherSelected);
 
     // Update BarriersOther only when "Other" is selected
-    if (!isOtherSelected) {
-      setBehavioralSymptomsOther("");
-    }
+  if (isOtherSelected) {
+    setBehavioralSymptomsOther("");
+  } else {
+    setBehavioralSymptomsOther("");
+  }
   }, [behavioralSymptoms]);
 
   const [physicalSymptoms, setPhysicalSymptoms] = useState([]);
@@ -348,11 +331,11 @@ const TreatmentPlan = () => {
       commentsOther
     ) {
       const newData = {
-        optionOther,
-        admissionMeasureOther,
-        currentMeasureOther,
-        estimatedDateOfCompletionOther,
-        commentsOther,
+        otherType:optionOther,
+        admissionMeasure:admissionMeasureOther,
+        currentMeasure:currentMeasureOther,
+        estimatedDateOfCompletion:estimatedDateOfCompletionOther,
+        comments:commentsOther,
       };
 
       // Update the array state with the new data
@@ -374,12 +357,12 @@ const TreatmentPlan = () => {
     setOtherArray(updatedArray);
   };
 
-  //Resident overall participation in treatment:
+  //Resident overall participation in treatment: other statement is not add
   const [residentParticipation, setResidentParticipation] = useState("");
   const [residentAttitute, setResidentAttitute] = useState("");
   const [residentProgress, setResidentProgress] = useState("");
+  const [supportSystemPhoneNumber, setSupportSystemPhoneNumber] = useState("");
   const [supportSystem, setSupportSystem] = useState([]);
-  const [supportSystemPhone, setSupportSystemPhone] = useState("");
   const [supportSystemOtherText, setSupportSystemOtherText] = useState("");
   const [supportSystemOtherTextBoolean, setSupportSystemOtherTextBoolean] =
     useState(false);
@@ -441,26 +424,333 @@ const TreatmentPlan = () => {
   const [commentIndividual, setCommentIndividual] = useState("");
   //isReason
   const [isReason, setIsReason] = useState("no");
-  const [refusalReason, setrefusalReason] = useState("");
+  const [refusalReason, setrefusalReason] = useState("no");
   //signaturesResident
   const [nameResident, setNameResident] = useState("");
   const [credentialsResident, setCredentialsResident] = useState("");
   const [signatureResident, setsignatureResident] = useState("");
   const [dateResident, setDateResident] = useState("");
+  const [timeResident,setTimeResident]=useState("");
   // "signaturesFacilityRep"
   const [nameFacilityRep, setNameFacilityRep] = useState("");
   const [credentialsFacilityRep, setCredentialsFacilityRep] = useState("");
   const [signatureFacilityRep, setsignatureFacilityRep] = useState("");
   const [dateFacilityRep, setDateFacilityRep] = useState("");
+  const [timeFacality,setTimeFacality]=useState("")
   //signaturesBhp"
   const [nameBhp, setNameBhp] = useState("");
   const [credentialsBhp, setCredentialsBhp] = useState("");
   const [signatureBhp, setsignatureBhp] = useState("");
   const [dateBhp, setDateBhp] = useState("");
+  const [timeBhp,setTimeBhp]=useState("");
+
+    // Function to format the date as MM-DD-YYYY
+function formatDate(dateString) {
+  if (!dateString) return ''; // handle null or undefined value
+  const dateObj = new Date(dateString);
+  const month = ('0' + (dateObj.getMonth() + 1)).slice(-2);
+  const day = ('0' + dateObj.getDate()).slice(-2);
+  const year = dateObj.getFullYear();
+  return `${month}-${day}-${year}`;
+}
+
+  useEffect(()=>{
+    setDate(getApiData?.date?getApiData?.date?.slice(0,10):"");
+    setAdminDate(getApiData?.admitDate?getApiData?.admitDate.slice(0,10):"")
+    setPhysicalService(getApiData?.care?getApiData?.care?.[0]:"")
+    setBehavior(getApiData?.care?getApiData?.care?.[1]:"")
+
+    // Resetting medication service state variables
+setMedicationAdministation(getApiData?.medicationService?getApiData?.medicationService?.[0]:"");
+setMedicationAssistence(getApiData?.medicationService?getApiData?.medicationService?.[1]:"");
+setPresentingPrice(getApiData?.presentingProblems
+  ? getApiData.presentingProblems.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+
+// Resetting diagnosis state variable
+setDiagonsis(getApiData?.diagonsis);
+
+// Resetting mental status state variables
+setMentelHealth(getApiData?.mentalStatus);
+setMentelText(getApiData?.mentalStatusOther);
+
+// Resetting mood level state variables
+setMind(getApiData?.moodLevel);
+setMindText(getApiData?.moodLevelOther);
+
+// Resetting ADLS state variables
+setAdls(getApiData?.adls);
+setAldsText(getApiData?.adlsOther);
+
+// Resetting behavioral health services state variables
+setBHealth(getApiData?.behavioralHealthServices);
+setBtext(getApiData?.behavioralHealthServicesOther);
+
+// Resetting primary care provider state variables
+setPrimaryCare(getApiData?.primaryCareProvider);
+setPsychiatricProvider(getApiData?.psychiatricProvider);
+
+// Resetting resident goals state variables
+setResidentGoal(getApiData?.residentGoals);
+setAllergies(getApiData?.allergies);
+setTriggers(getApiData?.triggers);
+setStrengths(getApiData?.strengths
+  ? getApiData.strengths.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+
+// Resetting barriers state variables
+setBarriers(getApiData?.barriers
+  ? getApiData.barriers.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+
+// Resetting risk assessment state variables
+setBehavioralSymptoms(getApiData?.riskAssessment?.behavioralSymptoms?getApiData?.riskAssessment?.behavioralSymptoms:[]);
+setBehavioralSymptomsBoolean(getApiData?.riskAssessment?.behavioralSymptoms?true:false);
+setBehavioralSymptomsOther(getApiData?.behavioralSymptomsOther);
+
+// Resetting physical symptoms state variables
+setPhysicalSymptoms(getApiData?.riskAssessment?.physicalSymptoms?getApiData?.riskAssessment?.physicalSymptoms:[]);
+setPhysicalSymptomsBoolean(getApiData?.riskAssessment?.physicalSymptoms?true:false);
+setPhysicalSymptomsOther(getApiData?.physicalSymptomsOther);
+
+// Resetting cognitive symptoms state variables
+setConsnotiveSymptoms(getApiData?.riskAssessment?.cognitiveSymptoms?getApiData?.riskAssessment?.cognitiveSymptoms:[]);
+setConsnotiveSymptomsBoolean(getApiData?.riskAssessment?.cognitiveSymptoms?true:false);
+setConsnotiveSymptomsOther(getApiData?.cognitiveSymptomsOther);
+
+// Resetting psychosocial symptoms state variables
+setPsychosocialSymptoms(getApiData?.riskAssessment?.psychosocialSymptoms?getApiData?.riskAssessment?.psychosocialSymptoms:[]);
+setPsychosocialSymptomsBoolean(getApiData?.riskAssessment?.psychosocialSymptoms?true:false);
+setPsychosocialSymptomsOther(getApiData?.psychosocialSymptomsOther);
+
+// Resetting interventions implemented state variables
+setInterventionsImplemented(getApiData?.interventions?getApiData?.interventions:[]);
+setInterventionsImplementedBoolean(getApiData?.interventionsComment?true:false);
+setInterventionsImplementedOther(getApiData?.interventionsComment);
+
+// Resetting counseling and frequency state variables
+setMinimumHoure(getApiData?.counselingFrequencyMinimum);
+setCounselingOptions(getApiData?.counselingFrequency?getApiData?.counselingFrequency:[]);
+setCounselingOptionsOther(getApiData?.counselingFrequencyComment);
+setCounselingOptionsTextBoolean(getApiData?.counselingFrequencyComment?true:false);
+
+// Resetting goals for changes state variables
+setOption1(getApiData?.maintainSobrietyType
+  ? getApiData.maintainSobrietyType.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+
+
+// Resetting option2 state variables
+setOption2(getApiData?.independentLivingSkillsType
+  ? getApiData.independentLivingSkillsType.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+
+// Resetting option3 state variables
+setOption3(getApiData?.employmentType
+  ? getApiData.employmentType.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+
+// Resetting option4 state variables
+setOption4(getApiData?.adlsSecondType
+  ? getApiData.adlsSecondType.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+
+// Resetting option5 state variables
+setOption5(getApiData?.safetyType
+  ? getApiData.safetyType.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+
+// Resetting option6 state variables
+setOption6(getApiData?.medicationEducationType
+  ? getApiData.medicationEducationType.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+
+// Resetting option7 state variables
+setOption7(getApiData?.managingMentalHealthType
+  ? getApiData.managingMentalHealthType.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+
+// Resetting option8 state variables
+setOption8(getApiData?.legalType
+  ? getApiData.legalType.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+
+// Resetting admissionMeasure1 state variables
+setAdmissionMeasure1(getApiData?.maintainSobrietyAdmissionMeasure);
+
+setCurrentMeasure1(getApiData?.maintainSobrietyCurrentMeasure);
+setEstimatedDateOfCompletion1(getApiData?.maintainSobrietyEstimatedDateOfCompletion?getApiData?.maintainSobrietyEstimatedDateOfCompletion?.slice(0,10):"");
+setComment1(getApiData?.maintainSobrietyComments);
+
+// Resetting admissionMeasure2 state variables
+setAdmissionMeasure2(getApiData?.independentLivingSkillsAdmissionMeasure);
+
+setCurrentMeasure2(getApiData?.independentLivingSkillsCurrentMeasure);
+setEstimatedDateOfCompletion2(getApiData?.independentLivingSkillsEstimatedDateOfCompletion?getApiData?.independentLivingSkillsEstimatedDateOfCompletion?.slice(0,10):"")
+setComment2(getApiData?.independentLivingSkillsComments);
+
+// Resetting admissionMeasure3 state variables
+setAdmissionMeasure3(getApiData?.employmentAdmissionMeasure);
+
+setCurrentMeasure3(getApiData?.employmentCurrentMeasure);
+setEstimatedDateOfCompletion3(getApiData?.employmentEstimatedDateOfCompletion?getApiData?.employmentEstimatedDateOfCompletion?.slice(0,10):"")
+setComment3(getApiData?.employmentComments);
+
+// Resetting admissionMeasure4 state variables
+setAdmissionMeasure4(getApiData?.adlsSecondAdmissionMeasure);
+
+setCurrentMeasure4(getApiData?.adlsSecondCurrentMeasure);
+setEstimatedDateOfCompletion4(getApiData?.adlsSecondEstimatedDateOfCompletion?getApiData?.adlsSecondEstimatedDateOfCompletion?.slice(0,10):"")
+setComment4(getApiData?.adlsSecondComments);
+
+// Resetting admissionMeasure5 state variables
+setAdmissionMeasure5(getApiData?.safetyAdmissionMeasure);
+
+setCurrentMeasure5(getApiData?.safetyCurrentMeasure);
+setEstimatedDateOfCompletion5(getApiData?.safetyEstimatedDateOfCompletion?getApiData?.safetyEstimatedDateOfCompletion?.slice(0,10):"")
+setComment5(getApiData?.safetyComments);
+
+// Resetting admissionMeasure6 state variables
+setAdmissionMeasure6(getApiData?.medicationEducationAdmissionMeasure);
+
+setCurrentMeasure6(getApiData?.medicationEducationCurrentMeasure);
+setEstimatedDateOfCompletion6(getApiData?.medicationEducationEstimatedDateOfCompletion?getApiData?.medicationEducationEstimatedDateOfCompletion?.slice(0,10):"")
+setComment6(getApiData?.medicationEducationComments);
+
+// Resetting admissionMeasure7 state variables
+setAdmissionMeasure7(getApiData?.managingMentalHealthAdmissionMeasure);
+
+setCurrentMeasure7(getApiData?.managingMentalHealthCurrentMeasure);
+setEstimatedDateOfCompletion7(getApiData?.managingMentalHealthEstimatedDateOfCompletion?getApiData?.managingMentalHealthEstimatedDateOfCompletion?.slice(0,10):"")
+setComment7(getApiData?.managingMentalHealthComments);
+
+// Resetting admissionMeasure8 state variables
+setAdmissionMeasure8(getApiData?.legalAdmissionMeasure);
+setCurrentMeasure8(getApiData?.legalCurrentMeasure);
+setEstimatedDateOfCompletion8(getApiData?.legalEstimatedDateOfCompletion?getApiData?.legalEstimatedDateOfCompletion?.slice(0,10):"")
+setComment8(getApiData?.legalComments);
+// Resetting optionOther state variables
+// setOptionOther("");
+// setAdmissionMeasureOther("");
+// setCurrentMeasureOther("");
+// setEstimatedDateOfCompletionOther("");
+// setCommentOther("");
+
+// Resetting otherArray state variables
+setOtherArray(getApiData?.other?getApiData?.other:[]);
+setShowOther(false);
+
+// Resetting resident overall participation state variables
+setResidentParticipation(getApiData?.residentParticipation);
+setResidentAttitute(getApiData?.residentAttitude);
+setResidentProgress(getApiData?.residentProgress);
+setSupportSystemPhoneNumber(getApiData?.supportSystemPhoneNumber);
+setSupportSystem(getApiData?.supportSystem?getApiData?.supportSystem:[]);
+// setSupportSystemOtherText(getApiData?.residentAttitude);
+// setSupportSystemOtherTextBoolean(false);
+setCurrentMedications(getApiData?.currentMedications);
+setreligiousPreference(getApiData?.religiousPreference);
+// setReligiousPreferenceText(getApiData?.residentAttitude);
+setNutritionAndWellnessPlanning(getApiData?.nutritionAndWellnessPlanning?getApiData?.nutritionAndWellnessPlanning:[]);
+setRecommendationToExtendResidentialTreatment(getApiData?.recommendationToExtendResidentialTreatment);
+setPersonalFinances(getApiData?.personalFinances);
+setDischargePlanning(getApiData?.dischargePlanning);
+setAdditionalComment(getApiData?.additionalComment);
+setRecommendationsForFurtherPrograms(getApiData?.recommendationsForFurtherPrograms?getApiData?.recommendationsForFurtherPrograms:[]);
+setrecommendationsForFurtherProgramsBoolean(getApiData?.recommendationsForFurtherPrograms?.length>0?true:false);
+// setRecommendationsForFurtherProgramsOther(getApiData?.residentAttitude);
+
+// Resetting afterCareAndTransitionPlanning state variables
+setAfterCareAndTransitionPlanning(getApiData?.afterCareAndTransitionPlanning?getApiData?.afterCareAndTransitionPlanning:[]);
+
+// Resetting theory input state variable
+setTextData("");
+
+// Resetting clinicalSummary state variables
+setClinicalSummary(getApiData?.clinicalSummary
+  ? getApiData.clinicalSummary.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+setTreatmentPlanReviewDate(getApiData?.treatmentPlanReviewDate?getApiData?.treatmentPlanReviewDate.slice(0,10):"");
+setDischargePlanDate(getApiData?.dischargePlanDate?getApiData?.dischargePlanDate.slice(0,10):"");
+// Resetting individual participating state variables
+setResident(getApiData?.individualsParticipatingInServicePlan?.resident);
+setGuardian(getApiData?.individualsParticipatingInServicePlan?.guardian);
+setStaff(getApiData?.individualsParticipatingInServicePlan?.staff);
+setBph(getApiData?.individualsParticipatingInServicePlan?.bhp);
+setCommentIndividual(getApiData?.individualsParticipatingInServicePlan?.comment);
+
+// Resetting isReason state variable
+setIsReason(getApiData?.residentAgreementIsReason);
+setrefusalReason(getApiData?.residentAgreementRefusalReason);
+
+// Resetting signaturesResident state variables
+setNameResident(getApiData?.signaturesResident?.name);
+setCredentialsResident(getApiData?.signaturesResident?.credentials);
+setsignatureResident(getApiData?.signaturesResident?.signature);
+setDateResident(getApiData?.signaturesResident?.date?formatDate(getApiData?.signaturesResident?.date):"");
+setTimeResident(getApiData?.signaturesResident?.time);
+
+// Resetting signaturesFacilityRep state variables
+setNameFacilityRep(getApiData?.signaturesFacilityRep?.name);
+setCredentialsFacilityRep(getApiData?.signaturesFacilityRep?.credentials);
+setsignatureFacilityRep(getApiData?.signaturesFacilityRep?.signature);
+setDateFacilityRep(getApiData?.signaturesFacilityRep?.date?formatDate(getApiData?.signaturesFacilityRep?.date):"");
+setTimeFacality(getApiData?.signaturesFacilityRep?.time);
+
+// Resetting signaturesBhp state variables
+setNameBhp(getApiData?.signaturesBhp?.name);
+setCredentialsBhp(getApiData?.signaturesBhp?.credentials);
+setsignatureBhp(getApiData?.signaturesBhp?.signature);
+setDateBhp(getApiData?.signaturesBhp?.date?formatDate(getApiData?.signaturesBhp?.date):"");
+setTimeBhp(getApiData?.signaturesBhp?.time);
+
+  },[getApiData])
+
+useEffect(()=>{
+  patient_form_treatment_get(userId,setGetApiData)
+},[userId])
+
 
   useEffect(() => {
     setUserId(user?._id);
-    setName(user?.fullName);
+    setResidentName(user?.fullName);
+    setDob(user?.dateOfBirth?user?.dateOfBirth?.slice(0,10):"");
   }, [user]);
 
   useEffect(() => {
@@ -469,55 +759,219 @@ const TreatmentPlan = () => {
 
   const handlePost = (e) => {
     e.preventDefault();
+
+    let presentingPriceArray = [];
+
+    presentingPrice.forEach(item => {
+      presentingPriceArray.push(item?.value);
+    });
+
+    let strengthsArray=[];
+    strengths.forEach(item => {
+      strengthsArray.push(item?.value);
+    });
+
+    let BarriersArray=[]
+    Barriers.forEach(item => {
+      BarriersArray.push(item?.value);
+    });
+
+    let option1Array=[]
+    option1.forEach(item => {
+      option1Array.push(item?.value);
+    });
+
+    let option2Array=[]
+    option2.forEach(item => {
+      option2Array.push(item?.value);
+    });
+
+    let option3Array=[]
+    option3.forEach(item => {
+      option3Array.push(item?.value);
+    });
+
+    let option4Array=[]
+    option4.forEach(item => {
+      option4Array.push(item?.value);
+    });
+
+    let option5Array=[]
+    option5.forEach(item => {
+      option5Array.push(item?.value);
+    });
+
+    let option6Array=[]
+    option6.forEach(item => {
+      option6Array.push(item?.value);
+    });
+
+    let option7Array=[]
+    option7.forEach(item => {
+      option7Array.push(item?.value);
+    });
+
+    let option8Array=[]
+    option8.forEach(item => {
+      option8Array.push(item?.value);
+    });
+
+    let clinicalSummaryArray=[];
+    clinicalSummary.forEach((item)=>{
+      clinicalSummaryArray.push(item?.value);
+    })
+
+
     const data = {
       patientId: userId,
-      residentName: address,
+      
       dateOfBirth: dob,
       date: date,
       admitDate: admitDate,
-      care: {
-        physicalServices: physicalService,
-        behavioralServices: behavior,
-      },
-
-      presentingProblems: presentingPrice,
+      care: [
+        physicalService,
+        behavior,
+      ] ,
+      medicationService:[
+        medicationAdministation,
+        medicationAssistance
+    ],
+      presentingProblems: presentingPriceArray,
+      diagonsis,
       mentalStatus: mendelHealth,
       mentalStatusOther: mentelText,
       moodLevel: mind,
       moodLevelOther: mindText,
       adls: adls,
       behavioralHealthServices: BHealth,
+      behavioralHealthServicesOther:Btext,
       primaryCareProvider: primaryCare,
-
+      psychiatricProvider:psychiatricProvider,
+      residentGoals:residentGoal,
       allergies: allergies,
       triggers: Triggers,
-      strengths: strengths,
-      barriers: Barriers,
+      strengths: strengthsArray,
+      barriers: BarriersArray,
       riskAssessment: {
         behavioralSymptoms: behavioralSymptoms,
+        behavioralSymptomsOther:behavioralSymptomsOther,
         physicalSymptoms: physicalSymptoms,
+        physicalSymptomsOther:physicalSymptomsOther,
         cognitiveSymptoms: consnotiveSymptoms,
+        cognitiveSymptomsOther:consnotiveSymptomsOther,
         psychosocialSymptoms: psychosocialSymptoms,
+        psychosocialSymptomsOther:psychosocialSymptomssOther,
       },
-      //miss some value
+      interventions:interventionsImplemented,
+      interventionsComment:interventionsImplementedOther,
+      counselingFrequency:counselingOptions,
+      counselingFrequencyMinimum:minimumHoure,
+      counselingFrequencyComment:counselingOptionsText,
+
+
+      maintainSobrietyType:option1Array,
+      maintainSobrietyAdmissionMeasure:admissionMeasure1,
+      maintainSobrietyCurrentMeasure:currentMeasure1,
+      maintainSobrietyEstimatedDateOfCompletion:estimatedDateOfCompletion1,
+      maintainSobrietyComments:comments1,
+
+
+      independentLivingSkillsType:option2Array,
+      independentLivingSkillsAdmissionMeasure:admissionMeasure2,
+      independentLivingSkillsCurrentMeasure:currentMeasure2,
+      independentLivingSkillsEstimatedDateOfCompletion:estimatedDateOfCompletion2,
+      independentLivingSkillsComments:comments2,
+
+      employmentType:option3Array,
+      employmentAdmissionMeasure:admissionMeasure3,
+      employmentCurrentMeasure:currentMeasure3,
+      employmentEstimatedDateOfCompletion:estimatedDateOfCompletion3,
+      employmentComments:comments3,
+
+      adlsSecondType:option4Array,
+      adlsSecondAdmissionMeasure:admissionMeasure4,
+      adlsSecondCurrentMeasure:currentMeasure4,
+      adlsSecondEstimatedDateOfCompletion:estimatedDateOfCompletion4,
+      adlsSecondComments:comments4,
+
+      safetyType:option5Array,
+      safetyAdmissionMeasure:admissionMeasure5,
+      safetyCurrentMeasure:currentMeasure5,
+      safetyEstimatedDateOfCompletion:estimatedDateOfCompletion5,
+      safetyComments:comments5,
+
+
+      medicationEducationType:option6Array,
+      medicationEducationAdmissionMeasure:admissionMeasure6,
+      medicationEducationCurrentMeasure:currentMeasure6,
+      medicationEducationEstimatedDateOfCompletion:estimatedDateOfCompletion6,
+      medicationEducationComments:comments6,
+
+
+      managingMentalHealthType:option7Array,
+      managingMentalHealthAdmissionMeasure:admissionMeasure7,
+      managingMentalHealthCurrentMeasure:currentMeasure7,
+      managingMentalHealthEstimatedDateOfCompletion:estimatedDateOfCompletion7,
+      managingMentalHealthComments:comments7,
+
+      legalType:option8Array,
+      legalAdmissionMeasure:admissionMeasure8,
+      legalCurrentMeasure:currentMeasure8,
+      legalEstimatedDateOfCompletion:estimatedDateOfCompletion8,
+      legalComments:comments8,
+
+      other: otherArray,
+
+      residentParticipation,
+      residentAttitude:residentAttitute,
+      residentProgress,
+      supportSystem,
+      supportSystemPhoneNumber:supportSystemPhoneNumber,
+      currentMedications,
+      religiousPreference,
+      nutritionAndWellnessPlanning,
+      recommendationToExtendResidentialTreatment,
+      personalFinances,
+      dischargePlanning,
+      additionalComment,
+      recommendationsForFurtherPrograms,
+      afterCareAndTransitionPlanning,
+      clinicalSummaryBeforeDate:textData,
+      clinicalSummary:clinicalSummaryArray,
+      treatmentPlanReviewDate,
+      dischargePlanDate,
+
+      individualsParticipatingInServicePlan:{
+        resident:resident,
+        guardian:guardian,
+        staff:staff,
+        bhp:bpn,
+        comment:commentIndividual
+      },
+
+      residentAgreementIsReason:isReason,
+      residentAgreementRefusalReason:refusalReason,
 
       signaturesResident: {
         name: nameResident,
         credentials: credentialsResident,
         signature: signatureResident,
         date: dateResident,
+        time:timeResident
       },
       signaturesFacilityRep: {
         name: nameFacilityRep,
         credentials: credentialsFacilityRep,
         signature: signatureFacilityRep,
         date: dateFacilityRep,
+        time:timeFacality
       },
       signaturesBhp: {
         name: nameBhp,
         credentials: credentialsBhp,
         signature: signatureBhp,
         date: dateBhp,
+        time: timeBhp
       },
     };
     patient_form(data);
@@ -533,44 +987,93 @@ const TreatmentPlan = () => {
     setMind(value);
   };
 
-  //set the answer
+  //set the answer handleCheckboxChangeBehavioral
   const handleCheckboxChangeBehavioral = (symptom) => {
-    setBehavioralSymptoms((prevSelectedSymptoms) => {
-      if (prevSelectedSymptoms.includes(symptom)) {
-        return prevSelectedSymptoms.filter((selected) => selected !== symptom);
-      } else {
-        return [...prevSelectedSymptoms, symptom];
-      }
-    });
+    if (symptom === "Other") {
+      // Toggle "Other" symptom
+      setBehavioralSymptoms(prevState => {
+        if (prevState.includes("Other")) {
+          return prevState.filter(item => item !== "Other");
+        } else {
+          return [...prevState, "Other"];
+        }
+      });
+    } else {
+      // Toggle other symptoms
+      setBehavioralSymptoms(prevState => {
+        if (prevState.includes(symptom)) {
+          return prevState.filter(item => item !== symptom);
+        } else {
+          return [...prevState, symptom];
+        }
+      });
+    }
   };
+
   const handleCheckboxChangePhysical = (symptom) => {
-    setPhysicalSymptoms((prevSelectedSymptoms) => {
-      if (prevSelectedSymptoms.includes(symptom)) {
-        return prevSelectedSymptoms.filter((selected) => selected !== symptom);
-      } else {
-        return [...prevSelectedSymptoms, symptom];
-      }
-    });
+    if (symptom === "Other") {
+      // Toggle "Other" symptom
+      setPhysicalSymptoms(prevState => {
+        if (prevState.includes("Other")) {
+          return prevState.filter(item => item !== "Other");
+        } else {
+          return [...prevState, "Other"];
+        }
+      });
+    }else{
+      setPhysicalSymptoms((prevSelectedSymptoms) => {
+        if (prevSelectedSymptoms.includes(symptom)) {
+          return prevSelectedSymptoms.filter((selected) => selected !== symptom);
+        } else {
+          return [...prevSelectedSymptoms, symptom];
+        }
+      });
+    }
+   
   };
 
   const handleCheckboxChangeCognitive = (symptom) => {
-    setConsnotiveSymptoms((prevSelectedSymptoms) => {
-      if (prevSelectedSymptoms.includes(symptom)) {
-        return prevSelectedSymptoms.filter((selected) => selected !== symptom);
-      } else {
-        return [...prevSelectedSymptoms, symptom];
-      }
-    });
+    if (symptom === "Other") {
+      // Toggle "Other" symptom
+      setConsnotiveSymptoms(prevState => {
+        if (prevState.includes("Other")) {
+          return prevState.filter(item => item !== "Other");
+        } else {
+          return [...prevState, "Other"];
+        }
+      });
+    }else{
+      setConsnotiveSymptoms((prevSelectedSymptoms) => {
+        if (prevSelectedSymptoms.includes(symptom)) {
+          return prevSelectedSymptoms.filter((selected) => selected !== symptom);
+        } else {
+          return [...prevSelectedSymptoms, symptom];
+        }
+      });
+    }
+
   };
 
   const handleCheckboxChangePsychosocial = (symptom) => {
-    setPsychosocialSymptoms((prevSelectedSymptoms) => {
-      if (prevSelectedSymptoms.includes(symptom)) {
-        return prevSelectedSymptoms.filter((selected) => selected !== symptom);
-      } else {
-        return [...prevSelectedSymptoms, symptom];
-      }
-    });
+    if (symptom === "Other") {
+      // Toggle "Other" symptom
+      setPsychosocialSymptoms(prevState => {
+        if (prevState.includes("Other")) {
+          return prevState.filter(item => item !== "Other");
+        } else {
+          return [...prevState, "Other"];
+        }
+      });
+    }else{
+      setPsychosocialSymptoms((prevSelectedSymptoms) => {
+        if (prevSelectedSymptoms.includes(symptom)) {
+          return prevSelectedSymptoms.filter((selected) => selected !== symptom);
+        } else {
+          return [...prevSelectedSymptoms, symptom];
+        }
+      });
+    }
+
   };
 
   const handleCheckboxChange = (value) => {
@@ -1459,26 +1962,52 @@ const TreatmentPlan = () => {
 
   return (
     <>
-      <div ref={componentRef}>
-        <div className="backbutton">
-          <IoArrowBackCircle
-            style={{
-              color: "#1A9FB2",
-              width: "40px",
-              height: "40px",
-              cursor: "pointer",
-            }}
-            onClick={() => navigate("/intake")}
-          />
-        </div>
-
-        <div className="Boss">
-          <div className="formheading1">
-            <div className="formsheading2">
-              <h1>TREATMENT PLAN</h1>
-            </div>
+      <div  ref={componentRef}>
+        <div >
+          <div className="backbutton hidePrint">
+            <IoArrowBackCircle
+              style={{
+                color: "#1A9FB2",
+                width: "40px",
+                height: "40px",
+                cursor: "pointer",
+              }}
+              onClick={() => navigate("/intake")}
+            />
           </div>
-          <form onSubmit={handlePost}>
+
+          <div className="Boss">
+            <div className="formheading1">
+              <div className="formsheading_updated_treatment" style={{marginTop:"1.5rem", padding:" 0 10px"}}>
+                <div className="treatment_plan_header">
+                <h5>TREATMENT PLAN</h5>
+                <div className="treatment_plan_header_inner_div">
+                  <input
+                    type="checkbox"
+                  
+                    checked={initialUpdate==="Initial"}
+                    onChange={() =>
+                      setInitialUpdate("Initial")
+                    }
+                  />
+                  <label >Initial</label>
+                </div>
+                <div className="treatment_plan_header_inner_div">
+                  <input
+                    type="checkbox"
+                    checked={initialUpdate==="Update"}
+                    onChange={() =>
+                      setInitialUpdate("Update")
+                    }
+                  />
+                  <label >Update</label>
+                </div>
+                </div>
+              </div>
+            </div>
+         
+        
+          <form  onSubmit={handlePost}>
             <div className="form-section">
               <div className="box-image-container">
                 <div className="form-field-update">
@@ -1497,10 +2026,10 @@ const TreatmentPlan = () => {
                     <label>Date:</label>
                     <input
                       type="date"
-                      value={dob}
+                      value={date}
                       placeholder="DD/MM/YYYY"
                       required
-                      onChange={(e) => setDof(e.target.value)}
+                      onChange={(e) => setDate(e.target.value)}
                     />
                   </div>
                 </div>
@@ -1511,10 +2040,10 @@ const TreatmentPlan = () => {
                     <input
                       type="date"
                       id="dateOfBirth"
-                      value={date}
+                      value={dob}
                       placeholder="DD/MM/YYYY"
                       required
-                      onChange={(e) => setDate(e.target.value)}
+                      onChange={(e) => setDob(e.target.value)}
                     />
                   </div>
 
@@ -1531,17 +2060,17 @@ const TreatmentPlan = () => {
                   </div>
                 </div>
 
-                <div className="form-field-update">
+                <div className="form-field-update-care">
                   <div className="form-field-child">
                     {" "}
-                    <label>Care:</label>
+                    <label style={{ fontWeight: "bold" }}>Care:</label>
                   </div>
 
                   <div className="form-field-child">
                     <input
                       type="checkbox"
-                      checked={physicalService}
-                      onChange={() => setPhysicalService(!physicalService)}
+                      checked={physicalService==="physicalService"}
+                      onChange={() => setPhysicalService(physicalService==="physicalService"?"":"physicalService")}
                       id="behavioralCheckbox"
                     />
                     <label>Physical Services</label>
@@ -1549,36 +2078,40 @@ const TreatmentPlan = () => {
                   <div className="form-field-child">
                     <input
                       type="checkbox"
-                      checked={behavior}
-                      onChange={() => setBehavior(!behavior)}
+                      checked={behavior==="behavior"}
+                      onChange={() => setBehavior(behavior==="behavior"?"":"behavior")}
                       id="behavioralCheckbox"
                     />
                     <label>Behavioral Services</label>
                   </div>
                 </div>
 
-                {/* state is duplicated again make the state */}
+                {/* state is duplicatedffdg again make the state */}
                 <div>
                   <label
                     style={{
                       fontSize: "16px",
                       fontWeight: "bold",
-                      marginTop: "1.5rem",
+
+                      marginTop: "0.5rem",
                       marginLeft: "10px",
                     }}
                   >
                     Medication Services:
                   </label>
-                  <div className="form-field-update ">
+                  <div className="form-field-update-care">
                     <div className="form-field-child">
                       <input
-                        type="checkbox"
-                        onChange={() => setBehavior(!behavior)}
+                      type="checkbox"
+                       checked={medicationAdministation==="MedicationAdministration"}
+                       onChange={() => setMedicationAdministation(medicationAdministation==="MedicationAdministration"?"":"MedicationAdministration")}
                       />
                       <label>Medication Administration</label>
                     </div>
                     <div className="form-field-child">
-                      <input type="checkbox" />
+                      <input type="checkbox" 
+                      checked={medicationAssistance==="AssistanceintheselfAdministrationofmedication"}
+                      onChange={() => setMedicationAssistence(medicationAssistance==="AssistanceintheselfAdministrationofmedication"?"":"AssistanceintheselfAdministrationofmedication")}/>
                       <label>
                         Assistance in the self-Administration of medication
                       </label>
@@ -1599,33 +2132,14 @@ const TreatmentPlan = () => {
                 />
               </div>
 
-              {presentingPriceBoolean && (
-                <div className="form-field">
-                  <label
-                    htmlFor="programlocation&address"
-                    style={{ fontSize: "14px" }}
-                  >
-                    Comments
-                  </label>
-                  <textarea
-                    value={presentingPriceBooleanType}
-                    onChange={(e) =>
-                      setpresentingPriceBooleanType(e.target.value)
-                    }
-                    placeholder="Enter text"
-                    rows={2}
-                    cols={82}
-                    required
-                  />
-                </div>
-              )}
+       
 
-              <div className="form-field-single-update">
+              <div className="form-field-single-update" style={{marginTop:"0.5rem"}}>
                 <label>Diagnoses:</label>
-                <input type="text" required />
+                <input type="text" required value={diagonsis} onChange={(e)=>setDiagonsis(e.target.value)}/>
               </div>
               <label
-                htmlFor=""
+               
                 className="label-review"
                 style={{ fontWeight: "bold" }}
               >
@@ -1668,20 +2182,13 @@ const TreatmentPlan = () => {
                 <div>
                   <input
                     type="checkbox"
-                    id="other"
+                  
                     checked={mendelHealth === "other"}
                     onChange={() => handleCheckboxChangeMentalHealth("other")}
                   />
-                  <label htmlFor="other">Other </label>
-                  {/* {mendelHealth === "other" && (
-                    <AutosizeInput
-                      type="text"
-                      inputStyle={{ border: "none", outline: "none" }}
-                      placeholder="________"
-                      value={mentelText}
-                      onChange={(e) => setMentelText(e.target.value)}
-                    />
-                  )} */}
+                  <label >Other </label>
+                
+                    <AutoSize value={mentelText} setValue={setMentelText}  placeholder="________"/>
                 </div>
               </div>
 
@@ -1732,21 +2239,12 @@ const TreatmentPlan = () => {
                 <div>
                   <input
                     type="checkbox"
-                    id="other"
+                  
                     checked={mind === "other"}
                     onChange={() => handleCheckboxChangeMind("other")}
                   />
-                  <label htmlFor="other">Other :</label>
-
-                  {/* {mind === "other" && (
-                    <AutosizeInput
-                      type="text"
-                      inputStyle={{ border: "none", outline: "none" }}
-                      placeholder="________"
-                      value={mindText}
-                      onChange={(e) => setMindText(e.target.value)}
-                    />
-                  )} */}
+                  <label >Other</label>
+                     <AutoSize value={mindText} setValue={setMindText}  placeholder="________"/>
                 </div>
               </div>
 
@@ -1777,8 +2275,7 @@ const TreatmentPlan = () => {
                     onChange={() => setAdls("personalCareLevel")}
                   />
                   <label htmlFor="personalCareLevel">
-                    Personal care level – See Attached personal care treatment
-                    plan
+                    Personal care level 
                   </label>
                 </div>
               </div>
@@ -1927,22 +2424,6 @@ const TreatmentPlan = () => {
                 />
               </div>
 
-              {/* {strengthsBoolean && (
-                <div className="form-field">
-                  <label htmlFor="programlocation&addresstypeOfOtherBoolean">
-                    Comments
-                  </label>
-                  <textarea
-                    id="programlocation&addresstypeOfOtherBoolean"
-                    value={strengthsType}
-                    placeholder="Enter text"
-                    rows={2}
-                    cols={82}
-                    required
-                    onChange={(e) => setStrengthsType(e.target.value)}
-                  />
-                </div>
-              )} */}
 
               <div className="form-field">
                 <label className="label-review">Barriers:</label>
@@ -1956,23 +2437,6 @@ const TreatmentPlan = () => {
                   onKeyDown={handleKeyBarriers}
                 />
               </div>
-
-              {/* {BarriersBoolean && (
-                <div className="form-field">
-                  <label htmlFor="programlocation&addresstypeOfOtherBoolean">
-                    Comments
-                  </label>
-                  <textarea
-                    id="programlocation&addresstypeOfOtherBoolean"
-                    value={BarriersOther}
-                    placeholder="Enter text"
-                    rows={2}
-                    cols={82}
-                    required
-                    onChange={(e) => setBarriersOther(e.target.value)}
-                  />
-                </div>
-              )} */}
 
               <div className="formsheading">
                 <h6>
@@ -2044,7 +2508,7 @@ const TreatmentPlan = () => {
                     )}
                     onChange={() =>
                       handleCheckboxChangeBehavioral(
-                        "Nolongerenjoyingpreviousactivities"
+                        "nolongerenjoyingpreviousactivities"
                       )
                     }
                   />
@@ -2089,42 +2553,34 @@ const TreatmentPlan = () => {
                 <div>
                   <input
                     type="checkbox"
-                    id="other"
+             
                     checked={behavioralSymptoms.includes("Other")}
                     onChange={() => handleCheckboxChangeBehavioral("Other")}
                   />
-                  <label htmlFor="other">Other</label>
-                  {/* {behavioralSymptomsBoolean && (
-                    <AutosizeInput
-                      type="text"
-                      inputStyle={{ border: "none", outline: "none" }}
-                      placeholder="________"
-                      value={behavioralSymptomsOther}
-                      onChange={(e) =>
-                        setBehavioralSymptomsOther(e.target.value)
-                      }
-                    />
-                  )} */}
+                  <label >Other</label>
+                  {behavioralSymptomsBoolean && (
+                      <AutoSize value={behavioralSymptomsOther}  setValue={setBehavioralSymptomsOther}   placeholder="________"/>
+                    )}
                 </div>
               </div>
 
               {/*   
-            {
-              behavioralSymptomsBoolean && (
-                <div className="form-field">
-              <label htmlFor="programlocation&addresstypeOfOtherBoolean">Comments</label>
-              <textarea
-                id="programlocation&addresstypeOfOtherBoolean"
-                value={behavioralSymptomsOther}
-                placeholder="Enter text"
-                rows={2}
-                cols={82}
-                required
-                onChange={(e)=>setBehavioralSymptomsOther(e.target.value)}
-              />
-            </div>
-              )
-            } */}
+              {
+                behavioralSymptomsBoolean && (
+                  <div className="form-field">
+                <label htmlFor="programlocation&addresstypeOfOtherBoolean">Comments</label>
+                <textarea
+                  id="programlocation&addresstypeOfOtherBoolean"
+                  value={behavioralSymptomsOther}
+                  placeholder="Enter text"
+                  rows={2}
+                  cols={82}
+                  required
+                  onChange={(e)=>setBehavioralSymptomsOther(e.target.value)}
+                />
+              </div>
+                )
+              } */}
 
               <label
                 htmlFor=""
@@ -2201,39 +2657,40 @@ const TreatmentPlan = () => {
                 <div>
                   <input
                     type="checkbox"
-                    id="Other"
+                   
                     checked={physicalSymptoms.includes("Other")}
                     onChange={() => handleCheckboxChangePhysical("Other")}
                   />
-                  <label htmlFor="Other">Other</label>
-                  {/* {physicalSymptomsBoolean && (
-                    <AutosizeInput
-                      type="text"
-                      inputStyle={{ border: "none", outline: "none" }}
-                      placeholder="________"
-                      value={physicalSymptomsOther}
-                      onChange={(e) => setPhysicalSymptomsOther(e.target.value)}
-                    />
-                  )} */}
+                  <label >Other</label>
+                  {physicalSymptomsBoolean && (
+                      // <AutosizeInput
+                      //   type="text"
+                      //   inputStyle={{ border: "none", outline: "none" }}
+                      //   placeholder="________"
+                      //   value={physicalSymptomsOther}
+                      //   onChange={(e) => setPhysicalSymptomsOther(e.target.value)}
+                      // />
+                      <AutoSize value={physicalSymptomsOther} setValue={setPhysicalSymptomsOther} placeholder="________"/>
+                    )}
                 </div>
               </div>
 
               {/* {
-              physicalSymptomsBoolean && (
-                <div className="form-field">
-              <label htmlFor="programlocation&addresstypeOfOtherBoolean">Comments</label>
-              <textarea
-                id="programlocation&addresstypeOfOtherBoolean"
-                value={physicalSymptomsOther}
-                placeholder="Enter text"
-                rows={2}
-                cols={82}
-                required
-                onChange={(e)=>setPhysicalSymptomsOther(e.target.value)}
-              />
-            </div>
-              )
-            } */}
+                physicalSymptomsBoolean && (
+                  <div className="form-field">
+                <label htmlFor="programlocation&addresstypeOfOtherBoolean">Comments</label>
+                <textarea
+                  id="programlocation&addresstypeOfOtherBoolean"
+                  value={physicalSymptomsOther}
+                  placeholder="Enter text"
+                  rows={2}
+                  cols={82}
+                  required
+                  onChange={(e)=>setPhysicalSymptomsOther(e.target.value)}
+                />
+              </div>
+                )
+              } */}
 
               <label
                 htmlFor="cognitiveSymptoms"
@@ -2307,13 +2764,13 @@ const TreatmentPlan = () => {
                 <div>
                   <input
                     type="checkbox"
-                    id="inabilityToFocus"
-                    checked={consnotiveSymptoms.includes("specifictasks ")}
+                    id="specifictasks"
+                    checked={consnotiveSymptoms.includes("specifictasks")}
                     onChange={() =>
                       handleCheckboxChangeCognitive("specifictasks")
                     }
                   />
-                  <label htmlFor="inabilityToFocus">Specific tasks</label>
+                  <label htmlFor="specifictasks">Specific tasks</label>
                 </div>
                 <div>
                   <input
@@ -2329,41 +2786,42 @@ const TreatmentPlan = () => {
                 <div>
                   <input
                     type="checkbox"
-                    id="Other"
+                  
                     checked={consnotiveSymptoms.includes("Other")}
                     onChange={() => handleCheckboxChangeCognitive("Other")}
                   />
-                  <label htmlFor="Other">Other</label>
-                  {/* {consnotiveSymptomsBoolean && (
-                    <AutosizeInput
-                      type="text"
-                      inputStyle={{ border: "none", outline: "none" }}
-                      placeholder="________"
-                      value={consnotiveSymptomsOther}
-                      onChange={(e) =>
-                        setConsnotiveSymptomsOther(e.target.value)
-                      }
-                    />
-                  )} */}
+                  <label >Other</label>
+                  {consnotiveSymptomsBoolean && (
+                      // <AutosizeInput
+                      //   type="text"
+                      //   inputStyle={{ border: "none", outline: "none" }}
+                      //   placeholder="________"
+                      //   value={consnotiveSymptomsOther}
+                      //   onChange={(e) =>
+                      //     setConsnotiveSymptomsOther(e.target.value)
+                      //   }
+                      // />
+                      <AutoSize value={consnotiveSymptomsOther} setValue={setConsnotiveSymptomsOther}  placeholder="________"/>
+                    )}
                 </div>
               </div>
               {/* 
-            {
-              consnotiveSymptomsBoolean && (
-                <div className="form-field">
-              <label htmlFor="programlocation&addresstypeOfOtherBoolean">Comments</label>
-              <textarea
-                id="programlocation&addresstypeOfOtherBoolean"
-                value={consnotiveSymptomsOther}
-                placeholder="Enter text"
-                rows={2}
-                cols={82}
-                required
-                onChange={(e)=>setConsnotiveSymptomsOther(e.target.value)}
-              />
-            </div>
-              )
-            } */}
+              {
+                consnotiveSymptomsBoolean && (
+                  <div className="form-field">
+                <label htmlFor="programlocation&addresstypeOfOtherBoolean">Comments</label>
+                <textarea
+                  id="programlocation&addresstypeOfOtherBoolean"
+                  value={consnotiveSymptomsOther}
+                  placeholder="Enter text"
+                  rows={2}
+                  cols={82}
+                  required
+                  onChange={(e)=>setConsnotiveSymptomsOther(e.target.value)}
+                />
+              </div>
+                )
+              } */}
 
               <label
                 htmlFor=""
@@ -2456,36 +2914,37 @@ const TreatmentPlan = () => {
                     onChange={() => handleCheckboxChangePsychosocial("Other")}
                   />
                   <label htmlFor="OtherpsychosocialSymptoms">Other</label>
-                  {/* {psychosocialSymptomsBoolean && (
-                    <AutosizeInput
-                      type="text"
-                      inputStyle={{ border: "none", outline: "none" }}
-                      placeholder="________"
-                      value={psychosocialSymptomssOther}
-                      onChange={(e) =>
-                        setPsychosocialSymptomsOther(e.target.value)
-                      }
-                    />
-                  )} */}
+                  {psychosocialSymptomsBoolean && (
+                      // <AutosizeInput
+                      //   type="text"
+                      //   inputStyle={{ border: "none", outline: "none" }}
+                      //   placeholder="________"
+                      //   value={psychosocialSymptomssOther}
+                      //   onChange={(e) =>
+                      //     setPsychosocialSymptomsOther(e.target.value)
+                      //   }
+                      // />
+                      <AutoSize value={psychosocialSymptomssOther} setValue={setPsychosocialSymptomsOther}  placeholder="________"/>
+                    )}
                 </div>
               </div>
               {/* 
-            {
-              psychosocialSymptomsBoolean && (
-                <div className="form-field">
-              <label htmlFor="programlocation&addresstypeOfOtherBoolean">Comments</label>
-              <textarea
-                id="programlocation&addresstypeOfOtherBoolean"
-                value={psychosocialSymptomssOther}
-                placeholder="Enter text"
-                rows={2}
-                cols={82}
-                required
-                onChange={(e)=>setPsychosocialSymptomsOther(e.target.value)}
-              />
-            </div>
-              )
-            } */}
+              {
+                psychosocialSymptomsBoolean && (
+                  <div className="form-field">
+                <label htmlFor="programlocation&addresstypeOfOtherBoolean">Comments</label>
+                <textarea
+                  id="programlocation&addresstypeOfOtherBoolean"
+                  value={psychosocialSymptomssOther}
+                  placeholder="Enter text"
+                  rows={2}
+                  cols={82}
+                  required
+                  onChange={(e)=>setPsychosocialSymptomsOther(e.target.value)}
+                />
+              </div>
+                )
+              } */}
 
               <label
                 htmlFor=""
@@ -2681,99 +3140,30 @@ const TreatmentPlan = () => {
                   />
                   <label htmlFor="Redirection">Redirection</label>
                 </div>
+             
                 <div>
                   <input
                     type="checkbox"
-                    id="None reported"
-                    checked={interventionsImplemented.includes("None reported")}
-                    onChange={() => handleCheckboxChange("None reported")}
-                  />
-                  <label htmlFor="None reported">None reported</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="OtherpsychosocialSymptoms"
+              
                     checked={interventionsImplemented.includes("Other")}
                     onChange={() => handleCheckboxChange("Other")}
                   />
-                  <label htmlFor="OtherpsychosocialSymptoms">Other</label>
-                  {/* {interventionsImplementedBoolean && (
-                    <AutosizeInput
-                      type="text"
-                      inputStyle={{ border: "none", outline: "none" }}
-                      placeholder="________"
-                      value={interventionsImplementedOther}
-                      onChange={(e) =>
-                        setInterventionsImplementedOther(e.target.value)
-                      }
-                    />
-                  )} */}
+                  <label>Other</label>
+                  {interventionsImplementedBoolean && (
+                      <AutoSize value={interventionsImplementedOther} setValue={setInterventionsImplementedOther}  placeholder="________"/>
+                    )}
                 </div>
               </div>
-              {/* <div className="yeschechbox-review">
-                {[
-                  "Psychiatric services",
-                  "Communication Skills",
-                  "Verbal Prompt",
-                  "Interactive Feedback",
-                  "Encouragement",
-                  "Role-Play",
-                  "Sponsors, and support programs & people",
-                  "Review of Treatment Plan",
-                  "Relaxation techniques",
-                  "Reframing",
-                  "Conflict resolution",
-                  "Rehearsal, Spiritual exploration",
-                  "Values clarification, Psycho-education",
-                  "Exploring feelings",
-                  "Distraction",
-                  "Redirection",
-                  "None reported",
-                  "Other",
-                ].map((intervention, index) => (
-                  <div key={index}>
-                    <input
-                      type="checkbox"
-                      id={`interventionCheckbox${index}`}
-                      checked={interventionsImplemented.includes(intervention)}
-                      onChange={() => handleCheckboxChange(intervention)}
-                    />
-                    <label htmlFor={`interventionCheckbox${index}`}>
-                      {intervention}
-                    </label>
-                  </div>
-                ))}
-              </div>
-
-              {interventionsImplementedBoolean && (
-                <div className="form-field">
-                  <label htmlFor="programlocation&addresstypeOfOtherBoolean">
-                    Comments
-                  </label>
-                  <textarea
-                    id="programlocation&addresstypeOfOtherBoolean"
-                    value={interventionsImplementedOther}
-                    placeholder="Enter text"
-                    rows={2}
-                    cols={82}
-                    required
-                    onChange={(e) =>
-                      setInterventionsImplementedOther(e.target.value)
-                    }
-                  />
-                </div>
-              )} */}
+           
 
               <label className="label-review">Counseling and Frequency:</label>
-              <div className="formsheading">
-                <p className="inLine_box_style">
+              <div className="formsheading-treatment">
+                <div className="inLine_box_style">
                   <p>Total of minimum </p>{" "}
                   <div>
                     <input
-                      style={{ outline: "none", border: "none" }}
+                      style={{ outline: "none", border: "none" ,width:"40px",marginBottom:"13px"}}
                       placeholder="__________"
-                      id="input-text_value3"
                       type="text"
                       value={minimumHoure}
                       required
@@ -2781,22 +3171,22 @@ const TreatmentPlan = () => {
                     />
                   </div>
                   <p>hours daily.</p>
-                </p>
+                </div>
               </div>
               {/* <div className="yeschechbox-review">
-              <div>
-                <span>Total of Minimum</span>
+                <div>
+                  <span>Total of Minimum</span>
+                </div>
+                <div>
+                  <span>Hours per Week</span>
+                </div>
               </div>
-              <div>
-                <span>Hours per Week</span>
-              </div>
-            </div>
-            <div className="yeschechbox-review">
-              <label htmlFor="">Individual: </label>
-              <div>
-                <span>Minimum 1 hour session per week</span>
-              </div>
-            </div> */}
+              <div className="yeschechbox-review">
+                <label htmlFor="">Individual: </label>
+                <div>
+                  <span>Minimum 1 hour session per week</span>
+                </div>
+              </div> */}
               <div className="yeschechbox-review">
                 <div>
                   <input
@@ -2940,7 +3330,7 @@ const TreatmentPlan = () => {
                     id="AA"
                     checked={counselingOptions.includes("AA")}
                     onChange={() =>
-                      handleCheckboxChangeCounsiling("Nonereported")
+                      handleCheckboxChangeCounsiling("AA")
                     }
                   />
                   <label htmlFor="AA">AA</label>
@@ -2982,687 +3372,688 @@ const TreatmentPlan = () => {
                 <div>
                   <input
                     type="checkbox"
-                    id="OtherpsychosocialSymptoms"
+               
                     checked={counselingOptions.includes("Other")}
                     onChange={() => handleCheckboxChangeCounsiling("Other")}
                   />
-                  <label htmlFor="OtherpsychosocialSymptoms">Other</label>
-                  {/* {counselingOptionsTextBoolean && (
-                    <AutosizeInput
-                      type="text"
-                      inputStyle={{ border: "none", outline: "none" }}
-                      placeholder="________"
-                      value={counselingOptionsText}
-                      onChange={(e) =>
-                        setCounselingOptionsOther(e.target.value)
-                      }
-                    />
-                  )} */}
+                  <label >Other</label>
+                  {counselingOptionsTextBoolean && (
+                      // <AutosizeInput
+                      //   type="text"
+                      //   inputStyle={{ border: "none", outline: "none" }}
+                      //   placeholder="________"
+                      //   value={counselingOptionsText}
+                      //   onChange={(e) =>
+                      //     setCounselingOptionsOther(e.target.value)
+                      //   }
+                      // />
+                      <AutoSize value={counselingOptionsText} setValue={setCounselingOptionsOther}  placeholder="________"/>
+                    )}
                 </div>
               </div>
               {/* <div>
-                <div className="yeschechbox-review">
-                  {[
-                    "Group",
-                    "3 times a day",
-                    "4 times a day",
-                    "Individual Counseling: Minimum 1 hour session per week",
-                    "Individual Counseling: Minimum 1 hour session every 2 weeks",
-                    "Individual Therapy: As needed",
-                    "Individual Therapy: Please Specify",
-                    "Resident decline individual therapy services",
-                    "Family Counseling",
-                    "NA",
-                    "AA",
-                    "Month ART Meeting/Staffing",
-                    "Weekly ART Meeting/Staffing",
-                    "Other",
-                  ].map((option, index) => (
-                    <div key={index}>
-                      <input
-                        type="checkbox"
-                        id={`counselingCheckbox${index}`}
-                        checked={counselingOptions.includes(option)}
-                        onChange={() => handleCheckboxChangeCounsiling(option)}
-                      />
-                      <label htmlFor={`counselingCheckbox${index}`}>
-                        {option}
-                      </label>
-                    </div>
-                  ))}
+                  <div className="yeschechbox-review">
+                    {[
+                      "Group",
+                      "3 times a day",
+                      "4 times a day",
+                      "Individual Counseling: Minimum 1 hour session per week",
+                      "Individual Counseling: Minimum 1 hour session every 2 weeks",
+                      "Individual Therapy: As needed",
+                      "Individual Therapy: Please Specify",
+                      "Resident decline individual therapy services",
+                      "Family Counseling",
+                      "NA",
+                      "AA",
+                      "Month ART Meeting/Staffing",
+                      "Weekly ART Meeting/Staffing",
+                      "Other",
+                    ].map((option, index) => (
+                      <div key={index}>
+                        <input
+                          type="checkbox"
+                          id={`counselingCheckbox${index}`}
+                          checked={counselingOptions.includes(option)}
+                          onChange={() => handleCheckboxChangeCounsiling(option)}
+                        />
+                        <label htmlFor={`counselingCheckbox${index}`}>
+                          {option}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div> */}
+
+              {/* {counselingOptionsTextBoolean && (
+                  <div className="form-field">
+                    <label>Comment:</label>
+                    <textarea
+                      value={counselingOptionsText}
+                      placeholder="Enter text"
+                      rows={2}
+                      cols={82}
+                      required
+                      onChange={(e) => setCounselingOptionsOther(e.target.value)}
+                    />
+                  </div>
+                )} */}
+
+              {/* <div className="yeschechbox-review">
+                <label htmlFor="">Individual: </label>
+                <div>
+                  <span>As needed</span>
                 </div>
               </div> */}
 
-              {/* {counselingOptionsTextBoolean && (
-                <div className="form-field">
+              {/* <div className="form-field">
+                  <label
+                    style={{
+                      fontWeight: "600",
+                      fontSize: "20px",
+                      marginBottom: "20px",
+                      marginTop: "20px",
+                    }}
+                  >
+                    1. Maintain Sobriety
+                  </label>
+                  <Select
+                    isMulti
+                    options={option1Option}
+                    value={option1}
+                    onChange={option1Handler}
+                    isCreatable={true}
+                    onKeyDown={handleKeyOption1}
+                  />
+                </div>
+  
+                <div className="form-field-update">
+                  <div className="form-field-child">
+                    <label>Admission Messure:</label>
+                    <input
+  
+                      type="text"
+                      value={admissionMeasure1}
+                      placeholder="Admission Messure"
+                      required
+                      onChange={(e) => setAdmissionMeasure1(e.target.value)}
+                    />
+                  </div>
+  
+                  <div className="form-field-child">
+                    <label>Current Messure:</label>
+                    <input
+                      type="text"
+                      value={currentMeasure1}
+                      placeholder="Enter Current Messure"
+                      required
+                      onChange={(e) => setCurrentMeasure1(e.target.value)}
+                    />
+                  </div>
+  
+                  <div className="form-field-child">
+                    <label>Estimete Date of Goal complition:</label>
+                    <input
+                      type="date"
+                      value={estimatedDateOfCompletion1}
+                      placeholder="Enter Estimete Date of complition"
+                      required
+                      onChange={(e) =>
+                        setEstimatedDateOfCompletion1(e.target.value)
+                      }
+                    />
+                  </div>
+                </div>
+  
+                <div className="form-field-single-update-bold">
                   <label>Comment:</label>
                   <textarea
-                    value={counselingOptionsText}
+                    value={comments1}
                     placeholder="Enter text"
                     rows={2}
                     cols={82}
                     required
-                    onChange={(e) => setCounselingOptionsOther(e.target.value)}
+                    onChange={(e) => setComment1(e.target.value)}
                   />
                 </div>
-              )} */}
-
-              {/* <div className="yeschechbox-review">
-              <label htmlFor="">Individual: </label>
-              <div>
-                <span>As needed</span>
-              </div>
-            </div> */}
-
-              {/* <div className="form-field">
-                <label
-                  style={{
-                    fontWeight: "600",
-                    fontSize: "20px",
-                    marginBottom: "20px",
-                    marginTop: "20px",
-                  }}
-                >
-                  1. Maintain Sobriety
-                </label>
-                <Select
-                  isMulti
-                  options={option1Option}
-                  value={option1}
-                  onChange={option1Handler}
-                  isCreatable={true}
-                  onKeyDown={handleKeyOption1}
-                />
-              </div>
-
-              <div className="form-field-update">
-                <div className="form-field-child">
-                  <label>Admission Messure:</label>
-                  <input
-
-                    type="text"
-                    value={admissionMeasure1}
-                    placeholder="Admission Messure"
-                    required
-                    onChange={(e) => setAdmissionMeasure1(e.target.value)}
+                <div className="form-field">
+                  <label
+                    style={{
+                      fontWeight: "600",
+                      fontSize: "20px",
+                      marginBottom: "20px",
+                      marginTop: "20px",
+                    }}
+                  >
+                    2. Independent Living Skills
+                  </label>
+                  <Select
+                    isMulti
+                    options={option2Option}
+                    value={option2}
+                    onChange={option2Handler}
+                    isCreatable={true}
+                    onKeyDown={handleKeyOption2}
                   />
                 </div>
-
-                <div className="form-field-child">
-                  <label>Current Messure:</label>
-                  <input
-                    type="text"
-                    value={currentMeasure1}
-                    placeholder="Enter Current Messure"
-                    required
-                    onChange={(e) => setCurrentMeasure1(e.target.value)}
-                  />
-                </div>
-
-                <div className="form-field-child">
-                  <label>Estimete Date of Goal complition:</label>
-                  <input
-                    type="date"
-                    value={estimatedDateOfCompletion1}
-                    placeholder="Enter Estimete Date of complition"
-                    required
-                    onChange={(e) =>
-                      setEstimatedDateOfCompletion1(e.target.value)
-                    }
-                  />
-                </div>
-              </div>
-
-              <div className="form-field-single-update-bold">
-                <label>Comment:</label>
-                <textarea
-                  value={comments1}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                  onChange={(e) => setComment1(e.target.value)}
-                />
-              </div>
-              <div className="form-field">
-                <label
-                  style={{
-                    fontWeight: "600",
-                    fontSize: "20px",
-                    marginBottom: "20px",
-                    marginTop: "20px",
-                  }}
-                >
-                  2. Independent Living Skills
-                </label>
-                <Select
-                  isMulti
-                  options={option2Option}
-                  value={option2}
-                  onChange={option2Handler}
-                  isCreatable={true}
-                  onKeyDown={handleKeyOption2}
-                />
-              </div>
-
-              <div className="form-field-update">
-                <div className="form-field-child">
-                  <label>Admission Messure:</label>
-                  <input
-                    type="text"
-                    value={admissionMeasure2}
-                    placeholder="Admission Messure"
-                    required
-                    onChange={(e) => setAdmissionMeasure2(e.target.value)}
-                  />
-                </div>
-
-                <div className="form-field-child">
-                  <label>Current Messure:</label>
-                  <input
-                    type="text"
-                    value={currentMeasure2}
-                    placeholder="Enter Current Messure"
-                    required
-                    onChange={(e) => setCurrentMeasure2(e.target.value)}
-                  />
-                </div>
-                <div className="form-field-child">
-                  <label>Estimete Date of Goal complition:</label>
-                  <input
-                    type="date"
-                    value={estimatedDateOfCompletion2}
-                    placeholder="Enter Estimete Date of complition"
-                    required
-                    onChange={(e) =>
-                      estimatedDateOfCompletion2(e.target.value)
-                    }
-                  />
-                </div>
-              </div>
-
-              <div className="form-field-single-update-bold">
-                <label>Comment:</label>
-                <textarea
-                  value={comments2}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                  onChange={(e) => setComment2(e.target.value)}
-                />
-              </div>
-              <div className="form-field">
-                <label
-                  style={{
-                    fontWeight: "600",
-                    fontSize: "20px",
-                    marginBottom: "20px",
-                    marginTop: "20px",
-                  }}
-                >
-                  3. Employment
-                </label>
-                <Select
-                  isMulti
-                  options={option3Option}
-                  value={option3}
-                  onChange={option3Handler}
-                  isCreatable={true}
-                  onKeyDown={handleKeyOption3}
-                />
-              </div>
-
-              <div className="form-field-update">
-                <div className="form-field-child">
-                  <label>Admission Messure:</label>
-                  <input
-                    type="text"
-                    value={admissionMeasure3}
-                    placeholder="Admission Messure"
-                    required
-                    onChange={(e) => setAdmissionMeasure3(e.target.value)}
-                  />
-                </div>
-
-                <div className="form-field-child">
-                  <label>Current Messure:</label>
-                  <input
-                    type="text"
-                    value={currentMeasure3}
-                    placeholder="Enter Current Messure"
-                    required
-                    onChange={(e) => setCurrentMeasure3(e.target.value)}
-                  />
-                </div>
-                <div className="form-field-child">
-                  <label>Estimete Date of Goal complition:</label>
-                  <input
-                    type="date"
-                    value={estimatedDateOfCompletion3}
-                    placeholder="Enter Estimete Date of complition"
-                    required
-                    onChange={(e) =>
-                      setEstimatedDateOfCompletion3(e.target.value)
-                    }
-                  />
-                </div>
-              </div>
-
-              <div className="form-field-single-update-bold">
-                <label>Comment:</label>
-                <textarea
-                  value={comments3}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                  onChange={(e) => setComment3(e.target.value)}
-                />
-              </div>
-              <div className="form-field">
-                <label
-                  style={{
-                    fontWeight: "600",
-                    fontSize: "20px",
-                    marginBottom: "20px",
-                    marginTop: "20px",
-                  }}
-                >
-                  4. ADLS
-                </label>
-                <Select
-                  isMulti
-                  options={option4Option}
-                  value={option4}
-                  onChange={option4Handler}
-                  isCreatable={true}
-                  onKeyDown={handleKeyOption4}
-                />
-              </div>
-              <div className="form-field-update">
-                <div className="form-field-child">
-                  <label>Admission Messure:</label>
-                  <input
-                    type="text"
-                    value={admissionMeasure4}
-                    placeholder="Admission Messure"
-                    required
-                    onChange={(e) => setAdmissionMeasure4(e.target.value)}
-                  />
-                </div>
-
-                <div className="form-field-child">
-                  <label>Current Messure:</label>
-                  <input
-                    type="text"
-                    value={currentMeasure4}
-                    placeholder="Enter Current Messure"
-                    required
-                    onChange={(e) => setCurrentMeasure4(e.target.value)}
-                  />
-                </div>
-                <div className="form-field-child">
-                  <label>Estimete Date of Goal complition:</label>
-                  <input
-                    type="date"
-                    value={estimatedDateOfCompletion4}
-                    placeholder="Enter Estimete Date of complition"
-                    required
-                    onChange={(e) =>
-                      setEstimatedDateOfCompletion4(e.target.value)
-                    }
-                  />
-                </div>
-              </div>
-
-              <div className="form-field-single-update-bold">
-                <label>Comment:</label>
-                <textarea
-                  value={comments4}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                  onChange={(e) => setComment4(e.target.value)}
-                />
-              </div>
-              <div className="form-field">
-                <label
-                  style={{
-                    fontWeight: "600",
-                    fontSize: "20px",
-                    marginBottom: "20px",
-                    marginTop: "20px",
-                  }}
-                >
-                  5. Safety
-                </label>
-                <Select
-                  isMulti
-                  options={option5Option}
-                  value={option5}
-                  onChange={option5Handler}
-                  isCreatable={true}
-                  onKeyDown={handleKeyOption5}
-                />
-              </div>
-
-              <div className="form-field-update">
-                <div className="form-field-child">
-                  <label>Admission Messure:</label>
-                  <input
-                    type="text"
-                    value={admissionMeasure5}
-                    placeholder="Admission Messure"
-                    required
-                    onChange={(e) => setAdmissionMeasure5(e.target.value)}
-                  />
-                </div>
-
-                <div className="form-field-child">
-                  <label>Current Messure:</label>
-                  <input
-                    type="text"
-                    value={currentMeasure5}
-                    placeholder="Enter Current Messure"
-                    required
-                    onChange={(e) => setCurrentMeasure5(e.target.value)}
-                  />
-                </div>
-                <div className="form-field-child">
-                  <label>Estimete Date of Goal complition:</label>
-                  <input
-                    type="date"
-                    value={estimatedDateOfCompletion5}
-                    placeholder="Enter Estimete Date of complition"
-                    required
-                    onChange={(e) =>
-                      setEstimatedDateOfCompletion5(e.target.value)
-                    }
-                  />
-                </div>
-              </div>
-
-              <div className="form-field-single-update-bold">
-                <label>Comment:</label>
-                <textarea
-                  value={comments5}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                  onChange={(e) => setComment5(e.target.value)}
-                />
-              </div>
-              <div className="form-field">
-                <label
-                  style={{
-                    fontWeight: "600",
-                    fontSize: "20px",
-                    marginBottom: "20px",
-                    marginTop: "20px",
-                  }}
-                >
-                  6. Medication Education
-                </label>
-                <Select
-                  isMulti
-                  options={option6Option}
-                  value={option6}
-                  onChange={option6Handler}
-                  isCreatable={true}
-                  onKeyDown={handleKeyOption6}
-                />
-              </div>
-
-              <div className="form-field-update">
-                <div className="form-field-child">
-                  <label>Admission Messure:</label>
-                  <input
-                    type="text"
-                    value={admissionMeasure6}
-                    placeholder="Admission Messure"
-                    required
-                    onChange={(e) => setAdmissionMeasure6(e.target.value)}
-                  />
-                </div>
-                <div className="form-field-child">
-                  <label>Current Messure:</label>
-                  <input
-                    type="text"
-                    value={currentMeasure6}
-                    placeholder="Enter Current Messure"
-                    required
-                    onChange={(e) => setCurrentMeasure6(e.target.value)}
-                  />
-                </div>
-                <div className="form-field-child">
-                  <label>Estimete Date of Goal complition:</label>
-                  <input
-                    type="date"
-                    value={estimatedDateOfCompletion6}
-                    placeholder="Enter Estimete Date of complition"
-                    required
-                    onChange={(e) =>
-                      setEstimatedDateOfCompletion6(e.target.value)
-                    }
-                  />
-                </div>
-              </div>
-
-              <div className="form-field-single-update-bold">
-                <label>Comment:</label>
-                <textarea
-                  value={comments6}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                  onChange={(e) => setComment6(e.target.value)}
-                />
-              </div>
-              <div className="form-field">
-                <label
-                  style={{
-                    fontWeight: "600",
-                    fontSize: "20px",
-                    marginBottom: "20px",
-                    marginTop: "20px",
-                  }}
-                >
-                  7. Managing Mental Health
-                </label>
-                <Select
-                  isMulti
-                  options={option7Option}
-                  value={option7}
-                  onChange={option7Handler}
-                  isCreatable={true}
-                  onKeyDown={handleKeyOption7}
-                />
-              </div>
-
-              <div className="form-field-update">
-                <div className="form-field-child">
-                  <label>Admission Messure:</label>
-                  <input
-                    type="text"
-                    value={admissionMeasure7}
-                    placeholder="Admission Messure"
-                    required
-                    onChange={(e) => setAdmissionMeasure7(e.target.value)}
-                  />
-                </div>
-
-                <div className="form-field-child">
-                  <label>Current Messure:</label>
-                  <input
-                    type="text"
-                    value={currentMeasure7}
-                    placeholder="Enter Current Messure"
-                    required
-                    onChange={(e) => setCurrentMeasure7(e.target.value)}
-                  />
-                </div>
-                <div className="form-field-child">
-                  <label>Estimete Date of Goal complition:</label>
-                  <input
-                    type="date"
-                    value={estimatedDateOfCompletion7}
-                    placeholder="Enter Estimete Date of complition"
-                    required
-                    onChange={(e) =>
-                      setEstimatedDateOfCompletion7(e.target.value)
-                    }
-                  />
-                </div>
-              </div>
-
-              <div className="form-field-single-update-bold">
-                <label>Comment:</label>
-                <textarea
-                  value={comments7}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                  onChange={(e) => setComment7(e.target.value)}
-                />
-              </div>
-              <div className="form-field">
-                <label
-                  style={{
-                    fontWeight: "600",
-                    fontSize: "20px",
-                    marginBottom: "20px",
-                    marginTop: "20px",
-                  }}
-                >
-                  8. Legal
-                </label>
-                <Select
-                  isMulti
-                  options={option8Option}
-                  value={option8}
-                  onChange={option8Handler}
-                  isCreatable={true}
-                  onKeyDown={handleKeyOption8}
-                />
-              </div>
-
-              <div className="form-field-update">
-                <div className="form-field-child">
-                  <label>Admission Messure:</label>
-                  <input
-                    type="text"
-                    value={admissionMeasure8}
-                    placeholder="Admission Messure"
-                    required
-                    onChange={(e) => setAdmissionMeasure8(e.target.value)}
-                  />
-                </div>
-
-                <div className="form-field-child">
-                  <label>Current Messure:</label>
-                  <input
-                    type="text"
-                    value={currentMeasure8}
-                    placeholder="Enter Current Messure"
-                    required
-                    onChange={(e) => setCurrentMeasure8(e.target.value)}
-                  />
-                </div>
-                <div className="form-field-child">
-                  <label>Estimete Date of Goal complition:</label>
-                  <input
-                    type="date"
-                    value={estimatedDateOfCompletion8}
-                    placeholder="Enter Estimete Date of complition"
-                    required
-                    onChange={(e) =>
-                      setEstimatedDateOfCompletion8(e.target.value)
-                    }
-                  />
-                </div>
-              </div>
-
-              <div className="form-field-single-update-bold">
-                <label>Comment:</label>
-                <textarea
-                  value={comments8}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                  onChange={(e) => setComment8(e.target.value)}
-                />
-              </div>
-
-              {showOther && (
-                <div className="hidePrint">
-                  <div className="form-field">
-                    <label
-                      style={{
-                        fontWeight: "600",
-                        fontSize: "20px",
-                        marginBottom: "20px",
-                        marginTop: "20px",
-                      }}
-                    >
-                      9. Other
-                    </label>
+  
+                <div className="form-field-update">
+                  <div className="form-field-child">
+                    <label>Admission Messure:</label>
                     <input
                       type="text"
-                      value={optionOther}
-                      onChange={(e) => setOptionOther(e.target.value)}
+                      value={admissionMeasure2}
+                      placeholder="Admission Messure"
+                      required
+                      onChange={(e) => setAdmissionMeasure2(e.target.value)}
                     />
                   </div>
-
-                  <div className="form-field-update">
-                    <div className="form-field-child">
-                      <label>Admission Messure:</label>
-                      <input
-                        type="number"
-                        value={admissionMeasureOther}
-                        onChange={(e) =>
-                          setAdmissionMeasureOther(e.target.value)
-                        }
-                      />
-                    </div>
-
-                    <div className="form-field-child">
-                      <label>Current Messure:</label>
-                      <input
-                        type="number"
-                        value={currentMeasureOther}
-                        onChange={(e) => setCurrentMeasureOther(e.target.value)}
-                      />
-                    </div>
-                    <div className="form-field-child">
-                      <label>Estimete Date of Goal complition:</label>
-                      <input
-                        type="date"
-                        value={estimatedDateOfCompletionOther}
-                        onChange={(e) =>
-                          setEstimatedDateOfCompletionOther(e.target.value)
-                        }
-                      />
-                    </div>
+  
+                  <div className="form-field-child">
+                    <label>Current Messure:</label>
+                    <input
+                      type="text"
+                      value={currentMeasure2}
+                      placeholder="Enter Current Messure"
+                      required
+                      onChange={(e) => setCurrentMeasure2(e.target.value)}
+                    />
                   </div>
-
-                  <div className="form-field-single-update-bold">
-                    <label>Comment:</label>
-                    <textarea
-                      value={commentsOther}
-                      placeholder="Enter text"
-                      rows={2}
-                      cols={82}
-                      onChange={(e) => setCommentOther(e.target.value)}
+                  <div className="form-field-child">
+                    <label>Estimete Date of Goal complition:</label>
+                    <input
+                      type="date"
+                      value={estimatedDateOfCompletion2}
+                      placeholder="Enter Estimete Date of complition"
+                      required
+                      onChange={(e) =>
+                        estimatedDateOfCompletion2(e.target.value)
+                      }
                     />
                   </div>
                 </div>
-              )} */}
+  
+                <div className="form-field-single-update-bold">
+                  <label>Comment:</label>
+                  <textarea
+                    value={comments2}
+                    placeholder="Enter text"
+                    rows={2}
+                    cols={82}
+                    required
+                    onChange={(e) => setComment2(e.target.value)}
+                  />
+                </div>
+                <div className="form-field">
+                  <label
+                    style={{
+                      fontWeight: "600",
+                      fontSize: "20px",
+                      marginBottom: "20px",
+                      marginTop: "20px",
+                    }}
+                  >
+                    3. Employment
+                  </label>
+                  <Select
+                    isMulti
+                    options={option3Option}
+                    value={option3}
+                    onChange={option3Handler}
+                    isCreatable={true}
+                    onKeyDown={handleKeyOption3}
+                  />
+                </div>
+  
+                <div className="form-field-update">
+                  <div className="form-field-child">
+                    <label>Admission Messure:</label>
+                    <input
+                      type="text"
+                      value={admissionMeasure3}
+                      placeholder="Admission Messure"
+                      required
+                      onChange={(e) => setAdmissionMeasure3(e.target.value)}
+                    />
+                  </div>
+  
+                  <div className="form-field-child">
+                    <label>Current Messure:</label>
+                    <input
+                      type="text"
+                      value={currentMeasure3}
+                      placeholder="Enter Current Messure"
+                      required
+                      onChange={(e) => setCurrentMeasure3(e.target.value)}
+                    />
+                  </div>
+                  <div className="form-field-child">
+                    <label>Estimete Date of Goal complition:</label>
+                    <input
+                      type="date"
+                      value={estimatedDateOfCompletion3}
+                      placeholder="Enter Estimete Date of complition"
+                      required
+                      onChange={(e) =>
+                        setEstimatedDateOfCompletion3(e.target.value)
+                      }
+                    />
+                  </div>
+                </div>
+  
+                <div className="form-field-single-update-bold">
+                  <label>Comment:</label>
+                  <textarea
+                    value={comments3}
+                    placeholder="Enter text"
+                    rows={2}
+                    cols={82}
+                    required
+                    onChange={(e) => setComment3(e.target.value)}
+                  />
+                </div>
+                <div className="form-field">
+                  <label
+                    style={{
+                      fontWeight: "600",
+                      fontSize: "20px",
+                      marginBottom: "20px",
+                      marginTop: "20px",
+                    }}
+                  >
+                    4. ADLS
+                  </label>
+                  <Select
+                    isMulti
+                    options={option4Option}
+                    value={option4}
+                    onChange={option4Handler}
+                    isCreatable={true}
+                    onKeyDown={handleKeyOption4}
+                  />
+                </div>
+                <div className="form-field-update">
+                  <div className="form-field-child">
+                    <label>Admission Messure:</label>
+                    <input
+                      type="text"
+                      value={admissionMeasure4}
+                      placeholder="Admission Messure"
+                      required
+                      onChange={(e) => setAdmissionMeasure4(e.target.value)}
+                    />
+                  </div>
+  
+                  <div className="form-field-child">
+                    <label>Current Messure:</label>
+                    <input
+                      type="text"
+                      value={currentMeasure4}
+                      placeholder="Enter Current Messure"
+                      required
+                      onChange={(e) => setCurrentMeasure4(e.target.value)}
+                    />
+                  </div>
+                  <div className="form-field-child">
+                    <label>Estimete Date of Goal complition:</label>
+                    <input
+                      type="date"
+                      value={estimatedDateOfCompletion4}
+                      placeholder="Enter Estimete Date of complition"
+                      required
+                      onChange={(e) =>
+                        setEstimatedDateOfCompletion4(e.target.value)
+                      }
+                    />
+                  </div>
+                </div>
+  
+                <div className="form-field-single-update-bold">
+                  <label>Comment:</label>
+                  <textarea
+                    value={comments4}
+                    placeholder="Enter text"
+                    rows={2}
+                    cols={82}
+                    required
+                    onChange={(e) => setComment4(e.target.value)}
+                  />
+                </div>
+                <div className="form-field">
+                  <label
+                    style={{
+                      fontWeight: "600",
+                      fontSize: "20px",
+                      marginBottom: "20px",
+                      marginTop: "20px",
+                    }}
+                  >
+                    5. Safety
+                  </label>
+                  <Select
+                    isMulti
+                    options={option5Option}
+                    value={option5}
+                    onChange={option5Handler}
+                    isCreatable={true}
+                    onKeyDown={handleKeyOption5}
+                  />
+                </div>
+  
+                <div className="form-field-update">
+                  <div className="form-field-child">
+                    <label>Admission Messure:</label>
+                    <input
+                      type="text"
+                      value={admissionMeasure5}
+                      placeholder="Admission Messure"
+                      required
+                      onChange={(e) => setAdmissionMeasure5(e.target.value)}
+                    />
+                  </div>
+  
+                  <div className="form-field-child">
+                    <label>Current Messure:</label>
+                    <input
+                      type="text"
+                      value={currentMeasure5}
+                      placeholder="Enter Current Messure"
+                      required
+                      onChange={(e) => setCurrentMeasure5(e.target.value)}
+                    />
+                  </div>
+                  <div className="form-field-child">
+                    <label>Estimete Date of Goal complition:</label>
+                    <input
+                      type="date"
+                      value={estimatedDateOfCompletion5}
+                      placeholder="Enter Estimete Date of complition"
+                      required
+                      onChange={(e) =>
+                        setEstimatedDateOfCompletion5(e.target.value)
+                      }
+                    />
+                  </div>
+                </div>
+  
+                <div className="form-field-single-update-bold">
+                  <label>Comment:</label>
+                  <textarea
+                    value={comments5}
+                    placeholder="Enter text"
+                    rows={2}
+                    cols={82}
+                    required
+                    onChange={(e) => setComment5(e.target.value)}
+                  />
+                </div>
+                <div className="form-field">
+                  <label
+                    style={{
+                      fontWeight: "600",
+                      fontSize: "20px",
+                      marginBottom: "20px",
+                      marginTop: "20px",
+                    }}
+                  >
+                    6. Medication Education
+                  </label>
+                  <Select
+                    isMulti
+                    options={option6Option}
+                    value={option6}
+                    onChange={option6Handler}
+                    isCreatable={true}
+                    onKeyDown={handleKeyOption6}
+                  />
+                </div>
+  
+                <div className="form-field-update">
+                  <div className="form-field-child">
+                    <label>Admission Messure:</label>
+                    <input
+                      type="text"
+                      value={admissionMeasure6}
+                      placeholder="Admission Messure"
+                      required
+                      onChange={(e) => setAdmissionMeasure6(e.target.value)}
+                    />
+                  </div>
+                  <div className="form-field-child">
+                    <label>Current Messure:</label>
+                    <input
+                      type="text"
+                      value={currentMeasure6}
+                      placeholder="Enter Current Messure"
+                      required
+                      onChange={(e) => setCurrentMeasure6(e.target.value)}
+                    />
+                  </div>
+                  <div className="form-field-child">
+                    <label>Estimete Date of Goal complition:</label>
+                    <input
+                      type="date"
+                      value={estimatedDateOfCompletion6}
+                      placeholder="Enter Estimete Date of complition"
+                      required
+                      onChange={(e) =>
+                        setEstimatedDateOfCompletion6(e.target.value)
+                      }
+                    />
+                  </div>
+                </div>
+  
+                <div className="form-field-single-update-bold">
+                  <label>Comment:</label>
+                  <textarea
+                    value={comments6}
+                    placeholder="Enter text"
+                    rows={2}
+                    cols={82}
+                    required
+                    onChange={(e) => setComment6(e.target.value)}
+                  />
+                </div>
+                <div className="form-field">
+                  <label
+                    style={{
+                      fontWeight: "600",
+                      fontSize: "20px",
+                      marginBottom: "20px",
+                      marginTop: "20px",
+                    }}
+                  >
+                    7. Managing Mental Health
+                  </label>
+                  <Select
+                    isMulti
+                    options={option7Option}
+                    value={option7}
+                    onChange={option7Handler}
+                    isCreatable={true}
+                    onKeyDown={handleKeyOption7}
+                  />
+                </div>
+  
+                <div className="form-field-update">
+                  <div className="form-field-child">
+                    <label>Admission Messure:</label>
+                    <input
+                      type="text"
+                      value={admissionMeasure7}
+                      placeholder="Admission Messure"
+                      required
+                      onChange={(e) => setAdmissionMeasure7(e.target.value)}
+                    />
+                  </div>
+  
+                  <div className="form-field-child">
+                    <label>Current Messure:</label>
+                    <input
+                      type="text"
+                      value={currentMeasure7}
+                      placeholder="Enter Current Messure"
+                      required
+                      onChange={(e) => setCurrentMeasure7(e.target.value)}
+                    />
+                  </div>
+                  <div className="form-field-child">
+                    <label>Estimete Date of Goal complition:</label>
+                    <input
+                      type="date"
+                      value={estimatedDateOfCompletion7}
+                      placeholder="Enter Estimete Date of complition"
+                      required
+                      onChange={(e) =>
+                        setEstimatedDateOfCompletion7(e.target.value)
+                      }
+                    />
+                  </div>
+                </div>
+  
+                <div className="form-field-single-update-bold">
+                  <label>Comment:</label>
+                  <textarea
+                    value={comments7}
+                    placeholder="Enter text"
+                    rows={2}
+                    cols={82}
+                    required
+                    onChange={(e) => setComment7(e.target.value)}
+                  />
+                </div>
+                <div className="form-field">
+                  <label
+                    style={{
+                      fontWeight: "600",
+                      fontSize: "20px",
+                      marginBottom: "20px",
+                      marginTop: "20px",
+                    }}
+                  >
+                    8. Legal
+                  </label>
+                  <Select
+                    isMulti
+                    options={option8Option}
+                    value={option8}
+                    onChange={option8Handler}
+                    isCreatable={true}
+                    onKeyDown={handleKeyOption8}
+                  />
+                </div>
+  
+                <div className="form-field-update">
+                  <div className="form-field-child">
+                    <label>Admission Messure:</label>
+                    <input
+                      type="text"
+                      value={admissionMeasure8}
+                      placeholder="Admission Messure"
+                      required
+                      onChange={(e) => setAdmissionMeasure8(e.target.value)}
+                    />
+                  </div>
+  
+                  <div className="form-field-child">
+                    <label>Current Messure:</label>
+                    <input
+                      type="text"
+                      value={currentMeasure8}
+                      placeholder="Enter Current Messure"
+                      required
+                      onChange={(e) => setCurrentMeasure8(e.target.value)}
+                    />
+                  </div>
+                  <div className="form-field-child">
+                    <label>Estimete Date of Goal complition:</label>
+                    <input
+                      type="date"
+                      value={estimatedDateOfCompletion8}
+                      placeholder="Enter Estimete Date of complition"
+                      required
+                      onChange={(e) =>
+                        setEstimatedDateOfCompletion8(e.target.value)
+                      }
+                    />
+                  </div>
+                </div>
+  
+                <div className="form-field-single-update-bold">
+                  <label>Comment:</label>
+                  <textarea
+                    value={comments8}
+                    placeholder="Enter text"
+                    rows={2}
+                    cols={82}
+                    required
+                    onChange={(e) => setComment8(e.target.value)}
+                  />
+                </div>
+  
+                {showOther && (
+                  <div className="hidePrint">
+                    <div className="form-field">
+                      <label
+                        style={{
+                          fontWeight: "600",
+                          fontSize: "20px",
+                          marginBottom: "20px",
+                          marginTop: "20px",
+                        }}
+                      >
+                        9. Other
+                      </label>
+                      <input
+                        type="text"
+                        value={optionOther}
+                        onChange={(e) => setOptionOther(e.target.value)}
+                      />
+                    </div>
+  
+                    <div className="form-field-update">
+                      <div className="form-field-child">
+                        <label>Admission Messure:</label>
+                        <input
+                          type="number"
+                          value={admissionMeasureOther}
+                          onChange={(e) =>
+                            setAdmissionMeasureOther(e.target.value)
+                          }
+                        />
+                      </div>
+  
+                      <div className="form-field-child">
+                        <label>Current Messure:</label>
+                        <input
+                          type="number"
+                          value={currentMeasureOther}
+                          onChange={(e) => setCurrentMeasureOther(e.target.value)}
+                        />
+                      </div>
+                      <div className="form-field-child">
+                        <label>Estimete Date of Goal complition:</label>
+                        <input
+                          type="date"
+                          value={estimatedDateOfCompletionOther}
+                          onChange={(e) =>
+                            setEstimatedDateOfCompletionOther(e.target.value)
+                          }
+                        />
+                      </div>
+                    </div>
+  
+                    <div className="form-field-single-update-bold">
+                      <label>Comment:</label>
+                      <textarea
+                        value={commentsOther}
+                        placeholder="Enter text"
+                        rows={2}
+                        cols={82}
+                        onChange={(e) => setCommentOther(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                )} */}
 
               <div className="formsheading">
                 <h6 style={{ fontWeight: "bold" }}>
@@ -3733,8 +4124,8 @@ const TreatmentPlan = () => {
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(comments1.split("\n").length, 1)}
-                            value={comments1}
+                            rows={Math.max((comments1 ? comments1.split("\n").length : 1), 1)}
+                            value={comments1 || ''}
                             placeholder="___________"
                             onChange={(e) => setComment1(e.target.value)}
                             onKeyDown={(e) => {
@@ -3791,15 +4182,16 @@ const TreatmentPlan = () => {
                             className="treatment_plan_table"
                             required
                             onChange={(e) =>
-                              estimatedDateOfCompletion2(e.target.value)
+                              setEstimatedDateOfCompletion2(e.target.value)
                             }
                           />
                         </td>
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(comments2.split("\n").length, 1)}
-                            value={comments2}
+                            rows={Math.max((comments2 ? comments2.split("\n").length : 1), 1)}
+                            value={comments2 || ''}
+                         
                             placeholder="___________"
                             onChange={(e) => setComment2(e.target.value)}
                             onKeyDown={(e) => {
@@ -3863,8 +4255,9 @@ const TreatmentPlan = () => {
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(comments3.split("\n").length, 1)}
-                            value={comments3}
+                           
+                            rows={Math.max((comments3 ? comments3.split("\n").length : 1), 1)}
+                            value={comments3 || ''}
                             placeholder="___________"
                             onChange={(e) => setComment3(e.target.value)}
                             onKeyDown={(e) => {
@@ -3928,8 +4321,9 @@ const TreatmentPlan = () => {
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(comments4.split("\n").length, 1)}
-                            value={comments4}
+                            
+                            rows={Math.max((comments4 ? comments4.split("\n").length : 1), 1)}
+                            value={comments4 || ''}
                             placeholder="___________"
                             onChange={(e) => setComment4(e.target.value)}
                             onKeyDown={(e) => {
@@ -3993,8 +4387,9 @@ const TreatmentPlan = () => {
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(comments5.split("\n").length, 1)}
-                            value={comments5}
+                        
+                            rows={Math.max((comments5 ? comments5.split("\n").length : 1), 1)}
+                            value={comments5 || ''}
                             placeholder="___________"
                             onChange={(e) => setComment5(e.target.value)}
                             onKeyDown={(e) => {
@@ -4058,8 +4453,9 @@ const TreatmentPlan = () => {
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(comments6.split("\n").length, 1)}
-                            value={comments6}
+                          
+                            rows={Math.max((comments6 ? comments6.split("\n").length : 1), 1)}
+                            value={comments6 || ''}
                             placeholder="___________"
                             onChange={(e) => setComment6(e.target.value)}
                             onKeyDown={(e) => {
@@ -4123,8 +4519,9 @@ const TreatmentPlan = () => {
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(comments7.split("\n").length, 1)}
-                            value={comments7}
+                            rows={Math.max((comments7 ? comments7.split("\n").length : 1), 1)}
+                            value={comments7 || ''}
+                          
                             placeholder="___________"
                             onChange={(e) => setComment7(e.target.value)}
                             onKeyDown={(e) => {
@@ -4188,8 +4585,9 @@ const TreatmentPlan = () => {
                         <td>
                           <textarea
                             className="treatment_plan_table"
-                            rows={Math.max(comments8.split("\n").length, 1)}
-                            value={comments8}
+                            rows={Math.max((comments8 ? comments8.split("\n").length : 1), 1)}
+                            value={comments8 || ''}
+                          
                             placeholder="___________"
                             onChange={(e) => setComment8(e.target.value)}
                             onKeyDown={(e) => {
@@ -4208,13 +4606,13 @@ const TreatmentPlan = () => {
                         otherArray.map((data, index) => (
                           <tr key={index}>
                             <td>
-                              <p>{9 + index}: Other:</p>
-                              {data?.optionOther}
+                              <p>{9 + index}: </p>
+                              {data?.otherType}
                             </td>
-                            <td>{data?.admissionMeasureOther}</td>
-                            <td>{data?.currentMeasureOther}</td>
-                            <td>{data?.estimatedDateOfCompletionOther}</td>
-                            <td>{data?.commentsOther}</td>
+                            <td>{data?.admissionMeasure}</td>
+                            <td>{data?.currentMeasure}</td>
+                            <td>{data?.estimatedDateOfCompletion?data?.estimatedDateOfCompletion.slice(0,10):''}</td>
+                            <td>{data?.comments}</td>
                           </tr>
                         ))}
 
@@ -4225,8 +4623,9 @@ const TreatmentPlan = () => {
                             <p>{otherArray.length + 9}: Other:</p>
                             <textarea
                               className="treatment_plan_table"
-                              rows={Math.max(optionOther.split("\n").length, 1)}
-                              value={optionOther}
+                              rows={Math.max((optionOther ? optionOther.split("\n").length : 1), 1)}
+                              value={optionOther || ''}
+                            
                               placeholder="___________"
                               onChange={(e) => setOptionOther(e.target.value)}
                               onKeyDown={(e) => {
@@ -4583,73 +4982,28 @@ const TreatmentPlan = () => {
                 <div>
                   <input
                     type="checkbox"
-                    id="OtherpsychosocialSymptoms"
+              
                     checked={supportSystem.includes("Other")}
                     onChange={() => handleCheckboxChangeSupportSystem("Other")}
                   />
-                  <label htmlFor="OtherpsychosocialSymptoms">Other</label>
-                  {/* {supportSystemOtherTextBoolean && (
-                    <AutosizeInput
-                      type="text"
-                      inputStyle={{ border: "none", outline: "none" }}
-                      placeholder="________"
-                      value={supportSystemOtherText}
-                      onChange={(e) =>
-                        setSupportSystemOtherText(e.target.value)
-                      }
-                    />
-                  )} */}
+                  <label >Other</label>
+                  {supportSystemOtherTextBoolean && (
+                   
+                      <AutoSize value={supportSystemOtherText} setValue={setSupportSystemOtherText}  placeholder="________"/>
+                    )}
                 </div>
               </div>
-              {/* <div className="yeschechbox-review">
-                {[
-                  "Family",
-                  "Friends",
-                  "BHRF staff",
-                  "Clinical seam",
-                  "Guardian",
-                  "Sponsor name",
-                  "Other",
-                ].map((support, index) => (
-                  <div key={index}>
-                    <input
-                      type="checkbox"
-                      id={`supportSystemCheckbox${index}`}
-                      checked={supportSystem.includes(support)}
-                      onChange={() =>
-                        handleCheckboxChangeSupportSystem(support)
-                      }
-                    />
-                    <label htmlFor={`supportSystemCheckbox${index}`}>
-                      {support}
-                    </label>
-                  </div>
-                ))}
-              </div> */}
+           
 
-              {/* {supportSystemOtherTextBoolean && (
-                <div className="form-field">
-                  <label htmlFor="supportSystemOtherText">Comment:</label>
-                  <textarea
-                    id="supportSystemOtherText"
-                    value={supportSystemOtherText}
-                    placeholder="Enter text"
-                    rows={2}
-                    cols={82}
-                    required
-                    onChange={(e) => setSupportSystemOtherText(e.target.value)}
-                  />
-                </div>
-              )} */}
 
               <div className="form-field-single-update">
                 <label>Phone Number: </label>
                 <input
                   placeholder="Type number"
                   type="number"
-                  value={supportSystemPhone}
+                  value={supportSystemPhoneNumber}
                   required
-                  onChange={(e) => setSupportSystemPhone(e.target.value)}
+                  onChange={(e) => setSupportSystemPhoneNumber(e.target.value)}
                 />
               </div>
 
@@ -4664,7 +5018,7 @@ const TreatmentPlan = () => {
                 />
               </div>
               <label htmlFor="" className="label-review">
-                Religious Preference:
+                Religious/Cultural Preference:
               </label>
               <div className="yeschechbox-review">
                 <div>
@@ -4738,17 +5092,10 @@ const TreatmentPlan = () => {
                     onChange={() => setreligiousPreference("Other")}
                   />
                   <label htmlFor="Other">Other</label>
-                  {/* {religiousPreference === "Other" && (
-                    <AutosizeInput
-                      type="text"
-                      inputStyle={{ border: "none", outline: "none" }}
-                      placeholder="________"
-                      value={religiousPreferenceText}
-                      onChange={(e) =>
-                        setReligiousPreferenceText(e.target.value)
-                      }
-                    />
-                  )} */}
+                  {religiousPreference === "Other" && (
+                  
+                      <AutoSize value={religiousPreferenceText} setValue={setReligiousPreferenceText}  placeholder="________"/>
+                    )}
                 </div>
               </div>
 
@@ -4770,14 +5117,14 @@ const TreatmentPlan = () => {
                   </option>
                 </select>
                 {/* <input
-              style={{ color: "#1A9FB2" }}
-              type="text"
-              id=""
-              value={nutritionAndWellnessPlanning}
-              placeholder="Enter name"
-              required
-              onChange={(e) => setNutritionAndWellnessPlanning(e.target.value)}
-            /> */}
+                style={{ color: "#1A9FB2" }}
+                type="text"
+                id=""
+                value={nutritionAndWellnessPlanning}
+                placeholder="Enter name"
+                required
+                onChange={(e) => setNutritionAndWellnessPlanning(e.target.value)}
+              /> */}
               </div>
               <label className="label-review">
                 Recommendation to extend residential treatment for :{" "}
@@ -4936,7 +5283,7 @@ const TreatmentPlan = () => {
                   <input
                     type="checkbox"
                     id="Continue with case manager for additional support and
-                  resources"
+                    resources"
                     checked={
                       dischargePlanning ===
                       "Continue with case manager for additional support and resources"
@@ -4949,7 +5296,7 @@ const TreatmentPlan = () => {
                   />
                   <label
                     htmlFor="Continue with case manager for additional support and
-                  resources"
+                    resources"
                   >
                     Continue with case manager for additional support and
                     resources
@@ -5098,7 +5445,7 @@ const TreatmentPlan = () => {
                 <div>
                   <input
                     type="checkbox"
-                    id="OtherpsychosocialSymptoms"
+                  
                     checked={recommendationsForFurtherPrograms.includes(
                       "Other"
                     )}
@@ -5108,70 +5455,61 @@ const TreatmentPlan = () => {
                       )
                     }
                   />
-                  <label htmlFor="OtherpsychosocialSymptoms">Other</label>
-                  {/* {recommendationsForFurtherProgramsBoolean && (
-                    <AutosizeInput
-                      type="text"
-                      inputStyle={{ border: "none", outline: "none" }}
-                      placeholder="________"
-                      value={recommendationsForFurtherProgramsOther}
-                      onChange={(e) =>
-                        setRecommendationsForFurtherProgramsOther(
-                          e.target.value
-                        )
-                      }
-                    />
-                  )} */}
+                  <label >Other</label>
+                  {recommendationsForFurtherProgramsBoolean && (
+                 
+                      <AutoSize value={recommendationsForFurtherProgramsOther} setValue={setRecommendationsForFurtherProgramsOther}  placeholder="________"/>
+                    )}
                 </div>
               </div>
 
               {/* <div className="yeschechbox-review">
-                {[
-                  "PHP",
-                  "IOP",
-                  "Sober living",
-                  "Home",
-                  "Flex Care 23.9",
-                  "Flex Care 16",
-                  "Flex Care 8",
-                  "Other",
-                ].map((recommendation, index) => (
-                  <div key={index}>
-                    <input
-                      type="checkbox"
-                      id={`recommendationCheckbox${index}`}
-                      checked={recommendationsForFurtherPrograms.includes(
-                        recommendation
-                      )}
-                      onChange={() =>
-                        handleCheckboxChangerecommendationsForFurtherPrograms(
+                  {[
+                    "PHP",
+                    "IOP",
+                    "Sober living",
+                    "Home",
+                    "Flex Care 23.9",
+                    "Flex Care 16",
+                    "Flex Care 8",
+                    "Other",
+                  ].map((recommendation, index) => (
+                    <div key={index}>
+                      <input
+                        type="checkbox"
+                        id={`recommendationCheckbox${index}`}
+                        checked={recommendationsForFurtherPrograms.includes(
                           recommendation
-                        )
+                        )}
+                        onChange={() =>
+                          handleCheckboxChangerecommendationsForFurtherPrograms(
+                            recommendation
+                          )
+                        }
+                      />
+                      <label htmlFor={`recommendationCheckbox${index}`}>
+                        {recommendation}
+                      </label>
+                    </div>
+                  ))}
+                </div> */}
+              {/*
+                {recommendationsForFurtherProgramsBoolean && (
+                  <div className="form-field">
+                    <label htmlFor="programlocation&address">Comment:</label>
+                    <textarea
+                      id="programlocation&address"
+                      value={recommendationsForFurtherProgramsOther}
+                      placeholder="Enter text"
+                      rows={2}
+                      cols={82}
+                      required
+                      onChange={(e) =>
+                        setRecommendationsForFurtherProgramsOther(e.target.value)
                       }
                     />
-                    <label htmlFor={`recommendationCheckbox${index}`}>
-                      {recommendation}
-                    </label>
                   </div>
-                ))}
-              </div> */}
-              {/*
-              {recommendationsForFurtherProgramsBoolean && (
-                <div className="form-field">
-                  <label htmlFor="programlocation&address">Comment:</label>
-                  <textarea
-                    id="programlocation&address"
-                    value={recommendationsForFurtherProgramsOther}
-                    placeholder="Enter text"
-                    rows={2}
-                    cols={82}
-                    required
-                    onChange={(e) =>
-                      setRecommendationsForFurtherProgramsOther(e.target.value)
-                    }
-                  />
-                </div>
-              )} */}
+                )} */}
 
               <label htmlFor="" className="label-review">
                 After care and Transition planning / Community Resources:
@@ -5246,13 +5584,7 @@ const TreatmentPlan = () => {
                     completed. It will be review and updated on an on-going
                     basis according to the review date{" "}
                     <span>
-                      {/* <AutosizeInput
-                        type="text"
-                        inputStyle={{ border: "none", outline: "none" }}
-                        placeholder="________"
-                        value={textData}
-                        onChange={(e) => setTextData(e.target.value)}
-                      /> */}
+                        <AutoSize type="date" value={textData} setValue={setTextData}  placeholder="________"/>
                     </span>
                     specified in the treatment plan, when a treatment goal is
                     accomplished or changed, when additional information that
@@ -5281,17 +5613,17 @@ const TreatmentPlan = () => {
               </div>
 
               {/* <div className="formsheading">
-              <p>
-                The mirrors in the facility are SHATTERPROOF, and if they were
-                standard mirrors it would not present as a current safety risk
-                to this resident.
-              </p>
-            </div> */}
+                <p>
+                  The mirrors in the facility are SHATTERPROOF, and if they were
+                  standard mirrors it would not present as a current safety risk
+                  to this resident.
+                </p>
+              </div> */}
               <div className="form-field-update">
                 <div className="form-field-child">
                   <label>Treatment plan review date:</label>
                   <input
-                    type="text"
+                    type="date"
                     onChange={(e) => setTreatmentPlanReviewDate(e.target.value)}
                     value={treatmentPlanReviewDate}
                     placeholder="Enter text"
@@ -5312,8 +5644,10 @@ const TreatmentPlan = () => {
                 style={{
                   fontWeight: "500",
                   fontSize: "16px",
-                  marginTop: "20px",
-                  marginBottom: "20px",
+                  margin: "0",
+                  marginBottom: "0",
+                  marginTop :"0",
+                  marginTop: "0.5rems",
                   color: "#00000099",
                 }}
               >
@@ -5351,7 +5685,7 @@ const TreatmentPlan = () => {
                 <div className="form-field-child">
                   <label>Staff:</label>
                   <input
-                    style={{ color: "#1A9FB2" }}
+                    
                     type="text"
                     value={staff}
                     placeholder="Enter name"
@@ -5362,7 +5696,7 @@ const TreatmentPlan = () => {
                 <div className="form-field-child">
                   <label>BHP:</label>
                   <input
-                    style={{ color: "#1A9FB2" }}
+                
                     type="text"
                     value={bpn}
                     placeholder="Enter name"
@@ -5398,53 +5732,42 @@ const TreatmentPlan = () => {
                     }
                   />
                   <label htmlFor="isReason">
-                    Yes{" "}
+                    Yes,{" "}
                     <span>
-                      I am in the agreement with the services included in this
+                      I am in agreement with the services included in this
                       treatment Plan
                     </span>
                   </label>
                 </div>
               </div>
-              {/* <div className="yeschechbox2">
-              <div>
-                <span>
-                  I am in the agreement with the services included in this
-                  treatment Plan
-                </span>
-              </div>
-            </div> */}
+          
               <div className="yeschechbox-review-yes-no">
                 <div>
                   <input
                     type="checkbox"
                     id="refusalReason"
-                    checked={refusalReason === "Not applicable"}
+                    checked={refusalReason === "yes"}
                     onChange={() =>
-                      setrefusalReason(
-                        refusalReason === "Not applicable"
-                          ? ""
-                          : "Not applicable"
-                      )
+                      setrefusalReason(refusalReason === "yes" ? "no" : "yes")
                     }
                   />
                   <label htmlFor="refusalReason">
-                    No{" "}
+                    No,{" "}
                     <span>
-                      I am in the agreement with the services included in this
+                      I am not in agreement with the services included in this
                       treatment Plan
                     </span>
                   </label>
                 </div>
               </div>
               {/* <div className="yeschechbox2">
-              <div>
-                <span>
-                  I am in the agreement with the services included in this
-                  treatment Plan
-                </span>
-              </div>
-            </div> */}
+                <div>
+                  <span>
+                    I am in the agreement with the services included in this
+                    treatment Plan
+                  </span>
+                </div>
+              </div> */}
               {/* /"signaturesResident */}
 
               <div className="formsheading">
@@ -5454,7 +5777,8 @@ const TreatmentPlan = () => {
                 </h6>
               </div>
 
-              <div className="form-field-single-update">
+              <div className="form-field-update">
+              <div className="form-field-child">
                 <label>First and Last Name:</label>
                 <input
                   type="text"
@@ -5464,7 +5788,8 @@ const TreatmentPlan = () => {
                   onChange={(e) => setNameResident(e.target.value)}
                 />
               </div>
-              <div className="form-field">
+
+              <div className="form-field-child">
                 <label style={{ fontWeight: "bold" }}>
                   Resident or Resident’s representative{" "}
                   <span style={{ fontSize: "15px", color: "gray" }}>
@@ -5481,9 +5806,14 @@ const TreatmentPlan = () => {
                   onChange={(e) => setCredentialsResident(e.target.value)}
                 />
               </div>
+              </div>
 
-              <div class="file-upload-box hidePrint">
-                <div className="file-upload-box-child">
+
+          
+             
+
+              <div class="file-upload-box" style={{marginTop:"0.5rem"}}>
+                <div className="file-upload-box-child hidePrint">
                   <button
                     className="upload-button1"
                     type="button"
@@ -5502,7 +5832,7 @@ const TreatmentPlan = () => {
                 <div>
                   {signatureResident && (
                     <p className="signature_name_print">
-                      Digitally Sign by {signatureResident} {dateResident}
+                      Digitally Sign by {signatureResident} {dateResident} {timeResident}
                     </p>
                   )}
                 </div>
@@ -5514,19 +5844,10 @@ const TreatmentPlan = () => {
                   singin={signatureResident}
                   setSingIn={setsignatureResident}
                   setDateAndTime={setDateResident}
+                  setSignatureTime={setTimeResident}
                 />
               )}
-              {/* <div className="form-field">
-              <label>Date:</label>
-              <input
-                style={{ color: "#1A9FB2" }}
-                type="date"
-                value={dateResident}
-                placeholder="DD/MM/YYYY"
-                required
-                onChange={(e) => setDateResident(e.target.value)}
-              />
-            </div> */}
+             
             </div>
 
             <div className="form-field-update">
@@ -5553,8 +5874,8 @@ const TreatmentPlan = () => {
               </div>
             </div>
 
-            <div class="file-upload-box hidePrint">
-              <div className="file-upload-box-child">
+            <div class="file-upload-box " style={{marginTop:"0.2rem"}}>
+              <div className="file-upload-box-child hidePrint">
                 <button
                   className="upload-button1"
                   type="button"
@@ -5573,7 +5894,7 @@ const TreatmentPlan = () => {
               <div>
                 {signatureFacilityRep && (
                   <p className="signature_name_print">
-                    Digitally Sign by {signatureFacilityRep} {dateFacilityRep}
+                    Digitally Sign by {signatureFacilityRep} {dateFacilityRep} {timeFacality}
                   </p>
                 )}
               </div>
@@ -5585,12 +5906,13 @@ const TreatmentPlan = () => {
                 singin={signatureFacilityRep}
                 setSingIn={setsignatureFacilityRep}
                 setDateAndTime={setDateFacilityRep}
+                setSignatureTime={setTimeFacality}
               />
             )}
 
             <div className="form-field-update ">
               <div className="form-field-child">
-                <label htmlFor="AHCCCS">First and Last Name:</label>
+                <label >First and Last Name:</label>
                 <input
                   type="text"
                   value={nameBhp}
@@ -5611,8 +5933,8 @@ const TreatmentPlan = () => {
               </div>
             </div>
 
-            <div class="file-upload-box hidePrint">
-              <div className="file-upload-box-child">
+            <div class="file-upload-box " style={{marginTop:"0.2rem"}}>
+              <div className="file-upload-box-child hidePrint">
                 <div>
                   <button
                     className="upload-button1"
@@ -5644,7 +5966,7 @@ const TreatmentPlan = () => {
               <div>
                 {signatureBhp && (
                   <p className="signature_name_print">
-                    Digitally Sign by {signatureBhp} {dateBhp}
+                    Digitally Sign by {signatureBhp} {dateBhp} {timeBhp}
                   </p>
                 )}
               </div>
@@ -5656,92 +5978,25 @@ const TreatmentPlan = () => {
                 singin={signatureBhp}
                 setSingIn={setsignatureBhp}
                 setDateAndTime={setDateBhp}
+                setSignatureTime={setTimeBhp}
               />
             )}
-            {/* <div className="form-field">
-            <label htmlFor="dateOfBirth">Date:</label>
-            <input
-              style={{ color: "#1A9FB2" }}
-              type="date"
-              id="dateOfBirth"
-              value={dateBhp}
-              placeholder="DD/MM/YYYY"
-              required
-              onChange={(e) => setDateBhp(e.target.value)}
-            />
-          </div> */}
-            {/* <div className="form-actions">
-            <button type="submit" className="initalsubmit">
-              SUBMIT DETAILS
-            </button>
-          </div> */}
+          
+            <div className="form-actions hidePrint">
+              <button type="submit" style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center"}}>
+                SUBMIT DETAILS
+              </button>
+            </div>
           </form>
-        </div>
-        {/* signature 1 */}
-        {/* {signatureModel1 && (
-        <SingInModel onClose={() => setSignatureModel1(false)}>
-          <div className="input_singin_button">
-            <p style={{ color: "white" }}>Digitally Sign by employee name</p>
-            <input
-              type="text"
-              placeholder="Enter Sing in Signature"
-              value={signatureResident}
-              onChange={(e) => setsignatureResident(e.target.value)}
-            />
           </div>
-
-          <div className="sing_in_submit_button">
-            <button type="button" onClick={() => setSignatureModel1(false)}>
-              Submit
-            </button>
           </div>
-        </SingInModel>
-      )} */}
-        {/* signature 2 */}
-        {/* {signatureModel2 && (
-        <SingInModel onClose={() => setSignatureModel2(false)}>
-          <div className="input_singin_button">
-            <p style={{ color: "white" }}>Digitally Sign by employee name</p>
-            <input
-              type="text"
-              placeholder="Enter Sing in Signature"
-              value={signatureFacilityRep}
-              onChange={(e) => setsignatureFacilityRep(e.target.value)}
-            />
-          </div>
-
-          <div className="sing_in_submit_button">
-            <button type="button" onClick={() => setSignatureModel2(false)}>
-              Submit
-            </button>
-          </div>
-        </SingInModel>
-      )} */}
-        {/* signature3 */}
-        {/* {signatureModel3 && (
-        <SingInModel onClose={() => setSignatureModel3(false)}>
-          <div className="input_singin_button">
-            <p style={{ color: "white" }}>Digitally Sign by employee name</p>
-            <input
-              type="text"
-              placeholder="Enter Sing in Signature"
-              value={signatureBhp}
-              onChange={(e) => setsignatureBhp(e.target.value)}
-            />
-          </div>
-
-          <div className="sing_in_submit_button">
-            <button type="button" onClick={() => setSignatureModel3(false)}>
-              Submit
-            </button>
-          </div>
-        </SingInModel>
-      )} */}
-
         {draftModel && <Draftinmodel onClose={() => setDraftModel(false)} />}
       </div>
+
+
+
     </>
   );
 };
 
-export default TreatmentPlan;
+export default Treatment_plan_Print;

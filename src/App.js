@@ -16,7 +16,7 @@ import InitialAssessment from "./Components/Forms/Initial-Assessment";
 import FaceSheet from "./Components/Forms/FaceSheet";
 import SafetyPlan from "./Components/Forms/SafetyPlan";
 import NursingAssessment from "./Components/Forms/Nursing-Assessment";
-import TreatmentPlan from "./Components/Forms/TreatmentPlan";
+// import TreatmentPlan from "./Components/Forms/TreatmentPlan";
 import ResidentIntakes from "./Components/Forms/ResidentIntakes";
 import BookAppointment from "./Components/Forms/BookAppointment";
 import AppointmentHistory from "./Components/Forms/AppointmentHistory";
@@ -69,11 +69,7 @@ function App() {
           path="/nursing-assessment"
           element={<Home1 Wcomponenet={NursingAssessment} />}
         />
-        {/* <Route path="/treatmentplan" element={<TreatmentPlan />} /> */}
-        <Route
-          path="/treatmentplan"
-          element={<Home1 Wcomponenet={TreatmentPlan} />}
-        />
+    
         {/* Treatment plan update */}
         {/* <Route path="/treatmentplanUpdate" element={<Treatmentplan_update />} /> */}
         <Route

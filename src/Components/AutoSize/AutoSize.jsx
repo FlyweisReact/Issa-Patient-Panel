@@ -3,35 +3,34 @@ import React,{useEffect,useRef} from 'react';
 function AutoSize({type: type1,value,setValue,placeholder}) {
   const inputRef = useRef(null);
 
-    // Calculate the width of the input based on its content
     const calculateWidth = (text) => {
       const canvas = document.createElement('canvas');
       const context = canvas.getContext('2d');
-      context.font = '16px Arial'; // Set the font size and style
-      return context.measureText(text).width + 5; // Add some padding
+      context.font = '16px Arial'; 
+      return context.measureText(text).width + 5; 
     };
   
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.style.width = `${calculateWidth()}px`;
     }
-  }, [value]); // Update width when the value changes
+  }, [value]);
 
-  // Function to handle input change
+
   const handleChange = (e) => {
     setValue(e.target.value);
   };
 
-  // Style object for the input
+
   const inputStyle = {
     
     borderRadius: '4px',
     padding: '5px',
     fontSize: '16px',
-    width: `${calculateWidth(value)}px`, // Dynamic width based on content
-    minWidth: `${type1?"125px":"25px"}`, // Minimum width
-    maxWidth: `100%`, // Maximum width
-    boxSizing: 'border-box', // Include padding in the width calculation
+    width: `${calculateWidth(value)}px`, 
+    minWidth: `${type1?"125px":"25px"}`,
+    maxWidth: `100%`,
+    boxSizing: 'border-box', 
     border:"none",
     outline:"none",
     whiteSpace:"nowrap",

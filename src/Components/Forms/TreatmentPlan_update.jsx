@@ -2,13 +2,17 @@ import React, { useEffect, useState } from "react";
 import { IoArrowBackCircle } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { AiFillDelete } from "react-icons/ai";
-import { user_detail, patient_form,patient_form_treatment_get } from "../../Api_Collection/Api";
+import {
+  user_detail,
+  patient_form,
+  patient_form_treatment_get,
+} from "../../Api_Collection/Api";
 import SingInModel from "../Modal/SingInModel";
 import Select from "react-select";
 import Draftinmodel from "../Modal/Draftinmodel";
 import SingInUpdateModel from "../Modal/SingInUpdateModel";
 import { useReactToPrint } from "react-to-print";
-import AutoSize from "../AutoSize/AutoSize"
+import AutoSize from "../AutoSize/AutoSize";
 
 const Treatmentplan_update = () => {
   const componentRef = React.useRef();
@@ -16,12 +20,22 @@ const Treatmentplan_update = () => {
     content: () => componentRef.current,
   });
 
+  let hideData = document.getElementsByClassName("hidaData");
+
+  for (let i = 0; i < hideData.length; i++) {
+    hideData[i].style.display = "none";
+  }
+
   const handlePrint2 = () => {
     var elements = document.getElementsByClassName("hidePrint");
-    var hidePrintButton=document.getElementsByClassName("hidePrintButton");
-    var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
+    var hidePrintButton = document.getElementsByClassName("hidePrintButton");
+    var signatureRightAndSide =
+      document.getElementsByClassName("file-upload-box");
 
-    // Iterate through each element with the specified class
+    for (let i = 0; i < hideData.length; i++) {
+      hideData[i].style.display = "block";
+    }
+
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
     }
@@ -34,11 +48,8 @@ const Treatmentplan_update = () => {
       signatureRightAndSide[i].style.justifyContent = "right";
     }
 
-
-    // Trigger the print action
     handlePrint();
 
-    // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
     setTimeout(() => {
       for (var i = 0; i < elements.length; i++) {
         elements[i].style.display = "flex";
@@ -53,9 +64,13 @@ const Treatmentplan_update = () => {
         signatureRightAndSide[i].style.justifyContent = "space-between";
       }
 
-
+      for (let i = 0; i < hideData.length; i++) {
+        hideData[i].style.display = "none";
+      }
     }, 1000);
   };
+
+  
   // model data
   const [draftModel, setDraftModel] = useState(false);
   const [signatureModel1, setSignatureModel1] = useState(false);
@@ -67,9 +82,9 @@ const Treatmentplan_update = () => {
   const navigate = useNavigate();
 
   //from satart now ------------------------------->
-  const [getApiData,setGetApiData]=useState("");
+  const [getApiData, setGetApiData] = useState("");
   const [userId, setUserId] = useState("");
-  const [initialUpdate,setInitialUpdate]=useState("")
+  const [initialUpdate, setInitialUpdate] = useState("");
   const [residentName, setResidentName] = useState("");
   const [dob, setDob] = useState("");
   const [date, setDate] = useState("");
@@ -79,12 +94,12 @@ const Treatmentplan_update = () => {
   const [physicalService, setPhysicalService] = useState("");
   const [behavior, setBehavior] = useState("");
   //medication service
-  const [medicationAdministation,setMedicationAdministation]=useState("");
-  const [medicationAssistance,setMedicationAssistence]=useState("");
+  const [medicationAdministation, setMedicationAdministation] = useState("");
+  const [medicationAssistance, setMedicationAssistence] = useState("");
   const [presentingPrice, setPresentingPrice] = useState([]);
 
   // diagonsis
-  const [diagonsis,setDiagonsis]=useState("");
+  const [diagonsis, setDiagonsis] = useState("");
 
   // Mental Status
   const [mendelHealth, setMentelHealth] = useState("");
@@ -126,11 +141,11 @@ const Treatmentplan_update = () => {
     setBehavioralSymptomsBoolean(isOtherSelected);
 
     // Update BarriersOther only when "Other" is selected
-  if (isOtherSelected) {
-    setBehavioralSymptomsOther("");
-  } else {
-    setBehavioralSymptomsOther("");
-  }
+    if (isOtherSelected) {
+      setBehavioralSymptomsOther("");
+    } else {
+      setBehavioralSymptomsOther("");
+    }
   }, [behavioralSymptoms]);
 
   const [physicalSymptoms, setPhysicalSymptoms] = useState([]);
@@ -329,11 +344,11 @@ const Treatmentplan_update = () => {
       commentsOther
     ) {
       const newData = {
-        otherType:optionOther,
-        admissionMeasure:admissionMeasureOther,
-        currentMeasure:currentMeasureOther,
-        estimatedDateOfCompletion:estimatedDateOfCompletionOther,
-        comments:commentsOther,
+        otherType: optionOther,
+        admissionMeasure: admissionMeasureOther,
+        currentMeasure: currentMeasureOther,
+        estimatedDateOfCompletion: estimatedDateOfCompletionOther,
+        comments: commentsOther,
       };
 
       // Update the array state with the new data
@@ -428,327 +443,464 @@ const Treatmentplan_update = () => {
   const [credentialsResident, setCredentialsResident] = useState("");
   const [signatureResident, setsignatureResident] = useState("");
   const [dateResident, setDateResident] = useState("");
-  const [timeResident,setTimeResident]=useState("");
+  const [timeResident, setTimeResident] = useState("");
   // "signaturesFacilityRep"
   const [nameFacilityRep, setNameFacilityRep] = useState("");
   const [credentialsFacilityRep, setCredentialsFacilityRep] = useState("");
   const [signatureFacilityRep, setsignatureFacilityRep] = useState("");
   const [dateFacilityRep, setDateFacilityRep] = useState("");
-  const [timeFacality,setTimeFacality]=useState("")
+  const [timeFacality, setTimeFacality] = useState("");
   //signaturesBhp"
   const [nameBhp, setNameBhp] = useState("");
   const [credentialsBhp, setCredentialsBhp] = useState("");
   const [signatureBhp, setsignatureBhp] = useState("");
   const [dateBhp, setDateBhp] = useState("");
-  const [timeBhp,setTimeBhp]=useState("");
+  const [timeBhp, setTimeBhp] = useState("");
 
-    // Function to format the date as MM-DD-YYYY
-function formatDate(dateString) {
-  if (!dateString) return ''; // handle null or undefined value
-  const dateObj = new Date(dateString);
-  const month = ('0' + (dateObj.getMonth() + 1)).slice(-2);
-  const day = ('0' + dateObj.getDate()).slice(-2);
-  const year = dateObj.getFullYear();
-  return `${month}-${day}-${year}`;
-}
+  // Function to format the date as MM-DD-YYYY
+  function formatDate(dateString) {
+    if (!dateString) return ""; // handle null or undefined value
+    const dateObj = new Date(dateString);
+    const month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
+    const day = ("0" + dateObj.getDate()).slice(-2);
+    const year = dateObj.getFullYear();
+    return `${month}-${day}-${year}`;
+  }
 
-  useEffect(()=>{
-    setDate(getApiData?.date?getApiData?.date?.slice(0,10):"");
-    setAdminDate(getApiData?.admitDate?getApiData?.admitDate.slice(0,10):"")
-    setPhysicalService(getApiData?.care?getApiData?.care?.[0]:"")
-    setBehavior(getApiData?.care?getApiData?.care?.[1]:"")
+  useEffect(() => {
+    setDate(getApiData?.date ? getApiData?.date?.slice(0, 10) : "");
+    setAdminDate(
+      getApiData?.admitDate ? getApiData?.admitDate.slice(0, 10) : ""
+    );
+    setPhysicalService(getApiData?.care ? getApiData?.care?.[0] : "");
+    setBehavior(getApiData?.care ? getApiData?.care?.[1] : "");
 
     // Resetting medication service state variables
-setMedicationAdministation(getApiData?.medicationService?getApiData?.medicationService?.[0]:"");
-setMedicationAssistence(getApiData?.medicationService?getApiData?.medicationService?.[1]:"");
-setPresentingPrice(getApiData?.presentingProblems
-  ? getApiData.presentingProblems.map(item => ({
-      label: item, // Assuming 'name' is the property you want to use as label
-      value: item    // Assuming 'id' is the property you want to use as value
-    }))
-  : []);
+    setMedicationAdministation(
+      getApiData?.medicationService ? getApiData?.medicationService?.[0] : ""
+    );
+    setMedicationAssistence(
+      getApiData?.medicationService ? getApiData?.medicationService?.[1] : ""
+    );
+    setPresentingPrice(
+      getApiData?.presentingProblems
+        ? getApiData.presentingProblems.map((item) => ({
+            label: item, // Assuming 'name' is the property you want to use as label
+            value: item, // Assuming 'id' is the property you want to use as value
+          }))
+        : []
+    );
 
-// Resetting diagnosis state variable
-setDiagonsis(getApiData?.diagonsis);
+    // Resetting diagnosis state variable
+    setDiagonsis(getApiData?.diagonsis);
 
-// Resetting mental status state variables
-setMentelHealth(getApiData?.mentalStatus);
-setMentelText(getApiData?.mentalStatusOther);
+    // Resetting mental status state variables
+    setMentelHealth(getApiData?.mentalStatus);
+    setMentelText(getApiData?.mentalStatusOther);
 
-// Resetting mood level state variables
-setMind(getApiData?.moodLevel);
-setMindText(getApiData?.moodLevelOther);
+    // Resetting mood level state variables
+    setMind(getApiData?.moodLevel);
+    setMindText(getApiData?.moodLevelOther);
 
-// Resetting ADLS state variables
-setAdls(getApiData?.adls);
-setAldsText(getApiData?.adlsOther);
+    // Resetting ADLS state variables
+    setAdls(getApiData?.adls);
+    setAldsText(getApiData?.adlsOther);
 
-// Resetting behavioral health services state variables
-setBHealth(getApiData?.behavioralHealthServices);
-setBtext(getApiData?.behavioralHealthServicesOther);
+    // Resetting behavioral health services state variables
+    setBHealth(getApiData?.behavioralHealthServices);
+    setBtext(getApiData?.behavioralHealthServicesOther);
 
-// Resetting primary care provider state variables
-setPrimaryCare(getApiData?.primaryCareProvider);
-setPsychiatricProvider(getApiData?.psychiatricProvider);
+    // Resetting primary care provider state variables
+    setPrimaryCare(getApiData?.primaryCareProvider);
+    setPsychiatricProvider(getApiData?.psychiatricProvider);
 
-// Resetting resident goals state variables
-setResidentGoal(getApiData?.residentGoals);
-setAllergies(getApiData?.allergies);
-setTriggers(getApiData?.triggers);
-setStrengths(getApiData?.strengths
-  ? getApiData.strengths.map(item => ({
-      label: item, // Assuming 'name' is the property you want to use as label
-      value: item    // Assuming 'id' is the property you want to use as value
-    }))
-  : []);
+    // Resetting resident goals state variables
+    setResidentGoal(getApiData?.residentGoals);
+    setAllergies(getApiData?.allergies);
+    setTriggers(getApiData?.triggers);
+    setStrengths(
+      getApiData?.strengths
+        ? getApiData.strengths.map((item) => ({
+            label: item, // Assuming 'name' is the property you want to use as label
+            value: item, // Assuming 'id' is the property you want to use as value
+          }))
+        : []
+    );
 
-// Resetting barriers state variables
-setBarriers(getApiData?.barriers
-  ? getApiData.barriers.map(item => ({
-      label: item, // Assuming 'name' is the property you want to use as label
-      value: item    // Assuming 'id' is the property you want to use as value
-    }))
-  : []);
+    // Resetting barriers state variables
+    setBarriers(
+      getApiData?.barriers
+        ? getApiData.barriers.map((item) => ({
+            label: item, // Assuming 'name' is the property you want to use as label
+            value: item, // Assuming 'id' is the property you want to use as value
+          }))
+        : []
+    );
 
-// Resetting risk assessment state variables
-setBehavioralSymptoms(getApiData?.riskAssessment?.behavioralSymptoms?getApiData?.riskAssessment?.behavioralSymptoms:[]);
-setBehavioralSymptomsBoolean(getApiData?.riskAssessment?.behavioralSymptoms?true:false);
-setBehavioralSymptomsOther(getApiData?.behavioralSymptomsOther);
+    // Resetting risk assessment state variables
+    setBehavioralSymptoms(
+      getApiData?.riskAssessment?.behavioralSymptoms
+        ? getApiData?.riskAssessment?.behavioralSymptoms
+        : []
+    );
+    setBehavioralSymptomsBoolean(
+      getApiData?.riskAssessment?.behavioralSymptoms ? true : false
+    );
+    setBehavioralSymptomsOther(getApiData?.behavioralSymptomsOther);
 
-// Resetting physical symptoms state variables
-setPhysicalSymptoms(getApiData?.riskAssessment?.physicalSymptoms?getApiData?.riskAssessment?.physicalSymptoms:[]);
-setPhysicalSymptomsBoolean(getApiData?.riskAssessment?.physicalSymptoms?true:false);
-setPhysicalSymptomsOther(getApiData?.physicalSymptomsOther);
+    // Resetting physical symptoms state variables
+    setPhysicalSymptoms(
+      getApiData?.riskAssessment?.physicalSymptoms
+        ? getApiData?.riskAssessment?.physicalSymptoms
+        : []
+    );
+    setPhysicalSymptomsBoolean(
+      getApiData?.riskAssessment?.physicalSymptoms ? true : false
+    );
+    setPhysicalSymptomsOther(getApiData?.physicalSymptomsOther);
 
-// Resetting cognitive symptoms state variables
-setConsnotiveSymptoms(getApiData?.riskAssessment?.cognitiveSymptoms?getApiData?.riskAssessment?.cognitiveSymptoms:[]);
-setConsnotiveSymptomsBoolean(getApiData?.riskAssessment?.cognitiveSymptoms?true:false);
-setConsnotiveSymptomsOther(getApiData?.cognitiveSymptomsOther);
+    // Resetting cognitive symptoms state variables
+    setConsnotiveSymptoms(
+      getApiData?.riskAssessment?.cognitiveSymptoms
+        ? getApiData?.riskAssessment?.cognitiveSymptoms
+        : []
+    );
+    setConsnotiveSymptomsBoolean(
+      getApiData?.riskAssessment?.cognitiveSymptoms ? true : false
+    );
+    setConsnotiveSymptomsOther(getApiData?.cognitiveSymptomsOther);
 
-// Resetting psychosocial symptoms state variables
-setPsychosocialSymptoms(getApiData?.riskAssessment?.psychosocialSymptoms?getApiData?.riskAssessment?.psychosocialSymptoms:[]);
-setPsychosocialSymptomsBoolean(getApiData?.riskAssessment?.psychosocialSymptoms?true:false);
-setPsychosocialSymptomsOther(getApiData?.psychosocialSymptomsOther);
+    // Resetting psychosocial symptoms state variables
+    setPsychosocialSymptoms(
+      getApiData?.riskAssessment?.psychosocialSymptoms
+        ? getApiData?.riskAssessment?.psychosocialSymptoms
+        : []
+    );
+    setPsychosocialSymptomsBoolean(
+      getApiData?.riskAssessment?.psychosocialSymptoms ? true : false
+    );
+    setPsychosocialSymptomsOther(getApiData?.psychosocialSymptomsOther);
 
-// Resetting interventions implemented state variables
-setInterventionsImplemented(getApiData?.interventions?getApiData?.interventions:[]);
-setInterventionsImplementedBoolean(getApiData?.interventionsComment?true:false);
-setInterventionsImplementedOther(getApiData?.interventionsComment);
+    // Resetting interventions implemented state variables
+    setInterventionsImplemented(
+      getApiData?.interventions ? getApiData?.interventions : []
+    );
+    setInterventionsImplementedBoolean(
+      getApiData?.interventionsComment ? true : false
+    );
+    setInterventionsImplementedOther(getApiData?.interventionsComment);
 
-// Resetting counseling and frequency state variables
-setMinimumHoure(getApiData?.counselingFrequencyMinimum);
-setCounselingOptions(getApiData?.counselingFrequency?getApiData?.counselingFrequency:[]);
-setCounselingOptionsOther(getApiData?.counselingFrequencyComment);
-setCounselingOptionsTextBoolean(getApiData?.counselingFrequencyComment?true:false);
+    // Resetting counseling and frequency state variables
+    setMinimumHoure(getApiData?.counselingFrequencyMinimum);
+    setCounselingOptions(
+      getApiData?.counselingFrequency ? getApiData?.counselingFrequency : []
+    );
+    setCounselingOptionsOther(getApiData?.counselingFrequencyComment);
+    setCounselingOptionsTextBoolean(
+      getApiData?.counselingFrequencyComment ? true : false
+    );
 
-// Resetting goals for changes state variables
-setOption1(getApiData?.maintainSobrietyType
-  ? getApiData.maintainSobrietyType.map(item => ({
-      label: item, // Assuming 'name' is the property you want to use as label
-      value: item    // Assuming 'id' is the property you want to use as value
-    }))
-  : []);
+    // Resetting goals for changes state variables
+    setOption1(
+      getApiData?.maintainSobrietyType
+        ? getApiData.maintainSobrietyType.map((item) => ({
+            label: item, // Assuming 'name' is the property you want to use as label
+            value: item, // Assuming 'id' is the property you want to use as value
+          }))
+        : []
+    );
 
+    // Resetting option2 state variables
+    setOption2(
+      getApiData?.independentLivingSkillsType
+        ? getApiData.independentLivingSkillsType.map((item) => ({
+            label: item, // Assuming 'name' is the property you want to use as label
+            value: item, // Assuming 'id' is the property you want to use as value
+          }))
+        : []
+    );
 
-// Resetting option2 state variables
-setOption2(getApiData?.independentLivingSkillsType
-  ? getApiData.independentLivingSkillsType.map(item => ({
-      label: item, // Assuming 'name' is the property you want to use as label
-      value: item    // Assuming 'id' is the property you want to use as value
-    }))
-  : []);
+    // Resetting option3 state variables
+    setOption3(
+      getApiData?.employmentType
+        ? getApiData.employmentType.map((item) => ({
+            label: item, // Assuming 'name' is the property you want to use as label
+            value: item, // Assuming 'id' is the property you want to use as value
+          }))
+        : []
+    );
 
-// Resetting option3 state variables
-setOption3(getApiData?.employmentType
-  ? getApiData.employmentType.map(item => ({
-      label: item, // Assuming 'name' is the property you want to use as label
-      value: item    // Assuming 'id' is the property you want to use as value
-    }))
-  : []);
+    // Resetting option4 state variables
+    setOption4(
+      getApiData?.adlsSecondType
+        ? getApiData.adlsSecondType.map((item) => ({
+            label: item, // Assuming 'name' is the property you want to use as label
+            value: item, // Assuming 'id' is the property you want to use as value
+          }))
+        : []
+    );
 
-// Resetting option4 state variables
-setOption4(getApiData?.adlsSecondType
-  ? getApiData.adlsSecondType.map(item => ({
-      label: item, // Assuming 'name' is the property you want to use as label
-      value: item    // Assuming 'id' is the property you want to use as value
-    }))
-  : []);
+    // Resetting option5 state variables
+    setOption5(
+      getApiData?.safetyType
+        ? getApiData.safetyType.map((item) => ({
+            label: item, // Assuming 'name' is the property you want to use as label
+            value: item, // Assuming 'id' is the property you want to use as value
+          }))
+        : []
+    );
 
-// Resetting option5 state variables
-setOption5(getApiData?.safetyType
-  ? getApiData.safetyType.map(item => ({
-      label: item, // Assuming 'name' is the property you want to use as label
-      value: item    // Assuming 'id' is the property you want to use as value
-    }))
-  : []);
+    // Resetting option6 state variables
+    setOption6(
+      getApiData?.medicationEducationType
+        ? getApiData.medicationEducationType.map((item) => ({
+            label: item, // Assuming 'name' is the property you want to use as label
+            value: item, // Assuming 'id' is the property you want to use as value
+          }))
+        : []
+    );
 
-// Resetting option6 state variables
-setOption6(getApiData?.medicationEducationType
-  ? getApiData.medicationEducationType.map(item => ({
-      label: item, // Assuming 'name' is the property you want to use as label
-      value: item    // Assuming 'id' is the property you want to use as value
-    }))
-  : []);
+    // Resetting option7 state variables
+    setOption7(
+      getApiData?.managingMentalHealthType
+        ? getApiData.managingMentalHealthType.map((item) => ({
+            label: item, // Assuming 'name' is the property you want to use as label
+            value: item, // Assuming 'id' is the property you want to use as value
+          }))
+        : []
+    );
 
-// Resetting option7 state variables
-setOption7(getApiData?.managingMentalHealthType
-  ? getApiData.managingMentalHealthType.map(item => ({
-      label: item, // Assuming 'name' is the property you want to use as label
-      value: item    // Assuming 'id' is the property you want to use as value
-    }))
-  : []);
+    // Resetting option8 state variables
+    setOption8(
+      getApiData?.legalType
+        ? getApiData.legalType.map((item) => ({
+            label: item, // Assuming 'name' is the property you want to use as label
+            value: item, // Assuming 'id' is the property you want to use as value
+          }))
+        : []
+    );
 
-// Resetting option8 state variables
-setOption8(getApiData?.legalType
-  ? getApiData.legalType.map(item => ({
-      label: item, // Assuming 'name' is the property you want to use as label
-      value: item    // Assuming 'id' is the property you want to use as value
-    }))
-  : []);
+    // Resetting admissionMeasure1 state variables
+    setAdmissionMeasure1(getApiData?.maintainSobrietyAdmissionMeasure);
 
-// Resetting admissionMeasure1 state variables
-setAdmissionMeasure1(getApiData?.maintainSobrietyAdmissionMeasure);
+    setCurrentMeasure1(getApiData?.maintainSobrietyCurrentMeasure);
+    setEstimatedDateOfCompletion1(
+      getApiData?.maintainSobrietyEstimatedDateOfCompletion
+        ? getApiData?.maintainSobrietyEstimatedDateOfCompletion?.slice(0, 10)
+        : ""
+    );
+    setComment1(getApiData?.maintainSobrietyComments);
 
-setCurrentMeasure1(getApiData?.maintainSobrietyCurrentMeasure);
-setEstimatedDateOfCompletion1(getApiData?.maintainSobrietyEstimatedDateOfCompletion?getApiData?.maintainSobrietyEstimatedDateOfCompletion?.slice(0,10):"");
-setComment1(getApiData?.maintainSobrietyComments);
+    // Resetting admissionMeasure2 state variables
+    setAdmissionMeasure2(getApiData?.independentLivingSkillsAdmissionMeasure);
 
-// Resetting admissionMeasure2 state variables
-setAdmissionMeasure2(getApiData?.independentLivingSkillsAdmissionMeasure);
+    setCurrentMeasure2(getApiData?.independentLivingSkillsCurrentMeasure);
+    setEstimatedDateOfCompletion2(
+      getApiData?.independentLivingSkillsEstimatedDateOfCompletion
+        ? getApiData?.independentLivingSkillsEstimatedDateOfCompletion?.slice(
+            0,
+            10
+          )
+        : ""
+    );
+    setComment2(getApiData?.independentLivingSkillsComments);
 
-setCurrentMeasure2(getApiData?.independentLivingSkillsCurrentMeasure);
-setEstimatedDateOfCompletion2(getApiData?.independentLivingSkillsEstimatedDateOfCompletion?getApiData?.independentLivingSkillsEstimatedDateOfCompletion?.slice(0,10):"")
-setComment2(getApiData?.independentLivingSkillsComments);
+    // Resetting admissionMeasure3 state variables
+    setAdmissionMeasure3(getApiData?.employmentAdmissionMeasure);
 
-// Resetting admissionMeasure3 state variables
-setAdmissionMeasure3(getApiData?.employmentAdmissionMeasure);
+    setCurrentMeasure3(getApiData?.employmentCurrentMeasure);
+    setEstimatedDateOfCompletion3(
+      getApiData?.employmentEstimatedDateOfCompletion
+        ? getApiData?.employmentEstimatedDateOfCompletion?.slice(0, 10)
+        : ""
+    );
+    setComment3(getApiData?.employmentComments);
 
-setCurrentMeasure3(getApiData?.employmentCurrentMeasure);
-setEstimatedDateOfCompletion3(getApiData?.employmentEstimatedDateOfCompletion?getApiData?.employmentEstimatedDateOfCompletion?.slice(0,10):"")
-setComment3(getApiData?.employmentComments);
+    // Resetting admissionMeasure4 state variables
+    setAdmissionMeasure4(getApiData?.adlsSecondAdmissionMeasure);
 
-// Resetting admissionMeasure4 state variables
-setAdmissionMeasure4(getApiData?.adlsSecondAdmissionMeasure);
+    setCurrentMeasure4(getApiData?.adlsSecondCurrentMeasure);
+    setEstimatedDateOfCompletion4(
+      getApiData?.adlsSecondEstimatedDateOfCompletion
+        ? getApiData?.adlsSecondEstimatedDateOfCompletion?.slice(0, 10)
+        : ""
+    );
+    setComment4(getApiData?.adlsSecondComments);
 
-setCurrentMeasure4(getApiData?.adlsSecondCurrentMeasure);
-setEstimatedDateOfCompletion4(getApiData?.adlsSecondEstimatedDateOfCompletion?getApiData?.adlsSecondEstimatedDateOfCompletion?.slice(0,10):"")
-setComment4(getApiData?.adlsSecondComments);
+    // Resetting admissionMeasure5 state variables
+    setAdmissionMeasure5(getApiData?.safetyAdmissionMeasure);
 
-// Resetting admissionMeasure5 state variables
-setAdmissionMeasure5(getApiData?.safetyAdmissionMeasure);
+    setCurrentMeasure5(getApiData?.safetyCurrentMeasure);
+    setEstimatedDateOfCompletion5(
+      getApiData?.safetyEstimatedDateOfCompletion
+        ? getApiData?.safetyEstimatedDateOfCompletion?.slice(0, 10)
+        : ""
+    );
+    setComment5(getApiData?.safetyComments);
 
-setCurrentMeasure5(getApiData?.safetyCurrentMeasure);
-setEstimatedDateOfCompletion5(getApiData?.safetyEstimatedDateOfCompletion?getApiData?.safetyEstimatedDateOfCompletion?.slice(0,10):"")
-setComment5(getApiData?.safetyComments);
+    // Resetting admissionMeasure6 state variables
+    setAdmissionMeasure6(getApiData?.medicationEducationAdmissionMeasure);
 
-// Resetting admissionMeasure6 state variables
-setAdmissionMeasure6(getApiData?.medicationEducationAdmissionMeasure);
+    setCurrentMeasure6(getApiData?.medicationEducationCurrentMeasure);
+    setEstimatedDateOfCompletion6(
+      getApiData?.medicationEducationEstimatedDateOfCompletion
+        ? getApiData?.medicationEducationEstimatedDateOfCompletion?.slice(0, 10)
+        : ""
+    );
+    setComment6(getApiData?.medicationEducationComments);
 
-setCurrentMeasure6(getApiData?.medicationEducationCurrentMeasure);
-setEstimatedDateOfCompletion6(getApiData?.medicationEducationEstimatedDateOfCompletion?getApiData?.medicationEducationEstimatedDateOfCompletion?.slice(0,10):"")
-setComment6(getApiData?.medicationEducationComments);
+    // Resetting admissionMeasure7 state variables
+    setAdmissionMeasure7(getApiData?.managingMentalHealthAdmissionMeasure);
 
-// Resetting admissionMeasure7 state variables
-setAdmissionMeasure7(getApiData?.managingMentalHealthAdmissionMeasure);
+    setCurrentMeasure7(getApiData?.managingMentalHealthCurrentMeasure);
+    setEstimatedDateOfCompletion7(
+      getApiData?.managingMentalHealthEstimatedDateOfCompletion
+        ? getApiData?.managingMentalHealthEstimatedDateOfCompletion?.slice(
+            0,
+            10
+          )
+        : ""
+    );
+    setComment7(getApiData?.managingMentalHealthComments);
 
-setCurrentMeasure7(getApiData?.managingMentalHealthCurrentMeasure);
-setEstimatedDateOfCompletion7(getApiData?.managingMentalHealthEstimatedDateOfCompletion?getApiData?.managingMentalHealthEstimatedDateOfCompletion?.slice(0,10):"")
-setComment7(getApiData?.managingMentalHealthComments);
+    // Resetting admissionMeasure8 state variables
+    setAdmissionMeasure8(getApiData?.legalAdmissionMeasure);
+    setCurrentMeasure8(getApiData?.legalCurrentMeasure);
+    setEstimatedDateOfCompletion8(
+      getApiData?.legalEstimatedDateOfCompletion
+        ? getApiData?.legalEstimatedDateOfCompletion?.slice(0, 10)
+        : ""
+    );
+    setComment8(getApiData?.legalComments);
+    // Resetting optionOther state variables
+    // setOptionOther("");
+    // setAdmissionMeasureOther("");
+    // setCurrentMeasureOther("");
+    // setEstimatedDateOfCompletionOther("");
+    // setCommentOther("");
 
-// Resetting admissionMeasure8 state variables
-setAdmissionMeasure8(getApiData?.legalAdmissionMeasure);
-setCurrentMeasure8(getApiData?.legalCurrentMeasure);
-setEstimatedDateOfCompletion8(getApiData?.legalEstimatedDateOfCompletion?getApiData?.legalEstimatedDateOfCompletion?.slice(0,10):"")
-setComment8(getApiData?.legalComments);
-// Resetting optionOther state variables
-// setOptionOther("");
-// setAdmissionMeasureOther("");
-// setCurrentMeasureOther("");
-// setEstimatedDateOfCompletionOther("");
-// setCommentOther("");
+    // Resetting otherArray state variables
+    setOtherArray(getApiData?.other ? getApiData?.other : []);
+    setShowOther(false);
 
-// Resetting otherArray state variables
-setOtherArray(getApiData?.other?getApiData?.other:[]);
-setShowOther(false);
+    // Resetting resident overall participation state variables
+    setResidentParticipation(getApiData?.residentParticipation);
+    setResidentAttitute(getApiData?.residentAttitude);
+    setResidentProgress(getApiData?.residentProgress);
+    setSupportSystemPhoneNumber(getApiData?.supportSystemPhoneNumber);
+    setSupportSystem(
+      getApiData?.supportSystem ? getApiData?.supportSystem : []
+    );
+    // setSupportSystemOtherText(getApiData?.residentAttitude);
+    // setSupportSystemOtherTextBoolean(false);
+    setCurrentMedications(getApiData?.currentMedications);
+    setreligiousPreference(getApiData?.religiousPreference);
+    // setReligiousPreferenceText(getApiData?.residentAttitude);
+    setNutritionAndWellnessPlanning(
+      getApiData?.nutritionAndWellnessPlanning
+        ? getApiData?.nutritionAndWellnessPlanning
+        : []
+    );
+    setRecommendationToExtendResidentialTreatment(
+      getApiData?.recommendationToExtendResidentialTreatment
+    );
+    setPersonalFinances(getApiData?.personalFinances);
+    setDischargePlanning(getApiData?.dischargePlanning);
+    setAdditionalComment(getApiData?.additionalComment);
+    setRecommendationsForFurtherPrograms(
+      getApiData?.recommendationsForFurtherPrograms
+        ? getApiData?.recommendationsForFurtherPrograms
+        : []
+    );
+    setrecommendationsForFurtherProgramsBoolean(
+      getApiData?.recommendationsForFurtherPrograms?.length > 0 ? true : false
+    );
+    // setRecommendationsForFurtherProgramsOther(getApiData?.residentAttitude);
 
-// Resetting resident overall participation state variables
-setResidentParticipation(getApiData?.residentParticipation);
-setResidentAttitute(getApiData?.residentAttitude);
-setResidentProgress(getApiData?.residentProgress);
-setSupportSystemPhoneNumber(getApiData?.supportSystemPhoneNumber);
-setSupportSystem(getApiData?.supportSystem?getApiData?.supportSystem:[]);
-// setSupportSystemOtherText(getApiData?.residentAttitude);
-// setSupportSystemOtherTextBoolean(false);
-setCurrentMedications(getApiData?.currentMedications);
-setreligiousPreference(getApiData?.religiousPreference);
-// setReligiousPreferenceText(getApiData?.residentAttitude);
-setNutritionAndWellnessPlanning(getApiData?.nutritionAndWellnessPlanning?getApiData?.nutritionAndWellnessPlanning:[]);
-setRecommendationToExtendResidentialTreatment(getApiData?.recommendationToExtendResidentialTreatment);
-setPersonalFinances(getApiData?.personalFinances);
-setDischargePlanning(getApiData?.dischargePlanning);
-setAdditionalComment(getApiData?.additionalComment);
-setRecommendationsForFurtherPrograms(getApiData?.recommendationsForFurtherPrograms?getApiData?.recommendationsForFurtherPrograms:[]);
-setrecommendationsForFurtherProgramsBoolean(getApiData?.recommendationsForFurtherPrograms?.length>0?true:false);
-// setRecommendationsForFurtherProgramsOther(getApiData?.residentAttitude);
+    // Resetting afterCareAndTransitionPlanning state variables
+    setAfterCareAndTransitionPlanning(
+      getApiData?.afterCareAndTransitionPlanning
+        ? getApiData?.afterCareAndTransitionPlanning
+        : []
+    );
 
-// Resetting afterCareAndTransitionPlanning state variables
-setAfterCareAndTransitionPlanning(getApiData?.afterCareAndTransitionPlanning?getApiData?.afterCareAndTransitionPlanning:[]);
+    // Resetting theory input state variable
+    setTextData("");
 
-// Resetting theory input state variable
-setTextData("");
+    // Resetting clinicalSummary state variables
+    setClinicalSummary(
+      getApiData?.clinicalSummary
+        ? getApiData.clinicalSummary.map((item) => ({
+            label: item, // Assuming 'name' is the property you want to use as label
+            value: item, // Assuming 'id' is the property you want to use as value
+          }))
+        : []
+    );
+    setTreatmentPlanReviewDate(
+      getApiData?.treatmentPlanReviewDate
+        ? getApiData?.treatmentPlanReviewDate.slice(0, 10)
+        : ""
+    );
+    setDischargePlanDate(
+      getApiData?.dischargePlanDate
+        ? getApiData?.dischargePlanDate.slice(0, 10)
+        : ""
+    );
+    // Resetting individual participating state variables
+    setResident(getApiData?.individualsParticipatingInServicePlan?.resident);
+    setGuardian(getApiData?.individualsParticipatingInServicePlan?.guardian);
+    setStaff(getApiData?.individualsParticipatingInServicePlan?.staff);
+    setBph(getApiData?.individualsParticipatingInServicePlan?.bhp);
+    setCommentIndividual(
+      getApiData?.individualsParticipatingInServicePlan?.comment
+    );
 
-// Resetting clinicalSummary state variables
-setClinicalSummary(getApiData?.clinicalSummary
-  ? getApiData.clinicalSummary.map(item => ({
-      label: item, // Assuming 'name' is the property you want to use as label
-      value: item    // Assuming 'id' is the property you want to use as value
-    }))
-  : []);
-setTreatmentPlanReviewDate(getApiData?.treatmentPlanReviewDate?getApiData?.treatmentPlanReviewDate.slice(0,10):"");
-setDischargePlanDate(getApiData?.dischargePlanDate?getApiData?.dischargePlanDate.slice(0,10):"");
-// Resetting individual participating state variables
-setResident(getApiData?.individualsParticipatingInServicePlan?.resident);
-setGuardian(getApiData?.individualsParticipatingInServicePlan?.guardian);
-setStaff(getApiData?.individualsParticipatingInServicePlan?.staff);
-setBph(getApiData?.individualsParticipatingInServicePlan?.bhp);
-setCommentIndividual(getApiData?.individualsParticipatingInServicePlan?.comment);
+    // Resetting isReason state variable
+    setIsReason(getApiData?.residentAgreementIsReason);
+    setrefusalReason(getApiData?.residentAgreementRefusalReason);
 
-// Resetting isReason state variable
-setIsReason(getApiData?.residentAgreementIsReason);
-setrefusalReason(getApiData?.residentAgreementRefusalReason);
+    // Resetting signaturesResident state variables
+    setNameResident(getApiData?.signaturesResident?.name);
+    setCredentialsResident(getApiData?.signaturesResident?.credentials);
+    setsignatureResident(getApiData?.signaturesResident?.signature);
+    setDateResident(
+      getApiData?.signaturesResident?.date
+        ? formatDate(getApiData?.signaturesResident?.date)
+        : ""
+    );
+    setTimeResident(getApiData?.signaturesResident?.time);
 
-// Resetting signaturesResident state variables
-setNameResident(getApiData?.signaturesResident?.name);
-setCredentialsResident(getApiData?.signaturesResident?.credentials);
-setsignatureResident(getApiData?.signaturesResident?.signature);
-setDateResident(getApiData?.signaturesResident?.date?formatDate(getApiData?.signaturesResident?.date):"");
-setTimeResident(getApiData?.signaturesResident?.time);
+    // Resetting signaturesFacilityRep state variables
+    setNameFacilityRep(getApiData?.signaturesFacilityRep?.name);
+    setCredentialsFacilityRep(getApiData?.signaturesFacilityRep?.credentials);
+    setsignatureFacilityRep(getApiData?.signaturesFacilityRep?.signature);
+    setDateFacilityRep(
+      getApiData?.signaturesFacilityRep?.date
+        ? formatDate(getApiData?.signaturesFacilityRep?.date)
+        : ""
+    );
+    setTimeFacality(getApiData?.signaturesFacilityRep?.time);
 
-// Resetting signaturesFacilityRep state variables
-setNameFacilityRep(getApiData?.signaturesFacilityRep?.name);
-setCredentialsFacilityRep(getApiData?.signaturesFacilityRep?.credentials);
-setsignatureFacilityRep(getApiData?.signaturesFacilityRep?.signature);
-setDateFacilityRep(getApiData?.signaturesFacilityRep?.date?formatDate(getApiData?.signaturesFacilityRep?.date):"");
-setTimeFacality(getApiData?.signaturesFacilityRep?.time);
+    // Resetting signaturesBhp state variables
+    setNameBhp(getApiData?.signaturesBhp?.name);
+    setCredentialsBhp(getApiData?.signaturesBhp?.credentials);
+    setsignatureBhp(getApiData?.signaturesBhp?.signature);
+    setDateBhp(
+      getApiData?.signaturesBhp?.date
+        ? formatDate(getApiData?.signaturesBhp?.date)
+        : ""
+    );
+    setTimeBhp(getApiData?.signaturesBhp?.time);
+  }, [getApiData]);
 
-// Resetting signaturesBhp state variables
-setNameBhp(getApiData?.signaturesBhp?.name);
-setCredentialsBhp(getApiData?.signaturesBhp?.credentials);
-setsignatureBhp(getApiData?.signaturesBhp?.signature);
-setDateBhp(getApiData?.signaturesBhp?.date?formatDate(getApiData?.signaturesBhp?.date):"");
-setTimeBhp(getApiData?.signaturesBhp?.time);
-
-  },[getApiData])
-
-useEffect(()=>{
-  patient_form_treatment_get(userId,setGetApiData)
-},[userId])
-
+  useEffect(() => {
+    patient_form_treatment_get(userId, setGetApiData);
+  }, [userId]);
 
   useEffect(() => {
     setUserId(user?._id);
     setResidentName(user?.fullName);
-    setDob(user?.dateOfBirth?user?.dateOfBirth?.slice(0,10):"");
+    setDob(user?.dateOfBirth ? user?.dateOfBirth?.slice(0, 10) : "");
   }, [user]);
 
   useEffect(() => {
@@ -760,80 +912,73 @@ useEffect(()=>{
 
     let presentingPriceArray = [];
 
-    presentingPrice.forEach(item => {
+    presentingPrice.forEach((item) => {
       presentingPriceArray.push(item?.value);
     });
 
-    let strengthsArray=[];
-    strengths.forEach(item => {
+    let strengthsArray = [];
+    strengths.forEach((item) => {
       strengthsArray.push(item?.value);
     });
 
-    let BarriersArray=[]
-    Barriers.forEach(item => {
+    let BarriersArray = [];
+    Barriers.forEach((item) => {
       BarriersArray.push(item?.value);
     });
 
-    let option1Array=[]
-    option1.forEach(item => {
+    let option1Array = [];
+    option1.forEach((item) => {
       option1Array.push(item?.value);
     });
 
-    let option2Array=[]
-    option2.forEach(item => {
+    let option2Array = [];
+    option2.forEach((item) => {
       option2Array.push(item?.value);
     });
 
-    let option3Array=[]
-    option3.forEach(item => {
+    let option3Array = [];
+    option3.forEach((item) => {
       option3Array.push(item?.value);
     });
 
-    let option4Array=[]
-    option4.forEach(item => {
+    let option4Array = [];
+    option4.forEach((item) => {
       option4Array.push(item?.value);
     });
 
-    let option5Array=[]
-    option5.forEach(item => {
+    let option5Array = [];
+    option5.forEach((item) => {
       option5Array.push(item?.value);
     });
 
-    let option6Array=[]
-    option6.forEach(item => {
+    let option6Array = [];
+    option6.forEach((item) => {
       option6Array.push(item?.value);
     });
 
-    let option7Array=[]
-    option7.forEach(item => {
+    let option7Array = [];
+    option7.forEach((item) => {
       option7Array.push(item?.value);
     });
 
-    let option8Array=[]
-    option8.forEach(item => {
+    let option8Array = [];
+    option8.forEach((item) => {
       option8Array.push(item?.value);
     });
 
-    let clinicalSummaryArray=[];
-    clinicalSummary.forEach((item)=>{
+    let clinicalSummaryArray = [];
+    clinicalSummary.forEach((item) => {
       clinicalSummaryArray.push(item?.value);
-    })
-
+    });
 
     const data = {
       patientId: userId,
-      
+      initialUpdate,
       dateOfBirth: dob,
       date: date,
       admitDate: admitDate,
-      care: [
-        physicalService,
-        behavior,
-      ] ,
-      medicationService:[
-        medicationAdministation,
-        medicationAssistance
-    ],
+      care: [physicalService, behavior],
+      medicationService: [medicationAdministation, medicationAssistance],
       presentingProblems: presentingPriceArray,
       diagonsis,
       mentalStatus: mendelHealth,
@@ -842,89 +987,86 @@ useEffect(()=>{
       moodLevelOther: mindText,
       adls: adls,
       behavioralHealthServices: BHealth,
-      behavioralHealthServicesOther:Btext,
+      behavioralHealthServicesOther: Btext,
       primaryCareProvider: primaryCare,
-      psychiatricProvider:psychiatricProvider,
-      residentGoals:residentGoal,
+      psychiatricProvider: psychiatricProvider,
+      residentGoals: residentGoal,
       allergies: allergies,
       triggers: Triggers,
       strengths: strengthsArray,
       barriers: BarriersArray,
       riskAssessment: {
         behavioralSymptoms: behavioralSymptoms,
-        behavioralSymptomsOther:behavioralSymptomsOther,
+        behavioralSymptomsOther: behavioralSymptomsOther,
         physicalSymptoms: physicalSymptoms,
-        physicalSymptomsOther:physicalSymptomsOther,
+        physicalSymptomsOther: physicalSymptomsOther,
         cognitiveSymptoms: consnotiveSymptoms,
-        cognitiveSymptomsOther:consnotiveSymptomsOther,
+        cognitiveSymptomsOther: consnotiveSymptomsOther,
         psychosocialSymptoms: psychosocialSymptoms,
-        psychosocialSymptomsOther:psychosocialSymptomssOther,
+        psychosocialSymptomsOther: psychosocialSymptomssOther,
       },
-      interventions:interventionsImplemented,
-      interventionsComment:interventionsImplementedOther,
-      counselingFrequency:counselingOptions,
-      counselingFrequencyMinimum:minimumHoure,
-      counselingFrequencyComment:counselingOptionsText,
+      interventions: interventionsImplemented,
+      interventionsComment: interventionsImplementedOther,
+      counselingFrequency: counselingOptions,
+      counselingFrequencyMinimum: minimumHoure,
+      counselingFrequencyComment: counselingOptionsText,
 
+      maintainSobrietyType: option1Array,
+      maintainSobrietyAdmissionMeasure: admissionMeasure1,
+      maintainSobrietyCurrentMeasure: currentMeasure1,
+      maintainSobrietyEstimatedDateOfCompletion: estimatedDateOfCompletion1,
+      maintainSobrietyComments: comments1,
 
-      maintainSobrietyType:option1Array,
-      maintainSobrietyAdmissionMeasure:admissionMeasure1,
-      maintainSobrietyCurrentMeasure:currentMeasure1,
-      maintainSobrietyEstimatedDateOfCompletion:estimatedDateOfCompletion1,
-      maintainSobrietyComments:comments1,
+      independentLivingSkillsType: option2Array,
+      independentLivingSkillsAdmissionMeasure: admissionMeasure2,
+      independentLivingSkillsCurrentMeasure: currentMeasure2,
+      independentLivingSkillsEstimatedDateOfCompletion:
+        estimatedDateOfCompletion2,
+      independentLivingSkillsComments: comments2,
 
+      employmentType: option3Array,
+      employmentAdmissionMeasure: admissionMeasure3,
+      employmentCurrentMeasure: currentMeasure3,
+      employmentEstimatedDateOfCompletion: estimatedDateOfCompletion3,
+      employmentComments: comments3,
 
-      independentLivingSkillsType:option2Array,
-      independentLivingSkillsAdmissionMeasure:admissionMeasure2,
-      independentLivingSkillsCurrentMeasure:currentMeasure2,
-      independentLivingSkillsEstimatedDateOfCompletion:estimatedDateOfCompletion2,
-      independentLivingSkillsComments:comments2,
+      adlsSecondType: option4Array,
+      adlsSecondAdmissionMeasure: admissionMeasure4,
+      adlsSecondCurrentMeasure: currentMeasure4,
+      adlsSecondEstimatedDateOfCompletion: estimatedDateOfCompletion4,
+      adlsSecondComments: comments4,
 
-      employmentType:option3Array,
-      employmentAdmissionMeasure:admissionMeasure3,
-      employmentCurrentMeasure:currentMeasure3,
-      employmentEstimatedDateOfCompletion:estimatedDateOfCompletion3,
-      employmentComments:comments3,
+      safetyType: option5Array,
+      safetyAdmissionMeasure: admissionMeasure5,
+      safetyCurrentMeasure: currentMeasure5,
+      safetyEstimatedDateOfCompletion: estimatedDateOfCompletion5,
+      safetyComments: comments5,
 
-      adlsSecondType:option4Array,
-      adlsSecondAdmissionMeasure:admissionMeasure4,
-      adlsSecondCurrentMeasure:currentMeasure4,
-      adlsSecondEstimatedDateOfCompletion:estimatedDateOfCompletion4,
-      adlsSecondComments:comments4,
+      medicationEducationType: option6Array,
+      medicationEducationAdmissionMeasure: admissionMeasure6,
+      medicationEducationCurrentMeasure: currentMeasure6,
+      medicationEducationEstimatedDateOfCompletion: estimatedDateOfCompletion6,
+      medicationEducationComments: comments6,
 
-      safetyType:option5Array,
-      safetyAdmissionMeasure:admissionMeasure5,
-      safetyCurrentMeasure:currentMeasure5,
-      safetyEstimatedDateOfCompletion:estimatedDateOfCompletion5,
-      safetyComments:comments5,
+      managingMentalHealthType: option7Array,
+      managingMentalHealthAdmissionMeasure: admissionMeasure7,
+      managingMentalHealthCurrentMeasure: currentMeasure7,
+      managingMentalHealthEstimatedDateOfCompletion: estimatedDateOfCompletion7,
+      managingMentalHealthComments: comments7,
 
-
-      medicationEducationType:option6Array,
-      medicationEducationAdmissionMeasure:admissionMeasure6,
-      medicationEducationCurrentMeasure:currentMeasure6,
-      medicationEducationEstimatedDateOfCompletion:estimatedDateOfCompletion6,
-      medicationEducationComments:comments6,
-
-
-      managingMentalHealthType:option7Array,
-      managingMentalHealthAdmissionMeasure:admissionMeasure7,
-      managingMentalHealthCurrentMeasure:currentMeasure7,
-      managingMentalHealthEstimatedDateOfCompletion:estimatedDateOfCompletion7,
-      managingMentalHealthComments:comments7,
-
-      legalType:option8Array,
-      legalAdmissionMeasure:admissionMeasure8,
-      legalCurrentMeasure:currentMeasure8,
-      legalEstimatedDateOfCompletion:estimatedDateOfCompletion8,
-      legalComments:comments8,
+      legalType: option8Array,
+      legalAdmissionMeasure: admissionMeasure8,
+      legalCurrentMeasure: currentMeasure8,
+      legalEstimatedDateOfCompletion: estimatedDateOfCompletion8,
+      legalComments: comments8,
 
       other: otherArray,
 
       residentParticipation,
-      residentAttitude:residentAttitute,
+      residentAttitude: residentAttitute,
       residentProgress,
       supportSystem,
-      supportSystemPhoneNumber:supportSystemPhoneNumber,
+      supportSystemPhoneNumber: supportSystemPhoneNumber,
       currentMedications,
       religiousPreference,
       nutritionAndWellnessPlanning,
@@ -934,42 +1076,42 @@ useEffect(()=>{
       additionalComment,
       recommendationsForFurtherPrograms,
       afterCareAndTransitionPlanning,
-      clinicalSummaryBeforeDate:textData,
-      clinicalSummary:clinicalSummaryArray,
+      clinicalSummaryBeforeDate: textData,
+      clinicalSummary: clinicalSummaryArray,
       treatmentPlanReviewDate,
       dischargePlanDate,
 
-      individualsParticipatingInServicePlan:{
-        resident:resident,
-        guardian:guardian,
-        staff:staff,
-        bhp:bpn,
-        comment:commentIndividual
+      individualsParticipatingInServicePlan: {
+        resident: resident,
+        guardian: guardian,
+        staff: staff,
+        bhp: bpn,
+        comment: commentIndividual,
       },
 
-      residentAgreementIsReason:isReason,
-      residentAgreementRefusalReason:refusalReason,
+      residentAgreementIsReason: isReason,
+      residentAgreementRefusalReason: refusalReason,
 
       signaturesResident: {
         name: nameResident,
         credentials: credentialsResident,
         signature: signatureResident,
         date: dateResident,
-        time:timeResident
+        time: timeResident,
       },
       signaturesFacilityRep: {
         name: nameFacilityRep,
         credentials: credentialsFacilityRep,
         signature: signatureFacilityRep,
         date: dateFacilityRep,
-        time:timeFacality
+        time: timeFacality,
       },
       signaturesBhp: {
         name: nameBhp,
         credentials: credentialsBhp,
         signature: signatureBhp,
         date: dateBhp,
-        time: timeBhp
+        time: timeBhp,
       },
     };
     patient_form(data);
@@ -989,18 +1131,18 @@ useEffect(()=>{
   const handleCheckboxChangeBehavioral = (symptom) => {
     if (symptom === "Other") {
       // Toggle "Other" symptom
-      setBehavioralSymptoms(prevState => {
+      setBehavioralSymptoms((prevState) => {
         if (prevState.includes("Other")) {
-          return prevState.filter(item => item !== "Other");
+          return prevState.filter((item) => item !== "Other");
         } else {
           return [...prevState, "Other"];
         }
       });
     } else {
       // Toggle other symptoms
-      setBehavioralSymptoms(prevState => {
+      setBehavioralSymptoms((prevState) => {
         if (prevState.includes(symptom)) {
-          return prevState.filter(item => item !== symptom);
+          return prevState.filter((item) => item !== symptom);
         } else {
           return [...prevState, symptom];
         }
@@ -1011,67 +1153,70 @@ useEffect(()=>{
   const handleCheckboxChangePhysical = (symptom) => {
     if (symptom === "Other") {
       // Toggle "Other" symptom
-      setPhysicalSymptoms(prevState => {
+      setPhysicalSymptoms((prevState) => {
         if (prevState.includes("Other")) {
-          return prevState.filter(item => item !== "Other");
+          return prevState.filter((item) => item !== "Other");
         } else {
           return [...prevState, "Other"];
         }
       });
-    }else{
+    } else {
       setPhysicalSymptoms((prevSelectedSymptoms) => {
         if (prevSelectedSymptoms.includes(symptom)) {
-          return prevSelectedSymptoms.filter((selected) => selected !== symptom);
+          return prevSelectedSymptoms.filter(
+            (selected) => selected !== symptom
+          );
         } else {
           return [...prevSelectedSymptoms, symptom];
         }
       });
     }
-   
   };
 
   const handleCheckboxChangeCognitive = (symptom) => {
     if (symptom === "Other") {
       // Toggle "Other" symptom
-      setConsnotiveSymptoms(prevState => {
+      setConsnotiveSymptoms((prevState) => {
         if (prevState.includes("Other")) {
-          return prevState.filter(item => item !== "Other");
+          return prevState.filter((item) => item !== "Other");
         } else {
           return [...prevState, "Other"];
         }
       });
-    }else{
+    } else {
       setConsnotiveSymptoms((prevSelectedSymptoms) => {
         if (prevSelectedSymptoms.includes(symptom)) {
-          return prevSelectedSymptoms.filter((selected) => selected !== symptom);
+          return prevSelectedSymptoms.filter(
+            (selected) => selected !== symptom
+          );
         } else {
           return [...prevSelectedSymptoms, symptom];
         }
       });
     }
-
   };
 
   const handleCheckboxChangePsychosocial = (symptom) => {
     if (symptom === "Other") {
       // Toggle "Other" symptom
-      setPsychosocialSymptoms(prevState => {
+      setPsychosocialSymptoms((prevState) => {
         if (prevState.includes("Other")) {
-          return prevState.filter(item => item !== "Other");
+          return prevState.filter((item) => item !== "Other");
         } else {
           return [...prevState, "Other"];
         }
       });
-    }else{
+    } else {
       setPsychosocialSymptoms((prevSelectedSymptoms) => {
         if (prevSelectedSymptoms.includes(symptom)) {
-          return prevSelectedSymptoms.filter((selected) => selected !== symptom);
+          return prevSelectedSymptoms.filter(
+            (selected) => selected !== symptom
+          );
         } else {
           return [...prevSelectedSymptoms, symptom];
         }
       });
     }
-
   };
 
   const handleCheckboxChange = (value) => {
@@ -1960,8 +2105,8 @@ useEffect(()=>{
 
   return (
     <>
-      <div  ref={componentRef}>
-        <div >
+      <div>
+        <div>
           <div className="backbutton hidePrint">
             <IoArrowBackCircle
               style={{
@@ -1976,593 +2121,634 @@ useEffect(()=>{
 
           <div className="Boss">
             <div className="formheading1">
-              <div className="formsheading_updated_treatment" style={{marginTop:"1.5rem", padding:" 0 10px"}}>
+              <div
+                className="formsheading_updated_treatment"
+                style={{ marginTop: "1.5rem", padding: " 0 10px" }}
+              >
                 <div className="treatment_plan_header">
-                <h5>TREATMENT PLAN</h5>
-                <div className="treatment_plan_header_inner_div">
-                  <input
-                    type="checkbox"
-                  
-                    checked={initialUpdate==="Initial"}
-                    onChange={() =>
-                      setInitialUpdate("Initial")
-                    }
-                  />
-                  <label >Initial</label>
-                </div>
-                <div className="treatment_plan_header_inner_div">
-                  <input
-                    type="checkbox"
-                    checked={initialUpdate==="Update"}
-                    onChange={() =>
-                      setInitialUpdate("Update")
-                    }
-                  />
-                  <label >Update</label>
-                </div>
+                  <h5>TREATMENT PLAN</h5>
+                  <div className="treatment_plan_header_inner_div">
+                    <input
+                      type="checkbox"
+                      checked={initialUpdate === "Initial"}
+                      onChange={() => setInitialUpdate("Initial")}
+                    />
+                    <label>Initial</label>
+                  </div>
+                  <div className="treatment_plan_header_inner_div">
+                    <input
+                      type="checkbox"
+                      checked={initialUpdate === "Update"}
+                      onChange={() => setInitialUpdate("Update")}
+                    />
+                    <label>Update</label>
+                  </div>
                 </div>
               </div>
             </div>
-         
-        
-          <form  onSubmit={handlePost}>
-            <div className="form-section">
-              <div className="box-image-container">
-                <div className="form-field-update">
-                  <div className="form-field-child">
-                    <label>Resident Name:</label>
-                    <input
-                      type="text"
-                      value={residentName}
-                      placeholder="Enter name"
-                      required
-                      onChange={(e) => setResidentName(e.target.value)}
-                    />
+
+            <form onSubmit={handlePost}>
+              <div className="form-section">
+                <div className="box-image-container">
+                  <div className="form-field-update">
+                    <div className="form-field-child">
+                      <label>Resident Name:</label>
+                      <input
+                        type="text"
+                        value={residentName}
+                        placeholder="Enter name"
+                        required
+                        onChange={(e) => setResidentName(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="form-field-child">
+                      <label>Date:</label>
+                      <input
+                        type="date"
+                        value={date}
+                        placeholder="DD/MM/YYYY"
+                        required
+                        onChange={(e) => setDate(e.target.value)}
+                      />
+                    </div>
                   </div>
 
-                  <div className="form-field-child">
-                    <label>Date:</label>
-                    <input
-                      type="date"
-                      value={date}
-                      placeholder="DD/MM/YYYY"
-                      required
-                      onChange={(e) => setDate(e.target.value)}
-                    />
-                  </div>
-                </div>
+                  <div className="form-field-update">
+                    <div className="form-field-child">
+                      <label htmlFor="dateOfBirth">DOB:</label>
+                      <input
+                        type="date"
+                        id="dateOfBirth"
+                        value={dob}
+                        placeholder="DD/MM/YYYY"
+                        required
+                        onChange={(e) => setDob(e.target.value)}
+                      />
+                    </div>
 
-                <div className="form-field-update">
-                  <div className="form-field-child">
-                    <label htmlFor="dateOfBirth">DOB:</label>
-                    <input
-                      type="date"
-                      id="dateOfBirth"
-                      value={dob}
-                      placeholder="DD/MM/YYYY"
-                      required
-                      onChange={(e) => setDob(e.target.value)}
-                    />
-                  </div>
-
-                  <div className="form-field-child">
-                    <label htmlFor="dateOfBirth">Admit Date:</label>
-                    <input
-                      type="date"
-                      id="dateOfBirth"
-                      value={admitDate}
-                      placeholder="DD/MM/YYYY"
-                      required
-                      onChange={(e) => setAdminDate(e.target.value)}
-                    />
-                  </div>
-                </div>
-
-                <div className="form-field-update-care">
-                  <div className="form-field-child">
-                    {" "}
-                    <label style={{ fontWeight: "bold" }}>Care:</label>
+                    <div className="form-field-child">
+                      <label htmlFor="dateOfBirth">Admit Date:</label>
+                      <input
+                        type="date"
+                        id="dateOfBirth"
+                        value={admitDate}
+                        placeholder="DD/MM/YYYY"
+                        required
+                        onChange={(e) => setAdminDate(e.target.value)}
+                      />
+                    </div>
                   </div>
 
-                  <div className="form-field-child">
-                    <input
-                      type="checkbox"
-                      checked={physicalService==="physicalService"}
-                      onChange={() => setPhysicalService(physicalService==="physicalService"?"":"physicalService")}
-                      id="behavioralCheckbox"
-                    />
-                    <label>Physical Services</label>
-                  </div>
-                  <div className="form-field-child">
-                    <input
-                      type="checkbox"
-                      checked={behavior==="behavior"}
-                      onChange={() => setBehavior(behavior==="behavior"?"":"behavior")}
-                      id="behavioralCheckbox"
-                    />
-                    <label>Behavioral Services</label>
-                  </div>
-                </div>
-
-                {/* state is duplicatedffdg again make the state */}
-                <div>
-                  <label
-                    style={{
-                      fontSize: "16px",
-                      fontWeight: "bold",
-
-                      marginTop: "0.5rem",
-                      marginLeft: "10px",
-                    }}
-                  >
-                    Medication Services:
-                  </label>
                   <div className="form-field-update-care">
                     <div className="form-field-child">
+                      {" "}
+                      <label style={{ fontWeight: "bold" }}>Care:</label>
+                    </div>
+
+                    <div className="form-field-child">
                       <input
-                      type="checkbox"
-                       checked={medicationAdministation==="MedicationAdministration"}
-                       onChange={() => setMedicationAdministation(medicationAdministation==="MedicationAdministration"?"":"MedicationAdministration")}
+                        type="checkbox"
+                        checked={physicalService === "physicalService"}
+                        onChange={() =>
+                          setPhysicalService(
+                            physicalService === "physicalService"
+                              ? ""
+                              : "physicalService"
+                          )
+                        }
+                        id="behavioralCheckbox"
                       />
-                      <label>Medication Administration</label>
+                      <label>Physical Services</label>
                     </div>
                     <div className="form-field-child">
-                      <input type="checkbox" 
-                      checked={medicationAssistance==="AssistanceintheselfAdministrationofmedication"}
-                      onChange={() => setMedicationAssistence(medicationAssistance==="AssistanceintheselfAdministrationofmedication"?"":"AssistanceintheselfAdministrationofmedication")}/>
-                      <label>
-                        Assistance in the self-Administration of medication
-                      </label>
+                      <input
+                        type="checkbox"
+                        checked={behavior === "behavior"}
+                        onChange={() =>
+                          setBehavior(behavior === "behavior" ? "" : "behavior")
+                        }
+                        id="behavioralCheckbox"
+                      />
+                      <label>Behavioral Services</label>
+                    </div>
+                  </div>
+
+                  {/* state is duplicatedffdg again make the state */}
+                  <div>
+                    <label
+                      style={{
+                        fontSize: "16px",
+                        fontWeight: "bold",
+
+                        marginTop: "0.5rem",
+                        marginLeft: "10px",
+                      }}
+                    >
+                      Medication Services:
+                    </label>
+                    <div className="form-field-update-care">
+                      <div className="form-field-child">
+                        <input
+                          type="checkbox"
+                          checked={
+                            medicationAdministation ===
+                            "MedicationAdministration"
+                          }
+                          onChange={() =>
+                            setMedicationAdministation(
+                              medicationAdministation ===
+                                "MedicationAdministration"
+                                ? ""
+                                : "MedicationAdministration"
+                            )
+                          }
+                        />
+                        <label>Medication Administration</label>
+                      </div>
+                      <div className="form-field-child">
+                        <input
+                          type="checkbox"
+                          checked={
+                            medicationAssistance ===
+                            "AssistanceintheselfAdministrationofmedication"
+                          }
+                          onChange={() =>
+                            setMedicationAssistence(
+                              medicationAssistance ===
+                                "AssistanceintheselfAdministrationofmedication"
+                                ? ""
+                                : "AssistanceintheselfAdministrationofmedication"
+                            )
+                          }
+                        />
+                        <label>
+                          Assistance in the self-Administration of medication
+                        </label>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="form-field-single-update-bold box-image-container">
-                <label>Presenting Problems:</label>
+                <div className="form-field-single-update-bold box-image-container">
+                  <label>Presenting Problems:</label>
 
-                <Select
-                  isMulti
-                  onChange={presentingPriceHandler}
-                  value={presentingPrice}
-                  options={presentingPriceOption}
-                  isCreatable={true}
-                  onKeyDown={handleKeyPresentingPrice}
-                />
-              </div>
+                  <Select
+                    isMulti
+                    onChange={presentingPriceHandler}
+                    value={presentingPrice}
+                    options={presentingPriceOption}
+                    isCreatable={true}
+                    onKeyDown={handleKeyPresentingPrice}
+                  />
+                </div>
 
-       
-
-              <div className="form-field-single-update" style={{marginTop:"0.5rem"}}>
-                <label>Diagnoses:</label>
-                <input type="text" required value={diagonsis} onChange={(e)=>setDiagonsis(e.target.value)}/>
-              </div>
-              <label
-               
-                className="label-review"
-                style={{ fontWeight: "bold" }}
-              >
-                Mental Status:
-              </label>
-              <div className="yeschechbox-review">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="oriented"
-                    checked={mendelHealth === "oriented"}
-                    onChange={() =>
-                      handleCheckboxChangeMentalHealth("oriented")
-                    }
-                  />
-                  <label htmlFor="oriented">Oriented</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="disoriented"
-                    checked={mendelHealth === "disoriented"}
-                    onChange={() =>
-                      handleCheckboxChangeMentalHealth("disoriented")
-                    }
-                  />
-                  <label htmlFor="disoriented">Disoriented</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="unstable"
-                    checked={mendelHealth === "unstable"}
-                    onChange={() =>
-                      handleCheckboxChangeMentalHealth("unstable")
-                    }
-                  />
-                  <label htmlFor="unstable">Unstable</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                  
-                    checked={mendelHealth === "other"}
-                    onChange={() => handleCheckboxChangeMentalHealth("other")}
-                  />
-                  <label >Other </label>
-                
-                    <AutoSize value={mentelText} setValue={setMentelText}  placeholder="________"/>
-                </div>
-              </div>
-
-              <label
-                htmlFor=""
-                className="label-review"
-                style={{ fontWeight: "bold" }}
-              >
-                Mood Level:
-              </label>
-              <div className="yeschechbox-review">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="normal"
-                    checked={mind === "Normal"}
-                    onChange={() => handleCheckboxChangeMind("Normal")}
-                  />
-                  <label htmlFor="normal">Normal</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="elevated"
-                    checked={mind === "Elevated"}
-                    onChange={() => handleCheckboxChangeMind("Elevated")}
-                  />
-                  <label htmlFor="elevated">Elevated</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="depressed"
-                    checked={mind === "Depressed"}
-                    onChange={() => handleCheckboxChangeMind("Depressed")}
-                  />
-                  <label htmlFor="depressed">Depressed</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="anxious"
-                    checked={mind === "Anxious"}
-                    onChange={() => handleCheckboxChangeMind("Anxious")}
-                  />
-                  <label htmlFor="anxious">Anxious</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                  
-                    checked={mind === "other"}
-                    onChange={() => handleCheckboxChangeMind("other")}
-                  />
-                  <label >Other</label>
-                     <AutoSize value={mindText} setValue={setMindText}  placeholder="________"/>
-                </div>
-              </div>
-
-              <label
-                htmlFor=""
-                className="label-review"
-                style={{ fontWeight: "bold" }}
-              >
-                ADLS:
-              </label>
-              <div className="yeschechbox-review">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="independent"
-                    checked={adls === "independent"}
-                    onChange={() => setAdls("independent")}
-                  />
-                  <label htmlFor="independent">
-                    Is independent with all ADLS
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="personalCareLevel"
-                    checked={adls === "personalCareLevel"}
-                    onChange={() => setAdls("personalCareLevel")}
-                  />
-                  <label htmlFor="personalCareLevel">
-                    Personal care level 
-                  </label>
-                </div>
-              </div>
-              <div className="form-field">
-                <textarea
-                  type="text"
-                  id="AHCCCS"
-                  value={adlsText}
-                  rows={2}
-                  cols={130}
-                  placeholder="Enter text."
-                  required
-                  onChange={(e) => setAldsText(e.target.value)}
-                />
-              </div>
-              <label className="label-review">
-                Behavioral Health Services:
-              </label>
-              <div className="yeschechbox-review">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="receivesServices"
-                    value="receivesServices"
-                    checked={BHealth === "receivesServices"}
-                    onChange={() => setBHealth("receivesServices")}
-                  />
-                  <label htmlFor="receivesServices">
-                    Receives behavioral health services
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="prescribedMedication"
-                    value="prescribedMedication"
-                    checked={BHealth === "prescribedMedication"}
-                    onChange={() => setBHealth("prescribedMedication")}
-                  />
-                  <label htmlFor="prescribedMedication">
-                    Is prescribed psychotropic medication
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="followsHouseRules"
-                    value="followsHouseRules"
-                    checked={BHealth === "followsHouseRules"}
-                    onChange={() => setBHealth("followsHouseRules")}
-                  />
-                  <label htmlFor="followsHouseRules">
-                    Resident agrees to follow house rules.
-                  </label>
-                </div>
-              </div>
-              <div className="form-field">
-                <textarea
-                  type="text"
-                  id="AHCCCS"
-                  value={Btext}
-                  rows={2}
-                  cols={130}
-                  placeholder="Enter text."
-                  required
-                  onChange={(e) => setBtext(e.target.value)}
-                />
-              </div>
-              <div className="box-image-container">
-                <div className="form-field-single-update">
-                  <label>Primary Care Provider:</label>
-                  {/* khf */}
+                <div
+                  className="form-field-single-update"
+                  style={{ marginTop: "0.5rem" }}
+                >
+                  <label>Diagnoses:</label>
                   <input
                     type="text"
-                    placeholder="Enter text."
-                    value={primaryCare}
                     required
-                    onChange={(e) => setPrimaryCare(e.target.value)}
+                    value={diagonsis}
+                    onChange={(e) => setDiagonsis(e.target.value)}
                   />
                 </div>
-                <div className="border-bootom-line"></div>
-                <div className="form-field-single-update">
-                  <label>Psychiatric Provider:</label>
-                  <input
-                    type="text"
-                    placeholder="Enter text."
-                    value={psychiatricProvider}
-                    required
-                    onChange={(e) => setPsychiatricProvider(e.target.value)}
-                  />
-                </div>
-              </div>
-              <p style={{ marginTop: "1rem" }}>
-                Resident to receive treatment services from above provider(s)
-                every 1 to 2 months or earlier as needed. Specialty providers
-                are to be managed and referred per primary care medical
-                provider.
-              </p>
-              <div className="box-image-container">
-                <div className="form-field-single-update">
-                  <label>Resident Goals:</label>
-                  <input
-                    type="text"
-                    placeholder="Enter text."
-                    value={residentGoal}
-                    required
-                    onChange={(e) => setResidentGoal(e.target.value)}
-                  />
-                </div>
-                <div className="border-bootom-line"></div>
-                <div className="form-field-single-update">
-                  <label>Allergies:</label>
-                  <input
-                    type="text"
-                    placeholder="Enter text."
-                    value={allergies}
-                    required
-                    onChange={(e) => setAllergies(e.target.value)}
-                  />
-                </div>
-                <div className="border-bootom-line"></div>
-                <div className="form-field-single-update">
-                  <label>Triggers:</label>
-                  <input
-                    type="text"
-                    placeholder="Enter text"
-                    value={Triggers}
-                    required
-                    onChange={(e) => setTriggers(e.target.value)}
-                  />
-                </div>
-              </div>
-
-              <div className="form-field">
-                <label htmlFor="" className="label-review">
-                  Strengths:
+                <label className="label-review" style={{ fontWeight: "bold" }}>
+                  Mental Status:
                 </label>
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="oriented"
+                      checked={mendelHealth === "oriented"}
+                      onChange={() =>
+                        handleCheckboxChangeMentalHealth("oriented")
+                      }
+                    />
+                    <label htmlFor="oriented">Oriented</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="disoriented"
+                      checked={mendelHealth === "disoriented"}
+                      onChange={() =>
+                        handleCheckboxChangeMentalHealth("disoriented")
+                      }
+                    />
+                    <label htmlFor="disoriented">Disoriented</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="unstable"
+                      checked={mendelHealth === "unstable"}
+                      onChange={() =>
+                        handleCheckboxChangeMentalHealth("unstable")
+                      }
+                    />
+                    <label htmlFor="unstable">Unstable</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      checked={mendelHealth === "other"}
+                      onChange={() => handleCheckboxChangeMentalHealth("other")}
+                    />
+                    <label>Other </label>
 
-                <Select
-                  isMulti
-                  options={strengthsOption}
-                  onChange={strengthsHandler}
-                  value={strengths}
-                  isCreatable={true}
-                  onKeyDown={handleKeyStrengths}
-                />
-              </div>
-
-
-              <div className="form-field">
-                <label className="label-review">Barriers:</label>
-
-                <Select
-                  isMulti
-                  onChange={BarriersHandler}
-                  value={Barriers}
-                  options={BarriersOption}
-                  isCreatable={true}
-                  onKeyDown={handleKeyBarriers}
-                />
-              </div>
-
-              <div className="formsheading">
-                <h6>
-                  Risk Assessment / Warning Signs & Symptoms of Suicidal
-                  Ideations
-                </h6>
-              </div>
-              <label
-                htmlFor=""
-                className="label-review"
-                style={{ fontWeight: "bold" }}
-              >
-                Behavioral Symptoms:
-              </label>
-              <div className="yeschechbox-review">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="selfInjuring"
-                    checked={behavioralSymptoms.includes("selfInjuring")}
-                    onChange={() =>
-                      handleCheckboxChangeBehavioral("selfInjuring")
-                    }
-                  />
-                  <label htmlFor="selfInjuring">Self-injuring</label>
+                    <AutoSize
+                      value={mentelText}
+                      setValue={setMentelText}
+                      placeholder="________"
+                    />
+                  </div>
                 </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="recklessBehavior"
-                    checked={behavioralSymptoms.includes("recklessBehavior")}
-                    onChange={() =>
-                      handleCheckboxChangeBehavioral("recklessBehavior")
-                    }
-                  />
-                  <label htmlFor="recklessBehavior">Reckless behavior</label>
+
+                <label
+                  htmlFor=""
+                  className="label-review"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Mood Level:
+                </label>
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="normal"
+                      checked={mind === "Normal"}
+                      onChange={() => handleCheckboxChangeMind("Normal")}
+                    />
+                    <label htmlFor="normal">Normal</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="elevated"
+                      checked={mind === "Elevated"}
+                      onChange={() => handleCheckboxChangeMind("Elevated")}
+                    />
+                    <label htmlFor="elevated">Elevated</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="depressed"
+                      checked={mind === "Depressed"}
+                      onChange={() => handleCheckboxChangeMind("Depressed")}
+                    />
+                    <label htmlFor="depressed">Depressed</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="anxious"
+                      checked={mind === "Anxious"}
+                      onChange={() => handleCheckboxChangeMind("Anxious")}
+                    />
+                    <label htmlFor="anxious">Anxious</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      checked={mind === "other"}
+                      onChange={() => handleCheckboxChangeMind("other")}
+                    />
+                    <label>Other</label>
+                    <AutoSize
+                      value={mindText}
+                      setValue={setMindText}
+                      placeholder="________"
+                    />
+                  </div>
                 </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="impulsiveBehaviors"
-                    checked={behavioralSymptoms.includes("impulsiveBehaviors")}
-                    onChange={() =>
-                      handleCheckboxChangeBehavioral("impulsiveBehaviors")
-                    }
+
+                <label
+                  htmlFor=""
+                  className="label-review"
+                  style={{ fontWeight: "bold" }}
+                >
+                  ADLS:
+                </label>
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="independent"
+                      checked={adls === "independent"}
+                      onChange={() => setAdls("independent")}
+                    />
+                    <label htmlFor="independent">
+                      Is independent with all ADLS
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="personalCareLevel"
+                      checked={adls === "personalCareLevel"}
+                      onChange={() => setAdls("personalCareLevel")}
+                    />
+                    <label htmlFor="personalCareLevel">
+                      Personal care level
+                    </label>
+                  </div>
+                </div>
+                <div className="form-field">
+                  <textarea
+                    type="text"
+                    id="AHCCCS"
+                    value={adlsText}
+                    rows={2}
+                    cols={130}
+                    placeholder="Enter text."
+                    required
+                    onChange={(e) => setAldsText(e.target.value)}
                   />
-                  <label htmlFor="impulsiveBehaviors">
-                    Impulsive behaviors
+                </div>
+                <label className="label-review">
+                  Behavioral Health Services:
+                </label>
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="receivesServices"
+                      value="receivesServices"
+                      checked={BHealth === "receivesServices"}
+                      onChange={() => setBHealth("receivesServices")}
+                    />
+                    <label htmlFor="receivesServices">
+                      Receives behavioral health services
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="prescribedMedication"
+                      value="prescribedMedication"
+                      checked={BHealth === "prescribedMedication"}
+                      onChange={() => setBHealth("prescribedMedication")}
+                    />
+                    <label htmlFor="prescribedMedication">
+                      Is prescribed psychotropic medication
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="followsHouseRules"
+                      value="followsHouseRules"
+                      checked={BHealth === "followsHouseRules"}
+                      onChange={() => setBHealth("followsHouseRules")}
+                    />
+                    <label htmlFor="followsHouseRules">
+                      Resident agrees to follow house rules.
+                    </label>
+                  </div>
+                </div>
+                <div className="form-field">
+                  <textarea
+                    type="text"
+                    id="AHCCCS"
+                    value={Btext}
+                    rows={2}
+                    cols={130}
+                    placeholder="Enter text."
+                    required
+                    onChange={(e) => setBtext(e.target.value)}
+                  />
+                </div>
+                <div className="box-image-container">
+                  <div className="form-field-single-update">
+                    <label>Primary Care Provider:</label>
+                    {/* khf */}
+                    <input
+                      type="text"
+                      placeholder="Enter text."
+                      value={primaryCare}
+                      required
+                      onChange={(e) => setPrimaryCare(e.target.value)}
+                    />
+                  </div>
+                  <div className="border-bootom-line"></div>
+                  <div className="form-field-single-update">
+                    <label>Psychiatric Provider:</label>
+                    <input
+                      type="text"
+                      placeholder="Enter text."
+                      value={psychiatricProvider}
+                      required
+                      onChange={(e) => setPsychiatricProvider(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <p style={{ marginTop: "1rem" }}>
+                  Resident to receive treatment services from above provider(s)
+                  every 1 to 2 months or earlier as needed. Specialty providers
+                  are to be managed and referred per primary care medical
+                  provider.
+                </p>
+                <div className="box-image-container">
+                  <div className="form-field-single-update">
+                    <label>Resident Goals:</label>
+                    <input
+                      type="text"
+                      placeholder="Enter text."
+                      value={residentGoal}
+                      required
+                      onChange={(e) => setResidentGoal(e.target.value)}
+                    />
+                  </div>
+                  <div className="border-bootom-line"></div>
+                  <div className="form-field-single-update">
+                    <label>Allergies:</label>
+                    <input
+                      type="text"
+                      placeholder="Enter text."
+                      value={allergies}
+                      required
+                      onChange={(e) => setAllergies(e.target.value)}
+                    />
+                  </div>
+                  <div className="border-bootom-line"></div>
+                  <div className="form-field-single-update">
+                    <label>Triggers:</label>
+                    <input
+                      type="text"
+                      placeholder="Enter text"
+                      value={Triggers}
+                      required
+                      onChange={(e) => setTriggers(e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                <div className="form-field">
+                  <label htmlFor="" className="label-review">
+                    Strengths:
                   </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="socialIsolation"
-                    checked={behavioralSymptoms.includes("socialIsolation")}
-                    onChange={() =>
-                      handleCheckboxChangeBehavioral("socialIsolation")
-                    }
+
+                  <Select
+                    isMulti
+                    options={strengthsOption}
+                    onChange={strengthsHandler}
+                    value={strengths}
+                    isCreatable={true}
+                    onKeyDown={handleKeyStrengths}
                   />
-                  <label htmlFor="socialIsolation">Social isolation</label>
                 </div>
 
-                <div>
-                  <input
-                    type="checkbox"
-                    id="nolongerenjoyingpreviousactivities"
-                    checked={behavioralSymptoms.includes(
-                      "nolongerenjoyingpreviousactivities"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChangeBehavioral(
+                <div className="form-field">
+                  <label className="label-review">Barriers:</label>
+
+                  <Select
+                    isMulti
+                    onChange={BarriersHandler}
+                    value={Barriers}
+                    options={BarriersOption}
+                    isCreatable={true}
+                    onKeyDown={handleKeyBarriers}
+                  />
+                </div>
+
+                <div className="formsheading">
+                  <h6>
+                    Risk Assessment / Warning Signs & Symptoms of Suicidal
+                    Ideations
+                  </h6>
+                </div>
+                <label
+                  htmlFor=""
+                  className="label-review"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Behavioral Symptoms:
+                </label>
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="selfInjuring"
+                      checked={behavioralSymptoms.includes("selfInjuring")}
+                      onChange={() =>
+                        handleCheckboxChangeBehavioral("selfInjuring")
+                      }
+                    />
+                    <label htmlFor="selfInjuring">Self-injuring</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="recklessBehavior"
+                      checked={behavioralSymptoms.includes("recklessBehavior")}
+                      onChange={() =>
+                        handleCheckboxChangeBehavioral("recklessBehavior")
+                      }
+                    />
+                    <label htmlFor="recklessBehavior">Reckless behavior</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="impulsiveBehaviors"
+                      checked={behavioralSymptoms.includes(
+                        "impulsiveBehaviors"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeBehavioral("impulsiveBehaviors")
+                      }
+                    />
+                    <label htmlFor="impulsiveBehaviors">
+                      Impulsive behaviors
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="socialIsolation"
+                      checked={behavioralSymptoms.includes("socialIsolation")}
+                      onChange={() =>
+                        handleCheckboxChangeBehavioral("socialIsolation")
+                      }
+                    />
+                    <label htmlFor="socialIsolation">Social isolation</label>
+                  </div>
+
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="nolongerenjoyingpreviousactivities"
+                      checked={behavioralSymptoms.includes(
                         "nolongerenjoyingpreviousactivities"
-                      )
-                    }
-                  />
-                  <label htmlFor="nolongerenjoyingpreviousactivities">
-                    No longer enjoying previous activities{" "}
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="talkingorwriting"
-                    checked={behavioralSymptoms.includes("talkingorwriting")}
-                    onChange={() =>
-                      handleCheckboxChangeBehavioral("talkingorwriting")
-                    }
-                  />
-                  <label htmlFor="talkingorwriting">Talking, or writing</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="aboutdeath"
-                    checked={behavioralSymptoms.includes("aboutdeath")}
-                    onChange={() =>
-                      handleCheckboxChangeBehavioral("aboutdeath")
-                    }
-                  />
-                  <label htmlFor="aboutdeath">About death </label>
-                </div>
-                {/* add paremeter */}
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Nonereported"
-                    checked={behavioralSymptoms.includes("Nonereported")}
-                    onChange={() =>
-                      handleCheckboxChangeBehavioral("Nonereported")
-                    }
-                  />
-                  <label htmlFor="Nonereported">None reported</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-             
-                    checked={behavioralSymptoms.includes("Other")}
-                    onChange={() => handleCheckboxChangeBehavioral("Other")}
-                  />
-                  <label >Other</label>
-                  {behavioralSymptomsBoolean && (
-                      <AutoSize value={behavioralSymptomsOther}  setValue={setBehavioralSymptomsOther}   placeholder="________"/>
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeBehavioral(
+                          "nolongerenjoyingpreviousactivities"
+                        )
+                      }
+                    />
+                    <label htmlFor="nolongerenjoyingpreviousactivities">
+                      No longer enjoying previous activities{" "}
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="talkingorwriting"
+                      checked={behavioralSymptoms.includes("talkingorwriting")}
+                      onChange={() =>
+                        handleCheckboxChangeBehavioral("talkingorwriting")
+                      }
+                    />
+                    <label htmlFor="talkingorwriting">
+                      Talking, or writing
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="aboutdeath"
+                      checked={behavioralSymptoms.includes("aboutdeath")}
+                      onChange={() =>
+                        handleCheckboxChangeBehavioral("aboutdeath")
+                      }
+                    />
+                    <label htmlFor="aboutdeath">About death </label>
+                  </div>
+                  {/* add paremeter */}
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Nonereported"
+                      checked={behavioralSymptoms.includes("Nonereported")}
+                      onChange={() =>
+                        handleCheckboxChangeBehavioral("Nonereported")
+                      }
+                    />
+                    <label htmlFor="Nonereported">None reported</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      checked={behavioralSymptoms.includes("Other")}
+                      onChange={() => handleCheckboxChangeBehavioral("Other")}
+                    />
+                    <label>Other</label>
+                    {behavioralSymptomsBoolean && (
+                      <AutoSize
+                        value={behavioralSymptomsOther}
+                        setValue={setBehavioralSymptomsOther}
+                        placeholder="________"
+                      />
                     )}
+                  </div>
                 </div>
-              </div>
 
-              {/*   
+                {/*   
               {
                 behavioralSymptomsBoolean && (
                   <div className="form-field">
@@ -2580,87 +2766,90 @@ useEffect(()=>{
                 )
               } */}
 
-              <label
-                htmlFor=""
-                className="label-review"
-                style={{ fontWeight: "bold" }}
-              >
-                Physical Symptoms:
-              </label>
-              <div className="yeschechbox-review">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="insomnia"
-                    checked={physicalSymptoms.includes("insomnia")}
-                    onChange={() => handleCheckboxChangePhysical("insomnia")}
-                  />
-                  <label htmlFor="insomnia">Insomnia</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="hypersomnia"
-                    checked={physicalSymptoms.includes("hypersomnia")}
-                    onChange={() => handleCheckboxChangePhysical("hypersomnia")}
-                  />
-                  <label htmlFor="hypersomnia">Hypersomnia</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="changesInAppetite"
-                    checked={physicalSymptoms.includes("changesInAppetite")}
-                    onChange={() =>
-                      handleCheckboxChangePhysical("changesInAppetite")
-                    }
-                  />
-                  <label htmlFor="changesInAppetite">Changes in appetite</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="weightGainLoss"
-                    checked={physicalSymptoms.includes("weightGainLoss")}
-                    onChange={() =>
-                      handleCheckboxChangePhysical("weightGainLoss")
-                    }
-                  />
-                  <label htmlFor="weightGainLoss">Weight gain/loss</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="panicAttacks"
-                    checked={physicalSymptoms.includes("panicAttacks")}
-                    onChange={() =>
-                      handleCheckboxChangePhysical("panicAttacks")
-                    }
-                  />
-                  <label htmlFor="panicAttacks">Panic attacks</label>
-                </div>
+                <label
+                  htmlFor=""
+                  className="label-review"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Physical Symptoms:
+                </label>
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="insomnia"
+                      checked={physicalSymptoms.includes("insomnia")}
+                      onChange={() => handleCheckboxChangePhysical("insomnia")}
+                    />
+                    <label htmlFor="insomnia">Insomnia</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="hypersomnia"
+                      checked={physicalSymptoms.includes("hypersomnia")}
+                      onChange={() =>
+                        handleCheckboxChangePhysical("hypersomnia")
+                      }
+                    />
+                    <label htmlFor="hypersomnia">Hypersomnia</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="changesInAppetite"
+                      checked={physicalSymptoms.includes("changesInAppetite")}
+                      onChange={() =>
+                        handleCheckboxChangePhysical("changesInAppetite")
+                      }
+                    />
+                    <label htmlFor="changesInAppetite">
+                      Changes in appetite
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="weightGainLoss"
+                      checked={physicalSymptoms.includes("weightGainLoss")}
+                      onChange={() =>
+                        handleCheckboxChangePhysical("weightGainLoss")
+                      }
+                    />
+                    <label htmlFor="weightGainLoss">Weight gain/loss</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="panicAttacks"
+                      checked={physicalSymptoms.includes("panicAttacks")}
+                      onChange={() =>
+                        handleCheckboxChangePhysical("panicAttacks")
+                      }
+                    />
+                    <label htmlFor="panicAttacks">Panic attacks</label>
+                  </div>
 
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Nonereported"
-                    checked={physicalSymptoms.includes("Nonereported")}
-                    onChange={() =>
-                      handleCheckboxChangePhysical("Nonereported")
-                    }
-                  />
-                  <label htmlFor="Nonereported">None reported</label>
-                </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Nonereported"
+                      checked={physicalSymptoms.includes("Nonereported")}
+                      onChange={() =>
+                        handleCheckboxChangePhysical("Nonereported")
+                      }
+                    />
+                    <label htmlFor="Nonereported">None reported</label>
+                  </div>
 
-                <div>
-                  <input
-                    type="checkbox"
-                   
-                    checked={physicalSymptoms.includes("Other")}
-                    onChange={() => handleCheckboxChangePhysical("Other")}
-                  />
-                  <label >Other</label>
-                  {physicalSymptomsBoolean && (
+                  <div>
+                    <input
+                      type="checkbox"
+                      checked={physicalSymptoms.includes("Other")}
+                      onChange={() => handleCheckboxChangePhysical("Other")}
+                    />
+                    <label>Other</label>
+                    {physicalSymptomsBoolean && (
                       // <AutosizeInput
                       //   type="text"
                       //   inputStyle={{ border: "none", outline: "none" }}
@@ -2668,12 +2857,16 @@ useEffect(()=>{
                       //   value={physicalSymptomsOther}
                       //   onChange={(e) => setPhysicalSymptomsOther(e.target.value)}
                       // />
-                      <AutoSize value={physicalSymptomsOther} setValue={setPhysicalSymptomsOther} placeholder="________"/>
+                      <AutoSize
+                        value={physicalSymptomsOther}
+                        setValue={setPhysicalSymptomsOther}
+                        placeholder="________"
+                      />
                     )}
+                  </div>
                 </div>
-              </div>
 
-              {/* {
+                {/* {
                 physicalSymptomsBoolean && (
                   <div className="form-field">
                 <label htmlFor="programlocation&addresstypeOfOtherBoolean">Comments</label>
@@ -2690,106 +2883,105 @@ useEffect(()=>{
                 )
               } */}
 
-              <label
-                htmlFor="cognitiveSymptoms"
-                className="label-review"
-                style={{ fontWeight: "bold" }}
-              >
-                Cognitive Symptoms:
-              </label>
-              <div className="yeschechbox-review">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="concentration"
-                    checked={consnotiveSymptoms.includes("concentration")}
-                    onChange={() =>
-                      handleCheckboxChangeCognitive("concentration")
-                    }
-                  />
-                  <label htmlFor="concentration">
-                    Lacking the ability to concentrate
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="memoryImpairment"
-                    checked={consnotiveSymptoms.includes("memoryImpairment")}
-                    onChange={() =>
-                      handleCheckboxChangeCognitive("memoryImpairment")
-                    }
-                  />
-                  <label htmlFor="memoryImpairment">
-                    Memory impairment, ruminating
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="thoughtsAboutDeath"
-                    checked={consnotiveSymptoms.includes(
-                      "pervasivethoughtsaboutdeathanddying"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChangeCognitive(
+                <label
+                  htmlFor="cognitiveSymptoms"
+                  className="label-review"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Cognitive Symptoms:
+                </label>
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="concentration"
+                      checked={consnotiveSymptoms.includes("concentration")}
+                      onChange={() =>
+                        handleCheckboxChangeCognitive("concentration")
+                      }
+                    />
+                    <label htmlFor="concentration">
+                      Lacking the ability to concentrate
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="memoryImpairment"
+                      checked={consnotiveSymptoms.includes("memoryImpairment")}
+                      onChange={() =>
+                        handleCheckboxChangeCognitive("memoryImpairment")
+                      }
+                    />
+                    <label htmlFor="memoryImpairment">
+                      Memory impairment, ruminating
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="thoughtsAboutDeath"
+                      checked={consnotiveSymptoms.includes(
                         "pervasivethoughtsaboutdeathanddying"
-                      )
-                    }
-                  />
-                  <label htmlFor="thoughtsAboutDeath">
-                    Pervasive thoughts about death and dying
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="inabilityToFocus"
-                    checked={consnotiveSymptoms.includes(
-                      "inabilitytofocusonspecifictasks"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChangeCognitive(
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeCognitive(
+                          "pervasivethoughtsaboutdeathanddying"
+                        )
+                      }
+                    />
+                    <label htmlFor="thoughtsAboutDeath">
+                      Pervasive thoughts about death and dying
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="inabilityToFocus"
+                      checked={consnotiveSymptoms.includes(
                         "inabilitytofocusonspecifictasks"
-                      )
-                    }
-                    y
-                  />
-                  <label htmlFor="inabilityToFocus">
-                    Inability to focus on specific tasks
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="specifictasks"
-                    checked={consnotiveSymptoms.includes("specifictasks")}
-                    onChange={() =>
-                      handleCheckboxChangeCognitive("specifictasks")
-                    }
-                  />
-                  <label htmlFor="specifictasks">Specific tasks</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Nonereported"
-                    checked={consnotiveSymptoms.includes("Nonereported")}
-                    onChange={() =>
-                      handleCheckboxChangeCognitive("Nonereported")
-                    }
-                  />
-                  <label htmlFor="Nonereported">None reported</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                  
-                    checked={consnotiveSymptoms.includes("Other")}
-                    onChange={() => handleCheckboxChangeCognitive("Other")}
-                  />
-                  <label >Other</label>
-                  {consnotiveSymptomsBoolean && (
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeCognitive(
+                          "inabilitytofocusonspecifictasks"
+                        )
+                      }
+                      y
+                    />
+                    <label htmlFor="inabilityToFocus">
+                      Inability to focus on specific tasks
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="specifictasks"
+                      checked={consnotiveSymptoms.includes("specifictasks")}
+                      onChange={() =>
+                        handleCheckboxChangeCognitive("specifictasks")
+                      }
+                    />
+                    <label htmlFor="specifictasks">Specific tasks</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Nonereported"
+                      checked={consnotiveSymptoms.includes("Nonereported")}
+                      onChange={() =>
+                        handleCheckboxChangeCognitive("Nonereported")
+                      }
+                    />
+                    <label htmlFor="Nonereported">None reported</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      checked={consnotiveSymptoms.includes("Other")}
+                      onChange={() => handleCheckboxChangeCognitive("Other")}
+                    />
+                    <label>Other</label>
+                    {consnotiveSymptomsBoolean && (
                       // <AutosizeInput
                       //   type="text"
                       //   inputStyle={{ border: "none", outline: "none" }}
@@ -2799,11 +2991,15 @@ useEffect(()=>{
                       //     setConsnotiveSymptomsOther(e.target.value)
                       //   }
                       // />
-                      <AutoSize value={consnotiveSymptomsOther} setValue={setConsnotiveSymptomsOther}  placeholder="________"/>
+                      <AutoSize
+                        value={consnotiveSymptomsOther}
+                        setValue={setConsnotiveSymptomsOther}
+                        placeholder="________"
+                      />
                     )}
+                  </div>
                 </div>
-              </div>
-              {/* 
+                {/* 
               {
                 consnotiveSymptomsBoolean && (
                   <div className="form-field">
@@ -2821,98 +3017,102 @@ useEffect(()=>{
                 )
               } */}
 
-              <label
-                htmlFor=""
-                className="label-review"
-                style={{ fontWeight: "bold" }}
-              >
-                Psychosocial Symptoms:{" "}
-              </label>
-              <div className="yeschechbox-review">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="helplessness"
-                    checked={psychosocialSymptoms.includes("helplessness")}
-                    onChange={() =>
-                      handleCheckboxChangePsychosocial("helplessness")
-                    }
-                  />
-                  <label htmlFor="helplessness">Feeling of helplessness</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="worthlessness"
-                    checked={psychosocialSymptoms.includes("worthlessness")}
-                    onChange={() =>
-                      handleCheckboxChangePsychosocial("worthlessness")
-                    }
-                  />
-                  <label htmlFor="worthlessness">Worthlessness</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="depression"
-                    checked={psychosocialSymptoms.includes("depression")}
-                    onChange={() =>
-                      handleCheckboxChangePsychosocial("depression")
-                    }
-                  />
-                  <label htmlFor="depression">Depression</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="anxiety"
-                    checked={psychosocialSymptoms.includes("anxiety")}
-                    onChange={() => handleCheckboxChangePsychosocial("anxiety")}
-                  />
-                  <label htmlFor="anxiety">Anxiety</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="moodSwings"
-                    checked={psychosocialSymptoms.includes("moodSwings")}
-                    onChange={() =>
-                      handleCheckboxChangePsychosocial("moodSwings")
-                    }
-                  />
-                  <label htmlFor="moodSwings">Mood Swings</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="irritability"
-                    checked={psychosocialSymptoms.includes("irritability")}
-                    onChange={() =>
-                      handleCheckboxChangePsychosocial("irritability")
-                    }
-                  />
-                  <label htmlFor="irritability">Irritability</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Nonereported"
-                    checked={psychosocialSymptoms.includes("Nonereported")}
-                    onChange={() =>
-                      handleCheckboxChangePsychosocial("Nonereported")
-                    }
-                  />
-                  <label htmlFor="Nonereported">None reported</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="OtherpsychosocialSymptoms"
-                    checked={psychosocialSymptoms.includes("Other")}
-                    onChange={() => handleCheckboxChangePsychosocial("Other")}
-                  />
-                  <label htmlFor="OtherpsychosocialSymptoms">Other</label>
-                  {psychosocialSymptomsBoolean && (
+                <label
+                  htmlFor=""
+                  className="label-review"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Psychosocial Symptoms:{" "}
+                </label>
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="helplessness"
+                      checked={psychosocialSymptoms.includes("helplessness")}
+                      onChange={() =>
+                        handleCheckboxChangePsychosocial("helplessness")
+                      }
+                    />
+                    <label htmlFor="helplessness">
+                      Feeling of helplessness
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="worthlessness"
+                      checked={psychosocialSymptoms.includes("worthlessness")}
+                      onChange={() =>
+                        handleCheckboxChangePsychosocial("worthlessness")
+                      }
+                    />
+                    <label htmlFor="worthlessness">Worthlessness</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="depression"
+                      checked={psychosocialSymptoms.includes("depression")}
+                      onChange={() =>
+                        handleCheckboxChangePsychosocial("depression")
+                      }
+                    />
+                    <label htmlFor="depression">Depression</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="anxiety"
+                      checked={psychosocialSymptoms.includes("anxiety")}
+                      onChange={() =>
+                        handleCheckboxChangePsychosocial("anxiety")
+                      }
+                    />
+                    <label htmlFor="anxiety">Anxiety</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="moodSwings"
+                      checked={psychosocialSymptoms.includes("moodSwings")}
+                      onChange={() =>
+                        handleCheckboxChangePsychosocial("moodSwings")
+                      }
+                    />
+                    <label htmlFor="moodSwings">Mood Swings</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="irritability"
+                      checked={psychosocialSymptoms.includes("irritability")}
+                      onChange={() =>
+                        handleCheckboxChangePsychosocial("irritability")
+                      }
+                    />
+                    <label htmlFor="irritability">Irritability</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Nonereported"
+                      checked={psychosocialSymptoms.includes("Nonereported")}
+                      onChange={() =>
+                        handleCheckboxChangePsychosocial("Nonereported")
+                      }
+                    />
+                    <label htmlFor="Nonereported">None reported</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="OtherpsychosocialSymptoms"
+                      checked={psychosocialSymptoms.includes("Other")}
+                      onChange={() => handleCheckboxChangePsychosocial("Other")}
+                    />
+                    <label htmlFor="OtherpsychosocialSymptoms">Other</label>
+                    {psychosocialSymptomsBoolean && (
                       // <AutosizeInput
                       //   type="text"
                       //   inputStyle={{ border: "none", outline: "none" }}
@@ -2922,11 +3122,15 @@ useEffect(()=>{
                       //     setPsychosocialSymptomsOther(e.target.value)
                       //   }
                       // />
-                      <AutoSize value={psychosocialSymptomssOther} setValue={setPsychosocialSymptomsOther}  placeholder="________"/>
+                      <AutoSize
+                        value={psychosocialSymptomssOther}
+                        setValue={setPsychosocialSymptomsOther}
+                        placeholder="________"
+                      />
                     )}
+                  </div>
                 </div>
-              </div>
-              {/* 
+                {/* 
               {
                 psychosocialSymptomsBoolean && (
                   <div className="form-field">
@@ -2944,234 +3148,253 @@ useEffect(()=>{
                 )
               } */}
 
-              <label
-                htmlFor=""
-                className="label-review"
-                style={{ fontWeight: "bold" }}
-              >
-                Interventions that are being implemented:
-              </label>
+                <label
+                  htmlFor=""
+                  className="label-review"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Interventions that are being implemented:
+                </label>
 
-              <div className="yeschechbox-review">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Psychiatric services"
-                    checked={interventionsImplemented.includes(
-                      "Psychiatric services"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChange("Psychiatric services")
-                    }
-                  />
-                  <label htmlFor="Psychiatric services">
-                    Psychiatric services
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Communication Skills"
-                    checked={interventionsImplemented.includes(
-                      "Communication Skills"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChange("Communication Skills")
-                    }
-                  />
-                  <label htmlFor="Communication Skills">
-                    Communication Skills
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Verbal Prompt"
-                    checked={interventionsImplemented.includes("Verbal Prompt")}
-                    onChange={() => handleCheckboxChange("Verbal Prompt")}
-                  />
-                  <label htmlFor="Verbal Prompt">Verbal Prompt</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Interactive Feedback"
-                    checked={interventionsImplemented.includes(
-                      "Interactive Feedback"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChange("Interactive Feedback")
-                    }
-                  />
-                  <label htmlFor="Interactive Feedback">
-                    Interactive Feedback
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Encouragement"
-                    checked={interventionsImplemented.includes("Encouragement")}
-                    onChange={() => handleCheckboxChange("Encouragement")}
-                  />
-                  <label htmlFor="Encouragement">Encouragement</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Role-Play"
-                    checked={interventionsImplemented.includes("Role-Play")}
-                    onChange={() => handleCheckboxChange("Role-Play")}
-                  />
-                  <label htmlFor="Role-Play">Role-Play</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Review of Treatment Plan"
-                    checked={interventionsImplemented.includes(
-                      "Review of Treatment Plan"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChange("Review of Treatment Plan")
-                    }
-                  />
-                  <label htmlFor="Review of Treatment Plan">
-                    Review of Treatment Plan
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Relaxation techniques"
-                    checked={interventionsImplemented.includes(
-                      "Relaxation techniques"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChange("Relaxation techniques")
-                    }
-                  />
-                  <label htmlFor="Relaxation techniques">
-                    Relaxation techniques
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Reframing"
-                    checked={interventionsImplemented.includes("Reframing")}
-                    onChange={() => handleCheckboxChange("Reframing")}
-                  />
-                  <label htmlFor="Reframing">Reframing</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Conflict resolution"
-                    checked={interventionsImplemented.includes(
-                      "Conflict resolution"
-                    )}
-                    onChange={() => handleCheckboxChange("Conflict resolution")}
-                  />
-                  <label htmlFor="Conflict resolution">
-                    Conflict resolution
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Rehearsal, Spiritual exploration"
-                    checked={interventionsImplemented.includes(
-                      "Rehearsal, Spiritual exploration"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChange("Rehearsal, Spiritual exploration")
-                    }
-                  />
-                  <label htmlFor="Rehearsal, Spiritual exploration">
-                    Rehearsal, Spiritual exploration
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Values clarification, Psycho-education"
-                    checked={interventionsImplemented.includes(
-                      "Values clarification, Psycho-education"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChange(
-                        "Values clarification, Psycho-education"
-                      )
-                    }
-                  />
-                  <label htmlFor="Values clarification, Psycho-education">
-                    Values clarification, Psycho-education
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Exploring feelings"
-                    checked={interventionsImplemented.includes(
-                      "Exploring feelings"
-                    )}
-                    onChange={() => handleCheckboxChange("Exploring feelings")}
-                  />
-                  <label htmlFor="Exploring feelings">Exploring feelings</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Distraction"
-                    checked={interventionsImplemented.includes("Distraction")}
-                    onChange={() => handleCheckboxChange("Distraction")}
-                  />
-                  <label htmlFor="Distraction">Distraction</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Redirection"
-                    checked={interventionsImplemented.includes("Redirection")}
-                    onChange={() => handleCheckboxChange("Redirection")}
-                  />
-                  <label htmlFor="Redirection">Redirection</label>
-                </div>
-             
-                <div>
-                  <input
-                    type="checkbox"
-              
-                    checked={interventionsImplemented.includes("Other")}
-                    onChange={() => handleCheckboxChange("Other")}
-                  />
-                  <label>Other</label>
-                  {interventionsImplementedBoolean && (
-                      <AutoSize value={interventionsImplementedOther} setValue={setInterventionsImplementedOther}  placeholder="________"/>
-                    )}
-                </div>
-              </div>
-           
-
-              <label className="label-review">Counseling and Frequency:</label>
-              <div className="formsheading-treatment">
-                <div className="inLine_box_style">
-                  <p>Total of minimum </p>{" "}
+                <div className="yeschechbox-review">
                   <div>
                     <input
-                      style={{ outline: "none", border: "none" ,width:"40px",marginBottom:"13px"}}
-                      placeholder="__________"
-                      type="text"
-                      value={minimumHoure}
-                      required
-                      onChange={(e) => setMinimumHoure(e.target.value)}
+                      type="checkbox"
+                      id="Psychiatric services"
+                      checked={interventionsImplemented.includes(
+                        "Psychiatric services"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChange("Psychiatric services")
+                      }
                     />
+                    <label htmlFor="Psychiatric services">
+                      Psychiatric services
+                    </label>
                   </div>
-                  <p>hours daily.</p>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Communication Skills"
+                      checked={interventionsImplemented.includes(
+                        "Communication Skills"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChange("Communication Skills")
+                      }
+                    />
+                    <label htmlFor="Communication Skills">
+                      Communication Skills
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Verbal Prompt"
+                      checked={interventionsImplemented.includes(
+                        "Verbal Prompt"
+                      )}
+                      onChange={() => handleCheckboxChange("Verbal Prompt")}
+                    />
+                    <label htmlFor="Verbal Prompt">Verbal Prompt</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Interactive Feedback"
+                      checked={interventionsImplemented.includes(
+                        "Interactive Feedback"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChange("Interactive Feedback")
+                      }
+                    />
+                    <label htmlFor="Interactive Feedback">
+                      Interactive Feedback
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Encouragement"
+                      checked={interventionsImplemented.includes(
+                        "Encouragement"
+                      )}
+                      onChange={() => handleCheckboxChange("Encouragement")}
+                    />
+                    <label htmlFor="Encouragement">Encouragement</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Role-Play"
+                      checked={interventionsImplemented.includes("Role-Play")}
+                      onChange={() => handleCheckboxChange("Role-Play")}
+                    />
+                    <label htmlFor="Role-Play">Role-Play</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Review of Treatment Plan"
+                      checked={interventionsImplemented.includes(
+                        "Review of Treatment Plan"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChange("Review of Treatment Plan")
+                      }
+                    />
+                    <label htmlFor="Review of Treatment Plan">
+                      Review of Treatment Plan
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Relaxation techniques"
+                      checked={interventionsImplemented.includes(
+                        "Relaxation techniques"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChange("Relaxation techniques")
+                      }
+                    />
+                    <label htmlFor="Relaxation techniques">
+                      Relaxation techniques
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Reframing"
+                      checked={interventionsImplemented.includes("Reframing")}
+                      onChange={() => handleCheckboxChange("Reframing")}
+                    />
+                    <label htmlFor="Reframing">Reframing</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Conflict resolution"
+                      checked={interventionsImplemented.includes(
+                        "Conflict resolution"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChange("Conflict resolution")
+                      }
+                    />
+                    <label htmlFor="Conflict resolution">
+                      Conflict resolution
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Rehearsal, Spiritual exploration"
+                      checked={interventionsImplemented.includes(
+                        "Rehearsal, Spiritual exploration"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChange("Rehearsal, Spiritual exploration")
+                      }
+                    />
+                    <label htmlFor="Rehearsal, Spiritual exploration">
+                      Rehearsal, Spiritual exploration
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Values clarification, Psycho-education"
+                      checked={interventionsImplemented.includes(
+                        "Values clarification, Psycho-education"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChange(
+                          "Values clarification, Psycho-education"
+                        )
+                      }
+                    />
+                    <label htmlFor="Values clarification, Psycho-education">
+                      Values clarification, Psycho-education
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Exploring feelings"
+                      checked={interventionsImplemented.includes(
+                        "Exploring feelings"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChange("Exploring feelings")
+                      }
+                    />
+                    <label htmlFor="Exploring feelings">
+                      Exploring feelings
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Distraction"
+                      checked={interventionsImplemented.includes("Distraction")}
+                      onChange={() => handleCheckboxChange("Distraction")}
+                    />
+                    <label htmlFor="Distraction">Distraction</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Redirection"
+                      checked={interventionsImplemented.includes("Redirection")}
+                      onChange={() => handleCheckboxChange("Redirection")}
+                    />
+                    <label htmlFor="Redirection">Redirection</label>
+                  </div>
+
+                  <div>
+                    <input
+                      type="checkbox"
+                      checked={interventionsImplemented.includes("Other")}
+                      onChange={() => handleCheckboxChange("Other")}
+                    />
+                    <label>Other</label>
+                    {interventionsImplementedBoolean && (
+                      <AutoSize
+                        value={interventionsImplementedOther}
+                        setValue={setInterventionsImplementedOther}
+                        placeholder="________"
+                      />
+                    )}
+                  </div>
                 </div>
-              </div>
-              {/* <div className="yeschechbox-review">
+
+                <label className="label-review">
+                  Counseling and Frequency:
+                </label>
+                <div className="formsheading-treatment">
+                  <div className="inLine_box_style">
+                    <p>Total of minimum </p>{" "}
+                    <div>
+                      <input
+                        style={{
+                          outline: "none",
+                          border: "none",
+                          width: "40px",
+                          marginBottom: "13px",
+                        }}
+                        placeholder="__________"
+                        type="text"
+                        value={minimumHoure}
+                        required
+                        onChange={(e) => setMinimumHoure(e.target.value)}
+                      />
+                    </div>
+                    <p>hours daily.</p>
+                  </div>
+                </div>
+                {/* <div className="yeschechbox-review">
                 <div>
                   <span>Total of Minimum</span>
                 </div>
@@ -3185,1466 +3408,246 @@ useEffect(()=>{
                   <span>Minimum 1 hour session per week</span>
                 </div>
               </div> */}
-              <div className="yeschechbox-review">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Group"
-                    checked={counselingOptions.includes("Group")}
-                    onChange={() => handleCheckboxChangeCounsiling("Group")}
-                  />
-                  <label htmlFor="Group">Group</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="3 times a day"
-                    checked={counselingOptions.includes("3 times a day")}
-                    onChange={() =>
-                      handleCheckboxChangeCounsiling("3 times a day")
-                    }
-                  />
-                  <label htmlFor="3 times a day">3 times a day</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="4 times a day"
-                    checked={counselingOptions.includes("4 times a day")}
-                    onChange={() =>
-                      handleCheckboxChangeCounsiling("4 times a day")
-                    }
-                  />
-                  <label htmlFor="4 times a day">4 times a day</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Individual Counseling: Minimum 1 hour session per week"
-                    checked={counselingOptions.includes(
-                      "Individual Counseling: Minimum 1 hour session per week"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChangeCounsiling(
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Group"
+                      checked={counselingOptions.includes("Group")}
+                      onChange={() => handleCheckboxChangeCounsiling("Group")}
+                    />
+                    <label htmlFor="Group">Group</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="3 times a day"
+                      checked={counselingOptions.includes("3 times a day")}
+                      onChange={() =>
+                        handleCheckboxChangeCounsiling("3 times a day")
+                      }
+                    />
+                    <label htmlFor="3 times a day">3 times a day</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="4 times a day"
+                      checked={counselingOptions.includes("4 times a day")}
+                      onChange={() =>
+                        handleCheckboxChangeCounsiling("4 times a day")
+                      }
+                    />
+                    <label htmlFor="4 times a day">4 times a day</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Individual Counseling: Minimum 1 hour session per week"
+                      checked={counselingOptions.includes(
                         "Individual Counseling: Minimum 1 hour session per week"
-                      )
-                    }
-                  />
-                  <label htmlFor="Individual Counseling: Minimum 1 hour session per week">
-                    Individual Counseling: Minimum 1 hour session per week
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Individual Counseling: Minimum 1 hour session every 2 weeks"
-                    checked={counselingOptions.includes(
-                      "Individual Counseling: Minimum 1 hour session every 2 weeks"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChangeCounsiling(
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeCounsiling(
+                          "Individual Counseling: Minimum 1 hour session per week"
+                        )
+                      }
+                    />
+                    <label htmlFor="Individual Counseling: Minimum 1 hour session per week">
+                      Individual Counseling: Minimum 1 hour session per week
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Individual Counseling: Minimum 1 hour session every 2 weeks"
+                      checked={counselingOptions.includes(
                         "Individual Counseling: Minimum 1 hour session every 2 weeks"
-                      )
-                    }
-                  />
-                  <label htmlFor="Individual Counseling: Minimum 1 hour session every 2 weeks">
-                    Individual Counseling: Minimum 1 hour session every 2 weeks
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Individual Therapy: As needed"
-                    checked={counselingOptions.includes(
-                      "Individual Therapy: As needed"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChangeCounsiling(
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeCounsiling(
+                          "Individual Counseling: Minimum 1 hour session every 2 weeks"
+                        )
+                      }
+                    />
+                    <label htmlFor="Individual Counseling: Minimum 1 hour session every 2 weeks">
+                      Individual Counseling: Minimum 1 hour session every 2
+                      weeks
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Individual Therapy: As needed"
+                      checked={counselingOptions.includes(
                         "Individual Therapy: As needed"
-                      )
-                    }
-                  />
-                  <label htmlFor="Individual Therapy: As needed">
-                    Individual Therapy: As needed
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Individual Therapy: Please Specify"
-                    checked={counselingOptions.includes(
-                      "Individual Therapy: Please Specify"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChangeCounsiling(
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeCounsiling(
+                          "Individual Therapy: As needed"
+                        )
+                      }
+                    />
+                    <label htmlFor="Individual Therapy: As needed">
+                      Individual Therapy: As needed
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Individual Therapy: Please Specify"
+                      checked={counselingOptions.includes(
                         "Individual Therapy: Please Specify"
-                      )
-                    }
-                  />
-                  <label htmlFor="Individual Therapy: Please Specify">
-                    Individual Therapy: Please Specify
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Nonereported"
-                    checked={counselingOptions.includes(
-                      "Resident decline individual therapy services"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChangeCounsiling(
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeCounsiling(
+                          "Individual Therapy: Please Specify"
+                        )
+                      }
+                    />
+                    <label htmlFor="Individual Therapy: Please Specify">
+                      Individual Therapy: Please Specify
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Nonereported"
+                      checked={counselingOptions.includes(
                         "Resident decline individual therapy services"
-                      )
-                    }
-                  />
-                  <label htmlFor="Resident decline individual therapy services">
-                    Resident decline individual therapy services
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Family Counseling"
-                    checked={counselingOptions.includes("Family Counseling")}
-                    onChange={() =>
-                      handleCheckboxChangeCounsiling("Family Counseling")
-                    }
-                  />
-                  <label htmlFor="Family Counseling">Family Counseling</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="NA"
-                    checked={counselingOptions.includes("NA")}
-                    onChange={() => handleCheckboxChangeCounsiling("NA")}
-                  />
-                  <label htmlFor="NA">NA</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="AA"
-                    checked={counselingOptions.includes("AA")}
-                    onChange={() =>
-                      handleCheckboxChangeCounsiling("AA")
-                    }
-                  />
-                  <label htmlFor="AA">AA</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Month ART Meeting/Staffing"
-                    checked={counselingOptions.includes(
-                      "Month ART Meeting/Staffing"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChangeCounsiling(
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeCounsiling(
+                          "Resident decline individual therapy services"
+                        )
+                      }
+                    />
+                    <label htmlFor="Resident decline individual therapy services">
+                      Resident decline individual therapy services
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Family Counseling"
+                      checked={counselingOptions.includes("Family Counseling")}
+                      onChange={() =>
+                        handleCheckboxChangeCounsiling("Family Counseling")
+                      }
+                    />
+                    <label htmlFor="Family Counseling">Family Counseling</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="NA"
+                      checked={counselingOptions.includes("NA")}
+                      onChange={() => handleCheckboxChangeCounsiling("NA")}
+                    />
+                    <label htmlFor="NA">NA</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="AA"
+                      checked={counselingOptions.includes("AA")}
+                      onChange={() => handleCheckboxChangeCounsiling("AA")}
+                    />
+                    <label htmlFor="AA">AA</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Month ART Meeting/Staffing"
+                      checked={counselingOptions.includes(
                         "Month ART Meeting/Staffing"
-                      )
-                    }
-                  />
-                  <label htmlFor="Month ART Meeting/Staffing">
-                    Month ART Meeting/Staffing
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Weekly ART Meeting/Staffing"
-                    checked={counselingOptions.includes(
-                      "Weekly ART Meeting/Staffing"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChangeCounsiling(
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeCounsiling(
+                          "Month ART Meeting/Staffing"
+                        )
+                      }
+                    />
+                    <label htmlFor="Month ART Meeting/Staffing">
+                      Month ART Meeting/Staffing
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Weekly ART Meeting/Staffing"
+                      checked={counselingOptions.includes(
                         "Weekly ART Meeting/Staffing"
-                      )
-                    }
-                  />
-                  <label htmlFor="Weekly ART Meeting/Staffing">
-                    Weekly ART Meeting/Staffing
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-               
-                    checked={counselingOptions.includes("Other")}
-                    onChange={() => handleCheckboxChangeCounsiling("Other")}
-                  />
-                  <label >Other</label>
-                  {counselingOptionsTextBoolean && (
-                      // <AutosizeInput
-                      //   type="text"
-                      //   inputStyle={{ border: "none", outline: "none" }}
-                      //   placeholder="________"
-                      //   value={counselingOptionsText}
-                      //   onChange={(e) =>
-                      //     setCounselingOptionsOther(e.target.value)
-                      //   }
-                      // />
-                      <AutoSize value={counselingOptionsText} setValue={setCounselingOptionsOther}  placeholder="________"/>
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeCounsiling(
+                          "Weekly ART Meeting/Staffing"
+                        )
+                      }
+                    />
+                    <label htmlFor="Weekly ART Meeting/Staffing">
+                      Weekly ART Meeting/Staffing
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      checked={counselingOptions.includes("Other")}
+                      onChange={() => handleCheckboxChangeCounsiling("Other")}
+                    />
+                    <label>Other</label>
+                    {counselingOptionsTextBoolean && (
+                      <AutoSize
+                        value={counselingOptionsText}
+                        setValue={setCounselingOptionsOther}
+                        placeholder="________"
+                      />
                     )}
-                </div>
-              </div>
-              {/* <div>
-                  <div className="yeschechbox-review">
-                    {[
-                      "Group",
-                      "3 times a day",
-                      "4 times a day",
-                      "Individual Counseling: Minimum 1 hour session per week",
-                      "Individual Counseling: Minimum 1 hour session every 2 weeks",
-                      "Individual Therapy: As needed",
-                      "Individual Therapy: Please Specify",
-                      "Resident decline individual therapy services",
-                      "Family Counseling",
-                      "NA",
-                      "AA",
-                      "Month ART Meeting/Staffing",
-                      "Weekly ART Meeting/Staffing",
-                      "Other",
-                    ].map((option, index) => (
-                      <div key={index}>
-                        <input
-                          type="checkbox"
-                          id={`counselingCheckbox${index}`}
-                          checked={counselingOptions.includes(option)}
-                          onChange={() => handleCheckboxChangeCounsiling(option)}
-                        />
-                        <label htmlFor={`counselingCheckbox${index}`}>
-                          {option}
-                        </label>
-                      </div>
-                    ))}
                   </div>
-                </div> */}
+                </div>
 
-              {/* {counselingOptionsTextBoolean && (
-                  <div className="form-field">
-                    <label>Comment:</label>
-                    <textarea
-                      value={counselingOptionsText}
-                      placeholder="Enter text"
-                      rows={2}
-                      cols={82}
-                      required
-                      onChange={(e) => setCounselingOptionsOther(e.target.value)}
-                    />
-                  </div>
-                )} */}
+                <div className="formsheading">
+                  <h6 style={{ fontWeight: "bold" }}>
+                    Goals for Changes in the Resident Phychorial Interaction or
+                    Behaviour :
+                  </h6>
+                </div>
 
-              {/* <div className="yeschechbox-review">
-                <label htmlFor="">Individual: </label>
-                <div>
-                  <span>As needed</span>
-                </div>
-              </div> */}
-
-              {/* <div className="form-field">
-                  <label
-                    style={{
-                      fontWeight: "600",
-                      fontSize: "20px",
-                      marginBottom: "20px",
-                      marginTop: "20px",
-                    }}
-                  >
-                    1. Maintain Sobriety
-                  </label>
-                  <Select
-                    isMulti
-                    options={option1Option}
-                    value={option1}
-                    onChange={option1Handler}
-                    isCreatable={true}
-                    onKeyDown={handleKeyOption1}
-                  />
-                </div>
-  
-                <div className="form-field-update">
-                  <div className="form-field-child">
-                    <label>Admission Messure:</label>
-                    <input
-  
-                      type="text"
-                      value={admissionMeasure1}
-                      placeholder="Admission Messure"
-                      required
-                      onChange={(e) => setAdmissionMeasure1(e.target.value)}
-                    />
-                  </div>
-  
-                  <div className="form-field-child">
-                    <label>Current Messure:</label>
-                    <input
-                      type="text"
-                      value={currentMeasure1}
-                      placeholder="Enter Current Messure"
-                      required
-                      onChange={(e) => setCurrentMeasure1(e.target.value)}
-                    />
-                  </div>
-  
-                  <div className="form-field-child">
-                    <label>Estimete Date of Goal complition:</label>
-                    <input
-                      type="date"
-                      value={estimatedDateOfCompletion1}
-                      placeholder="Enter Estimete Date of complition"
-                      required
-                      onChange={(e) =>
-                        setEstimatedDateOfCompletion1(e.target.value)
-                      }
-                    />
-                  </div>
-                </div>
-  
-                <div className="form-field-single-update-bold">
-                  <label>Comment:</label>
-                  <textarea
-                    value={comments1}
-                    placeholder="Enter text"
-                    rows={2}
-                    cols={82}
-                    required
-                    onChange={(e) => setComment1(e.target.value)}
-                  />
-                </div>
-                <div className="form-field">
-                  <label
-                    style={{
-                      fontWeight: "600",
-                      fontSize: "20px",
-                      marginBottom: "20px",
-                      marginTop: "20px",
-                    }}
-                  >
-                    2. Independent Living Skills
-                  </label>
-                  <Select
-                    isMulti
-                    options={option2Option}
-                    value={option2}
-                    onChange={option2Handler}
-                    isCreatable={true}
-                    onKeyDown={handleKeyOption2}
-                  />
-                </div>
-  
-                <div className="form-field-update">
-                  <div className="form-field-child">
-                    <label>Admission Messure:</label>
-                    <input
-                      type="text"
-                      value={admissionMeasure2}
-                      placeholder="Admission Messure"
-                      required
-                      onChange={(e) => setAdmissionMeasure2(e.target.value)}
-                    />
-                  </div>
-  
-                  <div className="form-field-child">
-                    <label>Current Messure:</label>
-                    <input
-                      type="text"
-                      value={currentMeasure2}
-                      placeholder="Enter Current Messure"
-                      required
-                      onChange={(e) => setCurrentMeasure2(e.target.value)}
-                    />
-                  </div>
-                  <div className="form-field-child">
-                    <label>Estimete Date of Goal complition:</label>
-                    <input
-                      type="date"
-                      value={estimatedDateOfCompletion2}
-                      placeholder="Enter Estimete Date of complition"
-                      required
-                      onChange={(e) =>
-                        estimatedDateOfCompletion2(e.target.value)
-                      }
-                    />
-                  </div>
-                </div>
-  
-                <div className="form-field-single-update-bold">
-                  <label>Comment:</label>
-                  <textarea
-                    value={comments2}
-                    placeholder="Enter text"
-                    rows={2}
-                    cols={82}
-                    required
-                    onChange={(e) => setComment2(e.target.value)}
-                  />
-                </div>
-                <div className="form-field">
-                  <label
-                    style={{
-                      fontWeight: "600",
-                      fontSize: "20px",
-                      marginBottom: "20px",
-                      marginTop: "20px",
-                    }}
-                  >
-                    3. Employment
-                  </label>
-                  <Select
-                    isMulti
-                    options={option3Option}
-                    value={option3}
-                    onChange={option3Handler}
-                    isCreatable={true}
-                    onKeyDown={handleKeyOption3}
-                  />
-                </div>
-  
-                <div className="form-field-update">
-                  <div className="form-field-child">
-                    <label>Admission Messure:</label>
-                    <input
-                      type="text"
-                      value={admissionMeasure3}
-                      placeholder="Admission Messure"
-                      required
-                      onChange={(e) => setAdmissionMeasure3(e.target.value)}
-                    />
-                  </div>
-  
-                  <div className="form-field-child">
-                    <label>Current Messure:</label>
-                    <input
-                      type="text"
-                      value={currentMeasure3}
-                      placeholder="Enter Current Messure"
-                      required
-                      onChange={(e) => setCurrentMeasure3(e.target.value)}
-                    />
-                  </div>
-                  <div className="form-field-child">
-                    <label>Estimete Date of Goal complition:</label>
-                    <input
-                      type="date"
-                      value={estimatedDateOfCompletion3}
-                      placeholder="Enter Estimete Date of complition"
-                      required
-                      onChange={(e) =>
-                        setEstimatedDateOfCompletion3(e.target.value)
-                      }
-                    />
-                  </div>
-                </div>
-  
-                <div className="form-field-single-update-bold">
-                  <label>Comment:</label>
-                  <textarea
-                    value={comments3}
-                    placeholder="Enter text"
-                    rows={2}
-                    cols={82}
-                    required
-                    onChange={(e) => setComment3(e.target.value)}
-                  />
-                </div>
-                <div className="form-field">
-                  <label
-                    style={{
-                      fontWeight: "600",
-                      fontSize: "20px",
-                      marginBottom: "20px",
-                      marginTop: "20px",
-                    }}
-                  >
-                    4. ADLS
-                  </label>
-                  <Select
-                    isMulti
-                    options={option4Option}
-                    value={option4}
-                    onChange={option4Handler}
-                    isCreatable={true}
-                    onKeyDown={handleKeyOption4}
-                  />
-                </div>
-                <div className="form-field-update">
-                  <div className="form-field-child">
-                    <label>Admission Messure:</label>
-                    <input
-                      type="text"
-                      value={admissionMeasure4}
-                      placeholder="Admission Messure"
-                      required
-                      onChange={(e) => setAdmissionMeasure4(e.target.value)}
-                    />
-                  </div>
-  
-                  <div className="form-field-child">
-                    <label>Current Messure:</label>
-                    <input
-                      type="text"
-                      value={currentMeasure4}
-                      placeholder="Enter Current Messure"
-                      required
-                      onChange={(e) => setCurrentMeasure4(e.target.value)}
-                    />
-                  </div>
-                  <div className="form-field-child">
-                    <label>Estimete Date of Goal complition:</label>
-                    <input
-                      type="date"
-                      value={estimatedDateOfCompletion4}
-                      placeholder="Enter Estimete Date of complition"
-                      required
-                      onChange={(e) =>
-                        setEstimatedDateOfCompletion4(e.target.value)
-                      }
-                    />
-                  </div>
-                </div>
-  
-                <div className="form-field-single-update-bold">
-                  <label>Comment:</label>
-                  <textarea
-                    value={comments4}
-                    placeholder="Enter text"
-                    rows={2}
-                    cols={82}
-                    required
-                    onChange={(e) => setComment4(e.target.value)}
-                  />
-                </div>
-                <div className="form-field">
-                  <label
-                    style={{
-                      fontWeight: "600",
-                      fontSize: "20px",
-                      marginBottom: "20px",
-                      marginTop: "20px",
-                    }}
-                  >
-                    5. Safety
-                  </label>
-                  <Select
-                    isMulti
-                    options={option5Option}
-                    value={option5}
-                    onChange={option5Handler}
-                    isCreatable={true}
-                    onKeyDown={handleKeyOption5}
-                  />
-                </div>
-  
-                <div className="form-field-update">
-                  <div className="form-field-child">
-                    <label>Admission Messure:</label>
-                    <input
-                      type="text"
-                      value={admissionMeasure5}
-                      placeholder="Admission Messure"
-                      required
-                      onChange={(e) => setAdmissionMeasure5(e.target.value)}
-                    />
-                  </div>
-  
-                  <div className="form-field-child">
-                    <label>Current Messure:</label>
-                    <input
-                      type="text"
-                      value={currentMeasure5}
-                      placeholder="Enter Current Messure"
-                      required
-                      onChange={(e) => setCurrentMeasure5(e.target.value)}
-                    />
-                  </div>
-                  <div className="form-field-child">
-                    <label>Estimete Date of Goal complition:</label>
-                    <input
-                      type="date"
-                      value={estimatedDateOfCompletion5}
-                      placeholder="Enter Estimete Date of complition"
-                      required
-                      onChange={(e) =>
-                        setEstimatedDateOfCompletion5(e.target.value)
-                      }
-                    />
-                  </div>
-                </div>
-  
-                <div className="form-field-single-update-bold">
-                  <label>Comment:</label>
-                  <textarea
-                    value={comments5}
-                    placeholder="Enter text"
-                    rows={2}
-                    cols={82}
-                    required
-                    onChange={(e) => setComment5(e.target.value)}
-                  />
-                </div>
-                <div className="form-field">
-                  <label
-                    style={{
-                      fontWeight: "600",
-                      fontSize: "20px",
-                      marginBottom: "20px",
-                      marginTop: "20px",
-                    }}
-                  >
-                    6. Medication Education
-                  </label>
-                  <Select
-                    isMulti
-                    options={option6Option}
-                    value={option6}
-                    onChange={option6Handler}
-                    isCreatable={true}
-                    onKeyDown={handleKeyOption6}
-                  />
-                </div>
-  
-                <div className="form-field-update">
-                  <div className="form-field-child">
-                    <label>Admission Messure:</label>
-                    <input
-                      type="text"
-                      value={admissionMeasure6}
-                      placeholder="Admission Messure"
-                      required
-                      onChange={(e) => setAdmissionMeasure6(e.target.value)}
-                    />
-                  </div>
-                  <div className="form-field-child">
-                    <label>Current Messure:</label>
-                    <input
-                      type="text"
-                      value={currentMeasure6}
-                      placeholder="Enter Current Messure"
-                      required
-                      onChange={(e) => setCurrentMeasure6(e.target.value)}
-                    />
-                  </div>
-                  <div className="form-field-child">
-                    <label>Estimete Date of Goal complition:</label>
-                    <input
-                      type="date"
-                      value={estimatedDateOfCompletion6}
-                      placeholder="Enter Estimete Date of complition"
-                      required
-                      onChange={(e) =>
-                        setEstimatedDateOfCompletion6(e.target.value)
-                      }
-                    />
-                  </div>
-                </div>
-  
-                <div className="form-field-single-update-bold">
-                  <label>Comment:</label>
-                  <textarea
-                    value={comments6}
-                    placeholder="Enter text"
-                    rows={2}
-                    cols={82}
-                    required
-                    onChange={(e) => setComment6(e.target.value)}
-                  />
-                </div>
-                <div className="form-field">
-                  <label
-                    style={{
-                      fontWeight: "600",
-                      fontSize: "20px",
-                      marginBottom: "20px",
-                      marginTop: "20px",
-                    }}
-                  >
-                    7. Managing Mental Health
-                  </label>
-                  <Select
-                    isMulti
-                    options={option7Option}
-                    value={option7}
-                    onChange={option7Handler}
-                    isCreatable={true}
-                    onKeyDown={handleKeyOption7}
-                  />
-                </div>
-  
-                <div className="form-field-update">
-                  <div className="form-field-child">
-                    <label>Admission Messure:</label>
-                    <input
-                      type="text"
-                      value={admissionMeasure7}
-                      placeholder="Admission Messure"
-                      required
-                      onChange={(e) => setAdmissionMeasure7(e.target.value)}
-                    />
-                  </div>
-  
-                  <div className="form-field-child">
-                    <label>Current Messure:</label>
-                    <input
-                      type="text"
-                      value={currentMeasure7}
-                      placeholder="Enter Current Messure"
-                      required
-                      onChange={(e) => setCurrentMeasure7(e.target.value)}
-                    />
-                  </div>
-                  <div className="form-field-child">
-                    <label>Estimete Date of Goal complition:</label>
-                    <input
-                      type="date"
-                      value={estimatedDateOfCompletion7}
-                      placeholder="Enter Estimete Date of complition"
-                      required
-                      onChange={(e) =>
-                        setEstimatedDateOfCompletion7(e.target.value)
-                      }
-                    />
-                  </div>
-                </div>
-  
-                <div className="form-field-single-update-bold">
-                  <label>Comment:</label>
-                  <textarea
-                    value={comments7}
-                    placeholder="Enter text"
-                    rows={2}
-                    cols={82}
-                    required
-                    onChange={(e) => setComment7(e.target.value)}
-                  />
-                </div>
-                <div className="form-field">
-                  <label
-                    style={{
-                      fontWeight: "600",
-                      fontSize: "20px",
-                      marginBottom: "20px",
-                      marginTop: "20px",
-                    }}
-                  >
-                    8. Legal
-                  </label>
-                  <Select
-                    isMulti
-                    options={option8Option}
-                    value={option8}
-                    onChange={option8Handler}
-                    isCreatable={true}
-                    onKeyDown={handleKeyOption8}
-                  />
-                </div>
-  
-                <div className="form-field-update">
-                  <div className="form-field-child">
-                    <label>Admission Messure:</label>
-                    <input
-                      type="text"
-                      value={admissionMeasure8}
-                      placeholder="Admission Messure"
-                      required
-                      onChange={(e) => setAdmissionMeasure8(e.target.value)}
-                    />
-                  </div>
-  
-                  <div className="form-field-child">
-                    <label>Current Messure:</label>
-                    <input
-                      type="text"
-                      value={currentMeasure8}
-                      placeholder="Enter Current Messure"
-                      required
-                      onChange={(e) => setCurrentMeasure8(e.target.value)}
-                    />
-                  </div>
-                  <div className="form-field-child">
-                    <label>Estimete Date of Goal complition:</label>
-                    <input
-                      type="date"
-                      value={estimatedDateOfCompletion8}
-                      placeholder="Enter Estimete Date of complition"
-                      required
-                      onChange={(e) =>
-                        setEstimatedDateOfCompletion8(e.target.value)
-                      }
-                    />
-                  </div>
-                </div>
-  
-                <div className="form-field-single-update-bold">
-                  <label>Comment:</label>
-                  <textarea
-                    value={comments8}
-                    placeholder="Enter text"
-                    rows={2}
-                    cols={82}
-                    required
-                    onChange={(e) => setComment8(e.target.value)}
-                  />
-                </div>
-  
-                {showOther && (
-                  <div className="hidePrint">
-                    <div className="form-field">
-                      <label
-                        style={{
-                          fontWeight: "600",
-                          fontSize: "20px",
-                          marginBottom: "20px",
-                          marginTop: "20px",
-                        }}
-                      >
-                        9. Other
-                      </label>
-                      <input
-                        type="text"
-                        value={optionOther}
-                        onChange={(e) => setOptionOther(e.target.value)}
-                      />
-                    </div>
-  
-                    <div className="form-field-update">
-                      <div className="form-field-child">
-                        <label>Admission Messure:</label>
-                        <input
-                          type="number"
-                          value={admissionMeasureOther}
-                          onChange={(e) =>
-                            setAdmissionMeasureOther(e.target.value)
-                          }
-                        />
-                      </div>
-  
-                      <div className="form-field-child">
-                        <label>Current Messure:</label>
-                        <input
-                          type="number"
-                          value={currentMeasureOther}
-                          onChange={(e) => setCurrentMeasureOther(e.target.value)}
-                        />
-                      </div>
-                      <div className="form-field-child">
-                        <label>Estimete Date of Goal complition:</label>
-                        <input
-                          type="date"
-                          value={estimatedDateOfCompletionOther}
-                          onChange={(e) =>
-                            setEstimatedDateOfCompletionOther(e.target.value)
-                          }
-                        />
-                      </div>
-                    </div>
-  
-                    <div className="form-field-single-update-bold">
-                      <label>Comment:</label>
-                      <textarea
-                        value={commentsOther}
-                        placeholder="Enter text"
-                        rows={2}
-                        cols={82}
-                        onChange={(e) => setCommentOther(e.target.value)}
-                      />
-                    </div>
-                  </div>
-                )} */}
-
-              <div className="formsheading">
-                <h6 style={{ fontWeight: "bold" }}>
-                  Goals for Changes in the Resident Phychorial Interaction or
-                  Behaviour :
-                </h6>
-              </div>
-
-              <div className="needs-interventions-container2 table-respnosive">
-                <div className="needs-interventions-column2">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Treatment Goals</th>
-                        <th>Admission Measure</th>
-                        <th>Current Measure</th>
-                        <th>Estimated Date of Goal Completion</th>
-                        <th>Comments</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          {" "}
-                          <p>1: Maintain sobriety:</p>
-                          <Select
-                            isMulti
-                            options={option1Option}
-                            value={option1}
-                            onChange={option1Handler}
-                            isCreatable={true}
-                            onKeyDown={handleKeyOption1}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            value={admissionMeasure1}
-                            placeholder="___________"
-                            required
-                            onChange={(e) =>
-                              setAdmissionMeasure1(e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            value={currentMeasure1}
-                            placeholder="___________"
-                            required
-                            onChange={(e) => setCurrentMeasure1(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="date"
-                            value={estimatedDateOfCompletion1}
-                            className="treatment_plan_table"
-                            required
-                            onChange={(e) =>
-                              setEstimatedDateOfCompletion1(e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max((comments1 ? comments1.split("\n").length : 1), 1)}
-                            value={comments1 || ''}
-                            placeholder="___________"
-                            onChange={(e) => setComment1(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setComment1(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          {" "}
-                          <p>2: Independent Living Skills:</p>
-                          <Select
-                            isMulti
-                            options={option2Option}
-                            value={option2}
-                            onChange={option2Handler}
-                            isCreatable={true}
-                            onKeyDown={handleKeyOption2}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            value={admissionMeasure2}
-                            placeholder="___________"
-                            required
-                            onChange={(e) =>
-                              setAdmissionMeasure2(e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            value={currentMeasure2}
-                            placeholder="___________"
-                            required
-                            onChange={(e) => setCurrentMeasure2(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="date"
-                            value={estimatedDateOfCompletion2}
-                            className="treatment_plan_table"
-                            required
-                            onChange={(e) =>
-                              setEstimatedDateOfCompletion2(e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max((comments2 ? comments2.split("\n").length : 1), 1)}
-                            value={comments2 || ''}
-                         
-                            placeholder="___________"
-                            onChange={(e) => setComment2(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setComment2(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          {" "}
-                          <p>3: Employment:</p>
-                          <Select
-                            isMulti
-                            options={option3Option}
-                            value={option3}
-                            onChange={option3Handler}
-                            isCreatable={true}
-                            onKeyDown={handleKeyOption3}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            value={admissionMeasure3}
-                            placeholder="___________"
-                            required
-                            onChange={(e) =>
-                              setAdmissionMeasure3(e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            value={currentMeasure3}
-                            placeholder="___________"
-                            required
-                            onChange={(e) => setCurrentMeasure3(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="date"
-                            value={estimatedDateOfCompletion3}
-                            className="treatment_plan_table"
-                            required
-                            onChange={(e) =>
-                              setEstimatedDateOfCompletion3(e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                           
-                            rows={Math.max((comments3 ? comments3.split("\n").length : 1), 1)}
-                            value={comments3 || ''}
-                            placeholder="___________"
-                            onChange={(e) => setComment3(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setComment3(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          {" "}
-                          <p>4: ADLS:</p>
-                          <Select
-                            isMulti
-                            options={option4Option}
-                            value={option4}
-                            onChange={option4Handler}
-                            isCreatable={true}
-                            onKeyDown={handleKeyOption4}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            value={admissionMeasure4}
-                            placeholder="___________"
-                            required
-                            onChange={(e) =>
-                              setAdmissionMeasure4(e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            value={currentMeasure4}
-                            placeholder="___________"
-                            required
-                            onChange={(e) => setCurrentMeasure4(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="date"
-                            value={estimatedDateOfCompletion4}
-                            className="treatment_plan_table"
-                            required
-                            onChange={(e) =>
-                              setEstimatedDateOfCompletion4(e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                            
-                            rows={Math.max((comments4 ? comments4.split("\n").length : 1), 1)}
-                            value={comments4 || ''}
-                            placeholder="___________"
-                            onChange={(e) => setComment4(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setComment4(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          {" "}
-                          <p>5: Safety:</p>
-                          <Select
-                            isMulti
-                            options={option5Option}
-                            value={option5}
-                            onChange={option5Handler}
-                            isCreatable={true}
-                            onKeyDown={handleKeyOption5}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            value={admissionMeasure5}
-                            placeholder="___________"
-                            required
-                            onChange={(e) =>
-                              setAdmissionMeasure5(e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            value={currentMeasure5}
-                            placeholder="___________"
-                            required
-                            onChange={(e) => setCurrentMeasure5(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="date"
-                            value={estimatedDateOfCompletion5}
-                            className="treatment_plan_table"
-                            required
-                            onChange={(e) =>
-                              setEstimatedDateOfCompletion5(e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                        
-                            rows={Math.max((comments5 ? comments5.split("\n").length : 1), 1)}
-                            value={comments5 || ''}
-                            placeholder="___________"
-                            onChange={(e) => setComment5(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setComment5(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          {" "}
-                          <p>6: Medication Education:</p>
-                          <Select
-                            isMulti
-                            options={option6Option}
-                            value={option6}
-                            onChange={option6Handler}
-                            isCreatable={true}
-                            onKeyDown={handleKeyOption6}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            value={admissionMeasure6}
-                            placeholder="___________"
-                            required
-                            onChange={(e) =>
-                              setAdmissionMeasure6(e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            value={currentMeasure6}
-                            placeholder="___________"
-                            required
-                            onChange={(e) => setCurrentMeasure6(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="date"
-                            value={estimatedDateOfCompletion6}
-                            className="treatment_plan_table"
-                            required
-                            onChange={(e) =>
-                              setEstimatedDateOfCompletion6(e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                          
-                            rows={Math.max((comments6 ? comments6.split("\n").length : 1), 1)}
-                            value={comments6 || ''}
-                            placeholder="___________"
-                            onChange={(e) => setComment6(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setComment6(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          {" "}
-                          <p>7: Managing Mental Health:</p>
-                          <Select
-                            isMulti
-                            options={option7Option}
-                            value={option7}
-                            onChange={option7Handler}
-                            isCreatable={true}
-                            onKeyDown={handleKeyOption7}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            value={admissionMeasure7}
-                            placeholder="___________"
-                            required
-                            onChange={(e) =>
-                              setAdmissionMeasure7(e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            value={currentMeasure7}
-                            placeholder="___________"
-                            required
-                            onChange={(e) => setCurrentMeasure7(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="date"
-                            value={estimatedDateOfCompletion7}
-                            className="treatment_plan_table"
-                            required
-                            onChange={(e) =>
-                              setEstimatedDateOfCompletion7(e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max((comments7 ? comments7.split("\n").length : 1), 1)}
-                            value={comments7 || ''}
-                          
-                            placeholder="___________"
-                            onChange={(e) => setComment7(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setComment7(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          {" "}
-                          <p>8: Legal:</p>
-                          <Select
-                            isMulti
-                            options={option8Option}
-                            value={option8}
-                            onChange={option8Handler}
-                            isCreatable={true}
-                            onKeyDown={handleKeyOption8}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            value={admissionMeasure8}
-                            placeholder="___________"
-                            required
-                            onChange={(e) =>
-                              setAdmissionMeasure8(e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            value={currentMeasure8}
-                            placeholder="___________"
-                            required
-                            onChange={(e) => setCurrentMeasure8(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="date"
-                            value={estimatedDateOfCompletion8}
-                            className="treatment_plan_table"
-                            required
-                            onChange={(e) =>
-                              setEstimatedDateOfCompletion8(e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max((comments8 ? comments8.split("\n").length : 1), 1)}
-                            value={comments8 || ''}
-                          
-                            placeholder="___________"
-                            onChange={(e) => setComment8(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setComment8(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-
-                      {otherArray.length > 0 &&
-                        otherArray.map((data, index) => (
-                          <tr key={index}>
-                            <td>
-                              <p>{9 + index}: </p>
-                              {data?.otherType}
-                            </td>
-                            <td>{data?.admissionMeasure}</td>
-                            <td>{data?.currentMeasure}</td>
-                            <td>{data?.estimatedDateOfCompletion?data?.estimatedDateOfCompletion.slice(0,10):''}</td>
-                            <td>{data?.comments}</td>
-                          </tr>
-                        ))}
-
-                      {showOther && (
+                <div className="needs-interventions-container2 table-respnosive">
+                  <div className="needs-interventions-column2">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Treatment Goals</th>
+                          <th>Admission Measure</th>
+                          <th>Current Measure</th>
+                          <th>Estimated Date of Goal Completion</th>
+                          <th>Comments</th>
+                        </tr>
+                      </thead>
+                      <tbody>
                         <tr>
                           <td>
                             {" "}
-                            <p>{otherArray.length + 9}: Other:</p>
-                            <textarea
-                              className="treatment_plan_table"
-                              rows={Math.max((optionOther ? optionOther.split("\n").length : 1), 1)}
-                              value={optionOther || ''}
-                            
-                              placeholder="___________"
-                              onChange={(e) => setOptionOther(e.target.value)}
-                              onKeyDown={(e) => {
-                                if (e.key === "Enter") {
-                                  e.preventDefault();
-                                  setOptionOther(
-                                    (prevComment) => prevComment + "\n"
-                                  );
-                                }
-                              }}
+                            <p>1: Maintain sobriety:</p>
+                            <Select
+                              isMulti
+                              options={option1Option}
+                              value={option1}
+                              onChange={option1Handler}
+                              isCreatable={true}
+                              onKeyDown={handleKeyOption1}
                             />
                           </td>
                           <td>
                             <input
                               className="treatment_plan_table"
                               type="text"
-                              value={admissionMeasureOther}
+                              value={admissionMeasure1}
                               placeholder="___________"
                               required
                               onChange={(e) =>
-                                setAdmissionMeasureOther(e.target.value)
+                                setAdmissionMeasure1(e.target.value)
                               }
                             />
                           </td>
@@ -4652,24 +3655,22 @@ useEffect(()=>{
                             <input
                               className="treatment_plan_table"
                               type="text"
-                              value={currentMeasureOther}
+                              value={currentMeasure1}
                               placeholder="___________"
                               required
                               onChange={(e) =>
-                                setCurrentMeasureOther(e.target.value)
+                                setCurrentMeasure1(e.target.value)
                               }
                             />
                           </td>
                           <td>
                             <input
                               type="date"
-                              value={estimatedDateOfCompletionOther}
+                              value={estimatedDateOfCompletion1}
                               className="treatment_plan_table"
                               required
                               onChange={(e) =>
-                                setEstimatedDateOfCompletionOther(
-                                  e.target.value
-                                )
+                                setEstimatedDateOfCompletion1(e.target.value)
                               }
                             />
                           </td>
@@ -4677,16 +3678,16 @@ useEffect(()=>{
                             <textarea
                               className="treatment_plan_table"
                               rows={Math.max(
-                                commentsOther.split("\n").length,
+                                comments1 ? comments1.split("\n").length : 1,
                                 1
                               )}
-                              value={commentsOther}
+                              value={comments1 || ""}
                               placeholder="___________"
-                              onChange={(e) => setCommentOther(e.target.value)}
+                              onChange={(e) => setComment1(e.target.value)}
                               onKeyDown={(e) => {
                                 if (e.key === "Enter") {
                                   e.preventDefault();
-                                  setCommentOther(
+                                  setComment1(
                                     (prevComment) => prevComment + "\n"
                                   );
                                 }
@@ -4694,427 +3695,1034 @@ useEffect(()=>{
                             />
                           </td>
                         </tr>
-                      )}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
 
-              <div className="form-actions  hidePrint">
-                <button
-                  type="button"
-                  className="safetybutton"
-                  onClick={handleAddButtonClick}
-                >
-                  ADD
-                </button>
-              </div>
+                        <tr>
+                          <td>
+                            {" "}
+                            <p>2: Independent Living Skills:</p>
+                            <Select
+                              isMulti
+                              options={option2Option}
+                              value={option2}
+                              onChange={option2Handler}
+                              isCreatable={true}
+                              onKeyDown={handleKeyOption2}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={admissionMeasure2}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setAdmissionMeasure2(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={currentMeasure2}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setCurrentMeasure2(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="date"
+                              value={estimatedDateOfCompletion2}
+                              className="treatment_plan_table"
+                              required
+                              onChange={(e) =>
+                                setEstimatedDateOfCompletion2(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              className="treatment_plan_table"
+                              rows={Math.max(
+                                comments2 ? comments2.split("\n").length : 1,
+                                1
+                              )}
+                              value={comments2 || ""}
+                              placeholder="___________"
+                              onChange={(e) => setComment2(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                  e.preventDefault();
+                                  setComment2(
+                                    (prevComment) => prevComment + "\n"
+                                  );
+                                }
+                              }}
+                            />
+                          </td>
+                        </tr>
 
-              <div className="yeschechbox-review-treatment">
-                <div>
-                  <label style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-                    Resident overall participation in treatment:{" "}
-                  </label>
+                        <tr>
+                          <td>
+                            {" "}
+                            <p>3: Employment:</p>
+                            <Select
+                              isMulti
+                              options={option3Option}
+                              value={option3}
+                              onChange={option3Handler}
+                              isCreatable={true}
+                              onKeyDown={handleKeyOption3}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={admissionMeasure3}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setAdmissionMeasure3(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={currentMeasure3}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setCurrentMeasure3(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="date"
+                              value={estimatedDateOfCompletion3}
+                              className="treatment_plan_table"
+                              required
+                              onChange={(e) =>
+                                setEstimatedDateOfCompletion3(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              className="treatment_plan_table"
+                              rows={Math.max(
+                                comments3 ? comments3.split("\n").length : 1,
+                                1
+                              )}
+                              value={comments3 || ""}
+                              placeholder="___________"
+                              onChange={(e) => setComment3(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                  e.preventDefault();
+                                  setComment3(
+                                    (prevComment) => prevComment + "\n"
+                                  );
+                                }
+                              }}
+                            />
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            {" "}
+                            <p>4: ADLS:</p>
+                            <Select
+                              isMulti
+                              options={option4Option}
+                              value={option4}
+                              onChange={option4Handler}
+                              isCreatable={true}
+                              onKeyDown={handleKeyOption4}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={admissionMeasure4}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setAdmissionMeasure4(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={currentMeasure4}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setCurrentMeasure4(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="date"
+                              value={estimatedDateOfCompletion4}
+                              className="treatment_plan_table"
+                              required
+                              onChange={(e) =>
+                                setEstimatedDateOfCompletion4(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              className="treatment_plan_table"
+                              rows={Math.max(
+                                comments4 ? comments4.split("\n").length : 1,
+                                1
+                              )}
+                              value={comments4 || ""}
+                              placeholder="___________"
+                              onChange={(e) => setComment4(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                  e.preventDefault();
+                                  setComment4(
+                                    (prevComment) => prevComment + "\n"
+                                  );
+                                }
+                              }}
+                            />
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            {" "}
+                            <p>5: Safety:</p>
+                            <Select
+                              isMulti
+                              options={option5Option}
+                              value={option5}
+                              onChange={option5Handler}
+                              isCreatable={true}
+                              onKeyDown={handleKeyOption5}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={admissionMeasure5}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setAdmissionMeasure5(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={currentMeasure5}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setCurrentMeasure5(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="date"
+                              value={estimatedDateOfCompletion5}
+                              className="treatment_plan_table"
+                              required
+                              onChange={(e) =>
+                                setEstimatedDateOfCompletion5(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              className="treatment_plan_table"
+                              rows={Math.max(
+                                comments5 ? comments5.split("\n").length : 1,
+                                1
+                              )}
+                              value={comments5 || ""}
+                              placeholder="___________"
+                              onChange={(e) => setComment5(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                  e.preventDefault();
+                                  setComment5(
+                                    (prevComment) => prevComment + "\n"
+                                  );
+                                }
+                              }}
+                            />
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            {" "}
+                            <p>6: Medication Education:</p>
+                            <Select
+                              isMulti
+                              options={option6Option}
+                              value={option6}
+                              onChange={option6Handler}
+                              isCreatable={true}
+                              onKeyDown={handleKeyOption6}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={admissionMeasure6}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setAdmissionMeasure6(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={currentMeasure6}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setCurrentMeasure6(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="date"
+                              value={estimatedDateOfCompletion6}
+                              className="treatment_plan_table"
+                              required
+                              onChange={(e) =>
+                                setEstimatedDateOfCompletion6(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              className="treatment_plan_table"
+                              rows={Math.max(
+                                comments6 ? comments6.split("\n").length : 1,
+                                1
+                              )}
+                              value={comments6 || ""}
+                              placeholder="___________"
+                              onChange={(e) => setComment6(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                  e.preventDefault();
+                                  setComment6(
+                                    (prevComment) => prevComment + "\n"
+                                  );
+                                }
+                              }}
+                            />
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            {" "}
+                            <p>7: Managing Mental Health:</p>
+                            <Select
+                              isMulti
+                              options={option7Option}
+                              value={option7}
+                              onChange={option7Handler}
+                              isCreatable={true}
+                              onKeyDown={handleKeyOption7}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={admissionMeasure7}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setAdmissionMeasure7(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={currentMeasure7}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setCurrentMeasure7(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="date"
+                              value={estimatedDateOfCompletion7}
+                              className="treatment_plan_table"
+                              required
+                              onChange={(e) =>
+                                setEstimatedDateOfCompletion7(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              className="treatment_plan_table"
+                              rows={Math.max(
+                                comments7 ? comments7.split("\n").length : 1,
+                                1
+                              )}
+                              value={comments7 || ""}
+                              placeholder="___________"
+                              onChange={(e) => setComment7(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                  e.preventDefault();
+                                  setComment7(
+                                    (prevComment) => prevComment + "\n"
+                                  );
+                                }
+                              }}
+                            />
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            {" "}
+                            <p>8: Legal:</p>
+                            <Select
+                              isMulti
+                              options={option8Option}
+                              value={option8}
+                              onChange={option8Handler}
+                              isCreatable={true}
+                              onKeyDown={handleKeyOption8}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={admissionMeasure8}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setAdmissionMeasure8(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={currentMeasure8}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setCurrentMeasure8(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="date"
+                              value={estimatedDateOfCompletion8}
+                              className="treatment_plan_table"
+                              required
+                              onChange={(e) =>
+                                setEstimatedDateOfCompletion8(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              className="treatment_plan_table"
+                              rows={Math.max(
+                                comments8 ? comments8.split("\n").length : 1,
+                                1
+                              )}
+                              value={comments8 || ""}
+                              placeholder="___________"
+                              onChange={(e) => setComment8(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                  e.preventDefault();
+                                  setComment8(
+                                    (prevComment) => prevComment + "\n"
+                                  );
+                                }
+                              }}
+                            />
+                          </td>
+                        </tr>
+
+                        {otherArray.length > 0 &&
+                          otherArray.map((data, index) => (
+                            <tr key={index}>
+                              <td>
+                                <div className="treatment_table_other">
+                                <p>{9 + index}: </p>
+                                  <p>{data?.otherType}</p>
+                                </div>
+                              </td>
+                              <td>{data?.admissionMeasure}</td>
+                              <td>{data?.currentMeasure}</td>
+                              <td>
+                                {data?.estimatedDateOfCompletion
+                                  ? data?.estimatedDateOfCompletion.slice(0, 10)
+                                  : ""}
+                              </td>
+                              <td>{data?.comments}</td>
+                            </tr>
+                          ))}
+
+                        {showOther && (
+                          <tr>
+                            <td>
+                             <div className="treatment_table_other">
+                              <p>{otherArray.length + 9}: Other:</p>
+                              <textarea
+                                className="treatment_plan_table"
+                                rows={Math.max(
+                                  optionOther
+                                    ? optionOther.split("\n").length
+                                    : 1,
+                                  1
+                                )}
+                                value={optionOther || ""}
+                                placeholder="___________"
+                                onChange={(e) => setOptionOther(e.target.value)}
+                                onKeyDown={(e) => {
+                                  if (e.key === "Enter") {
+                                    e.preventDefault();
+                                    setOptionOther(
+                                      (prevComment) => prevComment + "\n"
+                                    );
+                                  }
+                                }}
+                              />
+                              </div>
+                            </td>
+                            <td>
+                              <input
+                                className="treatment_plan_table"
+                                type="text"
+                                value={admissionMeasureOther}
+                                placeholder="___________"
+                                required
+                                onChange={(e) =>
+                                  setAdmissionMeasureOther(e.target.value)
+                                }
+                              />
+                            </td>
+                            <td>
+                              <input
+                                className="treatment_plan_table"
+                                type="text"
+                                value={currentMeasureOther}
+                                placeholder="___________"
+                                required
+                                onChange={(e) =>
+                                  setCurrentMeasureOther(e.target.value)
+                                }
+                              />
+                            </td>
+                            <td>
+                              <input
+                                type="date"
+                                value={estimatedDateOfCompletionOther}
+                                className="treatment_plan_table"
+                                required
+                                onChange={(e) =>
+                                  setEstimatedDateOfCompletionOther(
+                                    e.target.value
+                                  )
+                                }
+                              />
+                            </td>
+                            <td>
+                              <textarea
+                                className="treatment_plan_table"
+                                rows={Math.max(
+                                  commentsOther.split("\n").length,
+                                  1
+                                )}
+                                value={commentsOther}
+                                placeholder="___________"
+                                onChange={(e) =>
+                                  setCommentOther(e.target.value)
+                                }
+                                onKeyDown={(e) => {
+                                  if (e.key === "Enter") {
+                                    e.preventDefault();
+                                    setCommentOther(
+                                      (prevComment) => prevComment + "\n"
+                                    );
+                                  }
+                                }}
+                              />
+                            </td>
+                          </tr>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
 
-                <div className="yeschechbox-review-treatment-child">
-                  <div className="checkbox-style-data">
-                    <input
-                      type="checkbox"
-                      id="100%"
-                      checked={residentParticipation === "100%"}
-                      onChange={() => setResidentParticipation("100%")}
-                    />
-                    <label htmlFor="100%">100%</label>
-                  </div>
-                  <div className="checkbox-style-data">
-                    <input
-                      type="checkbox"
-                      id="75%"
-                      checked={residentParticipation === "75%"}
-                      onChange={() => setResidentParticipation("75%")}
-                    />
-                    <label htmlFor="100%">75%</label>
-                  </div>
-                  <div className="checkbox-style-data">
-                    <input
-                      type="checkbox"
-                      id="50%"
-                      checked={residentParticipation === "50%"}
-                      onChange={() => setResidentParticipation("50%")}
-                    />
-                    <label htmlFor="50%">50%</label>
-                  </div>
-                  <div className="checkbox-style-data">
-                    <input
-                      type="checkbox"
-                      id="25%"
-                      checked={residentParticipation === "25%"}
-                      onChange={() => setResidentParticipation("25%")}
-                    />
-                    <label htmlFor="25%">25%</label>
-                  </div>
-                  <div className="checkbox-style-data">
-                    <input
-                      type="checkbox"
-                      id="≤5%"
-                      checked={residentParticipation === "≤5%"}
-                      onChange={() => setResidentParticipation("≤5%")}
-                    />
-                    <label htmlFor="≤5%">≤5%</label>
-                  </div>
-                  <div className="checkbox-style-data">
-                    <input
-                      type="checkbox"
-                      id="Initial"
-                      checked={residentParticipation === "Initial"}
-                      onChange={() => setResidentParticipation("Initial")}
-                    />
-                    <label htmlFor="Initial">Initial</label>
-                  </div>
-                </div>
-              </div>
-
-              <div className="yeschechbox-review-treatment">
-                <div>
-                  <label style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-                    Resident Attitude:
-                  </label>
-                </div>
-                <div className="yeschechbox-review-treatment-child ">
-                  <div className="checkbox-style-data">
-                    <input
-                      type="checkbox"
-                      id="Attentive"
-                      checked={residentAttitute === "Attentive"}
-                      onChange={() => setResidentAttitute("Attentive")}
-                    />
-                    <label htmlFor="Attentive">Attentive</label>
-                  </div>
-                  <div className="checkbox-style-data">
-                    <input
-                      type="checkbox"
-                      id="Supportive"
-                      checked={residentAttitute === "Supportive"}
-                      onChange={() => setResidentAttitute("Supportive")}
-                    />
-                    <label htmlFor="Supportive">Supportive</label>
-                  </div>
-                  <div className="checkbox-style-data">
-                    <input
-                      type="checkbox"
-                      id="Sharing"
-                      checked={residentAttitute === "Sharing"}
-                      onChange={() => setResidentAttitute("Sharing")}
-                    />
-                    <label htmlFor="Sharing">Sharing</label>
-                  </div>
-                  <div className="checkbox-style-data">
-                    <input
-                      type="checkbox"
-                      id="Intrusive"
-                      checked={residentAttitute === "Intrusive"}
-                      onChange={() => setResidentAttitute("Intrusive")}
-                    />
-                    <label htmlFor="Intrusive">Intrusive</label>
-                  </div>
-                  <div className="checkbox-style-data">
-                    <input
-                      type="checkbox"
-                      id="Resistant"
-                      checked={residentAttitute === "Resistant"}
-                      onChange={() => setResidentAttitute("Resistant")}
-                    />
-                    <label htmlFor="Resistant">Resistant</label>
-                  </div>
-                  <div className="checkbox-style-data">
-                    <input
-                      type="checkbox"
-                      id="Initialgfud"
-                      checked={residentAttitute === "Initial"}
-                      onChange={() => setResidentAttitute("Initial")}
-                    />
-                    <label htmlFor="Initialgfud">Initial</label>
-                  </div>
-                </div>
-              </div>
-
-              <div className="yeschechbox-review-treatment">
-                <div>
-                  <label
-                    style={{
-                      fontSize: "1.2rem",
-                      marginTop: "0.5rem",
-                      fontWeight: "bold",
-                    }}
+                <div className="form-actions  hidePrint">
+                  <button
+                    type="button"
+                    className="safetybutton"
+                    onClick={handleAddButtonClick}
                   >
-                    Resident progress:
-                  </label>
+                    ADD
+                  </button>
                 </div>
-                <div className="yeschechbox-review-treatment-progress">
-                  <div className="checkbox-style-data">
-                    <input
-                      type="checkbox"
-                      id="Deterioration"
-                      checked={residentProgress === "Deterioration"}
-                      onChange={() => setResidentProgress("Deterioration")}
-                    />
-                    <label htmlFor="Deterioration">Deterioration</label>
-                  </div>
-                  <div className="checkbox-style-data">
-                    <input
-                      type="checkbox"
-                      id="No Progress"
-                      checked={residentProgress === "No Progress"}
-                      onChange={() => setResidentProgress("No Progress")}
-                    />
-                    <label htmlFor="No Progress">No Progress</label>
-                  </div>
-                  <div className="checkbox-style-data">
-                    <input
-                      type="checkbox"
-                      id="Small progress"
-                      checked={residentProgress === "Small progress"}
-                      onChange={() => setResidentProgress("Small progress")}
-                    />
-                    <label htmlFor="Small progress">Small progress</label>
-                  </div>
-                  <div className="checkbox-style-data">
-                    <input
-                      type="checkbox"
-                      id="Good Progress"
-                      checked={residentProgress === "Good Progress"}
-                      onChange={() => setResidentProgress("Good Progress")}
-                    />
-                    <label htmlFor="Good Progress">Good Progress</label>
-                  </div>
-                  <div className="checkbox-style-data">
-                    <input
-                      type="checkbox"
-                      id="Goal achieved"
-                      checked={residentProgress === "Goal achieved"}
-                      onChange={() => setResidentProgress("Goal achieved")}
-                    />
-                    <label htmlFor="Goal achieved">Goal achieved</label>
-                  </div>
-                  <div className="checkbox-style-data">
-                    <input
-                      type="checkbox"
-                      id="InitialGoal"
-                      checked={residentProgress === "Initial"}
-                      onChange={() => setResidentProgress("Initial")}
-                    />
-                    <label htmlFor="InitialGoal">Initial</label>
-                  </div>
-                </div>
-              </div>
-              <label htmlFor="" className="label-review">
-                Support System:
-              </label>
 
-              <div className="yeschechbox-review">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Family"
-                    checked={supportSystem.includes("Family")}
-                    onChange={() => handleCheckboxChangeSupportSystem("Family")}
-                  />
-                  <label htmlFor="Family">Family</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Friends"
-                    checked={supportSystem.includes("Friends")}
-                    onChange={() =>
-                      handleCheckboxChangeSupportSystem("Friends")
-                    }
-                  />
-                  <label htmlFor="Friends">Friends</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="BHRF staff"
-                    checked={supportSystem.includes("BHRF staff")}
-                    onChange={() =>
-                      handleCheckboxChangeSupportSystem("BHRF staff")
-                    }
-                  />
-                  <label htmlFor="BHRF staff">BHRF staff</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Clinical seam"
-                    checked={supportSystem.includes("Clinical seam")}
-                    onChange={() =>
-                      handleCheckboxChangeSupportSystem("Clinical seam")
-                    }
-                  />
-                  <label htmlFor="Clinical seam">Clinical seam</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Guardian"
-                    checked={supportSystem.includes("Guardian")}
-                    onChange={() =>
-                      handleCheckboxChangeSupportSystem("Guardian")
-                    }
-                  />
-                  <label htmlFor="Guardian">Guardian</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Sponsor name"
-                    checked={supportSystem.includes("Sponsor name")}
-                    onChange={() =>
-                      handleCheckboxChangeSupportSystem("Sponsor name")
-                    }
-                  />
-                  <label htmlFor="Sponsor name">Sponsor name</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-              
-                    checked={supportSystem.includes("Other")}
-                    onChange={() => handleCheckboxChangeSupportSystem("Other")}
-                  />
-                  <label >Other</label>
-                  {supportSystemOtherTextBoolean && (
-                   
-                      <AutoSize value={supportSystemOtherText} setValue={setSupportSystemOtherText}  placeholder="________"/>
-                    )}
-                </div>
-              </div>
-           
+                <div className="yeschechbox-review-treatment">
+                  <div>
+                    <label style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
+                      Resident overall participation in treatment:{" "}
+                    </label>
+                  </div>
 
+                  <div className="yeschechbox-review-treatment-child">
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="100%"
+                        checked={residentParticipation === "100%"}
+                        onChange={() => setResidentParticipation("100%")}
+                      />
+                      <label htmlFor="100%">100%</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="75%"
+                        checked={residentParticipation === "75%"}
+                        onChange={() => setResidentParticipation("75%")}
+                      />
+                      <label htmlFor="100%">75%</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="50%"
+                        checked={residentParticipation === "50%"}
+                        onChange={() => setResidentParticipation("50%")}
+                      />
+                      <label htmlFor="50%">50%</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="25%"
+                        checked={residentParticipation === "25%"}
+                        onChange={() => setResidentParticipation("25%")}
+                      />
+                      <label htmlFor="25%">25%</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="≤5%"
+                        checked={residentParticipation === "≤5%"}
+                        onChange={() => setResidentParticipation("≤5%")}
+                      />
+                      <label htmlFor="≤5%">≤5%</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="Initial"
+                        checked={residentParticipation === "Initial"}
+                        onChange={() => setResidentParticipation("Initial")}
+                      />
+                      <label htmlFor="Initial">Initial</label>
+                    </div>
+                  </div>
+                </div>
 
-              <div className="form-field-single-update">
-                <label>Phone Number: </label>
-                <input
-                  placeholder="Type number"
-                  type="number"
-                  value={supportSystemPhoneNumber}
-                  required
-                  onChange={(e) => setSupportSystemPhoneNumber(e.target.value)}
-                />
-              </div>
+                <div className="yeschechbox-review-treatment">
+                  <div>
+                    <label style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
+                      Resident Attitude:
+                    </label>
+                  </div>
+                  <div className="yeschechbox-review-treatment-child ">
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="Attentive"
+                        checked={residentAttitute === "Attentive"}
+                        onChange={() => setResidentAttitute("Attentive")}
+                      />
+                      <label htmlFor="Attentive">Attentive</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="Supportive"
+                        checked={residentAttitute === "Supportive"}
+                        onChange={() => setResidentAttitute("Supportive")}
+                      />
+                      <label htmlFor="Supportive">Supportive</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="Sharing"
+                        checked={residentAttitute === "Sharing"}
+                        onChange={() => setResidentAttitute("Sharing")}
+                      />
+                      <label htmlFor="Sharing">Sharing</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="Intrusive"
+                        checked={residentAttitute === "Intrusive"}
+                        onChange={() => setResidentAttitute("Intrusive")}
+                      />
+                      <label htmlFor="Intrusive">Intrusive</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="Resistant"
+                        checked={residentAttitute === "Resistant"}
+                        onChange={() => setResidentAttitute("Resistant")}
+                      />
+                      <label htmlFor="Resistant">Resistant</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="Initialgfud"
+                        checked={residentAttitute === "Initial"}
+                        onChange={() => setResidentAttitute("Initial")}
+                      />
+                      <label htmlFor="Initialgfud">Initial</label>
+                    </div>
+                  </div>
+                </div>
 
-              <div className="form-field-single-update">
-                <label>Current List of medication: </label>
-                <input
-                  type="text"
-                  value={currentMedications}
-                  placeholder="Enter medication"
-                  required
-                  onChange={(e) => setCurrentMedications(e.target.value)}
-                />
-              </div>
-              <label htmlFor="" className="label-review">
-                Religious/Cultural Preference:
-              </label>
-              <div className="yeschechbox-review">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Christian"
-                    checked={religiousPreference === "Christian"}
-                    onChange={() => setreligiousPreference("Christian")}
-                  />
-                  <label htmlFor="Christian">Christian</label>
+                <div className="yeschechbox-review-treatment">
+                  <div>
+                    <label
+                      style={{
+                        fontSize: "1.2rem",
+                        marginTop: "0.5rem",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Resident progress:
+                    </label>
+                  </div>
+                  <div className="yeschechbox-review-treatment-progress">
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="Deterioration"
+                        checked={residentProgress === "Deterioration"}
+                        onChange={() => setResidentProgress("Deterioration")}
+                      />
+                      <label htmlFor="Deterioration">Deterioration</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="No Progress"
+                        checked={residentProgress === "No Progress"}
+                        onChange={() => setResidentProgress("No Progress")}
+                      />
+                      <label htmlFor="No Progress">No Progress</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="Small progress"
+                        checked={residentProgress === "Small progress"}
+                        onChange={() => setResidentProgress("Small progress")}
+                      />
+                      <label htmlFor="Small progress">Small progress</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="Good Progress"
+                        checked={residentProgress === "Good Progress"}
+                        onChange={() => setResidentProgress("Good Progress")}
+                      />
+                      <label htmlFor="Good Progress">Good Progress</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="Goal achieved"
+                        checked={residentProgress === "Goal achieved"}
+                        onChange={() => setResidentProgress("Goal achieved")}
+                      />
+                      <label htmlFor="Goal achieved">Goal achieved</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="InitialGoal"
+                        checked={residentProgress === "Initial"}
+                        onChange={() => setResidentProgress("Initial")}
+                      />
+                      <label htmlFor="InitialGoal">Initial</label>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Catholic"
-                    checked={religiousPreference === "Catholic"}
-                    onChange={() => setreligiousPreference("Catholic")}
-                  />
-                  <label htmlFor="Catholic">Catholic</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Buddhist"
-                    checked={religiousPreference === "Buddhist"}
-                    onChange={() => setreligiousPreference("Buddhist")}
-                  />
-                  <label htmlFor="Buddhist">Buddhist</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Islam"
-                    checked={religiousPreference === "Islam"}
-                    onChange={() => setreligiousPreference("Islam")}
-                  />
-                  <label htmlFor="Islam">Islam</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Judaism"
-                    checked={religiousPreference === "Judaism"}
-                    onChange={() => setreligiousPreference("Judaism")}
-                  />
-                  <label htmlFor="Judaism">Judaism</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Hinduism"
-                    checked={religiousPreference === "Hinduism"}
-                    onChange={() => setreligiousPreference("Hinduism")}
-                  />
-                  <label htmlFor="Hinduism">Hinduism</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Mormonism"
-                    checked={religiousPreference === "Mormonism"}
-                    onChange={() => setreligiousPreference("Mormonism")}
-                  />
-                  <label htmlFor="Mormonism">Mormonism</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Other"
-                    checked={religiousPreference === "Other"}
-                    onChange={() => setreligiousPreference("Other")}
-                  />
-                  <label htmlFor="Other">Other</label>
-                  {religiousPreference === "Other" && (
-                  
-                      <AutoSize value={religiousPreferenceText} setValue={setReligiousPreferenceText}  placeholder="________"/>
-                    )}
-                </div>
-              </div>
-
-              <div className="form-field-single-update-bold">
-                <label htmlFor="nutritionAndWellnessPlanning">
-                  Nutrition and wellness Planning:{" "}
+                <label htmlFor="" className="label-review">
+                  Support System:
                 </label>
-                <select
-                  id="nutritionAndWellnessPlanning"
-                  value={nutritionAndWellnessPlanning}
-                  onChange={(e) =>
-                    setNutritionAndWellnessPlanning(e.target.value)
-                  }
-                >
-                  <option value="">Select</option>
-                  <option value="eating a balanced diet, drinking adequate fluid, ongoing health maintenance">
-                    Eating a balanced diet, drinking adequate fluid, ongoing
-                    health maintenance
-                  </option>
-                </select>
-                {/* <input
+
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Family"
+                      checked={supportSystem.includes("Family")}
+                      onChange={() =>
+                        handleCheckboxChangeSupportSystem("Family")
+                      }
+                    />
+                    <label htmlFor="Family">Family</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Friends"
+                      checked={supportSystem.includes("Friends")}
+                      onChange={() =>
+                        handleCheckboxChangeSupportSystem("Friends")
+                      }
+                    />
+                    <label htmlFor="Friends">Friends</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="BHRF staff"
+                      checked={supportSystem.includes("BHRF staff")}
+                      onChange={() =>
+                        handleCheckboxChangeSupportSystem("BHRF staff")
+                      }
+                    />
+                    <label htmlFor="BHRF staff">BHRF staff</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Clinical seam"
+                      checked={supportSystem.includes("Clinical seam")}
+                      onChange={() =>
+                        handleCheckboxChangeSupportSystem("Clinical seam")
+                      }
+                    />
+                    <label htmlFor="Clinical seam">Clinical seam</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Guardian"
+                      checked={supportSystem.includes("Guardian")}
+                      onChange={() =>
+                        handleCheckboxChangeSupportSystem("Guardian")
+                      }
+                    />
+                    <label htmlFor="Guardian">Guardian</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Sponsor name"
+                      checked={supportSystem.includes("Sponsor name")}
+                      onChange={() =>
+                        handleCheckboxChangeSupportSystem("Sponsor name")
+                      }
+                    />
+                    <label htmlFor="Sponsor name">Sponsor name</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      checked={supportSystem.includes("Other")}
+                      onChange={() =>
+                        handleCheckboxChangeSupportSystem("Other")
+                      }
+                    />
+                    <label>Other</label>
+                    {supportSystemOtherTextBoolean && (
+                      <AutoSize
+                        value={supportSystemOtherText}
+                        setValue={setSupportSystemOtherText}
+                        placeholder="________"
+                      />
+                    )}
+                  </div>
+                </div>
+
+                <div className="form-field-single-update">
+                  <label>Phone Number: </label>
+                  <input
+                    placeholder="Type number"
+                    type="number"
+                    value={supportSystemPhoneNumber}
+                    required
+                    onChange={(e) =>
+                      setSupportSystemPhoneNumber(e.target.value)
+                    }
+                  />
+                </div>
+
+                <div className="form-field-single-update">
+                  <label>Current List of medication: </label>
+                  <input
+                    type="text"
+                    value={currentMedications}
+                    placeholder="Enter medication"
+                    required
+                    onChange={(e) => setCurrentMedications(e.target.value)}
+                  />
+                </div>
+                <label htmlFor="" className="label-review">
+                  Religious/Cultural Preference:
+                </label>
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Christian"
+                      checked={religiousPreference === "Christian"}
+                      onChange={() => setreligiousPreference("Christian")}
+                    />
+                    <label htmlFor="Christian">Christian</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Catholic"
+                      checked={religiousPreference === "Catholic"}
+                      onChange={() => setreligiousPreference("Catholic")}
+                    />
+                    <label htmlFor="Catholic">Catholic</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Buddhist"
+                      checked={religiousPreference === "Buddhist"}
+                      onChange={() => setreligiousPreference("Buddhist")}
+                    />
+                    <label htmlFor="Buddhist">Buddhist</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Islam"
+                      checked={religiousPreference === "Islam"}
+                      onChange={() => setreligiousPreference("Islam")}
+                    />
+                    <label htmlFor="Islam">Islam</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Judaism"
+                      checked={religiousPreference === "Judaism"}
+                      onChange={() => setreligiousPreference("Judaism")}
+                    />
+                    <label htmlFor="Judaism">Judaism</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Hinduism"
+                      checked={religiousPreference === "Hinduism"}
+                      onChange={() => setreligiousPreference("Hinduism")}
+                    />
+                    <label htmlFor="Hinduism">Hinduism</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Mormonism"
+                      checked={religiousPreference === "Mormonism"}
+                      onChange={() => setreligiousPreference("Mormonism")}
+                    />
+                    <label htmlFor="Mormonism">Mormonism</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Other"
+                      checked={religiousPreference === "Other"}
+                      onChange={() => setreligiousPreference("Other")}
+                    />
+                    <label htmlFor="Other">Other</label>
+                    {religiousPreference === "Other" && (
+                      <AutoSize
+                        value={religiousPreferenceText}
+                        setValue={setReligiousPreferenceText}
+                        placeholder="________"
+                      />
+                    )}
+                  </div>
+                </div>
+
+                <div className="form-field-single-update-bold">
+                  <label htmlFor="nutritionAndWellnessPlanning">
+                    Nutrition and wellness Planning:{" "}
+                  </label>
+                  <select
+                    id="nutritionAndWellnessPlanning"
+                    value={nutritionAndWellnessPlanning}
+                    onChange={(e) =>
+                      setNutritionAndWellnessPlanning(e.target.value)
+                    }
+                  >
+                    <option value="">Select</option>
+                    <option value="eating a balanced diet, drinking adequate fluid, ongoing health maintenance">
+                      Eating a balanced diet, drinking adequate fluid, ongoing
+                      health maintenance
+                    </option>
+                  </select>
+                  {/* <input
                 style={{ color: "#1A9FB2" }}
                 type="text"
                 id=""
@@ -5123,345 +4731,3862 @@ useEffect(()=>{
                 required
                 onChange={(e) => setNutritionAndWellnessPlanning(e.target.value)}
               /> */}
-              </div>
-              <label className="label-review">
-                Recommendation to extend residential treatment for :{" "}
-              </label>
-              <div className="yeschechbox-review">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="30 Days"
-                    checked={
-                      recommendationToExtendResidentialTreatment === "30 Days"
-                    }
-                    onChange={() =>
-                      setRecommendationToExtendResidentialTreatment("30 Days")
-                    }
-                  />
-                  <label htmlFor="30 Days">30 Days</label>
                 </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="60 Days"
-                    checked={
-                      recommendationToExtendResidentialTreatment === "60 Days"
-                    }
-                    onChange={() =>
-                      setRecommendationToExtendResidentialTreatment("60 Days")
-                    }
-                  />
-                  <label htmlFor="60 Days">60 Days</label>
+                <label className="label-review">
+                  Recommendation to extend residential treatment for :{" "}
+                </label>
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="30 Days"
+                      checked={
+                        recommendationToExtendResidentialTreatment === "30 Days"
+                      }
+                      onChange={() =>
+                        setRecommendationToExtendResidentialTreatment("30 Days")
+                      }
+                    />
+                    <label htmlFor="30 Days">30 Days</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="60 Days"
+                      checked={
+                        recommendationToExtendResidentialTreatment === "60 Days"
+                      }
+                      onChange={() =>
+                        setRecommendationToExtendResidentialTreatment("60 Days")
+                      }
+                    />
+                    <label htmlFor="60 Days">60 Days</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="90 Day"
+                      checked={
+                        recommendationToExtendResidentialTreatment === "90 Day"
+                      }
+                      onChange={() =>
+                        setRecommendationToExtendResidentialTreatment("90 Day")
+                      }
+                    />
+                    <label htmlFor="90 Day">90 Day</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Initialhhg"
+                      checked={
+                        recommendationToExtendResidentialTreatment === "Initial"
+                      }
+                      onChange={() =>
+                        setRecommendationToExtendResidentialTreatment("Initial")
+                      }
+                    />
+                    <label htmlFor="Initialhhg">Initial</label>
+                  </div>
                 </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="90 Day"
-                    checked={
-                      recommendationToExtendResidentialTreatment === "90 Day"
-                    }
-                    onChange={() =>
-                      setRecommendationToExtendResidentialTreatment("90 Day")
-                    }
-                  />
-                  <label htmlFor="90 Day">90 Day</label>
+                <div className="yeschechbox2-horizontal">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="personalFinances"
+                      checked={personalFinances}
+                      onChange={() => setPersonalFinances(!personalFinances)}
+                    />
+                    <label htmlFor="personalFinances">
+                      Resident requires Assistance to maintain personal funds
+                      and/or hand personal finances
+                    </label>
+                  </div>
                 </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Initialhhg"
-                    checked={
-                      recommendationToExtendResidentialTreatment === "Initial"
-                    }
-                    onChange={() =>
-                      setRecommendationToExtendResidentialTreatment("Initial")
-                    }
-                  />
-                  <label htmlFor="Initialhhg">Initial</label>
-                </div>
-              </div>
-              <div className="yeschechbox2-horizontal">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="personalFinances"
-                    checked={personalFinances}
-                    onChange={() => setPersonalFinances(!personalFinances)}
-                  />
-                  <label htmlFor="personalFinances">
-                    Resident requires Assistance to maintain personal funds
-                    and/or hand personal finances
-                  </label>
-                </div>
-              </div>
-              <label htmlFor="" className="label-review">
-                Discharge planning & Re-evaluation of initial symptoms,
-                behaviours & Goals
-              </label>
-              <div className="yeschechbox2-horizontal">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Follow-up Medical appointments upon discharge"
-                    checked={
-                      dischargePlanning ===
-                      "Follow-up Medical appointments upon discharge"
-                    }
-                    onChange={() =>
-                      setDischargePlanning(
+                <label htmlFor="" className="label-review">
+                  Discharge planning & Re-evaluation of initial symptoms,
+                  behaviours & Goals
+                </label>
+                <div className="yeschechbox2-horizontal">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Follow-up Medical appointments upon discharge"
+                      checked={
+                        dischargePlanning ===
                         "Follow-up Medical appointments upon discharge"
-                      )
-                    }
-                  />
-                  <label htmlFor="Follow-up Medical appointments upon discharge">
-                    Follow-up Medical appointments upon discharge{" "}
-                  </label>
+                      }
+                      onChange={() =>
+                        setDischargePlanning(
+                          "Follow-up Medical appointments upon discharge"
+                        )
+                      }
+                    />
+                    <label htmlFor="Follow-up Medical appointments upon discharge">
+                      Follow-up Medical appointments upon discharge{" "}
+                    </label>
+                  </div>
                 </div>
-              </div>
-              <div className="yeschechbox2-horizontal">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Submit application for higher or lower level of care."
-                    checked={
-                      dischargePlanning ===
-                      "Submit application for higher or lower level of care."
-                    }
-                    onChange={() =>
-                      setDischargePlanning(
+                <div className="yeschechbox2-horizontal">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Submit application for higher or lower level of care."
+                      checked={
+                        dischargePlanning ===
                         "Submit application for higher or lower level of care."
-                      )
-                    }
-                  />
-                  <label htmlFor="Submit application for higher or lower level of care.">
-                    Submit application for higher or lower level of care.
-                  </label>
+                      }
+                      onChange={() =>
+                        setDischargePlanning(
+                          "Submit application for higher or lower level of care."
+                        )
+                      }
+                    />
+                    <label htmlFor="Submit application for higher or lower level of care.">
+                      Submit application for higher or lower level of care.
+                    </label>
+                  </div>
                 </div>
-              </div>
-              <div className="yeschechbox2-horizontal">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Continue with Psychiatric Provider"
-                    checked={
-                      dischargePlanning === "Continue with Psychiatric Provider"
-                    }
-                    onChange={() =>
-                      setDischargePlanning("Continue with Psychiatric Provider")
-                    }
-                  />
-                  <label htmlFor="Continue with Psychiatric Provider">
-                    Continue with Psychiatric Provider
-                  </label>
+                <div className="yeschechbox2-horizontal">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Continue with Psychiatric Provider"
+                      checked={
+                        dischargePlanning ===
+                        "Continue with Psychiatric Provider"
+                      }
+                      onChange={() =>
+                        setDischargePlanning(
+                          "Continue with Psychiatric Provider"
+                        )
+                      }
+                    />
+                    <label htmlFor="Continue with Psychiatric Provider">
+                      Continue with Psychiatric Provider
+                    </label>
+                  </div>
                 </div>
-              </div>
-              <div className="yeschechbox2-horizontal">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Continue with Primary Care Provider (PCP)"
-                    checked={
-                      dischargePlanning ===
-                      "Continue with Primary Care Provider (PCP)"
-                    }
-                    onChange={() =>
-                      setDischargePlanning(
+                <div className="yeschechbox2-horizontal">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Continue with Primary Care Provider (PCP)"
+                      checked={
+                        dischargePlanning ===
                         "Continue with Primary Care Provider (PCP)"
-                      )
-                    }
+                      }
+                      onChange={() =>
+                        setDischargePlanning(
+                          "Continue with Primary Care Provider (PCP)"
+                        )
+                      }
+                    />
+                    <label htmlFor="Continue with Primary Care Provider (PCP)">
+                      Continue with Primary Care Provider (PCP)
+                    </label>
+                  </div>
+                </div>
+                <div className="yeschechbox2-horizontal">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Continue with case manager for additional support and
+                    resources"
+                      checked={
+                        dischargePlanning ===
+                        "Continue with case manager for additional support and resources"
+                      }
+                      onChange={() =>
+                        setDischargePlanning(
+                          "Continue with case manager for additional support and resources"
+                        )
+                      }
+                    />
+                    <label
+                      htmlFor="Continue with case manager for additional support and
+                    resources"
+                    >
+                      Continue with case manager for additional support and
+                      resources
+                    </label>
+                  </div>
+                </div>
+
+                <div className="yeschechbox2-horizontal">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Continue counseling with assigned Clinic at least once a month"
+                      checked={
+                        dischargePlanning ===
+                        "Continue counseling with assigned Clinic at least once a month"
+                      }
+                      onChange={() =>
+                        setDischargePlanning(
+                          "Continue counseling with assigned Clinic at least once a month"
+                        )
+                      }
+                    />
+                    <label htmlFor="Continue counseling with assigned Clinic at least once a month">
+                      Continue counseling with assigned Clinic at least once a
+                      month
+                    </label>
+                  </div>
+                </div>
+                <div className="form-field">
+                  <label className="label-review">Specify ( If Others )</label>
+                  <textarea
+                    type="text"
+                    required
+                    value={additionalComment}
+                    rows={2}
+                    cols={130}
+                    placeholder="Type Here....."
+                    onChange={(e) => setAdditionalComment(e.target.value)}
                   />
-                  <label htmlFor="Continue with Primary Care Provider (PCP)">
-                    Continue with Primary Care Provider (PCP)
+                </div>
+                <label htmlFor="" className="label-review">
+                  Recommendations for further programs upon discharge:
+                </label>
+
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="PHP"
+                      checked={recommendationsForFurtherPrograms.includes(
+                        "PHP"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangerecommendationsForFurtherPrograms(
+                          "PHP"
+                        )
+                      }
+                    />
+                    <label htmlFor="PHP">PHP</label>
+                  </div>
+
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="IOP"
+                      checked={recommendationsForFurtherPrograms.includes(
+                        "IOP"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangerecommendationsForFurtherPrograms(
+                          "IOP"
+                        )
+                      }
+                    />
+                    <label htmlFor="IOP">IOP</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Sober living"
+                      checked={recommendationsForFurtherPrograms.includes(
+                        "Sober living"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangerecommendationsForFurtherPrograms(
+                          "Sober living"
+                        )
+                      }
+                    />
+                    <label htmlFor="Sober living">Sober living</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Home"
+                      checked={recommendationsForFurtherPrograms.includes(
+                        "Home"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangerecommendationsForFurtherPrograms(
+                          "Home"
+                        )
+                      }
+                    />
+                    <label htmlFor="Home">Home</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Flex Care 23.9"
+                      checked={recommendationsForFurtherPrograms.includes(
+                        "Flex Care 23.9"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangerecommendationsForFurtherPrograms(
+                          "Flex Care 23.9"
+                        )
+                      }
+                    />
+                    <label htmlFor="Flex Care 23.9">Flex Care 23.9</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Flex Care 16"
+                      checked={recommendationsForFurtherPrograms.includes(
+                        "Flex Care 16"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangerecommendationsForFurtherPrograms(
+                          "Flex Care 16"
+                        )
+                      }
+                    />
+                    <label htmlFor="Flex Care 16">Flex Care 16</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Flex Care 8"
+                      checked={recommendationsForFurtherPrograms.includes(
+                        "Flex Care 8"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangerecommendationsForFurtherPrograms(
+                          "Flex Care 8"
+                        )
+                      }
+                    />
+                    <label htmlFor="Flex Care 8">Flex Care 8</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      checked={recommendationsForFurtherPrograms.includes(
+                        "Other"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangerecommendationsForFurtherPrograms(
+                          "Other"
+                        )
+                      }
+                    />
+                    <label>Other</label>
+                    {recommendationsForFurtherProgramsBoolean && (
+                      <AutoSize
+                        value={recommendationsForFurtherProgramsOther}
+                        setValue={setRecommendationsForFurtherProgramsOther}
+                        placeholder="________"
+                      />
+                    )}
+                  </div>
+                </div>
+
+                <label htmlFor="" className="label-review">
+                  After care and Transition planning / Community Resources:
+                </label>
+
+                <div className="yeschechbox2-horizontal">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="suicideHotlineCheckbox"
+                      checked={afterCareAndTransitionPlanning.includes(
+                        "National suicide hotline 988 or 1-800-273-8255"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeafterCareAndTransitionPlanning(
+                          "National suicide hotline 988 or 1-800-273-8255"
+                        )
+                      }
+                    />
+                    <label htmlFor="suicideHotlineCheckbox">
+                      National suicide hotline 988 or 1-800-273-8255
+                    </label>
+                  </div>
+                </div>
+
+                <div className="yeschechbox2-horizontal">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="emergencyCareCheckbox"
+                      checked={afterCareAndTransitionPlanning.includes(
+                        "Emergency care 911"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeafterCareAndTransitionPlanning(
+                          "Emergency care 911"
+                        )
+                      }
+                    />
+                    <label htmlFor="emergencyCareCheckbox">
+                      Emergency care 911
+                    </label>
+                  </div>
+                </div>
+
+                <div className="yeschechbox2-horizontal">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="crisisLineCheckbox"
+                      checked={afterCareAndTransitionPlanning.includes(
+                        "24-Hour crisis in Maricopa County 602-222-9444"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeafterCareAndTransitionPlanning(
+                          "24-Hour crisis in Maricopa County 602-222-9444"
+                        )
+                      }
+                    />
+                    <label htmlFor="crisisLineCheckbox">
+                      24-Hour crisis in Maricopa County 602-222-9444
+                    </label>
+                  </div>
+                </div>
+
+                <div className="yeschechbox2">
+                  <div>
+                    <span>
+                      This treatment plan has been developed before the resident
+                      receives physical health services or behavioral health
+                      services or within 48hours after the initial assessment is
+                      completed. It will be review and updated on an on-going
+                      basis according to the review date{" "}
+                      <span>
+                        <AutoSize
+                          type="date"
+                          value={textData}
+                          setValue={setTextData}
+                          placeholder="________"
+                        />
+                      </span>
+                      specified in the treatment plan, when a treatment goal is
+                      accomplished or changed, when additional information that
+                      affects the resident’s behavioral health assessment is
+                      identified and when the resident has a significant change
+                      in condition or experiences an event that affects
+                      treatment.
+                    </span>
+                  </div>
+                </div>
+
+                <div className="formsheading">
+                  <label className="label-review-clinical">
+                    Clinical Summary /Recommendations/Intervention:
                   </label>
                 </div>
-              </div>
-              <div className="yeschechbox2-horizontal">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Continue with case manager for additional support and
-                    resources"
-                    checked={
-                      dischargePlanning ===
-                      "Continue with case manager for additional support and resources"
-                    }
-                    onChange={() =>
-                      setDischargePlanning(
-                        "Continue with case manager for additional support and resources"
-                      )
-                    }
+
+                <div className="form-field">
+                  <Select
+                    isMulti
+                    value={clinicalSummary}
+                    options={clinicalSummaryOption}
+                    onChange={clinicalSummaryHandler}
+                    isCreatable={true}
+                    onKeyDown={handleKeyClinicalSummary}
                   />
-                  <label
-                    htmlFor="Continue with case manager for additional support and
-                    resources"
-                  >
-                    Continue with case manager for additional support and
-                    resources
-                  </label>
+                </div>
+
+                {/* <div className="formsheading">
+                <p>
+                  The mirrors in the facility are SHATTERPROOF, and if they were
+                  standard mirrors it would not present as a current safety risk
+                  to this resident.
+                </p>
+              </div> */}
+                <div className="form-field-update">
+                  <div className="form-field-child">
+                    <label>Treatment plan review date:</label>
+                    <input
+                      type="date"
+                      onChange={(e) =>
+                        setTreatmentPlanReviewDate(e.target.value)
+                      }
+                      value={treatmentPlanReviewDate}
+                      placeholder="Enter text"
+                    />
+                  </div>
+                  <div className="form-field-child">
+                    <label>Discharge Plan Date:</label>
+                    <input
+                      type="date"
+                      onChange={(e) => setDischargePlanDate(e.target.value)}
+                      value={dischargePlanDate}
+                      placeholder="Enter text"
+                    />
+                  </div>
+                </div>
+
+                <p
+                  style={{
+                    fontWeight: "500",
+                    fontSize: "16px",
+                    margin: "0",
+                    marginBottom: "0",
+                    marginTop: "0",
+                    marginTop: "0.5rems",
+                    color: "#00000099",
+                  }}
+                >
+                  Note: Earlier review may be performed if resident has a
+                  significant change in condition or event that affects
+                  treatment.
+                </p>
+
+                <div className="formsheading">
+                  <h6 style={{ fontWeight: "bold" }}>
+                    Individual Participating in Developing the Service Plan:
+                  </h6>
+                </div>
+
+                <div className="form-field-update">
+                  <div className="form-field-child">
+                    <label>Resident:</label>
+                    <input
+                      type="text"
+                      value={resident}
+                      placeholder="Enter name"
+                      required
+                      onChange={(e) => setResident(e.target.value)}
+                    />
+                  </div>
+                  <div className="form-field-child">
+                    <label>Guardian:</label>
+                    <input
+                      type="text"
+                      value={guardian}
+                      placeholder="Enter name"
+                      required
+                      onChange={(e) => setGuardian(e.target.value)}
+                    />
+                  </div>
+                  <div className="form-field-child">
+                    <label>Staff:</label>
+                    <input
+                      type="text"
+                      value={staff}
+                      placeholder="Enter name"
+                      required
+                      onChange={(e) => setStaff(e.target.value)}
+                    />
+                  </div>
+                  <div className="form-field-child">
+                    <label>BHP:</label>
+                    <input
+                      type="text"
+                      value={bpn}
+                      placeholder="Enter name"
+                      required
+                      onChange={(e) => setBph(e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                <div className="form-field-single-update">
+                  <label>Comment:</label>
+
+                  <input
+                    type="text"
+                    value={commentIndividual}
+                    placeholder="Enter comment"
+                    required
+                    onChange={(e) => setCommentIndividual(e.target.value)}
+                  />
+                </div>
+
+                <label htmlFor="" className="label-review">
+                  Resident / Representative:
+                </label>
+                <div className="yeschechbox-review-yes-no">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="isReason"
+                      checked={isReason === "yes"}
+                      onChange={() =>
+                        setIsReason(isReason === "yes" ? "no" : "yes")
+                      }
+                    />
+                    <label htmlFor="isReason">
+                      Yes,{" "}
+                      <span>
+                        I am in agreement with the services included in this
+                        treatment Plan
+                      </span>
+                    </label>
+                  </div>
+                </div>
+
+                <div className="yeschechbox-review-yes-no">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="refusalReason"
+                      // checked={refusalReason === "yes"}
+                      // onChange={() =>
+                      //   setrefusalReason(refusalReason === "yes" ? "no" : "yes")
+                      // }
+                      checked={isReason === "no"}
+                      onChange={() =>
+                        setIsReason(isReason === "no" ? "yes" : "no")
+                      }
+                    />
+                    <label htmlFor="refusalReason">
+                      No,{" "}
+                      <span>
+                        I am not in agreement with the services included in this
+                        treatment Plan
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                {/* <div className="yeschechbox2">
+                <div>
+                  <span>
+                    I am in the agreement with the services included in this
+                    treatment Plan
+                  </span>
+                </div>
+              </div> */}
+                {/* /"signaturesResident */}
+
+                <div className="formsheading">
+                  <h6 style={{ fontWeight: "bold" }}>
+                    Signature indicates participation and informed consent for
+                    treatment services.
+                  </h6>
+                </div>
+
+                <div className="form-field-update">
+                  <div className="form-field-child">
+                    <label>First and Last Name:</label>
+                    <input
+                      type="text"
+                      value={nameResident}
+                      placeholder="Enter text"
+                      required
+                      onChange={(e) => setNameResident(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="form-field-child">
+                    <label style={{ fontWeight: "bold" }}>
+                      Resident or Resident’s representative{" "}
+                      <span style={{ fontSize: "15px", color: "gray" }}>
+                        (By signing this document, I acknowledge that I was
+                        asked, encouraged to participate in the assessment)
+                      </span>
+                      :
+                    </label>
+                    <input
+                      type="text"
+                      value={credentialsResident}
+                      placeholder="Enter text"
+                      required
+                      onChange={(e) => setCredentialsResident(e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                <div class="file-upload-box" style={{ marginTop: "0.5rem" }}>
+                  <div className="file-upload-box-child hidePrint">
+                    <button
+                      className="upload-button1"
+                      type="button"
+                      onClick={() => setDraftModel(true)}
+                    >
+                      SAVED AS DRAFT
+                    </button>
+                    <button
+                      className="upload-button"
+                      type="button"
+                      onClick={() => setSignatureModel1(true)}
+                    >
+                      SAVED AND SIGNED
+                    </button>
+                  </div>
+                  <div>
+                    {signatureResident && (
+                      <p className="signature_name_print">
+                        Digitally Sign by {signatureResident} {dateResident}{" "}
+                        {timeResident}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                {signatureModel1 && (
+                  <SingInUpdateModel
+                    onClose={() => setSignatureModel1(false)}
+                    singin={signatureResident}
+                    setSingIn={setsignatureResident}
+                    setDateAndTime={setDateResident}
+                    setSignatureTime={setTimeResident}
+                  />
+                )}
+              </div>
+
+              <div className="form-field-update">
+                <div className="form-field-child">
+                  <label>First and Last Name:</label>
+                  <input
+                    type="text"
+                    value={nameFacilityRep}
+                    placeholder="Enter text"
+                    required
+                    onChange={(e) => setNameFacilityRep(e.target.value)}
+                  />
+                </div>
+
+                <div className="form-field-child">
+                  <label>Facility Representative:</label>
+                  <input
+                    type="text"
+                    value={credentialsFacilityRep}
+                    placeholder="Enter text"
+                    required
+                    onChange={(e) => setCredentialsFacilityRep(e.target.value)}
+                  />
                 </div>
               </div>
 
-              <div className="yeschechbox2-horizontal">
+              <div class="file-upload-box " style={{ marginTop: "0.2rem" }}>
+                <div className="file-upload-box-child hidePrint">
+                  <button
+                    className="upload-button1"
+                    type="button"
+                    onClick={() => setDraftModel(true)}
+                  >
+                    SAVED AS DRAFT
+                  </button>
+                  <button
+                    className="upload-button"
+                    type="button"
+                    onClick={() => setSignatureModel2(true)}
+                  >
+                    SAVED AND SIGNED
+                  </button>
+                </div>
                 <div>
-                  <input
-                    type="checkbox"
-                    id="Continue counseling with assigned Clinic at least once a month"
-                    checked={
-                      dischargePlanning ===
-                      "Continue counseling with assigned Clinic at least once a month"
-                    }
-                    onChange={() =>
-                      setDischargePlanning(
-                        "Continue counseling with assigned Clinic at least once a month"
-                      )
-                    }
-                  />
-                  <label htmlFor="Continue counseling with assigned Clinic at least once a month">
-                    Continue counseling with assigned Clinic at least once a
-                    month
-                  </label>
+                  {signatureFacilityRep && (
+                    <p className="signature_name_print">
+                      Digitally Sign by {signatureFacilityRep} {dateFacilityRep}{" "}
+                      {timeFacality}
+                    </p>
+                  )}
                 </div>
               </div>
-              <div className="form-field">
-                <label className="label-review">Specify ( If Others )</label>
+
+              {signatureModel2 && (
+                <SingInUpdateModel
+                  onClose={() => setSignatureModel2(false)}
+                  singin={signatureFacilityRep}
+                  setSingIn={setsignatureFacilityRep}
+                  setDateAndTime={setDateFacilityRep}
+                  setSignatureTime={setTimeFacality}
+                />
+              )}
+
+              <div className="form-field-update ">
+                <div className="form-field-child">
+                  <label>First and Last Name:</label>
+                  <input
+                    type="text"
+                    value={nameBhp}
+                    placeholder="Enter text"
+                    required
+                    onChange={(e) => setNameBhp(e.target.value)}
+                  />
+                </div>
+                <div className="form-field-child">
+                  <label>Behavioral Health Professional:</label>
+                  <input
+                    type="text"
+                    value={credentialsBhp}
+                    placeholder="Enter text"
+                    required
+                    onChange={(e) => setCredentialsBhp(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div class="file-upload-box " style={{ marginTop: "0.2rem" }}>
+                <div className="file-upload-box-child hidePrint">
+                  <div>
+                    <button
+                      className="upload-button1"
+                      type="button"
+                      onClick={() => setDraftModel(true)}
+                    >
+                      SAVED AS DRAFT
+                    </button>
+                  </div>
+                  <div>
+                    <button
+                      className="upload-button"
+                      type="button"
+                      onClick={() => setSignatureModel3(true)}
+                    >
+                      SAVED AND SIGNED
+                    </button>
+                  </div>
+                  <div>
+                    <button
+                      className="upload-button signature_shift_margin"
+                      type="button"
+                      onClick={handlePrint2}
+                    >
+                      PRINT THIS FORM
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  {signatureBhp && (
+                    <p className="signature_name_print">
+                      Digitally Sign by {signatureBhp} {dateBhp} {timeBhp}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              {signatureModel3 && (
+                <SingInUpdateModel
+                  onClose={() => setSignatureModel3(false)}
+                  singin={signatureBhp}
+                  setSingIn={setsignatureBhp}
+                  setDateAndTime={setDateBhp}
+                  setSignatureTime={setTimeBhp}
+                />
+              )}
+
+              <div className="form-actions hidePrint">
+                <button
+                  type="submit"
+                  style={{
+                    padding: "5px 20px",
+                    border: "none",
+                    outline: "none",
+                    backgroundColor: "#1A9FB2",
+                    borderRadius: "5px",
+                    marginBottom: "2.5rem",
+                    textAlign: "center",
+                  }}
+                >
+                  SUBMIT DETAILS
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        {draftModel && <Draftinmodel onClose={() => setDraftModel(false)} />}
+      </div>
+
+      {/* print form data*/}
+
+      <div ref={componentRef} className="hidaData">
+        <div>
+          <div className="Boss">
+            <div className="formheading1">
+              <div
+                className="formsheading_updated_treatment"
+                style={{ marginTop: "1.5rem", padding: " 0 10px" }}
+              >
+                <div className="treatment_plan_header">
+                  <h5>TREATMENT PLAN</h5>
+                  <div className="treatment_plan_header_inner_div">
+                    <input
+                      type="checkbox"
+                      checked={initialUpdate === "Initial"}
+                      onChange={() => setInitialUpdate("Initial")}
+                    />
+                    <label>Initial</label>
+                  </div>
+                  <div className="treatment_plan_header_inner_div">
+                    <input
+                      type="checkbox"
+                      checked={initialUpdate === "Update"}
+                      onChange={() => setInitialUpdate("Update")}
+                    />
+                    <label>Update</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <form onSubmit={handlePost}>
+              <div className="form-section">
+                <div className="box-image-container">
+                  <div className="form-field-update">
+                    <div className="form-field-child">
+                      <label>Resident Name:</label>
+                      <input
+                        type="text"
+                        value={residentName}
+                        placeholder="Enter name"
+                        required
+                        onChange={(e) => setResidentName(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="form-field-child">
+                      <label>Date:</label>
+                      <input
+                        type="date"
+                        value={date}
+                        placeholder="DD/MM/YYYY"
+                        required
+                        onChange={(e) => setDate(e.target.value)}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-field-update">
+                    <div className="form-field-child">
+                      <label htmlFor="dateOfBirth">DOB:</label>
+                      <input
+                        type="date"
+                        id="dateOfBirth"
+                        value={dob}
+                        placeholder="DD/MM/YYYY"
+                        required
+                        onChange={(e) => setDob(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="form-field-child">
+                      <label htmlFor="dateOfBirth">Admit Date:</label>
+                      <input
+                        type="date"
+                        id="dateOfBirth"
+                        value={admitDate}
+                        placeholder="DD/MM/YYYY"
+                        required
+                        onChange={(e) => setAdminDate(e.target.value)}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-field-update-care">
+                    <div className="form-field-child">
+                      {" "}
+                      <label style={{ fontWeight: "bold" }}>Care:</label>
+                    </div>
+
+                    <div className="form-field-child">
+                      <input
+                        type="checkbox"
+                        checked={physicalService === "physicalService"}
+                        onChange={() =>
+                          setPhysicalService(
+                            physicalService === "physicalService"
+                              ? ""
+                              : "physicalService"
+                          )
+                        }
+                        id="behavioralCheckbox"
+                      />
+                      <label>Physical Services</label>
+                    </div>
+                    <div className="form-field-child">
+                      <input
+                        type="checkbox"
+                        checked={behavior === "behavior"}
+                        onChange={() =>
+                          setBehavior(behavior === "behavior" ? "" : "behavior")
+                        }
+                        id="behavioralCheckbox"
+                      />
+                      <label>Behavioral Services</label>
+                    </div>
+                  </div>
+
+                  {/* state is duplicatedffdg again make the state */}
+                  <div>
+                    <label
+                      style={{
+                        fontSize: "16px",
+                        fontWeight: "bold",
+
+                        marginTop: "0.5rem",
+                        marginLeft: "10px",
+                      }}
+                    >
+                      Medication Services:
+                    </label>
+                    <div className="form-field-update-care">
+                      <div className="form-field-child">
+                        <input
+                          type="checkbox"
+                          checked={
+                            medicationAdministation ===
+                            "MedicationAdministration"
+                          }
+                          onChange={() =>
+                            setMedicationAdministation(
+                              medicationAdministation ===
+                                "MedicationAdministration"
+                                ? ""
+                                : "MedicationAdministration"
+                            )
+                          }
+                        />
+                        <label>Medication Administration</label>
+                      </div>
+                      <div className="form-field-child">
+                        <input
+                          type="checkbox"
+                          checked={
+                            medicationAssistance ===
+                            "AssistanceintheselfAdministrationofmedication"
+                          }
+                          onChange={() =>
+                            setMedicationAssistence(
+                              medicationAssistance ===
+                                "AssistanceintheselfAdministrationofmedication"
+                                ? ""
+                                : "AssistanceintheselfAdministrationofmedication"
+                            )
+                          }
+                        />
+                        <label>
+                          Assistance in the self-Administration of medication
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="form-field-single-update-bold box-image-container">
+                  <label>Presenting Problems:</label>
+
+                  <Select
+                    isMulti
+                    onChange={presentingPriceHandler}
+                    value={presentingPrice}
+                    options={presentingPriceOption}
+                    isCreatable={true}
+                    onKeyDown={handleKeyPresentingPrice}
+                  />
+                </div>
+
+                <div
+                  className="form-field-single-update"
+                  style={{ marginTop: "0.5rem" }}
+                >
+                  <label>Diagnoses:</label>
+                  <input
+                    type="text"
+                    required
+                    value={diagonsis}
+                    onChange={(e) => setDiagonsis(e.target.value)}
+                  />
+                </div>
+                <label className="label-review" style={{ fontWeight: "bold" }}>
+                  Mental Status:
+                </label>
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="oriented"
+                      checked={mendelHealth === "oriented"}
+                      onChange={() =>
+                        handleCheckboxChangeMentalHealth("oriented")
+                      }
+                    />
+                    <label htmlFor="oriented">Oriented</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="disoriented"
+                      checked={mendelHealth === "disoriented"}
+                      onChange={() =>
+                        handleCheckboxChangeMentalHealth("disoriented")
+                      }
+                    />
+                    <label htmlFor="disoriented">Disoriented</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="unstable"
+                      checked={mendelHealth === "unstable"}
+                      onChange={() =>
+                        handleCheckboxChangeMentalHealth("unstable")
+                      }
+                    />
+                    <label htmlFor="unstable">Unstable</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      checked={mendelHealth === "other"}
+                      onChange={() => handleCheckboxChangeMentalHealth("other")}
+                    />
+                    <label>Other </label>
+
+                    <AutoSize
+                      value={mentelText}
+                      setValue={setMentelText}
+                      placeholder="________"
+                    />
+                  </div>
+                </div>
+
+                <label
+                  htmlFor=""
+                  className="label-review"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Mood Level:
+                </label>
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="normal"
+                      checked={mind === "Normal"}
+                      onChange={() => handleCheckboxChangeMind("Normal")}
+                    />
+                    <label htmlFor="normal">Normal</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="elevated"
+                      checked={mind === "Elevated"}
+                      onChange={() => handleCheckboxChangeMind("Elevated")}
+                    />
+                    <label htmlFor="elevated">Elevated</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="depressed"
+                      checked={mind === "Depressed"}
+                      onChange={() => handleCheckboxChangeMind("Depressed")}
+                    />
+                    <label htmlFor="depressed">Depressed</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="anxious"
+                      checked={mind === "Anxious"}
+                      onChange={() => handleCheckboxChangeMind("Anxious")}
+                    />
+                    <label htmlFor="anxious">Anxious</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      checked={mind === "other"}
+                      onChange={() => handleCheckboxChangeMind("other")}
+                    />
+                    <label>Other</label>
+                    <AutoSize
+                      value={mindText}
+                      setValue={setMindText}
+                      placeholder="________"
+                    />
+                  </div>
+                </div>
+
+                <label
+                  htmlFor=""
+                  className="label-review"
+                  style={{ fontWeight: "bold" }}
+                >
+                  ADLS:
+                </label>
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="independent"
+                      checked={adls === "independent"}
+                      onChange={() => setAdls("independent")}
+                    />
+                    <label htmlFor="independent">
+                      Is independent with all ADLS
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="personalCareLevel"
+                      checked={adls === "personalCareLevel"}
+                      onChange={() => setAdls("personalCareLevel")}
+                    />
+                    <label htmlFor="personalCareLevel">
+                      Personal care level
+                    </label>
+                  </div>
+                </div>
+                <div className="form-field">
+                  <textarea
+                    type="text"
+                    id="AHCCCS"
+                    value={adlsText}
+                    rows={2}
+                    cols={130}
+                    placeholder="Enter text."
+                    required
+                    onChange={(e) => setAldsText(e.target.value)}
+                  />
+                </div>
+                <label className="label-review">
+                  Behavioral Health Services:
+                </label>
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="receivesServices"
+                      value="receivesServices"
+                      checked={BHealth === "receivesServices"}
+                      onChange={() => setBHealth("receivesServices")}
+                    />
+                    <label htmlFor="receivesServices">
+                      Receives behavioral health services
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="prescribedMedication"
+                      value="prescribedMedication"
+                      checked={BHealth === "prescribedMedication"}
+                      onChange={() => setBHealth("prescribedMedication")}
+                    />
+                    <label htmlFor="prescribedMedication">
+                      Is prescribed psychotropic medication
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="followsHouseRules"
+                      value="followsHouseRules"
+                      checked={BHealth === "followsHouseRules"}
+                      onChange={() => setBHealth("followsHouseRules")}
+                    />
+                    <label htmlFor="followsHouseRules">
+                      Resident agrees to follow house rules.
+                    </label>
+                  </div>
+                </div>
+                <div className="form-field">
+                  <textarea
+                    type="text"
+                    id="AHCCCS"
+                    value={Btext}
+                    rows={2}
+                    cols={130}
+                    placeholder="Enter text."
+                    required
+                    onChange={(e) => setBtext(e.target.value)}
+                  />
+                </div>
+                <div className="box-image-container">
+                  <div className="form-field-single-update">
+                    <label>Primary Care Provider:</label>
+                    {/* khf */}
+                    <input
+                      type="text"
+                      placeholder="Enter text."
+                      value={primaryCare}
+                      required
+                      onChange={(e) => setPrimaryCare(e.target.value)}
+                    />
+                  </div>
+                  <div className="border-bootom-line"></div>
+                  <div className="form-field-single-update">
+                    <label>Psychiatric Provider:</label>
+                    <input
+                      type="text"
+                      placeholder="Enter text."
+                      value={psychiatricProvider}
+                      required
+                      onChange={(e) => setPsychiatricProvider(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <p style={{ marginTop: "1rem" }}>
+                  Resident to receive treatment services from above provider(s)
+                  every 1 to 2 months or earlier as needed. Specialty providers
+                  are to be managed and referred per primary care medical
+                  provider.
+                </p>
+                <div className="box-image-container">
+                  <div className="form-field-single-update">
+                    <label>Resident Goals:</label>
+                    <input
+                      type="text"
+                      placeholder="Enter text."
+                      value={residentGoal}
+                      required
+                      onChange={(e) => setResidentGoal(e.target.value)}
+                    />
+                  </div>
+                  <div className="border-bootom-line"></div>
+                  <div className="form-field-single-update">
+                    <label>Allergies:</label>
+                    <input
+                      type="text"
+                      placeholder="Enter text."
+                      value={allergies}
+                      required
+                      onChange={(e) => setAllergies(e.target.value)}
+                    />
+                  </div>
+                  <div className="border-bootom-line"></div>
+                  <div className="form-field-single-update">
+                    <label>Triggers:</label>
+                    <input
+                      type="text"
+                      placeholder="Enter text"
+                      value={Triggers}
+                      required
+                      onChange={(e) => setTriggers(e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                <div className="form-field">
+                  <label htmlFor="" className="label-review">
+                    Strengths:
+                  </label>
+
+                  <Select
+                    isMulti
+                    options={strengthsOption}
+                    onChange={strengthsHandler}
+                    value={strengths}
+                    isCreatable={true}
+                    onKeyDown={handleKeyStrengths}
+                  />
+                </div>
+
+                <div className="form-field">
+                  <label className="label-review">Barriers:</label>
+
+                  <Select
+                    isMulti
+                    onChange={BarriersHandler}
+                    value={Barriers}
+                    options={BarriersOption}
+                    isCreatable={true}
+                    onKeyDown={handleKeyBarriers}
+                  />
+                </div>
+
+                <div className="formsheading">
+                  <h6>
+                    Risk Assessment / Warning Signs & Symptoms of Suicidal
+                    Ideations
+                  </h6>
+                </div>
+                <label
+                  htmlFor=""
+                  className="label-review"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Behavioral Symptoms:
+                </label>
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="selfInjuring"
+                      checked={behavioralSymptoms.includes("selfInjuring")}
+                      onChange={() =>
+                        handleCheckboxChangeBehavioral("selfInjuring")
+                      }
+                    />
+                    <label htmlFor="selfInjuring">Self-injuring</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="recklessBehavior"
+                      checked={behavioralSymptoms.includes("recklessBehavior")}
+                      onChange={() =>
+                        handleCheckboxChangeBehavioral("recklessBehavior")
+                      }
+                    />
+                    <label htmlFor="recklessBehavior">Reckless behavior</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="impulsiveBehaviors"
+                      checked={behavioralSymptoms.includes(
+                        "impulsiveBehaviors"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeBehavioral("impulsiveBehaviors")
+                      }
+                    />
+                    <label htmlFor="impulsiveBehaviors">
+                      Impulsive behaviors
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="socialIsolation"
+                      checked={behavioralSymptoms.includes("socialIsolation")}
+                      onChange={() =>
+                        handleCheckboxChangeBehavioral("socialIsolation")
+                      }
+                    />
+                    <label htmlFor="socialIsolation">Social isolation</label>
+                  </div>
+
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="nolongerenjoyingpreviousactivities"
+                      checked={behavioralSymptoms.includes(
+                        "nolongerenjoyingpreviousactivities"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeBehavioral(
+                          "nolongerenjoyingpreviousactivities"
+                        )
+                      }
+                    />
+                    <label htmlFor="nolongerenjoyingpreviousactivities">
+                      No longer enjoying previous activities{" "}
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="talkingorwriting"
+                      checked={behavioralSymptoms.includes("talkingorwriting")}
+                      onChange={() =>
+                        handleCheckboxChangeBehavioral("talkingorwriting")
+                      }
+                    />
+                    <label htmlFor="talkingorwriting">
+                      Talking, or writing
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="aboutdeath"
+                      checked={behavioralSymptoms.includes("aboutdeath")}
+                      onChange={() =>
+                        handleCheckboxChangeBehavioral("aboutdeath")
+                      }
+                    />
+                    <label htmlFor="aboutdeath">About death </label>
+                  </div>
+                  {/* add paremeter */}
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Nonereported"
+                      checked={behavioralSymptoms.includes("Nonereported")}
+                      onChange={() =>
+                        handleCheckboxChangeBehavioral("Nonereported")
+                      }
+                    />
+                    <label htmlFor="Nonereported">None reported</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      checked={behavioralSymptoms.includes("Other")}
+                      onChange={() => handleCheckboxChangeBehavioral("Other")}
+                    />
+                    <label>Other</label>
+                    {behavioralSymptomsBoolean && (
+                      <AutoSize
+                        value={behavioralSymptomsOther}
+                        setValue={setBehavioralSymptomsOther}
+                        placeholder="________"
+                      />
+                    )}
+                  </div>
+                </div>
+
+                {/*   
+              {
+                behavioralSymptomsBoolean && (
+                  <div className="form-field">
+                <label htmlFor="programlocation&addresstypeOfOtherBoolean">Comments</label>
                 <textarea
-                  type="text"
-                  required
-                  value={additionalComment}
+                  id="programlocation&addresstypeOfOtherBoolean"
+                  value={behavioralSymptomsOther}
+                  placeholder="Enter text"
                   rows={2}
-                  cols={130}
-                  placeholder="Type Here....."
-                  onChange={(e) => setAdditionalComment(e.target.value)}
+                  cols={82}
+                  required
+                  onChange={(e)=>setBehavioralSymptomsOther(e.target.value)}
                 />
               </div>
-              <label htmlFor="" className="label-review">
-                Recommendations for further programs upon discharge:
-              </label>
+                )
+              } */}
 
-              <div className="yeschechbox-review">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="PHP"
-                    checked={recommendationsForFurtherPrograms.includes("PHP")}
-                    onChange={() =>
-                      handleCheckboxChangerecommendationsForFurtherPrograms(
-                        "PHP"
-                      )
-                    }
-                  />
-                  <label htmlFor="PHP">PHP</label>
+                <label
+                  htmlFor=""
+                  className="label-review"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Physical Symptoms:
+                </label>
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="insomnia"
+                      checked={physicalSymptoms.includes("insomnia")}
+                      onChange={() => handleCheckboxChangePhysical("insomnia")}
+                    />
+                    <label htmlFor="insomnia">Insomnia</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="hypersomnia"
+                      checked={physicalSymptoms.includes("hypersomnia")}
+                      onChange={() =>
+                        handleCheckboxChangePhysical("hypersomnia")
+                      }
+                    />
+                    <label htmlFor="hypersomnia">Hypersomnia</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="changesInAppetite"
+                      checked={physicalSymptoms.includes("changesInAppetite")}
+                      onChange={() =>
+                        handleCheckboxChangePhysical("changesInAppetite")
+                      }
+                    />
+                    <label htmlFor="changesInAppetite">
+                      Changes in appetite
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="weightGainLoss"
+                      checked={physicalSymptoms.includes("weightGainLoss")}
+                      onChange={() =>
+                        handleCheckboxChangePhysical("weightGainLoss")
+                      }
+                    />
+                    <label htmlFor="weightGainLoss">Weight gain/loss</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="panicAttacks"
+                      checked={physicalSymptoms.includes("panicAttacks")}
+                      onChange={() =>
+                        handleCheckboxChangePhysical("panicAttacks")
+                      }
+                    />
+                    <label htmlFor="panicAttacks">Panic attacks</label>
+                  </div>
+
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Nonereported"
+                      checked={physicalSymptoms.includes("Nonereported")}
+                      onChange={() =>
+                        handleCheckboxChangePhysical("Nonereported")
+                      }
+                    />
+                    <label htmlFor="Nonereported">None reported</label>
+                  </div>
+
+                  <div>
+                    <input
+                      type="checkbox"
+                      checked={physicalSymptoms.includes("Other")}
+                      onChange={() => handleCheckboxChangePhysical("Other")}
+                    />
+                    <label>Other</label>
+                    {physicalSymptomsBoolean && (
+                      // <AutosizeInput
+                      //   type="text"
+                      //   inputStyle={{ border: "none", outline: "none" }}
+                      //   placeholder="________"
+                      //   value={physicalSymptomsOther}
+                      //   onChange={(e) => setPhysicalSymptomsOther(e.target.value)}
+                      // />
+                      <AutoSize
+                        value={physicalSymptomsOther}
+                        setValue={setPhysicalSymptomsOther}
+                        placeholder="________"
+                      />
+                    )}
+                  </div>
                 </div>
 
+                {/* {
+                physicalSymptomsBoolean && (
+                  <div className="form-field">
+                <label htmlFor="programlocation&addresstypeOfOtherBoolean">Comments</label>
+                <textarea
+                  id="programlocation&addresstypeOfOtherBoolean"
+                  value={physicalSymptomsOther}
+                  placeholder="Enter text"
+                  rows={2}
+                  cols={82}
+                  required
+                  onChange={(e)=>setPhysicalSymptomsOther(e.target.value)}
+                />
+              </div>
+                )
+              } */}
+
+                <label
+                  htmlFor="cognitiveSymptoms"
+                  className="label-review"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Cognitive Symptoms:
+                </label>
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="concentration"
+                      checked={consnotiveSymptoms.includes("concentration")}
+                      onChange={() =>
+                        handleCheckboxChangeCognitive("concentration")
+                      }
+                    />
+                    <label htmlFor="concentration">
+                      Lacking the ability to concentrate
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="memoryImpairment"
+                      checked={consnotiveSymptoms.includes("memoryImpairment")}
+                      onChange={() =>
+                        handleCheckboxChangeCognitive("memoryImpairment")
+                      }
+                    />
+                    <label htmlFor="memoryImpairment">
+                      Memory impairment, ruminating
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="thoughtsAboutDeath"
+                      checked={consnotiveSymptoms.includes(
+                        "pervasivethoughtsaboutdeathanddying"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeCognitive(
+                          "pervasivethoughtsaboutdeathanddying"
+                        )
+                      }
+                    />
+                    <label htmlFor="thoughtsAboutDeath">
+                      Pervasive thoughts about death and dying
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="inabilityToFocus"
+                      checked={consnotiveSymptoms.includes(
+                        "inabilitytofocusonspecifictasks"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeCognitive(
+                          "inabilitytofocusonspecifictasks"
+                        )
+                      }
+                      y
+                    />
+                    <label htmlFor="inabilityToFocus">
+                      Inability to focus on specific tasks
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="specifictasks"
+                      checked={consnotiveSymptoms.includes("specifictasks")}
+                      onChange={() =>
+                        handleCheckboxChangeCognitive("specifictasks")
+                      }
+                    />
+                    <label htmlFor="specifictasks">Specific tasks</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Nonereported"
+                      checked={consnotiveSymptoms.includes("Nonereported")}
+                      onChange={() =>
+                        handleCheckboxChangeCognitive("Nonereported")
+                      }
+                    />
+                    <label htmlFor="Nonereported">None reported</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      checked={consnotiveSymptoms.includes("Other")}
+                      onChange={() => handleCheckboxChangeCognitive("Other")}
+                    />
+                    <label>Other</label>
+                    {consnotiveSymptomsBoolean && (
+                      // <AutosizeInput
+                      //   type="text"
+                      //   inputStyle={{ border: "none", outline: "none" }}
+                      //   placeholder="________"
+                      //   value={consnotiveSymptomsOther}
+                      //   onChange={(e) =>
+                      //     setConsnotiveSymptomsOther(e.target.value)
+                      //   }
+                      // />
+                      <AutoSize
+                        value={consnotiveSymptomsOther}
+                        setValue={setConsnotiveSymptomsOther}
+                        placeholder="________"
+                      />
+                    )}
+                  </div>
+                </div>
+                {/* 
+              {
+                consnotiveSymptomsBoolean && (
+                  <div className="form-field">
+                <label htmlFor="programlocation&addresstypeOfOtherBoolean">Comments</label>
+                <textarea
+                  id="programlocation&addresstypeOfOtherBoolean"
+                  value={consnotiveSymptomsOther}
+                  placeholder="Enter text"
+                  rows={2}
+                  cols={82}
+                  required
+                  onChange={(e)=>setConsnotiveSymptomsOther(e.target.value)}
+                />
+              </div>
+                )
+              } */}
+
+                <label
+                  htmlFor=""
+                  className="label-review"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Psychosocial Symptoms:{" "}
+                </label>
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="helplessness"
+                      checked={psychosocialSymptoms.includes("helplessness")}
+                      onChange={() =>
+                        handleCheckboxChangePsychosocial("helplessness")
+                      }
+                    />
+                    <label htmlFor="helplessness">
+                      Feeling of helplessness
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="worthlessness"
+                      checked={psychosocialSymptoms.includes("worthlessness")}
+                      onChange={() =>
+                        handleCheckboxChangePsychosocial("worthlessness")
+                      }
+                    />
+                    <label htmlFor="worthlessness">Worthlessness</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="depression"
+                      checked={psychosocialSymptoms.includes("depression")}
+                      onChange={() =>
+                        handleCheckboxChangePsychosocial("depression")
+                      }
+                    />
+                    <label htmlFor="depression">Depression</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="anxiety"
+                      checked={psychosocialSymptoms.includes("anxiety")}
+                      onChange={() =>
+                        handleCheckboxChangePsychosocial("anxiety")
+                      }
+                    />
+                    <label htmlFor="anxiety">Anxiety</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="moodSwings"
+                      checked={psychosocialSymptoms.includes("moodSwings")}
+                      onChange={() =>
+                        handleCheckboxChangePsychosocial("moodSwings")
+                      }
+                    />
+                    <label htmlFor="moodSwings">Mood Swings</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="irritability"
+                      checked={psychosocialSymptoms.includes("irritability")}
+                      onChange={() =>
+                        handleCheckboxChangePsychosocial("irritability")
+                      }
+                    />
+                    <label htmlFor="irritability">Irritability</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Nonereported"
+                      checked={psychosocialSymptoms.includes("Nonereported")}
+                      onChange={() =>
+                        handleCheckboxChangePsychosocial("Nonereported")
+                      }
+                    />
+                    <label htmlFor="Nonereported">None reported</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="OtherpsychosocialSymptoms"
+                      checked={psychosocialSymptoms.includes("Other")}
+                      onChange={() => handleCheckboxChangePsychosocial("Other")}
+                    />
+                    <label htmlFor="OtherpsychosocialSymptoms">Other</label>
+                    {psychosocialSymptomsBoolean && (
+                      // <AutosizeInput
+                      //   type="text"
+                      //   inputStyle={{ border: "none", outline: "none" }}
+                      //   placeholder="________"
+                      //   value={psychosocialSymptomssOther}
+                      //   onChange={(e) =>
+                      //     setPsychosocialSymptomsOther(e.target.value)
+                      //   }
+                      // />
+                      <AutoSize
+                        value={psychosocialSymptomssOther}
+                        setValue={setPsychosocialSymptomsOther}
+                        placeholder="________"
+                      />
+                    )}
+                  </div>
+                </div>
+                {/* 
+              {
+                psychosocialSymptomsBoolean && (
+                  <div className="form-field">
+                <label htmlFor="programlocation&addresstypeOfOtherBoolean">Comments</label>
+                <textarea
+                  id="programlocation&addresstypeOfOtherBoolean"
+                  value={psychosocialSymptomssOther}
+                  placeholder="Enter text"
+                  rows={2}
+                  cols={82}
+                  required
+                  onChange={(e)=>setPsychosocialSymptomsOther(e.target.value)}
+                />
+              </div>
+                )
+              } */}
+
+                <label
+                  htmlFor=""
+                  className="label-review"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Interventions that are being implemented:
+                </label>
+
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Psychiatric services"
+                      checked={interventionsImplemented.includes(
+                        "Psychiatric services"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChange("Psychiatric services")
+                      }
+                    />
+                    <label htmlFor="Psychiatric services">
+                      Psychiatric services
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Communication Skills"
+                      checked={interventionsImplemented.includes(
+                        "Communication Skills"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChange("Communication Skills")
+                      }
+                    />
+                    <label htmlFor="Communication Skills">
+                      Communication Skills
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Verbal Prompt"
+                      checked={interventionsImplemented.includes(
+                        "Verbal Prompt"
+                      )}
+                      onChange={() => handleCheckboxChange("Verbal Prompt")}
+                    />
+                    <label htmlFor="Verbal Prompt">Verbal Prompt</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Interactive Feedback"
+                      checked={interventionsImplemented.includes(
+                        "Interactive Feedback"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChange("Interactive Feedback")
+                      }
+                    />
+                    <label htmlFor="Interactive Feedback">
+                      Interactive Feedback
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Encouragement"
+                      checked={interventionsImplemented.includes(
+                        "Encouragement"
+                      )}
+                      onChange={() => handleCheckboxChange("Encouragement")}
+                    />
+                    <label htmlFor="Encouragement">Encouragement</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Role-Play"
+                      checked={interventionsImplemented.includes("Role-Play")}
+                      onChange={() => handleCheckboxChange("Role-Play")}
+                    />
+                    <label htmlFor="Role-Play">Role-Play</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Review of Treatment Plan"
+                      checked={interventionsImplemented.includes(
+                        "Review of Treatment Plan"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChange("Review of Treatment Plan")
+                      }
+                    />
+                    <label htmlFor="Review of Treatment Plan">
+                      Review of Treatment Plan
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Relaxation techniques"
+                      checked={interventionsImplemented.includes(
+                        "Relaxation techniques"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChange("Relaxation techniques")
+                      }
+                    />
+                    <label htmlFor="Relaxation techniques">
+                      Relaxation techniques
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Reframing"
+                      checked={interventionsImplemented.includes("Reframing")}
+                      onChange={() => handleCheckboxChange("Reframing")}
+                    />
+                    <label htmlFor="Reframing">Reframing</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Conflict resolution"
+                      checked={interventionsImplemented.includes(
+                        "Conflict resolution"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChange("Conflict resolution")
+                      }
+                    />
+                    <label htmlFor="Conflict resolution">
+                      Conflict resolution
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Rehearsal, Spiritual exploration"
+                      checked={interventionsImplemented.includes(
+                        "Rehearsal, Spiritual exploration"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChange("Rehearsal, Spiritual exploration")
+                      }
+                    />
+                    <label htmlFor="Rehearsal, Spiritual exploration">
+                      Rehearsal, Spiritual exploration
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Values clarification, Psycho-education"
+                      checked={interventionsImplemented.includes(
+                        "Values clarification, Psycho-education"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChange(
+                          "Values clarification, Psycho-education"
+                        )
+                      }
+                    />
+                    <label htmlFor="Values clarification, Psycho-education">
+                      Values clarification, Psycho-education
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Exploring feelings"
+                      checked={interventionsImplemented.includes(
+                        "Exploring feelings"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChange("Exploring feelings")
+                      }
+                    />
+                    <label htmlFor="Exploring feelings">
+                      Exploring feelings
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Distraction"
+                      checked={interventionsImplemented.includes("Distraction")}
+                      onChange={() => handleCheckboxChange("Distraction")}
+                    />
+                    <label htmlFor="Distraction">Distraction</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Redirection"
+                      checked={interventionsImplemented.includes("Redirection")}
+                      onChange={() => handleCheckboxChange("Redirection")}
+                    />
+                    <label htmlFor="Redirection">Redirection</label>
+                  </div>
+
+                  <div>
+                    <input
+                      type="checkbox"
+                      checked={interventionsImplemented.includes("Other")}
+                      onChange={() => handleCheckboxChange("Other")}
+                    />
+                    <label>Other</label>
+                    {interventionsImplementedBoolean && (
+                      <AutoSize
+                        value={interventionsImplementedOther}
+                        setValue={setInterventionsImplementedOther}
+                        placeholder="________"
+                      />
+                    )}
+                  </div>
+                </div>
+
+                <label className="label-review">
+                  Counseling and Frequency:
+                </label>
+                <div className="formsheading-treatment">
+                  <div className="inLine_box_style">
+                    <p>Total of minimum </p>{" "}
+                    <div>
+                      <input
+                        style={{
+                          outline: "none",
+                          border: "none",
+                          width: "40px",
+                          marginBottom: "13px",
+                        }}
+                        placeholder="__________"
+                        type="text"
+                        value={minimumHoure}
+                        required
+                        onChange={(e) => setMinimumHoure(e.target.value)}
+                      />
+                    </div>
+                    <p>hours daily.</p>
+                  </div>
+                </div>
+                {/* <div className="yeschechbox-review">
                 <div>
-                  <input
-                    type="checkbox"
-                    id="IOP"
-                    checked={recommendationsForFurtherPrograms.includes("IOP")}
-                    onChange={() =>
-                      handleCheckboxChangerecommendationsForFurtherPrograms(
-                        "IOP"
-                      )
-                    }
-                  />
-                  <label htmlFor="IOP">IOP</label>
+                  <span>Total of Minimum</span>
                 </div>
                 <div>
-                  <input
-                    type="checkbox"
-                    id="Sober living"
-                    checked={recommendationsForFurtherPrograms.includes(
-                      "Sober living"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChangerecommendationsForFurtherPrograms(
-                        "Sober living"
-                      )
-                    }
-                  />
-                  <label htmlFor="Sober living">Sober living</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Home"
-                    checked={recommendationsForFurtherPrograms.includes("Home")}
-                    onChange={() =>
-                      handleCheckboxChangerecommendationsForFurtherPrograms(
-                        "Home"
-                      )
-                    }
-                  />
-                  <label htmlFor="Home">Home</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Flex Care 23.9"
-                    checked={recommendationsForFurtherPrograms.includes(
-                      "Flex Care 23.9"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChangerecommendationsForFurtherPrograms(
-                        "Flex Care 23.9"
-                      )
-                    }
-                  />
-                  <label htmlFor="Flex Care 23.9">Flex Care 23.9</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Flex Care 16"
-                    checked={recommendationsForFurtherPrograms.includes(
-                      "Flex Care 16"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChangerecommendationsForFurtherPrograms(
-                        "Flex Care 16"
-                      )
-                    }
-                  />
-                  <label htmlFor="Flex Care 16">Flex Care 16</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                    id="Flex Care 8"
-                    checked={recommendationsForFurtherPrograms.includes(
-                      "Flex Care 8"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChangerecommendationsForFurtherPrograms(
-                        "Flex Care 8"
-                      )
-                    }
-                  />
-                  <label htmlFor="Flex Care 8">Flex Care 8</label>
-                </div>
-                <div>
-                  <input
-                    type="checkbox"
-                  
-                    checked={recommendationsForFurtherPrograms.includes(
-                      "Other"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChangerecommendationsForFurtherPrograms(
-                        "Other"
-                      )
-                    }
-                  />
-                  <label >Other</label>
-                  {recommendationsForFurtherProgramsBoolean && (
-                 
-                      <AutoSize value={recommendationsForFurtherProgramsOther} setValue={setRecommendationsForFurtherProgramsOther}  placeholder="________"/>
-                    )}
+                  <span>Hours per Week</span>
                 </div>
               </div>
+              <div className="yeschechbox-review">
+                <label htmlFor="">Individual: </label>
+                <div>
+                  <span>Minimum 1 hour session per week</span>
+                </div>
+              </div> */}
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Group"
+                      checked={counselingOptions.includes("Group")}
+                      onChange={() => handleCheckboxChangeCounsiling("Group")}
+                    />
+                    <label htmlFor="Group">Group</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="3 times a day"
+                      checked={counselingOptions.includes("3 times a day")}
+                      onChange={() =>
+                        handleCheckboxChangeCounsiling("3 times a day")
+                      }
+                    />
+                    <label htmlFor="3 times a day">3 times a day</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="4 times a day"
+                      checked={counselingOptions.includes("4 times a day")}
+                      onChange={() =>
+                        handleCheckboxChangeCounsiling("4 times a day")
+                      }
+                    />
+                    <label htmlFor="4 times a day">4 times a day</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Individual Counseling: Minimum 1 hour session per week"
+                      checked={counselingOptions.includes(
+                        "Individual Counseling: Minimum 1 hour session per week"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeCounsiling(
+                          "Individual Counseling: Minimum 1 hour session per week"
+                        )
+                      }
+                    />
+                    <label htmlFor="Individual Counseling: Minimum 1 hour session per week">
+                      Individual Counseling: Minimum 1 hour session per week
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Individual Counseling: Minimum 1 hour session every 2 weeks"
+                      checked={counselingOptions.includes(
+                        "Individual Counseling: Minimum 1 hour session every 2 weeks"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeCounsiling(
+                          "Individual Counseling: Minimum 1 hour session every 2 weeks"
+                        )
+                      }
+                    />
+                    <label htmlFor="Individual Counseling: Minimum 1 hour session every 2 weeks">
+                      Individual Counseling: Minimum 1 hour session every 2
+                      weeks
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Individual Therapy: As needed"
+                      checked={counselingOptions.includes(
+                        "Individual Therapy: As needed"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeCounsiling(
+                          "Individual Therapy: As needed"
+                        )
+                      }
+                    />
+                    <label htmlFor="Individual Therapy: As needed">
+                      Individual Therapy: As needed
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Individual Therapy: Please Specify"
+                      checked={counselingOptions.includes(
+                        "Individual Therapy: Please Specify"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeCounsiling(
+                          "Individual Therapy: Please Specify"
+                        )
+                      }
+                    />
+                    <label htmlFor="Individual Therapy: Please Specify">
+                      Individual Therapy: Please Specify
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Nonereported"
+                      checked={counselingOptions.includes(
+                        "Resident decline individual therapy services"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeCounsiling(
+                          "Resident decline individual therapy services"
+                        )
+                      }
+                    />
+                    <label htmlFor="Resident decline individual therapy services">
+                      Resident decline individual therapy services
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Family Counseling"
+                      checked={counselingOptions.includes("Family Counseling")}
+                      onChange={() =>
+                        handleCheckboxChangeCounsiling("Family Counseling")
+                      }
+                    />
+                    <label htmlFor="Family Counseling">Family Counseling</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="NA"
+                      checked={counselingOptions.includes("NA")}
+                      onChange={() => handleCheckboxChangeCounsiling("NA")}
+                    />
+                    <label htmlFor="NA">NA</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="AA"
+                      checked={counselingOptions.includes("AA")}
+                      onChange={() => handleCheckboxChangeCounsiling("AA")}
+                    />
+                    <label htmlFor="AA">AA</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Month ART Meeting/Staffing"
+                      checked={counselingOptions.includes(
+                        "Month ART Meeting/Staffing"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeCounsiling(
+                          "Month ART Meeting/Staffing"
+                        )
+                      }
+                    />
+                    <label htmlFor="Month ART Meeting/Staffing">
+                      Month ART Meeting/Staffing
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Weekly ART Meeting/Staffing"
+                      checked={counselingOptions.includes(
+                        "Weekly ART Meeting/Staffing"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeCounsiling(
+                          "Weekly ART Meeting/Staffing"
+                        )
+                      }
+                    />
+                    <label htmlFor="Weekly ART Meeting/Staffing">
+                      Weekly ART Meeting/Staffing
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      checked={counselingOptions.includes("Other")}
+                      onChange={() => handleCheckboxChangeCounsiling("Other")}
+                    />
+                    <label>Other</label>
+                    {counselingOptionsTextBoolean && (
+                      <AutoSize
+                        value={counselingOptionsText}
+                        setValue={setCounselingOptionsOther}
+                        placeholder="________"
+                      />
+                    )}
+                  </div>
+                </div>
 
-              {/* <div className="yeschechbox-review">
+                <div className="formsheading" style={{ marginTop: "5rem" }}>
+                  <h6 style={{ fontWeight: "bold" }}>
+                    Goals for Changes in the Resident Phychorial Interaction or
+                    Behaviour :
+                  </h6>
+                </div>
+
+                <div className="needs-interventions-container2 table-respnosive">
+                  <div className="needs-interventions-column2">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Treatment Goals</th>
+                          <th>Admission Measure</th>
+                          <th>Current Measure</th>
+                          <th>Estimated Date of Goal Completion</th>
+                          <th>Comments</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            {" "}
+                            <p>1: Maintain sobriety:</p>
+                            {/* <Select
+                            isMulti
+                            options={option1Option}
+                            value={option1}
+                            onChange={option1Handler}
+                            isCreatable={true}
+                            onKeyDown={handleKeyOption1}
+                          /> */}
+                            <ul>
+                              {option1?.length > 0 &&
+                                option1.map((item, index) => (
+                                  <li key={index}>{item?.value}</li>
+                                ))}
+                            </ul>
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={admissionMeasure1}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setAdmissionMeasure1(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={currentMeasure1}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setCurrentMeasure1(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="date"
+                              value={estimatedDateOfCompletion1}
+                              className="treatment_plan_table"
+                              required
+                              onChange={(e) =>
+                                setEstimatedDateOfCompletion1(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              className="treatment_plan_table"
+                              rows={Math.max(
+                                comments1 ? comments1.split("\n").length : 1,
+                                1
+                              )}
+                              value={comments1 || ""}
+                              placeholder="___________"
+                              onChange={(e) => setComment1(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                  e.preventDefault();
+                                  setComment1(
+                                    (prevComment) => prevComment + "\n"
+                                  );
+                                }
+                              }}
+                            />
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            {" "}
+                            <p>2: Independent Living Skills:</p>
+                            {/* <Select
+                            isMulti
+                            options={option2Option}
+                            value={option2}
+                            onChange={option2Handler}
+                            isCreatable={true}
+                            onKeyDown={handleKeyOption2}
+                          /> */}
+                           <ul>
+        {option2?.length> 0 && option2.map((item, index) => (
+            <li key={index}>{item?.value}</li>
+        ))}
+    </ul>
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={admissionMeasure2}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setAdmissionMeasure2(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={currentMeasure2}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setCurrentMeasure2(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="date"
+                              value={estimatedDateOfCompletion2}
+                              className="treatment_plan_table"
+                              required
+                              onChange={(e) =>
+                                setEstimatedDateOfCompletion2(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              className="treatment_plan_table"
+                              rows={Math.max(
+                                comments2 ? comments2.split("\n").length : 1,
+                                1
+                              )}
+                              value={comments2 || ""}
+                              placeholder="___________"
+                              onChange={(e) => setComment2(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                  e.preventDefault();
+                                  setComment2(
+                                    (prevComment) => prevComment + "\n"
+                                  );
+                                }
+                              }}
+                            />
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            {" "}
+                            <p>3: Employment:</p>
+                            {/* <Select
+                            isMulti
+                            options={option3Option}
+                            value={option3}
+                            onChange={option3Handler}
+                            isCreatable={true}
+                            onKeyDown={handleKeyOption3}
+                          /> */}
+                             <ul>
+        {option3?.length> 0 && option3.map((item, index) => (
+            <li key={index}>{item?.value}</li>
+        ))}
+    </ul>
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={admissionMeasure3}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setAdmissionMeasure3(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={currentMeasure3}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setCurrentMeasure3(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="date"
+                              value={estimatedDateOfCompletion3}
+                              className="treatment_plan_table"
+                              required
+                              onChange={(e) =>
+                                setEstimatedDateOfCompletion3(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              className="treatment_plan_table"
+                              rows={Math.max(
+                                comments3 ? comments3.split("\n").length : 1,
+                                1
+                              )}
+                              value={comments3 || ""}
+                              placeholder="___________"
+                              onChange={(e) => setComment3(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                  e.preventDefault();
+                                  setComment3(
+                                    (prevComment) => prevComment + "\n"
+                                  );
+                                }
+                              }}
+                            />
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            {" "}
+                            <p>4: ADLS:</p>
+                            {/* <Select
+                            isMulti
+                            options={option4Option}
+                            value={option4}
+                            onChange={option4Handler}
+                            isCreatable={true}
+                            onKeyDown={handleKeyOption4}
+                          /> */}
+                         <ul>
+        {option4?.length> 0 && option4.map((item, index) => (
+            <li key={index}>{item?.value}</li>
+        ))}
+    </ul>
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={admissionMeasure4}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setAdmissionMeasure4(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={currentMeasure4}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setCurrentMeasure4(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="date"
+                              value={estimatedDateOfCompletion4}
+                              className="treatment_plan_table"
+                              required
+                              onChange={(e) =>
+                                setEstimatedDateOfCompletion4(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              className="treatment_plan_table"
+                              rows={Math.max(
+                                comments4 ? comments4.split("\n").length : 1,
+                                1
+                              )}
+                              value={comments4 || ""}
+                              placeholder="___________"
+                              onChange={(e) => setComment4(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                  e.preventDefault();
+                                  setComment4(
+                                    (prevComment) => prevComment + "\n"
+                                  );
+                                }
+                              }}
+                            />
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            {" "}
+                            <p>5: Safety:</p>
+                            {/* <Select
+                            isMulti
+                            options={option5Option}
+                            value={option5}
+                            onChange={option5Handler}
+                            isCreatable={true}
+                            onKeyDown={handleKeyOption5}
+                          /> */}
+                          <ul>
+        {option5?.length> 0 && option5.map((item, index) => (
+            <li key={index}>{item?.value}</li>
+        ))}
+    </ul>
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={admissionMeasure5}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setAdmissionMeasure5(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={currentMeasure5}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setCurrentMeasure5(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="date"
+                              value={estimatedDateOfCompletion5}
+                              className="treatment_plan_table"
+                              required
+                              onChange={(e) =>
+                                setEstimatedDateOfCompletion5(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              className="treatment_plan_table"
+                              rows={Math.max(
+                                comments5 ? comments5.split("\n").length : 1,
+                                1
+                              )}
+                              value={comments5 || ""}
+                              placeholder="___________"
+                              onChange={(e) => setComment5(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                  e.preventDefault();
+                                  setComment5(
+                                    (prevComment) => prevComment + "\n"
+                                  );
+                                }
+                              }}
+                            />
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            {" "}
+                            <p>6: Medication Education:</p>
+                            {/* <Select
+                            isMulti
+                            options={option6Option}
+                            value={option6}
+                            onChange={option6Handler}
+                            isCreatable={true}
+                            onKeyDown={handleKeyOption6}
+                          /> */}
+                             <ul>
+        {option6?.length> 0 && option6.map((item, index) => (
+            <li key={index}>{item?.value}</li>
+        ))}
+    </ul>
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={admissionMeasure6}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setAdmissionMeasure6(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={currentMeasure6}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setCurrentMeasure6(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="date"
+                              value={estimatedDateOfCompletion6}
+                              className="treatment_plan_table"
+                              required
+                              onChange={(e) =>
+                                setEstimatedDateOfCompletion6(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              className="treatment_plan_table"
+                              rows={Math.max(
+                                comments6 ? comments6.split("\n").length : 1,
+                                1
+                              )}
+                              value={comments6 || ""}
+                              placeholder="___________"
+                              onChange={(e) => setComment6(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                  e.preventDefault();
+                                  setComment6(
+                                    (prevComment) => prevComment + "\n"
+                                  );
+                                }
+                              }}
+                            />
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            {" "}
+                            <p>7: Managing Mental Health:</p>
+                            {/* <Select
+                            isMulti
+                            options={option7Option}
+                            value={option7}
+                            onChange={option7Handler}
+                            isCreatable={true}
+                            onKeyDown={handleKeyOption7}
+                          /> */}
+                            <ul>
+        {option7?.length> 0 && option7.map((item, index) => (
+            <li key={index}>{item?.value}</li>
+        ))}
+    </ul>
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={admissionMeasure7}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setAdmissionMeasure7(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={currentMeasure7}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setCurrentMeasure7(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="date"
+                              value={estimatedDateOfCompletion7}
+                              className="treatment_plan_table"
+                              required
+                              onChange={(e) =>
+                                setEstimatedDateOfCompletion7(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              className="treatment_plan_table"
+                              rows={Math.max(
+                                comments7 ? comments7.split("\n").length : 1,
+                                1
+                              )}
+                              value={comments7 || ""}
+                              placeholder="___________"
+                              onChange={(e) => setComment7(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                  e.preventDefault();
+                                  setComment7(
+                                    (prevComment) => prevComment + "\n"
+                                  );
+                                }
+                              }}
+                            />
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            {" "}
+                            <p>8: Legal:</p>
+                            {/* <Select
+                            isMulti
+                            options={option8Option}
+                            value={option8}
+                            onChange={option8Handler}
+                            isCreatable={true}
+                            onKeyDown={handleKeyOption8}
+                          /> */}
+                             <ul>
+        {option8?.length> 0 && option8.map((item, index) => (
+            <li key={index}>{item?.value}</li>
+        ))}
+    </ul>
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={admissionMeasure8}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setAdmissionMeasure8(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={currentMeasure8}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setCurrentMeasure8(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="date"
+                              value={estimatedDateOfCompletion8}
+                              className="treatment_plan_table"
+                              required
+                              onChange={(e) =>
+                                setEstimatedDateOfCompletion8(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              className="treatment_plan_table"
+                              rows={Math.max(
+                                comments8 ? comments8.split("\n").length : 1,
+                                1
+                              )}
+                              value={comments8 || ""}
+                              placeholder="___________"
+                              onChange={(e) => setComment8(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                  e.preventDefault();
+                                  setComment8(
+                                    (prevComment) => prevComment + "\n"
+                                  );
+                                }
+                              }}
+                            />
+                          </td>
+                        </tr>
+
+                        {otherArray.length > 0 &&
+                          otherArray.map((data, index) => (
+                            <tr key={index}>
+                              <td>
+                                <p>{9 + index}: </p>
+                                <ul>
+                                  <li>{data?.otherType}</li>
+                                </ul>
+                              </td>
+                              <td>{data?.admissionMeasure}</td>
+                              <td>{data?.currentMeasure}</td>
+                              <td>
+                                {data?.estimatedDateOfCompletion
+                                  ? data?.estimatedDateOfCompletion.slice(0, 10)
+                                  : ""}
+                              </td>
+                              <td>{data?.comments}</td>
+                            </tr>
+                          ))}
+
+                        {showOther && (
+                          <tr>
+                            <td>
+                              {" "}
+                              <p>{otherArray.length + 9}: Other:</p>
+                              <textarea
+                                className="treatment_plan_table"
+                                rows={Math.max(
+                                  optionOther
+                                    ? optionOther.split("\n").length
+                                    : 1,
+                                  1
+                                )}
+                                value={optionOther || ""}
+                                placeholder="___________"
+                                onChange={(e) => setOptionOther(e.target.value)}
+                                onKeyDown={(e) => {
+                                  if (e.key === "Enter") {
+                                    e.preventDefault();
+                                    setOptionOther(
+                                      (prevComment) => prevComment + "\n"
+                                    );
+                                  }
+                                }}
+                              />
+                            </td>
+                            <td>
+                              <input
+                                className="treatment_plan_table"
+                                type="text"
+                                value={admissionMeasureOther}
+                                placeholder="___________"
+                                required
+                                onChange={(e) =>
+                                  setAdmissionMeasureOther(e.target.value)
+                                }
+                              />
+                            </td>
+                            <td>
+                              <input
+                                className="treatment_plan_table"
+                                type="text"
+                                value={currentMeasureOther}
+                                placeholder="___________"
+                                required
+                                onChange={(e) =>
+                                  setCurrentMeasureOther(e.target.value)
+                                }
+                              />
+                            </td>
+                            <td>
+                              <input
+                                type="date"
+                                value={estimatedDateOfCompletionOther}
+                                className="treatment_plan_table"
+                                required
+                                onChange={(e) =>
+                                  setEstimatedDateOfCompletionOther(
+                                    e.target.value
+                                  )
+                                }
+                              />
+                            </td>
+                            <td>
+                              <textarea
+                                className="treatment_plan_table"
+                                rows={Math.max(
+                                  commentsOther.split("\n").length,
+                                  1
+                                )}
+                                value={commentsOther}
+                                placeholder="___________"
+                                onChange={(e) =>
+                                  setCommentOther(e.target.value)
+                                }
+                                onKeyDown={(e) => {
+                                  if (e.key === "Enter") {
+                                    e.preventDefault();
+                                    setCommentOther(
+                                      (prevComment) => prevComment + "\n"
+                                    );
+                                  }
+                                }}
+                              />
+                            </td>
+                          </tr>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div className="form-actions  hidePrint">
+                  <button
+                    type="button"
+                    className="safetybutton"
+                    onClick={handleAddButtonClick}
+                  >
+                    ADD
+                  </button>
+                </div>
+
+                <div className="yeschechbox-review-treatment">
+                  <div>
+                    <label style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
+                      Resident overall participation in treatment:{" "}
+                    </label>
+                  </div>
+
+                  <div className="yeschechbox-review-treatment-child">
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="100%"
+                        checked={residentParticipation === "100%"}
+                        onChange={() => setResidentParticipation("100%")}
+                      />
+                      <label htmlFor="100%">100%</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="75%"
+                        checked={residentParticipation === "75%"}
+                        onChange={() => setResidentParticipation("75%")}
+                      />
+                      <label htmlFor="100%">75%</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="50%"
+                        checked={residentParticipation === "50%"}
+                        onChange={() => setResidentParticipation("50%")}
+                      />
+                      <label htmlFor="50%">50%</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="25%"
+                        checked={residentParticipation === "25%"}
+                        onChange={() => setResidentParticipation("25%")}
+                      />
+                      <label htmlFor="25%">25%</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="≤5%"
+                        checked={residentParticipation === "≤5%"}
+                        onChange={() => setResidentParticipation("≤5%")}
+                      />
+                      <label htmlFor="≤5%">≤5%</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="Initial"
+                        checked={residentParticipation === "Initial"}
+                        onChange={() => setResidentParticipation("Initial")}
+                      />
+                      <label htmlFor="Initial">Initial</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="yeschechbox-review-treatment">
+                  <div>
+                    <label style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
+                      Resident Attitude:
+                    </label>
+                  </div>
+                  <div className="yeschechbox-review-treatment-child ">
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="Attentive"
+                        checked={residentAttitute === "Attentive"}
+                        onChange={() => setResidentAttitute("Attentive")}
+                      />
+                      <label htmlFor="Attentive">Attentive</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="Supportive"
+                        checked={residentAttitute === "Supportive"}
+                        onChange={() => setResidentAttitute("Supportive")}
+                      />
+                      <label htmlFor="Supportive">Supportive</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="Sharing"
+                        checked={residentAttitute === "Sharing"}
+                        onChange={() => setResidentAttitute("Sharing")}
+                      />
+                      <label htmlFor="Sharing">Sharing</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="Intrusive"
+                        checked={residentAttitute === "Intrusive"}
+                        onChange={() => setResidentAttitute("Intrusive")}
+                      />
+                      <label htmlFor="Intrusive">Intrusive</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="Resistant"
+                        checked={residentAttitute === "Resistant"}
+                        onChange={() => setResidentAttitute("Resistant")}
+                      />
+                      <label htmlFor="Resistant">Resistant</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="Initialgfud"
+                        checked={residentAttitute === "Initial"}
+                        onChange={() => setResidentAttitute("Initial")}
+                      />
+                      <label htmlFor="Initialgfud">Initial</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="yeschechbox-review-treatment">
+                  <div>
+                    <label
+                      style={{
+                        fontSize: "1.2rem",
+                        marginTop: "0.5rem",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Resident progress:
+                    </label>
+                  </div>
+                  <div className="yeschechbox-review-treatment-progress">
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="Deterioration"
+                        checked={residentProgress === "Deterioration"}
+                        onChange={() => setResidentProgress("Deterioration")}
+                      />
+                      <label htmlFor="Deterioration">Deterioration</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="No Progress"
+                        checked={residentProgress === "No Progress"}
+                        onChange={() => setResidentProgress("No Progress")}
+                      />
+                      <label htmlFor="No Progress">No Progress</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="Small progress"
+                        checked={residentProgress === "Small progress"}
+                        onChange={() => setResidentProgress("Small progress")}
+                      />
+                      <label htmlFor="Small progress">Small progress</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="Good Progress"
+                        checked={residentProgress === "Good Progress"}
+                        onChange={() => setResidentProgress("Good Progress")}
+                      />
+                      <label htmlFor="Good Progress">Good Progress</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="Goal achieved"
+                        checked={residentProgress === "Goal achieved"}
+                        onChange={() => setResidentProgress("Goal achieved")}
+                      />
+                      <label htmlFor="Goal achieved">Goal achieved</label>
+                    </div>
+                    <div className="checkbox-style-data">
+                      <input
+                        type="checkbox"
+                        id="InitialGoal"
+                        checked={residentProgress === "Initial"}
+                        onChange={() => setResidentProgress("Initial")}
+                      />
+                      <label htmlFor="InitialGoal">Initial</label>
+                    </div>
+                  </div>
+                </div>
+                <label htmlFor="" className="label-review">
+                  Support System:
+                </label>
+
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Family"
+                      checked={supportSystem.includes("Family")}
+                      onChange={() =>
+                        handleCheckboxChangeSupportSystem("Family")
+                      }
+                    />
+                    <label htmlFor="Family">Family</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Friends"
+                      checked={supportSystem.includes("Friends")}
+                      onChange={() =>
+                        handleCheckboxChangeSupportSystem("Friends")
+                      }
+                    />
+                    <label htmlFor="Friends">Friends</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="BHRF staff"
+                      checked={supportSystem.includes("BHRF staff")}
+                      onChange={() =>
+                        handleCheckboxChangeSupportSystem("BHRF staff")
+                      }
+                    />
+                    <label htmlFor="BHRF staff">BHRF staff</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Clinical seam"
+                      checked={supportSystem.includes("Clinical seam")}
+                      onChange={() =>
+                        handleCheckboxChangeSupportSystem("Clinical seam")
+                      }
+                    />
+                    <label htmlFor="Clinical seam">Clinical seam</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Guardian"
+                      checked={supportSystem.includes("Guardian")}
+                      onChange={() =>
+                        handleCheckboxChangeSupportSystem("Guardian")
+                      }
+                    />
+                    <label htmlFor="Guardian">Guardian</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Sponsor name"
+                      checked={supportSystem.includes("Sponsor name")}
+                      onChange={() =>
+                        handleCheckboxChangeSupportSystem("Sponsor name")
+                      }
+                    />
+                    <label htmlFor="Sponsor name">Sponsor name</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      checked={supportSystem.includes("Other")}
+                      onChange={() =>
+                        handleCheckboxChangeSupportSystem("Other")
+                      }
+                    />
+                    <label>Other</label>
+                    {supportSystemOtherTextBoolean && (
+                      <AutoSize
+                        value={supportSystemOtherText}
+                        setValue={setSupportSystemOtherText}
+                        placeholder="________"
+                      />
+                    )}
+                  </div>
+                </div>
+
+                <div className="form-field-single-update">
+                  <label>Phone Number: </label>
+                  <input
+                    placeholder="Type number"
+                    type="number"
+                    value={supportSystemPhoneNumber}
+                    required
+                    onChange={(e) =>
+                      setSupportSystemPhoneNumber(e.target.value)
+                    }
+                  />
+                </div>
+
+                <div className="form-field-single-update">
+                  <label>Current List of medication: </label>
+                  <input
+                    type="text"
+                    value={currentMedications}
+                    placeholder="Enter medication"
+                    required
+                    onChange={(e) => setCurrentMedications(e.target.value)}
+                  />
+                </div>
+                <label htmlFor="" className="label-review">
+                  Religious/Cultural Preference:
+                </label>
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Christian"
+                      checked={religiousPreference === "Christian"}
+                      onChange={() => setreligiousPreference("Christian")}
+                    />
+                    <label htmlFor="Christian">Christian</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Catholic"
+                      checked={religiousPreference === "Catholic"}
+                      onChange={() => setreligiousPreference("Catholic")}
+                    />
+                    <label htmlFor="Catholic">Catholic</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Buddhist"
+                      checked={religiousPreference === "Buddhist"}
+                      onChange={() => setreligiousPreference("Buddhist")}
+                    />
+                    <label htmlFor="Buddhist">Buddhist</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Islam"
+                      checked={religiousPreference === "Islam"}
+                      onChange={() => setreligiousPreference("Islam")}
+                    />
+                    <label htmlFor="Islam">Islam</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Judaism"
+                      checked={religiousPreference === "Judaism"}
+                      onChange={() => setreligiousPreference("Judaism")}
+                    />
+                    <label htmlFor="Judaism">Judaism</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Hinduism"
+                      checked={religiousPreference === "Hinduism"}
+                      onChange={() => setreligiousPreference("Hinduism")}
+                    />
+                    <label htmlFor="Hinduism">Hinduism</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Mormonism"
+                      checked={religiousPreference === "Mormonism"}
+                      onChange={() => setreligiousPreference("Mormonism")}
+                    />
+                    <label htmlFor="Mormonism">Mormonism</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Other"
+                      checked={religiousPreference === "Other"}
+                      onChange={() => setreligiousPreference("Other")}
+                    />
+                    <label htmlFor="Other">Other</label>
+                    {religiousPreference === "Other" && (
+                      <AutoSize
+                        value={religiousPreferenceText}
+                        setValue={setReligiousPreferenceText}
+                        placeholder="________"
+                      />
+                    )}
+                  </div>
+                </div>
+
+                <div className="form-field-single-update-bold">
+                  <label htmlFor="nutritionAndWellnessPlanning">
+                    Nutrition and wellness Planning:{" "}
+                  </label>
+                  <select
+                    id="nutritionAndWellnessPlanning"
+                    value={nutritionAndWellnessPlanning}
+                    onChange={(e) =>
+                      setNutritionAndWellnessPlanning(e.target.value)
+                    }
+                  >
+                    <option value="">Select</option>
+                    <option value="eating a balanced diet, drinking adequate fluid, ongoing health maintenance">
+                      Eating a balanced diet, drinking adequate fluid, ongoing
+                      health maintenance
+                    </option>
+                  </select>
+                  {/* <input
+                style={{ color: "#1A9FB2" }}
+                type="text"
+                id=""
+                value={nutritionAndWellnessPlanning}
+                placeholder="Enter name"
+                required
+                onChange={(e) => setNutritionAndWellnessPlanning(e.target.value)}
+              /> */}
+                </div>
+                <label className="label-review">
+                  Recommendation to extend residential treatment for :{" "}
+                </label>
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="30 Days"
+                      checked={
+                        recommendationToExtendResidentialTreatment === "30 Days"
+                      }
+                      onChange={() =>
+                        setRecommendationToExtendResidentialTreatment("30 Days")
+                      }
+                    />
+                    <label htmlFor="30 Days">30 Days</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="60 Days"
+                      checked={
+                        recommendationToExtendResidentialTreatment === "60 Days"
+                      }
+                      onChange={() =>
+                        setRecommendationToExtendResidentialTreatment("60 Days")
+                      }
+                    />
+                    <label htmlFor="60 Days">60 Days</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="90 Day"
+                      checked={
+                        recommendationToExtendResidentialTreatment === "90 Day"
+                      }
+                      onChange={() =>
+                        setRecommendationToExtendResidentialTreatment("90 Day")
+                      }
+                    />
+                    <label htmlFor="90 Day">90 Day</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Initialhhg"
+                      checked={
+                        recommendationToExtendResidentialTreatment === "Initial"
+                      }
+                      onChange={() =>
+                        setRecommendationToExtendResidentialTreatment("Initial")
+                      }
+                    />
+                    <label htmlFor="Initialhhg">Initial</label>
+                  </div>
+                </div>
+                <div className="yeschechbox2-horizontal">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="personalFinances"
+                      checked={personalFinances}
+                      onChange={() => setPersonalFinances(!personalFinances)}
+                    />
+                    <label htmlFor="personalFinances">
+                      Resident requires Assistance to maintain personal funds
+                      and/or hand personal finances
+                    </label>
+                  </div>
+                </div>
+                <label htmlFor="" className="label-review">
+                  Discharge planning & Re-evaluation of initial symptoms,
+                  behaviours & Goals
+                </label>
+                <div className="yeschechbox2-horizontal">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Follow-up Medical appointments upon discharge"
+                      checked={
+                        dischargePlanning ===
+                        "Follow-up Medical appointments upon discharge"
+                      }
+                      onChange={() =>
+                        setDischargePlanning(
+                          "Follow-up Medical appointments upon discharge"
+                        )
+                      }
+                    />
+                    <label htmlFor="Follow-up Medical appointments upon discharge">
+                      Follow-up Medical appointments upon discharge{" "}
+                    </label>
+                  </div>
+                </div>
+                <div className="yeschechbox2-horizontal">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Submit application for higher or lower level of care."
+                      checked={
+                        dischargePlanning ===
+                        "Submit application for higher or lower level of care."
+                      }
+                      onChange={() =>
+                        setDischargePlanning(
+                          "Submit application for higher or lower level of care."
+                        )
+                      }
+                    />
+                    <label htmlFor="Submit application for higher or lower level of care.">
+                      Submit application for higher or lower level of care.
+                    </label>
+                  </div>
+                </div>
+                <div className="yeschechbox2-horizontal">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Continue with Psychiatric Provider"
+                      checked={
+                        dischargePlanning ===
+                        "Continue with Psychiatric Provider"
+                      }
+                      onChange={() =>
+                        setDischargePlanning(
+                          "Continue with Psychiatric Provider"
+                        )
+                      }
+                    />
+                    <label htmlFor="Continue with Psychiatric Provider">
+                      Continue with Psychiatric Provider
+                    </label>
+                  </div>
+                </div>
+                <div className="yeschechbox2-horizontal">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Continue with Primary Care Provider (PCP)"
+                      checked={
+                        dischargePlanning ===
+                        "Continue with Primary Care Provider (PCP)"
+                      }
+                      onChange={() =>
+                        setDischargePlanning(
+                          "Continue with Primary Care Provider (PCP)"
+                        )
+                      }
+                    />
+                    <label htmlFor="Continue with Primary Care Provider (PCP)">
+                      Continue with Primary Care Provider (PCP)
+                    </label>
+                  </div>
+                </div>
+                <div className="yeschechbox2-horizontal">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Continue with case manager for additional support and
+                    resources"
+                      checked={
+                        dischargePlanning ===
+                        "Continue with case manager for additional support and resources"
+                      }
+                      onChange={() =>
+                        setDischargePlanning(
+                          "Continue with case manager for additional support and resources"
+                        )
+                      }
+                    />
+                    <label
+                      htmlFor="Continue with case manager for additional support and
+                    resources"
+                    >
+                      Continue with case manager for additional support and
+                      resources
+                    </label>
+                  </div>
+                </div>
+
+                <div className="yeschechbox2-horizontal">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Continue counseling with assigned Clinic at least once a month"
+                      checked={
+                        dischargePlanning ===
+                        "Continue counseling with assigned Clinic at least once a month"
+                      }
+                      onChange={() =>
+                        setDischargePlanning(
+                          "Continue counseling with assigned Clinic at least once a month"
+                        )
+                      }
+                    />
+                    <label htmlFor="Continue counseling with assigned Clinic at least once a month">
+                      Continue counseling with assigned Clinic at least once a
+                      month
+                    </label>
+                  </div>
+                </div>
+                <div className="form-field">
+                  <label className="label-review">Specify ( If Others )</label>
+                  <textarea
+                    type="text"
+                    required
+                    value={additionalComment}
+                    rows={2}
+                    cols={130}
+                    placeholder="Type Here....."
+                    onChange={(e) => setAdditionalComment(e.target.value)}
+                  />
+                </div>
+                <label htmlFor="" className="label-review">
+                  Recommendations for further programs upon discharge:
+                </label>
+
+                <div className="yeschechbox-review">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="PHP"
+                      checked={recommendationsForFurtherPrograms.includes(
+                        "PHP"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangerecommendationsForFurtherPrograms(
+                          "PHP"
+                        )
+                      }
+                    />
+                    <label htmlFor="PHP">PHP</label>
+                  </div>
+
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="IOP"
+                      checked={recommendationsForFurtherPrograms.includes(
+                        "IOP"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangerecommendationsForFurtherPrograms(
+                          "IOP"
+                        )
+                      }
+                    />
+                    <label htmlFor="IOP">IOP</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Sober living"
+                      checked={recommendationsForFurtherPrograms.includes(
+                        "Sober living"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangerecommendationsForFurtherPrograms(
+                          "Sober living"
+                        )
+                      }
+                    />
+                    <label htmlFor="Sober living">Sober living</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Home"
+                      checked={recommendationsForFurtherPrograms.includes(
+                        "Home"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangerecommendationsForFurtherPrograms(
+                          "Home"
+                        )
+                      }
+                    />
+                    <label htmlFor="Home">Home</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Flex Care 23.9"
+                      checked={recommendationsForFurtherPrograms.includes(
+                        "Flex Care 23.9"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangerecommendationsForFurtherPrograms(
+                          "Flex Care 23.9"
+                        )
+                      }
+                    />
+                    <label htmlFor="Flex Care 23.9">Flex Care 23.9</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Flex Care 16"
+                      checked={recommendationsForFurtherPrograms.includes(
+                        "Flex Care 16"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangerecommendationsForFurtherPrograms(
+                          "Flex Care 16"
+                        )
+                      }
+                    />
+                    <label htmlFor="Flex Care 16">Flex Care 16</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Flex Care 8"
+                      checked={recommendationsForFurtherPrograms.includes(
+                        "Flex Care 8"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangerecommendationsForFurtherPrograms(
+                          "Flex Care 8"
+                        )
+                      }
+                    />
+                    <label htmlFor="Flex Care 8">Flex Care 8</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      checked={recommendationsForFurtherPrograms.includes(
+                        "Other"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangerecommendationsForFurtherPrograms(
+                          "Other"
+                        )
+                      }
+                    />
+                    <label>Other</label>
+                    {recommendationsForFurtherProgramsBoolean && (
+                      <AutoSize
+                        value={recommendationsForFurtherProgramsOther}
+                        setValue={setRecommendationsForFurtherProgramsOther}
+                        placeholder="________"
+                      />
+                    )}
+                  </div>
+                </div>
+
+                {/* <div className="yeschechbox-review">
                   {[
                     "PHP",
                     "IOP",
@@ -5491,7 +8616,7 @@ useEffect(()=>{
                     </div>
                   ))}
                 </div> */}
-              {/*
+                {/*
                 {recommendationsForFurtherProgramsBoolean && (
                   <div className="form-field">
                     <label htmlFor="programlocation&address">Comment:</label>
@@ -5509,256 +8634,263 @@ useEffect(()=>{
                   </div>
                 )} */}
 
-              <label htmlFor="" className="label-review">
-                After care and Transition planning / Community Resources:
-              </label>
-
-              <div className="yeschechbox2-horizontal">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="suicideHotlineCheckbox"
-                    checked={afterCareAndTransitionPlanning.includes(
-                      "National suicide hotline 988 or 1-800-273-8255"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChangeafterCareAndTransitionPlanning(
-                        "National suicide hotline 988 or 1-800-273-8255"
-                      )
-                    }
-                  />
-                  <label htmlFor="suicideHotlineCheckbox">
-                    National suicide hotline 988 or 1-800-273-8255
-                  </label>
-                </div>
-              </div>
-
-              <div className="yeschechbox2-horizontal">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="emergencyCareCheckbox"
-                    checked={afterCareAndTransitionPlanning.includes(
-                      "Emergency care 911"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChangeafterCareAndTransitionPlanning(
-                        "Emergency care 911"
-                      )
-                    }
-                  />
-                  <label htmlFor="emergencyCareCheckbox">
-                    Emergency care 911
-                  </label>
-                </div>
-              </div>
-
-              <div className="yeschechbox2-horizontal">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="crisisLineCheckbox"
-                    checked={afterCareAndTransitionPlanning.includes(
-                      "24-Hour crisis in Maricopa County 602-222-9444"
-                    )}
-                    onChange={() =>
-                      handleCheckboxChangeafterCareAndTransitionPlanning(
-                        "24-Hour crisis in Maricopa County 602-222-9444"
-                      )
-                    }
-                  />
-                  <label htmlFor="crisisLineCheckbox">
-                    24-Hour crisis in Maricopa County 602-222-9444
-                  </label>
-                </div>
-              </div>
-
-              <div className="yeschechbox2">
-                <div>
-                  <span>
-                    This treatment plan has been developed before the resident
-                    receives physical health services or behavioral health
-                    services or within 48hours after the initial assessment is
-                    completed. It will be review and updated on an on-going
-                    basis according to the review date{" "}
-                    <span>
-                        <AutoSize type="date" value={textData} setValue={setTextData}  placeholder="________"/>
-                    </span>
-                    specified in the treatment plan, when a treatment goal is
-                    accomplished or changed, when additional information that
-                    affects the resident’s behavioral health assessment is
-                    identified and when the resident has a significant change in
-                    condition or experiences an event that affects treatment.
-                  </span>
-                </div>
-              </div>
-
-              <div className="formsheading">
-                <label className="label-review-clinical">
-                  Clinical Summary /Recommendations/Intervention:
+                <label htmlFor="" className="label-review">
+                  After care and Transition planning / Community Resources:
                 </label>
-              </div>
 
-              <div className="form-field">
-                <Select
-                  isMulti
-                  value={clinicalSummary}
-                  options={clinicalSummaryOption}
-                  onChange={clinicalSummaryHandler}
-                  isCreatable={true}
-                  onKeyDown={handleKeyClinicalSummary}
-                />
-              </div>
+                <div className="yeschechbox2-horizontal">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="suicideHotlineCheckbox"
+                      checked={afterCareAndTransitionPlanning.includes(
+                        "National suicide hotline 988 or 1-800-273-8255"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeafterCareAndTransitionPlanning(
+                          "National suicide hotline 988 or 1-800-273-8255"
+                        )
+                      }
+                    />
+                    <label htmlFor="suicideHotlineCheckbox">
+                      National suicide hotline 988 or 1-800-273-8255
+                    </label>
+                  </div>
+                </div>
 
-              {/* <div className="formsheading">
+                <div className="yeschechbox2-horizontal">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="emergencyCareCheckbox"
+                      checked={afterCareAndTransitionPlanning.includes(
+                        "Emergency care 911"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeafterCareAndTransitionPlanning(
+                          "Emergency care 911"
+                        )
+                      }
+                    />
+                    <label htmlFor="emergencyCareCheckbox">
+                      Emergency care 911
+                    </label>
+                  </div>
+                </div>
+
+                <div className="yeschechbox2-horizontal">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="crisisLineCheckbox"
+                      checked={afterCareAndTransitionPlanning.includes(
+                        "24-Hour crisis in Maricopa County 602-222-9444"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChangeafterCareAndTransitionPlanning(
+                          "24-Hour crisis in Maricopa County 602-222-9444"
+                        )
+                      }
+                    />
+                    <label htmlFor="crisisLineCheckbox">
+                      24-Hour crisis in Maricopa County 602-222-9444
+                    </label>
+                  </div>
+                </div>
+
+                <div className="yeschechbox2">
+                  <div>
+                    <span>
+                      This treatment plan has been developed before the resident
+                      receives physical health services or behavioral health
+                      services or within 48hours after the initial assessment is
+                      completed. It will be review and updated on an on-going
+                      basis according to the review date{" "}
+                      <span>
+                        <AutoSize
+                          type="date"
+                          value={textData}
+                          setValue={setTextData}
+                          placeholder="________"
+                        />
+                      </span>
+                      specified in the treatment plan, when a treatment goal is
+                      accomplished or changed, when additional information that
+                      affects the resident’s behavioral health assessment is
+                      identified and when the resident has a significant change
+                      in condition or experiences an event that affects
+                      treatment.
+                    </span>
+                  </div>
+                </div>
+
+                <div className="formsheading">
+                  <label className="label-review-clinical">
+                    Clinical Summary /Recommendations/Intervention:
+                  </label>
+                </div>
+
+                <div className="form-field">
+                  <Select
+                    isMulti
+                    value={clinicalSummary}
+                    options={clinicalSummaryOption}
+                    onChange={clinicalSummaryHandler}
+                    isCreatable={true}
+                    onKeyDown={handleKeyClinicalSummary}
+                  />
+                </div>
+
+                {/* <div className="formsheading">
                 <p>
                   The mirrors in the facility are SHATTERPROOF, and if they were
                   standard mirrors it would not present as a current safety risk
                   to this resident.
                 </p>
               </div> */}
-              <div className="form-field-update">
-                <div className="form-field-child">
-                  <label>Treatment plan review date:</label>
-                  <input
-                    type="date"
-                    onChange={(e) => setTreatmentPlanReviewDate(e.target.value)}
-                    value={treatmentPlanReviewDate}
-                    placeholder="Enter text"
-                  />
+                <div className="form-field-update">
+                  <div className="form-field-child">
+                    <label>Treatment plan review date:</label>
+                    <input
+                      type="date"
+                      onChange={(e) =>
+                        setTreatmentPlanReviewDate(e.target.value)
+                      }
+                      value={treatmentPlanReviewDate}
+                      placeholder="Enter text"
+                    />
+                  </div>
+                  <div className="form-field-child">
+                    <label>Discharge Plan Date:</label>
+                    <input
+                      type="date"
+                      onChange={(e) => setDischargePlanDate(e.target.value)}
+                      value={dischargePlanDate}
+                      placeholder="Enter text"
+                    />
+                  </div>
                 </div>
-                <div className="form-field-child">
-                  <label>Discharge Plan Date:</label>
-                  <input
-                    type="date"
-                    onChange={(e) => setDischargePlanDate(e.target.value)}
-                    value={dischargePlanDate}
-                    placeholder="Enter text"
-                  />
+
+                <p
+                  style={{
+                    fontWeight: "500",
+                    fontSize: "16px",
+                    margin: "0",
+                    marginBottom: "0",
+                    marginTop: "0",
+                    marginTop: "0.5rems",
+                    color: "#00000099",
+                  }}
+                >
+                  Note: Earlier review may be performed if resident has a
+                  significant change in condition or event that affects
+                  treatment.
+                </p>
+
+                <div className="formsheading">
+                  <h6 style={{ fontWeight: "bold" }}>
+                    Individual Participating in Developing the Service Plan:
+                  </h6>
                 </div>
-              </div>
 
-              <p
-                style={{
-                  fontWeight: "500",
-                  fontSize: "16px",
-                  margin: "0",
-                  marginBottom: "0",
-                  marginTop :"0",
-                  marginTop: "0.5rems",
-                  color: "#00000099",
-                }}
-              >
-                Note: Earlier review may be performed if resident has a
-                significant change in condition or event that affects treatment.
-              </p>
+                <div className="form-field-update">
+                  <div className="form-field-child">
+                    <label>Resident:</label>
+                    <input
+                      type="text"
+                      value={resident}
+                      placeholder="Enter name"
+                      required
+                      onChange={(e) => setResident(e.target.value)}
+                    />
+                  </div>
+                  <div className="form-field-child">
+                    <label>Guardian:</label>
+                    <input
+                      type="text"
+                      value={guardian}
+                      placeholder="Enter name"
+                      required
+                      onChange={(e) => setGuardian(e.target.value)}
+                    />
+                  </div>
+                  <div className="form-field-child">
+                    <label>Staff:</label>
+                    <input
+                      type="text"
+                      value={staff}
+                      placeholder="Enter name"
+                      required
+                      onChange={(e) => setStaff(e.target.value)}
+                    />
+                  </div>
+                  <div className="form-field-child">
+                    <label>BHP:</label>
+                    <input
+                      type="text"
+                      value={bpn}
+                      placeholder="Enter name"
+                      required
+                      onChange={(e) => setBph(e.target.value)}
+                    />
+                  </div>
+                </div>
 
-              <div className="formsheading">
-                <h6 style={{ fontWeight: "bold" }}>
-                  Individual Participating in Developing the Service Plan:
-                </h6>
-              </div>
+                <div className="form-field-single-update">
+                  <label>Comment:</label>
 
-              <div className="form-field-update">
-                <div className="form-field-child">
-                  <label>Resident:</label>
                   <input
                     type="text"
-                    value={resident}
-                    placeholder="Enter name"
+                    value={commentIndividual}
+                    placeholder="Enter comment"
                     required
-                    onChange={(e) => setResident(e.target.value)}
+                    onChange={(e) => setCommentIndividual(e.target.value)}
                   />
                 </div>
-                <div className="form-field-child">
-                  <label>Guardian:</label>
-                  <input
-                    type="text"
-                    value={guardian}
-                    placeholder="Enter name"
-                    required
-                    onChange={(e) => setGuardian(e.target.value)}
-                  />
-                </div>
-                <div className="form-field-child">
-                  <label>Staff:</label>
-                  <input
-                    
-                    type="text"
-                    value={staff}
-                    placeholder="Enter name"
-                    required
-                    onChange={(e) => setStaff(e.target.value)}
-                  />
-                </div>
-                <div className="form-field-child">
-                  <label>BHP:</label>
-                  <input
-                
-                    type="text"
-                    value={bpn}
-                    placeholder="Enter name"
-                    required
-                    onChange={(e) => setBph(e.target.value)}
-                  />
-                </div>
-              </div>
 
-              <div className="form-field-single-update">
-                <label>Comment:</label>
-
-                <input
-                  type="text"
-                  value={commentIndividual}
-                  placeholder="Enter comment"
-                  required
-                  onChange={(e) => setCommentIndividual(e.target.value)}
-                />
-              </div>
-
-              <label htmlFor="" className="label-review">
-                Resident / Representative:
-              </label>
-              <div className="yeschechbox-review-yes-no">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="isReason"
-                    checked={isReason === "yes"}
-                    onChange={() =>
-                      setIsReason(isReason === "yes" ? "no" : "yes")
-                    }
-                  />
-                  <label htmlFor="isReason">
-                    Yes,{" "}
-                    <span>
-                      I am in agreement with the services included in this
-                      treatment Plan
-                    </span>
-                  </label>
+                <label htmlFor="" className="label-review">
+                  Resident / Representative:
+                </label>
+                <div className="yeschechbox-review-yes-no">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="isReason"
+                      checked={isReason === "yes"}
+                      onChange={() =>
+                        setIsReason(isReason === "yes" ? "no" : "yes")
+                      }
+                    />
+                    <label htmlFor="isReason">
+                      Yes,{" "}
+                      <span>
+                        I am in agreement with the services included in this
+                        treatment Plan
+                      </span>
+                    </label>
+                  </div>
                 </div>
-              </div>
-          
-              <div className="yeschechbox-review-yes-no">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="refusalReason"
-                    checked={refusalReason === "yes"}
-                    onChange={() =>
-                      setrefusalReason(refusalReason === "yes" ? "no" : "yes")
-                    }
-                  />
-                  <label htmlFor="refusalReason">
-                    No,{" "}
-                    <span>
-                      I am not in agreement with the services included in this
-                      treatment Plan
-                    </span>
-                  </label>
+
+                <div className="yeschechbox-review-yes-no">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="refusalReason"
+                      checked={refusalReason === "yes"}
+                      onChange={() =>
+                        setrefusalReason(refusalReason === "yes" ? "no" : "yes")
+                      }
+                    />
+                    <label htmlFor="refusalReason">
+                      No,{" "}
+                      <span>
+                        I am not in agreement with the services included in this
+                        treatment Plan
+                      </span>
+                    </label>
+                  </div>
                 </div>
-              </div>
-              {/* <div className="yeschechbox2">
+                {/* <div className="yeschechbox2">
                 <div>
                   <span>
                     I am in the agreement with the services included in this
@@ -5766,51 +8898,109 @@ useEffect(()=>{
                   </span>
                 </div>
               </div> */}
-              {/* /"signaturesResident */}
+                {/* /"signaturesResident */}
 
-              <div className="formsheading">
-                <h6 style={{ fontWeight: "bold" }}>
-                  Signature indicates participation and informed consent for
-                  treatment services.
-                </h6>
+                <div className="formsheading">
+                  <h6 style={{ fontWeight: "bold" }}>
+                    Signature indicates participation and informed consent for
+                    treatment services.
+                  </h6>
+                </div>
+
+                <div className="form-field-update">
+                  <div className="form-field-child">
+                    <label>First and Last Name:</label>
+                    <input
+                      type="text"
+                      value={nameResident}
+                      placeholder="Enter text"
+                      required
+                      onChange={(e) => setNameResident(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="form-field-child">
+                    <label style={{ fontWeight: "bold" }}>
+                      Resident or Resident’s representative{" "}
+                      <span style={{ fontSize: "15px", color: "gray" }}>
+                        (By signing this document, I acknowledge that I was
+                        asked, encouraged to participate in the assessment)
+                      </span>
+                      :
+                    </label>
+                    <input
+                      type="text"
+                      value={credentialsResident}
+                      placeholder="Enter text"
+                      required
+                      onChange={(e) => setCredentialsResident(e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                <div class="file-upload-box" style={{ marginTop: "0.5rem" }}>
+                  <div className="file-upload-box-child hidePrint">
+                    <button
+                      className="upload-button1"
+                      type="button"
+                      onClick={() => setDraftModel(true)}
+                    >
+                      SAVED AS DRAFT
+                    </button>
+                    <button
+                      className="upload-button"
+                      type="button"
+                      onClick={() => setSignatureModel1(true)}
+                    >
+                      SAVED AND SIGNED
+                    </button>
+                  </div>
+                  <div>
+                    {signatureResident && (
+                      <p className="signature_name_print">
+                        Digitally Sign by {signatureResident} {dateResident}{" "}
+                        {timeResident}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                {signatureModel1 && (
+                  <SingInUpdateModel
+                    onClose={() => setSignatureModel1(false)}
+                    singin={signatureResident}
+                    setSingIn={setsignatureResident}
+                    setDateAndTime={setDateResident}
+                    setSignatureTime={setTimeResident}
+                  />
+                )}
               </div>
 
               <div className="form-field-update">
-              <div className="form-field-child">
-                <label>First and Last Name:</label>
-                <input
-                  type="text"
-                  value={nameResident}
-                  placeholder="Enter text"
-                  required
-                  onChange={(e) => setNameResident(e.target.value)}
-                />
+                <div className="form-field-child">
+                  <label>First and Last Name:</label>
+                  <input
+                    type="text"
+                    value={nameFacilityRep}
+                    placeholder="Enter text"
+                    required
+                    onChange={(e) => setNameFacilityRep(e.target.value)}
+                  />
+                </div>
+
+                <div className="form-field-child">
+                  <label>Facility Representative:</label>
+                  <input
+                    type="text"
+                    value={credentialsFacilityRep}
+                    placeholder="Enter text"
+                    required
+                    onChange={(e) => setCredentialsFacilityRep(e.target.value)}
+                  />
+                </div>
               </div>
 
-              <div className="form-field-child">
-                <label style={{ fontWeight: "bold" }}>
-                  Resident or Resident’s representative{" "}
-                  <span style={{ fontSize: "15px", color: "gray" }}>
-                    (By signing this document, I acknowledge that I was asked,
-                    encouraged to participate in the assessment)
-                  </span>
-                  :
-                </label>
-                <input
-                  type="text"
-                  value={credentialsResident}
-                  placeholder="Enter text"
-                  required
-                  onChange={(e) => setCredentialsResident(e.target.value)}
-                />
-              </div>
-              </div>
-
-
-          
-             
-
-              <div class="file-upload-box" style={{marginTop:"0.5rem"}}>
+              <div class="file-upload-box " style={{ marginTop: "0.2rem" }}>
                 <div className="file-upload-box-child hidePrint">
                   <button
                     className="upload-button1"
@@ -5822,172 +9012,105 @@ useEffect(()=>{
                   <button
                     className="upload-button"
                     type="button"
-                    onClick={() => setSignatureModel1(true)}
+                    onClick={() => setSignatureModel2(true)}
                   >
                     SAVED AND SIGNED
                   </button>
                 </div>
                 <div>
-                  {signatureResident && (
+                  {signatureFacilityRep && (
                     <p className="signature_name_print">
-                      Digitally Sign by {signatureResident} {dateResident} {timeResident}
+                      Digitally Sign by {signatureFacilityRep} {dateFacilityRep}{" "}
+                      {timeFacality}
                     </p>
                   )}
                 </div>
               </div>
 
-              {signatureModel1 && (
+              {signatureModel2 && (
                 <SingInUpdateModel
-                  onClose={() => setSignatureModel1(false)}
-                  singin={signatureResident}
-                  setSingIn={setsignatureResident}
-                  setDateAndTime={setDateResident}
-                  setSignatureTime={setTimeResident}
+                  onClose={() => setSignatureModel2(false)}
+                  singin={signatureFacilityRep}
+                  setSingIn={setsignatureFacilityRep}
+                  setDateAndTime={setDateFacilityRep}
+                  setSignatureTime={setTimeFacality}
                 />
               )}
-             
-            </div>
 
-            <div className="form-field-update">
-              <div className="form-field-child">
-                <label>First and Last Name:</label>
-                <input
-                  type="text"
-                  value={nameFacilityRep}
-                  placeholder="Enter text"
-                  required
-                  onChange={(e) => setNameFacilityRep(e.target.value)}
-                />
-              </div>
-
-              <div className="form-field-child">
-                <label>Facility Representative:</label>
-                <input
-                  type="text"
-                  value={credentialsFacilityRep}
-                  placeholder="Enter text"
-                  required
-                  onChange={(e) => setCredentialsFacilityRep(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div class="file-upload-box " style={{marginTop:"0.2rem"}}>
-              <div className="file-upload-box-child hidePrint">
-                <button
-                  className="upload-button1"
-                  type="button"
-                  onClick={() => setDraftModel(true)}
-                >
-                  SAVED AS DRAFT
-                </button>
-                <button
-                  className="upload-button"
-                  type="button"
-                  onClick={() => setSignatureModel2(true)}
-                >
-                  SAVED AND SIGNED
-                </button>
-              </div>
-              <div>
-                {signatureFacilityRep && (
-                  <p className="signature_name_print">
-                    Digitally Sign by {signatureFacilityRep} {dateFacilityRep} {timeFacality}
-                  </p>
-                )}
-              </div>
-            </div>
-
-            {signatureModel2 && (
-              <SingInUpdateModel
-                onClose={() => setSignatureModel2(false)}
-                singin={signatureFacilityRep}
-                setSingIn={setsignatureFacilityRep}
-                setDateAndTime={setDateFacilityRep}
-                setSignatureTime={setTimeFacality}
-              />
-            )}
-
-            <div className="form-field-update ">
-              <div className="form-field-child">
-                <label >First and Last Name:</label>
-                <input
-                  type="text"
-                  value={nameBhp}
-                  placeholder="Enter text"
-                  required
-                  onChange={(e) => setNameBhp(e.target.value)}
-                />
-              </div>
-              <div className="form-field-child">
-                <label>Behavioral Health Professional:</label>
-                <input
-                  type="text"
-                  value={credentialsBhp}
-                  placeholder="Enter text"
-                  required
-                  onChange={(e) => setCredentialsBhp(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div class="file-upload-box " style={{marginTop:"0.2rem"}}>
-              <div className="file-upload-box-child hidePrint">
-                <div>
-                  <button
-                    className="upload-button1"
-                    type="button"
-                    onClick={() => setDraftModel(true)}
-                  >
-                    SAVED AS DRAFT
-                  </button>
+              <div className="form-field-update ">
+                <div className="form-field-child">
+                  <label>First and Last Name:</label>
+                  <input
+                    type="text"
+                    value={nameBhp}
+                    placeholder="Enter text"
+                    required
+                    onChange={(e) => setNameBhp(e.target.value)}
+                  />
                 </div>
-                <div>
-                  <button
-                    className="upload-button"
-                    type="button"
-                    onClick={() => setSignatureModel3(true)}
-                  >
-                    SAVED AND SIGNED
-                  </button>
-                </div>
-                <div>
-                  <button
-                    className="upload-button signature_shift_margin"
-                    type="button"
-                    onClick={handlePrint2}
-                  >
-                    PRINT THIS FORM
-                  </button>
+                <div className="form-field-child">
+                  <label>Behavioral Health Professional:</label>
+                  <input
+                    type="text"
+                    value={credentialsBhp}
+                    placeholder="Enter text"
+                    required
+                    onChange={(e) => setCredentialsBhp(e.target.value)}
+                  />
                 </div>
               </div>
-              <div>
-                {signatureBhp && (
-                  <p className="signature_name_print">
-                    Digitally Sign by {signatureBhp} {dateBhp} {timeBhp}
-                  </p>
-                )}
-              </div>
-            </div>
 
-            {signatureModel3 && (
-              <SingInUpdateModel
-                onClose={() => setSignatureModel3(false)}
-                singin={signatureBhp}
-                setSingIn={setsignatureBhp}
-                setDateAndTime={setDateBhp}
-                setSignatureTime={setTimeBhp}
-              />
-            )}
-          
-            <div className="form-actions hidePrint">
-              <button type="submit" style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center"}}>
-                SUBMIT DETAILS
-              </button>
-            </div>
-          </form>
+              <div class="file-upload-box " style={{ marginTop: "0.2rem" }}>
+                <div className="file-upload-box-child hidePrint">
+                  <div>
+                    <button
+                      className="upload-button1"
+                      type="button"
+                      onClick={() => setDraftModel(true)}
+                    >
+                      SAVED AS DRAFT
+                    </button>
+                  </div>
+                  <div>
+                    <button
+                      className="upload-button"
+                      type="button"
+                      onClick={() => setSignatureModel3(true)}
+                    >
+                      SAVED AND SIGNED
+                    </button>
+                  </div>
+                  <div>
+                    <button
+                      className="upload-button signature_shift_margin"
+                      type="button"
+                      onClick={handlePrint2}
+                    >
+                      PRINT THIS FORM
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  {signatureBhp && (
+                    <p className="signature_name_print">
+                      Digitally Sign by {signatureBhp} {dateBhp} {timeBhp}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              {signatureModel3 && (
+                <SingInUpdateModel
+                  onClose={() => setSignatureModel3(false)}
+                  singin={signatureBhp}
+                  setSingIn={setsignatureBhp}
+                  setDateAndTime={setDateBhp}
+                  setSignatureTime={setTimeBhp}
+                />
+              )}
+            </form>
           </div>
-          </div>
+        </div>
         {draftModel && <Draftinmodel onClose={() => setDraftModel(false)} />}
       </div>
     </>

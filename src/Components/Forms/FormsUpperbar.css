@@ -99,7 +99,7 @@
   width: 60%;
   margin-bottom: 20px;
   margin-top: 20px;
-  height: 30px;
+  height: auto;
   border: 1px solid #ffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   background-color: #1a9fb2;
@@ -108,7 +108,7 @@
   display: flex;
   column-gap: 2rem;
   align-items: center;
- padding: 5px 30px;
+  padding: 5px 30px;
 }
 
 .formsheading2 h1 {
@@ -125,7 +125,7 @@
 }
 
 .checkboxitem125555 label {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
   color: #000000;
 

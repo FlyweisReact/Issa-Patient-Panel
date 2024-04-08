@@ -419,6 +419,11 @@
   column-gap: 10px;
 }
 
+.treatment_table_other{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
 
 
 
@@ -1809,7 +1814,11 @@ input[type="checkbox"] {
     column-gap: 10px;
     justify-content: center;
   }
-  
+
+  /* .treatment_table_other{
+    display: block;
+  }
+   */
 
 
 
