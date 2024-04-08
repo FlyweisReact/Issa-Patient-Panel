@@ -74,8 +74,6 @@ const UpperBar = ({ isMenuOpen, toggleMenu }) => {
     sortAndSeparateData();
   }, [notification]);
 
-  console.log(todayData, "today data");
-  console.log(otherData, "other data");
 
   useEffect(() => {
     user_detail(setUser);

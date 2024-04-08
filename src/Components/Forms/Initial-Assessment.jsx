@@ -619,9 +619,9 @@ const InitialAssessment = () => {
       const data = {
         types:otherTypeOther,
         ageOfFirstUse:otherAgeOfFirstUse,
-        lastUse:otherLastUse,
-        frequency:otherFrequancy,
-        lengthOfSobriety:OtherlengthOfSobrifty,
+        lastUse:otherLastUse?.value,
+        frequency:otherFrequancy?.value,
+        lengthOfSobriety:OtherlengthOfSobrifty?.value,
       };
       setTypeArray((prev) => [...prev, data]);
       setOtherAgeOfFirstUse("");
@@ -1308,8 +1308,6 @@ return arr;
     const year = dateObj.getFullYear();
     return `${month}-${day}-${year}`;
   }
-
-  console.log(getApiData,"initial assestment ")
 
   useEffect(()=>{
     setHasNotified(getApiData?.hasNotified);
@@ -5239,8 +5237,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
     const handleOtherlengthOfSobrifty = (optionValue) => {
       setOtherLengthOfSobirty(optionValue);
     };
-    
 
+    
   return (
     <>
       <div ref={componentRef} style={{ width: "100%", margin: "auto" }}>
@@ -7008,29 +7006,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   options={selectedsubstanceAbuseHistoryDataLastUseAlcohol}
                   isCreatable={true}
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseAlcohol}
-                />
-                          
-                          {/* <Form.Select
-                            as="select"
-                            value={substanceAbuseHistoryDataLastUseAlcohol}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUseAlcohol(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                />  
                         </td>
+                              
                         <td>
-                      
-
                         <Select
                   value={substanceAbuseHistoryDataFrequencyAlcohol}
                   onChange={handlersubstanceAbuseHistoryDataFrequencyAlcohol}
@@ -8475,19 +8454,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   isCreatable={true}
                   onKeyDown={handleKeyotherLastUse}
                 />
-                          {/* <Form.Select
-                            as="select"
-                            value={otherLastUse}
-                            onChange={(e) => setOtherLastUse(e.target.value)}
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+              {console.log(otherLastUse,"data")}
                         </td>
                         <td>
                         <Select
@@ -8498,30 +8465,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   isCreatable={true}
                   onKeyDown={handleKeyotherFrequancy}
                 />
-                          {/* <Form.Select
-                            value={otherFrequancy}
-                            onChange={(e) => setOtherFrequancy(e.target.value)}
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
                         </td>
                         <td>
 
@@ -8533,28 +8476,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   isCreatable={true}
                   onKeyDown={handleKeyOtherlengthOfSobrifty}
                 />
-                          {/* <Form.Select
-                            value={OtherlengthOfSobrifty}
-                            onChange={(e) =>
-                              setOtherLengthOfSobirty(e.target.value)
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
+                     
                         </td>
                       </tr>
                     </tbody>

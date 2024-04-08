@@ -1231,7 +1231,6 @@ return arr;
     return `${month}-${day}-${year}`;
   }
 
-  console.log(getApiData,"initial assestment ")
 
   useEffect(()=>{
     setHasNotified(getApiData?.hasNotified);
@@ -6041,108 +6040,20 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                        <Select
-                  value={substanceAbuseHistoryDataLastUseAlcohol}
-                  onChange={handlersubstanceAbuseHistoryDataLastUseAlcohol}
-                  options={selectedsubstanceAbuseHistoryDataLastUseAlcohol}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseAlcohol}
-                />
-                          
-                          {/* <Form.Select
-                            as="select"
-                            value={substanceAbuseHistoryDataLastUseAlcohol}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUseAlcohol(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                <p>{substanceAbuseHistoryDataLastUseAlcohol}</p>
+                
+                       
                         </td>
                         <td>
-                      
+                      <p>{substanceAbuseHistoryDataFrequencyAlcohol}</p>
 
-                        <Select
-                  value={substanceAbuseHistoryDataFrequencyAlcohol}
-                  onChange={handlersubstanceAbuseHistoryDataFrequencyAlcohol}
-                  options={selectedsubstanceAbuseHistoryDataFrequencyAlcohol}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyAlcohol}
-                />
-
-                          {/* <Form.Select
-                            value={substanceAbuseHistoryDataFrequencyAlcohol}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyAlcohol(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+                 
                         </td>
                         <td>
 
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyAlcohol}
-                  onChange={handlersubstanceAbuseHistoryDataLengthOfSobrietyAlcohol}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyAlcohol}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyAlcohol}
-                />
+                     
+                <p>{substanceAbuseHistoryDataLengthOfSobrietyAlcohol}</p>
 
-                          {/* <Form.Select
-                            value={
-                              substanceAbuseHistoryDataLengthOfSobrietyAlcohol
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyAlcohol(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
                         </td>
                       </tr>
 
@@ -6164,112 +6075,22 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <Select
                   
-                  value={substanceAbuseHistoryDataLastUseBenzodiazepines}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseBenzodiazepines}
-                  options={optionsubstanceAbuseHistoryDataLastUseBenzodiazepines}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseBenzodiazepines}
-                />
-                          {/* <Form.Select
-                            as="select"
-                            value={
-                              substanceAbuseHistoryDataLastUseBenzodiazepines
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUseBenzodiazepines(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                  <p>{substanceAbuseHistoryDataLastUseBenzodiazepines}</p>
+                       
                         </td>
                         <td>
 
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyBenzodiazepines}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyBenzodiazepines}
-                  options={optionsubstanceAbuseHistoryDataFrequencyBenzodiazepines}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyBenzodiazepines}
-                />
+                
 
-                          {/* <Form.Select
-                            value={
-                              substanceAbuseHistoryDataFrequencyBenzodiazepines
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyBenzodiazepines(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+<p>{substanceAbuseHistoryDataFrequencyBenzodiazepines}</p>
+
+                         
                         </td>
                         <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
-                  
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
-                />
 
-                          {/* <Form.Select
-                            value={
-                              substanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
+<p>{substanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}</p>
+
                         </td>
                       </tr>
                       <tr>
@@ -6288,106 +6109,22 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseCrack}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseCrack}
-                  options={optionsubstanceAbuseHistoryDataLastUseCrack}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseCrack}
-                />
-                          {/* <Form.Select
-                            as="select"
-                            value={substanceAbuseHistoryDataLastUseCrack}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUseCrack(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                    
+                <p>{substanceAbuseHistoryDataLastUseCrack}</p>
+                       
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyCrack}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyCrack}
-                  options={optionsubstanceAbuseHistoryDataFrequencyCrack}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyCrack}
-                />
+                    
+                <p>{substanceAbuseHistoryDataFrequencyCrack}</p>
 
-                          {/* <Form.Select
-                            value={substanceAbuseHistoryDataFrequencyCrack}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyCrack(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+                
                         </td>
                         <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyCrack}
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyCrack}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyCrack}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyCrack}
-                />
+                  
 
-                          {/* <Form.Select
-                            value={
-                              substanceAbuseHistoryDataLengthOfSobrietyCrack
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyCrack(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
+<p>{substanceAbuseHistoryDataLengthOfSobrietyCrack}</p>
+
+                          
                         </td>
                       </tr>
                       <tr>
@@ -6406,107 +6143,23 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseHeroin}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseHeroin}
-                  options={optionsubstanceAbuseHistoryDataLastUseHeroin}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseHeroin}
-                />
-                          {/* <Form.Select
-                            as="select"
-                            value={substanceAbuseHistoryDataLastUseHeroin}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUseHeroin(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                     
+                <p>{substanceAbuseHistoryDataLastUseHeroin}</p>
+                         
                         </td>
                         <td>
-                          <Select
                   
-                  value={substanceAbuseHistoryDataFrequencyHeroin}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyHeroin}
-                  options={optionsubstanceAbuseHistoryDataFrequencyHeroin}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyHeroin}
-                />
 
-                          {/* <Form.Select
-                            value={substanceAbuseHistoryDataFrequencyHeroin}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyHeroin(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+<p>{substanceAbuseHistoryDataFrequencyHeroin}</p>
+
+                        
                         </td>
                         <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyHeroin}
-                  
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyHeroin}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyHeroin}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyHeroin}
-                />
+                    
 
-                          {/* <Form.Select
-                            value={
-                              substanceAbuseHistoryDataLengthOfSobrietyHeroin
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyHeroin(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
+<p>{substanceAbuseHistoryDataLengthOfSobrietyHeroin}</p>
+
+                         
                         </td>
                       </tr>
                       <tr>
@@ -6527,107 +6180,21 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseInhalants}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseInhalants}
-                  options={optionsubstanceAbuseHistoryDataLastUseInhalants}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseInhalants}
-                />
-                          {/* <Form.Select
-                            as="select"
-                            value={substanceAbuseHistoryDataLastUseInhalants}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUseInhalants(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyInhalants}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyInhalants}
-                  options={optionsubstanceAbuseHistoryDataFrequencyInhalants}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyInhalants}
-                />
+                      
 
-                          {/* <Form.Select
-                            value={substanceAbuseHistoryDataFrequencyInhalants}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyInhalants(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+<p>{substanceAbuseHistoryDataLastUseInhalants}</p>
+                    
                         </td>
                         <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyInhalants}
-                  
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
-                />
-{/* 
-                          <Form.Select
-                            value={
-                              substanceAbuseHistoryDataLengthOfSobrietyInhalants
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyInhalants(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
+                         
+                <p>{substanceAbuseHistoryDataFrequencyInhalants}</p>
+
+                          
+                        </td>
+                        <td>
+                     
+                  <p>{substanceAbuseHistoryDataLengthOfSobrietyInhalants}</p>
+
                         </td>
                       </tr>
                       <tr>
@@ -6648,107 +6215,22 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseMarijuana}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseMarijuana}
-                  options={optionsubstanceAbuseHistoryDataLastUseMarijuana}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMarijuana}
-                />
-                          {/* <Form.Select
-                            as="select"
-                            value={substanceAbuseHistoryDataLastUseMarijuana}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUseMarijuana(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                      
+                <p>{substanceAbuseHistoryDataLastUseMarijuana}</p>
+                       
                         </td>
                         <td>
-                          <Select
                   
-                  value={substanceAbuseHistoryDataFrequencyMarijuana}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyMarijuana}
-                  options={optionsubstanceAbuseHistoryDataFrequencyMarijuana}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMarijuana}
-                />
 
-                          {/* <Form.Select
-                            value={substanceAbuseHistoryDataFrequencyMarijuana}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyMarijuana(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+<p>{substanceAbuseHistoryDataFrequencyMarijuana}</p>
+
+                          
                         </td>
                         <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyMarijuana}
-                  
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
-                />
+                    
+                <p>{substanceAbuseHistoryDataLengthOfSobrietyMarijuana}</p>
 
-                          {/* <Form.Select
-                            value={
-                              substanceAbuseHistoryDataLengthOfSobrietyMarijuana
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyMarijuana(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
+                        
                         </td>
                       </tr>
                       <tr>
@@ -6769,111 +6251,20 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseMethamphetamine}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseMethamphetamine}
-                  options={optionsubstanceAbuseHistoryDataLastUseMethamphetamine}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMethamphetamine}
-                />
-                          {/* <Form.Select
-                            as="select"
-                            value={
-                              substanceAbuseHistoryDataLastUseMethamphetamine
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUseMethamphetamine(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                     
+                     <p>{substanceAbuseHistoryDataLastUseMethamphetamine}</p>
+                     
                         </td>
                         <td>
-                          <Select
                   
-                  value={substanceAbuseHistoryDataFrequencyMethamphetamine}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyMethamphetamine}
-                  options={optionsubstanceAbuseHistoryDataFrequencyMethamphetamine}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMethamphetamine}
-                />
-{/* 
-                          <Form.Select
-                            value={
-                              substanceAbuseHistoryDataFrequencyMethamphetamine
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyMethamphetamine(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+                 <p>{substanceAbuseHistoryDataFrequencyMethamphetamine}</p>
+
                         </td>
                         <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyMethamphetamine}
-                  
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine}
-                />
-{/* 
-                          <Form.Select
-                            value={
-                              substanceAbuseHistoryDataLengthOfSobrietyMethamphetamine
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
+               
+
+<p>{substanceAbuseHistoryDataLengthOfSobrietyMethamphetamine}</p>
+
                         </td>
                       </tr>
                       <tr>
@@ -6894,107 +6285,23 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseMethadone}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseMethadone}
-                  options={optionsubstanceAbuseHistoryDataLastUseMethadone}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMethadone}
-                />
-                          {/* <Form.Select
-                            as="select"
-                            value={substanceAbuseHistoryDataLastUseMethadone}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUseMethadone(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                      
+                <p>{substanceAbuseHistoryDataLastUseMethadone}</p>
+                        
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyMethadone}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyMethadone}
-                  options={optionsubstanceAbuseHistoryDataFrequencyMethadone}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMethadone}
-                />
+                 
 
-                          {/* <Form.Select
-                            value={substanceAbuseHistoryDataFrequencyMethadone}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyMethadone(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+<p>{substanceAbuseHistoryDataFrequencyMethadone}</p>
+
+                         
                         </td>
                         <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyMethadone}
-                  
-                  onChange={hnadlesubstanceAbuseHistoryDataLengthOfSobrietyMethadone}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMethadone}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMethadone}
-                />
+                    
 
-                          {/* <Form.Select
-                            value={
-                              substanceAbuseHistoryDataLengthOfSobrietyMethadone
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyMethadone(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
+<p>{substanceAbuseHistoryDataLengthOfSobrietyMethadone}</p>
+
+                        
                         </td>
                       </tr>
                       <tr>
@@ -7013,107 +6320,23 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseMDMA}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseMDMA}
-                  options={optionsubstanceAbuseHistoryDataLastUseMDMA}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMDMA}
-                />
-                          {/* <Form.Select
-                            as="select"
-                            value={substanceAbuseHistoryDataLastUseMDMA}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUseMDMA(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                 
+<p>{substanceAbuseHistoryDataLastUseMDMA}</p>
+                         
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyMDMA}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyMDMA}
-                  options={optionsubstanceAbuseHistoryDataFrequencyMDMA}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMDMA}
-                />
+                 
 
-                          {/* <Form.Select
-                            value={substanceAbuseHistoryDataFrequencyMDMA}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyMDMA(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+<p>{substanceAbuseHistoryDataFrequencyMDMA}</p>
+
+                         
                         </td>
                         <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyMDMA}
-                  
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
-                />
+                   
 
-                          {/* <Form.Select
-                            value={
-                              substanceAbuseHistoryDataLengthOfSobrietyMDMA
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyMDMA(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
+<p>{substanceAbuseHistoryDataLengthOfSobrietyMDMA}</p>
+
+                         
                         </td>
                       </tr>
                       <tr>
@@ -7132,105 +6355,23 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUsePCP}
-                  onChange={hnadlesubstanceAbuseHistoryDataLastUsePCP}
-                  options={optionsubstanceAbuseHistoryDataLastUsePCP}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUsePCP}
-                />
-                          {/* <Form.Select
-                            as="select"
-                            value={substanceAbuseHistoryDataLastUsePCP}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUsePCP(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                       
+                <p>{substanceAbuseHistoryDataLastUsePCP}</p>
+                         
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyPCP}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyPCP}
-                  options={optionsubstanceAbuseHistoryDataFrequencyPCP}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyPCP}
-                />
+                 
 
-                          {/* <Form.Select
-                            value={substanceAbuseHistoryDataFrequencyPCP}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyPCP(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+<p>{substanceAbuseHistoryDataFrequencyPCP}</p>
+
+                         
                         </td>
                         <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyPCP}
-                  
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyPCP}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyPCP}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyPCP}
-                />
+                
 
-                          {/* <Form.Select
-                            value={substanceAbuseHistoryDataLengthOfSobrietyPCP}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyPCP(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
+<p>{substanceAbuseHistoryDataLengthOfSobrietyPCP}</p>
+
+                        
                         </td>
                       </tr>
                       <tr>
@@ -7251,109 +6392,23 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUsePrescription}
-                  onChange={handlesubstanceAbuseHistoryDataLastUsePrescription}
-                  options={optionsubstanceAbuseHistoryDataLastUsePrescription}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUsePrescription}
-                />
-                          {/* <Form.Select
-                            as="select"
-                            value={substanceAbuseHistoryDataLastUsePrescription}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUsePrescription(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                   
+
+<p>{substanceAbuseHistoryDataLastUsePrescription}</p>
+                      
                         </td>
                         <td>
-                          <Select
                   
-                  value={substanceAbuseHistoryDataFrequencyPrescription}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyPrescription}
-                  options={optionsubstanceAbuseHistoryDataFrequencyPrescription}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyPrescription}
-                />
 
-                          {/* <Form.Select
-                            value={
-                              substanceAbuseHistoryDataFrequencyPrescription
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyPrescription(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+<p>{substanceAbuseHistoryDataFrequencyPrescription}</p>
+
+                         
                         </td>
                         <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyPrescription}
-                  
-                  onChange={hnadlesubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
-                />
+                      
+                <p>{substanceAbuseHistoryDataLengthOfSobrietyPrescription}</p>
 
-                          {/* <Form.Select
-                            value={
-                              substanceAbuseHistoryDataLengthOfSobrietyPrescription
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyPrescription(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
+                         
                         </td>
                       </tr>
                       <tr>
@@ -7372,104 +6427,22 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseOTC}
-                  onChange={hnadlesubstanceAbuseHistoryDataLastUseOTC}
-                  options={optionsubstanceAbuseHistoryDataLastUseOTC}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseOTC}
-                />
-                          {/* <Form.Select
-                            as="select"
-                            value={substanceAbuseHistoryDataLastUseOTC}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUseOTC(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                 
+                     <p>{substanceAbuseHistoryDataLastUseOTC}</p>
+                       
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyOTC}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyOTC}
-                  options={optionsubstanceAbuseHistoryDataFrequencyOTC}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyOTC}
-                />
+                      
 
-                          {/* <Form.Select
-                            value={substanceAbuseHistoryDataFrequencyOTC}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyOTC(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+<p>{substanceAbuseHistoryDataFrequencyOTC}</p>
+                          
                         </td>
                         <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyOTC}
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyOTC}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyOTC}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyOTC}
-                />
+                 
+                
+<p>{substanceAbuseHistoryDataLengthOfSobrietyOTC}</p>
 
-                          {/* <Form.Select
-                            value={substanceAbuseHistoryDataLengthOfSobrietyOTC}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyOTC(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
+                         
                         </td>
                       </tr>
 
