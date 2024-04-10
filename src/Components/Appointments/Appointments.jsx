@@ -21,7 +21,6 @@ import Modal from 'react-bootstrap/Modal';
 import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
 import { useNavigate } from "react-router-dom";
-// import Vitals from "../Vitals/Vitals";
 
 
 const Appointments = () => {
@@ -41,15 +40,10 @@ const Appointments = () => {
   const [script,setScript]=useState("")
 
 
-  //view panel
   const [view,setView]=useState(false);
 
-  //add script 
-  const [addScript, setAddScript] = useState("");
 
-  // useEffect(()=>{
-  //   medication_get(setMedication);
-  // },[patientId])
+  const [addScript, setAddScript] = useState("");
 
 
   useEffect(() => {
@@ -135,21 +129,7 @@ const Appointments = () => {
       // });
     };
 
-    // const payload = {
-    //   patientId: id,
-    //   data: arr,
-    // };
 
-    // const submitHandler = () => {
-    //   const additionalFunctions = [props.onHide, fetchDocument];
-    //   createApi({
-    //     url: `employee/createUploadDocument1`,
-    //     payload,
-    //     successMsg: "Uploaded !",
-    //     setLoading: setSubmitLoading,
-    //     additionalFunctions,
-    //   });
-    // };
 
     return (
       <Modal
@@ -172,13 +152,7 @@ const Appointments = () => {
                 <div className="flexbox">
                   <div className="items">
                     <p className="head">Actions</p>
-                    {/* <button type="submit">
-                      {uploading ? (
-                        <ClipLoader color="#fff" />
-                      ) : (
-                        "Add Additional files"
-                      )}
-                    </button> */}
+                 
                   </div>
                   <div className="items">
                     <p className="head">File Type</p>
@@ -228,14 +202,10 @@ const Appointments = () => {
                 <div className="btn-container">
                   <button
                     className="upload_files"
-                    // onClick={() => submitHandler()}
+                 
                     type="button"
                   >
-                    {/* {submitLoading ? (
-                      <ClipLoader color="#fff" />
-                    ) : (
-                      "Upload Files"
-                    )} */}
+                 
                   </button>
                 </div>
               </div>
@@ -272,8 +242,7 @@ const Appointments = () => {
           </Link>
         </div>
       </div>
-      <div >
-      <Vital/></div>
+      
 
       <div className="appointmentcontent">
         <p>Upcoming Appointments</p>
@@ -303,51 +272,16 @@ const Appointments = () => {
   }
 </div>
 
-      {/* <div className="appointmentcontent">
-        <p>Ongoing Medications</p>
-        <p onClick={()=>setView1(!view1)}>VIEW ALL</p>
-      </div> */}
-      {/* <div className="appointmentCard">
-        {
-          view1 ?  medication?.data?.map((appointment, index) => (
-            <MedicationsCard
-              key={index}
-              name={appointment?.name}
-              imageUrl={appointment?.adminId?.profilePic?appointment?.adminId?.profilePic:nurse1}
-              dose={appointment?.timeStatus?.[0]?.time}
-              startfrom={new Date(appointment?.date).toLocaleDateString()}
-              duration={appointment?.duration}
-            />
-          )): medication?.data?.slice(0,4)?.map((appointment, index) => (
-            <MedicationsCard
-              key={index}
-              name={appointment?.name}
-              imageUrl={appointment?.adminId?.profilePic?appointment?.adminId?.profilePic:nurse1}
-              dose={appointment?.timeStatus?.[0]?.time}
-              startfrom={new Date(appointment?.date).toLocaleDateString()}
-              duration={appointment?.duration}
-            />
-          ))
-        }
+<div >
+      <Vital/></div>
 
-      </div> */}
       <div className="appointmentcontent">
-        <p>Upload your script</p>
-        {/* <p onClick={() => setModalShow(true)}>Add</p> */}
+        <p>Upload Document</p>
+   
 
       </div>
             <div style={{display:"flex" ,gap:"20px" ,alignItems:"center",}}>
-      {/* {
-        script?.data?.slice(1,5)?.map((item,i)=>(
-          <div key={i} style={{ width: "249px", height: "128px" }}>
-          <img src={upload} alt="" onClick={()=>downloadPdf(item?.document)} style={{cursor:"pointer"}} />
-        </div>
-        ))
-      } */}
-        {/* display: "none"  */}
-        {/* <div style={{ width: "249px", height: "128px", }}>
-          <img src={upload} alt="" onClick={()=>downloadPdf(script?.document)} style={{cursor:"pointer"}} />
-        </div> */}
+ 
 
         <button onClick={()=>navigate("/patient_Upload_script")} style={{ backgroundColor: "#0066ff", cursor: "pointer", width: "150px", height: "40px", borderRadius: "20px", outline: "none", border: "none", color: "white" }}>Upload</button>
    </div>

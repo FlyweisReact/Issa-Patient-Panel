@@ -358,8 +358,6 @@ const InitialAssessment = () => {
   ] = useState([]);
 
 
-// 2 pendinggggggg
-  //type of service shispal 
   const [typeOfServiceArray, setTypeOfServicesArray] = useState([]);
   const handleTypeOfService = () => {
     if (
@@ -379,7 +377,6 @@ const InitialAssessment = () => {
       setMentalHealthTreatmentHistoryWhere("");
       setMentalHealthTreatmentHistoryDates("");
       setMentalHealthTreatmentHistoryDiagnosisReason([]);
-      console.log(data,'Boss')
     }
   };
 
@@ -1454,22 +1451,31 @@ setInfectionDiseases(getApiData?.medicalConditions?.[25]?.comment
       value: item    // Assuming 'id' is the property you want to use as value
     }))
   : []);
-// jai maa kali
+
 setOtherConditionArray(getApiData?.medicalConditions?getApiArrayData(26,getApiData?.medicalConditions?.length,getApiData?.medicalConditions):[]);
 setSignificantFamilyMedicalPsychiatricHistory(getApiData?.SignificantFamilyMedicalPsychiatricHistory
   ? getApiData?.SignificantFamilyMedicalPsychiatricHistory.map(item => ({
-      label: item, // Assuming 'name' is the property you want to use as label
-      value: item    // Assuming 'id' is the property you want to use as value
+      label: item, 
+      value: item   
     }))
   : []);
 
-// jai maa kali
-setMentalHealthTreatmentHistoryTypeOfService([]);
+setTypeOfServicesArray(getApiData?.mentalHealthTreatmentHistory
+  ?getApiData?.mentalHealthTreatmentHistory?.flatMap((item)=>(
+    {
+      diagnosisReason:item?.diagnosisReason?.map((i) => ({
+        value : i ,
+        label : i
+      })),
+      typeOfService:item?.typeOfService?.map((i) => ({
+        value : i ,
+        label : i
+      })),
+      dates:item?.dates,
+      where:item?.where
+    }
+  )):[])
 
-setMentalHealthTreatmentHistoryWhere("");
-setMentalHealthTreatmentHistoryDates("");
-setMentalHealthTreatmentHistoryDiagnosisReason([]);
-setTypeOfServicesArray([])
 
 setSubstanceAbuseHistory(getApiData?.substanceAbuseHistory);
 setSubstanceAbuseDenies(getApiData?.substanceAbuseDenies);
@@ -2154,6 +2160,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
     { label: "Art", value: "Art" },
   ];
 
+  console.log("typeOfServiceArray" ,typeOfServiceArray)
   const handleKeyDownResidentStrength = (event) => {
     if (event.key === "Enter" && event.target.value) {
       const inputValue = event.target.value.trim();
@@ -2744,13 +2751,11 @@ setBhpTime(getApiData?.bhpInformation?.time);
       medicalConditions: otherConditionArrayTempAns,
       SignificantFamilyMedicalPsychiatricHistory:SignificantFamilyMedicalPsychiatricHistoryArray,
       
-      // insidee the array handle by backend
       mentalHealthTreatmentHistory:typeOfServiceArray,
      
-
       substanceAbuseHistory,
       substanceAbuseDenies,
-// need t be array
+
       substanceAbuseHistoryData : typeArrayTempAns,
 
       ActiveWithdrawalSymptoms :{
@@ -2763,7 +2768,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
         Anxiety,
         Tremors,
         VisualDisturbances,
-        // remove VisualDisturbancesOtherType and add other
         AuditoryDisturbances:VisualDisturbancesOtherType,
         Sweats,
         Paranoia,
@@ -2787,7 +2791,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
           average:averageHeight,
           short,
           tall,
-          
           otherComment:heigthOther
         },
         weight:{
@@ -2987,7 +2990,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
       employmentHistory:{
         currentlyEmployed,
         employmentLocation,
-        // fullTime, jai maa kali
+      
       },
       workHistory,
       militaryHistory:{
@@ -3004,14 +3007,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
       medicalEquipmentArray:selectedValueMedicalArray,
       specialPrecautions:selectedValueSpecialPrecautionsArray,
       currentThoughtsOfHarmingSelf,
-      // jai  maa kali
-      // suicidalIdeation:{
-      //   ideation:suicidalIdeation,
-      //   increasingIn:{
-      //     urgency:suicidalIdeation,
-      //     severity:suicidalIdeationSeverity
-      //   }
-      // },
+  
       suicidalIdeation,
       suicidalIdeationUrgency,
       suicidalIdeationSeverity,
@@ -3025,7 +3021,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
       psychiatricDiagnoses:psychiatricDiagnosesArrayAns,
 
       medicalDiagnoses:medicalDiagnosesArrayTempAns,
-// psychosocialStressors:{
+
                 primarySupportGroup,
                 maritalProblems,
                 accessToHealthCareServices,
@@ -3037,7 +3033,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 substanceUseInHome,
                 sexualProblems,
                 otherStressors,
-// },
+
      
 
       significantRecentLosses:{
@@ -6951,7 +6947,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <td>
                               {i?.typeOfService?.map(
                                 (item) => (
-                                  <p key={item}>{item}</p>
+                                  <p key={item?.value}>{item?.value}</p>
                                 )
                               )}
                             </td>
@@ -6962,7 +6958,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <td>
                               {i?.diagnosisReason?.map(
                                 (item) => (
-                                  <p key={item}>{item}</p>
+                                  <p key={item?.value}>{item?.value}</p>
                                 )
                               )}
                             </td>
