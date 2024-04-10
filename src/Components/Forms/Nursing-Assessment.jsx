@@ -37,7 +37,7 @@ const NursingAssessment = () => {
     var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
     // var formsheading2=document.getElementsByClassName("formsheading2");
     var submitButton=document.getElementsByClassName("form-actions");
-    // Iterate through each element with the specified class
+
 
     for (let i = 0; i < signatureRightAndSide.length; i++) {
       signatureRightAndSide[i].style.justifyContent = "right";

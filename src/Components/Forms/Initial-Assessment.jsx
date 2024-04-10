@@ -2100,18 +2100,18 @@ setAdditionalNotes(getApiData?.additionalNotes);
 
 setResidentGuardianName(getApiData?.residentInformation?.ResidentName);
 setResidentGauardianSignature(getApiData?.residentInformation?.ResidentSignature);
-setResidentGuardianDate(getApiData?.residentInformation?.residentGuardianDate?formatDate(getApiArrayData?.residentInformation?.residentGuardianDate):"");
+setResidentGuardianDate(getApiData?.residentInformation?.ResidentDate?formatDate(getApiData?.residentInformation?.ResidentDate):"");
 setResidentGuardianTime(getApiData?.residentInformation?.time);
 
 setStaffName(getApiData?.staffInformation?.staffName);
 setStaffSignature(getApiData?.staffInformation?.staffSignature);
-setStaffDate(getApiData?.staffInformation?.staffDate?formatDate(getApiArrayData?.staffInformation?.staffDate):"");
+setStaffDate(getApiData?.staffInformation?.staffDate?formatDate(getApiData?.staffInformation?.staffDate):"");
 setStaffDateTime(getApiData?.staffInformation?.time);
 
 setBhpName(getApiData?.bhpInformation?.bhpName);
 setBhpCredentials(getApiData?.bhpInformation?.bhpCredentials);
 setBhpSignature(getApiData?.bhpInformation?.bhpSignature);
-setBhpDate(getApiData?.bhpInformation?.bhpDate?formatDate(getApiArrayData?.bhpInformation?.bhpDate):"");
+setBhpDate(getApiData?.bhpInformation?.bhpDate?formatDate(getApiData?.bhpInformation?.bhpDate):"");
 setBhpTime(getApiData?.bhpInformation?.time);
 
   },[getApiData])
@@ -3025,7 +3025,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
       psychiatricDiagnoses:psychiatricDiagnosesArrayAns,
 
       medicalDiagnoses:medicalDiagnosesArrayTempAns,
-// jai maa kali
 // psychosocialStressors:{
                 primarySupportGroup,
                 maritalProblems,

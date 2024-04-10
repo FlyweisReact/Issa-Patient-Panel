@@ -4282,17 +4282,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
   return (
     <>
       <div ref={componentRef} style={{ width: "100%", margin: "auto" }}>
-        <div style={{ width: "20px" }} className="backbutton">
-          <IoArrowBackCircle
-            style={{
-              color: "#1A9FB2",
-              width: "40px",
-              height: "40px",
-              cursor: "pointer",
-            }}
-            onClick={() => navigate("/intake")}
-          />
-        </div>
+       
         <div className="Boss">
           <FormUpper setAssessmentType={setAssessmentType} assessmentType={assessmentType}/>
           <p style={{ marginTop: "0.5rem", marginBottom: "0"}}>

@@ -2645,7 +2645,7 @@ function formatDate(dateString) {
                     the consent to appear in photographs and videotapes for the
                     purpose of identification and capturing memories from
                     activities. I understand that the photographs and videos
-                    will only be displayed within the home if will never be made
+                    will only be displayed within the home it will never be made
                     or displayed in public. I understand that the photographs
                     and videos are for internal purposes only, meaning that
                     staff members and residents are the only individuals who

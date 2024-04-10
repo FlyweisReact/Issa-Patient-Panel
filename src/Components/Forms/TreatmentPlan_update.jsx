@@ -236,7 +236,7 @@ const Treatmentplan_update = () => {
   const [counselingOptionsTextBoolean, setCounselingOptionsTextBoolean] =
     useState(false);
 
-  //Goals for Changes in the Resident Phychorial Interaction or Behaviour
+  //Goals for Changes in the Resident psychosocial  Interaction or Behaviour
   const [option1, setOption1] = useState([]);
   const [option1Boolean, setOption1Boolean] = useState(false);
   const [option1Other, setoption1Other] = useState("");
@@ -3608,7 +3608,7 @@ const Treatmentplan_update = () => {
 
                 <div className="formsheading">
                   <h6 style={{ fontWeight: "bold" }}>
-                    Goals for Changes in the Resident Phychorial Interaction or
+                    Goals for Changes in the Resident psychosocial  Interaction or
                     Behaviour :
                   </h6>
                 </div>
@@ -7074,7 +7074,7 @@ const Treatmentplan_update = () => {
 
                 <div className="formsheading" style={{ marginTop: "5rem" }}>
                   <h6 style={{ fontWeight: "bold" }}>
-                    Goals for Changes in the Resident Phychorial Interaction or
+                    Goals for Changes in the Resident psychosocial  Interaction or
                     Behaviour :
                   </h6>
                 </div>
