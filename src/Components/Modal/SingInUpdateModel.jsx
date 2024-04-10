@@ -28,7 +28,7 @@ const SingInUpdateModel = ({ onClose, singin, setSingIn,setDateAndTime,setSignat
     var formattedDay = day > 9 ? day : `0${day}`;
 
     // Display the extracted information
-    setDate(`${formattedMonth}/${formattedDay}/${year}`);
+    setDate(`${formattedMonth}-${formattedDay}-${year}`);
   }, []);
 
 

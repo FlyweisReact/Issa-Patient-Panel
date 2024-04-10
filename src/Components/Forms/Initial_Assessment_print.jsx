@@ -6487,19 +6487,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   isCreatable={true}
                   onKeyDown={handleKeyotherLastUse}
                 />
-                          {/* <Form.Select
-                            as="select"
-                            value={otherLastUse}
-                            onChange={(e) => setOtherLastUse(e.target.value)}
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                  
                         </td>
                         <td>
                         <Select
