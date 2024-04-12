@@ -33,36 +33,16 @@ const InitialAssessment = () => {
   }
 
 
-  // const handlePrint2 = () => {
-  //   var elements = document.getElementsByClassName("hidePrint");
-
-  //   for (var i = 0; i < elements.length; i++) {
-  //     elements[i].style.display = "none";
-  //   }
-
-  //       for (let i = 0; i < hideData.length; i++) {
-  //         hideData[i].style.display = "block";
-  //       }
-    
-  //   handlePrint();
-
-  //   setTimeout(() => {
-  //     for (var i = 0; i < elements.length; i++) {
-  //       elements[i].style.display = "block";
-  //     }
-
-  //   for (let i = 0; i < hideData.length; i++) {
-  //     hideData[i].style.display = "none";
-  //   }
-
-  //   }, 1000);
-  // };
 
   const handlePrint2 = () => {
     var elements = document.getElementsByClassName("hidePrint");
     var hidePrintButton = document.getElementsByClassName("hidePrintButton");
     var signatureRightAndSide =
       document.getElementsByClassName("file-upload-box");
+
+      // print under line hidden
+      var form_field_gender = document.getElementsByClassName("form-field-child-gender");
+
 
     for (let i = 0; i < hideData.length; i++) {
       hideData[i].style.display = "block";
@@ -79,6 +59,13 @@ const InitialAssessment = () => {
     for (let i = 0; i < signatureRightAndSide.length; i++) {
       signatureRightAndSide[i].style.justifyContent = "right";
     }
+
+    // print functinality
+    for (let i = 0; i < form_field_gender.length; i++) {
+      form_field_gender[i].style.borderBottom = "none";
+    }
+
+
 
     handlePrint();
 
@@ -99,6 +86,13 @@ const InitialAssessment = () => {
       for (let i = 0; i < hideData.length; i++) {
         hideData[i].style.display = "none";
       }
+
+      // print functinality
+      for (let i = 0; i < form_field_gender.length; i++) {
+        form_field_gender[i].style.borderBottom = "1px solid black";
+      }
+
+
     }, 1000);
   };
 
@@ -367,10 +361,10 @@ const InitialAssessment = () => {
       mentalHealthTreatmentHistoryTypeOfService
     ) {
       const data = {
-        diagnosisReason:mentalHealthTreatmentHistoryDiagnosisReason?.map((item)=>item.value),
+        diagnosisReason:mentalHealthTreatmentHistoryDiagnosisReason?.map((item)=>item),
         dates:mentalHealthTreatmentHistoryDates,
         where:mentalHealthTreatmentHistoryWhere,
-        typeOfService:mentalHealthTreatmentHistoryTypeOfService?.map((item)=>item.value),
+        typeOfService:mentalHealthTreatmentHistoryTypeOfService?.map((item)=>item),
       };
       setTypeOfServicesArray((prev) => [...prev, data]);
       setMentalHealthTreatmentHistoryTypeOfService([]);
@@ -1447,8 +1441,8 @@ sethealthConditionsYesComment(getApiData?.medicalConditions?.[24]?.comments);
 setInfectionYes(getApiData?.medicalConditions?.[25]?.yes);
 setInfectionDiseases(getApiData?.medicalConditions?.[25]?.comment
   ? getApiData?.medicalConditions?.[8].comment?.map(item => ({
-      label: item, // Assuming 'name' is the property you want to use as label
-      value: item    // Assuming 'id' is the property you want to use as value
+      label: item, 
+      value: item    
     }))
   : []);
 
@@ -1464,12 +1458,12 @@ setTypeOfServicesArray(getApiData?.mentalHealthTreatmentHistory
   ?getApiData?.mentalHealthTreatmentHistory?.flatMap((item)=>(
     {
       diagnosisReason:item?.diagnosisReason?.map((i) => ({
-        value : i ,
-        label : i
+        value : i?.value,
+        label : i?.label
       })),
       typeOfService:item?.typeOfService?.map((i) => ({
-        value : i ,
-        label : i
+        value : i?.value,
+        label : i?.label
       })),
       dates:item?.dates,
       where:item?.where
@@ -2160,7 +2154,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
     { label: "Art", value: "Art" },
   ];
 
-  console.log("typeOfServiceArray" ,typeOfServiceArray)
   const handleKeyDownResidentStrength = (event) => {
     if (event.key === "Enter" && event.target.value) {
       const inputValue = event.target.value.trim();
@@ -3077,7 +3070,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
     };
 
     initialAssestment_form(data);
-    // navigate("/intake");
+    navigate("/intake");
   };
 
   const option_value_Admission = [
@@ -5295,7 +5288,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
     
   return (
     <>
-      <div ref={componentRef} style={{ width: "100%", margin: "auto" }}>
+      <div >
         <div style={{ width: "20px" }} className="backbutton">
           <IoArrowBackCircle
             style={{
@@ -5343,7 +5336,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       className="borderless_input"
                       value={residentName}
                       placeholder="Enter full name"
-                      
+                      required
                       onChange={(e) => setResidentName(e.target.value)}
                     />
                   </div>
@@ -5395,7 +5388,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       className="borderless_input"
                       value={dob}
                       placeholder="DD/MM/YYYY"
-                      
+                      required
                       onChange={(e) => setDob(e.target.value)}
                     />
                   </div>
@@ -5405,7 +5398,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       type="date"
                       value={dateOfAssessment}
                       placeholder="Enter Date"
-                      
+                      required
                       onChange={(e) => setDateOfAssessment(e.target.value)}
                     />
                   </div>
@@ -5419,7 +5412,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     id="AHCCCS"
                     value={ahcccsNumber}
                     placeholder="Enter text"
-                    
+                    required
                     onChange={(e) => setAhcccsNumber(e.target.value)}
                   />
                 </div>
@@ -5432,7 +5425,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     </label>
                     <input
                       type="text"
-                      
+                      required
                       value={preferredLanguage}
                       onChange={(e) => setPreferredLanguage(e.target.value)}
                     />
@@ -5442,7 +5435,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     <label htmlFor="ethnicity">Ethnicity: </label>
                     <input
                       type="text"
-                      
+                      required
                       value={ethnicity}
                       onChange={(e) => setEthnicity(e.target.value)}
                     />
@@ -5469,7 +5462,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   </label>
                   <input
                     type="text"
-                    
+                    required
                     value={programLocation}
                     onChange={(e) => setProgramLocation(e.target.value)}
                   />
@@ -5485,31 +5478,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       id="attorneystatus"
                       value={guardianship}
                       placeholder="Enter text"
-                      
+                      required
                       onChange={(e) => setGuardianship(e.target.value)}
                     />
-                    {/* <div className="yesNoAligment">
-              <div className="checkboxitem">
-                <input
-                  type="checkbox"
-                  id="guardianship"
-                  checked={guardianship===true}
-                  onChange={()=>setGuardianship(true)}
-
-                />
-               <label htmlFor="guardianship">Yes</label>
-              </div>
-              <div className="checkboxitem">
-                <input
-                  type="checkbox"
-                  id="guardianshipno"
-                  checked={guardianship===false}
-                  onChange={()=>setGuardianship(false)}
-
-                />
-               <label htmlFor="guardianshipno">No</label>
-              </div>
-              </div> */}
+                   
                   </div>
 
                   <div className="form-field-child">
@@ -5521,25 +5493,14 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       id="attorneystatus"
                       value={powerOfAttorneyStatus}
                       placeholder="Enter text"
-                      
+                      required
                       onChange={(e) => setPowerOfAttorneyStatus(e.target.value)}
                     />
                   </div>
                 </div>
 
                 <div className="border-bootom-line"></div>
-                {/* <div className="form-field">
-              <label htmlFor="guardianship">Guardianship:</label>
-
-              <input
-                type="text"
-                id="guardianship"
-                value={guardianship}
-                placeholder="Enter name"
-                
-                onChange={(e) => setGuardianship(e.target.value)}
-              />
-            </div> */}
+         
 
                 <div className="form-field-single-update">
                   <label htmlFor="todaydate">Today’s Date:</label>
@@ -5548,7 +5509,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     id="todaydate"
                     value={todayDate}
                     placeholder="DD/MM/YYYY"
-                    
+                    required
                     onChange={(e) => setTodayDate(e.target.value)}
                   />
                 </div>
@@ -5562,7 +5523,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     id="fidname"
                     value={guardianshipPoaPubFidName}
                     placeholder="Enter name"
-                    
+                    required
                     onChange={(e) =>
                       setGuardianshipPoaPubFidName(e.target.value)
                     }
@@ -5576,12 +5537,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     id="approvedby"
                     value={approvedBy}
                     placeholder="Enter text"
-                    
+                    required
                     onChange={(e) => setApprovedBy(e.target.value)}
                   />
                 </div>
               </div>
-              {/* <h2 style={{ marginTop: "1.5rem", fontWeight: "bold" }}>Other Details:</h2> */}
+           
 
               <div className="box-image-container">
                 <div className="form-field-single-update-bold">
@@ -5605,19 +5566,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     id="approvedby"
                     value={residentGoals}
                     placeholder="Enter goal"
-                    
+                    required
                     onChange={(e) => setResidentGoals(e.target.value)}
                   />
-                  {/* <textarea
-                id="programlocation&address"
-                type="text"
-                value={residentGoals}
-                placeholder="Enter text"
-                rows={2}
-                cols={82}
-                
-                onChange={(e) => setResidentGoals(e.target.value)}
-              /> */}
+          
                 </div>
               </div>
 
@@ -5641,7 +5593,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     id="approvedby"
                     value={residentLimitations}
                     placeholder="Enter text"
-                    
+                    required
                     onChange={(e) => setResidentLimitations(e.target.value)}
                   />
                 </div>
@@ -7071,34 +7023,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyAlcohol}
                 />
 
-                          {/* <Form.Select
-                            value={substanceAbuseHistoryDataFrequencyAlcohol}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyAlcohol(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+                         
                         </td>
                         <td>
 
@@ -7110,32 +7035,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyAlcohol}
                 />
 
-                          {/* <Form.Select
-                            value={
-                              substanceAbuseHistoryDataLengthOfSobrietyAlcohol
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyAlcohol(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
+                         
                         </td>
                       </tr>
 
@@ -7165,25 +7065,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   isCreatable={true}
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseBenzodiazepines}
                 />
-                          {/* <Form.Select
-                            as="select"
-                            value={
-                              substanceAbuseHistoryDataLastUseBenzodiazepines
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUseBenzodiazepines(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                         
                         </td>
                         <td>
 
@@ -7196,36 +7078,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyBenzodiazepines}
                 />
 
-                          {/* <Form.Select
-                            value={
-                              substanceAbuseHistoryDataFrequencyBenzodiazepines
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyBenzodiazepines(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+                         
                         </td>
                         <td>
                           <Select
@@ -7237,32 +7090,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
                 />
 
-                          {/* <Form.Select
-                            value={
-                              substanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
+                       
                         </td>
                       </tr>
                       <tr>
@@ -7289,23 +7117,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   isCreatable={true}
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseCrack}
                 />
-                          {/* <Form.Select
-                            as="select"
-                            value={substanceAbuseHistoryDataLastUseCrack}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUseCrack(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                       
                         </td>
                         <td>
                           <Select
@@ -7317,34 +7129,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyCrack}
                 />
 
-                          {/* <Form.Select
-                            value={substanceAbuseHistoryDataFrequencyCrack}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyCrack(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+                          
                         </td>
                         <td>
                           <Select
@@ -7355,32 +7140,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyCrack}
                 />
 
-                          {/* <Form.Select
-                            value={
-                              substanceAbuseHistoryDataLengthOfSobrietyCrack
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyCrack(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
+                         
                         </td>
                       </tr>
                       <tr>
@@ -7407,23 +7167,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   isCreatable={true}
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseHeroin}
                 />
-                          {/* <Form.Select
-                            as="select"
-                            value={substanceAbuseHistoryDataLastUseHeroin}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUseHeroin(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                        
                         </td>
                         <td>
                           <Select
@@ -7435,34 +7179,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyHeroin}
                 />
 
-                          {/* <Form.Select
-                            value={substanceAbuseHistoryDataFrequencyHeroin}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyHeroin(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+                         
                         </td>
                         <td>
                           <Select
@@ -7474,32 +7191,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyHeroin}
                 />
 
-                          {/* <Form.Select
-                            value={
-                              substanceAbuseHistoryDataLengthOfSobrietyHeroin
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyHeroin(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
+                         
                         </td>
                       </tr>
                       <tr>
@@ -7528,23 +7220,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   isCreatable={true}
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseInhalants}
                 />
-                          {/* <Form.Select
-                            as="select"
-                            value={substanceAbuseHistoryDataLastUseInhalants}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUseInhalants(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                         
                         </td>
                         <td>
                           <Select
@@ -7556,34 +7232,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyInhalants}
                 />
 
-                          {/* <Form.Select
-                            value={substanceAbuseHistoryDataFrequencyInhalants}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyInhalants(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+                      
                         </td>
                         <td>
                           <Select
@@ -7594,33 +7243,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   isCreatable={true}
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
                 />
-{/* 
-                          <Form.Select
-                            value={
-                              substanceAbuseHistoryDataLengthOfSobrietyInhalants
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyInhalants(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
+
                         </td>
                       </tr>
                       <tr>
@@ -7649,23 +7272,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   isCreatable={true}
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMarijuana}
                 />
-                          {/* <Form.Select
-                            as="select"
-                            value={substanceAbuseHistoryDataLastUseMarijuana}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUseMarijuana(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                        
                         </td>
                         <td>
                           <Select
@@ -7677,34 +7284,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMarijuana}
                 />
 
-                          {/* <Form.Select
-                            value={substanceAbuseHistoryDataFrequencyMarijuana}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyMarijuana(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+                        
                         </td>
                         <td>
                           <Select
@@ -7716,32 +7296,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
                 />
 
-                          {/* <Form.Select
-                            value={
-                              substanceAbuseHistoryDataLengthOfSobrietyMarijuana
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyMarijuana(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
+                         
                         </td>
                       </tr>
                       <tr>
@@ -7770,25 +7325,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   isCreatable={true}
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMethamphetamine}
                 />
-                          {/* <Form.Select
-                            as="select"
-                            value={
-                              substanceAbuseHistoryDataLastUseMethamphetamine
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUseMethamphetamine(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                         
                         </td>
                         <td>
                           <Select
@@ -7799,37 +7336,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   isCreatable={true}
                   onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMethamphetamine}
                 />
-{/* 
-                          <Form.Select
-                            value={
-                              substanceAbuseHistoryDataFrequencyMethamphetamine
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyMethamphetamine(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+
                         </td>
                         <td>
                           <Select
@@ -7840,33 +7347,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   isCreatable={true}
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine}
                 />
-{/* 
-                          <Form.Select
-                            value={
-                              substanceAbuseHistoryDataLengthOfSobrietyMethamphetamine
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
+
                         </td>
                       </tr>
                       <tr>
@@ -7895,23 +7376,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   isCreatable={true}
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMethadone}
                 />
-                          {/* <Form.Select
-                            as="select"
-                            value={substanceAbuseHistoryDataLastUseMethadone}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUseMethadone(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                         
                         </td>
                         <td>
                           <Select
@@ -7923,34 +7388,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMethadone}
                 />
 
-                          {/* <Form.Select
-                            value={substanceAbuseHistoryDataFrequencyMethadone}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyMethadone(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+                         
                         </td>
                         <td>
                           <Select
@@ -7962,32 +7400,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMethadone}
                 />
 
-                          {/* <Form.Select
-                            value={
-                              substanceAbuseHistoryDataLengthOfSobrietyMethadone
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyMethadone(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
+                        
                         </td>
                       </tr>
                       <tr>
@@ -8014,23 +7427,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   isCreatable={true}
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMDMA}
                 />
-                          {/* <Form.Select
-                            as="select"
-                            value={substanceAbuseHistoryDataLastUseMDMA}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUseMDMA(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                        
                         </td>
                         <td>
                           <Select
@@ -8041,35 +7438,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   isCreatable={true}
                   onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMDMA}
                 />
-
-                          {/* <Form.Select
-                            value={substanceAbuseHistoryDataFrequencyMDMA}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyMDMA(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+                        
                         </td>
                         <td>
                           <Select
@@ -8081,32 +7450,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
                 />
 
-                          {/* <Form.Select
-                            value={
-                              substanceAbuseHistoryDataLengthOfSobrietyMDMA
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyMDMA(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
                         </td>
                       </tr>
                       <tr>
@@ -8133,23 +7476,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   isCreatable={true}
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLastUsePCP}
                 />
-                          {/* <Form.Select
-                            as="select"
-                            value={substanceAbuseHistoryDataLastUsePCP}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUsePCP(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                          
                         </td>
                         <td>
                           <Select
@@ -8161,69 +7488,18 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyPCP}
                 />
 
-                          {/* <Form.Select
-                            value={substanceAbuseHistoryDataFrequencyPCP}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyPCP(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+                          
                         </td>
                         <td>
                           <Select
                   value={substanceAbuseHistoryDataLengthOfSobrietyPCP}
-                  
                   onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyPCP}
                   options={optionsubstanceAbuseHistoryDataLengthOfSobrietyPCP}
                   isCreatable={true}
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyPCP}
                 />
 
-                          {/* <Form.Select
-                            value={substanceAbuseHistoryDataLengthOfSobrietyPCP}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyPCP(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
+                          
                         </td>
                       </tr>
                       <tr>
@@ -8252,23 +7528,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   isCreatable={true}
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLastUsePrescription}
                 />
-                          {/* <Form.Select
-                            as="select"
-                            value={substanceAbuseHistoryDataLastUsePrescription}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUsePrescription(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                          
                         </td>
                         <td>
                           <Select
@@ -8280,36 +7540,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyPrescription}
                 />
 
-                          {/* <Form.Select
-                            value={
-                              substanceAbuseHistoryDataFrequencyPrescription
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyPrescription(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+                          
                         </td>
                         <td>
                           <Select
@@ -8321,32 +7552,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
                 />
 
-                          {/* <Form.Select
-                            value={
-                              substanceAbuseHistoryDataLengthOfSobrietyPrescription
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyPrescription(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
+                         
                         </td>
                       </tr>
                       <tr>
@@ -8373,23 +7579,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   isCreatable={true}
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseOTC}
                 />
-                          {/* <Form.Select
-                            as="select"
-                            value={substanceAbuseHistoryDataLastUseOTC}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLastUseOTC(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Weeks ago">Weeks ago</option>
-                            <option value="Days ago">Days ago</option>
-                            <option value="Yesterday">Yesterday</option>
-                            <option value="Months ago">Months ago</option>
-                            <option value="Few hours ago">Few hours ago</option>
-                            <option value="Unsure">Unsure</option>
-                          </Form.Select> */}
+                         
                         </td>
                         <td>
                           <Select
@@ -8401,34 +7591,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyOTC}
                 />
 
-                          {/* <Form.Select
-                            value={substanceAbuseHistoryDataFrequencyOTC}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataFrequencyOTC(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
+                         
                         </td>
                         <td>
                           <Select
@@ -8439,30 +7602,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyOTC}
                 />
 
-                          {/* <Form.Select
-                            value={substanceAbuseHistoryDataLengthOfSobrietyOTC}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataLengthOfSobrietyOTC(
-                                e.target.value
-                              )
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
+                      
                         </td>
                       </tr>
 
@@ -8551,7 +7691,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 <label style={{ fontWeight: "bold" }}>
                   Active Withdrawal Symptoms:
                 </label>
-                {/* chechbox12-aligment411 */}
+             
                 <div class="checkBox_style_update">
                  
                     <div class="checkboxitem">
@@ -10289,17 +9429,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     <label htmlFor="timeno">No</label>
                   </div>
                 </div>
-                {/* <div style={{ display: "flex", gap: "10px", alignItems: "center", display: "none" }}>
-              <label htmlFor="">Circumstances:</label>
-              <div style={{display:"flex",gap:"10px",alignItems:"center"}}>
-              <input type="checkbox" id="circumstances" checked={circumstances===true} onChange={()=>setCircumstances(true)}/>
-                    <label htmlFor="circumstances">Yes</label>
-              </div>
-              <div style={{display:"flex",gap:"10px",alignItems:"center"}}>
-                    <input type="checkbox" id="circumstancesno" checked={circumstances === false} onChange={() => setCircumstances(false)} />
-                    <label htmlFor="circumstancesno">No</label>
-              </div>
-                </div> */}
+             
               </div>
 
               <div className="yeschechbox">
@@ -10542,7 +9672,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     id="approvedby"
                     value={significantSocialDevelopmentalHistory}
                     placeholder="Enter "
-                    
+                    required
                     onChange={(e) =>
                       setSignificantSocialDevelopmentalHistory(e.target.value)
                     }
@@ -10552,7 +9682,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
               <div
                 className="form-field-single-update"
-                style={{ merginLeft: "10px" }}
+                style={{ merginLeft: "10px",marginTop:"0.5rem" }}
               >
                 <label>Educational history:</label>
                 <input
@@ -10560,7 +9690,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   id="approvedby"
                   value={educationalHistory}
                   placeholder="Enter here"
-                  
+                  required
                   onChange={(e) => setEducationalHistory(e.target.value)}
                 />
               </div>
@@ -10572,7 +9702,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     type="text"
                     value={highestEducation}
                     placeholder="Enter education"
-                    
+                    required
                     onChange={(e) => setHighestEducation(e.target.value)}
                   />
                 </div>
@@ -10644,7 +9774,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     type="text"
                     value={ifYesWhere}
                     placeholder="Enter text"
-                    
+                    required
                     onChange={(e) => setIfYesWhere(e.target.value)}
                   />
                 </div>
@@ -10679,37 +9809,14 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     </div>
                   </div>
                 </div>
-                {/* <div className="yeschechbox">
-                <label style={{ fontWeight: "bold" }}>Fully time employed:</label>
-                <div className="employment-Aligmant">
-                  <div className="checkboxitem">
-                    <input
-                      type="checkbox"
-                      name=""
-                      id="fullTime"
-                      checked={fullTime === true}
-                      onChange={() => setFullTime(true)}
-                    />
-                    <label htmlFor="fullTime">Yes</label>
-                  </div>
-                  <div className="checkboxitem">
-                    <input
-                      type="checkbox"
-                      id="fullTimeno"
-                      checked={fullTime === false}
-                      onChange={() => setFullTime(false)}
-                    />
-                    <label htmlFor="fullTimeno">No</label>
-                  </div>
-                </div>
-              </div> */}
+               
                 <div className="form-field-child">
                   <label >
                     If employed, where? FT or PT?:
                   </label>
                   <input
                     type="text"
-                
+                    required
                     value={employmentLocation}
                     placeholder="Enter text"
                     
@@ -10864,7 +9971,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                               1
                             )}
                             value={BathingComments || ""}
-                            placeholder="_"
+                            placeholder="___________"
                             onChange={(e) => setBathingComments(e.target.value)}
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
@@ -10925,7 +10032,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             )}
                             value={GroomingComments || ""}
                            
-                            placeholder="_"
+                            placeholder="___________"
                             onChange={(e) =>
                               setGroomingComments(e.target.value)
                             }
@@ -10988,7 +10095,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             )}
                             value={MobilityComments || ""}
                          
-                            placeholder="_"
+                            placeholder="___________"
                             onChange={(e) =>
                               setMobilityComments(e.target.value)
                             }
@@ -11051,7 +10158,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             )}
                             value={HouseworkComments || ""}
                           
-                            placeholder="_"
+                            placeholder="___________"
                             onChange={(e) =>
                               setHouseworkComments(e.target.value)
                             }
@@ -11114,7 +10221,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             )}
                             value={ShoppingComments || ""}
               
-                            placeholder="_"
+                            placeholder="___________"
                             onChange={(e) =>
                               setShoppingComments(e.target.value)
                             }
@@ -11177,7 +10284,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             )}
                             value={ManagingComments || ""}
                             
-                            placeholder="_"
+                            placeholder="___________"
                             onChange={(e) =>
                               setManagingComments(e.target.value)
                             }
@@ -11240,7 +10347,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             )}
                             value={PreparingComments || ""}
                     
-                            placeholder="_"
+                            placeholder="___________"
                             onChange={(e) =>
                               setPreparingComments(e.target.value)
                             }
@@ -11304,7 +10411,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             value={ EatingComments || ""}
                     
                       
-                            placeholder="_"
+                            placeholder="___________"
                             onChange={(e) => setEatingComments(e.target.value)}
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
@@ -11365,7 +10472,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             )}
                             value={ ToiletingComments || ""}
                             
-                            placeholder="_"
+                            placeholder="___________"
                             onChange={(e) =>
                               setToiletingComments(e.target.value)
                             }
@@ -11408,6 +10515,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           Other:{" "}
                           <input
                             type="text"
+                            placeholder="___________"
                             className="treatment_plan_table"
                             value={otherCurrentOther}
                             onChange={(e) =>
@@ -11465,7 +10573,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             )}
                             value={ otherCurrentComment || ""}
                            
-                            placeholder="_"
+                            placeholder="___________"
                             onChange={(e) =>
                               setOtherCurrentComment(e.target.value)
                             }
@@ -11495,9 +10603,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </button>
               </div>
 
-    
 
-              {/* start working  */}
               <div className="box-image-container">
                 <div className="form-field-single-update ">
                   <label>Triggers:</label>
@@ -11636,13 +10742,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
               <div className="yeschechbox1">
                 <label style={{ fontWeight: "bold" }}>Ideation</label>
-                {/* <input
-                style={{ marginRight: "1rem" }}
-                
-                placeholder="Enter text"
-                value={suicidalIdeation}
-                onChange={(e) => setSuicidalIdeation(e.target.value)}
-              /> */}
 
                 <div className="employment-Aligmant-location">
                   <div
@@ -11708,7 +10807,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </div>
               </div>
 
-              {/* api add some time */}
               <div className="increasingClass">
                 <label style={{ fontWeight: "bold" }}>Increasing in:</label>
 
@@ -11971,7 +11069,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           onChange={() => setBehaviourYesNo(false)}/>
                         </td>
                         <td>
-                          {/* setBehaviorcuesDropDown */}
+                     
                           <Select
                             value={behaviorcuesDropDown}
                             isMulti
@@ -11999,7 +11097,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           onChange={() => setSymptomsYesNo(false)}/>
                         </td>
                         <td>
-                          {/* setSymptomsOfPsychosisDropDown */}
+                          
                           <Select
                             value={symptomsOfPsychosisDropDown}
                             isMulti
@@ -12153,115 +11251,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </button>
               </div>
 
-              {/* <div className="box-image-container hidePrint" style={{ padding: "10px" }}>
-                <div className="form-field-single-update-bold">
-                  <label >
-                  Select risk factors that apply:
-                </label>
-                <Select
-                  value={selectedValueRiskFactors}
-                  isMulti
-                  options={selectedValueRiskFactorsOption}
-                  onChange={selectedValueRiskFactorsHandler}
-                  isCreatable={true}
-                  onKeyDown={handleKeySelectedValueRiskFactors}
-                />
-              </div>
-                <div className="yeschechbox" style={{ marginLeft: "10px" }}>
-                <div className="safetyRiskFactor">
-                  <div className="safetyRiskFactor-child">
-                    <input type="checkbox" id="riskYesNo" checked={riskYesNo === true} onChange={() => setRiskYesNo(true)} />
-                    <label htmlFor="riskYesNo">Yes</label>
-                  </div>
-                  <div className="safetyRiskFactor-child">
-                    <input type="checkbox" id="riskYesNono" checked={riskYesNo === false} onChange={() => setRiskYesNo(false)} />
-                    <label htmlFor="riskYesNono">No</label>
-                  </div>
-                </div>
-              </div>
-                <div className="form-field-single-update-notBold" style={{ marginLeft: "10px" }}>
-                <label >Comments:</label>
-                <input
-                  type="text"
-                  
-                  value={riskComment}
-                  onChange={(e) => setRiskComment(e.target.value)}
-                />
-
-                </div>
-              </div> */}
-
-           
-
-              {/*
-              <div className="needs-interventions-container">
-                <div className="needs-interventions-column3">
-                  {riskFactorArray.length > 0 && (
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Select risk factors that apply</th>
-                          <th>Checked</th>
-                          <th>Comments</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {riskFactorArray?.map((i, index) => (
-                          <tr key={index}>
-                            <td>
-
-                              {i?.selectedValueRiskFactors?.map((item) => (
-                                <p key={item?.value}>{item?.value}</p>
-                              ))}
-
-                            </td>
-                            <td>{` ${i.riskYesNo === true ? "YES" : "NO"}`} </td>
-                            <td>{` ${i.riskComment}`} </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  )}
-                </div>
-              </div> */}
-
-              {/* <div className="box-image-container hidePrint" style={{ padding: "10px" }}>
-                <div className="form-field-single-update-bold">
-                <label >
-                  Protective factors that apply:
-                </label>
-                <Select
-                  value={selectedValueProtectiveFactors}
-                  isMulti
-                  onChange={selectedValueProtectiveFactorsHandler}
-                  options={selectedValueProtectiveFactorsOption}
-                  isCreatable={true}
-                  onKeyDown={handleKeySelectedValueProtectiveFactors}
-                />
-
-              </div>
-                <div className="yeschechbox" style={{ marginLeft: "10px" }}>
-                <div className="safetyRiskFactor">
-                  <div className="safetyRiskFactor-child">
-                    <input type="checkbox" id="protectiveYesNo" checked={protectiveYesNo === true} onChange={() => setProtectiveYesNo(true)} />
-                    <label htmlFor="protectiveYesNo">Yes</label>
-                  </div>
-                  <div className="safetyRiskFactor-child">
-                    <input type="checkbox" id="protectiveYesNono" checked={protectiveYesNo === false} onChange={() => setProtectiveYesNo(false)} />
-                    <label htmlFor="protectiveYesNono">No</label>
-                  </div>
-                </div>
-              </div>
-                <div className="form-field-single-update-notBold" style={{ marginLeft: "10px" }}>
-                <label >Comments:</label>
-                <input
-                  type="text"
-                  value={protectiveComment}
-                  onChange={(e) => setprotectiveComment(e.target.value)}
-                  />
-
-                </div>
-              </div> */}
 
               <div className="formsheading">
                 <h6 style={{ fontWeight: "bold" }}>Protective factors:</h6>
@@ -12457,38 +11446,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </button>
               </div>
 
-              {/* <div className="needs-interventions-container">
-                <div className="needs-interventions-column3">
-                  {protectiveFactorsArray.length > 0 && (
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Protective factors that apply</th>
-                          <th>Yes</th>
-                          <th>No</th>
-                          <th>Comments</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {protectiveFactorsArray?.map((i, index) => (
-                          <tr key={index}>
-                            <td>
-
-                              {i?.selectedValueProtectiveFactors?.map((item) => (
-                                <p key={item?.value}>{item?.value}</p>
-                              ))}
-
-                            </td>
-                            <td>{` ${i.protectiveYesNo === true ? "YES" : "NO"}`} </td>
-                            <td>{` ${i.protectiveYesNo === true ? "NO" : "YES"}`} </td>
-                            <td>{` ${i.protectiveComment}`} </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  )}
-                </div>
-              </div> */}
+           
 
               <div className="formsheading">
                 <p>
@@ -12546,50 +11504,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
               </div>
              
 
-              {/* <div className="box-image-container hidePrint" style={{ padding: "10px" }}>
-              <div className="form-field-update">
-                <div className="form-field-child">
-                  <label >Psychiatric Diagnoses:</label>
-                  <select value={psychiatricOption} onChange={(e) => setPsychiatricOption(e.target.value)} className="select-same-line-update">
-                    <option value="">Select</option>
-                    <option value="Primary">Primary</option>
-                    <option value="Secondary">Secondary</option>
-                    <option value="Tertiary">Tertiary</option>
-                    <option value="Additional">Additional</option>
-                  </select>
-                </div>
-                <div className="form-field-child">
-                  <label htmlFor="icdCode">ICD Code:</label>
-                  <input
-                    type="text"
-                    
-                    id="icdCode"
-                    value={icdCode}
-                    onChange={(e) => setIcdCode(e.target.value)}
-                  />
-                </div>
-                <div className="form-field-child">
-                  <label htmlFor="description">Description:</label>
-                  <input
-                    type="text"
-                    
-                    id="description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                  />
-                </div>
-              </div>
-              </div> */}
-
-              {/* <div className="form-actions hidePrint">
-                <button
-                  type="button"
-                  className="safetybutton"
-                  onClick={handlePsychiatricDiagnoses}
-                >
-                  Add
-                </button>
-              </div> */}
+            
 
               <div className="needs-interventions-container2">
                 <div className="needs-interventions-column2">
@@ -12967,39 +11882,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                       </tr>
-                      {/* <tr>
-                        <td>Additional</td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            placeholder="___________"
-                            value={Additional2icdCode}
-                            onChange={(e)=>setAdditional2IcdCode(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          {" "}
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              Additional2Description.split("\n").length,
-                              1
-                            )}
-                            value={Additional2Description}
-                            placeholder="___________"
-                            onChange={(e) => setAdditional2Description(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setAdditional2Description(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr> */}
+                      
                       {
                           medicalDiagnosesArray.map((i)=>
                           <tr>
@@ -13246,7 +12129,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </div>
               </div>
               <div className="formsheading">
-                {/* <h6>If yes, please check applicable loss(es):</h6> */}
+           
               </div>
               <div class="checkbox-container">
                 <div class="chechbox12-correct">
@@ -13412,7 +12295,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </div>
               </div>
 
-              {/* resident gaurdent name and signatutre */}
+  
               <div
                 className="box-image-container"
                 style={{ paddingBottom: "10px" }}
@@ -13468,7 +12351,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     setSignatureTime={setResidentGuardianTime}
                   />
                 )}
-                {/* please care full write some think is change so api will work */}
+    
                 <div className="form-field-single-update">
                   <label>Staff name, title:</label>
                   <input

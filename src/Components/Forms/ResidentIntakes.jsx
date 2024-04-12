@@ -69,6 +69,10 @@ const ResidentIntakes = () => {
     var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
     var increaseWidth=document.getElementsByClassName("increase-print-width");
 
+            // hide bottom
+            var form_field_gender = document.getElementsByClassName("form-field-child");
+            var form_field_single_update = document.getElementsByClassName("form-field-single-update");
+
     for (var i = 0; i < hidePrint.length; i++) {
       hidePrint[i].style.display = "none";
     }
@@ -92,10 +96,23 @@ const ResidentIntakes = () => {
       formsheading2[i].style.backgroundColor="white"
     }
 
-
+        // hode bottom
+        for (let i = 0; i < form_field_gender.length; i++) {
+          var inputs = form_field_gender[i].getElementsByTagName("input");
+          for (let j = 0; j < inputs.length; j++) {
+              inputs[j].style.borderBottom = "none";
+          }
+      }
+    
+      for (let i = 0; i < form_field_single_update.length; i++) {
+        var inputs = form_field_single_update[i].getElementsByTagName("input");
+        for (let j = 0; j < inputs.length; j++) {
+            inputs[j].style.borderBottom = "none";
+        }
+    }
 
     handlePrint1();
-    // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
+
     setTimeout(() => {
       for (var i = 0; i < hidePrint.length; i++) {
         hidePrint[i].style.display = "flex";
@@ -117,6 +134,22 @@ const ResidentIntakes = () => {
       for (let i = 0; i < increaseWidth.length; i++) {
         increaseWidth[i].style.width="100%"
       }
+
+       // hide bottom
+       for (let i = 0; i < form_field_gender.length; i++) {
+        var inputs = form_field_gender[i].getElementsByTagName("input");
+        for (let j = 0; j < inputs.length; j++) {
+            inputs[j].style.borderBottom = "1px solid black";
+        }
+    }
+
+    for (let i = 0; i < form_field_single_update.length; i++) {
+      var inputs = form_field_single_update[i].getElementsByTagName("input");
+      for (let j = 0; j < inputs.length; j++) {
+          inputs[j].style.borderBottom = "1px solid black";
+      }
+  }
+
   
     }, 500);
   };
@@ -127,6 +160,10 @@ const ResidentIntakes = () => {
     var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
     var increaseWidth=document.getElementsByClassName("increase-print-width");
    
+     // hide bottom
+     var form_field_gender = document.getElementsByClassName("form-field-child");
+     var form_field_single_update = document.getElementsByClassName("form-field-single-update");
+
 
     // Iterate through each element with the specified class
     for (var i = 0; i < hidePrint.length; i++) {
@@ -146,6 +183,22 @@ const ResidentIntakes = () => {
       increaseWidth[i].style.width="80%";
       increaseWidth[i].style.margin="auto";
     }
+
+       // hode bottom
+       for (let i = 0; i < form_field_gender.length; i++) {
+        var inputs = form_field_gender[i].getElementsByTagName("input");
+        for (let j = 0; j < inputs.length; j++) {
+            inputs[j].style.borderBottom = "none";
+        }
+    }
+  
+    for (let i = 0; i < form_field_single_update.length; i++) {
+      var inputs = form_field_single_update[i].getElementsByTagName("input");
+      for (let j = 0; j < inputs.length; j++) {
+          inputs[j].style.borderBottom = "none";
+      }
+  }
+
 
 
 
@@ -169,6 +222,21 @@ const ResidentIntakes = () => {
         increaseWidth[i].style.width="100%"
       }
 
+         // hide bottom
+         for (let i = 0; i < form_field_gender.length; i++) {
+          var inputs = form_field_gender[i].getElementsByTagName("input");
+          for (let j = 0; j < inputs.length; j++) {
+              inputs[j].style.borderBottom = "1px solid black";
+          }
+      }
+  
+      for (let i = 0; i < form_field_single_update.length; i++) {
+        var inputs = form_field_single_update[i].getElementsByTagName("input");
+        for (let j = 0; j < inputs.length; j++) {
+            inputs[j].style.borderBottom = "1px solid black";
+        }
+    }
+
     }, 1000);
   };
 
@@ -176,6 +244,10 @@ const ResidentIntakes = () => {
     var elements = document.getElementsByClassName("hidePrint");
     var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
     var increaseWidth=document.getElementsByClassName("increase-print-width");
+
+        // hide bottom
+        var form_field_gender = document.getElementsByClassName("form-field-child");
+        var form_field_single_update = document.getElementsByClassName("form-field-single-update");
 
     // Iterate through each element with the specified class
     for (var i = 0; i < elements.length; i++) {
@@ -189,6 +261,21 @@ const ResidentIntakes = () => {
       increaseWidth[i].style.width="80%";
       increaseWidth[i].style.margin="auto";
     }
+
+          // hode bottom
+          for (let i = 0; i < form_field_gender.length; i++) {
+            var inputs = form_field_gender[i].getElementsByTagName("input");
+            for (let j = 0; j < inputs.length; j++) {
+                inputs[j].style.borderBottom = "none";
+            }
+        }
+      
+        for (let i = 0; i < form_field_single_update.length; i++) {
+          var inputs = form_field_single_update[i].getElementsByTagName("input");
+          for (let j = 0; j < inputs.length; j++) {
+              inputs[j].style.borderBottom = "none";
+          }
+      }
     handlePrint3();
     // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
     setTimeout(() => {
@@ -202,6 +289,21 @@ const ResidentIntakes = () => {
       for (let i = 0; i < increaseWidth.length; i++) {
         increaseWidth[i].style.width="100%"
       }
+
+         // hide bottom
+         for (let i = 0; i < form_field_gender.length; i++) {
+          var inputs = form_field_gender[i].getElementsByTagName("input");
+          for (let j = 0; j < inputs.length; j++) {
+              inputs[j].style.borderBottom = "1px solid black";
+          }
+      }
+  
+      for (let i = 0; i < form_field_single_update.length; i++) {
+        var inputs = form_field_single_update[i].getElementsByTagName("input");
+        for (let j = 0; j < inputs.length; j++) {
+            inputs[j].style.borderBottom = "1px solid black";
+        }
+    }
     }, 1000);
   };
 
@@ -209,6 +311,10 @@ const ResidentIntakes = () => {
     var elements = document.getElementsByClassName("hidePrint");
     var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
     var increaseWidth=document.getElementsByClassName("increase-print-width");
+
+     // hide bottom
+     var form_field_gender = document.getElementsByClassName("form-field-child");
+     var form_field_single_update = document.getElementsByClassName("form-field-single-update");
 
     // Iterate through each element with the specified class
     for (var i = 0; i < elements.length; i++) {
@@ -221,6 +327,22 @@ const ResidentIntakes = () => {
     for (let i = 0; i < increaseWidth.length; i++) {
       increaseWidth[i].style.width="80%";
       increaseWidth[i].style.margin="auto";
+    }
+
+    
+        // hode bottom
+        for (let i = 0; i < form_field_gender.length; i++) {
+          var inputs = form_field_gender[i].getElementsByTagName("input");
+          for (let j = 0; j < inputs.length; j++) {
+              inputs[j].style.borderBottom = "none";
+          }
+      }
+    
+      for (let i = 0; i < form_field_single_update.length; i++) {
+        var inputs = form_field_single_update[i].getElementsByTagName("input");
+        for (let j = 0; j < inputs.length; j++) {
+            inputs[j].style.borderBottom = "none";
+        }
     }
 
     handlePrint4();
@@ -238,6 +360,22 @@ const ResidentIntakes = () => {
       for (let i = 0; i < increaseWidth.length; i++) {
         increaseWidth[i].style.width="100%"
       }
+
+       // hide bottom
+       for (let i = 0; i < form_field_gender.length; i++) {
+        var inputs = form_field_gender[i].getElementsByTagName("input");
+        for (let j = 0; j < inputs.length; j++) {
+            inputs[j].style.borderBottom = "1px solid black";
+        }
+    }
+
+    for (let i = 0; i < form_field_single_update.length; i++) {
+      var inputs = form_field_single_update[i].getElementsByTagName("input");
+      for (let j = 0; j < inputs.length; j++) {
+          inputs[j].style.borderBottom = "1px solid black";
+      }
+  }
+
     }, 1000);
   };
 
@@ -245,6 +383,10 @@ const ResidentIntakes = () => {
     var elements = document.getElementsByClassName("hidePrint");
     var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
     var increaseWidth=document.getElementsByClassName("increase-print-width");
+
+      // hide bottom
+      var form_field_gender = document.getElementsByClassName("form-field-child");
+      var form_field_single_update = document.getElementsByClassName("form-field-single-update");
 
     // Iterate through each element with the specified class
     for (var i = 0; i < elements.length; i++) {
@@ -258,6 +400,21 @@ const ResidentIntakes = () => {
       increaseWidth[i].style.width="80%";
       increaseWidth[i].style.margin="auto";
     }
+
+      // hode bottom
+      for (let i = 0; i < form_field_gender.length; i++) {
+        var inputs = form_field_gender[i].getElementsByTagName("input");
+        for (let j = 0; j < inputs.length; j++) {
+            inputs[j].style.borderBottom = "none";
+        }
+    }
+  
+    for (let i = 0; i < form_field_single_update.length; i++) {
+      var inputs = form_field_single_update[i].getElementsByTagName("input");
+      for (let j = 0; j < inputs.length; j++) {
+          inputs[j].style.borderBottom = "none";
+      }
+  }
 
     handlePrint5();
     // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
@@ -272,6 +429,22 @@ const ResidentIntakes = () => {
         increaseWidth[i].style.width="100%"
       }
 
+        // hide bottom
+        for (let i = 0; i < form_field_gender.length; i++) {
+          var inputs = form_field_gender[i].getElementsByTagName("input");
+          for (let j = 0; j < inputs.length; j++) {
+              inputs[j].style.borderBottom = "1px solid black";
+          }
+      }
+  
+      for (let i = 0; i < form_field_single_update.length; i++) {
+        var inputs = form_field_single_update[i].getElementsByTagName("input");
+        for (let j = 0; j < inputs.length; j++) {
+            inputs[j].style.borderBottom = "1px solid black";
+        }
+    }
+  
+
     }, 1000);
   };
 
@@ -279,6 +452,10 @@ const ResidentIntakes = () => {
     var elements = document.getElementsByClassName("hidePrint");
     var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
     var increaseWidth=document.getElementsByClassName("increase-print-width");
+
+     // hide bottom
+     var form_field_gender = document.getElementsByClassName("form-field-child");
+     var form_field_single_update = document.getElementsByClassName("form-field-single-update");
 
     // Iterate through each element with the specified class
     for (var i = 0; i < elements.length; i++) {
@@ -292,6 +469,21 @@ const ResidentIntakes = () => {
     for (let i = 0; i < increaseWidth.length; i++) {
       increaseWidth[i].style.width="80%";
       increaseWidth[i].style.margin="auto";
+    }
+
+        // hode bottom
+        for (let i = 0; i < form_field_gender.length; i++) {
+          var inputs = form_field_gender[i].getElementsByTagName("input");
+          for (let j = 0; j < inputs.length; j++) {
+              inputs[j].style.borderBottom = "none";
+          }
+      }
+    
+      for (let i = 0; i < form_field_single_update.length; i++) {
+        var inputs = form_field_single_update[i].getElementsByTagName("input");
+        for (let j = 0; j < inputs.length; j++) {
+            inputs[j].style.borderBottom = "none";
+        }
     }
 
 
@@ -309,6 +501,21 @@ const ResidentIntakes = () => {
       for (let i = 0; i < increaseWidth.length; i++) {
         increaseWidth[i].style.width="100%"
       }
+
+        // hide bottom
+        for (let i = 0; i < form_field_gender.length; i++) {
+          var inputs = form_field_gender[i].getElementsByTagName("input");
+          for (let j = 0; j < inputs.length; j++) {
+              inputs[j].style.borderBottom = "1px solid black";
+          }
+      }
+  
+      for (let i = 0; i < form_field_single_update.length; i++) {
+        var inputs = form_field_single_update[i].getElementsByTagName("input");
+        for (let j = 0; j < inputs.length; j++) {
+            inputs[j].style.borderBottom = "1px solid black";
+        }
+    }
     }, 1000);
   };
 
@@ -317,8 +524,12 @@ const ResidentIntakes = () => {
     var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
     var increaseWidth=document.getElementsByClassName("increase-print-width");
 
-    // Iterate through each element with the specified class
-    for (var i = 0; i < elements.length; i++) {
+     // hide bottom
+     var form_field_gender = document.getElementsByClassName("form-field-child");
+     var form_field_single_update = document.getElementsByClassName("form-field-single-update");
+
+
+     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
     }
     for (let i = 0; i < increaseWidth.length; i++) {
@@ -329,6 +540,22 @@ const ResidentIntakes = () => {
     for (let i = 0; i < signatureRightAndSide.length; i++) {
       signatureRightAndSide[i].style.justifyContent = "right";
     }
+
+     // hode bottom
+     for (let i = 0; i < form_field_gender.length; i++) {
+      var inputs = form_field_gender[i].getElementsByTagName("input");
+      for (let j = 0; j < inputs.length; j++) {
+          inputs[j].style.borderBottom = "none";
+      }
+  }
+
+  for (let i = 0; i < form_field_single_update.length; i++) {
+    var inputs = form_field_single_update[i].getElementsByTagName("input");
+    for (let j = 0; j < inputs.length; j++) {
+        inputs[j].style.borderBottom = "none";
+    }
+}
+
     handlePrint7();
     // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
     setTimeout(() => {
@@ -342,6 +569,21 @@ const ResidentIntakes = () => {
     for (let i = 0; i < increaseWidth.length; i++) {
       increaseWidth[i].style.width="100%"
     }
+
+        // hide bottom
+        for (let i = 0; i < form_field_gender.length; i++) {
+          var inputs = form_field_gender[i].getElementsByTagName("input");
+          for (let j = 0; j < inputs.length; j++) {
+              inputs[j].style.borderBottom = "1px solid black";
+          }
+      }
+  
+      for (let i = 0; i < form_field_single_update.length; i++) {
+        var inputs = form_field_single_update[i].getElementsByTagName("input");
+        for (let j = 0; j < inputs.length; j++) {
+            inputs[j].style.borderBottom = "1px solid black";
+        }
+    }
     }, 1000);
   };
 
@@ -351,6 +593,9 @@ const ResidentIntakes = () => {
     var submitButton=document.getElementsByClassName("form-actions");
     var increaseWidth=document.getElementsByClassName("increase-print-width");
 
+     // hide bottom
+     var form_field_gender = document.getElementsByClassName("form-field-child");
+     var form_field_single_update = document.getElementsByClassName("form-field-single-update");
     // Iterate through each element with the specified class
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
@@ -369,6 +614,20 @@ const ResidentIntakes = () => {
       increaseWidth[i].style.margin="auto";
     }
 
+    // hode bottom
+    for (let i = 0; i < form_field_gender.length; i++) {
+      var inputs = form_field_gender[i].getElementsByTagName("input");
+      for (let j = 0; j < inputs.length; j++) {
+          inputs[j].style.borderBottom = "none";
+      }
+  }
+
+  for (let i = 0; i < form_field_single_update.length; i++) {
+    var inputs = form_field_single_update[i].getElementsByTagName("input");
+    for (let j = 0; j < inputs.length; j++) {
+        inputs[j].style.borderBottom = "none";
+    }
+}
 
     handlePrint8();
     // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
@@ -389,6 +648,21 @@ const ResidentIntakes = () => {
       for (let i = 0; i < increaseWidth.length; i++) {
         increaseWidth[i].style.width="100%"
       }
+
+       // hide bottom
+       for (let i = 0; i < form_field_gender.length; i++) {
+        var inputs = form_field_gender[i].getElementsByTagName("input");
+        for (let j = 0; j < inputs.length; j++) {
+            inputs[j].style.borderBottom = "1px solid black";
+        }
+    }
+
+    for (let i = 0; i < form_field_single_update.length; i++) {
+      var inputs = form_field_single_update[i].getElementsByTagName("input");
+      for (let j = 0; j < inputs.length; j++) {
+          inputs[j].style.borderBottom = "1px solid black";
+      }
+  }
   
     }, 1000);
   };

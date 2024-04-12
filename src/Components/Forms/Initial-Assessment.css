@@ -119,7 +119,6 @@
 }
 
 .form-field-child-gender {
-  /* margin-top: 1rem; */
   display: flex;
   align-items: center;
 }
@@ -275,8 +274,6 @@
   display: flex;
   align-items: center;
   align-content: center;
-  /* width: calc(2% - 10px); */
-
   gap: 10px
 }
 
@@ -901,11 +898,10 @@ input[type="checkbox"] {
 .needs-interventions-container2 {
   display: flex;
   justify-content: center;
-  /* Center horizontally */
   align-items: center;
-  /* Center vertically */
   margin: 0.5rem 0;
   width: 100%;
+  overflow-x: scroll;
 }
 
 .needs-interventions-column2 {
@@ -1165,6 +1161,17 @@ input[type="checkbox"] {
   /* Same box shadow as .booking-container */
 }
 
+.profile-section {
+  width: 80%;
+  height: auto;
+  margin: auto;
+  background-color: #ffffff;
+  border: 2px solid #ffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 .booking-section h2 {
   font-weight: 500;
   font-size: 22px;
@@ -1188,15 +1195,15 @@ input[type="checkbox"] {
 }
 
 
-/* /text box width */
-
 .inLine_box_style {
   display: flex;
-  height: 10px;
+  height: 25px;
   gap: 10px;
   flex-wrap: wrap;
   align-items: center;
 }
+
+
 
 #input-text_value1 {
   width: 200px;
@@ -1561,8 +1568,6 @@ input[type="checkbox"] {
   }
 
 
-  /* hjgfkdhfhilfjidjfidf */
-
   .yeschechbox-review {
     display: grid;
     grid-gap: 0.5rem;
@@ -1645,12 +1650,6 @@ input[type="checkbox"] {
     justify-content: left;
   }
 
-  /* .form-field-child-result-nursing {
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
-  } */
-
   .yeschechboxFall-risk {
     display: flex;
     justify-content: space-between;
@@ -1709,12 +1708,6 @@ input[type="checkbox"] {
     align-items: center;
   }
 
-  /* nusrsing assestment form */
-  /* .form-field-child-result-nursing {
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
-  } */
 
   .yeschechbox-review-Nutrition {
     display: block;
@@ -1813,12 +1806,16 @@ input[type="checkbox"] {
     justify-content: center;
   }
 
-  /* .treatment_table_other{
-    display: block;
+  .profile-section {
+    width: 90%;
+    height: auto;
+    margin: auto;
+    background-color: #ffffff;
+    border: 2px solid #ffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
-   */
-
-
 
 }
 
@@ -1877,15 +1874,12 @@ align-items: center;
 }
 
 
- 
-
 }
 
 .top2{
   display: grid;
   place-items: center;
 text-align: center;
-/* border: 1px solid red; */
 width: 100%;
 box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 border-radius: 8px 8px 8px 8px;

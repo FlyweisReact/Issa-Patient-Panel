@@ -14,23 +14,13 @@ import Select from "react-select";
 import SingInUpdateModel from "../Modal/SingInUpdateModel";
 import Draftinmodel from "../Modal/Draftinmodel";
 import { useReactToPrint } from "react-to-print";
-
 import AutoSize from "../AutoSize/AutoSize";
 
 const Initial_Assessment_print = ({componentRef}) => {
-  const navigate = useNavigate();
-
-  
-
 
   //singin model
   const [draftModel, setDraftModel] = useState(false);
-  //  all model
-  const [signInModel1, setSigInModel1] = useState(false);
-  const [signInModel2, setSigInModel2] = useState(false);
-  const [signInModel3, setSigInModel3] = useState(false);
-  const [signInModel4, setSigInModel4] = useState(false);
-  const [signInModel5, setSigInModel5] = useState(false);
+
   const [signInModel6, setSigInModel6] = useState(false);
   const [signInModel7, setSigInModel7] = useState(false);
   const [signInModel8, setSigInModel8] = useState(false);
@@ -4316,7 +4306,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     <input
                       type="text"
                       id="residentFullName"
-                      className="borderless_input"
+                      style={{borderBottom:'none',marginBottom:"3px"}}
                       value={residentName}
                       placeholder="Enter full name"
                       required
@@ -4370,6 +4360,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       id="dateOfBirth"
                       className="borderless_input"
                       value={dob}
+                      style={{borderBottom:'none',marginBottom:"5px"}}
                       placeholder="DD/MM/YYYY"
                       required
                       onChange={(e) => setDob(e.target.value)}
@@ -4380,6 +4371,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     <input
                       type="date"
                       value={dateOfAssessment}
+                      style={{borderBottom:'none',marginBottom:"5px"}}
                       placeholder="Enter Date"
                       required
                       onChange={(e) => setDateOfAssessment(e.target.value)}
@@ -4395,6 +4387,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     id="AHCCCS"
                     value={ahcccsNumber}
                     placeholder="Enter text"
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     required
                     onChange={(e) => setAhcccsNumber(e.target.value)}
                   />
@@ -4409,6 +4402,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     <input
                       type="text"
                       required
+                      style={{borderBottom:'none',marginBottom:"5px"}}
                       value={preferredLanguage}
                       onChange={(e) => setPreferredLanguage(e.target.value)}
                     />
@@ -4419,6 +4413,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     <input
                       type="text"
                       required
+                      style={{borderBottom:'none',marginBottom:"5px"}}
                       value={ethnicity}
                       onChange={(e) => setEthnicity(e.target.value)}
                     />
@@ -4446,6 +4441,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     required
+                    style={{borderBottom:'none'}}
                     value={programLocation}
                     onChange={(e) => setProgramLocation(e.target.value)}
                   />
@@ -4459,33 +4455,13 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     <input
                       type="text"
                       id="attorneystatus"
+                      style={{borderBottom:'none',marginBottom:"5px"}}
                       value={guardianship}
                       placeholder="Enter text"
                       required
                       onChange={(e) => setGuardianship(e.target.value)}
                     />
-                    {/* <div className="yesNoAligment">
-              <div className="checkboxitem">
-                <input
-                  type="checkbox"
-                  id="guardianship"
-                  checked={guardianship===true}
-                  onChange={()=>setGuardianship(true)}
-
-                />
-               <label htmlFor="guardianship">Yes</label>
-              </div>
-              <div className="checkboxitem">
-                <input
-                  type="checkbox"
-                  id="guardianshipno"
-                  checked={guardianship===false}
-                  onChange={()=>setGuardianship(false)}
-
-                />
-               <label htmlFor="guardianshipno">No</label>
-              </div>
-              </div> */}
+                 
                   </div>
 
                   <div className="form-field-child">
@@ -4494,6 +4470,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     </label>
                     <input
                       type="text"
+                      style={{borderBottom:'none',marginBottom:"5px"}}
                       id="attorneystatus"
                       value={powerOfAttorneyStatus}
                       placeholder="Enter text"
@@ -4504,18 +4481,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </div>
 
                 <div className="border-bootom-line"></div>
-                {/* <div className="form-field">
-              <label htmlFor="guardianship">Guardianship:</label>
-
-              <input
-                type="text"
-                id="guardianship"
-                value={guardianship}
-                placeholder="Enter name"
-                required
-                onChange={(e) => setGuardianship(e.target.value)}
-              />
-            </div> */}
+        
 
                 <div className="form-field-single-update">
                   <label htmlFor="todaydate">Today’s Date:</label>
@@ -4524,6 +4490,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     id="todaydate"
                     value={todayDate}
                     placeholder="DD/MM/YYYY"
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     required
                     onChange={(e) => setTodayDate(e.target.value)}
                   />
@@ -4538,6 +4505,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     id="fidname"
                     value={guardianshipPoaPubFidName}
                     placeholder="Enter name"
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     required
                     onChange={(e) =>
                       setGuardianshipPoaPubFidName(e.target.value)
@@ -4550,6 +4518,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     id="approvedby"
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     value={approvedBy}
                     placeholder="Enter text"
                     required
@@ -4581,6 +4550,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     id="approvedby"
                     value={residentGoals}
                     placeholder="Enter goal"
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     required
                     onChange={(e) => setResidentGoals(e.target.value)}
                   />
@@ -4617,6 +4587,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     id="approvedby"
                     value={residentLimitations}
                     placeholder="Enter text"
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     required
                     onChange={(e) => setResidentLimitations(e.target.value)}
                   />
@@ -4633,6 +4604,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     type="text"
                     value={currentBehavioralIssues}
                     placeholder="Enter text"
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     onChange={(e) => setCurrentBehavioralIssues(e.target.value)}
                   />
                 </div>
@@ -8779,6 +8751,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     id="approvedby"
                     value={significantSocialDevelopmentalHistory}
                     placeholder="Enter "
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     required
                     onChange={(e) =>
                       setSignificantSocialDevelopmentalHistory(e.target.value)
@@ -8797,6 +8770,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   id="approvedby"
                   value={educationalHistory}
                   placeholder="Enter here"
+                  style={{borderBottom:'none',marginBottom:"5px"}}
                   required
                   onChange={(e) => setEducationalHistory(e.target.value)}
                 />
@@ -8808,6 +8782,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     value={highestEducation}
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     placeholder="Enter education"
                     required
                     onChange={(e) => setHighestEducation(e.target.value)}
@@ -8828,8 +8803,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     <div className="checkboxitem-update">
                       <input
                         type="checkbox"
-                        name=""
-                        id=""
                         checked={specialEducation === true}
                         onChange={() => setSpecialEducation(true)}
                       />
@@ -8858,8 +8831,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     <div className="checkboxitem-update">
                       <input
                         type="checkbox"
-                        name=""
-                        id=""
+                       
                         checked={currentStudent === true}
                         onChange={() => setCurrentStudent(true)}
                       />
@@ -8880,6 +8852,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     value={ifYesWhere}
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     placeholder="Enter text"
                     required
                     onChange={(e) => setIfYesWhere(e.target.value)}
@@ -8916,37 +8889,14 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     </div>
                   </div>
                 </div>
-                {/* <div className="yeschechbox">
-                <label style={{ fontWeight: "bold" }}>Fully time employed:</label>
-                <div className="employment-Aligmant">
-                  <div className="checkboxitem">
-                    <input
-                      type="checkbox"
-                      name=""
-                      id="fullTime"
-                      checked={fullTime === true}
-                      onChange={() => setFullTime(true)}
-                    />
-                    <label htmlFor="fullTime">Yes</label>
-                  </div>
-                  <div className="checkboxitem">
-                    <input
-                      type="checkbox"
-                      id="fullTimeno"
-                      checked={fullTime === false}
-                      onChange={() => setFullTime(false)}
-                    />
-                    <label htmlFor="fullTimeno">No</label>
-                  </div>
-                </div>
-              </div> */}
+               
                 <div className="form-field-child">
                   <label >
                     If employed, where? FT or PT?:
                   </label>
                   <input
                     type="text"
-                
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     value={employmentLocation}
                     placeholder="Enter text"
                     required
@@ -8961,6 +8911,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     placeholder="Enter text"
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     value={workHistory}
                     onChange={(e) => setWorkHistory(e.target.value)}
                   />
@@ -9655,9 +9606,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </button>
               </div>
 
-    
-
-              {/* start working  */}
               <div className="box-image-container">
                 <div className="form-field-single-update ">
                   <label>Triggers:</label>
@@ -9665,6 +9613,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     type="text"
                     placeholder="Enter text"
                     required
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     value={triggers}
                     onChange={(e) => setTriggers(e.target.value)}
                   />
@@ -9712,6 +9661,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     id="approvedby"
                     value={fallRiskExplanation}
                     placeholder="Enter text"
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     required
                     onChange={(e) => setFallRiskExplanation(e.target.value)}
                   />
@@ -9727,6 +9677,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     value={hobbiesLeisureActivities}
                     placeholder="Enter text"
                     required
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     onChange={(e) =>
                       setHobbiesLeisureActivities(e.target.value)
                     }
@@ -9796,13 +9747,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
               <div className="yeschechbox1">
                 <label style={{ fontWeight: "bold" }}>Ideation</label>
-                {/* <input
-                style={{ marginRight: "1rem" }}
-                required
-                placeholder="Enter text"
-                value={suicidalIdeation}
-                onChange={(e) => setSuicidalIdeation(e.target.value)}
-              /> */}
+           
 
                 <div className="employment-Aligmant-location">
                   <div
@@ -10159,7 +10104,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           onChange={() => setSymptomsYesNo(false)}/>
                         </td>
                         <td>
-                          {/* setSymptomsOfPsychosisDropDown */}
+                        
                           <Select
                             value={symptomsOfPsychosisDropDown}
                             isMulti
@@ -10313,116 +10258,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </button>
               </div>
 
-              {/* <div className="box-image-container hidePrint" style={{ padding: "10px" }}>
-                <div className="form-field-single-update-bold">
-                  <label >
-                  Select risk factors that apply:
-                </label>
-                <Select
-                  value={selectedValueRiskFactors}
-                  isMulti
-                  options={selectedValueRiskFactorsOption}
-                  onChange={selectedValueRiskFactorsHandler}
-                  isCreatable={true}
-                  onKeyDown={handleKeySelectedValueRiskFactors}
-                />
-              </div>
-                <div className="yeschechbox" style={{ marginLeft: "10px" }}>
-                <div className="safetyRiskFactor">
-                  <div className="safetyRiskFactor-child">
-                    <input type="checkbox" id="riskYesNo" checked={riskYesNo === true} onChange={() => setRiskYesNo(true)} />
-                    <label htmlFor="riskYesNo">Yes</label>
-                  </div>
-                  <div className="safetyRiskFactor-child">
-                    <input type="checkbox" id="riskYesNono" checked={riskYesNo === false} onChange={() => setRiskYesNo(false)} />
-                    <label htmlFor="riskYesNono">No</label>
-                  </div>
-                </div>
-              </div>
-                <div className="form-field-single-update-notBold" style={{ marginLeft: "10px" }}>
-                <label >Comments:</label>
-                <input
-                  type="text"
-                  required
-                  value={riskComment}
-                  onChange={(e) => setRiskComment(e.target.value)}
-                />
-
-                </div>
-              </div> */}
-
-           
-
-              {/*
-              <div className="needs-interventions-container">
-                <div className="needs-interventions-column3">
-                  {riskFactorArray.length > 0 && (
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Select risk factors that apply</th>
-                          <th>Checked</th>
-                          <th>Comments</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {riskFactorArray?.map((i, index) => (
-                          <tr key={index}>
-                            <td>
-
-                              {i?.selectedValueRiskFactors?.map((item) => (
-                                <p key={item?.value}>{item?.value}</p>
-                              ))}
-
-                            </td>
-                            <td>{` ${i.riskYesNo === true ? "YES" : "NO"}`} </td>
-                            <td>{` ${i.riskComment}`} </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  )}
-                </div>
-              </div> */}
-
-              {/* <div className="box-image-container hidePrint" style={{ padding: "10px" }}>
-                <div className="form-field-single-update-bold">
-                <label >
-                  Protective factors that apply:
-                </label>
-                <Select
-                  value={selectedValueProtectiveFactors}
-                  isMulti
-                  onChange={selectedValueProtectiveFactorsHandler}
-                  options={selectedValueProtectiveFactorsOption}
-                  isCreatable={true}
-                  onKeyDown={handleKeySelectedValueProtectiveFactors}
-                />
-
-              </div>
-                <div className="yeschechbox" style={{ marginLeft: "10px" }}>
-                <div className="safetyRiskFactor">
-                  <div className="safetyRiskFactor-child">
-                    <input type="checkbox" id="protectiveYesNo" checked={protectiveYesNo === true} onChange={() => setProtectiveYesNo(true)} />
-                    <label htmlFor="protectiveYesNo">Yes</label>
-                  </div>
-                  <div className="safetyRiskFactor-child">
-                    <input type="checkbox" id="protectiveYesNono" checked={protectiveYesNo === false} onChange={() => setProtectiveYesNo(false)} />
-                    <label htmlFor="protectiveYesNono">No</label>
-                  </div>
-                </div>
-              </div>
-                <div className="form-field-single-update-notBold" style={{ marginLeft: "10px" }}>
-                <label >Comments:</label>
-                <input
-                  type="text"
-                  value={protectiveComment}
-                  onChange={(e) => setprotectiveComment(e.target.value)}
-                  />
-
-                </div>
-              </div> */}
-
+             <div>
               <div className="formsheading">
                 <h6 style={{ fontWeight: "bold" }}>Protective factors:</h6>
               </div>
@@ -10607,6 +10443,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </div>
               </div>
 
+              </div>
+              
               <div className="form-actions hidePrint">
                 <button
                   type="button"
@@ -10617,38 +10455,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </button>
               </div>
 
-              {/* <div className="needs-interventions-container">
-                <div className="needs-interventions-column3">
-                  {protectiveFactorsArray.length > 0 && (
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Protective factors that apply</th>
-                          <th>Yes</th>
-                          <th>No</th>
-                          <th>Comments</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {protectiveFactorsArray?.map((i, index) => (
-                          <tr key={index}>
-                            <td>
-
-                              {i?.selectedValueProtectiveFactors?.map((item) => (
-                                <p key={item?.value}>{item?.value}</p>
-                              ))}
-
-                            </td>
-                            <td>{` ${i.protectiveYesNo === true ? "YES" : "NO"}`} </td>
-                            <td>{` ${i.protectiveYesNo === true ? "NO" : "YES"}`} </td>
-                            <td>{` ${i.protectiveComment}`} </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  )}
-                </div>
-              </div> */}
+             
 
               <div className="formsheading">
                 <p>
@@ -10706,50 +10513,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
               </div>
              
 
-              {/* <div className="box-image-container hidePrint" style={{ padding: "10px" }}>
-              <div className="form-field-update">
-                <div className="form-field-child">
-                  <label >Psychiatric Diagnoses:</label>
-                  <select value={psychiatricOption} onChange={(e) => setPsychiatricOption(e.target.value)} className="select-same-line-update">
-                    <option value="">Select</option>
-                    <option value="Primary">Primary</option>
-                    <option value="Secondary">Secondary</option>
-                    <option value="Tertiary">Tertiary</option>
-                    <option value="Additional">Additional</option>
-                  </select>
-                </div>
-                <div className="form-field-child">
-                  <label htmlFor="icdCode">ICD Code:</label>
-                  <input
-                    type="text"
-                    required
-                    id="icdCode"
-                    value={icdCode}
-                    onChange={(e) => setIcdCode(e.target.value)}
-                  />
-                </div>
-                <div className="form-field-child">
-                  <label htmlFor="description">Description:</label>
-                  <input
-                    type="text"
-                    required
-                    id="description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                  />
-                </div>
-              </div>
-              </div> */}
-
-              {/* <div className="form-actions hidePrint">
-                <button
-                  type="button"
-                  className="safetybutton"
-                  onClick={handlePsychiatricDiagnoses}
-                >
-                  Add
-                </button>
-              </div> */}
+             
 
               <div className="needs-interventions-container2">
                 <div className="needs-interventions-column2">
@@ -11127,39 +10891,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                       </tr>
-                      {/* <tr>
-                        <td>Additional</td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            placeholder="___________"
-                            value={Additional2icdCode}
-                            onChange={(e)=>setAdditional2IcdCode(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          {" "}
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              Additional2Description.split("\n").length,
-                              1
-                            )}
-                            value={Additional2Description}
-                            placeholder="___________"
-                            onChange={(e) => setAdditional2Description(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setAdditional2Description(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr> */}
+                   
                       {
                           medicalDiagnosesArray.map((i)=>
                           <tr>
@@ -11572,7 +11304,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </div>
               </div>
 
-              {/* resident gaurdent name and signatutre */}
               <div
                 className="box-image-container"
                 style={{ paddingBottom: "10px" }}
@@ -11584,6 +11315,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     value={residentGuardianName}
                     placeholder="Enter text"
                     required
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     onChange={(e) => setResidentGuardianName(e.target.value)}
                   />
                 </div>
@@ -11628,7 +11360,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     setSignatureTime={setResidentGuardianTime}
                   />
                 )}
-                {/* please care full write some think is change so api will work */}
+           
                 <div className="form-field-single-update">
                   <label>Staff name, title:</label>
                   <input
@@ -11637,6 +11369,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     value={staffName}
                     placeholder="Enter text"
                     required
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     onChange={(e) => setStaffName(e.target.value)}
                   />
                 </div>
@@ -11690,6 +11423,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       value={bhpName}
                       placeholder="Enter text"
                       required
+                      style={{borderBottom:'none',marginBottom:"5px"}}
                       onChange={(e) => setBhpName(e.target.value)}
                     />
                   </div>
@@ -11700,6 +11434,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     <input
                       type="text"
                       required
+                      style={{borderBottom:'none',marginBottom:"5px"}}
                       value={bhpCredentials}
                       onChange={(e) => setBhpCredentials(e.target.value)}
                     />

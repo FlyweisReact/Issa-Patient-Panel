@@ -23,9 +23,12 @@ const FaceSheet = () => {
     var elements = document.getElementsByClassName("hidePrint");
     var hidePrintButton=document.getElementsByClassName("hidePrintButton");
     var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
-    // var formsheading2=document.getElementsByClassName("formsheading2");
-    // Iterate through each element with the specified class
-   
+
+        // hide bottom
+        var form_field_gender = document.getElementsByClassName("form-field-child");
+        var form_field_single_update = document.getElementsByClassName("form-field-single-update");
+        var face_sheet_table = document.getElementsByClassName("form-field-child-face-sheet-table");
+
 
     for (let i = 0; i < hidePrintButton.length; i++) {
       hidePrintButton[i].style.display = "none";
@@ -35,13 +38,32 @@ const FaceSheet = () => {
       signatureRightAndSide[i].style.justifyContent = "right";
     }
 
-    // for (let i = 0; i < formsheading2.length; i++) {
-    //   formsheading2[i].style.backgroundColor="white"
-    // }
     
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
     }
+
+        // hode bottom
+        for (let i = 0; i < form_field_gender.length; i++) {
+          var inputs = form_field_gender[i].getElementsByTagName("input");
+          for (let j = 0; j < inputs.length; j++) {
+              inputs[j].style.borderBottom = "none";
+          }
+      }
+    
+      for (let i = 0; i < form_field_single_update.length; i++) {
+        var inputs = form_field_single_update[i].getElementsByTagName("input");
+        for (let j = 0; j < inputs.length; j++) {
+            inputs[j].style.borderBottom = "none";
+        }
+    }
+
+    for (let i = 0; i < face_sheet_table.length; i++) {
+      var inputs = face_sheet_table[i].getElementsByTagName("input");
+      for (let j = 0; j < inputs.length; j++) {
+          inputs[j].style.borderBottom = "none";
+      }
+  }
 
 
     // Trigger the print action
@@ -62,9 +84,27 @@ const FaceSheet = () => {
         signatureRightAndSide[i].style.justifyContent = "space-between";
       }
 
-      // for (let i = 0; i < formsheading2.length; i++) {
-      //   formsheading2[i].style.backgroundColor="#1a9fb2"
-      // }
+       // hide bottom
+       for (let i = 0; i < form_field_gender.length; i++) {
+        var inputs = form_field_gender[i].getElementsByTagName("input");
+        for (let j = 0; j < inputs.length; j++) {
+            inputs[j].style.borderBottom = "1px solid black";
+        }
+    }
+
+    for (let i = 0; i < form_field_single_update.length; i++) {
+      var inputs = form_field_single_update[i].getElementsByTagName("input");
+      for (let j = 0; j < inputs.length; j++) {
+          inputs[j].style.borderBottom = "1px solid black";
+      }
+  }
+
+  for (let i = 0; i < face_sheet_table.length; i++) {
+    var inputs = face_sheet_table[i].getElementsByTagName("input");
+    for (let j = 0; j < inputs.length; j++) {
+        inputs[j].style.borderBottom = "1px solid black";
+    }
+}
 
     }, 1000);
   };

@@ -56,7 +56,7 @@ export const user_detail = async (setUser) => {
     setUser(res?.data?.data);
    
   } catch (e) {
-    // show_notification("fail !", `${e?.response?.data?.message}`, "danger");
+    
   }
 };
 

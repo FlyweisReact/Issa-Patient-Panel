@@ -32,6 +32,11 @@ const Treatmentplan_update = () => {
     var signatureRightAndSide =
       document.getElementsByClassName("file-upload-box");
 
+    // hide line
+      // hide bottom
+      var form_field_gender = document.getElementsByClassName("form-field-child");
+      var form_field_single_update = document.getElementsByClassName("form-field-single-update");
+
     for (let i = 0; i < hideData.length; i++) {
       hideData[i].style.display = "block";
     }
@@ -47,6 +52,22 @@ const Treatmentplan_update = () => {
     for (let i = 0; i < signatureRightAndSide.length; i++) {
       signatureRightAndSide[i].style.justifyContent = "right";
     }
+
+      // hode bottom
+      for (let i = 0; i < form_field_gender.length; i++) {
+        var inputs = form_field_gender[i].getElementsByTagName("input");
+        for (let j = 0; j < inputs.length; j++) {
+            inputs[j].style.borderBottom = "none";
+        }
+    }
+  
+    for (let i = 0; i < form_field_single_update.length; i++) {
+      var inputs = form_field_single_update[i].getElementsByTagName("input");
+      for (let j = 0; j < inputs.length; j++) {
+          inputs[j].style.borderBottom = "none";
+      }
+  }
+  
 
     handlePrint();
 
@@ -67,6 +88,21 @@ const Treatmentplan_update = () => {
       for (let i = 0; i < hideData.length; i++) {
         hideData[i].style.display = "none";
       }
+
+       // hide bottom
+       for (let i = 0; i < form_field_gender.length; i++) {
+        var inputs = form_field_gender[i].getElementsByTagName("input");
+        for (let j = 0; j < inputs.length; j++) {
+            inputs[j].style.borderBottom = "1px solid black";
+        }
+    }
+
+    for (let i = 0; i < form_field_single_update.length; i++) {
+      var inputs = form_field_single_update[i].getElementsByTagName("input");
+      for (let j = 0; j < inputs.length; j++) {
+          inputs[j].style.borderBottom = "1px solid black";
+      }
+  }
     }, 1000);
   };
 
@@ -3371,7 +3407,7 @@ const Treatmentplan_update = () => {
                 </div>
 
                 <label className="label-review">
-                  Counseling and Frequency:
+                  Counseling and Frequency: 
                 </label>
                 <div className="formsheading-treatment">
                   <div className="inLine_box_style">
@@ -3394,20 +3430,7 @@ const Treatmentplan_update = () => {
                     <p>hours daily.</p>
                   </div>
                 </div>
-                {/* <div className="yeschechbox-review">
-                <div>
-                  <span>Total of Minimum</span>
-                </div>
-                <div>
-                  <span>Hours per Week</span>
-                </div>
-              </div>
-              <div className="yeschechbox-review">
-                <label htmlFor="">Individual: </label>
-                <div>
-                  <span>Minimum 1 hour session per week</span>
-                </div>
-              </div> */}
+          
                 <div className="yeschechbox-review">
                   <div>
                     <input
@@ -3440,7 +3463,28 @@ const Treatmentplan_update = () => {
                     />
                     <label htmlFor="4 times a day">4 times a day</label>
                   </div>
+                
                   <div>
+                    <input
+                      type="checkbox"
+                      checked={counselingOptions.includes("Other")}
+                      onChange={() => handleCheckboxChangeCounsiling("Other")}
+                    />
+                    <label>Other</label>
+                    {counselingOptionsTextBoolean && (
+                      <AutoSize
+                        value={counselingOptionsText}
+                        setValue={setCounselingOptionsOther}
+                        placeholder="________"
+                      />
+                    )}
+                  </div>
+                </div>
+
+{/* edit value */}
+                <div >
+
+                <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="Individual Counseling: Minimum 1 hour session per week"
@@ -3457,7 +3501,7 @@ const Treatmentplan_update = () => {
                       Individual Counseling: Minimum 1 hour session per week
                     </label>
                   </div>
-                  <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="Individual Counseling: Minimum 1 hour session every 2 weeks"
@@ -3475,7 +3519,7 @@ const Treatmentplan_update = () => {
                       weeks
                     </label>
                   </div>
-                  <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="Individual Therapy: As needed"
@@ -3492,7 +3536,7 @@ const Treatmentplan_update = () => {
                       Individual Therapy: As needed
                     </label>
                   </div>
-                  <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="Individual Therapy: Please Specify"
@@ -3509,7 +3553,7 @@ const Treatmentplan_update = () => {
                       Individual Therapy: Please Specify
                     </label>
                   </div>
-                  <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="Nonereported"
@@ -3526,7 +3570,7 @@ const Treatmentplan_update = () => {
                       Resident decline individual therapy services
                     </label>
                   </div>
-                  <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="Family Counseling"
@@ -3537,7 +3581,7 @@ const Treatmentplan_update = () => {
                     />
                     <label htmlFor="Family Counseling">Family Counseling</label>
                   </div>
-                  <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="NA"
@@ -3546,7 +3590,7 @@ const Treatmentplan_update = () => {
                     />
                     <label htmlFor="NA">NA</label>
                   </div>
-                  <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="AA"
@@ -3555,7 +3599,7 @@ const Treatmentplan_update = () => {
                     />
                     <label htmlFor="AA">AA</label>
                   </div>
-                  <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="Month ART Meeting/Staffing"
@@ -3572,7 +3616,7 @@ const Treatmentplan_update = () => {
                       Month ART Meeting/Staffing
                     </label>
                   </div>
-                  <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="Weekly ART Meeting/Staffing"
@@ -3589,21 +3633,8 @@ const Treatmentplan_update = () => {
                       Weekly ART Meeting/Staffing
                     </label>
                   </div>
-                  <div>
-                    <input
-                      type="checkbox"
-                      checked={counselingOptions.includes("Other")}
-                      onChange={() => handleCheckboxChangeCounsiling("Other")}
-                    />
-                    <label>Other</label>
-                    {counselingOptionsTextBoolean && (
-                      <AutoSize
-                        value={counselingOptionsText}
-                        setValue={setCounselingOptionsOther}
-                        placeholder="________"
-                      />
-                    )}
-                  </div>
+                      
+
                 </div>
 
                 <div className="formsheading">

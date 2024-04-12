@@ -33,7 +33,6 @@ const UpperBar = ({ isMenuOpen, toggleMenu }) => {
   const [isNotificationModalOpen, setNotificationModalOpen] = useState(false);
   const [ischattingModalOpen, setChattingModalOpen] = useState(false);
   const [user, setUser] = useState("");
-  const [modalShow, setModalShow] = React.useState(false);
 
   //notification
   const [notification, setNotification] = useState([]);
@@ -103,15 +102,6 @@ const UpperBar = ({ isMenuOpen, toggleMenu }) => {
     setChattingModalOpen(false);
   };
 
-  // const closeCompleteIntakeModal = () => {
-  //   setcompleteintakeModalopne(false);
-  // };
-
-  // const handleCompleteIntake = () => {
-  //   closeCompleteIntakeModal();
-  //   navigate('/intake');
-  // };
-
 
 
 
@@ -129,7 +119,7 @@ const UpperBar = ({ isMenuOpen, toggleMenu }) => {
         <p>How can we help you today?</p>
         </div>
         <div className="right-section">
-          <img src={profile} alt="" onClick={openProfileModal} />
+          <img src={user?.profilePic} alt="profile" onClick={openProfileModal} style={{ height: "50px", width: "50px", borderRadius: "50%" }}/>
           <RiMessage2Line className="icons" onClick={openChattingModal} color="#1A9FB2" size={30} />
           <FaBell className="icons" onClick={openNotificationModal} color="#1A9FB2" size={30} />
         </div>
@@ -140,7 +130,7 @@ const UpperBar = ({ isMenuOpen, toggleMenu }) => {
           <div className="profilemodal-container">
             <div className="profilemodal-header">
               <img
-                src={profilemodal}
+                src={user?.profilePic}
                 alt="Profile"
                 className="profilemodal-image"
               />

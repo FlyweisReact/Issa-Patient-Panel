@@ -24,29 +24,7 @@ const Appointment_Scheduling = () => {
       
     return (
         <div className='Appointment_Schedulingcontainer'>
-            {/* <div className='appointmentcontent'>
-                <p>Appointment Scheduling</p>
-            </div> */}
-            {/* <div className='Schedulingcards'>
-                <div className="Scheduling-card">
-                    <img src={scheduling1} alt="Icon" className="card-icon" />
-                    <Link to={'/booknewappointment'}>
-                    <p>Book New Appointment</p>
-                    </Link>
-                </div>
-                <div className="Scheduling-card">
-                    <img src={scheduling2} alt="Icon" className="card-icon" />
-                    <Link to={'/appointmenthistory'}>
-                    <p>Appointment History</p>
-                    </Link>
-                </div>
-                <div className="Scheduling-card">
-                    <img src={scheduling3} alt="Icon" className="card-icon" />
-                    <Link to={'/manageappointment'}>
-                    <p>Manage Appointments</p>
-                    </Link>
-                </div>
-            </div> */}
+          
             <div className='appointmentcontent'>
                 <p>Upcoming Appointments</p>
             </div>

@@ -5,6 +5,7 @@ import { CiCirclePlus } from "react-icons/ci";
 import formupload from "../../img/formupload.png";
 import { Update_Profile,user_detail } from "../../Api_Collection/Api";
 
+
 const UpdateProfile = () => {
   const navigate = useNavigate();
   const [user,setUser]=useState("");
@@ -21,13 +22,15 @@ const UpdateProfile = () => {
     setEmail(user?.email);
     setMobileNumber(user?.mobileNumber);
     setGender(user?.gender);
+    setProfileImage(user?.profilePic);
     setAdress(user?.address);
   },[user])
 
   useEffect(()=>{
     user_detail(setUser);
   },[])
-  console.log(user,"user data")
+
+  console.log("user --------",user)
 
 
   const handlePostData = (e) => {
@@ -66,15 +69,17 @@ const UpdateProfile = () => {
             </div>
           </div>
           <form onSubmit={handlePostData}>
-            <div className="booking-section">
-              <h2>User Details</h2>
-              <div className="form-field">
-                <label >Profile Image:</label>
-                <input
-                  type="file"
-                 onChange={(e)=>setProfileImage(e.target.files[0])}
-                />
+              <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
+              <img
+                src={profileImage}
+                alt="Profile"
+                className="profilemodal-image"
+              />
               </div>
+
+            <div className="profile-section">
+              <h2>Resident Details</h2>
+           
               <div className="form-field">
                 <label htmlFor="AHCCCS">Name:</label>
                 <input
@@ -118,14 +123,7 @@ const UpdateProfile = () => {
     </select>
 
                 
-                {/* <input
-                  type="text"
-                  id="AHCCCS"
-                  value={gender}
-                  placeholder="Type Here....."
-                  required
-                  onChange={(e) => setGender(e.target.value)}
-                /> */}
+             
               </div>
              
               

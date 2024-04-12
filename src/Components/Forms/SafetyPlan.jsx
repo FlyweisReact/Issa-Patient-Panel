@@ -22,9 +22,12 @@ const SafetyPlan = () => {
     var elements = document.getElementsByClassName("hidePrint");
     var elements1 = document.getElementsByClassName("form-section");
     var signatureRightAndSide = document.getElementsByClassName("file-upload-box");
-    // var formsheading2=document.getElementsByClassName("formsheading2");
+   
 
-    // Iterate through each element with the specified class signature_Right_Side
+     // hide bottom
+     var form_field_gender = document.getElementsByClassName("form-field-child");
+     var form_field_single_update = document.getElementsByClassName("form-field-single-update");
+
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
     }
@@ -38,9 +41,20 @@ const SafetyPlan = () => {
       signatureRightAndSide[i].style.fontSize = "24px";
     }
 
-    // for (let i = 0; i < formsheading2.length; i++) {
-    //   formsheading2[i].style.backgroundColor="white"
-    // }
+   // hode bottom
+   for (let i = 0; i < form_field_gender.length; i++) {
+    var inputs = form_field_gender[i].getElementsByTagName("input");
+    for (let j = 0; j < inputs.length; j++) {
+        inputs[j].style.borderBottom = "none";
+    }
+}
+
+for (let i = 0; i < form_field_single_update.length; i++) {
+  var inputs = form_field_single_update[i].getElementsByTagName("input");
+  for (let j = 0; j < inputs.length; j++) {
+      inputs[j].style.borderBottom = "none";
+  }
+}
 
     // Trigger the print action
     handlePrint();
@@ -61,9 +75,20 @@ const SafetyPlan = () => {
         signatureRightAndSide[i].style.fontSize = "16px";
       }
 
-      // for (let i = 0; i < formsheading2.length; i++) {
-      //   formsheading2[i].style.backgroundColor="#1a9fb2"
-      // }
+         // hide bottom
+         for (let i = 0; i < form_field_gender.length; i++) {
+          var inputs = form_field_gender[i].getElementsByTagName("input");
+          for (let j = 0; j < inputs.length; j++) {
+              inputs[j].style.borderBottom = "1px solid black";
+          }
+      }
+  
+      for (let i = 0; i < form_field_single_update.length; i++) {
+        var inputs = form_field_single_update[i].getElementsByTagName("input");
+        for (let j = 0; j < inputs.length; j++) {
+            inputs[j].style.borderBottom = "1px solid black";
+        }
+    }
     }, 1000);
   };
 

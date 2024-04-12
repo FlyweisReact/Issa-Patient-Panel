@@ -38,15 +38,14 @@ const NursingAssessment = () => {
     // var formsheading2=document.getElementsByClassName("formsheading2");
     var submitButton=document.getElementsByClassName("form-actions");
 
+    // hide bottom
+    var form_field_gender = document.getElementsByClassName("form-field-child");
+    var form_field_single_update = document.getElementsByClassName("form-field-single-update");
+
 
     for (let i = 0; i < signatureRightAndSide.length; i++) {
       signatureRightAndSide[i].style.justifyContent = "right";
     }
-
-    // for (let i = 0; i < formsheading2.length; i++) {
-    //   formsheading2[i].style.backgroundColor="white"
-    // }
-
     
     for (let i = 0; i < submitButton.length; i++) {
       submitButton[i].style.display = "flex";
@@ -58,7 +57,23 @@ const NursingAssessment = () => {
       elements[i].style.display = "none";
     }
 
-    // Trigger the print action
+    // hode bottom
+    for (let i = 0; i < form_field_gender.length; i++) {
+      var inputs = form_field_gender[i].getElementsByTagName("input");
+      for (let j = 0; j < inputs.length; j++) {
+          inputs[j].style.borderBottom = "none";
+      }
+  }
+
+  for (let i = 0; i < form_field_single_update.length; i++) {
+    var inputs = form_field_single_update[i].getElementsByTagName("input");
+    for (let j = 0; j < inputs.length; j++) {
+        inputs[j].style.borderBottom = "none";
+    }
+}
+
+
+   
     handlePrint();
 
     // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
@@ -70,15 +85,27 @@ const NursingAssessment = () => {
         signatureRightAndSide[i].style.justifyContent = "space-between";
       }
 
-      // for (let i = 0; i < formsheading2.length; i++) {
-      //   formsheading2[i].style.backgroundColor="#1a9fb2"
-      // }
-
       for (let i = 0; i < submitButton.length; i++) {
         submitButton[i].style.display = "flex";
         submitButton[i].style.justifyContent = "center";
         submitButton[i].style.alignItems = "center";
       }
+
+      // hide bottom
+      for (let i = 0; i < form_field_gender.length; i++) {
+        var inputs = form_field_gender[i].getElementsByTagName("input");
+        for (let j = 0; j < inputs.length; j++) {
+            inputs[j].style.borderBottom = "1px solid black";
+        }
+    }
+
+    for (let i = 0; i < form_field_single_update.length; i++) {
+      var inputs = form_field_single_update[i].getElementsByTagName("input");
+      for (let j = 0; j < inputs.length; j++) {
+          inputs[j].style.borderBottom = "1px solid black";
+      }
+  }
+
     }, 1000);
   };
 
