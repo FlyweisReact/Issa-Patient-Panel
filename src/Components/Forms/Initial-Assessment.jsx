@@ -3,10 +3,7 @@
 import React, { useEffect, useState } from "react";
 import "./Initial-Assessment.css";
 import FormUpper from "./FormsUpperbar";
-import formupload from "../../img/formupload.png";
-import Chechkbox from "../chechkbox";
 import { AiFillDelete } from "react-icons/ai";
-import locate from "../../img/locate.png";
 import { IoArrowBackCircle } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { user_detail, initialAssestment_form,initial_assestment_get } from "../../Api_Collection/Api";
@@ -14,9 +11,7 @@ import Select from "react-select";
 import SingInUpdateModel from "../Modal/SingInUpdateModel";
 import Draftinmodel from "../Modal/Draftinmodel";
 import Initial_Assessment_print from "./Initial_Assessment_print"
-
 import { useReactToPrint } from "react-to-print";
-import { Form } from "react-bootstrap";
 import AutoSize from "../AutoSize/AutoSize";
 
 const InitialAssessment = () => {

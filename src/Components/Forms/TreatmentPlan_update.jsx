@@ -3406,12 +3406,10 @@ const Treatmentplan_update = () => {
                   </div>
                 </div>
 
-                <label className="label-review">
-                  Counseling and Frequency: 
-                </label>
+                
                 <div className="formsheading-treatment">
                   <div className="inLine_box_style">
-                    <p>Total of minimum </p>{" "}
+                    <p> <span className="label-review" >Counseling and Frequency :</span>  Total of minimum </p>{" "}
                     <div>
                       <input
                         style={{
@@ -3431,8 +3429,8 @@ const Treatmentplan_update = () => {
                   </div>
                 </div>
           
-                <div className="yeschechbox-review">
-                  <div>
+                <div className="treatment_plane_frequency">
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="Group"
@@ -3441,7 +3439,7 @@ const Treatmentplan_update = () => {
                     />
                     <label htmlFor="Group">Group</label>
                   </div>
-                  <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="3 times a day"
@@ -3452,7 +3450,7 @@ const Treatmentplan_update = () => {
                     />
                     <label htmlFor="3 times a day">3 times a day</label>
                   </div>
-                  <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="4 times a day"
@@ -3464,7 +3462,7 @@ const Treatmentplan_update = () => {
                     <label htmlFor="4 times a day">4 times a day</label>
                   </div>
                 
-                  <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       checked={counselingOptions.includes("Other")}

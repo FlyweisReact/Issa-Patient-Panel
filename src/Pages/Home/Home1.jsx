@@ -68,30 +68,15 @@ const Home1 = ({ Wcomponenet }) => {
   return (
     <>
       <div className={`Hoc ${isMenuOpen ? 'menu-open' : 'menu-open'}`}>
-        <div className={` ${isMenuOpen ? 'sidebar1' : ''}`}>
+        {/* <div className={` ${isMenuOpen ? 'sidebar1' : ''}`}>
          <Sidebar   isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
-        </div> 
+        </div>  */}
         <div >
           <UpperBar isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
           {Wcomponenet && <Wcomponenet />}
         </div>
       </div>
-      
-      {/* Notification Modal */}
-      {/* {iscompleteintakeModalopne && (
-        <CompleteIntake >
-          <div className='completeintake'>
-            <div>
-              <img src={intake} alt="" />
-              <p>You Haven’t Uploaded your Intake
-                Documents Yet!....Complete your
-                Intake Process Now!</p>
-                <button className='completeintakebutton'  onClick={handleCompleteIntake}>COMPLETE INTAKE NOW</button>
-                <button className='skiptakebutton'  onClick={closeCompleteIntakeModal} >SKIP FOR NOW</button>
-            </div>
-          </div>
-        </CompleteIntake>
-      )} */}
+
     </>
   );
 };

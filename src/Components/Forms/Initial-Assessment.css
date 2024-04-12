@@ -274,7 +274,7 @@
   display: flex;
   align-items: center;
   align-content: center;
-  gap: 10px
+  gap: 5px
 }
 
 /* initial assessment condition */
@@ -693,7 +693,7 @@ input[type="checkbox"] {
 
 .formsheading-treatment{
   margin-top: 0rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0rem;
 }
 
 .formsheading h6 {
@@ -1197,7 +1197,7 @@ input[type="checkbox"] {
 
 .inLine_box_style {
   display: flex;
-  height: 25px;
+  height: auto;
   gap: 10px;
   flex-wrap: wrap;
   align-items: center;
@@ -1414,6 +1414,14 @@ input[type="checkbox"] {
   grid-template-columns: repeat(5, 20%);
 }
 
+.treatment_plane_frequency {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 2rem;
+  margin-right: 10px;
+}
+
+
 .yeschechbox-review-yes-no {
   display: flex;
   gap: 20px;
@@ -1514,10 +1522,6 @@ input[type="checkbox"] {
     width: 100%;
   }
 
-  .label-review {
-    margin-top: 1.5rem;
-    font-size: 1.5rem;
-  }
 
   .yeschechbox-review {
     display: grid;
@@ -1562,11 +1566,7 @@ input[type="checkbox"] {
     width: 100%;
   }
 
-  .label-review {
-    margin-top: 1.5rem;
-    font-size: 1.7rem;
-  }
-
+  
 
   .yeschechbox-review {
     display: grid;
@@ -1815,6 +1815,10 @@ input[type="checkbox"] {
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .treatment_plane_frequency{
+    display: block;
   }
 
 }

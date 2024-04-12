@@ -3,50 +3,47 @@ import { IoArrowBackCircle } from "react-icons/io5";
 import { Form, useNavigate } from "react-router-dom";
 import { CiCirclePlus } from "react-icons/ci";
 import formupload from "../../img/formupload.png";
-import { Update_Profile,user_detail } from "../../Api_Collection/Api";
-
+import { Update_Profile, user_detail } from "../../Api_Collection/Api";
 
 const UpdateProfile = () => {
   const navigate = useNavigate();
-  const [user,setUser]=useState("");
+  const [user, setUser] = useState("");
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const [profileImage, setProfileImage] = useState("");
-  const [gender,setGender]=useState("");
-  const [address,setAdress]=useState("")
+  const [gender, setGender] = useState("");
+  const [address, setAdress] = useState("");
 
-  useEffect(()=>{
+  useEffect(() => {
     setName(user.fullName);
     setEmail(user?.email);
     setMobileNumber(user?.mobileNumber);
     setGender(user?.gender);
     setProfileImage(user?.profilePic);
     setAdress(user?.address);
-  },[user])
+  }, [user]);
 
-  useEffect(()=>{
+  useEffect(() => {
     user_detail(setUser);
-  },[])
+  }, []);
 
-  console.log("user --------",user)
-
+  console.log("user --------", user);
 
   const handlePostData = (e) => {
     e.preventDefault();
-    const fromData=new FormData();
-    fromData.append("fullName",name)
-    fromData.append("email",email)
-    fromData.append("mobileNumber",mobileNumber)
-    fromData.append("gender",gender)
-    fromData.append("address",address)
-    fromData.append("image",profileImage)
-
+    const fromData = new FormData();
+    fromData.append("fullName", name);
+    fromData.append("email", email);
+    fromData.append("mobileNumber", mobileNumber);
+    fromData.append("gender", gender);
+    fromData.append("address", address);
+    fromData.append("image", profileImage);
 
     Update_Profile(fromData);
-    
-    navigate("/appointment_scheduling")
+
+    navigate("/appointment_scheduling");
   };
   return (
     <>
@@ -69,17 +66,31 @@ const UpdateProfile = () => {
             </div>
           </div>
           <form onSubmit={handlePostData}>
-              <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <img
                 src={profileImage}
                 alt="Profile"
                 className="profilemodal-image"
+                style={{ cursor: "pointer" }}
+                onClick={() => document.getElementById("profile_input").click()}
               />
-              </div>
+              <input
+                type="file"
+                style={{ display: "none" }}
+                id="profile_input"
+                onChange={(e) => setProfileImage(e?.target?.files[0])}
+              />
+            </div>
 
             <div className="profile-section">
               <h2>Resident Details</h2>
-           
+
               <div className="form-field">
                 <label htmlFor="AHCCCS">Name:</label>
                 <input
@@ -115,18 +126,17 @@ const UpdateProfile = () => {
               </div>
               <div className="form-field">
                 <label htmlFor="AHCCCS">Gender:</label>
-                <select  value={gender} onChange={(e) => setGender(e.target.value)}>
-      <option>Open this select menu</option>
-      <option value="Male">Male</option>
-      <option value="Female">Female</option>
-      <option value="Other">Other</option>
-    </select>
-
-                
-             
+                <select
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
+                >
+                  <option>Open this select menu</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
               </div>
-             
-              
+
               <div className="form-field">
                 <label htmlFor="programlocation&address">Address</label>
                 <textarea
