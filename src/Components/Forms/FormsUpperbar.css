@@ -1,6 +1,4 @@
 .formheading1 {
-  /* display: flex; */
-  /* align-items: center; */
   
 }
 
@@ -25,7 +23,7 @@
 .formsheading_faceSheet{
   text-align: center;
   width: 60%;
-  height: 30px;
+  height: auto;
   margin: auto;
   margin-bottom: 20px;
   margin-top: 20px;
@@ -53,15 +51,15 @@
 .formsheading_updated_treatment{
   text-align: center;
   width: 60%;
-  height: 30px;
+  height: auto;
   margin: auto;
   margin-bottom: 20px;
   margin-top: 20px;
   border: 1px solid #ffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   background-color: #1a9fb2;
-  /* Add your preferred box shadow */
   border-radius: 10px;
+
 }
 
 .formsheading_updated_treatment_nursing{

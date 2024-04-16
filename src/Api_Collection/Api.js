@@ -293,6 +293,19 @@ export const appointment_get = async (setAppoinmentPast) => {
   }
 };
 
+export const appointment_delete= async (id) => {
+  try {
+    const res = await axios.delete(
+      `${BaseUrl}Patient/deleteAppointment/${id}`,
+      Token
+    );
+    show_notification("Success !", `Appoinment Delete SuccessFully`, "success");
+  } catch (e) {
+    show_notification("fail !", `${e?.response?.data?.message}`, "danger");
+  }
+};
+
+
 
 export const medication_get = async (setMedication) => {
   try {

@@ -12,6 +12,7 @@ import {
 const AppointmentHistory = () => {
   const [appoinmentUpcoming, setAppoinmentUpcoming] = useState("");
   const [appoinmentPast, setAppoinmentPast] = useState("");
+  const [deleteAppoinment,setDeleteAppoinment]=useState(true);
 
   useEffect(() => {
     appointment_Upcoming(setAppoinmentUpcoming);
@@ -49,6 +50,7 @@ const AppointmentHistory = () => {
             {appoinmentUpcoming?.data?.map((history, index) => (
               <HistoryCard
               id={history?._id}
+              deleteAppoinment={deleteAppoinment}
               again_Call_appointment={again_Call_appointment}
                name={history?.adminId?.address}
                 imageUrl={history?.adminId?.profilePic?history?.adminId?.profilePic:nurse1}
@@ -56,6 +58,7 @@ const AppointmentHistory = () => {
                 visit={history.reasonForVisit}
                 referenceId={history.patientId}
                 status={history?.status}
+
               />
             ))}
           </div>
@@ -71,6 +74,7 @@ const AppointmentHistory = () => {
                 visit={history.reasonForVisit}
                 referenceId={history.patientId}
                 status={history?.status}
+                deleteAppoinment={deleteAppoinment}
               />
             ))}
           </div>

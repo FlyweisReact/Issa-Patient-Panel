@@ -7,7 +7,6 @@ import {
   patient_form,
   patient_form_treatment_get,
 } from "../../Api_Collection/Api";
-import SingInModel from "../Modal/SingInModel";
 import Select from "react-select";
 import Draftinmodel from "../Modal/Draftinmodel";
 import SingInUpdateModel from "../Modal/SingInUpdateModel";
@@ -32,8 +31,6 @@ const Treatmentplan_update = () => {
     var signatureRightAndSide =
       document.getElementsByClassName("file-upload-box");
 
-    // hide line
-      // hide bottom
       var form_field_gender = document.getElementsByClassName("form-field-child");
       var form_field_single_update = document.getElementsByClassName("form-field-single-update");
 
@@ -167,22 +164,21 @@ const Treatmentplan_update = () => {
     useState(false);
   const [behavioralSymptomsOther, setBehavioralSymptomsOther] = useState("");
 
-  useEffect(() => {
-    // Check if "Other" is present in the Barriers array
-    const isOtherSelected = behavioralSymptoms.some(
-      (behavioral) => behavioral === "Other"
-    );
+  // useEffect(() => {
 
-    // Set BarriersBoolean accordingly
-    setBehavioralSymptomsBoolean(isOtherSelected);
+  //   const isOtherSelected = behavioralSymptoms.some(
+  //     (behavioral) => behavioral === "Other"
+  //   );
 
-    // Update BarriersOther only when "Other" is selected
-    if (isOtherSelected) {
-      setBehavioralSymptomsOther("");
-    } else {
-      setBehavioralSymptomsOther("");
-    }
-  }, [behavioralSymptoms]);
+
+  //   setBehavioralSymptomsBoolean(isOtherSelected);
+
+  //   if (isOtherSelected) {
+  //     setBehavioralSymptomsOther("");
+  //   } else {
+  //     setBehavioralSymptomsOther("");
+  //   }
+  // }, [behavioralSymptoms]);
 
   const [physicalSymptoms, setPhysicalSymptoms] = useState([]);
   const [physicalSymptomsBoolean, setPhysicalSymptomsBoolean] = useState(false);
@@ -582,7 +578,7 @@ const Treatmentplan_update = () => {
     setBehavioralSymptomsBoolean(
       getApiData?.riskAssessment?.behavioralSymptoms ? true : false
     );
-    setBehavioralSymptomsOther(getApiData?.behavioralSymptomsOther);
+    setBehavioralSymptomsOther(getApiData?.riskAssessment?.behavioralSymptomsOther);
 
     // Resetting physical symptoms state variables
     setPhysicalSymptoms(
@@ -593,7 +589,7 @@ const Treatmentplan_update = () => {
     setPhysicalSymptomsBoolean(
       getApiData?.riskAssessment?.physicalSymptoms ? true : false
     );
-    setPhysicalSymptomsOther(getApiData?.physicalSymptomsOther);
+    setPhysicalSymptomsOther(getApiData?.riskAssessment?.physicalSymptomsOther);
 
     // Resetting cognitive symptoms state variables
     setConsnotiveSymptoms(
@@ -604,7 +600,7 @@ const Treatmentplan_update = () => {
     setConsnotiveSymptomsBoolean(
       getApiData?.riskAssessment?.cognitiveSymptoms ? true : false
     );
-    setConsnotiveSymptomsOther(getApiData?.cognitiveSymptomsOther);
+    setConsnotiveSymptomsOther(getApiData?.riskAssessment?.cognitiveSymptomsOther);
 
     // Resetting psychosocial symptoms state variables
     setPsychosocialSymptoms(
@@ -615,7 +611,7 @@ const Treatmentplan_update = () => {
     setPsychosocialSymptomsBoolean(
       getApiData?.riskAssessment?.psychosocialSymptoms ? true : false
     );
-    setPsychosocialSymptomsOther(getApiData?.psychosocialSymptomsOther);
+    setPsychosocialSymptomsOther(getApiData?.riskAssessment?.psychosocialSymptomsOther);
 
     // Resetting interventions implemented state variables
     setInterventionsImplemented(
@@ -624,7 +620,7 @@ const Treatmentplan_update = () => {
     setInterventionsImplementedBoolean(
       getApiData?.interventionsComment ? true : false
     );
-    setInterventionsImplementedOther(getApiData?.interventionsComment);
+    setInterventionsImplementedOther(getApiData?.riskAssessment?.interventionsComment);
 
     // Resetting counseling and frequency state variables
     setMinimumHoure(getApiData?.counselingFrequencyMinimum);
@@ -827,11 +823,15 @@ const Treatmentplan_update = () => {
     setSupportSystem(
       getApiData?.supportSystem ? getApiData?.supportSystem : []
     );
-    // setSupportSystemOtherText(getApiData?.residentAttitude);
-    // setSupportSystemOtherTextBoolean(false);
+    setSupportSystemOtherText(getApiData?.residentAttitude);
+    setSupportSystemOtherTextBoolean(false);
     setCurrentMedications(getApiData?.currentMedications);
     setreligiousPreference(getApiData?.religiousPreference);
-    // setReligiousPreferenceText(getApiData?.residentAttitude);
+
+    if(getApiData?.religiousPreference){
+      setReligiousPreferenceText(getApiData?.religiousPreference);
+    }
+
     setNutritionAndWellnessPlanning(
       getApiData?.nutritionAndWellnessPlanning
         ? getApiData?.nutritionAndWellnessPlanning
@@ -851,7 +851,9 @@ const Treatmentplan_update = () => {
     setrecommendationsForFurtherProgramsBoolean(
       getApiData?.recommendationsForFurtherPrograms?.length > 0 ? true : false
     );
-    // setRecommendationsForFurtherProgramsOther(getApiData?.residentAttitude);
+
+
+    // setRecommendationsForFurtherProgramsOther();
 
     // Resetting afterCareAndTransitionPlanning state variables
     setAfterCareAndTransitionPlanning(
@@ -1022,6 +1024,7 @@ const Treatmentplan_update = () => {
       moodLevel: mind,
       moodLevelOther: mindText,
       adls: adls,
+      adlsOther:adlsText,
       behavioralHealthServices: BHealth,
       behavioralHealthServicesOther: Btext,
       primaryCareProvider: primaryCare,
@@ -2159,7 +2162,7 @@ const Treatmentplan_update = () => {
             <div className="formheading1">
               <div
                 className="formsheading_updated_treatment"
-                style={{ marginTop: "1.5rem", padding: " 0 10px" }}
+            
               >
                 <div className="treatment_plan_header">
                   <h5>TREATMENT PLAN</h5>
@@ -2755,7 +2758,7 @@ const Treatmentplan_update = () => {
                     />
                     <label htmlFor="aboutdeath">About death </label>
                   </div>
-                  {/* add paremeter */}
+             
                   <div>
                     <input
                       type="checkbox"
@@ -5386,18 +5389,6 @@ const Treatmentplan_update = () => {
                   </h6>
                 </div>
 
-                <div className="form-field-update">
-                  <div className="form-field-child">
-                    <label>First and Last Name:</label>
-                    <input
-                      type="text"
-                      value={nameResident}
-                      placeholder="Enter text"
-                      required
-                      onChange={(e) => setNameResident(e.target.value)}
-                    />
-                  </div>
-
                   <div className="form-field-child">
                     <label style={{ fontWeight: "bold" }}>
                       Resident or Resident’s representative{" "}
@@ -5416,6 +5407,19 @@ const Treatmentplan_update = () => {
                     />
                   </div>
                 </div>
+
+                
+                <div className="form-field-update">
+                  <div className="form-field-child">
+                    <label>First and Last Name:</label>
+                    <input
+                      type="text"
+                      value={nameResident}
+                      placeholder="Enter text"
+                      required
+                      onChange={(e) => setNameResident(e.target.value)}
+                    />
+                  </div>
 
                 <div class="file-upload-box" style={{ marginTop: "0.5rem" }}>
                   <div className="file-upload-box-child hidePrint">
@@ -6865,12 +6869,9 @@ const Treatmentplan_update = () => {
                   </div>
                 </div>
 
-                <label className="label-review">
-                  Counseling and Frequency:
-                </label>
                 <div className="formsheading-treatment">
                   <div className="inLine_box_style">
-                    <p>Total of minimum </p>{" "}
+                    <p> <span className="label-review" >Counseling and Frequency :</span>  Total of minimum </p>{" "}
                     <div>
                       <input
                         style={{
@@ -6889,20 +6890,7 @@ const Treatmentplan_update = () => {
                     <p>hours daily.</p>
                   </div>
                 </div>
-                {/* <div className="yeschechbox-review">
-                <div>
-                  <span>Total of Minimum</span>
-                </div>
-                <div>
-                  <span>Hours per Week</span>
-                </div>
-              </div>
-              <div className="yeschechbox-review">
-                <label htmlFor="">Individual: </label>
-                <div>
-                  <span>Minimum 1 hour session per week</span>
-                </div>
-              </div> */}
+            
                 <div className="yeschechbox-review">
                   <div>
                     <input
@@ -7101,12 +7089,11 @@ const Treatmentplan_update = () => {
                   </div>
                 </div>
 
-                <div className="formsheading" style={{ marginTop: "5rem" }}>
-                  <h6 style={{ fontWeight: "bold" }}>
-                    Goals for Changes in the Resident psychosocial  Interaction or
-                    Behaviour :
-                  </h6>
-                </div>
+                <div className="formsheading" >
+  <h6 style={{ fontWeight: "bold" }}>
+    Goals for Changes in the Resident Psychosocial Interaction or Behavior:
+  </h6>
+</div>
 
                 <div className="needs-interventions-container2 table-respnosive">
                   <div className="needs-interventions-column2">
@@ -8936,17 +8923,7 @@ const Treatmentplan_update = () => {
                   </h6>
                 </div>
 
-                <div className="form-field-update">
-                  <div className="form-field-child">
-                    <label>First and Last Name:</label>
-                    <input
-                      type="text"
-                      value={nameResident}
-                      placeholder="Enter text"
-                      required
-                      onChange={(e) => setNameResident(e.target.value)}
-                    />
-                  </div>
+              
 
                   <div className="form-field-child">
                     <label style={{ fontWeight: "bold" }}>
@@ -8966,6 +8943,18 @@ const Treatmentplan_update = () => {
                     />
                   </div>
                 </div>
+
+                <div className="form-field-update">
+                  <div className="form-field-child">
+                    <label>First and Last Name:</label>
+                    <input
+                      type="text"
+                      value={nameResident}
+                      placeholder="Enter text"
+                      required
+                      onChange={(e) => setNameResident(e.target.value)}
+                    />
+                  </div>
 
                 <div class="file-upload-box" style={{ marginTop: "0.5rem" }}>
                   <div className="file-upload-box-child hidePrint">
