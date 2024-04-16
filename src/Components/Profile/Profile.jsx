@@ -80,7 +80,7 @@ const Profile = () => {
                 <div className="nursecard" key={i}>
               <img src={item?.profilePic?item?.profilePic:nurse1} alt="" />
               <p>{item?.fullName}</p>
-              {/* <span>Centre 1</span> */}
+         
             </div>
               ))
             }

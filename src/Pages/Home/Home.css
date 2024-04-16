@@ -1,32 +1,28 @@
 .Hoc {
     display: flex;
-    /* flex-wrap: wrap; */
+    gap:  1rem;
+    flex-direction: row;
+    height: 100vh;
   }
 
 
-  /* Style for Sidebar */
-  .Hoc12323 > div:first-child {
-    /* order: 1;  */
-    width: 200px; 
+  .Hoc > div:nth-child(1) {
+    width: 250px;
     color: white; 
   }
+
+  .Hoc.menu-open > div:nth-child(1) {
+    width: 70%;
+    z-index: 1000;
+  }
   
-  /* Style for UpperBar */
+
   .Hoc > div:nth-child(2) {
-    /* order: 2;  */
-    flex: 1; /* Make UpperBar take the remaining space */
-    color: white; /* Example text color */
-  }
-  
-  /* Style for the content (WrappedComponent) */
-  .Hoc > div:last-child {
-    /* Add specific styling for the content */
-    flex: 1; /* Make the content take the remaining space */
-    padding: 20px; /* Example padding for content */
-  }
-  .Hoc.menu-open > div:nth-child(2) {
     width: 100%;
+    padding: 20px; 
+    overflow: auto;
   }
+ 
   
   .sidebar1{
     display: none;
@@ -34,14 +30,14 @@
 
   @media only screen and (max-width: 1300px) {
     .Hoc > div:first-child {
-        /* order: 1; */
-        /* width: 100%; Sidebar takes full width */
         z-index: 1;
-        width: 0;
+        width: 250px;
     }
 
     .Hoc > div:nth-child(2) {
-        /* order: 1; / */
+      width: 100%;
+      padding: 20px; 
+      overflow: auto;
     }
     
 }

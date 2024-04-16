@@ -28,11 +28,12 @@ const BookAppointment = () => {
     setAppoinmentDate("");
     setAppoinmentTime("");
   };
+  
   const handlePostData = (e) => {
     e.preventDefault();
     appoinment_Booking(data);
     initial_value();
-    navigate("/appointment_scheduling")
+    navigate("/patient_panel")
   };
   return (
     <>
@@ -91,7 +92,7 @@ const BookAppointment = () => {
                   onChange={(e) => setReasonForVisit(e.target.value)}
                 />
               </div>
-              <h2>Choose your Slot</h2>
+       
               <div className="form-field">
                 <label htmlFor="dateOfBirth">Appointment Date</label>
                 <input

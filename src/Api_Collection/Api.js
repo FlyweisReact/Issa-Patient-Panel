@@ -272,24 +272,24 @@ export const appoinment_Booking = async (payLoad) => {
 export const appointment_Upcoming = async (setAppoinment) => {
   try {
     const res = await axios.get(
-      `${BaseUrl}Patient/getAllPastAppointments`,
+      `${BaseUrl}Patient/getAllUpcomingAppointments`,
       Token
     );
     setAppoinment(res?.data);
   } catch (e) {
-    // show_notification("fail !", `${e?.response?.data?.message}`, "danger");
+    show_notification("fail !", `${e?.response?.data?.message}`, "danger");
   }
 };
 
 export const appointment_get = async (setAppoinmentPast) => {
   try {
     const res = await axios.get(
-      `${BaseUrl}Patient/getAllUpcomingAppointments`,
+      `${BaseUrl}Patient/getAllPastAppointments`,
       Token
     );
     setAppoinmentPast(res?.data);
   } catch (e) {
-    // show_notification("fail !", `${e?.response?.data?.message}`, "danger");
+    show_notification("fail !", `${e?.response?.data?.message}`, "danger");
   }
 };
 
@@ -312,7 +312,6 @@ export const medication_get = async (setMedication) => {
 export const change_appointment_status = async (id) => {
   try {
     const res = await axios.put(
-      // `${BaseUrl}Patient/getOngoingMedications/${patientId}`,
       `${BaseUrl}Patient/cancelAppointment/${id}`,{},
       Token
     );

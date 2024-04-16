@@ -27,14 +27,13 @@ import UpdateProfile from "./Components/Forms/UpdateProfile";
 import { LoginForm } from "./Components/form/LoginForm";
 import FileUpload from "./Components/Appointments/FileUpload";
 import Treatmentplan_update from "./Components/Forms/TreatmentPlan_update";
-import Home1 from "./Pages/Home/Home1";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<LoginForm />} />
-        {/* <Route path="/login" element={<LoginForm />} /> */}
+ 
         <Route
           path="/patient_panel"
           element={<Home Wcomponenet={Appointments} />}
@@ -48,55 +47,43 @@ function App() {
           path="/appointment_scheduling"
           element={<Home Wcomponenet={Appointment_Scheduling} />}
         />
-        <Route path="/profile" element={<Home Wcomponenet={Profile} />} />
+        {/* <Route path="/profile" element={<Home Wcomponenet={Profile} />} /> */}
         {/* <Route path="/initial-Assessment" element={<InitialAssessment />} /> */}
         <Route
           path="/initial-Assessment"
-          element={<Home1 Wcomponenet={InitialAssessment} />}
+          element={<Home Wcomponenet={InitialAssessment} />}
         />
-        {/* <Route path="/facesheet" element={<FaceSheet />} /> */}
+
         <Route
           path="/facesheet"
-          element={<Home1 Wcomponenet={FaceSheet} />}
+          element={<Home Wcomponenet={FaceSheet} />}
         />
-        {/* <Route path="/safetyplan" element={<SafetyPlan />} /> */}
+   
         <Route
           path="/safetyplan"
-          element={<Home1 Wcomponenet={SafetyPlan} />}
-        />
-        {/* <Route path="/nursing-assessment" element={<NursingAssessment />} /> */}
-        <Route
-          path="/nursing-assessment"
-          element={<Home1 Wcomponenet={NursingAssessment} />}
+          element={<Home Wcomponenet={SafetyPlan} />}
         />
     
-        {/* Treatment plan update */}
-        {/* <Route path="/treatmentplanUpdate" element={<Treatmentplan_update />} /> */}
+        <Route
+          path="/nursing-assessment"
+          element={<Home Wcomponenet={NursingAssessment} />}
+        />
+    
+ 
         <Route
           path="/treatmentplanUpdate"
-          element={<Home1 Wcomponenet={Treatmentplan_update} />}
+          element={<Home Wcomponenet={Treatmentplan_update} />}
         />
-        {/* <Route path="/Residentintakes" element={<ResidentIntakes />} /> */}
+ 
         <Route
           path="/Residentintakes"
-          element={<Home1 Wcomponenet={ResidentIntakes} />}
+          element={<Home Wcomponenet={ResidentIntakes} />}
         />
-        {/* booking new appoinments */}
+
         <Route path="/booknewappointment" element={<BookAppointment />} />
-        {/* <Route
-          path="/booknewappointment"
-          element={<Home1 Wcomponenet={BookAppointment} />}
-        /> */}
+   
         <Route path="/appointmenthistory" element={<AppointmentHistory />} />
-        {/* <Route
-          path="/appointmenthistory"
-          element={<Home1 Wcomponenet={AppointmentHistory} />}
-        /> */}
         <Route path="/update-profile" element={<UpdateProfile />} />
-        {/* <Route
-          path="/update-profile"
-          element={<Home1 Wcomponenet={UpdateProfile} />}
-        /> */}
         <Route path="/manageappointment" element={<ManageAppointments />} />
         <Route path="/cancel_appointment" element={<CancelAppointment />} />
       </Routes>

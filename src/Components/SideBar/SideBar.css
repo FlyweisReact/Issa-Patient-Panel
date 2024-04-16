@@ -1,12 +1,11 @@
-/* Sidebar.css */
 
 .sidebar {
   height: 100vh;
-  width: 200px;
+  width: 100%;
   background-color: #1A9FB2;
   color: #fff;
   padding-top: 20px;
-  position: fixed;
+
 }
 
 .logo {
@@ -25,7 +24,6 @@
   flex-direction: column;
   align-items: center;
   padding: 10px;
-  /* transition: background-color 0.3s; */
   cursor: pointer;
   margin-bottom: 30px;
 }
@@ -34,7 +32,6 @@
 .menu-item .icon1 {
   font-size: 24px;
   margin-bottom: 5px;
-  /* transition: background-color 0.3s; */
   color: #fff;
 }
 
@@ -76,6 +73,7 @@
   color: #ffff;
 }
 
+
 @media screen and (max-width:480px) {
   .closeButton {
     display: block !important;
@@ -84,28 +82,16 @@
     right: 10px;
     font-size: 30px;
     display: flex;
-    /* Show the icon on small screens */
     cursor: pointer;
     color: #ffff;
   }
 
-  .sidebar {
-    z-index: 1000; /* Ensure sidebar is above content */
-    position: fixed; 
-    top: 0; 
-    left: 0;
-    height: 100%; 
-    transition: width 0.3s ease; 
-  }
 
   .menu-item {
     margin-bottom: 40px;
   }
   
 
-  .sidebar {
-    width: 80%;
-  }
   .logo img {
     max-width: auto;
     height: 70px;
@@ -113,7 +99,6 @@
   .menu-item .icon1 {
     font-size: 40px;
     margin-bottom: 5px;
-    /* transition: background-color 0.3s; */
     color: #fff;
   }
 
@@ -122,14 +107,19 @@
     right: 12px;
     font-size: 50px;
   }
+
   
 .sidebar {
-  height: 100;
+  z-index: 1000;
+  position: fixed; 
+  top: 0; 
+  left: 0;
+  height: 100%;
   width: 70%;
   background-color: #1A9FB2;
   color: #fff;
   padding-top: 20px;
-  position: fixed;
+  transition: width 0.3s ease; 
 }
   
 }

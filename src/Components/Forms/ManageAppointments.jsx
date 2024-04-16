@@ -5,21 +5,22 @@ import HistoryCard from "../Cards/HistoryCards";
 import cards from "../../img/card1.png";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import "./ManageAppointments.css";
-import { appointment_get } from "../../Api_Collection/Api";
+import { appointment_Upcoming } from "../../Api_Collection/Api";
 import nurse1 from "../../img/nurse (1).png";
 
 const ManageAppointments = () => {
   const [appoinmentPast, setAppoinmentPast] = useState("");
 
   useEffect(() => {
-    appointment_get(setAppoinmentPast);
+    appointment_Upcoming(setAppoinmentPast);
   }, []);
 
   const again_Call_appointment=()=>{
-    appointment_get(setAppoinmentPast);
+    appointment_Upcoming(setAppoinmentPast);
   }
-
+  
   const navigate = useNavigate();
+
   return (
     <div className="booking-container">
       <div className="backbutton">
@@ -65,15 +66,7 @@ const ManageAppointments = () => {
             </div>
           </div>
         </div>
-        {/* <div className="form-actions">
-          <button
-            type="submit"
-            className="managecontinue"
-            onClick={() => navigate("/cancel_appointment")}
-          >
-            CONTINUE
-          </button>
-        </div> */}
+      
       </div>
     </div>
   );

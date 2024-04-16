@@ -20,6 +20,7 @@ const AppointmentHistory = () => {
 
   const again_Call_appointment=async()=>{
     await appointment_Upcoming(setAppoinmentUpcoming);
+    await appointment_get(setAppoinmentPast);
   }
  
   const navigate = useNavigate();
@@ -47,13 +48,14 @@ const AppointmentHistory = () => {
             <p>UPCOMING</p>
             {appoinmentUpcoming?.data?.map((history, index) => (
               <HistoryCard
-                key={index}
+              id={history?._id}
+              again_Call_appointment={again_Call_appointment}
+               name={history?.adminId?.address}
                 imageUrl={history?.adminId?.profilePic?history?.adminId?.profilePic:nurse1}
-                from={history.from}
+                from={history.date}
                 visit={history.reasonForVisit}
                 referenceId={history.patientId}
-                id={history._id}
-                again_Call_appointment={again_Call_appointment}
+                status={history?.status}
               />
             ))}
           </div>
@@ -61,11 +63,14 @@ const AppointmentHistory = () => {
             <p>PAST</p>
             {appoinmentPast?.data?.map((history, index) => (
               <HistoryCard
-                key={index}
+              id={history?._id}
+              again_Call_appointment={again_Call_appointment}
+               name={history?.adminId?.address}
                 imageUrl={history?.adminId?.profilePic?history?.adminId?.profilePic:nurse1}
-                from={history.from}
+                from={history.date}
                 visit={history.reasonForVisit}
                 referenceId={history.patientId}
+                status={history?.status}
               />
             ))}
           </div>

@@ -13,10 +13,10 @@
 .Intakemodal-content {
     position: fixed;
     top: 100px;
-    /* left: 400px; */
     background: #fff;
     padding: 20px;
-    width: 500px;
+    width: 90%;
+    margin: auto;
     height: auto;
     text-align: start;
 }

@@ -8,28 +8,27 @@ import { Update_Profile, user_detail } from "../../Api_Collection/Api";
 const UpdateProfile = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState("");
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
-  const [profileImage, setProfileImage] = useState("");
   const [gender, setGender] = useState("");
   const [address, setAdress] = useState("");
+
+  const [image, setImage] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
     setName(user.fullName);
     setEmail(user?.email);
     setMobileNumber(user?.mobileNumber);
     setGender(user?.gender);
-    setProfileImage(user?.profilePic);
+    setImageUrl(user?.profilePic);
     setAdress(user?.address);
   }, [user]);
 
   useEffect(() => {
     user_detail(setUser);
   }, []);
-
-  console.log("user --------", user);
 
   const handlePostData = (e) => {
     e.preventDefault();
@@ -39,12 +38,29 @@ const UpdateProfile = () => {
     fromData.append("mobileNumber", mobileNumber);
     fromData.append("gender", gender);
     fromData.append("address", address);
-    fromData.append("image", profileImage);
-
+    {
+      image && fromData.append("image", image);
+    }
     Update_Profile(fromData);
-
-    navigate("/appointment_scheduling");
+    navigate("/patient_panel");
   };
+
+
+  const selectImage = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setImageUrl(imageUrl);
+    }
+  };
+
+  const ChooseFile = () => {
+    const target = document.getElementById("file");
+    target.click();
+  };
+
+
   return (
     <>
       <div className="booking-container">
@@ -71,21 +87,25 @@ const UpdateProfile = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                marginTop: "0.5rem"
               }}
             >
+
               <img
-                src={profileImage}
+                src={imageUrl ? imageUrl : user?.profilePic}
                 alt="Profile"
                 className="profilemodal-image"
                 style={{ cursor: "pointer" }}
-                onClick={() => document.getElementById("profile_input").click()}
+                onClick={() => ChooseFile()}
               />
+
               <input
                 type="file"
                 style={{ display: "none" }}
-                id="profile_input"
-                onChange={(e) => setProfileImage(e?.target?.files[0])}
+                id="file"
+                onChange={(e) => selectImage(e)}
               />
+
             </div>
 
             <div className="profile-section">

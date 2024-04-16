@@ -3,8 +3,6 @@ import React, { useState } from "react";
 import "./SideBar.css";
 import { PiHouseBold } from "react-icons/pi";
 import { FaRegFileAlt } from "react-icons/fa";
-import { IoPeopleOutline } from "react-icons/io5";
-import { CgProfile } from "react-icons/cg";
 import { IoMdLogOut } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { MdClose } from "react-icons/md";
