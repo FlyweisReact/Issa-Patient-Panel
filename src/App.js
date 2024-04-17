@@ -38,10 +38,13 @@ function App() {
           path="/patient_panel"
           element={<Home Wcomponenet={Appointments} />}
         />
+
+        {/* not need this route */}
           <Route
           path="/patient_Upload_script"
           element={<Home Wcomponenet={FileUpload} />}
         />
+        
         <Route path="/intake" element={<Home Wcomponenet={Intake} />} />
         <Route
           path="/appointment_scheduling"

@@ -25,6 +25,7 @@
     flex-wrap: wrap;
 }
 
+
 /* file upload */
 .file_parent{
     margin-top: 0.5rem;
@@ -46,6 +47,92 @@
     border: none;
     color:"white"
 }
+
+/*  new file upload button */
+.file-upload-modal .close-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .file-upload-modal .close-header h5 {
+    color: #337357;
+    font-size: 25px;
+    font-weight: 600;
+  }
+  .file-upload-modal .close-header i.fa-xmark {
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .file-upload-modal .wrapper {
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .file-upload-modal .wrapper .flexbox {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .file-upload-modal .wrapper .flexbox .items {
+    width: 33%;
+  }
+  .file-upload-modal .wrapper .flexbox .items .head {
+    background-color: #eeedeb;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+  }
+  .file-upload-modal .wrapper .flexbox .items button {
+    background-color: #337357;
+    color: #fff;
+    border: 1px solid #337357;
+    width: 60%;
+    padding: 10px;
+  }
+  .file-upload-modal .btn-container {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 10px;
+  }
+  .file-upload-modal .upload_files {
+    background-color: #3b3486;
+    border: 1px solid #3b3486;
+    color: #fff;
+    width: 200px;
+    padding: 10px;
+  }
+  .file-upload-modal .wrapper .flexbox .items select {
+    outline: none;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .colored_table {
+    width: 100% ;
+    padding: 10px;
+  }
+
+  .colored_table thead tr th {
+    background-color: #d1ecf0;
+    font-size: 14px;
+  }
+  .colored_table tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
+  .colored_table tbody tr td {
+    border: none;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .colored_table thead tr th:first-child {
+    border-radius: 5px 0 0 0;
+  }
+  .colored_table thead tr th:last-child {
+    border-radius: 0 5px 0 0;
+  }
 
 /* Responsive styles for screen size 867px and below */
 @media only screen and (max-width: 867px) {
@@ -94,4 +181,11 @@
         border: 1px solid rgb(184, 173, 173);
         color: black;
     }
+    
+    .file-upload-modal .close-header  {
+       flex: block;
+    }
+
+
+
 }

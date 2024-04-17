@@ -363,3 +363,92 @@ export const employ_Detail = async (setEmploy) => {
     // show_notification("fail !", `${e?.response?.data?.message}`, "danger");
   }
 };
+
+
+// Upload documents
+export const uploadDocument = async ({ payload, setArr, setLoading }) => {
+  setLoading(true);
+  try {
+    const res = await axios.post(
+      `${BaseUrl}employee/createUploadDocumentOnebyone`,
+      payload
+    );
+    const data = res?.data?.data;
+    setArr((prev) => [...prev, data]);
+  } catch (e) {
+    const msg = e?.response?.data?.message || "Image size is too large !";
+    show_notification("fail !", `${e?.response?.data?.message}`, "danger");
+  } finally {
+    setLoading(false);
+  }
+};
+
+export const createApi = async ({
+  url,
+  payload,
+  successMsg,
+  setLoading,
+  additionalFunctions = [],
+}) => {
+  if (setLoading) {
+    setLoading(true);
+  }
+  try {
+    const res = await axios.post(
+      `${process.env.React_App_Baseurl}${url}`,
+      payload,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    if (res) {
+      if (successMsg) {
+        show_notification("Success !", `${successMsg}`, "success");
+       
+      }
+      additionalFunctions.forEach((func) => {
+        if (typeof func === "function") {
+          func();
+        }
+      });
+    }
+  } catch (e) {
+    const msg = e?.response?.data?.message || "Something went wrong";
+    show_notification("fail !", `${msg}}`, "danger");
+  } finally {
+    if (setLoading) {
+      setLoading(false);
+    }
+  }
+};
+
+// Api Module
+export const getApi = async ({
+  url,
+  setResponse,
+  setLoading,
+  additionalFunctions = [],
+}) => {
+  if (setLoading) {
+    setLoading(true);
+  }
+  try {
+    const res = await axios.get(`${BaseUrl}${url}`, 
+     Token
+    );
+    setResponse(res.data);
+    additionalFunctions.forEach((func) => {
+      if (typeof func === "function") {
+        func();
+      }
+    });
+  } catch (e) {
+    console.log(url, e);
+  } finally {
+    if (setLoading) {
+      setLoading(false);
+    }
+  }
+};

@@ -8906,15 +8906,6 @@ const Treatmentplan_update = () => {
                     </label>
                   </div>
                 </div>
-                {/* <div className="yeschechbox2">
-                <div>
-                  <span>
-                    I am in the agreement with the services included in this
-                    treatment Plan
-                  </span>
-                </div>
-              </div> */}
-                {/* /"signaturesResident */}
 
                 <div className="formsheading">
                   <h6 style={{ fontWeight: "bold" }}>

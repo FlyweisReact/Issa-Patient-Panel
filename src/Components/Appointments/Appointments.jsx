@@ -3,106 +3,60 @@ import React, { useEffect, useState } from "react";
 import AppointmentsCard from "../Cards/AppointmentsCard";
 import MedicationsCard from "../MedicationsCard/MedicationsCard";
 import "./Appointments.css";
+import { ClipLoader } from "react-spinners";
 import cards from "../../img/card1.png";
 import Medications from "../../img/Medications.png";
-import upload from "../../img/upload.png"
+import upload from "../../img/upload.png";
 import nurse1 from "../../img/nurse (1).png";
-import scheduling1 from '../../img/sheduling1 (1).png'
-import scheduling2 from '../../img/sheduling1 (2).png'
-import scheduling3 from '../../img/sheduling1 (3).png'
+import scheduling1 from "../../img/sheduling1 (1).png";
+import scheduling2 from "../../img/sheduling1 (2).png";
+import scheduling3 from "../../img/sheduling1 (3).png";
 import {
   appointment_Upcoming,
-  appointment_get, medication_get, user_detail, getAllPatientMedication, show_notification
+  user_detail,
+  uploadDocument,
+  createApi,
+  getApi,
 } from "../../Api_Collection/Api";
 import Vital from "../VitalNew/Vital";
 import { Link } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import Container from 'react-bootstrap/Container'
-import Form from 'react-bootstrap/Form'
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 const Appointments = () => {
-
   // document model
   const [show, setShow] = useState(false);
+  const [documents, setDocuments] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [id, setId] = useState("");
 
   //navigate
-  const navigate=useNavigate();
-  //model 
-  const [modalShow, setModalShow] = useState(false);
+  const navigate = useNavigate();
   //state
+
   const [appoinmentUpcoming, setAppoinmentUpcoming] = useState("");
-  const [appoinmentPast, setAppoinmentPast] = useState("");
-  const [patientId,setPatientId]=useState("")
-  const [medication,setMedication]=useState("")
-  const [script,setScript]=useState("")
-
-
-  const [view,setView]=useState(false);
-
-
-  const [addScript, setAddScript] = useState("");
-
+  const [view, setView] = useState(false);
 
   useEffect(() => {
-    user_detail(setPatientId);
+    user_detail(setId);
     appointment_Upcoming(setAppoinmentUpcoming);
-    appointment_get(setAppoinmentPast);
-    getAllPatientMedication(setScript);
-    medication_get(setMedication);
   }, []);
-  
-  const downloadPdf = async (blobUrl) => {
-      const anchor = document.createElement('a');
-      anchor.href = blobUrl;
-      anchor.download = 'medication.pdf';
-      document.body.appendChild(anchor);
-      anchor.click();
-      document.body.removeChild(anchor);
+
+  // file upload
+
+  const fetchDocument = () => {
+    getApi({
+      url: `getDocumentOfPatient/${id}`,
+      setResponse: setDocuments,
+      setLoading,
+    });
   };
-
-  useEffect(() => {
-    if (addScript) {
-      show_notification("Success !", "Document Upload Successfully", "success");
-    }
-  }, [addScript]);
-
-
-  function MyVerticallyCenteredModal(props) {
-    const [addScript, setAddScript] = useState("");
-    return (
-      <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-
-        }}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Add
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>Select Script</Form.Label>
-            <Form.Control type="file" placeholder="select File" onChange={(e) => setAddScript(e.target.files[0])} />
-          </Form.Group>
-
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={props.onHide}>Submit</Button>
-        </Modal.Footer>
-      </Modal>
-    );
-  }
 
   function DocumentUploader(props) {
     const [fileType, setFileType] = useState("");
@@ -122,14 +76,28 @@ const Appointments = () => {
     filePayload.append("type", fileType);
     const uploadFiles = (e) => {
       e.preventDefault();
-      // uploadDocument({
-      //   payload: filePayload,
-      //   setArr,
-      //   setLoading: setUploading,
-      // });
+      uploadDocument({
+        payload: filePayload,
+        setArr,
+        setLoading: setUploading,
+      });
     };
 
+    const payload = {
+      patientId: id,
+      data: arr,
+    };
 
+    const submitHandler = () => {
+      const additionalFunctions = [props.onHide, fetchDocument];
+      createApi({
+        url: `employee/createUploadDocument1`,
+        payload,
+        successMsg: "Uploaded !",
+        setLoading: setSubmitLoading,
+        additionalFunctions,
+      });
+    };
 
     return (
       <Modal
@@ -143,16 +111,19 @@ const Appointments = () => {
             <form onSubmit={uploadFiles}>
               <div className="close-header">
                 <h5>File Upload </h5>
-                <i
-                  className="fa-solid fa-xmark"
-                  onClick={() => props.onHide()}
-                ></i>
+                <FontAwesomeIcon icon={faTimes} onClick={props.onHide} />
               </div>
               <div className="wrapper">
                 <div className="flexbox">
                   <div className="items">
                     <p className="head">Actions</p>
-                 
+                    <button type="submit">
+                      {uploading ? (
+                        <ClipLoader color="#fff" />
+                      ) : (
+                        "Add Additional files"
+                      )}
+                    </button>
                   </div>
                   <div className="items">
                     <p className="head">File Type</p>
@@ -189,8 +160,9 @@ const Appointments = () => {
                           </a>
                         </td>
                         <td>
-                          <i
-                            className="fa-solid fa-trash-can cursor-pointer"
+                          <FontAwesomeIcon
+                            icon={faTrashCan}
+                            className="cursor-pointer"
                             onClick={() => removeFile(index)}
                           />
                         </td>
@@ -202,10 +174,14 @@ const Appointments = () => {
                 <div className="btn-container">
                   <button
                     className="upload_files"
-                 
+                    onClick={() => submitHandler()}
                     type="button"
                   >
-                 
+                    {submitLoading ? (
+                      <ClipLoader color="#fff" />
+                    ) : (
+                      "Upload Files"
+                    )}
                   </button>
                 </div>
               </div>
@@ -218,80 +194,94 @@ const Appointments = () => {
 
   return (
     <div className="appointmentcontainer">
-         <DocumentUploader show={show} onHide={() => setShow(false)} />
-      <div className='appointmentcontent'>
+      <div className="appointmentcontent">
         <p>Appointment Scheduling</p>
       </div>
-      <div className='Schedulingcards'>
+      <div className="Schedulingcards">
         <div className="Scheduling-card">
           <img src={scheduling1} alt="Icon" className="card-icon-appointment" />
-          <Link to={'/booknewappointment'}>
+          <Link to={"/booknewappointment"}>
             <p>Book New Appointment</p>
           </Link>
         </div>
         <div className="Scheduling-card">
           <img src={scheduling2} alt="Icon" className="card-icon-appointment" />
-          <Link to={'/appointmenthistory'}>
+          <Link to={"/appointmenthistory"}>
             <p>Appointment History</p>
           </Link>
         </div>
         <div className="Scheduling-card">
           <img src={scheduling3} alt="Icon" className="card-icon-appointment" />
-          <Link to={'/manageappointment'}>
+          <Link to={"/manageappointment"}>
             <p>Manage Appointments</p>
           </Link>
         </div>
       </div>
-      
 
       <div className="appointmentcontent">
         <p>Upcoming Appointments</p>
-        <p onClick={()=>setView(!view)}>VIEW ALL</p>
+        <p onClick={() => setView(!view)}>VIEW ALL</p>
       </div>
       <div className="appointmentCard">
-  {
-    view ? 
-      appoinmentUpcoming?.data?.map((appointment, index) => (
-        <AppointmentsCard
-          key={index}  
-          imageUrl={appointment?.adminId?.profilePic ? appointment?.adminId?.profilePic : nurse1}
-          date={new Date(appointment?.date).toLocaleDateString()}
-          slot={appointment?.time}
-          location={appointment?.adminId?.address}
-        />
-      )) :
-      appoinmentUpcoming?.data?.slice(0, 4)?.map((appointment, index) => (
-        <AppointmentsCard
-          key={index}  
-          imageUrl={appointment?.adminId?.profilePic ? appointment?.adminId?.profilePic : nurse1}
-          date={new Date(appointment?.date).toLocaleDateString()}
-          slot={appointment?.time}
-          location={appointment?.adminId?.address}
-        />
-      ))
-  }
-</div>
+        {view
+          ? appoinmentUpcoming?.data?.map((appointment, index) => (
+              <AppointmentsCard
+                key={index}
+                imageUrl={
+                  appointment?.adminId?.profilePic
+                    ? appointment?.adminId?.profilePic
+                    : nurse1
+                }
+                date={new Date(appointment?.date).toLocaleDateString()}
+                slot={appointment?.time}
+                location={appointment?.adminId?.address}
+              />
+            ))
+          : appoinmentUpcoming?.data
+              ?.slice(0, 4)
+              ?.map((appointment, index) => (
+                <AppointmentsCard
+                  key={index}
+                  imageUrl={
+                    appointment?.adminId?.profilePic
+                      ? appointment?.adminId?.profilePic
+                      : nurse1
+                  }
+                  date={new Date(appointment?.date).toLocaleDateString()}
+                  slot={appointment?.time}
+                  location={appointment?.adminId?.address}
+                />
+              ))}
+      </div>
 
-<div >
-      <Vital/></div>
+      <div>
+        <Vital />
+      </div>
 
       <div className="appointmentcontent">
         <p>Upload Document</p>
-   
-
       </div>
-            <div style={{display:"flex" ,gap:"20px" ,alignItems:"center",}}>
- 
-
-        <button onClick={()=>navigate("/patient_Upload_script")} style={{ backgroundColor: "#0066ff", cursor: "pointer", width: "150px", height: "40px", borderRadius: "20px", outline: "none", border: "none", color: "white" }}>Upload</button>
-   </div>
+      <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
+        <button
+          onClick={() => setShow(true)}
+          style={{
+            backgroundColor: "#0066ff",
+            cursor: "pointer",
+            width: "150px",
+            height: "40px",
+            borderRadius: "20px",
+            outline: "none",
+            border: "none",
+            color: "white",
+          }}
+        >
+          Upload
+        </button>
+      </div>
 
       {/* model section */}
-      <MyVerticallyCenteredModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
-     
+
+      <DocumentUploader show={show} onHide={() => setShow(false)} />
     </div>
   );
 };

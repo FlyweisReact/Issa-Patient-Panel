@@ -160,29 +160,6 @@ const UpperBar = ({ isMenuOpen, toggleMenu }) => {
                 Edit ProFile
               </button>
             </div>
-            {/* <div className="personalmodal-info">
-              <p>
-                {" "}
-                <IoDocumentTextOutline />
-                Intake Documents <MdErrorOutline />
-              </p>
-              <p>
-                {" "}
-                <PiCalendarCheckLight /> Medical Appointment
-              </p>
-              <p>
-                {" "}
-                <MdOutlineNoteAlt /> Staffing Note/ Concurrent Review
-              </p>
-              <p>
-                {" "}
-                <PiCalendarCheckLight /> Medication Script Upload
-              </p>
-              <p>
-                {" "}
-                <IoSettingsOutline /> Settings
-              </p>
-            </div> */}
           </div>
         </ProfileModal>
       )}
@@ -222,25 +199,7 @@ const UpperBar = ({ isMenuOpen, toggleMenu }) => {
               )
             }
 
-            {/* <div className="notificationcontent">
-              <img src={notification1} alt="" />
-              <span>Your Intake Documents have been Uploaded Succesfully!</span>
-            </div>
-            <p style={{ color: "#1E1E1E99" }}>TOMORROW</p>
-            <div className="notificationcontent">
-              <img src={notification2} alt="" />
-              <span>You Have 2 APPOINTMENTS Scheduled for today!</span>
-            </div> */}
-            {/* <p
-              style={{
-                color: "#1E1E1E99",
-                fontWeight: "700",
-                fontSize: "14px",
-                marginTop: "20px",
-              }}
-            >
-              TAP TO VIEW
-            </p> */}
+           
           </div>
         </NotificationModal>
       )}
@@ -251,22 +210,6 @@ const UpperBar = ({ isMenuOpen, toggleMenu }) => {
 
         </ChattingModal>
       )}
-
-      {/* Notification Modal */}
-      {/* {iscompleteintakeModalopne && (
-        <CompleteIntake >
-          <div className='completeintake'>
-            <div>
-              <img src={intake} alt="" />
-              <p>You Haven’t Uploaded your Intake
-                Documents Yet!....Complete your
-                Intake Process Now!</p>
-                <button className='completeintakebutton'  onClick={handleCompleteIntake}>COMPLETE INTAKE NOW</button>
-                <button className='skiptakebutton'  onClick={closeCompleteIntakeModal} >SKIP FOR NOW</button>
-            </div>
-          </div>
-        </CompleteIntake>
-      )} */}
 
     </>
   );
