@@ -502,6 +502,7 @@ const Treatmentplan_update = () => {
   }
 
   useEffect(() => {
+    setInitialUpdate(getApiData?.name);
     setSaveAsDraft(getApiData?.saveAsDraft);
     setDate(getApiData?.date ? getApiData?.date?.slice(0, 10) : "");
     setAdminDate(
@@ -623,7 +624,8 @@ const Treatmentplan_update = () => {
     setInterventionsImplementedBoolean(
       getApiData?.interventionsComment ? true : false
     );
-    setInterventionsImplementedOther(getApiData?.riskAssessment?.interventionsComment);
+
+    setInterventionsImplementedOther(getApiData?.interventionsComment);
 
     // Resetting counseling and frequency state variables
     setMinimumHoure(getApiData?.counselingFrequencyMinimum);
@@ -855,25 +857,22 @@ const Treatmentplan_update = () => {
       getApiData?.recommendationsForFurtherPrograms?.length > 0 ? true : false
     );
 
+    setRecommendationsForFurtherProgramsOther(getApiData?.recommendationsForFurtherProgramsOther);
 
-    // setRecommendationsForFurtherProgramsOther();
-
-    // Resetting afterCareAndTransitionPlanning state variables
     setAfterCareAndTransitionPlanning(
       getApiData?.afterCareAndTransitionPlanning
         ? getApiData?.afterCareAndTransitionPlanning
         : []
     );
 
-    // Resetting theory input state variable
-    setTextData("");
+    setTextData(getApiData?.clinicalSummaryBeforeDate?getApiData?.clinicalSummaryBeforeDate?.slice(0,10):"");
 
     // Resetting clinicalSummary state variables
     setClinicalSummary(
       getApiData?.clinicalSummary
         ? getApiData.clinicalSummary.map((item) => ({
-            label: item, // Assuming 'name' is the property you want to use as label
-            value: item, // Assuming 'id' is the property you want to use as value
+            label: item,
+            value: item, 
           }))
         : []
     );
@@ -1015,7 +1014,7 @@ const Treatmentplan_update = () => {
     const data = {
       saveAsDraft,
       patientId: userId,
-      initialUpdate,
+      name: initialUpdate,
       dateOfBirth: dob,
       date: date,
       admitDate: admitDate,
@@ -1118,6 +1117,7 @@ const Treatmentplan_update = () => {
       dischargePlanning,
       additionalComment,
       recommendationsForFurtherPrograms,
+      recommendationsForFurtherProgramsOther,
       afterCareAndTransitionPlanning,
       clinicalSummaryBeforeDate: textData,
       clinicalSummary: clinicalSummaryArray,
@@ -1312,6 +1312,7 @@ const Treatmentplan_update = () => {
 
     setRecommendationsForFurtherPrograms(updatedRecommendations);
   };
+
 
   const handleCheckboxChangeafterCareAndTransitionPlanning = (value) => {
     // Check if the value is already in the array

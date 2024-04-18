@@ -1273,7 +1273,7 @@ function formatDate(dateString) {
     // setInternalRelationship(getApiData?.guardianRepresentativeTime);
     // setInternalContect(getApiData?.guardianRepresentativeTime);
     setInternalDisclosureList(getApiData?.internalDisclosureList?getApiData?.internalDisclosureList:[]);
-    setInternalDisclosureListExpire(getApiData?.internalDisclosureListExpire);
+    setInternalDisclosureListExpire(getApiData?.internalDisclosureListExpire?getApiData?.internalDisclosureListExpire?.slice(0,10):"");
     setInternalDisclosureListResidentName(getApiData?.internalDisclosureListResidentName);
     setInternalDisclosureListResidentSignature(getApiData?.internalDisclosureListResidentSignature);
     setInternalDisclosureListResidentDate(getApiData?.internalDisclosureListResidentDate?formatDate(getApiData?.internalDisclosureListResidentDate): "");
@@ -1286,9 +1286,9 @@ function formatDate(dateString) {
     setInternalDisclosureListStaffSignature(getApiData?.internalDisclosureListStaffSignature);
     setInternalDisclosureListStaffDate(getApiData?.internalDisclosureListStaffDate? formatDate(getApiData?.internalDisclosureListStaffDate): "");
     setInternalDisclosureListStaffTime(getApiData?.internalDisclosureListStaffTime);
-    // setResidentRightsResidentSignatureValue("");
-    // setResidentRightsResidentSignatureValueDate("");
-    // residentRightsResidentSignatureValueTime("")
+    setResidentRightsResidentSignatureValue(getApiData?.residentRightsResidentSignatureValue);
+    setResidentRightsResidentSignatureValueDate(getApiData?.residentRightsResidentSignatureValueDate?getApiData?.residentRightsResidentSignatureValueDate?.slice(0,10):'');
+    setResidentRightsResidentSignatureValueTime(getApiData?.internalDisclosureListStaffTime)
     setResidentRightsResidentName(getApiData?.residentRightsResidentName);
     setResidentRightsResidentSignature(getApiData?.residentRightsResidentSignature);
     setResidentRightsResidentDate(getApiData?.residentRightsResidentDate? formatDate(getApiData?.residentRightsResidentDate): "");
@@ -1344,7 +1344,11 @@ function formatDate(dateString) {
     setComplaintProcessAcknowledgementGuardianRepresentativeTime(getApiData?.complaintProcessAcknowledgementGuardianRepresentativeTime);
     // setOrientationToAgencyCompanyFollowing(getApiData?.guardianRepresentativeTime);
     setOrientationToAgencyCompany(getApiData?.orientationToAgencyCompany);
-    setORIENTATIONDropDown(getApiData?.guardianRepresentativeTime);
+    setORIENTATIONDropDown(getApiData?.orientationToAgencyCompanyFollowing ? getApiData?.orientationToAgencyCompanyFollowing?.map(item => ({
+      label: item, 
+      value: item    
+    }))
+  : []);
     // setOrientationToAgencyResidentName("");
     setOrientationToAgencyResidentSignature(getApiData?.orientationToAgencyResidentSignature);
     setOrientationToAgencyResidentDate(getApiData?.orientationToAgencyResidentDate? formatDate(getApiData?.orientationToAgencyResidentDate): "");
@@ -1354,8 +1358,8 @@ function formatDate(dateString) {
     setOrientationToAgencyGuardianRepresentativeDate(getApiData?.orientationToAgencyGuardianRepresentativeDate? formatDate(getApiData?.orientationToAgencyGuardianRepresentativeDate): "");
     setOrientationToAgencyGuardianRepresentativeTime(getApiData?.orientationToAgencyGuardianRepresentativeTime);
     setPromotionTalkStrategicApproach(getApiData?.promotionTalkStrategicApproach);
-    setLockBoxKeyIssueReturnDateKeyIssued(getApiData?.lockBoxKeyIssueReturnDateKeyIssued);
-    setLockBoxKeyIssueReturnDateKeyReturned(getApiData?.lockBoxKeyIssueReturnDateKeyReturned);
+    setLockBoxKeyIssueReturnDateKeyIssued(getApiData?.lockBoxKeyIssueReturnDateKeyIssued?getApiData?.lockBoxKeyIssueReturnDateKeyIssued?.slice(0,10):"");
+    setLockBoxKeyIssueReturnDateKeyReturned(getApiData?.lockBoxKeyIssueReturnDateKeyReturned?getApiData?.lockBoxKeyIssueReturnDateKeyReturned?.slice(0,10):'');
     setLockBoxKeyIssueReturnAddress(getApiData?.lockBoxKeyIssueReturnAddress);
     setLockBoxKeyIssueReturnResponsibleFor(getApiData?.lockBoxKeyIssueReturnResponsibleFor);
     setLockBoxKeyIssueReturnResponsibleForCorporation(getApiData?.lockBoxKeyIssueReturnResponsibleForCorporation);

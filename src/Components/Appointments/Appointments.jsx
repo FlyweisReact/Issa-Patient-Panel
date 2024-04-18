@@ -25,7 +25,6 @@ import Modal from "react-bootstrap/Modal";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
@@ -36,9 +35,6 @@ const Appointments = () => {
   const [loading, setLoading] = useState(false);
   const [id, setId] = useState("");
 
-  //navigate
-  const navigate = useNavigate();
-  //state
 
   const [appoinmentUpcoming, setAppoinmentUpcoming] = useState("");
   const [view, setView] = useState(false);
@@ -48,28 +44,40 @@ const Appointments = () => {
     appointment_Upcoming(setAppoinmentUpcoming);
   }, []);
 
-  // file upload
 
-  const fetchDocument = () => {
-    getApi({
-      url: `getDocumentOfPatient/${id}`,
-      setResponse: setDocuments,
-      setLoading,
-    });
-  };
+  // files Name
+const FilesNames = [
+    "Progress Note",
+    "Discharge",
+    "Activities of Daily Living Tracking Form",
+    "Financial Transactions Record",
+    "Staffing Note",
+    "Authorization for Release of Information",
+    "Incident Report",
+    "Contact Note",
+    "Mars",
+    "Medication Reconciliation",
+    "Medication Count",
+    "Informed Consent for Medications",
+    "PRN Medication Log",
+    "Mental Status",
+    "Refusal of Medical Treatment Form",
+    "Appointment Tracking Log",
+  ];
 
-  function DocumentUploader(props) {
+const DocumentUploader = (props) => {
     const [fileType, setFileType] = useState("");
     const [file, setFile] = useState("");
     const [arr, setArr] = useState([]);
     const [uploading, setUploading] = useState(false);
     const [submitLoading, setSubmitLoading] = useState(false);
-
+    const [patientArr, setPatientArr] = useState({});
+  
     const removeFile = (index) => {
       const filterThis = arr?.filter((_, i) => index !== i);
       setArr(filterThis);
     };
-
+  
     // File Upload
     const filePayload = new FormData();
     filePayload.append("file", file);
@@ -82,14 +90,14 @@ const Appointments = () => {
         setLoading: setUploading,
       });
     };
-
+  
     const payload = {
       patientId: id,
       data: arr,
     };
-
+  
     const submitHandler = () => {
-      const additionalFunctions = [props.onHide, fetchDocument];
+      const additionalFunctions = [props.onHide, props?.fetchDocument];
       createApi({
         url: `employee/createUploadDocument1`,
         payload,
@@ -98,7 +106,18 @@ const Appointments = () => {
         additionalFunctions,
       });
     };
-
+  
+    useEffect(() => {
+      if (props?.show) {
+        if (!props?.patitentId) {
+          getApi({
+            url: "employee/getPatient",
+            setResponse: setPatientArr,
+          });
+        }
+      }
+    }, [props]);
+  
     return (
       <Modal
         {...props}
@@ -111,9 +130,15 @@ const Appointments = () => {
             <form onSubmit={uploadFiles}>
               <div className="close-header">
                 <h5>File Upload </h5>
-                <FontAwesomeIcon icon={faTimes} onClick={props.onHide} />
+                <i
+                  className="fa-solid fa-xmark"
+                  onClick={() => props.onHide()}
+                ></i>
               </div>
+  
               <div className="wrapper">
+               
+  
                 <div className="flexbox">
                   <div className="items">
                     <p className="head">Actions</p>
@@ -129,8 +154,12 @@ const Appointments = () => {
                     <p className="head">File Type</p>
                     <select onChange={(e) => setFileType(e.target.value)}>
                       <option value=""> Select Prefrence </option>
-                      <option vale="First Type"> First Type </option>
-                      <option vale="Second Type">Second Type </option>
+                      {FilesNames?.map((i) => (
+                        <option value={i} key={i}>
+                          {" "}
+                          {i}{" "}
+                        </option>
+                      ))}
                     </select>
                   </div>
                   <div className="items">
@@ -141,7 +170,7 @@ const Appointments = () => {
                     />
                   </div>
                 </div>
-
+  
                 <table className="colored_table mt-3">
                   <thead>
                     <tr>
@@ -153,16 +182,15 @@ const Appointments = () => {
                   <tbody>
                     {arr?.map((i, index) => (
                       <tr key={index}>
-                        <td className="text-start"> {i?.type} </td>
+                        <td className="text-start"> {i.type} </td>
                         <td className="text-start">
-                          <a href={i?.document} target="_blank" rel="noreferrer">
+                          <a href={i.document} target="_blank" rel="noreferrer">
                             View File
                           </a>
                         </td>
                         <td>
-                          <FontAwesomeIcon
-                            icon={faTrashCan}
-                            className="cursor-pointer"
+                          <i
+                            className="fa-solid fa-trash-can cursor-pointer"
                             onClick={() => removeFile(index)}
                           />
                         </td>
@@ -170,18 +198,14 @@ const Appointments = () => {
                     ))}
                   </tbody>
                 </table>
-
+  
                 <div className="btn-container">
                   <button
                     className="upload_files"
                     onClick={() => submitHandler()}
                     type="button"
                   >
-                    {submitLoading ? (
-                      <ClipLoader color="#fff" />
-                    ) : (
-                      "Upload Files"
-                    )}
+                    {submitLoading ? <ClipLoader color="#fff" /> : "Upload Files"}
                   </button>
                 </div>
               </div>
@@ -190,7 +214,7 @@ const Appointments = () => {
         </Modal.Body>
       </Modal>
     );
-  }
+  };
 
   return (
     <div className="appointmentcontainer">

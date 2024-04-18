@@ -395,7 +395,7 @@ export const createApi = async ({
   }
   try {
     const res = await axios.post(
-      `${process.env.React_App_Baseurl}${url}`,
+      `${BaseUrl}${url}`,
       payload,
       {
         headers: {
