@@ -25,8 +25,10 @@ import Modal from "react-bootstrap/Modal";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+
 
 const Appointments = () => {
   // document model
@@ -130,10 +132,11 @@ const DocumentUploader = (props) => {
             <form onSubmit={uploadFiles}>
               <div className="close-header">
                 <h5>File Upload </h5>
-                <i
-                  className="fa-solid fa-xmark"
-                  onClick={() => props.onHide()}
-                ></i>
+                <FontAwesomeIcon 
+        icon={faTimes} 
+        className="fa-xmark" 
+        onClick={props.onHide} 
+      />
               </div>
   
               <div className="wrapper">
@@ -189,10 +192,11 @@ const DocumentUploader = (props) => {
                           </a>
                         </td>
                         <td>
-                          <i
-                            className="fa-solid fa-trash-can cursor-pointer"
-                            onClick={() => removeFile(index)}
-                          />
+                        <FontAwesomeIcon
+        icon={faTrashCan}
+        className="fa-solid fa-trash-can cursor-pointer"
+        onClick={() => removeFile(index)}
+      />
                         </td>
                       </tr>
                     ))}
