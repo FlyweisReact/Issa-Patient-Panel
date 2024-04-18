@@ -13,6 +13,7 @@ import Select from "react-select";
 import AutoSize from "../AutoSize/AutoSize";
 
 const ResidentIntakes = () => {
+
   const navigate = useNavigate();
   //section 1
   const componentRef1 = React.useRef();
@@ -706,6 +707,7 @@ const ResidentIntakes = () => {
   const [signInModel19, setSigInModel19] = useState(false);
 
   //state
+  const [saveAsDraft,setSaveAsDraft]=useState(false);
   const [userDetail, setUserDetail] = useState("");
   const [getApiData,setGetApiData]=useState("");
   const [user, setUser] = useState("");
@@ -1596,7 +1598,7 @@ function formatDate(dateString) {
   const data = {
     patientId: userId,
     iAgree,
-    // residentName,
+    saveAsDraft,
     residentSignature,
     residentDate,
     residentSignatureTime,
@@ -1814,6 +1816,11 @@ function formatDate(dateString) {
     navigate("/intake");
   };
 
+  const saveAndSignHandler=()=>{
+    saveAsDraft(true);
+    setDraftModel(true);
+  }
+
   return (
     <>
       <div ref={componentRef9}>
@@ -1939,7 +1946,7 @@ function formatDate(dateString) {
                     </ul>
                   </div>
                   <div className="yeschechbox2">
-                    {/* key is require to add */}
+                   
                     <div
                       style={{
                         display: "flex",
@@ -1973,7 +1980,7 @@ function formatDate(dateString) {
                       <button
                         className="upload-button1"
                         type="button"
-                        onClick={() => setDraftModel(true)}
+                        onClick={() =>saveAndSignHandler()}
                       >
                         SAVED AS DRAFT
                       </button>
@@ -2025,7 +2032,7 @@ function formatDate(dateString) {
                       <button
                         className="upload-button1"
                         type="button"
-                        onClick={() => setDraftModel(true)}
+                        onClick={() => saveAndSignHandler()}
                       >
                         SAVED AS DRAFT
                       </button>
@@ -2076,7 +2083,7 @@ function formatDate(dateString) {
                         <button
                           className="upload-button1"
                           type="button"
-                          onClick={() => setDraftModel(true)}
+                          onClick={() => saveAndSignHandler()}
                         >
                           SAVED AS DRAFT
                         </button>
@@ -2309,7 +2316,7 @@ function formatDate(dateString) {
                       <button
                         className="upload-button1"
                         type="button"
-                        onClick={() => setDraftModel(true)}
+                        onClick={() => saveAndSignHandler()}
                       >
                         SAVED AS DRAFT
                       </button>
@@ -2370,7 +2377,7 @@ function formatDate(dateString) {
                       <button
                         className="upload-button1"
                         type="button"
-                        onClick={() => setDraftModel(true)}
+                        onClick={() =>saveAndSignHandler()}
                       >
                         SAVED AS DRAFT
                       </button>
@@ -2425,7 +2432,7 @@ function formatDate(dateString) {
                       <button
                         className="upload-button1"
                         type="button"
-                        onClick={() => setDraftModel(true)}
+                        onClick={() => saveAndSignHandler()}
                       >
                         SAVED AS DRAFT
                       </button>
@@ -2711,7 +2718,7 @@ function formatDate(dateString) {
                       <button
                         className="upload-button1"
                         type="button"
-                        onClick={() => setDraftModel(true)}
+                        onClick={() => saveAndSignHandler()}
                       >
                         SAVED AS DRAFT
                       </button>
@@ -2774,7 +2781,7 @@ function formatDate(dateString) {
                         <button
                           className="upload-button1"
                           type="button"
-                          onClick={() => setDraftModel(true)}
+                          onClick={() => saveAndSignHandler()}
                         >
                           SAVED AS DRAFT
                         </button>
@@ -2989,7 +2996,7 @@ function formatDate(dateString) {
                       <button
                         className="upload-button1"
                         type="button"
-                        onClick={() => setDraftModel(true)}
+                        onClick={() => saveAndSignHandler()}
                       >
                         SAVED AS DRAFT
                       </button>
@@ -3022,39 +3029,7 @@ function formatDate(dateString) {
                     />
                   )}
 
-                  {/* <div class="file-upload-box">
-              <input type="file" id="fileInput" style={{ display: "none" }} />
-              <div class="upload-icon">
-                <img
-                  src={formupload}
-                  alt=""
-                  style={{ width: "100px", height: "100px" }}
-                />
-              </div>
-              <div style={{ display: "block" }}>
-                <button className="upload-button1" onclick="uploadFile()">
-                  SAVED AS DRAFT
-                </button>
-                <button className="upload-button" onclick="uploadFile()">
-                  SAVED AND SIGNED
-                </button>
-              </div>
-            </div> */}
-                  {/* <div className="form-field">
-                <label className="label-review-resitent">
-                  Date of Signature Obtained
-                </label>
-                <input
-                  style={{ color: "#1A9FB2" }}
-                  type="date"
-                  value={photoVideoConsentResidentDate}
-                  placeholder="DD/MM/YYYY"
-                  required
-                  onChange={(e) =>
-                    setPhotoVideoConsentResidentDate(e.target.value)
-                  }
-                />
-              </div> */}
+                 
                   <div className="form-field-single-update">
                     <label>Guardian/Representative Name:</label>
                     <input
@@ -3081,7 +3056,7 @@ function formatDate(dateString) {
                         <button
                           className="upload-button1"
                           type="button"
-                          onClick={() => setDraftModel(true)}
+                          onClick={() => saveAndSignHandler()}
                         >
                           SAVED AS DRAFT
                         </button>
@@ -3131,24 +3106,7 @@ function formatDate(dateString) {
                     />
                   )}
 
-                  {/* <div class="file-upload-box">
-              <input type="file" id="fileInput" style={{ display: "none" }} />
-              <div class="upload-icon">
-                <img
-                  src={formupload}
-                  alt=""
-                  style={{ width: "100px", height: "100px" }}
-                />
-              </div>
-              <div style={{ display: "block" }}>
-                <button className="upload-button1" onclick="uploadFile()">
-                  SAVED AS DRAFT
-                </button>
-                <button className="upload-button" onclick="uploadFile()">
-                  SAVED AND SIGNED
-                </button>
-              </div>
-            </div> */}
+            
 
                   <div className="form-actions-next hidePrint">
                     {page !== 1 && (
@@ -3680,7 +3638,7 @@ function formatDate(dateString) {
                         <button
                           className="upload-button1"
                           type="button"
-                          onClick={() => setDraftModel(true)}
+                          onClick={() => saveAndSignHandler()}
                         >
                           SAVED AS DRAFT
                         </button>
@@ -3809,7 +3767,7 @@ function formatDate(dateString) {
                       <button
                         className="upload-button1"
                         type="button"
-                        onClick={() => setDraftModel(true)}
+                        onClick={() => saveAndSignHandler()}
                       >
                         SAVED AS DRAFT
                       </button>
@@ -3847,24 +3805,7 @@ function formatDate(dateString) {
                     />
                   )}
 
-                  {/* <div class="file-upload-box">
-              <input type="file" id="fileInput" style={{ display: "none" }} />
-              <div class="upload-icon">
-                <img
-                  src={formupload}
-                  alt=""
-                  style={{ width: "100px", height: "100px" }}
-                />
-              </div>
-              <div style={{ display: "block" }}>
-                <button className="upload-button1" onclick="uploadFile()">
-                  SAVED AS DRAFT
-                </button>
-                <button className="upload-button" onclick="uploadFile()">
-                  SAVED AND SIGNED
-                </button>
-              </div>
-            </div> */}
+               
 
                   <div className="form-field-single-update">
                     <label>Guardian/Representative Name:</label>
@@ -3894,7 +3835,7 @@ function formatDate(dateString) {
                         <button
                           className="upload-button1"
                           type="button"
-                          onClick={() => setDraftModel(true)}
+                          onClick={() => saveAndSignHandler()}
                         >
                           SAVED AS DRAFT
                         </button>
@@ -4030,7 +3971,7 @@ function formatDate(dateString) {
                       <button
                         className="upload-button1"
                         type="button"
-                        onClick={() => setDraftModel(true)}
+                        onClick={() => saveAndSignHandler()}
                       >
                         SAVED AS DRAFT
                       </button>
@@ -4091,7 +4032,7 @@ function formatDate(dateString) {
                         <button
                           className="upload-button1"
                           type="button"
-                          onClick={() => setDraftModel(true)}
+                          onClick={() => saveAndSignHandler()}
                         >
                           SAVED AS DRAFT
                         </button>
@@ -4301,9 +4242,9 @@ function formatDate(dateString) {
                       <button
                         className="upload-button1"
                         type="button"
-                        onClick={() => setDraftModel(true)}
+                        onClick={() =>saveAndSignHandler()  }
                       >
-                        SAVED AS DRAFT
+                        SAVED AS DRAFT 
                       </button>
                       <button
                         className="upload-button"
@@ -4361,7 +4302,7 @@ function formatDate(dateString) {
                       <button
                         className="upload-button1"
                         type="button"
-                        onClick={() => setDraftModel(true)}
+                        onClick={() => saveAndSignHandler()}
                       >
                         SAVED AS DRAFT
                       </button>
@@ -4727,7 +4668,7 @@ function formatDate(dateString) {
                       <button
                         className="upload-button1"
                         type="button"
-                        onClick={() => setDraftModel(true)}
+                        onClick={() =>saveAndSignHandler() }
                       >
                         SAVED AS DRAFT
                       </button>
@@ -4794,7 +4735,7 @@ function formatDate(dateString) {
                         <button
                           className="upload-button1"
                           type="button"
-                          onClick={() => setDraftModel(true)}
+                          onClick={() => saveAndSignHandler()}
                         >
                           SAVED AS DRAFT
                         </button>

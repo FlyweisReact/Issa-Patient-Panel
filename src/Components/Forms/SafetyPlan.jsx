@@ -13,6 +13,7 @@ import { AiFillDelete } from "react-icons/ai";
 
 const SafetyPlan = () => {
   const [draftModel,setDraftModel]=useState(false);
+  const [saveAsDraft,setSaveAsDraft]=useState(false);
   const componentRef = React.useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -272,6 +273,7 @@ function formatDate(dateString) {
     
 
     const data = {
+      saveAsDraft,
       patientId: userId,
       date: date,
       warningSigns:[{
@@ -978,7 +980,7 @@ function formatDate(dateString) {
               
               <div className="file-upload-box-child hidePrint">
                <div >
-                <button className="upload-button1" type="button" onClick={() => setDraftModel(true)}>
+                <button className="upload-button1" type="button" onClick={() => {setDraftModel(true);setSaveAsDraft(true)}}>
                   SAVED AS DRAFT
                 </button>
                 </div>

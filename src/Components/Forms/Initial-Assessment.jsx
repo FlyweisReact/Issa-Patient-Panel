@@ -6927,7 +6927,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
               </div>
 
               <div className="yeschechbox235-parent">
-                <div className="yeschechbox235" style={{ marginTop: "1.5rem" }}>
+                <div className="yeschechbox235" >
                   <label style={{ fontWeight: "bold" }}>
                     Substance Abuse history:
                   </label>
@@ -6950,7 +6950,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   </div>
                 </div>
 
-                <div className="yeschechbox23" style={{ marginTop: "1.5rem" }}>
+                <div className="yeschechbox23" style={{ marginTop: "0.5rem" }}>
                   <label htmlFor="">Denies: </label>
                   <div
                     style={{

@@ -23,7 +23,9 @@ import { Button } from "react-bootstrap";
 const NursingAssessment = () => {
   const [showSingInOne, setShowSingInOne] = useState(false);
   const [showSingInTwo, setShowSingInTwo] = useState(false);
-  const [draftModel,setDraftModel]=useState(false)
+  const [draftModel,setDraftModel]=useState(false);
+  const [saveAsDraft,setSaveAsDraft]=useState(false);
+
 
   const componentRef = React.useRef();
   const handlePrint = useReactToPrint({
@@ -128,10 +130,7 @@ const NursingAssessment = () => {
   const [tbScreeningResults, setTbScreeningResults] = useState("");
   const [careProvidedPhysicalServices, setCareProvidedPhysicalServices] =
     useState([]);
-  // const [
-  //   careProvidedBehavioralHealthServices,
-  //   setCareProvidedBehavioralHealthServices,
-  // ] = useState();
+
   const [vitalsBloodPressure, setVitalsBloodPressure] = useState('');
   const [vitalsPulse, setVitalsPulse] = useState();
   const [vitalsRespiratoryRate, setVitalsRespiratoryRate] = useState();
@@ -141,48 +140,7 @@ const NursingAssessment = () => {
   const [vitalsHeightFeet, setVitalsHeightFeet] = useState();
   const [vitalsHeightInches, setVitalsHeightInches] = useState();
   const [allergies, setAllergies] = useState("");
-  // const [
-  //   covid19ScreeningSymptomsFeverOrChills,
-  //   setCovid19ScreeningSymptomsFeverOrChills,
-  // ] = useState();
-  // const [
-  //   covid19ScreeningSymptomsShortnessOfBreath,
-  //   setCovid19ScreeningSymptomsShortnessOfBreath,
-  // ] = useState();
-  // const [
-  //   covid19ScreeningSymptomsSoreThroat,
-  //   setCovid19ScreeningSymptomsSoreThroat,
-  // ] = useState();
-  // const [
-  //   covid19ScreeningSymptomsDiarrhea,
-  //   setCovid19ScreeningSymptomsDiarrhea,
-  // ] = useState();
-  // const [covid19ScreeningSymptomsCough, setCovid19ScreeningSymptomsCough] =
-  //   useState();
-  // const [
-  //   covid19ScreeningSymptomsBodyAches,
-  //   setCovid19ScreeningSymptomsBodyAches,
-  // ] = useState();
-  // const [
-  //   covid19ScreeningSymptomsCongestionOrRunnyNose,
-  //   setCovid19ScreeningSymptomsCongestionOrRunnyNose,
-  // ] = useState();
-  // const [
-  //   covid19ScreeningSymptomsLossOfTasteOrSmell,
-  //   setCovid19ScreeningSymptomsLossOfTasteOrSmell,
-  // ] = useState();
-  // const [covid19ScreeningSymptomsFatigue, setCovid19ScreeningSymptomsFatigue] =
-  //   useState();
-  // const [
-  //   covid19ScreeningSymptomsHeadache,
-  //   setCovid19ScreeningSymptomsHeadache,
-  // ] = useState();
-  // const [
-  //   covid19ScreeningSymptomsNauseaOrVomiting,
-  //   setCovid19ScreeningSymptomsNauseaOrVomiting,
-  // ] = useState();
-  
-  // penging some state
+
 
   const [reviewOfSystemsConstitutional, setReviewOfSystemsConstitutional] =
     useState([]);
@@ -244,7 +202,7 @@ const NursingAssessment = () => {
     useState("");
   const [nutritionFluidRestrictions, setNutritionFluidRestrictions] =
     useState();
-  const [skinCheck, setSkinCheck] = useState("");
+  const [skinCheck, setSkinCheck] = useState(false);
   const [residentDeniesSkinConcerns, setResidentDeniesSkinConcerns] =
     useState(false);
   const [front, setFront] = useState(false);
@@ -277,6 +235,7 @@ function formatDate(dateString) {
 }
 
   useEffect(()=>{
+    setSaveAsDraft(getApiData?.saveAsDraft);
     setAdmissionDate(getApiData?.admissionDate?getApiData?.admissionDate.slice(0,10):"");
     setTodayDate(getApiData?.todayDate?getApiData?.todayDate.slice(0,10):"");
     setAdmissionDiagnoses(getApiData?.admissionDiagnoses);
@@ -427,7 +386,7 @@ const ageInYears = Math.abs(ageInMilliseconds.getUTCFullYear() - 1970);
     setSuicidalRiskAssessmentDeniesSymptomsBellow(false);
     setBehavioralSymptoms("");
     setPhysicalSymptoms("");
-    setPsychosocialSymptoms("");
+    setPsychosocialSymptoms([]);
     setCurrentMedications("");
     setNutritionDiet("");
     setNutritionSpecialDietOrder("");
@@ -457,6 +416,7 @@ const ageInYears = Math.abs(ageInMilliseconds.getUTCFullYear() - 1970);
     e.preventDefault();
     const data = {
       patientId: userId,
+      saveAsDraft,
       admissionDate,
       sex,
       todayDate,
@@ -3059,8 +3019,8 @@ const handlerepsychosocialSymptoms = (symptom) => {
             <div>
               <input
                 type="checkbox"
-                value={skinCheck}
-                onChange={(e) => setSkinCheck(e.target.value)}
+                value={skinCheck===true}
+                onChange={(e) => setSkinCheck(!skinCheck)}
               />
               <span>Resident denies skin concerns</span>
             </div>
@@ -3267,7 +3227,7 @@ const handlerepsychosocialSymptoms = (symptom) => {
        
             <div class="file-upload-box " style={{marginLeft:"10px"}}> 
                 <div className="file-upload-box-child hidePrint">
-                <button className="upload-button1" type="button" onClick={() => setDraftModel(true)}>
+                <button className="upload-button1" type="button" onClick={() => {setDraftModel(true);setSaveAsDraft(true)}}>
                   SAVED AS DRAFT
                 </button>
                 <button className="upload-button" type="button" onClick={() => setShowSingInOne(true)}>
@@ -3294,14 +3254,7 @@ const handlerepsychosocialSymptoms = (symptom) => {
             }
             <div className="form-field-single-update">
               <label >RN Name:</label>
-            {/* <input
-              type="text"
-
-              value={rnName}
-              placeholder="Enter Name"
-              required
-              onChange={(e) => setRnName(e.target.value)}
-            /> */}
+          
             <select value={rnName} onChange={(e)=>setRnName(e.target.value)}>
               {
                 rnName ?  <option value="">{rnName}</option> :  <option value="">Select Employ</option>
@@ -3320,7 +3273,7 @@ const handlerepsychosocialSymptoms = (symptom) => {
               
               <div className="file-upload-box-child hidePrint">
                <div >
-                <button className="upload-button1" type="button" onClick={() => setDraftModel(true)}>
+                <button className="upload-button1" type="button" onClick={() => {setDraftModel(true); setSaveAsDraft(true)}}>
                   SAVED AS DRAFT
                 </button>
                 </div>

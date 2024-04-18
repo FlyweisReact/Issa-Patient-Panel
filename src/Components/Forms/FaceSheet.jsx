@@ -12,6 +12,7 @@ import SingInUpdateModel from "../Modal/SingInUpdateModel";
 
 const FaceSheet = () => {
   const [showSignature,setShowSignature]=useState(false);
+  const [saveAsDraft,setSaveAsDraft]=useState(false);
   //draft model
   const [draftModel,setDraftModel]=useState(false);
   const componentRef = React.useRef();
@@ -242,9 +243,7 @@ const FaceSheet = () => {
 
   useEffect(()=>{
 
-// date format
-const getApiDataDob = getApiData?.dob;
-const getApiDataAdmit = getApiData?.dateOfAdmit;
+
 
 // Function to format the date as MM-DD-YYYY
 function formatDate(dateString) {
@@ -378,6 +377,7 @@ function formatDate(dateString) {
   const handleData = (e) => {
     // e.preventDefault();
     const data = {
+      saveAsDraft,
       patientId,
       residentName,
       dob,
@@ -1427,7 +1427,7 @@ function formatDate(dateString) {
               
               <div className="file-upload-box-child hidePrint">
                <div >
-                  <button className="upload-button1" type="button" onClick={() => { setDraftModel(true) }}>
+                  <button className="upload-button1" type="button" onClick={() => { setDraftModel(true);setSaveAsDraft(true) }}>
                   SAVED AS DRAFT
                 </button>
                 </div>

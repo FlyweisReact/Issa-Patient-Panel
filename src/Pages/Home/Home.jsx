@@ -72,7 +72,7 @@ const Home = ({ Wcomponenet }) => {
       </div>
 
 
-      {iscompleteintakeModalopne && (
+      {/* {iscompleteintakeModalopne && (
         <CompleteIntake >
           <div className='completeintake'>
             <div>
@@ -85,7 +85,7 @@ const Home = ({ Wcomponenet }) => {
             </div>
           </div>
         </CompleteIntake>
-      )}
+      )} */}
     </>
   );
 };

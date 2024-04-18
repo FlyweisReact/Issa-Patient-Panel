@@ -9,7 +9,7 @@
 .formsheading2 {
   text-align: center;
   width: 40%;
-  height: 30px;
+  height: auto;
   margin: auto;
   margin-bottom: 20px;
   margin-top: 20px;
@@ -65,7 +65,7 @@
 .formsheading_updated_treatment_nursing{
   text-align: center;
   width: 40%;
-  height: 30px;
+  height: auto;
   margin: auto;
   margin-bottom: 20px;
   margin-top: 20px;

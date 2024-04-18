@@ -153,9 +153,9 @@ const Appointments = () => {
                   <tbody>
                     {arr?.map((i, index) => (
                       <tr key={index}>
-                        <td className="text-start"> {i.type} </td>
+                        <td className="text-start"> {i?.type} </td>
                         <td className="text-start">
-                          <a href={i.document} target="_blank" rel="noreferrer">
+                          <a href={i?.document} target="_blank" rel="noreferrer">
                             View File
                           </a>
                         </td>

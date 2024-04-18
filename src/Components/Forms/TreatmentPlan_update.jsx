@@ -109,12 +109,14 @@ const Treatmentplan_update = () => {
   const [signatureModel1, setSignatureModel1] = useState(false);
   const [signatureModel2, setSignatureModel2] = useState(false);
   const [signatureModel3, setSignatureModel3] = useState(false);
+
   //user Detail
   const [user, setUser] = useState("");
 
   const navigate = useNavigate();
 
   //from satart now ------------------------------->
+  const [saveAsDraft,setSaveAsDraft]=useState(false);
   const [getApiData, setGetApiData] = useState("");
   const [userId, setUserId] = useState("");
   const [initialUpdate, setInitialUpdate] = useState("");
@@ -500,6 +502,7 @@ const Treatmentplan_update = () => {
   }
 
   useEffect(() => {
+    setSaveAsDraft(getApiData?.saveAsDraft);
     setDate(getApiData?.date ? getApiData?.date?.slice(0, 10) : "");
     setAdminDate(
       getApiData?.admitDate ? getApiData?.admitDate.slice(0, 10) : ""
@@ -1010,6 +1013,7 @@ const Treatmentplan_update = () => {
     });
 
     const data = {
+      saveAsDraft,
       patientId: userId,
       initialUpdate,
       dateOfBirth: dob,
@@ -1156,6 +1160,8 @@ const Treatmentplan_update = () => {
     patient_form(data);
     navigate("/intake");
   };
+
+  console.log(saveAsDraft,"saveAsdraft value ")
 
   //handle check box
   const handleCheckboxChangeMentalHealth = (value) => {
@@ -2141,6 +2147,13 @@ const Treatmentplan_update = () => {
   const clinicalSummaryHandler = (optionValue) => {
     setClinicalSummary(optionValue);
   };
+
+  
+  const handleDraftValue=()=>
+  {
+    setSaveAsDraft(true);
+  setDraftModel(true);
+}
 
   return (
     <>
@@ -5426,7 +5439,7 @@ const Treatmentplan_update = () => {
                     <button
                       className="upload-button1"
                       type="button"
-                      onClick={() => setDraftModel(true)}
+                      onClick={() => handleDraftValue()}
                     >
                       SAVED AS DRAFT
                     </button>
@@ -5488,7 +5501,7 @@ const Treatmentplan_update = () => {
                   <button
                     className="upload-button1"
                     type="button"
-                    onClick={() => setDraftModel(true)}
+                    onClick={() => handleDraftValue()}
                   >
                     SAVED AS DRAFT
                   </button>
@@ -5549,7 +5562,7 @@ const Treatmentplan_update = () => {
                     <button
                       className="upload-button1"
                       type="button"
-                      onClick={() => setDraftModel(true)}
+                      onClick={() => handleDraftValue()}
                     >
                       SAVED AS DRAFT
                     </button>
@@ -8952,7 +8965,7 @@ const Treatmentplan_update = () => {
                     <button
                       className="upload-button1"
                       type="button"
-                      onClick={() => setDraftModel(true)}
+                      onClick={() => handleDraftValue()}
                     >
                       SAVED AS DRAFT
                     </button>
@@ -9014,7 +9027,7 @@ const Treatmentplan_update = () => {
                   <button
                     className="upload-button1"
                     type="button"
-                    onClick={() => setDraftModel(true)}
+                    onClick={() => handleDraftValue()}
                   >
                     SAVED AS DRAFT
                   </button>
@@ -9075,7 +9088,7 @@ const Treatmentplan_update = () => {
                     <button
                       className="upload-button1"
                       type="button"
-                      onClick={() => setDraftModel(true)}
+                      onClick={() => handleDraftValue()}
                     >
                       SAVED AS DRAFT
                     </button>
@@ -9120,7 +9133,7 @@ const Treatmentplan_update = () => {
             </form>
           </div>
         </div>
-        {draftModel && <Draftinmodel onClose={() => setDraftModel(false)} />}
+       
       </div>
     </>
   );
