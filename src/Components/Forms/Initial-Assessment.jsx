@@ -6927,10 +6927,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
               </div>
 
               <div className="yeschechbox235-parent">
-                <div className="yeschechbox235" >
-                  <label style={{ fontWeight: "bold" }}>
-                    Substance Abuse history:
-                  </label>
 
                   <div
                     style={{
@@ -6939,6 +6935,9 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       alignItems: "center",
                     }}
                   >
+                     <label style={{ fontWeight: "bold" }}>
+                    Substance Abuse history:
+                  </label>
                     <input
                       type="checkbox"
                       id="substanceAbuseHistory"
@@ -6947,11 +6946,9 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         setSubstanceAbuseHistory(!substanceAbuseHistory)
                       }
                     />
-                  </div>
+                
                 </div>
-
-                <div className="yeschechbox23" style={{ marginTop: "0.5rem" }}>
-                  <label htmlFor="">Denies: </label>
+                  
                   <div
                     style={{
                       display: "flex",
@@ -6959,6 +6956,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       alignItems: "center",
                     }}
                   >
+                    <label htmlFor="">Denies: </label>
                     <input
                       type="checkbox"
                       id="substanceAbuseDenies"
@@ -6967,7 +6965,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         setSubstanceAbuseDenies(!substanceAbuseDenies)
                       }
                     />
-                  </div>
+               
                 </div>
               </div>
 
@@ -10612,7 +10610,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </div>
                 <div
                   className="yeschechboxFall-risk"
-                  style={{ marginTop: "1rem", marginLeft: "10px" }}
+                  style={{ marginTop: "0.5rem", marginLeft: "10px" }}
                 >
                   <label htmlFor="">Fall risk:</label>
                   <div
@@ -12096,10 +12094,11 @@ setBhpTime(getApiData?.bhpInformation?.time);
               </div>
 
               <div className="yeschechbox-significant">
+                
+                <div className="Significant-losses">
                 <label style={{ fontWeight: "bold" }}>
                   Significant recent losses:
                 </label>
-                <div className="Significant-losses">
                   <input
                     type="checkbox"
                     id="setSetNoAndYes"
@@ -12108,6 +12107,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   />
                   <label htmlFor="setSetNoAndYes">Yes</label>
                 </div>
+
                 <div
                   style={{ display: "flex", gap: "10px", alignItems: "center" }}
                 >
@@ -12123,6 +12123,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   </label>
                 </div>
               </div>
+
               <div className="formsheading">
            
               </div>

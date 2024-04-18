@@ -5929,10 +5929,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
               </div>
 
               <div className="yeschechbox235-parent">
-                <div className="yeschechbox235" style={{ marginTop: "1.5rem" }}>
-                  <label style={{ fontWeight: "bold" }}>
-                    Substance Abuse history:
-                  </label>
 
                   <div
                     style={{
@@ -5941,6 +5937,9 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       alignItems: "center",
                     }}
                   >
+                     <label style={{ fontWeight: "bold" }}>
+                    Substance Abuse history:
+                  </label>
                     <input
                       type="checkbox"
                       id="substanceAbuseHistory"
@@ -5949,11 +5948,9 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         setSubstanceAbuseHistory(!substanceAbuseHistory)
                       }
                     />
-                  </div>
+                
                 </div>
-
-                <div className="yeschechbox23" style={{ marginTop: "1.5rem" }}>
-                  <label htmlFor="">Denies: </label>
+                  
                   <div
                     style={{
                       display: "flex",
@@ -5961,6 +5958,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       alignItems: "center",
                     }}
                   >
+                    <label htmlFor="">Denies: </label>
                     <input
                       type="checkbox"
                       id="substanceAbuseDenies"
@@ -5969,7 +5967,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         setSubstanceAbuseDenies(!substanceAbuseDenies)
                       }
                     />
-                  </div>
+               
                 </div>
               </div>
 
@@ -8164,229 +8162,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     </div>
                 </div>
               </div>
-              {/* <div class="checkbox-container">
-                <div class="chechbox12-aligment411">
-                  <div class="checkoptions">
-                    <div class="checkboxitem">
-          
-                      <label>Gait</label>
-                    </div>
-                    <div class="checkboxitem">
            
-                      <label>Posture</label>
-                    </div>
-                    <div class="checkboxitem">
-        
-                      <label>Psychomotor Activity</label>
-                    </div>
-                    <div class="checkboxitem">
-                      <label>Mannerisms</label>
-                    </div>
-         
-                  </div>
-                  111111111
-                  <div class="checkoptions">
-                    <div class="checkboxitem">
-                      <input
-                        type="checkbox"
-                        id="normalGait"
-                        checked={normalGait}
-                        onChange={() => setNormalGait(!normalGait)}
-                      />
-                      <label htmlFor="normalGait">Normal</label>
-                    </div>
-                    <div class="checkboxitem">
-                      <input
-                        type="checkbox"
-                        id="normalPosture"
-                        checked={normalPosture}
-                        onChange={() => setNormalPosture(!normalPosture)}
-                      />
-                      <label htmlFor="normalPosture">Normal</label>
-                    </div>
-                    <div class="checkboxitem">
-                      <input
-                        type="checkbox"
-                        id="withinNormalLimits"
-                        checked={withinNormalLimits}
-                        onChange={() =>
-                          setWithinNormalLimits(!withinNormalLimits)
-                        }
-                      />
-                      <label htmlFor="withinNormalLimits">
-                        Within normal limits
-                      </label>
-                    </div>
-                    <div class="checkboxitem">
-                      <input
-                        type="checkbox"
-                        id="none"
-                        checked={none}
-                        onChange={() => setNone(!none)}
-                      />
-                      <label htmlFor="none">None</label>
-                    </div>
-                  </div>
-                  222222222
-                  <div class="checkoptions">
-                    <div class="checkboxitem">
-                      <input
-                        type="checkbox"
-                        id="staggering"
-                        checked={staggering}
-                        onChange={() => setStaggering(!staggering)}
-                      />
-                      <label htmlFor="staggering">Staggering</label>
-                    </div>
-                    <div class="checkboxitem">
-                      <input
-                        type="checkbox"
-                        id="relaxed"
-                        checked={relaxed}
-                        onChange={() => setRelaxed(!relaxed)}
-                      />
-                      <label htmlFor="relaxed">Relaxed</label>
-                    </div>
-                    <div class="checkboxitem">
-                      <input
-                        type="checkbox"
-                        id="calm"
-                        checked={calm}
-                        onChange={() => setCalm(!calm)}
-                      />
-                      <label htmlFor="calm">Calm</label>
-                    </div>
-                    <div class="checkboxitem">
-                      <input
-                        type="checkbox"
-                        id="tics"
-                        checked={tics}
-                        onChange={() => setTics(!tics)}
-                      />
-                      <label htmlFor="tics">Tics</label>
-                    </div>
-                  </div>
-                  3333333333
-                  <div class="checkoptions">
-                    <div class="checkboxitem">
-                      <input
-                        type="checkbox"
-                        id="shuffling"
-                        checked={shuffling}
-                        onChange={() => setShuffling(!shuffling)}
-                      />
-                      <label htmlFor="shuffling">Shuffling</label>
-                    </div>
-                    <div class="checkboxitem">
-                      <input
-                        type="checkbox"
-                        id="rigid"
-                        checked={rigid}
-                        onChange={() => setRigid(!rigid)}
-                      />
-                      <label htmlFor="rigid">Rigid</label>
-                    </div>
-                    <div class="checkboxitem">
-                      <input
-                        type="checkbox"
-                        id="hyperactive"
-                        checked={hyperactive}
-                        onChange={() => setHyperactive(!hyperactive)}
-                      />
-                      <label htmlFor="hyperactive">Hyperactive</label>
-                    </div>
-                    <div class="checkboxitem">
-                      <input
-                        type="checkbox"
-                        id="tremorsMannerisms"
-                        checked={tremorsMannerisms}
-                        onChange={() =>
-                          setTremorsMannerisms(!tremorsMannerisms)
-                        }
-                      />
-                      <label htmlFor="tremorsMannerisms">Tremors</label>
-                    </div>
-                  </div>
-                  444444444
-                  <div class="checkoptions">
-                    <div class="checkboxitem">
-                      <input
-                        type="checkbox"
-                        id="slowGait"
-                        checked={slowGait}
-                        onChange={() => setSlowGait(!slowGait)}
-                      />
-                      <label htmlFor="slowGait">Slow</label>
-                    </div>
-                    <div class="checkboxitem">
-                      <input
-                        type="checkbox"
-                        id="tense"
-                        checked={tense}
-                        onChange={() => setTense(!tense)}
-                      />
-                      <label htmlFor="tense">Tense</label>
-                    </div>
-                    <div class="checkboxitem">
-                      <input
-                        type="checkbox"
-                        id="agitated"
-                        checked={agitated}
-                        onChange={() => setAgitated(!agitated)}
-                      />
-                      <label htmlFor="agitated">Agitated</label>
-                    </div>
-                    <div class="checkboxitem">
-                      <input
-                        type="checkbox"
-                        id="rocking"
-                        checked={rocking}
-                        onChange={() => setRocking(!rocking)}
-                      />
-                      <label htmlFor="rocking">Rocking</label>
-                    </div>
-                  </div>
-                  55555555
-                  <div class="checkoptions">
-                    <div class="checkboxitem">
-                      <input
-                        type="checkbox"
-                        id="awkward"
-                        checked={awkward}
-                        onChange={() => setAwkward(!awkward)}
-                      />
-                      <label htmlFor="awkward">Awkward</label>
-                    </div>
-                    <div class="checkboxitem">
-                      <input
-                        type="checkbox"
-                        id="slouched"
-                        checked={slouched}
-                        onChange={() => setSlouched(!slouched)}
-                      />
-                      <label htmlFor="slouched">Slouched</label>
-                    </div>
-                    <div class="checkboxitem">
-                      <input
-                        type="checkbox"
-                        id="hypoactive"
-                        checked={hypoactive}
-                        onChange={() => setHypoactive(!hypoactive)}
-                      />
-                      <label htmlFor="hypoactive">Hypoactive</label>
-                    </div>
-                    <div class="checkboxitem">
-                      <input
-                        type="checkbox"
-                        id="picking"
-                        checked={picking}
-                        onChange={() => setPicking(!picking)}
-                      />
-                      <label htmlFor="picking">Picking</label>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
               <div
                 className="yeschechboxOrientation"
                 style={{ marginTop: "1.5rem" }}
@@ -9612,8 +9388,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     placeholder="Enter text"
-                    required
-                    style={{borderBottom:'none',marginBottom:"5px"}}
+                    
                     value={triggers}
                     onChange={(e) => setTriggers(e.target.value)}
                   />
@@ -9661,8 +9436,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     id="approvedby"
                     value={fallRiskExplanation}
                     placeholder="Enter text"
-                    style={{borderBottom:'none',marginBottom:"5px"}}
-                    required
+                    
                     onChange={(e) => setFallRiskExplanation(e.target.value)}
                   />
                 </div>
@@ -9676,8 +9450,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     id="approvedby"
                     value={hobbiesLeisureActivities}
                     placeholder="Enter text"
-                    required
-                    style={{borderBottom:'none',marginBottom:"5px"}}
+                    
                     onChange={(e) =>
                       setHobbiesLeisureActivities(e.target.value)
                     }
@@ -11110,10 +10883,11 @@ setBhpTime(getApiData?.bhpInformation?.time);
               </div>
 
               <div className="yeschechbox-significant">
+                
+                <div className="Significant-losses">
                 <label style={{ fontWeight: "bold" }}>
                   Significant recent losses:
                 </label>
-                <div className="Significant-losses">
                   <input
                     type="checkbox"
                     id="setSetNoAndYes"
@@ -11122,6 +10896,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   />
                   <label htmlFor="setSetNoAndYes">Yes</label>
                 </div>
+
                 <div
                   style={{ display: "flex", gap: "10px", alignItems: "center" }}
                 >
@@ -11137,8 +10912,9 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   </label>
                 </div>
               </div>
+
+
               <div className="formsheading">
-                {/* <h6>If yes, please check applicable loss(es):</h6> */}
               </div>
               <div class="checkbox-container">
                 <div class="chechbox12-correct">
