@@ -704,12 +704,10 @@ const handlerepsychosocialSymptoms = (symptom) => {
         <div className="Boss">
      
           <div className="formsheading_updated_treatment_nursing">
-              <h4 > Nursing Assessment</h4>
+           
+              <label>NURSING ASSESSMENT</label>
           </div>
-          {/* <div className="update_header_link">
-            <Button variant="primary" >Nursing Assessment
-            </Button>
-          </div> */}
+         
       
         <form onSubmit={handlePost}>
         <div className="box-image-container">

@@ -46,7 +46,7 @@ const Appointments = () => {
     appointment_Upcoming(setAppoinmentUpcoming);
   }, []);
 
-
+console.log(appoinmentUpcoming?.data,"data is print")
   // files Name
 const FilesNames = [
     "Progress Note",
@@ -247,8 +247,9 @@ const DocumentUploader = (props) => {
       </div>
 
       <div className="appointmentcontent">
-        <p>Upcoming Appointments</p>
-        <p onClick={() => setView(!view)}>VIEW ALL</p>
+        {appoinmentUpcoming?.data?.length > 0 ?   <p>Upcoming Appointments</p> :   <p>No Upcoming Appointments</p>}
+      
+        {/* <p onClick={() => setView(!view)}>VIEW ALL</p> */}
       </div>
       <div className="appointmentCard">
         {view

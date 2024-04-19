@@ -14,15 +14,13 @@ const FormUpper = ({assessmentType,setAssessmentType}) => {;
       <div >
         <div className='formsheading-initial-assestment' >
           <div className="checkboxitem125555">
-
-            <label>Annual Assessment</label>
+            <label>ANNUAL ASSESSMENT</label>
             <input
               type="checkbox" checked={assessmentType==="Annual Assessment"} onChange={()=>setAssessmentType("Annual Assessment")}
             />
           </div>
           <div className="checkboxitem125555" >
-
-            <label >Initial Assessment</label>
+            <label >INITIAL ASSESSMENT</label>
             <input
               type="checkbox" checked={assessmentType==="Initial Assessment"} onChange={()=>setAssessmentType("Initial Assessment")}
             />

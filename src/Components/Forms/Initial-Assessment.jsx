@@ -12309,7 +12309,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   class="file-upload-box "
                   style={{ marginLeft: "10px" }}
                 >
-                  <div className="file-upload-box-child">
+                  <div className="file-upload-box-child hidePrint">
                     <button
                       className="upload-button1"
                       type="button"
@@ -19541,7 +19541,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   class="file-upload-box "
                   style={{ marginLeft: "10px" }}
                 >
-                  <div className="file-upload-box-child">
+                  <div className="file-upload-box-child hidePrint">
                     <button
                       className="upload-button1"
                       type="button"
