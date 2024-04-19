@@ -4554,16 +4554,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     required
                     onChange={(e) => setResidentGoals(e.target.value)}
                   />
-                  {/* <textarea
-                id="programlocation&address"
-                type="text"
-                value={residentGoals}
-                placeholder="Enter text"
-                rows={2}
-                cols={82}
-                required
-                onChange={(e) => setResidentGoals(e.target.value)}
-              /> */}
+                
                 </div>
               </div>
 
