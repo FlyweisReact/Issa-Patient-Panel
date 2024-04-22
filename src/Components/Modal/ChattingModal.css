@@ -201,7 +201,6 @@
     width: 10rem;
   }
 
-  /* button */
   .submitButton {
     margin-bottom: 1rem;
     width: 100%;
@@ -236,4 +235,90 @@
     width: 400px;
     height: 100%;
   }
+}
+
+
+/* create shat model */
+.create-new-chat-room {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin: 20px auto;
+  max-width: 1400px;
+}
+.create-new-chat-room .select-employee {
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+  width: 100%;
+}
+.create-new-chat-room .select-employee .img {
+  background-color: rgb(26, 159, 178);
+  border-radius: 100%;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 40px;
+}
+.create-new-chat-room .select-employee .content p {
+  margin: 0;
+}
+.create-new-chat-room .select-employee .content p.heading {
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.create-new-chat-room .select-employee .content p.faded {
+  color: #726f75;
+  font-size: 12px;
+}
+
+.create-new-chat-room .select-employee .original-img {
+  border-radius: 100%;
+  height: 49px;
+  padding: 2px;
+  width: 49px;
+  object-fit: cover;
+  overflow: hidden;
+  object-position: center;
+}
+
+.go-to-chat {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: flex-end;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+}
+.go-to-chat i {
+  font-size: 20px;
+  color: #00a884;
+  cursor: pointer;
+}
+
+.chat .sidebar .menu-list .original-img {
+  border-radius: 100%;
+  height: 40px;
+  padding: 2px;
+  width: 40px;
+  object-fit: cover;
+  overflow: hidden;
+  object-position: center;
+}
+
+.chat .content .chat-box .chat-header .original-img {
+  border-radius: 100%;
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  overflow: hidden;
+  object-position: center;
 }

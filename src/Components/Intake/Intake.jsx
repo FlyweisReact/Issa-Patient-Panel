@@ -16,9 +16,6 @@ const Intake = () => {
     return (
         <>
             <div className='intakecontainer'>
-                <div className='intakecontent'>
-                    <h6> <span>2 OUT OF 6 INTAKES </span> HAVE BEEN UPLOADED!</h6>
-                </div>
                 <div className='intakecards'>
                 <div className="small-card">
                     <img src={intake1} alt="Icon" className="card-icon" />
@@ -41,6 +38,9 @@ const Intake = () => {
                     <span><MdOutlineFileUpload /> upload</span>
                     </Link>
                 </div>
+                </div>
+
+                <div className='intakecards'>
                 <div className="small-card">
                     <img src={intake4} alt="Icon" className="card-icon" />
                     <p>Face Sheet</p>
@@ -63,6 +63,7 @@ const Intake = () => {
                     </Link>
                 </div>
                 </div>
+                
             </div>
         </>
     )

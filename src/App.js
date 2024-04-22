@@ -27,6 +27,7 @@ import UpdateProfile from "./Components/Forms/UpdateProfile";
 import { LoginForm } from "./Components/form/LoginForm";
 import FileUpload from "./Components/Appointments/FileUpload";
 import Treatmentplan_update from "./Components/Forms/TreatmentPlan_update";
+import Chat from "./chat/Chat";
 
 function App() {
   return (
@@ -81,6 +82,11 @@ function App() {
         <Route
           path="/Residentintakes"
           element={<Home Wcomponenet={ResidentIntakes} />}
+        />
+
+        <Route
+          path="/Chat"
+          element={<Home Wcomponenet={Chat} />}
         />
 
         <Route path="/booknewappointment" element={<BookAppointment />} />

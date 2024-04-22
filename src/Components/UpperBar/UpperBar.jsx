@@ -24,6 +24,8 @@ import { RiSearchLine } from "react-icons/ri";
 import { IoSearchSharp } from "react-icons/io5";
 import intake from "../../img/Mask group.png";
 import { user_detail, show_notification, notification_get } from "../../Api_Collection/Api";
+import Image from "react-bootstrap/Image";
+import CreateChat from "../Modal/CreateChat";
 
 
 
@@ -32,6 +34,7 @@ const UpperBar = ({ isMenuOpen, toggleMenu }) => {
   const [isProfileModalOpen, setProfileModalOpen] = useState(false);
   const [isNotificationModalOpen, setNotificationModalOpen] = useState(false);
   const [ischattingModalOpen, setChattingModalOpen] = useState(false);
+  const [isChat,setIsChat]=useState(false);
   const [user, setUser] = useState("");
 
   //notification
@@ -120,7 +123,7 @@ const UpperBar = ({ isMenuOpen, toggleMenu }) => {
         </div>
         <div className="right-section">
           <img src={user?.profilePic} alt="profile" onClick={openProfileModal} style={{ height: "50px", width: "50px", borderRadius: "50%" }}/>
-          <RiMessage2Line className="icons" onClick={openChattingModal} color="#1A9FB2" size={30} />
+          <RiMessage2Line className="icons" onClick={()=>setIsChat(true)} color="#1A9FB2" size={30} />
           <FaBell className="icons" onClick={openNotificationModal} color="#1A9FB2" size={30} />
         </div>
       </div>
@@ -183,6 +186,9 @@ const UpperBar = ({ isMenuOpen, toggleMenu }) => {
                 </>
               )
             }
+
+
+
             {
               otherData.length > 0 && (
                 <>
@@ -204,12 +210,13 @@ const UpperBar = ({ isMenuOpen, toggleMenu }) => {
         </NotificationModal>
       )}
 
-      {/* Chatting Modal */}
       {ischattingModalOpen && (
         <ChattingModal onClose={closeChattingModal}>
 
         </ChattingModal>
       )}
+
+    <CreateChat show={isChat} handleClose={() => setIsChat(false)} />
 
     </>
   );

@@ -277,7 +277,7 @@ export const appointment_Upcoming = async (setAppoinment) => {
     );
     setAppoinment(res?.data);
   } catch (e) {
-    show_notification("fail !", `${e?.response?.data?.message}`, "danger");
+    // show_notification("fail !", `${e?.response?.data?.message}`, "danger");
   }
 };
 

@@ -8,6 +8,7 @@ import { IoSearchSharp } from "react-icons/io5";
 import chatting1 from "../../img/chatting1.png";
 import SendMessage from "../../chat/SendMessage";
 import { GoogleAuthProvider, signInWithRedirect, signOut } from "firebase/auth";
+
 import {
   collection,
   updateDoc,
@@ -81,7 +82,7 @@ const ChattingModal = ({ onClose }) => {
         className="chattingmodal-content"
         onClick={(e) => e.stopPropagation()}
       >
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        {/* <div style={{ display: "flex", justifyContent: "space-between" }}>
           <IoArrowBackCircle
             style={{
               color: "#1A9FB2",
@@ -122,14 +123,15 @@ const ChattingModal = ({ onClose }) => {
               Logout
             </button>
           )}
-        </div>
-        <div className="search-bar-chat">
+        </div> */}
+
+        {/* <div className="search-bar-chat">
           <p>Chat</p>
           <input type="text" placeholder="Search" value="" />
-          {/* <RiSearchLine className="searchicon" /> */}
-        </div>
+       
+        </div> */}
 
-        <div className="chatting">
+        {/* <div className="chatting">
           {message?.docs?.map((message) => (
             <Message
               key={message.id}
@@ -139,8 +141,8 @@ const ChattingModal = ({ onClose }) => {
               profilePicture={message.data().profilePicture}
             />
           ))}
-        </div>
-        <div className="submitButton">
+        </div> */}
+        {/* <div className="submitButton">
           <form onSubmit={SendMessage} className="formClassInput">
           
     
@@ -155,7 +157,7 @@ const ChattingModal = ({ onClose }) => {
             <button type="submit">Send</button>
         
           </form>
-        </div>
+        </div> */}
       </div>
     </div>
   );

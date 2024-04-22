@@ -46,8 +46,7 @@ const Appointments = () => {
     appointment_Upcoming(setAppoinmentUpcoming);
   }, []);
 
-console.log(appoinmentUpcoming?.data,"data is print")
-  // files Name
+
 const FilesNames = [
     "Progress Note",
     "Discharge",
