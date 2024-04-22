@@ -437,7 +437,10 @@ function formatDate(dateString) {
         <div className="Boss">
         <div className="formheading1">
           <div className="formsheading_safety_plane">
-            <h5>RESIDENT SAFETY PLAN</h5>
+            <div className="checkboxitem125555">
+            <label>RESIDENT SAFETY PLAN</label>
+            </div>
+           
           </div>
         </div>
         <form onSubmit={handlePost}>

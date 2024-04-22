@@ -1,14 +1,14 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
-// import { createFirebaseDocument, getApi } from "../../Repository/Apis";
+import { createFirebaseDocument, getApi } from "../../Api_Collection/Api";
 import { Offcanvas } from "react-bootstrap";
 import { ClipLoader } from "react-spinners";
 import useInfiniteScroll from "react-infinite-scroll-hook";
-// import { useDispatch, useSelector } from "react-redux";
-// import { userProfile } from "../../store/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { userProfile } from "../../Store/authSlice";
 import { useNavigate } from "react-router-dom";
-// import { setDocumentID } from "../../store/chatSlice";
+import { setDocumentID } from "../../Store/chatSlice";
 import "./ChattingModal.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
@@ -20,27 +20,27 @@ const CreateChat = ({ handleClose, show }) => {
   const [patientLimit, setPatientLimit] = useState(25);
   const [patientLoading, setPatientLoading] = useState(false);
   const [loading, setLoading] = useState(false);
-  // const ProfileDetails = useSelector(userProfile);
+  const ProfileDetails = useSelector(userProfile);
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (show) {
-      // getApi({
-      //   url: `admin/getUserForChat?userType=Employee&limit=${limit}`,
-      //   setResponse: setAllEmployess,
-      //   setLoading,
-      // });
+      getApi({
+        url: `admin/getUserForChat?userType=Employee&limit=${limit}`,
+        setResponse: setAllEmployess,
+        setLoading,
+      });
     }
   }, [limit, show]);
 
   useEffect(() => {
     if (show) {
-      // getApi({
-      //   url: `admin/getUserForChat?userType=Patient&limit=${patientLimit}`,
-      //   setResponse: setAllPatiens,
-      //   setLoading: setPatientLoading,
-      // });
+      getApi({
+        url: `admin/getUserForChat?userType=Patient&limit=${patientLimit}`,
+        setResponse: setAllPatiens,
+        setLoading: setPatientLoading,
+      });
     }
   }, [patientLimit, show]);
 
@@ -101,24 +101,24 @@ const CreateChat = ({ handleClose, show }) => {
   const createDocument = ({ collectionName, navigationLink, recipientObj }) => {
     const payload = {
       recipient: recipientObj,
-      // sender: ProfileDetails,
+      sender: ProfileDetails,
       text: [],
     };
 
-    // dispatch(
-    //   createFirebaseDocument({
-    //     payload,
-    //     collectionName,
-    //     navigate,
-    //     navigationLink,
-    //     handleClose,
-    //   })
-    // );
+    dispatch(
+      createFirebaseDocument({
+        payload,
+        collectionName,
+        navigate,
+        navigationLink,
+        handleClose,
+      })
+    );
   };
 
   const handleClick = (link) => {
     navigate(link);
-    // dispatch(setDocumentID(""));
+    dispatch(setDocumentID(""));
     handleClose();
   };
 

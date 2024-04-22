@@ -482,7 +482,10 @@ function formatDate(dateString) {
         <div className="Boss">
         <div className="formheading1">
           <div className="formsheading_faceSheet">
-            <h5>FACE SHEET/RESIDENT EMERGENCY INFORMATION</h5>
+            <div className="checkboxitem125555">
+              <label>FACE SHEET/RESIDENT EMERGENCY INFORMATION</label>
+            </div>
+           
           </div>
         </div>
           <form onSubmit={handleData}>

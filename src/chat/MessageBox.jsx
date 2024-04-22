@@ -1,9 +1,9 @@
 /** @format */
 
 import React, { useEffect, useRef } from "react";
-// import { DateFormtter } from "../../utils/utils";
-// import sendsvg from "../../assets/send.svg";
-// import { defaultUserImg } from "../../assets/index";
+import sendsvg from "../img/send.svg";
+import defaultUserImg from "../img/default-user.jpg";
+import { DateFormtter } from "../utils/utils";
 
 const MessageBox = ({
   document,
@@ -41,8 +41,8 @@ const MessageBox = ({
                 className="original-img"
               />
             ) : (
-            //   <img src={defaultUserImg} alt="" className="original-img" />
-              <img src="" alt="dgf" className="original-img" />
+              <img src={defaultUserImg} alt="" className="original-img" />
+          
             )}
             {fetchName(document?.recipient)}{" "}
           </span>
@@ -66,7 +66,7 @@ const MessageBox = ({
                       <p className="text"> {i.text} </p>
                       {i.date && (
                         <span className="date">
-                          {/* {`${DateFormtter(i.date)}  ${i.date?.slice(11, 16)} `} */}
+                          {`${DateFormtter(i.date)}  ${i.date?.slice(11, 16)} `}
                         </span>
                       )}
                     </div>
@@ -84,7 +84,7 @@ const MessageBox = ({
 
             <button type="submit">
               {" "}
-              {/* <img src={sendsvg} alt="" />{" "} */}
+              <img src={sendsvg} alt="" />{" "}
             </button>
           </form>
         </div>

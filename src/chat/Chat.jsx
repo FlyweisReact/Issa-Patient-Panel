@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useState, useEffect } from "react";
 import {
   collection,
@@ -14,9 +12,9 @@ import {
 import { auth, db } from "../firebase";
 import MessageBox from "./MessageBox";
 import ChatMenu from "./ChatMenu";
-// import { useSelector } from "react-redux";
-// import { isAuthenticated, userProfile } from "../../store/authSlice";
-// import { fetchDocumentId } from "../../store/chatSlice";
+import { useSelector } from "react-redux";
+import { isAuthenticated, userProfile } from "../Store/authSlice";
+import { fetchDocumentId } from "../Store/chatSlice";
 import { useNavigate } from "react-router-dom";
 
 const Chat = () => {
@@ -26,22 +24,22 @@ const Chat = () => {
   const [collections, setCollections] = useState([]);
   const [document, setDocument] = useState({});
   const [senderId, setSenderId] = useState("");
-//   const ProfileDetails = useSelector(userProfile);
-//   const documentId = useSelector(fetchDocumentId);
-//   const isLoggedIn = useSelector(isAuthenticated);
+  const ProfileDetails = useSelector(userProfile);
+  const documentId = useSelector(fetchDocumentId);
+  const isLoggedIn = useSelector(isAuthenticated);
   const navigate = useNavigate();
 
-//   useEffect(() => {
-//     if (!isLoggedIn) {
-//       navigate("/");
-//     }
-//   }, [isLoggedIn]);
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/");
+    }
+  }, [isLoggedIn]);
 
-//   useEffect(() => {
-//     if (ProfileDetails) {
-//       setSenderId(ProfileDetails?._id);
-//     }
-//   }, [ProfileDetails]);
+  useEffect(() => {
+    if (ProfileDetails) {
+      setSenderId(ProfileDetails?._id);
+    }
+  }, [ProfileDetails]);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -90,39 +88,39 @@ const Chat = () => {
   }, [senderId]);
 
   // Add real-time listener to fetch a specific chat document by ID
-//   const fetchDocumentByIdRealtime = (documentId) => {
-//     const docRef = doc(
-//       db,
-//       process.env.React_App_Firebase_Employee_CollectionName,
-//       documentId
-//     );
-//     const unsubscribe = onSnapshot(docRef, (doc) => {
-//       if (doc.exists()) {
-//         setDocument(doc.data());
-//       } else {
-//         console.log("No such document!");
-//         setDocument({});
-//       }
-//     });
+  const fetchDocumentByIdRealtime = (documentId) => {
+    const docRef = doc(
+      db,
+      process.env.React_App_Firebase_Employee_CollectionName,
+      documentId
+    );
+    const unsubscribe = onSnapshot(docRef, (doc) => {
+      if (doc.exists()) {
+        setDocument(doc.data());
+      } else {
+        console.log("No such document!");
+        setDocument({});
+      }
+    });
 
-//     return unsubscribe;
-//   };
+    return unsubscribe;
+  };
 
-//   useEffect(() => {
-//     if (documentId) {
-//       const unsubscribe = fetchDocumentByIdRealtime(documentId);
-//       return () => unsubscribe();
-//     }
-//   }, [documentId]);
+  useEffect(() => {
+    if (documentId) {
+      const unsubscribe = fetchDocumentByIdRealtime(documentId);
+      return () => unsubscribe();
+    }
+  }, [documentId]);
 
   if (initializing) return "Loading...";
 
   const updateChat = async (e) => {
     e.preventDefault();
     const documentRef = doc(
-    //   db,
-    //   process.env.React_App_Firebase_Employee_CollectionName,
-    //   documentId
+      db,
+      process.env.React_App_Firebase_Employee_CollectionName,
+      documentId
     );
     const currentDate = new Date();
     const formattedDate = currentDate.toISOString();
@@ -161,9 +159,8 @@ const Chat = () => {
                 <p className="absolute-p">No Document's Found</p>
               </div>
             )}
-            {/* {collections?.length > 0 &&
-              (documentId 
-                ? (
+            {collections?.length > 0 &&
+              (documentId ? (
                 <div className="content">
                   <MessageBox
                     document={document}
@@ -179,7 +176,7 @@ const Chat = () => {
                     Please select a chat to view messages
                   </p>
                 </div>
-              ))} */}
+              ))}
           </div>
         </>
       )}

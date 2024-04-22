@@ -9,12 +9,13 @@ import axios from "axios";
 import { Store } from "react-notifications-component";
 import {
   BaseUrl,
+  LoginUser,
   show_notification as ShowMsg,
 } from "../../Api_Collection/Api";
-import MyImg from "./issa_logo_login.jpg";
 import logo from "../../img/OasisNotes.png";
-//login form
-import Slider from "react-slick";
+import { useDispatch, useSelector } from "react-redux";
+import { isAuthenticated } from "../../Store/authSlice";
+
 
 export const LoginForm = () => {
   // slider setting
@@ -29,7 +30,7 @@ export const LoginForm = () => {
   const sliderRef = useRef(null);
   const [forgetChange, setForgetChange] = useState("login");
   const [sendLink, setLinkSend] = useState(false);
-  const [userId, setUserId] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [otpSend, setOtpSend] = useState(false);
@@ -37,53 +38,30 @@ export const LoginForm = () => {
   const [newPassword1, setNewPassword1] = useState(false);
   const [newPassword, setNewPassword] = useState("");
   const [userId1, setUserId1] = useState("");
-
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(isAuthenticated);
   // loading state
   const [loading,setLoading]=useState(false);
 
+  const payload = {
+    email,
+    password,
+  };
+
   const loginHandler = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    try {
-      const response = await axios.post(`${BaseUrl}Patient/signin`, {
-        email: userId,
-        password,
-      });
+    dispatch(
+      LoginUser({
+        setLoading,
+        payload,
+        navigate,
+      })
+    );
 
-      localStorage.setItem("token", response.data.accessToken);
-      Store.addNotification({
-        title: "Success",
-        message: "Login Successful",
-        type: "success",
-        insert: "top",
-        container: "top-right",
-        animationIn: ["animate__animated", "animate__fadeIn"],
-        animationOut: ["animate__animated", "animate__fadeOut"],
-        dismiss: {
-          duration: 5000,
-          onScreen: true,
-        },
-      });
-      navigate("/patient_panel");
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      Store.addNotification({
-        title: "Error",
-        message: error.message,
-        type: "danger",
-        insert: "top",
-        container: "top-right",
-        animationIn: ["animate__animated", "animate__fadeIn"],
-        animationOut: ["animate__animated", "animate__fadeOut"],
-        dismiss: {
-          duration: 5000,
-          onScreen: true,
-        },
-      });
-      setLoading(false);
-    }
   };
+
+
+
 
   const handleLinkSend = async (e) => {
     e.preventDefault();
@@ -126,7 +104,7 @@ export const LoginForm = () => {
       try {
         axios
           .post(`${BaseUrl}/employee/forgotVerifyOtp`, {
-            email: userId,
+            email,
             otp: otpNumber,
           })
           .then((res) => {
@@ -151,14 +129,12 @@ export const LoginForm = () => {
     try {
       axios
         .post(`${BaseUrl}/employee/forgetPassword`, {
-          email: userId,
+          email
         })
         .then((res) => {
-          // console.log(res?.data?.data?._id);
           setUserId1(res?.data?.data?._id);
           setOtpSend(true);
           ShowMsg(res.data.message, "success");
-          // setLinkSend(true)
         })
         .catch((err) => {
           console.log(err?.response?.data?.msg);
@@ -322,7 +298,7 @@ export const LoginForm = () => {
                     <Form.Label>User ID</Form.Label>
                     <Form.Control
                       type="email"
-                      onChange={(e) => setUserId(e.target.value)}
+                      onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter email"
                     />
                   </Form.Group>
@@ -429,7 +405,7 @@ export const LoginForm = () => {
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                       <Form.Label>User ID</Form.Label>
                       <Form.Control
-                        onChange={(e) => setUserId(e.target.value)}
+                        onChange={(e) => setEmail(e.target.value)}
                         type="email"
                         placeholder="Enter email"
                       />

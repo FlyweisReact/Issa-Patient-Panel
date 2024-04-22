@@ -702,13 +702,14 @@ const handlerepsychosocialSymptoms = (symptom) => {
         />
       </div>
         <div className="Boss">
-     
+
           <div className="formsheading_updated_treatment_nursing">
-           
-              <label>NURSING ASSESSMENT</label>
+            <div className="checkboxitem125555">
+               <label>NURSING ASSESSMENT</label>
+            </div>
+              
           </div>
          
-      
         <form onSubmit={handlePost}>
         <div className="box-image-container">
               <div className="form-field-update">

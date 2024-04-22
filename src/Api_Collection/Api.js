@@ -1,8 +1,11 @@
 import axios,{useState} from "axios";
 import { Store } from "react-notifications-component";
+import { LoginSlice } from "../Store/authSlice";
+import { auth, db } from "../firebase";
+import { collection, addDoc } from "firebase/firestore";
+import { setDocumentID } from "../Store/chatSlice";
 
 export const BaseUrl = "https://issa-backend.vercel.app/api/v1/";
-
 
 const Token = {
   headers: {
@@ -37,6 +40,83 @@ export const login_user = async (payLoad, navigate) => {
   } catch (e) {
     show_notification("fail !", `${e?.response?.data?.message}`, "danger");
   }
+};
+
+// Login User
+export const LoginUser = ({ setLoading, payload, navigate }) => {
+  return async (dispatch) => {
+    setLoading(true);
+    try {
+      const res = await axios.post(
+        `${BaseUrl}Patient/signin`,
+        payload
+      );
+      const data = {
+        profile: res?.data,
+        payload,
+      };
+      dispatch(LoginSlice(data));
+      navigate("/patient_panel");
+      show_notification("Success !", `Welcome`, "success");
+    } catch (error) {
+      const msg = error?.response?.data?.message || "Something went worng !";
+     
+      show_notification("Success !", `${msg}`, "success");
+    } finally {
+      setLoading(false);
+    }
+  };
+};
+
+// Api Module
+export const getApi = async ({
+  url,
+  setResponse,
+  setLoading,
+  additionalFunctions = [],
+}) => {
+  if (setLoading) {
+    setLoading(true);
+  }
+  try {
+    const res = await axios.get(`${BaseUrl}${url}`, 
+     Token
+    );
+    setResponse(res.data);
+    additionalFunctions.forEach((func) => {
+      if (typeof func === "function") {
+        func();
+      }
+    });
+  } catch (e) {
+    console.log(url, e);
+  } finally {
+    if (setLoading) {
+      setLoading(false);
+    }
+  }
+};
+
+// Firebase Chat
+export const createFirebaseDocument = ({
+  payload,
+  collectionName,
+  navigate,
+  navigationLink,
+  handleClose,
+}) => {
+  return async (dispatch) => {
+    try {
+      const collectionRef = collection(db, collectionName);
+      const docRef = await addDoc(collectionRef, payload);
+      console.log("Created", docRef.id);
+      handleClose();
+      dispatch(setDocumentID(docRef.id));
+      navigate(navigationLink);
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
+  };
 };
 
 
@@ -424,31 +504,3 @@ export const createApi = async ({
   }
 };
 
-// Api Module
-export const getApi = async ({
-  url,
-  setResponse,
-  setLoading,
-  additionalFunctions = [],
-}) => {
-  if (setLoading) {
-    setLoading(true);
-  }
-  try {
-    const res = await axios.get(`${BaseUrl}${url}`, 
-     Token
-    );
-    setResponse(res.data);
-    additionalFunctions.forEach((func) => {
-      if (typeof func === "function") {
-        func();
-      }
-    });
-  } catch (e) {
-    console.log(url, e);
-  } finally {
-    if (setLoading) {
-      setLoading(false);
-    }
-  }
-};
