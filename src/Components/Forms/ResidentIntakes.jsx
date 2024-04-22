@@ -1844,7 +1844,9 @@ function formatDate(dateString) {
         <div className="Boss">
           <div className="formheading1">
             <div className="formsheading2">
-              <h1>CONSENT FOR TREATMENT</h1>
+              <div className="checkboxitem125555">
+              <label>CONSENT FOR TREATMENT</label>
+              </div>
             </div>
           </div>
 

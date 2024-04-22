@@ -100,8 +100,10 @@ const CreateChat = ({ handleClose, show }) => {
 
   const createDocument = ({ collectionName, navigationLink, recipientObj }) => {
     const payload = {
-      recipient: recipientObj,
-      sender: ProfileDetails,
+      // recipient: recipientObj,
+      // sender: ProfileDetails,
+      recipient: ProfileDetails,
+      sender: recipientObj,
       text: [],
     };
 
@@ -141,7 +143,7 @@ const CreateChat = ({ handleClose, show }) => {
               onClick={() =>
                 createDocument({
                   recipientObj: i,
-                  collectionName: "EmployeeChat",
+                  collectionName: "PatientChart",
                   navigationLink: "/chat",
                 })
               }
@@ -167,6 +169,8 @@ const CreateChat = ({ handleClose, show }) => {
           )}
           <div ref={sentryRef}></div>
         </div>
+
+      
 
       </Offcanvas.Body>
     </Offcanvas>

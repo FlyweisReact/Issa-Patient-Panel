@@ -94,6 +94,8 @@ const Chat = () => {
       process.env.React_App_Firebase_Employee_CollectionName,
       documentId
     );
+
+
     const unsubscribe = onSnapshot(docRef, (doc) => {
       if (doc.exists()) {
         setDocument(doc.data());

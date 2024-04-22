@@ -16,8 +16,9 @@
   border: 1px solid #ffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   background-color: #1a9fb2;
-  /* Add your preferred box shadow */
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .formsheading_faceSheet{

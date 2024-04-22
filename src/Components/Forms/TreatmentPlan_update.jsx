@@ -2179,22 +2179,25 @@ const Treatmentplan_update = () => {
             
               >
                 <div className="treatment_plan_header">
-                  <h5>TREATMENT PLAN</h5>
-                  <div className="treatment_plan_header_inner_div">
+                  <div className="checkboxitem125555">
+                    <label >TREATMENT PLAN</label>
+                  </div>
+
+                  <div className="treatment_plan_header_inner_div checkboxitem125555">
                     <input
                       type="checkbox"
                       checked={initialUpdate === "Initial"}
                       onChange={() => setInitialUpdate("Initial")}
                     />
-                    <label>Initial</label>
+                    <label>INITIAL</label>
                   </div>
-                  <div className="treatment_plan_header_inner_div">
+                  <div className="treatment_plan_header_inner_div checkboxitem125555">
                     <input
                       type="checkbox"
                       checked={initialUpdate === "Update"}
                       onChange={() => setInitialUpdate("Update")}
                     />
-                    <label>Update</label>
+                    <label>UPDATE</label>
                   </div>
                 </div>
               </div>
@@ -5634,27 +5637,30 @@ const Treatmentplan_update = () => {
         <div>
           <div className="Boss">
             <div className="formheading1">
-              <div
+            <div
                 className="formsheading_updated_treatment"
-                style={{ marginTop: "1.5rem", padding: " 0 10px" }}
+            
               >
                 <div className="treatment_plan_header">
-                  <h5>TREATMENT PLAN</h5>
-                  <div className="treatment_plan_header_inner_div">
+                  <div className="checkboxitem125555">
+                    <label >TREATMENT PLAN</label>
+                  </div>
+
+                  <div className="treatment_plan_header_inner_div checkboxitem125555">
                     <input
                       type="checkbox"
                       checked={initialUpdate === "Initial"}
                       onChange={() => setInitialUpdate("Initial")}
                     />
-                    <label>Initial</label>
+                    <label>INITIAL</label>
                   </div>
-                  <div className="treatment_plan_header_inner_div">
+                  <div className="treatment_plan_header_inner_div checkboxitem125555">
                     <input
                       type="checkbox"
                       checked={initialUpdate === "Update"}
                       onChange={() => setInitialUpdate("Update")}
                     />
-                    <label>Update</label>
+                    <label>UPDATE</label>
                   </div>
                 </div>
               </div>
