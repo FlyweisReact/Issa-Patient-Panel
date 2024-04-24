@@ -109,6 +109,7 @@
   .small-card > span {
     margin: 0;
   }
+
 }
 
 .new_intakecontainer {
@@ -116,4 +117,27 @@ display: flex;
 gap: 20px;
 align-items: center;
 
+}
+
+
+@media (max-width :768px) {
+  .new_intakecontainer{
+    gap: 10px;
+    justify-content: space-between;
+  }
+  .new_intakecontainer .small-card{
+    width: 120px  ;
+    margin: 0;
+    height: 150px;
+    padding: 2px;
+  }
+  .new_intakecontainer .small-card img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .new_intakecontainer .small-card span{
+    font-size: 14px;
+  }
+  
 }
