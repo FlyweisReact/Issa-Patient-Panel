@@ -1,0 +1,82 @@
+body {
+  margin: 0;
+  font-family: Quicksand !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden !important;
+  font-family: 'Quicksand', sans-serif;
+
+}
+
+code {
+  font-family: Quicksand !important;
+}
+
+*,
+html {
+  font-family: Quicksand !important;
+}
+
+
+
+/* pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.pagination button {
+  border: 1px solid #1a9fb2;
+  padding: 10px;
+}
+.pagination select {
+  max-width: 120px;
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  border: 1px solid #1a9fb2;
+  color: #1a9fb2;
+  cursor: pointer;
+}
+
+.activePage {
+  background-color: #1a9fb2;
+  color: #fff;
+  border: 1px solid #1a9fb2 !important;
+}
+
+.active {
+  background-color: #fff;
+  color: #19376d !important;
+}
+.prevBtn {
+  background-color: #fff;
+  color: #1a9fb2;
+  border: 1px solid #1a9fb2 !important;
+  transition: 0.5s;
+}
+
+.prevBtn:hover,
+.prevBtn:focus,
+.prevBtn:active {
+  background-color: #1a9fb2;
+  color: #fff;
+  border: 1px solid #1a9fb2 !important;
+}
+.nextBtn {
+  background-color: #fff;
+  color: #1a9fb2;
+  border: 1px solid #1a9fb2 !important;
+  transition: 0.5s;
+}
+
+.nextBtn:hover,
+.nextBtn:focus,
+.nextBtn:active {
+  background-color: #1a9fb2;
+  color: #fff;
+  border: 1px solid #1a9fb2 !important;
+}
+

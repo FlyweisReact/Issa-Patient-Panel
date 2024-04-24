@@ -1,0 +1,82 @@
+/* Navbar.css (or your preferred naming convention) */
+.navbar1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ffff;
+  color: #000000;
+  border: 1px solid #fff1f1;
+  border-radius: 10px;
+}
+
+.left-section {
+  display: flex;
+  align-items: 'center';
+  gap: 10px;
+}
+
+
+.left-section span {
+  margin-right: 20px;
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.left-section h6 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.left-section img {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.right-section img {
+  width: 40px;
+  /* height: 40px; */
+  border-radius: 50px;
+  margin-top: 17px;
+  cursor: pointer;
+}
+
+.right-section .icons {
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.right-section .icon:hover {
+  background-color: #555;
+}
+
+/* Optional: Add media queries for responsive design */
+@media(max-width: 868px) {
+  .navbar1 {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media(max-width: 568px) {
+  .navbar1 {
+    display: block;
+    flex-direction: column;
+  }
+
+  .right-section img {
+    margin-top: 5px;
+  }
+
+}
+
+/* Add this rule to your CSS */
