@@ -2634,7 +2634,7 @@ const handlerepsychosocialSymptoms = (symptom) => {
           <div className="yeschechbox-review-Nutrition">
             <div style={{display:'flex',gap:"10px",alignItems:"center"}}>
 
-            <div style={{display:"flex", columnGap:"1rem",marginRight:"1rem"}}>
+            <div style={{display:"flex", columnGap:"1rem"}}>
                   <label style={{ fontWeight: "bold" }} >Nutrition:  </label>
                   <label>Diet: </label>
             </div>
@@ -2695,29 +2695,7 @@ const handlerepsychosocialSymptoms = (symptom) => {
 
       
 
-          {/* <div className="yeschechbox2">
-            <label htmlFor="">
-              Nutrition Special Diet Order 
-            </label>
-            <div>
-              <input
-                type="text"
-                value={nutritionSpecialDietOrder}
-                onChange={(e) => setNutritionSpecialDietOrder(e.target.value)}
-              />
-            </div>
-          </div> */}
-
-            {/* <div className="form-field">
-            <label >Nutrition Special Diet Order :</label>
-            <input
-              type="text"
-
-              required
-              value={nutritionSpecialDietOrder}
-              onChange={(e) => setNutritionSpecialDietOrder(e.target.value)}
-            />
-          </div> */}
+         
 
 
         
@@ -2816,8 +2794,6 @@ const handlerepsychosocialSymptoms = (symptom) => {
                   style={{ width: "120px", height: "189px" }}
                 />
               </div>
-            </div>
-            <div className="bodydiv">
               <div className="bodyiamge">
                 <input
                   type="checkbox"

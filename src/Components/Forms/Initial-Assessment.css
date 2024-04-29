@@ -606,7 +606,6 @@ input[type="checkbox"] {
   width: auto;
   transform: scale(1.5);
   font-weight: bold;
-  /* Adjust the scale factor as needed */
 }
 
 .yeschechbox {
@@ -1509,7 +1508,15 @@ color: rgb(65, 63, 63);
 }
 
 input[type="checkbox"] {
-  margin-right: 5px;
+  margin-right: 0px;
+  margin-bottom: 5px;
+  transform: scale(1.5);
+  width: 14px;
+  height: 10px;
+}
+
+.form-field-child > input[type="checkbox"] {
+  margin-right: 10px;
   margin-bottom: 5px;
   transform: scale(1.5);
   width: 14px;
