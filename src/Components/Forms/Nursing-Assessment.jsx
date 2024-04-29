@@ -2366,12 +2366,12 @@ const handlerepsychosocialSymptoms = (symptom) => {
 
             <div className="box-image-container-update"></div>
 
-            <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+            <div style={{ display: "flex", alignItems: "center", columnGap:"1rem"}}>
               <div className="form-field-child">
                 <label htmlFor="" className="label-review" style={{ fontSize: "20px" }}>Suicidal Risk Assessment:</label>
               </div>
 
-              <div className="form-field-child" style={{ marginTop: "2rem" }}>
+              <div className="form-field-child" >
               <input
                 type="checkbox"
                 id="suicidalRiskAssessmentDeniesSymptomsBellow"
