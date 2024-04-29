@@ -2633,9 +2633,12 @@ const handlerepsychosocialSymptoms = (symptom) => {
        
           <div className="yeschechbox-review-Nutrition">
             <div style={{display:'flex',gap:"10px",alignItems:"center"}}>
-            <div>
-                  <label style={{ fontWeight: "bold" }} >Nutrition: Diet: </label>
+
+            <div style={{display:"flex", columnGap:"1rem",marginRight:"1rem"}}>
+                  <label style={{ fontWeight: "bold" }} >Nutrition:  </label>
+                  <label>Diet: </label>
             </div>
+
             <div style={{display:'flex',gap:"10px",alignItems:"center"}}>
               <input
                 type="checkbox"
