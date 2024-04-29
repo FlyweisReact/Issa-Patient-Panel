@@ -31,8 +31,10 @@ const Treatmentplan_update = () => {
     var signatureRightAndSide =
       document.getElementsByClassName("file-upload-box");
 
-      var form_field_gender = document.getElementsByClassName("form-field-child");
-      var form_field_single_update = document.getElementsByClassName("form-field-single-update");
+    var form_field_gender = document.getElementsByClassName("form-field-child");
+    var form_field_single_update = document.getElementsByClassName(
+      "form-field-single-update"
+    );
 
     for (let i = 0; i < hideData.length; i++) {
       hideData[i].style.display = "block";
@@ -50,21 +52,20 @@ const Treatmentplan_update = () => {
       signatureRightAndSide[i].style.justifyContent = "right";
     }
 
-      // hode bottom
-      for (let i = 0; i < form_field_gender.length; i++) {
-        var inputs = form_field_gender[i].getElementsByTagName("input");
-        for (let j = 0; j < inputs.length; j++) {
-            inputs[j].style.borderBottom = "none";
-        }
+    // hode bottom
+    for (let i = 0; i < form_field_gender.length; i++) {
+      var inputs = form_field_gender[i].getElementsByTagName("input");
+      for (let j = 0; j < inputs.length; j++) {
+        inputs[j].style.borderBottom = "none";
+      }
     }
-  
+
     for (let i = 0; i < form_field_single_update.length; i++) {
       var inputs = form_field_single_update[i].getElementsByTagName("input");
       for (let j = 0; j < inputs.length; j++) {
-          inputs[j].style.borderBottom = "none";
+        inputs[j].style.borderBottom = "none";
       }
-  }
-  
+    }
 
     handlePrint();
 
@@ -86,24 +87,23 @@ const Treatmentplan_update = () => {
         hideData[i].style.display = "none";
       }
 
-       // hide bottom
-       for (let i = 0; i < form_field_gender.length; i++) {
+      // hide bottom
+      for (let i = 0; i < form_field_gender.length; i++) {
         var inputs = form_field_gender[i].getElementsByTagName("input");
         for (let j = 0; j < inputs.length; j++) {
-            inputs[j].style.borderBottom = "1px solid black";
-        }
-    }
-
-    for (let i = 0; i < form_field_single_update.length; i++) {
-      var inputs = form_field_single_update[i].getElementsByTagName("input");
-      for (let j = 0; j < inputs.length; j++) {
           inputs[j].style.borderBottom = "1px solid black";
+        }
       }
-  }
+
+      for (let i = 0; i < form_field_single_update.length; i++) {
+        var inputs = form_field_single_update[i].getElementsByTagName("input");
+        for (let j = 0; j < inputs.length; j++) {
+          inputs[j].style.borderBottom = "1px solid black";
+        }
+      }
     }, 1000);
   };
 
-  
   // model data
   const [draftModel, setDraftModel] = useState(false);
   const [signatureModel1, setSignatureModel1] = useState(false);
@@ -116,7 +116,7 @@ const Treatmentplan_update = () => {
   const navigate = useNavigate();
 
   //from satart now ------------------------------->
-  const [saveAsDraft,setSaveAsDraft]=useState(false);
+  const [saveAsDraft, setSaveAsDraft] = useState(false);
   const [getApiData, setGetApiData] = useState("");
   const [userId, setUserId] = useState("");
   const [initialUpdate, setInitialUpdate] = useState("");
@@ -166,21 +166,17 @@ const Treatmentplan_update = () => {
     useState(false);
   const [behavioralSymptomsOther, setBehavioralSymptomsOther] = useState("");
 
-  // useEffect(() => {
+  useEffect(() => {
+    const isOtherSelected = behavioralSymptoms.some(
+      (behavioral) => behavioral === "Other"
+    );
 
-  //   const isOtherSelected = behavioralSymptoms.some(
-  //     (behavioral) => behavioral === "Other"
-  //   );
+    setBehavioralSymptomsBoolean(isOtherSelected);
 
-
-  //   setBehavioralSymptomsBoolean(isOtherSelected);
-
-  //   if (isOtherSelected) {
-  //     setBehavioralSymptomsOther("");
-  //   } else {
-  //     setBehavioralSymptomsOther("");
-  //   }
-  // }, [behavioralSymptoms]);
+    if (!isOtherSelected) {
+      setBehavioralSymptomsOther("");
+    }
+  }, [behavioralSymptoms]);
 
   const [physicalSymptoms, setPhysicalSymptoms] = useState([]);
   const [physicalSymptomsBoolean, setPhysicalSymptomsBoolean] = useState(false);
@@ -580,9 +576,11 @@ const Treatmentplan_update = () => {
         : []
     );
     setBehavioralSymptomsBoolean(
-      getApiData?.riskAssessment?.behavioralSymptoms ? true : false
+      getApiData?.riskAssessment?.behavioralSymptomsOther ? true : false
     );
-    setBehavioralSymptomsOther(getApiData?.riskAssessment?.behavioralSymptomsOther);
+    setBehavioralSymptomsOther(
+      getApiData?.riskAssessment?.behavioralSymptomsOther
+    );
 
     // Resetting physical symptoms state variables
     setPhysicalSymptoms(
@@ -604,7 +602,9 @@ const Treatmentplan_update = () => {
     setConsnotiveSymptomsBoolean(
       getApiData?.riskAssessment?.cognitiveSymptoms ? true : false
     );
-    setConsnotiveSymptomsOther(getApiData?.riskAssessment?.cognitiveSymptomsOther);
+    setConsnotiveSymptomsOther(
+      getApiData?.riskAssessment?.cognitiveSymptomsOther
+    );
 
     // Resetting psychosocial symptoms state variables
     setPsychosocialSymptoms(
@@ -615,7 +615,9 @@ const Treatmentplan_update = () => {
     setPsychosocialSymptomsBoolean(
       getApiData?.riskAssessment?.psychosocialSymptoms ? true : false
     );
-    setPsychosocialSymptomsOther(getApiData?.riskAssessment?.psychosocialSymptomsOther);
+    setPsychosocialSymptomsOther(
+      getApiData?.riskAssessment?.psychosocialSymptomsOther
+    );
 
     // Resetting interventions implemented state variables
     setInterventionsImplemented(
@@ -833,7 +835,7 @@ const Treatmentplan_update = () => {
     setCurrentMedications(getApiData?.currentMedications);
     setreligiousPreference(getApiData?.religiousPreference);
 
-    if(getApiData?.religiousPreference){
+    if (getApiData?.religiousPreference) {
       setReligiousPreferenceText(getApiData?.religiousPreference);
     }
 
@@ -857,7 +859,9 @@ const Treatmentplan_update = () => {
       getApiData?.recommendationsForFurtherPrograms?.length > 0 ? true : false
     );
 
-    setRecommendationsForFurtherProgramsOther(getApiData?.recommendationsForFurtherProgramsOther);
+    setRecommendationsForFurtherProgramsOther(
+      getApiData?.recommendationsForFurtherProgramsOther
+    );
 
     setAfterCareAndTransitionPlanning(
       getApiData?.afterCareAndTransitionPlanning
@@ -865,14 +869,18 @@ const Treatmentplan_update = () => {
         : []
     );
 
-    setTextData(getApiData?.clinicalSummaryBeforeDate?getApiData?.clinicalSummaryBeforeDate?.slice(0,10):"");
+    setTextData(
+      getApiData?.clinicalSummaryBeforeDate
+        ? getApiData?.clinicalSummaryBeforeDate?.slice(0, 10)
+        : ""
+    );
 
     // Resetting clinicalSummary state variables
     setClinicalSummary(
       getApiData?.clinicalSummary
         ? getApiData.clinicalSummary.map((item) => ({
             label: item,
-            value: item, 
+            value: item,
           }))
         : []
     );
@@ -1027,7 +1035,7 @@ const Treatmentplan_update = () => {
       moodLevel: mind,
       moodLevelOther: mindText,
       adls: adls,
-      adlsOther:adlsText,
+      adlsOther: adlsText,
       behavioralHealthServices: BHealth,
       behavioralHealthServicesOther: Btext,
       primaryCareProvider: primaryCare,
@@ -1161,7 +1169,7 @@ const Treatmentplan_update = () => {
     navigate("/intake");
   };
 
-  console.log(saveAsDraft,"saveAsdraft value ")
+  console.log(saveAsDraft, "saveAsdraft value ");
 
   //handle check box
   const handleCheckboxChangeMentalHealth = (value) => {
@@ -1312,7 +1320,6 @@ const Treatmentplan_update = () => {
 
     setRecommendationsForFurtherPrograms(updatedRecommendations);
   };
-
 
   const handleCheckboxChangeafterCareAndTransitionPlanning = (value) => {
     // Check if the value is already in the array
@@ -2149,12 +2156,10 @@ const Treatmentplan_update = () => {
     setClinicalSummary(optionValue);
   };
 
-  
-  const handleDraftValue=()=>
-  {
+  const handleDraftValue = () => {
     setSaveAsDraft(true);
-  setDraftModel(true);
-}
+    setDraftModel(true);
+  };
 
   return (
     <>
@@ -2174,13 +2179,10 @@ const Treatmentplan_update = () => {
 
           <div className="Boss">
             <div className="formheading1">
-              <div
-                className="formsheading_updated_treatment"
-            
-              >
+              <div className="formsheading_updated_treatment">
                 <div className="treatment_plan_header">
                   <div className="checkboxitem125555">
-                    <label >TREATMENT PLAN</label>
+                    <label>TREATMENT PLAN</label>
                   </div>
 
                   <div className="treatment_plan_header_inner_div checkboxitem125555">
@@ -2775,7 +2777,7 @@ const Treatmentplan_update = () => {
                     />
                     <label htmlFor="aboutdeath">About death </label>
                   </div>
-             
+
                   <div>
                     <input
                       type="checkbox"
@@ -2906,13 +2908,6 @@ const Treatmentplan_update = () => {
                     />
                     <label>Other</label>
                     {physicalSymptomsBoolean && (
-                      // <AutosizeInput
-                      //   type="text"
-                      //   inputStyle={{ border: "none", outline: "none" }}
-                      //   placeholder="________"
-                      //   value={physicalSymptomsOther}
-                      //   onChange={(e) => setPhysicalSymptomsOther(e.target.value)}
-                      // />
                       <AutoSize
                         value={physicalSymptomsOther}
                         setValue={setPhysicalSymptomsOther}
@@ -3169,15 +3164,7 @@ const Treatmentplan_update = () => {
                     />
                     <label htmlFor="OtherpsychosocialSymptoms">Other</label>
                     {psychosocialSymptomsBoolean && (
-                      // <AutosizeInput
-                      //   type="text"
-                      //   inputStyle={{ border: "none", outline: "none" }}
-                      //   placeholder="________"
-                      //   value={psychosocialSymptomssOther}
-                      //   onChange={(e) =>
-                      //     setPsychosocialSymptomsOther(e.target.value)
-                      //   }
-                      // />
+                  
                       <AutoSize
                         value={psychosocialSymptomssOther}
                         setValue={setPsychosocialSymptomsOther}
@@ -3186,23 +3173,7 @@ const Treatmentplan_update = () => {
                     )}
                   </div>
                 </div>
-                {/* 
-              {
-                psychosocialSymptomsBoolean && (
-                  <div className="form-field">
-                <label htmlFor="programlocation&addresstypeOfOtherBoolean">Comments</label>
-                <textarea
-                  id="programlocation&addresstypeOfOtherBoolean"
-                  value={psychosocialSymptomssOther}
-                  placeholder="Enter text"
-                  rows={2}
-                  cols={82}
-                  required
-                  onChange={(e)=>setPsychosocialSymptomsOther(e.target.value)}
-                />
-              </div>
-                )
-              } */}
+               
 
                 <label
                   htmlFor=""
@@ -3426,10 +3397,15 @@ const Treatmentplan_update = () => {
                   </div>
                 </div>
 
-                
                 <div className="formsheading-treatment">
                   <div className="inLine_box_style">
-                    <p> <span className="label-review" >Counseling and Frequency :</span>  Total of minimum </p>{" "}
+                    <p>
+                      {" "}
+                      <span className="label-review">
+                        Counseling and Frequency :
+                      </span>{" "}
+                      Total of minimum{" "}
+                    </p>{" "}
                     <div>
                       <input
                         style={{
@@ -3448,7 +3424,7 @@ const Treatmentplan_update = () => {
                     <p>hours daily.</p>
                   </div>
                 </div>
-          
+
                 <div className="treatment_plane_frequency">
                   <div className="checkboxitem-update">
                     <input
@@ -3481,7 +3457,7 @@ const Treatmentplan_update = () => {
                     />
                     <label htmlFor="4 times a day">4 times a day</label>
                   </div>
-                
+
                   <div className="checkboxitem-update">
                     <input
                       type="checkbox"
@@ -3499,10 +3475,8 @@ const Treatmentplan_update = () => {
                   </div>
                 </div>
 
-{/* edit value */}
-                <div >
-
-                <div className="checkboxitem-update">
+                <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="Individual Counseling: Minimum 1 hour session per week"
@@ -3651,14 +3625,12 @@ const Treatmentplan_update = () => {
                       Weekly ART Meeting/Staffing
                     </label>
                   </div>
-                      
-
                 </div>
 
                 <div className="formsheading">
                   <h6 style={{ fontWeight: "bold" }}>
-                    Goals for Changes in the Resident psychosocial  Interaction or
-                    Behaviour :
+                    Goals for Changes in the Resident psychosocial Interaction
+                    or Behaviour :
                   </h6>
                 </div>
 
@@ -4240,7 +4212,7 @@ const Treatmentplan_update = () => {
                             <tr key={index}>
                               <td>
                                 <div className="treatment_table_other">
-                                <p>{9 + index}: </p>
+                                  <p>{9 + index}: </p>
                                   <p>{data?.otherType}</p>
                                 </div>
                               </td>
@@ -4258,28 +4230,30 @@ const Treatmentplan_update = () => {
                         {showOther && (
                           <tr>
                             <td>
-                             <div className="treatment_table_other">
-                              <p>{otherArray.length + 9}: Other:</p>
-                              <textarea
-                                className="treatment_plan_table"
-                                rows={Math.max(
-                                  optionOther
-                                    ? optionOther.split("\n").length
-                                    : 1,
-                                  1
-                                )}
-                                value={optionOther || ""}
-                                placeholder="___________"
-                                onChange={(e) => setOptionOther(e.target.value)}
-                                onKeyDown={(e) => {
-                                  if (e.key === "Enter") {
-                                    e.preventDefault();
-                                    setOptionOther(
-                                      (prevComment) => prevComment + "\n"
-                                    );
+                              <div className="treatment_table_other">
+                                <p>{otherArray.length + 9}: Other:</p>
+                                <textarea
+                                  className="treatment_plan_table"
+                                  rows={Math.max(
+                                    optionOther
+                                      ? optionOther.split("\n").length
+                                      : 1,
+                                    1
+                                  )}
+                                  value={optionOther || ""}
+                                  placeholder="___________"
+                                  onChange={(e) =>
+                                    setOptionOther(e.target.value)
                                   }
-                                }}
-                              />
+                                  onKeyDown={(e) => {
+                                    if (e.key === "Enter") {
+                                      e.preventDefault();
+                                      setOptionOther(
+                                        (prevComment) => prevComment + "\n"
+                                      );
+                                    }
+                                  }}
+                                />
                               </div>
                             </td>
                             <td>
@@ -4429,6 +4403,7 @@ const Treatmentplan_update = () => {
                       Resident Attitude:
                     </label>
                   </div>
+
                   <div className="yeschechbox-review-treatment-child ">
                     <div className="checkbox-style-data">
                       <input
@@ -4597,13 +4572,13 @@ const Treatmentplan_update = () => {
                   <div>
                     <input
                       type="checkbox"
-                      id="Clinical seam"
-                      checked={supportSystem.includes("Clinical seam")}
+                      id="Clinical Team"
+                      checked={supportSystem.includes("Clinical Team")}
                       onChange={() =>
-                        handleCheckboxChangeSupportSystem("Clinical seam")
+                        handleCheckboxChangeSupportSystem("Clinical Team")
                       }
                     />
-                    <label htmlFor="Clinical seam">Clinical seam</label>
+                    <label htmlFor="Clinical seam">Clinical Team</label>
                   </div>
                   <div>
                     <input
@@ -5193,31 +5168,7 @@ const Treatmentplan_update = () => {
                   </div>
                 </div>
 
-                <div className="yeschechbox2">
-                  <div>
-                    <span>
-                      This treatment plan has been developed before the resident
-                      receives physical health services or behavioral health
-                      services or within 48hours after the initial assessment is
-                      completed. It will be review and updated on an on-going
-                      basis according to the review date{" "}
-                      <span>
-                        <AutoSize
-                          type="date"
-                          value={textData}
-                          setValue={setTextData}
-                          placeholder="________"
-                        />
-                      </span>
-                      specified in the treatment plan, when a treatment goal is
-                      accomplished or changed, when additional information that
-                      affects the resident’s behavioral health assessment is
-                      identified and when the resident has a significant change
-                      in condition or experiences an event that affects
-                      treatment.
-                    </span>
-                  </div>
-                </div>
+          
 
                 <div className="formsheading">
                   <label className="label-review-clinical">
@@ -5236,13 +5187,6 @@ const Treatmentplan_update = () => {
                   />
                 </div>
 
-                {/* <div className="formsheading">
-                <p>
-                  The mirrors in the facility are SHATTERPROOF, and if they were
-                  standard mirrors it would not present as a current safety risk
-                  to this resident.
-                </p>
-              </div> */}
                 <div className="form-field-update">
                   <div className="form-field-child">
                     <label>Treatment plan review date:</label>
@@ -5279,7 +5223,24 @@ const Treatmentplan_update = () => {
                 >
                   Note: Earlier review may be performed if resident has a
                   significant change in condition or event that affects
-                  treatment.
+                  treatment This treatment plan has been developed before the
+                  resident receives physical health services or behavioral
+                  health services or within 48hours after the initial assessment
+                  is completed. It will be review and updated on an on-going
+                  basis according to the review date{" "}
+                  <span>
+                    <AutoSize
+                      type="date"
+                      value={textData}
+                      setValue={setTextData}
+                      placeholder="________"
+                    />
+                  </span>
+                  specified in the treatment plan, when a treatment goal is
+                  accomplished or changed, when additional information that
+                  affects the resident’s behavioral health assessment is
+                  identified and when the resident has a significant change in
+                  condition or experiences an event that affects treatment.
                 </p>
 
                 <div className="formsheading">
@@ -5360,7 +5321,7 @@ const Treatmentplan_update = () => {
                       Yes,{" "}
                       <span>
                         I am in agreement with the services included in this
-                        treatment Plan
+                        treatment Plan.
                       </span>
                     </label>
                   </div>
@@ -5371,33 +5332,19 @@ const Treatmentplan_update = () => {
                     <input
                       type="checkbox"
                       id="refusalReason"
-                      // checked={refusalReason === "yes"}
-                      // onChange={() =>
-                      //   setrefusalReason(refusalReason === "yes" ? "no" : "yes")
-                      // }
                       checked={isReason === "no"}
                       onChange={() =>
                         setIsReason(isReason === "no" ? "yes" : "no")
                       }
                     />
                     <label htmlFor="refusalReason">
-                      No,{" "}
+                      No, {" "}
                       <span>
-                        I am not in agreement with the services included in this
-                        treatment Plan
+                      I am not in agreement with some or all of the services included in this treatment plan and I refuse to sign.
                       </span>
                     </label>
                   </div>
                 </div>
-                {/* <div className="yeschechbox2">
-                <div>
-                  <span>
-                    I am in the agreement with the services included in this
-                    treatment Plan
-                  </span>
-                </div>
-              </div> */}
-                {/* /"signaturesResident */}
 
                 <div className="formsheading">
                   <h6 style={{ fontWeight: "bold" }}>
@@ -5406,37 +5353,36 @@ const Treatmentplan_update = () => {
                   </h6>
                 </div>
 
-                  <div className="form-field-child">
-                    <label style={{ fontWeight: "bold" }}>
-                      Resident or Resident’s representative{" "}
-                      <span style={{ fontSize: "15px", color: "gray" }}>
-                        (By signing this document, I acknowledge that I was
-                        asked, encouraged to participate in the assessment)
-                      </span>
-                      :
-                    </label>
-                    <input
-                      type="text"
-                      value={credentialsResident}
-                      placeholder="Enter text"
-                      required
-                      onChange={(e) => setCredentialsResident(e.target.value)}
-                    />
-                  </div>
+                <div className="form-field-child">
+                  <label style={{ fontWeight: "bold" }}>
+                    Resident or Resident’s representative{" "}
+                    <span style={{ fontSize: "15px", color: "gray" }}>
+                      (By signing this document, I acknowledge that I was asked,
+                      encouraged to participate in the assessment)
+                    </span>
+                    :
+                  </label>
+                  <input
+                    type="text"
+                    value={credentialsResident}
+                    placeholder="Enter text"
+                    required
+                    onChange={(e) => setCredentialsResident(e.target.value)}
+                  />
                 </div>
+              </div>
 
-                
-                <div className="form-field-update">
-                  <div className="form-field-child">
-                    <label>First and Last Name:</label>
-                    <input
-                      type="text"
-                      value={nameResident}
-                      placeholder="Enter text"
-                      required
-                      onChange={(e) => setNameResident(e.target.value)}
-                    />
-                  </div>
+              <div className="form-field-update">
+                <div className="form-field-child">
+                  <label>First and Last Name:</label>
+                  <input
+                    type="text"
+                    value={nameResident}
+                    placeholder="Enter text"
+                    required
+                    onChange={(e) => setNameResident(e.target.value)}
+                  />
+                </div>
 
                 <div class="file-upload-box" style={{ marginTop: "0.5rem" }}>
                   <div className="file-upload-box-child hidePrint">
@@ -5637,13 +5583,10 @@ const Treatmentplan_update = () => {
         <div>
           <div className="Boss">
             <div className="formheading1">
-            <div
-                className="formsheading_updated_treatment"
-            
-              >
+              <div className="formsheading_updated_treatment">
                 <div className="treatment_plan_header">
                   <div className="checkboxitem125555">
-                    <label >TREATMENT PLAN</label>
+                    <label>TREATMENT PLAN</label>
                   </div>
 
                   <div className="treatment_plan_header_inner_div checkboxitem125555">
@@ -6891,7 +6834,13 @@ const Treatmentplan_update = () => {
 
                 <div className="formsheading-treatment">
                   <div className="inLine_box_style">
-                    <p> <span className="label-review" >Counseling and Frequency :</span>  Total of minimum </p>{" "}
+                    <p>
+                      {" "}
+                      <span className="label-review">
+                        Counseling and Frequency :
+                      </span>{" "}
+                      Total of minimum{" "}
+                    </p>{" "}
                     <div>
                       <input
                         style={{
@@ -6910,9 +6859,9 @@ const Treatmentplan_update = () => {
                     <p>hours daily.</p>
                   </div>
                 </div>
-            
-                <div className="yeschechbox-review">
-                  <div>
+
+                <div className="treatment_plane_frequency">
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="Group"
@@ -6921,7 +6870,7 @@ const Treatmentplan_update = () => {
                     />
                     <label htmlFor="Group">Group</label>
                   </div>
-                  <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="3 times a day"
@@ -6932,7 +6881,7 @@ const Treatmentplan_update = () => {
                     />
                     <label htmlFor="3 times a day">3 times a day</label>
                   </div>
-                  <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="4 times a day"
@@ -6943,7 +6892,26 @@ const Treatmentplan_update = () => {
                     />
                     <label htmlFor="4 times a day">4 times a day</label>
                   </div>
-                  <div>
+
+                  <div className="checkboxitem-update">
+                    <input
+                      type="checkbox"
+                      checked={counselingOptions.includes("Other")}
+                      onChange={() => handleCheckboxChangeCounsiling("Other")}
+                    />
+                    <label>Other</label>
+                    {counselingOptionsTextBoolean && (
+                      <AutoSize
+                        value={counselingOptionsText}
+                        setValue={setCounselingOptionsOther}
+                        placeholder="________"
+                      />
+                    )}
+                  </div>
+                </div>
+
+                <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="Individual Counseling: Minimum 1 hour session per week"
@@ -6960,7 +6928,7 @@ const Treatmentplan_update = () => {
                       Individual Counseling: Minimum 1 hour session per week
                     </label>
                   </div>
-                  <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="Individual Counseling: Minimum 1 hour session every 2 weeks"
@@ -6978,7 +6946,7 @@ const Treatmentplan_update = () => {
                       weeks
                     </label>
                   </div>
-                  <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="Individual Therapy: As needed"
@@ -6995,7 +6963,7 @@ const Treatmentplan_update = () => {
                       Individual Therapy: As needed
                     </label>
                   </div>
-                  <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="Individual Therapy: Please Specify"
@@ -7012,7 +6980,7 @@ const Treatmentplan_update = () => {
                       Individual Therapy: Please Specify
                     </label>
                   </div>
-                  <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="Nonereported"
@@ -7029,7 +6997,7 @@ const Treatmentplan_update = () => {
                       Resident decline individual therapy services
                     </label>
                   </div>
-                  <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="Family Counseling"
@@ -7040,7 +7008,7 @@ const Treatmentplan_update = () => {
                     />
                     <label htmlFor="Family Counseling">Family Counseling</label>
                   </div>
-                  <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="NA"
@@ -7049,7 +7017,7 @@ const Treatmentplan_update = () => {
                     />
                     <label htmlFor="NA">NA</label>
                   </div>
-                  <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="AA"
@@ -7058,7 +7026,7 @@ const Treatmentplan_update = () => {
                     />
                     <label htmlFor="AA">AA</label>
                   </div>
-                  <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="Month ART Meeting/Staffing"
@@ -7075,7 +7043,7 @@ const Treatmentplan_update = () => {
                       Month ART Meeting/Staffing
                     </label>
                   </div>
-                  <div>
+                  <div className="checkboxitem-update">
                     <input
                       type="checkbox"
                       id="Weekly ART Meeting/Staffing"
@@ -7092,28 +7060,14 @@ const Treatmentplan_update = () => {
                       Weekly ART Meeting/Staffing
                     </label>
                   </div>
-                  <div>
-                    <input
-                      type="checkbox"
-                      checked={counselingOptions.includes("Other")}
-                      onChange={() => handleCheckboxChangeCounsiling("Other")}
-                    />
-                    <label>Other</label>
-                    {counselingOptionsTextBoolean && (
-                      <AutoSize
-                        value={counselingOptionsText}
-                        setValue={setCounselingOptionsOther}
-                        placeholder="________"
-                      />
-                    )}
-                  </div>
                 </div>
 
-                <div className="formsheading" >
-  <h6 style={{ fontWeight: "bold" }}>
-    Goals for Changes in the Resident Psychosocial Interaction or Behavior:
-  </h6>
-</div>
+                <div className="formsheading">
+                  <h6 style={{ fontWeight: "bold" }}>
+                    Goals for Changes in the Resident Psychosocial Interaction
+                    or Behavior:
+                  </h6>
+                </div>
 
                 <div className="needs-interventions-container2 table-respnosive">
                   <div className="needs-interventions-column2">
@@ -7216,11 +7170,12 @@ const Treatmentplan_update = () => {
                             isCreatable={true}
                             onKeyDown={handleKeyOption2}
                           /> */}
-                           <ul>
-        {option2?.length> 0 && option2.map((item, index) => (
-            <li key={index}>{item?.value}</li>
-        ))}
-    </ul>
+                            <ul>
+                              {option2?.length > 0 &&
+                                option2.map((item, index) => (
+                                  <li key={index}>{item?.value}</li>
+                                ))}
+                            </ul>
                           </td>
                           <td>
                             <input
@@ -7291,11 +7246,12 @@ const Treatmentplan_update = () => {
                             isCreatable={true}
                             onKeyDown={handleKeyOption3}
                           /> */}
-                             <ul>
-        {option3?.length> 0 && option3.map((item, index) => (
-            <li key={index}>{item?.value}</li>
-        ))}
-    </ul>
+                            <ul>
+                              {option3?.length > 0 &&
+                                option3.map((item, index) => (
+                                  <li key={index}>{item?.value}</li>
+                                ))}
+                            </ul>
                           </td>
                           <td>
                             <input
@@ -7366,11 +7322,12 @@ const Treatmentplan_update = () => {
                             isCreatable={true}
                             onKeyDown={handleKeyOption4}
                           /> */}
-                         <ul>
-        {option4?.length> 0 && option4.map((item, index) => (
-            <li key={index}>{item?.value}</li>
-        ))}
-    </ul>
+                            <ul>
+                              {option4?.length > 0 &&
+                                option4.map((item, index) => (
+                                  <li key={index}>{item?.value}</li>
+                                ))}
+                            </ul>
                           </td>
                           <td>
                             <input
@@ -7441,11 +7398,12 @@ const Treatmentplan_update = () => {
                             isCreatable={true}
                             onKeyDown={handleKeyOption5}
                           /> */}
-                          <ul>
-        {option5?.length> 0 && option5.map((item, index) => (
-            <li key={index}>{item?.value}</li>
-        ))}
-    </ul>
+                            <ul>
+                              {option5?.length > 0 &&
+                                option5.map((item, index) => (
+                                  <li key={index}>{item?.value}</li>
+                                ))}
+                            </ul>
                           </td>
                           <td>
                             <input
@@ -7516,11 +7474,12 @@ const Treatmentplan_update = () => {
                             isCreatable={true}
                             onKeyDown={handleKeyOption6}
                           /> */}
-                             <ul>
-        {option6?.length> 0 && option6.map((item, index) => (
-            <li key={index}>{item?.value}</li>
-        ))}
-    </ul>
+                            <ul>
+                              {option6?.length > 0 &&
+                                option6.map((item, index) => (
+                                  <li key={index}>{item?.value}</li>
+                                ))}
+                            </ul>
                           </td>
                           <td>
                             <input
@@ -7592,10 +7551,11 @@ const Treatmentplan_update = () => {
                             onKeyDown={handleKeyOption7}
                           /> */}
                             <ul>
-        {option7?.length> 0 && option7.map((item, index) => (
-            <li key={index}>{item?.value}</li>
-        ))}
-    </ul>
+                              {option7?.length > 0 &&
+                                option7.map((item, index) => (
+                                  <li key={index}>{item?.value}</li>
+                                ))}
+                            </ul>
                           </td>
                           <td>
                             <input
@@ -7666,11 +7626,12 @@ const Treatmentplan_update = () => {
                             isCreatable={true}
                             onKeyDown={handleKeyOption8}
                           /> */}
-                             <ul>
-        {option8?.length> 0 && option8.map((item, index) => (
-            <li key={index}>{item?.value}</li>
-        ))}
-    </ul>
+                            <ul>
+                              {option8?.length > 0 &&
+                                option8.map((item, index) => (
+                                  <li key={index}>{item?.value}</li>
+                                ))}
+                            </ul>
                           </td>
                           <td>
                             <input
@@ -8038,6 +7999,7 @@ const Treatmentplan_update = () => {
                       />
                       <label htmlFor="Goal achieved">Goal achieved</label>
                     </div>
+
                     <div className="checkbox-style-data">
                       <input
                         type="checkbox"
@@ -8090,13 +8052,13 @@ const Treatmentplan_update = () => {
                   <div>
                     <input
                       type="checkbox"
-                      id="Clinical seam"
-                      checked={supportSystem.includes("Clinical seam")}
+                      id="Clinical Team"
+                      checked={supportSystem.includes("Clinical Team")}
                       onChange={() =>
-                        handleCheckboxChangeSupportSystem("Clinical seam")
+                        handleCheckboxChangeSupportSystem("Clinical Team")
                       }
                     />
-                    <label htmlFor="Clinical seam">Clinical seam</label>
+                    <label htmlFor="Clinical Team">Clinical Team</label>
                   </div>
                   <div>
                     <input
@@ -8734,31 +8696,6 @@ const Treatmentplan_update = () => {
                   </div>
                 </div>
 
-                <div className="yeschechbox2">
-                  <div>
-                    <span>
-                      This treatment plan has been developed before the resident
-                      receives physical health services or behavioral health
-                      services or within 48hours after the initial assessment is
-                      completed. It will be review and updated on an on-going
-                      basis according to the review date{" "}
-                      <span>
-                        <AutoSize
-                          type="date"
-                          value={textData}
-                          setValue={setTextData}
-                          placeholder="________"
-                        />
-                      </span>
-                      specified in the treatment plan, when a treatment goal is
-                      accomplished or changed, when additional information that
-                      affects the resident’s behavioral health assessment is
-                      identified and when the resident has a significant change
-                      in condition or experiences an event that affects
-                      treatment.
-                    </span>
-                  </div>
-                </div>
 
                 <div className="formsheading">
                   <label className="label-review-clinical">
@@ -8912,9 +8849,9 @@ const Treatmentplan_update = () => {
                     <input
                       type="checkbox"
                       id="refusalReason"
-                      checked={refusalReason === "yes"}
+                      checked={isReason === "no"}
                       onChange={() =>
-                        setrefusalReason(refusalReason === "yes" ? "no" : "yes")
+                        setIsReason(isReason === "no" ? "yes" : "no")
                       }
                     />
                     <label htmlFor="refusalReason">
@@ -8934,38 +8871,36 @@ const Treatmentplan_update = () => {
                   </h6>
                 </div>
 
-              
-
-                  <div className="form-field-child">
-                    <label style={{ fontWeight: "bold" }}>
-                      Resident or Resident’s representative{" "}
-                      <span style={{ fontSize: "15px", color: "gray" }}>
-                        (By signing this document, I acknowledge that I was
-                        asked, encouraged to participate in the assessment)
-                      </span>
-                      :
-                    </label>
-                    <input
-                      type="text"
-                      value={credentialsResident}
-                      placeholder="Enter text"
-                      required
-                      onChange={(e) => setCredentialsResident(e.target.value)}
-                    />
-                  </div>
+                <div className="form-field-child">
+                  <label style={{ fontWeight: "bold" }}>
+                    Resident or Resident’s representative{" "}
+                    <span style={{ fontSize: "15px", color: "gray" }}>
+                      (By signing this document, I acknowledge that I was asked,
+                      encouraged to participate in the assessment)
+                    </span>
+                    :
+                  </label>
+                  <input
+                    type="text"
+                    value={credentialsResident}
+                    placeholder="Enter text"
+                    required
+                    onChange={(e) => setCredentialsResident(e.target.value)}
+                  />
                 </div>
+              </div>
 
-                <div className="form-field-update">
-                  <div className="form-field-child">
-                    <label>First and Last Name:</label>
-                    <input
-                      type="text"
-                      value={nameResident}
-                      placeholder="Enter text"
-                      required
-                      onChange={(e) => setNameResident(e.target.value)}
-                    />
-                  </div>
+              <div className="form-field-update">
+                <div className="form-field-child">
+                  <label>First and Last Name:</label>
+                  <input
+                    type="text"
+                    value={nameResident}
+                    placeholder="Enter text"
+                    required
+                    onChange={(e) => setNameResident(e.target.value)}
+                  />
+                </div>
 
                 <div class="file-upload-box" style={{ marginTop: "0.5rem" }}>
                   <div className="file-upload-box-child hidePrint">
@@ -9140,7 +9075,6 @@ const Treatmentplan_update = () => {
             </form>
           </div>
         </div>
-       
       </div>
     </>
   );

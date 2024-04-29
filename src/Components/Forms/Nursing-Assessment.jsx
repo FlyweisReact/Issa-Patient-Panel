@@ -1,8 +1,6 @@
 import React, { useEffect, useState,useRef } from "react";
 import { IoArrowBackCircle } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import formupload from "../../img/formupload.png";
-// import AutosizeInput from "react-input-autosize";
 import body1 from "../../img/body1.png";
 import body2 from "../../img/body2.png";
 import body3 from "../../img/body3.png";
@@ -39,6 +37,7 @@ const NursingAssessment = () => {
     var signatureRightAndSide=document.getElementsByClassName("file-upload-box");
     // var formsheading2=document.getElementsByClassName("formsheading2");
     var submitButton=document.getElementsByClassName("form-actions");
+    var bodyiamge=document.getElementsByClassName("bodyiamge");
 
     // hide bottom
     var form_field_gender = document.getElementsByClassName("form-field-child");
@@ -74,6 +73,10 @@ const NursingAssessment = () => {
     }
 }
 
+for (let i = 0; i < bodyiamge.length; i++) {
+  bodyiamge[i].style.margin = "30px 20px"
+}
+
 
    
     handlePrint();
@@ -106,6 +109,10 @@ const NursingAssessment = () => {
       for (let j = 0; j < inputs.length; j++) {
           inputs[j].style.borderBottom = "1px solid black";
       }
+  }
+
+  for (let i = 0; i < bodyiamge.length; i++) {
+    bodyiamge[i].style.margin = "20px 20px"
   }
 
     }, 1000);
@@ -393,7 +400,7 @@ const ageInYears = Math.abs(ageInMilliseconds.getUTCFullYear() - 1970);
     setNutritionDiet("");
     setNutritionSpecialDietOrder("");
     setNutritionFluidRestrictions("");
-    setSkinCheck("");
+    setSkinCheck(false);
     setResidentDeniesSkinConcerns(false);
     setFront("");
     setBack("");
@@ -2357,6 +2364,8 @@ const handlerepsychosocialSymptoms = (symptom) => {
             </div> 
 
 
+            <div className="box-image-container-update"></div>
+
             <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
               <div className="form-field-child">
                 <label htmlFor="" className="label-review" style={{ fontSize: "20px" }}>Suicidal Risk Assessment:</label>
@@ -2378,6 +2387,8 @@ const handlerepsychosocialSymptoms = (symptom) => {
               </label>
             </div>
           </div>
+
+
 
           <label htmlFor="" className="label-review" style={{fontWeight:"bold"}}>Behavioral symptoms: </label>
           <div className="yeschechbox-review">
@@ -2560,6 +2571,11 @@ const handlerepsychosocialSymptoms = (symptom) => {
               />
               <label htmlFor="irritable">Irritable</label>
             </div>
+          
+          </div>
+
+          <div className="yeschechbox-review-nursing">
+        
             <div>
               <input
                 type="checkbox"
@@ -2595,7 +2611,8 @@ const handlerepsychosocialSymptoms = (symptom) => {
               </label>
             </div>
           </div>
-
+   
+   <div className="box-image-container-update"></div>
           
           <div className="yeschechbox-review-Current">
               <div><label style={{ fontWeight: "bold" }} >Current Medications:</label></div>
@@ -2709,7 +2726,7 @@ const handlerepsychosocialSymptoms = (symptom) => {
             <div>
               <input
                 type="checkbox"
-                value={skinCheck===true}
+                checked={skinCheck}
                 onChange={(e) => setSkinCheck(!skinCheck)}
               />
               <span>Resident denies skin concerns</span>
