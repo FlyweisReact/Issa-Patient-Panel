@@ -6936,14 +6936,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                      <label style={{ fontWeight: "bold" }}>
                     Substance Abuse history:
                   </label>
-                    <input
-                      type="checkbox"
-                      id="substanceAbuseHistory"
-                      checked={substanceAbuseHistory}
-                      onChange={() =>
-                        setSubstanceAbuseHistory(!substanceAbuseHistory)
-                      }
-                    />
+                   
                 
                 </div>
                   
@@ -9649,10 +9642,9 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </div>
               </div>
 
-              <div className="form-field">
-                <label style={{ fontWeight: "bold" }}>
-                  Significant Social/Developmental History:
-                </label>
+          
+              <div className="formsheading">
+                <h6 style={{ fontWeight: "bold" }}>Significant Social/Developmental History:</h6>
               </div>
 
               <div className="box-image-container">
@@ -9671,20 +9663,11 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </div>
               </div>
 
-              <div
-                className="form-field-single-update"
-                style={{ merginLeft: "10px",marginTop:"0.5rem" }}
-              >
-                <label>Educational history:</label>
-                <input
-                  type="text"
-                  id="approvedby"
-                  value={educationalHistory}
-                  placeholder="Enter here"
-                  required
-                  onChange={(e) => setEducationalHistory(e.target.value)}
-                />
+              <div className="formsheading">
+                <h6 style={{ fontWeight: "bold" }}>Educational history:</h6>
               </div>
+
+           
 
               <div className="form-field-update">
                 <div className="form-field-child">
@@ -9770,6 +9753,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   />
                 </div>
               </div>
+
               <div className="formsheading">
                 <h6 style={{ fontWeight: "bold" }}>Employment history:</h6>
               </div>
@@ -10597,7 +10581,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
               <div className="box-image-container">
                 <div className="form-field-single-update ">
-                  <label>Triggers:</label>
+                  <label>Behavioral Triggers:</label>
                   <input
                     type="text"
                     placeholder="Enter text"
@@ -12412,7 +12396,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   </div>
                   <div className="form-field-child">
                     <label htmlFor="bhpCredentials">
-                      Enter BHP Credentials:
+                      BHP Credentials:
                     </label>
                     <input
                       type="text"
@@ -14160,14 +14144,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                      <label style={{ fontWeight: "bold" }}>
                     Substance Abuse history:
                   </label>
-                    <input
-                      type="checkbox"
-                      id="substanceAbuseHistory"
-                      checked={substanceAbuseHistory}
-                      onChange={() =>
-                        setSubstanceAbuseHistory(!substanceAbuseHistory)
-                      }
-                    />
+                
                 
                 </div>
                   
@@ -16901,15 +16878,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 style={{ merginLeft: "10px",marginTop:"0.5rem" }}
               >
                 <label>Educational history:</label>
-                <input
-                  type="text"
-                  id="approvedby"
-                  value={educationalHistory}
-                  style={{borderBottom:'none',marginBottom:"5px"}}
-                  placeholder="Enter here"
-                  required
-                  onChange={(e) => setEducationalHistory(e.target.value)}
-                />
+              
               </div>
 
               <div className="form-field-update">
@@ -17825,7 +17794,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
               <div className="box-image-container">
                 <div className="form-field-single-update ">
-                  <label>Triggers:</label>
+                  <label>Behavioral Triggers:</label>
                   <input
                     type="text"
                     placeholder="Enter text"
@@ -19646,7 +19615,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   </div>
                   <div className="form-field-child">
                     <label htmlFor="bhpCredentials">
-                      Enter BHP Credentials:
+                      BHP Credentials:
                     </label>
                     <input
                       type="text"
