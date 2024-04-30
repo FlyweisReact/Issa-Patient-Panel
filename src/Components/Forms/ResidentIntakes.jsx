@@ -1257,7 +1257,6 @@ function formatDate(dateString) {
   useEffect(()=>{
     setiAgree(getApiData?.iAgree);
     // setResidentName("");
-    setCompanyName(userDetail?.companyName)
     setResidentSignature(getApiData?.residentSignature);
     setResidentDate(getApiData?.residentDate? formatDate(getApiData?.residentDate): "");
     setResidentSignatureTime(getApiData?.residentSignatureTime);
@@ -1412,14 +1411,19 @@ function formatDate(dateString) {
     setObligationsAndAuthorizationGuardianRepresentativeTime(getApiData?.obligationsAndAuthorizationGuardianRepresentativeTime);
   },[getApiData])
 
+  const [previusData,setPreviusData]=useState(false)
+
   useEffect(()=>{
-    Resident_form_get(userId,setGetApiData);
-  },[userId])
+    if(previusData){
+      Resident_form_get(userId,setGetApiData);
+    }
+  },[userId,previusData])
 
 
   useEffect(() => {
     setUserId(userDetail?._id);
     setUser(userDetail?.fullName);
+    setCompanyName(userDetail?.companyName)
     
   }, [userDetail]);
 
@@ -4827,9 +4831,12 @@ function formatDate(dateString) {
             )}
             {  page===8 && 
                <div className="form-actions">
-               <button type="submit"  className="hidePrint" style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem"}}>
-                 SUBMIT DETAILS
-               </button>
+              <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+              SUBMIT DETAILS
+            </button>
+               <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+               Previous Form
+            </button>
              </div>
             }
               

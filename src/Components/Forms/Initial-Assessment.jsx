@@ -38,6 +38,8 @@ const InitialAssessment = () => {
       // print under line hidden
       var form_field_gender = document.getElementsByClassName("form-field-child-gender");
 
+      // var form_field_single_update=document.getElementsByClassName("form-field-single-update");
+
 
     for (let i = 0; i < hideData.length; i++) {
       hideData[i].style.display = "block";
@@ -1104,7 +1106,7 @@ const InitialAssessment = () => {
   // protectiveFactors other
   const [otherProtectiveFactorsApply,setOtherProtectiveFactorsApply]=useState("")
   // shispal
-  const [otherProtectiveFactorsYesNo,setOtherProtectiveFactorsYesNO]=useState(false)
+  const [otherProtectiveFactorsYesNo,setOtherProtectiveFactorsYesNO]=useState(null)
   const [otherProtectiveFactorsDescription,setOtherProtectiveFactorsDescription]=useState("")
 
   const [protectiveFactorsArray, setProtectiveFactorsArray] = useState([]);
@@ -2109,9 +2111,15 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
   },[getApiData])
 
+
+  const [previusData,setPreviusData]=useState(false);
+
   useEffect(()=>{
-    initial_assestment_get(patientId,setGetApiData);
-  },[patientId])
+    if(previusData){
+      initial_assestment_get(patientId,setGetApiData);
+    }
+    
+  },[patientId,previusData])
 
 
   useEffect(() => {
@@ -12467,6 +12475,9 @@ setBhpTime(getApiData?.bhpInformation?.time);
               <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
               SUBMIT DETAILS
             </button>
+            <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+              Previous Form
+            </button>
             </div>
           </form>
         </div>
@@ -19687,6 +19698,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
               <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
               SUBMIT DETAILS
             </button>
+         
             </div>
           </form>
         </div>

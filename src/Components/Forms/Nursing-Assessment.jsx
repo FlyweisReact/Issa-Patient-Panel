@@ -15,7 +15,7 @@ import SingInModel from "../Modal/SingInModel";
 import Draftinmodel from "../Modal/Draftinmodel";
 import SingInUpdateModel from "../Modal/SingInUpdateModel";
 import { useReactToPrint } from "react-to-print";
-import { Button } from "react-bootstrap";
+import AutoSize from "../AutoSize/AutoSize"
 
 
 const NursingAssessment = () => {
@@ -314,12 +314,14 @@ function formatDate(dateString) {
     setRnTime(getApiData?.rnTime)
   },[getApiData])
 
-  console.log(getApiData,"getApiData data nursing")
   
+  const [previusData,setPreviusData]=useState(false);
 
   useEffect(()=>{
-    Nurssing_form_get(userId,setGetApiData);
-  },[userId])
+    if(previusData){
+      Nurssing_form_get(userId,setGetApiData);
+    }
+  },[userId,previusData])
 
   useEffect(() => {
     //calculater date
@@ -958,7 +960,10 @@ const handlerepsychosocialSymptoms = (symptom) => {
             </select>
        
           </div> */}
-            <h2 style={{ marginTop: "0.5rem", fontWeight: "bold" }}>Vitals:</h2>
+          <div>
+          <label className="label-review" style={{fontWeight:"bold",marginTop:"0.5rem"}}>Vitals:</label>
+          </div>
+           
 
           <div className="box-image-container">
             <div className="form-field-update">
@@ -2511,7 +2516,7 @@ const handlerepsychosocialSymptoms = (symptom) => {
               <label htmlFor="panicAttacks">Panic attacks</label>
             </div>
           </div>
-          <label htmlFor="" className="label-review" style={{fontWeight:"bold"}}>Psychosocial symptoms:</label>
+          <label  className="label-review" style={{fontWeight:"bold"}}>Psychosocial symptoms:</label>
           <div className="yeschechbox-review">
             <div>
               <input
@@ -2615,7 +2620,7 @@ const handlerepsychosocialSymptoms = (symptom) => {
    <div className="box-image-container-update"></div>
           
           <div className="yeschechbox-review-Current">
-              <div><label style={{ fontWeight: "bold" }} >Current Medications:</label></div>
+              <div><label className="label-review" style={{fontWeight:"bold"}} >Current Medications:</label></div>
           
             <div  style={{display:'flex',gap:"10px",alignItems:"center"}}>
               <input
@@ -2635,7 +2640,7 @@ const handlerepsychosocialSymptoms = (symptom) => {
             <div style={{display:'flex',gap:"10px",alignItems:"center"}}>
 
             <div style={{display:"flex", columnGap:"1rem"}}>
-                  <label style={{ fontWeight: "bold" }} >Nutrition:  </label>
+                  <label className="label-review" style={{fontWeight:"bold"}} >Nutrition:  </label>
                   <label>Diet: </label>
             </div>
 
@@ -2656,13 +2661,13 @@ const handlerepsychosocialSymptoms = (symptom) => {
                 onChange={() => setNutritionDiet("Special diet")}
               />
                   <label htmlFor="Special diet">Special diet ordered:</label>
-                  {/* <AutosizeInput
-                    type="text"
-                    inputStyle={{ border: "none", outline: "none" }}
-                    placeholder="________"
-                    value={nutritionSpecialDietOrder}
-                    onChange={(e) => setNutritionSpecialDietOrder(e.target.value)}
-                  /> */}
+                  
+                  <AutoSize
+                      value={nutritionSpecialDietOrder}
+                      setValue={setNutritionSpecialDietOrder}
+                      placeholder="_________"
+                    />
+               
             </div>
             </div>
 
@@ -2987,8 +2992,11 @@ const handlerepsychosocialSymptoms = (symptom) => {
             </div>
 
             <div className="form-actions hidePrint">
-            <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem"}}>
+            <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
               SUBMIT DETAILS
+            </button>
+            <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+            Previous Form
             </button>
           </div>
 

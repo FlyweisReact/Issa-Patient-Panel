@@ -261,6 +261,7 @@ const Treatmentplan_update = () => {
 
   // Counseling and Frequency : Total of minimum Blank ___hours daily
   const [minimumHoure, setMinimumHoure] = useState("");
+  const [IndividualComment,setIndividualComment]=useState("");
   const [counselingOptions, setCounselingOptions] = useState([]);
   const [counselingOptionsText, setCounselingOptionsOther] = useState("");
   const [counselingOptionsTextBoolean, setCounselingOptionsTextBoolean] =
@@ -631,6 +632,7 @@ const Treatmentplan_update = () => {
 
     // Resetting counseling and frequency state variables
     setMinimumHoure(getApiData?.counselingFrequencyMinimum);
+    setIndividualComment(getApiData?.IndividualComment);
     setCounselingOptions(
       getApiData?.counselingFrequency ? getApiData?.counselingFrequency : []
     );
@@ -941,9 +943,14 @@ const Treatmentplan_update = () => {
     setTimeBhp(getApiData?.signaturesBhp?.time);
   }, [getApiData]);
 
+  const [previusData,setPreviusData]=useState(false)
+
   useEffect(() => {
-    patient_form_treatment_get(userId, setGetApiData);
-  }, [userId]);
+    if(previusData){
+      patient_form_treatment_get(userId, setGetApiData);
+    }
+   
+  }, [userId,previusData]);
 
   useEffect(() => {
     setUserId(user?._id);
@@ -1060,6 +1067,7 @@ const Treatmentplan_update = () => {
       counselingFrequency: counselingOptions,
       counselingFrequencyMinimum: minimumHoure,
       counselingFrequencyComment: counselingOptionsText,
+      IndividualComment,
 
       maintainSobrietyType: option1Array,
       maintainSobrietyAdmissionMeasure: admissionMeasure1,
@@ -2160,6 +2168,38 @@ const Treatmentplan_update = () => {
     setSaveAsDraft(true);
     setDraftModel(true);
   };
+
+
+  // table data treatment plan
+  // const [treatmentTable, setTreatmentTable] = useState([
+  //   {
+  //     heading: "Maintain sobriety:",
+  //     select: option1Option.length > 0 ? (
+  //       <Select
+  //         isMulti
+  //         options={option1Option}
+  //         value={option1}
+  //         onChange={option1Handler}
+  //         isCreatable={true}
+  //         onKeyDown={handleKeyOption1}
+  //       />
+  //     ) : null,
+  //     admissionMeasure: admissionMeasure1?admissionMeasure1:"",
+  //     setAdmissionMeasure: setAdmissionMeasure1,
+  //     currentMeasure: currentMeasure1 || "",
+  //     setCurrentMeasure: setCurrentMeasure1,
+  //     estimatedDateOfCompletion: estimatedDateOfCompletion1 || "",
+  //     setEstimatedDateOfCompletion: setEstimatedDateOfCompletion1,
+  //     comments: comments1 || "",
+  //     setComment: setComment1
+  //   }
+  // ]);
+
+  // const handleDeleteArray=(index)=>{
+  //   const updatedArray = [...treatmentTable];
+  //   updatedArray.splice(index, 1);
+  //   setTreatmentTable(updatedArray);
+  // }
 
   return (
     <>
@@ -3544,6 +3584,11 @@ const Treatmentplan_update = () => {
                     <label htmlFor="Individual Therapy: Please Specify">
                       Individual Therapy: Please Specify
                     </label>
+                    <AutoSize
+                      value={IndividualComment}
+                      setValue={setIndividualComment}
+                      placeholder="_____________"
+                    />
                   </div>
                   <div className="checkboxitem-update">
                     <input
@@ -3634,6 +3679,99 @@ const Treatmentplan_update = () => {
                   </h6>
                 </div>
 
+
+                {/* <div className="needs-interventions-container2 table-respnosive">
+                  <div className="needs-interventions-column2">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Treatment Goals</th>
+                          <th>Admission Measure</th>
+                          <th>Current Measure</th>
+                          <th>Estimated Date of Goal Completion</th>
+                          <th>Comments</th>
+                          <th>Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                       {
+                        treatmentTable?.map((item,index)=>(
+                          <tr key={index}>
+                          <td>
+                            {" "}
+                            <p>{index+1}:{" "}{item?.heading}</p>
+                            {item?.select}
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={item?.admissionMeasure}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                item?.setAdmissionMeasure(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={item?.currentMeasure}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                item?.setCurrentMeasure(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="date"
+                              value={item?.estimatedDateOfCompletion}
+                              className="treatment_plan_table"
+                              required
+                              onChange={(e) =>
+                                item?.setEstimatedDateOfCompletion(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              className="treatment_plan_table"
+                              rows={Math.max(
+                                item?.comments ? item?.comments.split("\n").length : 1,
+                                1
+                              )}
+                              value={item?.comments || ""}
+                              placeholder="___________"
+                              onChange={(e) => item?.setComment(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                  e.preventDefault();
+                                  item?.setComment(
+                                    (prevComment) => prevComment + "\n"
+                                  );
+                                }
+                              }}
+                            />
+                          </td>
+                          <td>
+                            <AiFillDelete style={{    fontSize: "1.5rem",
+                                  cursor: "pointer",}} onClick={()=>handleDeleteArray(index)}/>
+                          </td>
+                        </tr>  
+                        ))
+                       }
+                              
+                      </tbody>
+                    </table>
+                  </div>
+                </div> */}
+
+
+
                 <div className="needs-interventions-container2 table-respnosive">
                   <div className="needs-interventions-column2">
                     <table>
@@ -3644,6 +3782,7 @@ const Treatmentplan_update = () => {
                           <th>Current Measure</th>
                           <th>Estimated Date of Goal Completion</th>
                           <th>Comments</th>
+                          {/* <th>Delete</th> */}
                         </tr>
                       </thead>
                       <tbody>
@@ -3715,6 +3854,9 @@ const Treatmentplan_update = () => {
                               }}
                             />
                           </td>
+                          {/* <td>
+                            <AiFillDelete style={{fontSize:"20px"}}/>
+                          </td> */}
                         </tr>
 
                         <tr>
@@ -3766,6 +3908,7 @@ const Treatmentplan_update = () => {
                             />
                           </td>
                           <td>
+
                             <textarea
                               className="treatment_plan_table"
                               rows={Math.max(
@@ -5556,7 +5699,7 @@ const Treatmentplan_update = () => {
               )}
 
               <div className="form-actions hidePrint">
-                <button
+                {/* <button
                   type="submit"
                   style={{
                     padding: "5px 20px",
@@ -5569,7 +5712,13 @@ const Treatmentplan_update = () => {
                   }}
                 >
                   SUBMIT DETAILS
-                </button>
+                </button> */}
+                 <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+              SUBMIT DETAILS
+            </button>
+                <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+                Previous Form
+            </button>
               </div>
             </form>
           </div>
@@ -6979,6 +7128,11 @@ const Treatmentplan_update = () => {
                     <label htmlFor="Individual Therapy: Please Specify">
                       Individual Therapy: Please Specify
                     </label>
+                    <AutoSize
+                      value={IndividualComment}
+                      setValue={setIndividualComment}
+                      placeholder="_____________"
+                    />
                   </div>
                   <div className="checkboxitem-update">
                     <input
@@ -7086,14 +7240,7 @@ const Treatmentplan_update = () => {
                           <td>
                             {" "}
                             <p>1: Maintain sobriety:</p>
-                            {/* <Select
-                            isMulti
-                            options={option1Option}
-                            value={option1}
-                            onChange={option1Handler}
-                            isCreatable={true}
-                            onKeyDown={handleKeyOption1}
-                          /> */}
+                       
                             <ul>
                               {option1?.length > 0 &&
                                 option1.map((item, index) => (
@@ -7137,6 +7284,7 @@ const Treatmentplan_update = () => {
                             />
                           </td>
                           <td>
+                         
                             <textarea
                               className="treatment_plan_table"
                               rows={Math.max(
@@ -7162,14 +7310,7 @@ const Treatmentplan_update = () => {
                           <td>
                             {" "}
                             <p>2: Independent Living Skills:</p>
-                            {/* <Select
-                            isMulti
-                            options={option2Option}
-                            value={option2}
-                            onChange={option2Handler}
-                            isCreatable={true}
-                            onKeyDown={handleKeyOption2}
-                          /> */}
+                       
                             <ul>
                               {option2?.length > 0 &&
                                 option2.map((item, index) => (
@@ -7213,6 +7354,7 @@ const Treatmentplan_update = () => {
                             />
                           </td>
                           <td>
+                            
                             <textarea
                               className="treatment_plan_table"
                               rows={Math.max(

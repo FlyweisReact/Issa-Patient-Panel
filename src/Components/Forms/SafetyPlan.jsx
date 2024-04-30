@@ -203,9 +203,13 @@ function formatDate(dateString) {
     setSignatureTime(getApiData?.signatureTime);
   },[getApiData])
 
+  const [previusData,setPreviusData]=useState(false)
+
   useEffect(()=>{
-    Safety_form_get(userId,setGetApiData);
-  },[userId])
+    if(previusData){
+      Safety_form_get(userId,setGetApiData);
+    }
+  },[userId,previusData])
  
 
   useEffect(() => {
@@ -1019,14 +1023,16 @@ function formatDate(dateString) {
            
           </div>
           <div className="form-actions hidePrint">
-            <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem"}}>
+          <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
               SUBMIT DETAILS
+            </button>
+            <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+            Previous Form
             </button>
           </div>
         </form>
       </div>
       
-
 
       {
         draftModel && (<Draftinmodel onClose={() => setDraftModel(false)}/>)

@@ -72,7 +72,7 @@ const UpdateProfile = () => {
               height: "40px",
               cursor: "pointer",
             }}
-            onClick={() => navigate("/appointment_scheduling")}
+            onClick={() => navigate("/patient_panel")}
           />
         </div>
         <div className="form-container">

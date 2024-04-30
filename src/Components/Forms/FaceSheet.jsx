@@ -309,9 +309,13 @@ function formatDate(dateString) {
     setSegnatureTime(getApiData?.time);
   },[getApiData])
 
+  const [previusData,setPreviusData]=useState("");
+
   useEffect(()=>{
-    faceSheet_form_get(patientId,setGetApiData);
-  },[patientId])
+    if(previusData){
+      faceSheet_form_get(patientId,setGetApiData);
+    }
+  },[patientId,previusData])
 
 
   useEffect(() => {
@@ -1467,8 +1471,11 @@ function formatDate(dateString) {
             }
     
             <div className="form-actions hidePrint">
-              <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center"}} >
+            <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
               SUBMIT DETAILS
+            </button>
+            <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+            Previous Form
             </button>
             </div>
         </form>

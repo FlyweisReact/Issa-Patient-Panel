@@ -7,7 +7,7 @@ function AutoSize({type: type1,value,setValue,placeholder}) {
       const canvas = document.createElement('canvas');
       const context = canvas.getContext('2d');
       context.font = '16px Arial'; 
-      return context.measureText(text).width + 5; 
+      return context.measureText(text).width + 10; 
     };
   
   useEffect(() => {
