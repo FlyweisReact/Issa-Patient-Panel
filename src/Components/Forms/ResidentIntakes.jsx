@@ -11,8 +11,10 @@ import { useReactToPrint } from "react-to-print";
 import { AiFillDelete } from "react-icons/ai";
 import Select from "react-select";
 import AutoSize from "../AutoSize/AutoSize";
+import Loader from "../../Pages/LandingPage/Loader";
 
 const ResidentIntakes = () => {
+  const [loading,setLoading]=useState("");
 
   const navigate = useNavigate();
   //section 1
@@ -1413,12 +1415,23 @@ function formatDate(dateString) {
 
   const [previusData,setPreviusData]=useState(false)
 
-  useEffect(()=>{
-    if(previusData){
-      Resident_form_get(userId,setGetApiData);
-    }
-  },[userId,previusData])
+  // useEffect(()=>{
+  //   if(previusData){
+  //     Resident_form_get(userId,setGetApiData);
+  //   }
+  // },[userId,previusData])
 
+  useEffect(() => {
+    setLoading(true); 
+    if (previusData) {
+      Resident_form_get(userId, (data) => {
+        setGetApiData(data);
+        setLoading(false); 
+      });
+    } else {
+      setLoading(false); 
+    }
+  }, [userId, previusData]);
 
   useEffect(() => {
     setUserId(userDetail?._id);
@@ -4835,7 +4848,9 @@ function formatDate(dateString) {
               SUBMIT DETAILS
             </button>
                <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
-               Previous Form
+               {
+                    loading ? <Loader/> : "PREVIOUS FORM"
+                  }
             </button>
              </div>
             }

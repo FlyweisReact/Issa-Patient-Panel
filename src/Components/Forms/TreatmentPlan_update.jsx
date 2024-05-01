@@ -12,8 +12,11 @@ import Draftinmodel from "../Modal/Draftinmodel";
 import SingInUpdateModel from "../Modal/SingInUpdateModel";
 import { useReactToPrint } from "react-to-print";
 import AutoSize from "../AutoSize/AutoSize";
+import Loader from "../../Pages/LandingPage/Loader"; 
 
 const Treatmentplan_update = () => {
+  const [loading,setLoading]=useState(false);
+
   const componentRef = React.useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -945,12 +948,25 @@ const Treatmentplan_update = () => {
 
   const [previusData,setPreviusData]=useState(false)
 
+  // useEffect(() => {
+  //   setLoading(true);
+  //   if(previusData){
+  //     patient_form_treatment_get(userId, setGetApiData);
+  //   }
+  //   setLoading(false);
+  // }, [userId,previusData]);
+
   useEffect(() => {
-    if(previusData){
-      patient_form_treatment_get(userId, setGetApiData);
+    setLoading(true); 
+    if (previusData) {
+      patient_form_treatment_get(userId, (data) => {
+        setGetApiData(data);
+        setLoading(false); 
+      });
+    } else {
+      setLoading(false); 
     }
-   
-  }, [userId,previusData]);
+  }, [userId, previusData]);
 
   useEffect(() => {
     setUserId(user?._id);
@@ -5782,7 +5798,10 @@ tableshow7 &&  <tr>
               SUBMIT DETAILS
             </button>
                 <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
-                Previous Form
+                  {
+                    loading ? <Loader/> : "PREVIOUS FORM"
+                  }
+                
             </button>
               </div>
             </form>

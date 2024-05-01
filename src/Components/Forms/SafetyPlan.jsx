@@ -10,8 +10,10 @@ import Draftinmodel from "../Modal/Draftinmodel";
 import SingInUpdateModel from "../Modal/SingInUpdateModel";
 import { useReactToPrint } from "react-to-print";
 import { AiFillDelete } from "react-icons/ai";
+import Loader from "../../Pages/LandingPage/Loader";
 
 const SafetyPlan = () => {
+  const [loading,setLoading]=useState(false);
   const [draftModel,setDraftModel]=useState(false);
   const [saveAsDraft,setSaveAsDraft]=useState(false);
   const componentRef = React.useRef();
@@ -205,12 +207,23 @@ function formatDate(dateString) {
 
   const [previusData,setPreviusData]=useState(false)
 
-  useEffect(()=>{
-    if(previusData){
-      Safety_form_get(userId,setGetApiData);
-    }
-  },[userId,previusData])
+  // useEffect(()=>{
+  //   if(previusData){
+  //     Safety_form_get(userId,setGetApiData);
+  //   }
+  // },[userId,previusData])
  
+  useEffect(() => {
+    setLoading(true); 
+    if (previusData) {
+      Safety_form_get(userId, (data) => {
+        setGetApiData(data);
+        setLoading(false); 
+      });
+    } else {
+      setLoading(false); 
+    }
+  }, [userId, previusData]);
 
   useEffect(() => {
     setUserId(userDetail?._id);
@@ -1027,7 +1040,9 @@ function formatDate(dateString) {
               SUBMIT DETAILS
             </button>
             <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
-            Previous Form
+            {
+                    loading ? <Loader/> : "PREVIOUS FORM"
+                  }
             </button>
           </div>
         </form>

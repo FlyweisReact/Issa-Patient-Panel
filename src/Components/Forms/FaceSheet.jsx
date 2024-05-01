@@ -9,8 +9,10 @@ import {
 import Draftinmodel from "../Modal/Draftinmodel";
 import { useReactToPrint } from "react-to-print";
 import SingInUpdateModel from "../Modal/SingInUpdateModel";
+import Loader from "../../Pages/LandingPage/Loader";
 
 const FaceSheet = () => {
+  const [loading,setLoading]=useState(false);
   const [showSignature,setShowSignature]=useState(false);
   const [saveAsDraft,setSaveAsDraft]=useState(false);
   //draft model
@@ -311,11 +313,23 @@ function formatDate(dateString) {
 
   const [previusData,setPreviusData]=useState("");
 
-  useEffect(()=>{
-    if(previusData){
-      faceSheet_form_get(patientId,setGetApiData);
+  // useEffect(()=>{
+  //   if(previusData){
+  //     faceSheet_form_get(patientId,setGetApiData);
+  //   }
+  // },[patientId,previusData])
+
+  useEffect(() => {
+    setLoading(true); 
+    if (previusData) {
+      faceSheet_form_get(patientId, (data) => {
+        setGetApiData(data);
+        setLoading(false); 
+      });
+    } else {
+      setLoading(false); 
     }
-  },[patientId,previusData])
+  }, [patientId, previusData]);
 
 
   useEffect(() => {
@@ -1475,7 +1489,9 @@ function formatDate(dateString) {
               SUBMIT DETAILS
             </button>
             <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
-            Previous Form
+            {
+                    loading ? <Loader/> : "PREVIOUS FORM"
+                  }
             </button>
             </div>
         </form>

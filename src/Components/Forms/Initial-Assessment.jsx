@@ -10,11 +10,14 @@ import { user_detail, initialAssestment_form,initial_assestment_get } from "../.
 import Select from "react-select";
 import SingInUpdateModel from "../Modal/SingInUpdateModel";
 import Draftinmodel from "../Modal/Draftinmodel";
+import Loader from "../../Pages/LandingPage/Loader";
 
 import { useReactToPrint } from "react-to-print";
 import AutoSize from "../AutoSize/AutoSize";
 
 const InitialAssessment = () => {
+  const [loading,setLoading]=useState(false);
+
   const navigate = useNavigate();
   const componentRef = React.useRef();
   const handlePrint = useReactToPrint({
@@ -2114,13 +2117,24 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
   const [previusData,setPreviusData]=useState(false);
 
-  useEffect(()=>{
-    if(previusData){
-      initial_assestment_get(patientId,setGetApiData);
-    }
+  // useEffect(()=>{
+  //   if(previusData){
+  //     initial_assestment_get(patientId,setGetApiData);
+  //   }
     
-  },[patientId,previusData])
+  // },[patientId,previusData])
 
+  useEffect(() => {
+    setLoading(true); 
+    if (previusData) {
+      initial_assestment_get(patientId, (data) => {
+        setGetApiData(data);
+        setLoading(false); 
+      });
+    } else {
+      setLoading(false); 
+    }
+  }, [patientId, previusData]);
 
   useEffect(() => {
     setPatientId(userData?._id);
@@ -12476,7 +12490,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
               SUBMIT DETAILS
             </button>
             <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
-              Previous Form
+            
+              {
+                    loading ? <Loader/> : "PREVIOUS FORM"
+                  }
             </button>
             </div>
           </form>

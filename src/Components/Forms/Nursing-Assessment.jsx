@@ -16,9 +16,12 @@ import Draftinmodel from "../Modal/Draftinmodel";
 import SingInUpdateModel from "../Modal/SingInUpdateModel";
 import { useReactToPrint } from "react-to-print";
 import AutoSize from "../AutoSize/AutoSize"
+import Loader from "../../Pages/LandingPage/Loader";
 
 
 const NursingAssessment = () => {
+  const [loading,setLoading]=useState(false);
+
   const [showSingInOne, setShowSingInOne] = useState(false);
   const [showSingInTwo, setShowSingInTwo] = useState(false);
   const [draftModel,setDraftModel]=useState(false);
@@ -317,11 +320,23 @@ function formatDate(dateString) {
   
   const [previusData,setPreviusData]=useState(false);
 
-  useEffect(()=>{
-    if(previusData){
-      Nurssing_form_get(userId,setGetApiData);
+  // useEffect(()=>{
+  //   if(previusData){
+  //     Nurssing_form_get(userId,setGetApiData);
+  //   }
+  // },[userId,previusData])
+
+  useEffect(() => {
+    setLoading(true); 
+    if (previusData) {
+      Nurssing_form_get(userId, (data) => {
+        setGetApiData(data);
+        setLoading(false); 
+      });
+    } else {
+      setLoading(false); 
     }
-  },[userId,previusData])
+  }, [userId, previusData]);
 
   useEffect(() => {
     //calculater date
@@ -2996,7 +3011,9 @@ const handlerepsychosocialSymptoms = (symptom) => {
               SUBMIT DETAILS
             </button>
             <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
-            Previous Form
+            {
+                    loading ? <Loader/> : "PREVIOUS FORM"
+                  }
             </button>
           </div>
 
