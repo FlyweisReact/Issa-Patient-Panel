@@ -60,9 +60,6 @@ export const LoginForm = () => {
 
   };
 
-
-
-
   const handleLinkSend = async (e) => {
     e.preventDefault();
     if (newPassword1) {

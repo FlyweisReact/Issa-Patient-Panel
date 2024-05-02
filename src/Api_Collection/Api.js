@@ -5,7 +5,8 @@ import { auth, db } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { setDocumentID } from "../Store/chatSlice";
 
-export const BaseUrl = "https://issa-backend.vercel.app/api/v1/";
+
+export const BaseUrl = process.env.React_App_BaseUrl;
 
 const Token = {
   headers: {
@@ -61,7 +62,7 @@ export const LoginUser = ({ setLoading, payload, navigate }) => {
     } catch (error) {
       const msg = error?.response?.data?.message || "Something went worng !";
      
-      show_notification("Success !", `${msg}`, "success");
+      show_notification("Fail !", `${msg}`, "danger");
     } finally {
       setLoading(false);
     }
