@@ -868,55 +868,55 @@ const InitialAssessment = () => {
   const [BathingGood,setBathingGood]=useState(false);
   const [BathingFair,setBathingFair]=useState(false);
   const [BathingNotSoGood,setBathingNotSoGood]=useState(false);
-  const [BathingGoodNeedAssist,setBathingGoodNeedAssist]=useState(false);
+  const [BathingGoodNeedAssist,setBathingGoodNeedAssist]=useState(null);
   const [BathingComments,setBathingComments]=useState("");
 
   const [GroomingGood,setGroomingGood]=useState(false);
   const [GroomingFair,setGroomingFair]=useState(false);
   const [GroomingNotSoGood,setGroomingNotSoGood]=useState(false);
-  const [GroomingGoodNeedAssist,setGroomingGoodNeedAssist]=useState(false);
+  const [GroomingGoodNeedAssist,setGroomingGoodNeedAssist]=useState(null);
   const [GroomingComments,setGroomingComments]=useState("");
 
   const [MobilityGood,setMobilityGood]=useState(false);
   const [MobilityFair,setMobilityFair]=useState(false);
   const [MobilityNotSoGood,setMobilityNotSoGood]=useState(false);
-  const [MobilityGoodNeedAssist,setMobilityGoodNeedAssist]=useState(false);
+  const [MobilityGoodNeedAssist,setMobilityGoodNeedAssist]=useState(null);
   const [MobilityComments,setMobilityComments]=useState("");
 
   const [HouseworkGood,setHouseworkGood]=useState(false);
   const [HouseworkFair,setHouseworkFair]=useState(false);
   const [HouseworkNotSoGood,setHouseworkNotSoGood]=useState(false);
-  const [HouseworkGoodNeedAssist,setHouseworkGoodNeedAssist]=useState(false);
+  const [HouseworkGoodNeedAssist,setHouseworkGoodNeedAssist]=useState(null);
   const [HouseworkComments,setHouseworkComments]=useState("");
 
   const [ShoppingGood,setShoppingGood]=useState(false);
   const [ShoppingFair,setShoppingFair]=useState(false);
   const [ShoppingNotSoGood,setShoppingNotSoGood]=useState(false);
-  const [ShoppingGoodNeedAssist,setShoppingGoodNeedAssist]=useState(false);
+  const [ShoppingGoodNeedAssist,setShoppingGoodNeedAssist]=useState(null);
   const [ShoppingComments,setShoppingComments]=useState("");
 
   const [ManagingGood,setManagingGood]=useState(false);
   const [ManagingFair,setManagingFair]=useState(false);
   const [ManagingNotSoGood,setManagingNotSoGood]=useState(false);
-  const [ManagingGoodNeedAssist,setManagingGoodNeedAssist]=useState(false);
+  const [ManagingGoodNeedAssist,setManagingGoodNeedAssist]=useState(null);
   const [ManagingComments,setManagingComments]=useState("");
 
   const [PreparingGood,setPreparingGood]=useState(false);
   const [PreparingFair,setPreparingFair]=useState(false);
   const [PreparingNotSoGood,setPreparingNotSoGood]=useState(false);
-  const [PreparingGoodNeedAssist,setPreparingGoodNeedAssist]=useState(false);
+  const [PreparingGoodNeedAssist,setPreparingGoodNeedAssist]=useState(null);
   const [PreparingComments,setPreparingComments]=useState("");
 
   const [EatingGood,setEatingGood]=useState(false);
   const [EatingFair,setEatingFair]=useState(false);
   const [EatingNotSoGood,setEatingNotSoGood]=useState(false);
-  const [EatingGoodNeedAssist,setEatingGoodNeedAssist]=useState(false);
+  const [EatingGoodNeedAssist,setEatingGoodNeedAssist]=useState(null);
   const [EatingComments,setEatingComments]=useState("");
 
   const [ToiletingGood,setToiletingGood]=useState(false);
   const [ToiletingFair,setToiletingFair]=useState(false);
   const [ToiletingNotSoGood,setToiletingNotSoGood]=useState(false);
-  const [ToiletingGoodNeedAssist,setToiletingGoodNeedAssist]=useState(false);
+  const [ToiletingGoodNeedAssist,setToiletingGoodNeedAssist]=useState(null);
   const [ToiletingComments,setToiletingComments]=useState("");
 
     // Current Independent Living Skills:
@@ -1233,6 +1233,79 @@ const [Additional1Description,setAdditional1Description]=useState("");
   const [bhpTime, setBhpTime] = useState("");
 
 // ========table delete state
+// Conditions
+const [condition1,setConditions1]=useState(true);
+const [condition2,setConditions2]=useState(true);
+const [condition3,setConditions3]=useState(true);
+const [condition4,setConditions4]=useState(true);
+const [condition5,setConditions5]=useState(true);
+const [condition6,setConditions6]=useState(true);
+const [condition7,setConditions7]=useState(true);
+const [condition8,setConditions8]=useState(true);
+const [condition9,setConditions9]=useState(true);
+const [condition10,setConditions10]=useState(true);
+const [condition11,setConditions11]=useState(true);
+const [condition12,setConditions12]=useState(true);
+const [condition13,setConditions13]=useState(true);
+const [condition14,setConditions14]=useState(true);
+const [condition15,setConditions15]=useState(true);
+const [condition16,setConditions16]=useState(true);
+const [condition17,setConditions17]=useState(true);
+const [condition18,setConditions18]=useState(true);
+const [condition19,setConditions19]=useState(true);
+const [condition20,setConditions20]=useState(true);
+const [condition21,setConditions21]=useState(true);
+const [condition22,setConditions22]=useState(true);
+const [condition23,setConditions23]=useState(true);
+const [condition24,setConditions24]=useState(true);
+const [condition25,setConditions25]=useState(true);
+const [condition26,setConditions26]=useState(true);
+
+
+const ConditionDelete=(index)=>{
+  const tempMedicalDelet=[...typeArray];
+  tempMedicalDelet.splice(index,1);
+  setTypeArray(tempMedicalDelet);
+}
+
+// Substance Abuse history type
+const [type1,setType1]=useState(true);
+const [type2,setType2]=useState(true);
+const [type3,setType3]=useState(true);
+const [type4,setType4]=useState(true);
+const [type5,setType5]=useState(true);
+const [type6,setType6]=useState(true);
+const [type7,setType7]=useState(true);
+const [type8,setType8]=useState(true);
+const [type9,setType9]=useState(true);
+const [type10,setType10]=useState(true);
+const [type11,setType11]=useState(true);
+const [type12,setType12]=useState(true);
+
+const TypeDelete=(index)=>{
+  const tempMedicalDelet=[...typeArray];
+  tempMedicalDelet.splice(index,1);
+  setTypeArray(tempMedicalDelet);
+}
+
+// Current Independent Living Skills
+const [Independent1,setIndependent1]=useState(true);
+const [Independent2,setIndependent2]=useState(true);
+const [Independent3,setIndependent3]=useState(true);
+const [Independent4,setIndependent4]=useState(true);
+const [Independent5,setIndependent5]=useState(true);
+const [Independent6,setIndependent6]=useState(true);
+const [Independent7,setIndependent7]=useState(true);
+const [Independent8,setIndependent8]=useState(true);
+const [Independent9,setIndependent9]=useState(true);
+
+
+const IndependentDelete=(index)=>{
+  const tempMedicalDelet=[...handleRiskFactorActivityArray];
+  tempMedicalDelet.splice(index,1);
+  setHandleRiskFactorActivityArray(tempMedicalDelet);
+}
+
 // Risk Factors:
 const [riskFactor1,setRiskFactor1]=useState(true);
 const [riskFactor2,setRiskFactor2]=useState(true);
@@ -2071,12 +2144,17 @@ setPsychiatricDiagnosesArray(getApiData?.psychiatricDiagnoses?getApiArrayData(4,
 
 setPrimaryIcdCode(getApiData?.medicalDiagnoses?.[0]?.icdCode);
 setPrimaryDescription(getApiData?.medicalDiagnoses?.[0]?.description);
+// setMatical1(getApiData?.medicalDiagnoses?.[0]?.state?true:false)
 setSecondaryIcdCode(getApiData?.medicalDiagnoses?.[1]?.icdCode);
 setSecondaryDescription(getApiData?.medicalDiagnoses?.[1]?.description);
+// setMatical2(getApiData?.medicalDiagnoses?.[1]?.state?true:false)
 setTertiaryIcdCode(getApiData?.medicalDiagnoses?.[2]?.icdCode);
 setTertiaryDescription(getApiData?.medicalDiagnoses?.[2]?.description);
+// setMatical3(getApiData?.medicalDiagnoses?.[2]?.state?true:false)
 setAdditional1IcdCode(getApiData?.medicalDiagnoses?.[3]?.icdCode);
 setAdditional1Description(getApiData?.medicalDiagnoses?.[3]?.description);
+// setMatical4(getApiData?.medicalDiagnoses?.[3]?.state?true:false)
+
 setMedicalDiagnosesArray(getApiData?.medicalDiagnoses?getApiArrayData(4,getApiData?.medicalDiagnoses?.length,getApiData?.medicalDiagnoses):[])
 
 setPrimarySupportGroup(getApiData?.primarySupportGroup);
@@ -2688,26 +2766,31 @@ setBhpTime(getApiData?.bhpInformation?.time);
     //psychiatricDiagnoses
       const psychiatricDiagnosesArrayTemp=[
         {
-   
           icdCode:psychiatricPrimaryIcdCode,
           description:psychiatricPrimaryDescription,
-          name:"Primary"
+          name:"Primary",
+          state: Medical1
         },
         {
           icdCode:psychiatricSecondaryicdCode,
           description:psychiatricSecondaryDescription,
-          name:"Secondary"
+          name:"Secondary",
+          state: Medical2
+          
         },
         {
           icdCode:psychiatricTertiaryIcdCode,
           description:psychiatricTertiaryDescription,
-          name:"Tertiary"
+          name:"Tertiary",
+          state: Medical3
+          
         },
         {
-      
           icdCode:psychiatricAdditionalicdCode,
           description:psychiatricAdditionalDescription,
-          name:"Additional"
+          name:"Additional",
+          state: Medical4
+         
         },
       ]
 
@@ -2719,21 +2802,25 @@ setBhpTime(getApiData?.bhpInformation?.time);
           icdCode:primaryIcdCode,
           description:primaryDescription,
           name:"Primary",
+          klnnjnm: "Medical1"
         },
         {
           icdCode:secondaryicdCode,
           description:secondaryDescription,
-          name:"Secondary"
+          name:"Secondary",
+          state: Medical2
         },
         {
           icdCode:TertiaryIcdCode,
           description:TertiaryDescription,
-          name:"Tertiary"
+          name:"Tertiary",
+          state: Medical3
         },
         {
           icdCode:Additional1icdCode,
           description:Additional1Description,
-          name:"Additional"
+          name:"Additional",
+          state: Medical4
         },
       ]
 
@@ -5666,9 +5753,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       <th>Yes</th>
                       <th>No</th>
                       <th>Comments</th>
+                      <th>Delete</th>
                     </thead>
                     <tbody>
-                      <tr>
+
+                      {
+                        condition1 &&  <tr>
                         <td>Diabetes</td>
                         <td>
                           <input
@@ -5707,402 +5797,531 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                        <td>
+<AiFillDelete
+        onClick={() => setConditions1(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>
+
                       </tr>
-                      <tr>
-                        <td>Heart disease / heart attack</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesHeart"
-                            checked={yesHeart === true}
-                            onChange={() => setYesHeart(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesHeartno"
-                            checked={yesHeart === false}
-                            onChange={() => setYesHeart(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentHeart ? commentHeart.split("\n").length : 1), 1)}
-                            value={commentHeart || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) => setCommentHeart(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentHeart(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>History of stroke</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesHistory"
-                            checked={yesHistory === true}
-                            onChange={() => setYesHistory(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesHistoryno"
-                            checked={yesHistory === false}
-                            onChange={() => setYesHistory(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentHistory ? commentHistory.split("\n").length : 1), 1)}
-                            value={commentHistory || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) => setCommentHistory(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentHistory(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>High Blood Pressure</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesHigh"
-                            checked={yesHigh === true}
-                            onChange={() => setYesHigh(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesHighno"
-                            checked={yesHigh === false}
-                            onChange={() => setYesHigh(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentHigh ? commentHigh.split("\n").length : 1), 1)}
-                            value={commentHigh || ''}
+                      }
+                     
+                     {
+                      condition2 &&  <tr>
+                      <td>Heart disease / heart attack</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesHeart"
+                          checked={yesHeart === true}
+                          onChange={() => setYesHeart(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesHeartno"
+                          checked={yesHeart === false}
+                          onChange={() => setYesHeart(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((commentHeart ? commentHeart.split("\n").length : 1), 1)}
+                          value={commentHeart || ''}
+                         
+                          placeholder="___________"
+                          onChange={(e) => setCommentHeart(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setCommentHeart(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setConditions2(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>
+                    </tr>
+                     }
+                     
+                     {
+                      condition3 &&  <tr>
+                      <td>History of stroke</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesHistory"
+                          checked={yesHistory === true}
+                          onChange={() => setYesHistory(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesHistoryno"
+                          checked={yesHistory === false}
+                          onChange={() => setYesHistory(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((commentHistory ? commentHistory.split("\n").length : 1), 1)}
+                          value={commentHistory || ''}
+                         
+                          placeholder="___________"
+                          onChange={(e) => setCommentHistory(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setCommentHistory(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setConditions3(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>
+                    </tr>
+                     }
+                     
+                     {
+                      condition4 &&   <tr>
+                      <td>High Blood Pressure</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesHigh"
+                          checked={yesHigh === true}
+                          onChange={() => setYesHigh(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesHighno"
+                          checked={yesHigh === false}
+                          onChange={() => setYesHigh(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((commentHigh ? commentHigh.split("\n").length : 1), 1)}
+                          value={commentHigh || ''}
+                      
+                          placeholder="___________"
+                          onChange={(e) => setCommentHigh(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setCommentHigh(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setConditions4(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>
+                    </tr>
+                     }
+
+                     {
+                      condition5 &&  <tr>
+                      <td>Lung disease (ie asthma, COPD, emphysema)</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesLung"
+                          checked={yesLung === true}
+                          onChange={() => setYesLung(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesLungno"
+                          checked={yesLung === false}
+                          onChange={() => setYesLung(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((commentLung ? commentLung.split("\n").length : 1), 1)}
+                          value={commentLung || ''}
                         
-                            placeholder="___________"
-                            onChange={(e) => setCommentHigh(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentHigh(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Lung disease (ie asthma, COPD, emphysema)</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesLung"
-                            checked={yesLung === true}
-                            onChange={() => setYesLung(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesLungno"
-                            checked={yesLung === false}
-                            onChange={() => setYesLung(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentLung ? commentLung.split("\n").length : 1), 1)}
-                            value={commentLung || ''}
-                          
-                            placeholder="___________"
-                            onChange={(e) => setCommentLung(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentLung(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Seizures</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="diabetes"
-                            checked={yesSeizures === true}
-                            onChange={() => setYesSeizures(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesSeizuresno"
-                            checked={yesSeizures === false}
-                            onChange={() => setYesSeizures(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentSeizures ? commentSeizures.split("\n").length : 1), 1)}
-                            value={commentSeizures || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) => setCommentSeizures(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentSeizures(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
+                          placeholder="___________"
+                          onChange={(e) => setCommentLung(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setCommentLung(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setConditions5(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>
+                    </tr>
+                     }
+                    
+                     {
+                      condition6 &&  <tr>
+                      <td>Seizures</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="diabetes"
+                          checked={yesSeizures === true}
+                          onChange={() => setYesSeizures(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesSeizuresno"
+                          checked={yesSeizures === false}
+                          onChange={() => setYesSeizures(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((commentSeizures ? commentSeizures.split("\n").length : 1), 1)}
+                          value={commentSeizures || ''}
+                         
+                          placeholder="___________"
+                          onChange={(e) => setCommentSeizures(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setCommentSeizures(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setConditions6(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>
+                    </tr>
+                     }
+                     {
+                      condition7 && <tr>
+                      <td>Cancer</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesCancer"
+                          checked={yesCancer === true}
+                          onChange={() => setYesCancer(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesCancerno"
+                          checked={yesCancer === false}
+                          onChange={() => setYesCancer(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((commentCancer ? commentCancer.split("\n").length : 1), 1)}
+                          value={commentCancer || ''}
+                        
+                          placeholder="___________"
+                          onChange={(e) => setCommentCancer(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setCommentCancer(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setConditions7(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>
+                    </tr>
+                     }
+{
+  condition8 && <tr>
+  <td>Liver/kidney disease</td>
+  <td>
+    <input
+      type="checkbox"
+      id="yesLiver"
+      checked={yesLiver === true}
+      onChange={() => setYesLiver(true)}
+    />
+  </td>
+  <td>
+    <input
+      type="checkbox"
+      id="yesLiverno"
+      checked={yesLiver === false}
+      onChange={() => setYesLiver(false)}
+    />
+  </td>
+  <td>
+    <textarea
+      style={{
+        border: "none",
+        outline: "none",
+        resize: "none",
+      }}
+      rows={Math.max((commentLiver ? commentLiver.split("\n").length : 1), 1)}
+      value={commentLiver || ''}
+     
+      placeholder="___________"
+      onChange={(e) => setCommentLiver(e.target.value)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          setCommentLiver(
+            (prevComment) => prevComment + "\n"
+          );
+        }
+      }}
+    />
+  </td>
+  <td>
+<AiFillDelete
+        onClick={() => setConditions8(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>
+</tr>
+}
+                  {
+                    condition9 &&  <tr>
+                    <td>Thyroid disorder</td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        id="yesThyroid"
+                        checked={yesThyroid === true}
+                        onChange={() => setYesThyroid(true)}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        id="setYesThyroidno"
+                        checked={yesThyroid === false}
+                        onChange={() => setYesThyroid(false)}
+                      />
+                    </td>
+                    <td>
+                      <Select
+                        isMulti
+                        value={thyroidDisorder}
+                        onChange={thyroiddisorderhnadler}
+                        options={thyroidOptions}
+                        isCreatable={true}
+                        onKeyDown={handleKeyThyroidDisorder}
+                      />
+                    </td>
+                    <td>
+<AiFillDelete
+        onClick={() => setConditions9(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>
+                  </tr>
+                  }    
+                      
+                     {
+                      condition10 && <tr>
+                      <td>History of head trauma/traumatic brain</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesbrain"
+                          checked={yesbrain === true}
+                          onChange={() => setYesBrain(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
 
-                      <tr>
-                        <td>Cancer</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesCancer"
-                            checked={yesCancer === true}
-                            onChange={() => setYesCancer(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesCancerno"
-                            checked={yesCancer === false}
-                            onChange={() => setYesCancer(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentCancer ? commentCancer.split("\n").length : 1), 1)}
-                            value={commentCancer || ''}
+                          type="checkbox"
+                          id="yesbrainno"
+                          checked={yesbrain === false}
+                          onChange={() => setYesBrain(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{ border: "none", outline: "none", resize: "none" }}
+                          rows={Math.max((commentbrain ? commentbrain.split("\n").length : 1), 1)}
+                          value={commentbrain || ''}
                           
-                            placeholder="___________"
-                            onChange={(e) => setCommentCancer(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentCancer(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Liver/kidney disease</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesLiver"
-                            checked={yesLiver === true}
-                            onChange={() => setYesLiver(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesLiverno"
-                            checked={yesLiver === false}
-                            onChange={() => setYesLiver(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentLiver ? commentLiver.split("\n").length : 1), 1)}
-                            value={commentLiver || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) => setCommentLiver(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentLiver(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Thyroid disorder</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesThyroid"
-                            checked={yesThyroid === true}
-                            onChange={() => setYesThyroid(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="setYesThyroidno"
-                            checked={yesThyroid === false}
-                            onChange={() => setYesThyroid(false)}
-                          />
-                        </td>
-                        <td>
-                          <Select
-                            isMulti
-                            value={thyroidDisorder}
-                            onChange={thyroiddisorderhnadler}
-                            options={thyroidOptions}
-                            isCreatable={true}
-                            onKeyDown={handleKeyThyroidDisorder}
-                          />
-                        </td>
-                      </tr>
-                       <tr>
-                        <td>History of head trauma/traumatic brain</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesbrain"
-                            checked={yesbrain === true}
-                            onChange={() => setYesBrain(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
+                          placeholder="___________"
+                          onChange={(e) => setbrain(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setbrain((prevComment) => prevComment + "\n");
+                            }
+                          }}
+                        />
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setConditions10(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>
+                    </tr> 
+                     }
 
-                            type="checkbox"
-                            id="yesbrainno"
-                            checked={yesbrain === false}
-                            onChange={() => setYesBrain(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{ border: "none", outline: "none", resize: "none" }}
-                            rows={Math.max((commentbrain ? commentbrain.split("\n").length : 1), 1)}
-                            value={commentbrain || ''}
-                            
-                            placeholder="___________"
-                            onChange={(e) => setbrain(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setbrain((prevComment) => prevComment + "\n");
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr> 
-                      <tr>
-                        <td>History of head trauma/traumatic brain injury</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesInjury"
-                            checked={yesInjury === true}
-                            onChange={() => setYesInjury(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesInjuryno"
-                            checked={yesInjury === false}
-                            onChange={() => setYesInjury(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentInjury ? commentInjury.split("\n").length : 1), 1)}
-                            value={commentInjury || ''}
-                            
-                            placeholder="___________"
-                            onChange={(e) => setCommentInjury(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentInjury(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
+                     {
+                      condition11 && <tr>
+                      <td>History of head trauma/traumatic brain injury</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesInjury"
+                          checked={yesInjury === true}
+                          onChange={() => setYesInjury(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesInjuryno"
+                          checked={yesInjury === false}
+                          onChange={() => setYesInjury(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((commentInjury ? commentInjury.split("\n").length : 1), 1)}
+                          value={commentInjury || ''}
+                          
+                          placeholder="___________"
+                          onChange={(e) => setCommentInjury(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setCommentInjury(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setConditions11(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>
+                    </tr>
+                     }
+                       
+                      {
+                        condition12 &&  <tr>
                         <td>Chronic pain</td>
                         <td>
                           <input
@@ -6143,51 +6362,75 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                        <td>
+<AiFillDelete
+        onClick={() => setConditions12(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>
                       </tr>
-                      <tr>
-                        <td>Allergies (food, environment, medications)</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="AllergiesYes"
-                            checked={AllergiesYes === true}
-                            onChange={() => setAllergiesYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="AllergiesYesno"
-                            checked={AllergiesYes === false}
-                            onChange={() => setAllergiesYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((AllergiesComment ? AllergiesComment.split("\n").length : 1), 1)}
-                            value={AllergiesComment || ''}
-                         
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setAllergiesComment(e.target.value)
+                      }
+                     
+                     {
+                      condition13 && <tr>
+                      <td>Allergies (food, environment, medications)</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="AllergiesYes"
+                          checked={AllergiesYes === true}
+                          onChange={() => setAllergiesYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="AllergiesYesno"
+                          checked={AllergiesYes === false}
+                          onChange={() => setAllergiesYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((AllergiesComment ? AllergiesComment.split("\n").length : 1), 1)}
+                          value={AllergiesComment || ''}
+                       
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setAllergiesComment(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setAllergiesComment(
+                                (prevComment) => prevComment + "\n"
+                              );
                             }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setAllergiesComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
+                          }}
+                        />
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setConditions13(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>
+                    </tr>
+                     }
+                      
+                      {
+                        condition14 &&   <tr>
                         <td>Surgeries</td>
                         <td>
                           <input
@@ -6229,137 +6472,185 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                        <td>
+<AiFillDelete
+        onClick={() => setConditions14(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>
                       </tr>
-                      <tr>
-                        <td>Number of pregnancies / births</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="pregnanciesYes"
-                            checked={pregnanciesYes === true}
-                            onChange={() => setPregnanciesYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="pregnanciesYesno"
-                            checked={pregnanciesYes === false}
-                            onChange={() => setPregnanciesYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((pregnanciesComment ? pregnanciesComment.split("\n").length : 1), 1)}
-                            value={pregnanciesComment || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setPregnanciesComment(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setPregnanciesComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Substance use disorder (please specify)</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="SubstanceYes"
-                            checked={SubstanceYes === true}
-                            onChange={() => setSubstanceYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="SubstanceYesno"
-                            checked={SubstanceYes === false}
-                            onChange={() => setSubstanceYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((SubstanceComment ? SubstanceComment.split("\n").length : 1), 1)}
-                            value={SubstanceComment || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setSubstanceComment(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setSubstanceComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Depression</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="DepressionYes"
-                            checked={DepressionYes === true}
-                            onChange={() => setDepressionYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="DepressionYesno"
-                            checked={DepressionYes === false}
-                            onChange={() => setDepressionYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((DepressionComment ? DepressionComment.split("\n").length : 1), 1)}
-                            value={DepressionComment || ''}
+                      }
+                    
+                    {
+                      condition15 &&  <tr>
+                      <td>Number of pregnancies / births</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="pregnanciesYes"
+                          checked={pregnanciesYes === true}
+                          onChange={() => setPregnanciesYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="pregnanciesYesno"
+                          checked={pregnanciesYes === false}
+                          onChange={() => setPregnanciesYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((pregnanciesComment ? pregnanciesComment.split("\n").length : 1), 1)}
+                          value={pregnanciesComment || ''}
                          
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setDepressionComment(e.target.value)
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setPregnanciesComment(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setPregnanciesComment(
+                                (prevComment) => prevComment + "\n"
+                              );
                             }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setDepressionComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
+                          }}
+                        />
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setConditions15(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
+                    </tr>
+                    }
+
+                    {
+                      condition16 &&  <tr>
+                      <td>Substance use disorder (please specify)</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="SubstanceYes"
+                          checked={SubstanceYes === true}
+                          onChange={() => setSubstanceYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="SubstanceYesno"
+                          checked={SubstanceYes === false}
+                          onChange={() => setSubstanceYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((SubstanceComment ? SubstanceComment.split("\n").length : 1), 1)}
+                          value={SubstanceComment || ''}
+                         
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setSubstanceComment(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setSubstanceComment(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setConditions16(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
+                    </tr>
+                    }
+                     
+                     {
+                      condition17 && <tr>
+                      <td>Depression</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="DepressionYes"
+                          checked={DepressionYes === true}
+                          onChange={() => setDepressionYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="DepressionYesno"
+                          checked={DepressionYes === false}
+                          onChange={() => setDepressionYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((DepressionComment ? DepressionComment.split("\n").length : 1), 1)}
+                          value={DepressionComment || ''}
+                       
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setDepressionComment(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setDepressionComment(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setConditions17(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
+                    </tr>
+                     }
+                      
+                      {
+                        condition18 &&       <tr>
                         <td>Anxiety/panic attacks</td>
                         <td>
                           <input
@@ -6399,8 +6690,20 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                        <td>
+<AiFillDelete
+        onClick={() => setConditions18(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
                       </tr>
-                      <tr>
+                      }
+
+                      {
+                        condition19 && <tr>
                         <td>Insomnia</td>
                         <td>
                           <input
@@ -6442,298 +6745,402 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                        <td>
+<AiFillDelete
+        onClick={() => setConditions19(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
                       </tr>
-                      <tr>
-                        <td>Bipolar disorder</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="BipolarYes"
-                            checked={BipolarYes === true}
-                            onChange={() => setBipolarYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="BipolarYesno"
-                            checked={BipolarYes === false}
-                            onChange={() => setBipolarYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((BipolarComment ? BipolarComment.split("\n").length : 1), 1)}
-                            value={BipolarComment || ''}
-                         
-                            placeholder="___________"
-                            onChange={(e) => setBipolarComment(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setBipolarComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Schizophrenia</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="SchizophreniaYes"
-                            checked={SchizophreniaYes === true}
-                            onChange={() => setSchizophreniaYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="SchizophreniaYesno"
-                            checked={SchizophreniaYes === false}
-                            onChange={() => setSchizophreniaYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((SchizophreniaComment ? SchizophreniaComment.split("\n").length : 1), 1)}
-                            value={SchizophreniaComment || ''}
-                         
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setSchizophreniaComment(e.target.value)
+                      }
+                
+                {
+                  condition20 &&  <tr>
+                  <td>Bipolar disorder</td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      id="BipolarYes"
+                      checked={BipolarYes === true}
+                      onChange={() => setBipolarYes(true)}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      id="BipolarYesno"
+                      checked={BipolarYes === false}
+                      onChange={() => setBipolarYes(false)}
+                    />
+                  </td>
+                  <td>
+                    <textarea
+                      style={{
+                        border: "none",
+                        outline: "none",
+                        resize: "none",
+                      }}
+                      rows={Math.max((BipolarComment ? BipolarComment.split("\n").length : 1), 1)}
+                      value={BipolarComment || ''}
+                   
+                      placeholder="___________"
+                      onChange={(e) => setBipolarComment(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          setBipolarComment(
+                            (prevComment) => prevComment + "\n"
+                          );
+                        }
+                      }}
+                    />
+                  </td>
+                  <td>
+<AiFillDelete
+        onClick={() => setConditions20(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
+                </tr>
+                }
+
+                {
+                  condition21 && <tr>
+                  <td>Schizophrenia</td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      id="SchizophreniaYes"
+                      checked={SchizophreniaYes === true}
+                      onChange={() => setSchizophreniaYes(true)}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      id="SchizophreniaYesno"
+                      checked={SchizophreniaYes === false}
+                      onChange={() => setSchizophreniaYes(false)}
+                    />
+                  </td>
+                  <td>
+                    <textarea
+                      style={{
+                        border: "none",
+                        outline: "none",
+                        resize: "none",
+                      }}
+                      rows={Math.max((SchizophreniaComment ? SchizophreniaComment.split("\n").length : 1), 1)}
+                      value={SchizophreniaComment || ''}
+                   
+                      placeholder="___________"
+                      onChange={(e) =>
+                        setSchizophreniaComment(e.target.value)
+                      }
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          setSchizophreniaComment(
+                            (prevComment) => prevComment + "\n"
+                          );
+                        }
+                      }}
+                    />
+                  </td>
+                  <td>
+<AiFillDelete
+        onClick={() => setConditions21(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
+                </tr>
+                }
+                      
+                     {
+                      condition22 && <tr>
+                      <td>Obsessive compulsive disorder</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="ObsessiveYes"
+                          checked={ObsessiveYes === true}
+                          onChange={() => setObsessiveYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="ObsessiveYesno"
+                          checked={ObsessiveYes === false}
+                          onChange={() => setObsessiveYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((ObsessiveComment ? ObsessiveComment.split("\n").length : 1), 1)}
+                          value={ObsessiveComment || ''}
+                       
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setObsessiveComment(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setObsessiveComment(
+                                (prevComment) => prevComment + "\n"
+                              );
                             }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setSchizophreniaComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Obsessive compulsive disorder</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="ObsessiveYes"
-                            checked={ObsessiveYes === true}
-                            onChange={() => setObsessiveYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="ObsessiveYesno"
-                            checked={ObsessiveYes === false}
-                            onChange={() => setObsessiveYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((ObsessiveComment ? ObsessiveComment.split("\n").length : 1), 1)}
-                            value={ObsessiveComment || ''}
-                         
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setObsessiveComment(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setObsessiveComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Personality disorder (please specify)</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="PersonalityYes"
-                            checked={PersonalityYes === true}
-                            onChange={() => setPersonalityYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="PersonalityYesno"
-                            checked={PersonalityYes === false}
-                            onChange={() => setPersonalityYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((PersonalityComment ? PersonalityComment.split("\n").length : 1), 1)}
-                            value={PersonalityComment || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setPersonalityComment(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setPersonalityComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Phobias</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="PhobiasYes"
-                            checked={PhobiasYes === true}
-                            onChange={() => setPhobiasYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="PhobiasYesno"
-                            checked={PhobiasYes === false}
-                            onChange={() => setPhobiasYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((PhobiasComment ? PhobiasComment.split("\n").length : 1), 1)}
-                            value={PhobiasComment || ''}
-                          
-                            placeholder="___________"
-                            onChange={(e) => setPhobiasComment(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setPhobiasComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Any other health conditions</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="healthConditionsYes"
-                            checked={healthConditionsYes === true}
-                            onChange={() => setHealthConditionsYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="healthConditionsYesno"
-                            checked={healthConditionsYes === false}
-                            onChange={() => setHealthConditionsYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((healthConditionsYesComment ? healthConditionsYesComment.split("\n").length : 1), 1)}
-                            value={healthConditionsYesComment || ''}
-                          
-                            placeholder="___________"
-                            onChange={(e) =>
-                              sethealthConditionsYesComment(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                sethealthConditionsYesComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Infection or Diseases</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="InfectionYes"
-                            checked={InfectionYes === true}
-                            onChange={() => setInfectionYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="InfectionYesno"
-                            checked={InfectionYes === false}
-                            onChange={() => setInfectionYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <Select
-                            isMulti
-                            placeholder="Select Multiple Type"
-                            value={infectionDiseases}
-                            onChange={infectionDiseasesHandler}
-                            options={infectionDiseasesOptions}
-                            isCreatable={true}
-                            onKeyDown={handleKeyInfectionDiseases}
-                          />
-                        </td>
-                      </tr>
+                          }}
+                        />
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setConditions22(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
+                    </tr>
+                     }
+                      
                       {
+                       condition23 &&   <tr>
+                       <td>Personality disorder (please specify)</td>
+                       <td>
+                         <input
+                           type="checkbox"
+                           id="PersonalityYes"
+                           checked={PersonalityYes === true}
+                           onChange={() => setPersonalityYes(true)}
+                         />
+                       </td>
+                       <td>
+                         <input
+                           type="checkbox"
+                           id="PersonalityYesno"
+                           checked={PersonalityYes === false}
+                           onChange={() => setPersonalityYes(false)}
+                         />
+                       </td>
+                       <td>
+                         <textarea
+                           style={{
+                             border: "none",
+                             outline: "none",
+                             resize: "none",
+                           }}
+                           rows={Math.max((PersonalityComment ? PersonalityComment.split("\n").length : 1), 1)}
+                           value={PersonalityComment || ''}
+                          
+                           placeholder="___________"
+                           onChange={(e) =>
+                             setPersonalityComment(e.target.value)
+                           }
+                           onKeyDown={(e) => {
+                             if (e.key === "Enter") {
+                               e.preventDefault();
+                               setPersonalityComment(
+                                 (prevComment) => prevComment + "\n"
+                               );
+                             }
+                           }}
+                         />
+                       </td>
+                       <td>
+<AiFillDelete
+        onClick={() => setConditions23(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
+                     </tr>
+                      }
+                     
+                     {
+                      condition24 &&  <tr>
+                      <td>Phobias</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="PhobiasYes"
+                          checked={PhobiasYes === true}
+                          onChange={() => setPhobiasYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="PhobiasYesno"
+                          checked={PhobiasYes === false}
+                          onChange={() => setPhobiasYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((PhobiasComment ? PhobiasComment.split("\n").length : 1), 1)}
+                          value={PhobiasComment || ''}
                         
-                          otherConditionArray.map((i)=><tr>
+                          placeholder="___________"
+                          onChange={(e) => setPhobiasComment(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setPhobiasComment(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setConditions24(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
+                    </tr>
+                     }
+
+                     {
+                      condition25 &&   <tr>
+                      <td>Any other health conditions</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="healthConditionsYes"
+                          checked={healthConditionsYes === true}
+                          onChange={() => setHealthConditionsYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="healthConditionsYesno"
+                          checked={healthConditionsYes === false}
+                          onChange={() => setHealthConditionsYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((healthConditionsYesComment ? healthConditionsYesComment.split("\n").length : 1), 1)}
+                          value={healthConditionsYesComment || ''}
+                        
+                          placeholder="___________"
+                          onChange={(e) =>
+                            sethealthConditionsYesComment(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              sethealthConditionsYesComment(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setConditions25(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
+                    </tr>
+                     }
+
+                     {
+                      condition26 && <tr>
+                      <td>Infection or Diseases</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="InfectionYes"
+                          checked={InfectionYes === true}
+                          onChange={() => setInfectionYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="InfectionYesno"
+                          checked={InfectionYes === false}
+                          onChange={() => setInfectionYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <Select
+                          isMulti
+                          placeholder="Select Multiple Type"
+                          value={infectionDiseases}
+                          onChange={infectionDiseasesHandler}
+                          options={infectionDiseasesOptions}
+                          isCreatable={true}
+                          onKeyDown={handleKeyInfectionDiseases}
+                        />
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setConditions26(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>  
+                    </tr>
+                     }
+                    
+                      
+                      {
+                          otherConditionArray.map((i,index)=><tr key={index}>
                             <td>{i.condition}</td>
                            <td><input type="checkbox" checked={i.yes===true} /></td>
                            <td><input type="checkbox" checked={i.yes===false} /></td>
-                            <td>{i.comments}</td>
+                            <td style={{paddingLeft:'20px'}}>{i.comments}</td>
+                            <td>
+<AiFillDelete
+        onClick={() => ConditionDelete(index)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>
                           </tr>)
                         
                       }
@@ -7000,9 +7407,11 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       <th style={{ fontWeight: "bold" }}>Last Use</th>
                       <th style={{ fontWeight: "bold" }}>Frequency </th>
                       <th style={{ fontWeight: "bold" }}>Length of Sobriety</th>
+                      <th style={{ fontWeight: "bold" }}>Delete</th>
                     </thead>
                     <tbody>
-                      <tr>
+                      {
+                        type1 &&  <tr>
                         <td>Alcohol</td>
                         <td>
                           <input
@@ -7052,113 +7461,149 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
                          
                         </td>
+                        <td>
+<AiFillDelete
+        onClick={() => setType1(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>  
                       </tr>
+                      }
+                     
+                     {
+                      type2  && <tr>
+                      <td>Benzodiazepines</td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={
+                            substanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines
+                          }
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataLastUseBenzodiazepines}
+                onChange={handlesubstanceAbuseHistoryDataLastUseBenzodiazepines}
+                options={optionsubstanceAbuseHistoryDataLastUseBenzodiazepines}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseBenzodiazepines}
+              />
+                       
+                      </td>
+                      <td>
 
-                      <tr>
-                        <td>Benzodiazepines</td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={
-                              substanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseBenzodiazepines}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseBenzodiazepines}
-                  options={optionsubstanceAbuseHistoryDataLastUseBenzodiazepines}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseBenzodiazepines}
-                />
-                         
-                        </td>
-                        <td>
-
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyBenzodiazepines}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyBenzodiazepines}
-                  options={optionsubstanceAbuseHistoryDataFrequencyBenzodiazepines}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyBenzodiazepines}
-                />
-
-                         
-                        </td>
-                        <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
-                  
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
-                />
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyBenzodiazepines}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyBenzodiazepines}
+                options={optionsubstanceAbuseHistoryDataFrequencyBenzodiazepines}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyBenzodiazepines}
+              />
 
                        
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Crack</td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={substanceAbuseHistoryDataAgeOfFirstUseCrack}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUseCrack(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseCrack}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseCrack}
-                  options={optionsubstanceAbuseHistoryDataLastUseCrack}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseCrack}
-                />
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
+                
+                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
+              />
+
+                     
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setType2(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
+                 
+                    </tr>
+                     }
+
+                     {
+                      type3 &&  <tr>
+                      <td>Crack</td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={substanceAbuseHistoryDataAgeOfFirstUseCrack}
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUseCrack(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataLastUseCrack}
+                onChange={handlesubstanceAbuseHistoryDataLastUseCrack}
+                options={optionsubstanceAbuseHistoryDataLastUseCrack}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseCrack}
+              />
+                     
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyCrack}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyCrack}
+                options={optionsubstanceAbuseHistoryDataFrequencyCrack}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyCrack}
+              />
+
+                        
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyCrack}
+                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyCrack}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyCrack}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyCrack}
+              />
+
                        
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyCrack}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyCrack}
-                  options={optionsubstanceAbuseHistoryDataFrequencyCrack}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyCrack}
-                />
-
-                          
-                        </td>
-                        <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyCrack}
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyCrack}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyCrack}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyCrack}
-                />
-
-                         
-                        </td>
-                      </tr>
-                      <tr>
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setType3(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
+                    </tr>
+                     }
+                      
+                      {
+                        type4 &&  <tr>
                         <td>Heroin</td>
                         <td>
                           <input
@@ -7208,113 +7653,149 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
                          
                         </td>
+                        <td>
+<AiFillDelete
+        onClick={() => setType4(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>  
                       </tr>
-                      <tr>
-                        <td>Inhalants</td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={
-                              substanceAbuseHistoryDataAgeOfFirstUseInhalants
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUseInhalants(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseInhalants}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseInhalants}
-                  options={optionsubstanceAbuseHistoryDataLastUseInhalants}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseInhalants}
-                />
-                         
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyInhalants}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyInhalants}
-                  options={optionsubstanceAbuseHistoryDataFrequencyInhalants}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyInhalants}
-                />
+                      }
+                     
+                     {
+                      type5 &&   <tr>
+                      <td>Inhalants</td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={
+                            substanceAbuseHistoryDataAgeOfFirstUseInhalants
+                          }
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUseInhalants(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataLastUseInhalants}
+                onChange={handlesubstanceAbuseHistoryDataLastUseInhalants}
+                options={optionsubstanceAbuseHistoryDataLastUseInhalants}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseInhalants}
+              />
+                       
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyInhalants}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyInhalants}
+                options={optionsubstanceAbuseHistoryDataFrequencyInhalants}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyInhalants}
+              />
+
+                    
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyInhalants}
+                
+                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
+              />
+
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setType5(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
+                    </tr>
+                     }
+
+                     {
+                      type6 && <tr>
+                      <td>Marijuana </td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={
+                            substanceAbuseHistoryDataAgeOfFirstUseMarijuana
+                          }
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUseMarijuana(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataLastUseMarijuana}
+                onChange={handlesubstanceAbuseHistoryDataLastUseMarijuana}
+                options={optionsubstanceAbuseHistoryDataLastUseMarijuana}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMarijuana}
+              />
+                      
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyMarijuana}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyMarijuana}
+                options={optionsubstanceAbuseHistoryDataFrequencyMarijuana}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMarijuana}
+              />
 
                       
-                        </td>
-                        <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyInhalants}
-                  
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
-                />
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyMarijuana}
+                
+                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
+              />
 
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Marijuana </td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={
-                              substanceAbuseHistoryDataAgeOfFirstUseMarijuana
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUseMarijuana(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseMarijuana}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseMarijuana}
-                  options={optionsubstanceAbuseHistoryDataLastUseMarijuana}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMarijuana}
-                />
-                        
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyMarijuana}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyMarijuana}
-                  options={optionsubstanceAbuseHistoryDataFrequencyMarijuana}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMarijuana}
-                />
-
-                        
-                        </td>
-                        <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyMarijuana}
-                  
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
-                />
-
-                         
-                        </td>
-                      </tr>
-                      <tr>
+                       
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setType6(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>  
+                    </tr>
+                     }
+                    
+                      {
+                        type7 &&   <tr>
                         <td>Methamphetamine </td>
                         <td>
                           <input
@@ -7364,8 +7845,20 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 />
 
                         </td>
+                        <td>
+<AiFillDelete
+        onClick={() => setType7(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>  
                       </tr>
-                      <tr>
+                      }
+
+                      {
+                        type8 &&  <tr>
                         <td>Methadone</td>
                         <td>
                           <input
@@ -7417,217 +7910,283 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
                         
                         </td>
+                        <td>
+<AiFillDelete
+        onClick={() => setType8(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>  
                       </tr>
-                      <tr>
-                        <td>MDMA (ecstasy)</td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={substanceAbuseHistoryDataAgeOfFirstUseMDMA}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUseMDMA(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseMDMA}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseMDMA}
-                  options={optionsubstanceAbuseHistoryDataLastUseMDMA}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMDMA}
-                />
-                        
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyMDMA}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyMDMA}
-                  options={optionsubstanceAbuseHistoryDataFrequencyMDMA}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMDMA}
-                />
-                        
-                        </td>
-                        <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyMDMA}
-                  
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
-                />
-
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>PCP (angel dust)</td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={substanceAbuseHistoryDataAgeOfFirstUsePCP}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUsePCP(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUsePCP}
-                  onChange={hnadlesubstanceAbuseHistoryDataLastUsePCP}
-                  options={optionsubstanceAbuseHistoryDataLastUsePCP}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUsePCP}
-                />
-                          
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyPCP}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyPCP}
-                  options={optionsubstanceAbuseHistoryDataFrequencyPCP}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyPCP}
-                />
-
-                          
-                        </td>
-                        <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyPCP}
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyPCP}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyPCP}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyPCP}
-                />
-
-                          
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Prescription medicine</td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={
-                              substanceAbuseHistoryDataAgeOfFirstUsePrescription
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUsePrescription(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUsePrescription}
-                  onChange={handlesubstanceAbuseHistoryDataLastUsePrescription}
-                  options={optionsubstanceAbuseHistoryDataLastUsePrescription}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUsePrescription}
-                />
-                          
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyPrescription}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyPrescription}
-                  options={optionsubstanceAbuseHistoryDataFrequencyPrescription}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyPrescription}
-                />
-
-                          
-                        </td>
-                        <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyPrescription}
-                  
-                  onChange={hnadlesubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
-                />
-
-                         
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>OTC medicine</td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={substanceAbuseHistoryDataAgeOfFirstUseOTC}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUseOTC(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseOTC}
-                  onChange={hnadlesubstanceAbuseHistoryDataLastUseOTC}
-                  options={optionsubstanceAbuseHistoryDataLastUseOTC}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseOTC}
-                />
-                         
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyOTC}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyOTC}
-                  options={optionsubstanceAbuseHistoryDataFrequencyOTC}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyOTC}
-                />
-
-                         
-                        </td>
-                        <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyOTC}
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyOTC}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyOTC}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyOTC}
-                />
-
+                      }
+                    
+                     {
+                      type9 &&  <tr>
+                      <td>MDMA (ecstasy)</td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={substanceAbuseHistoryDataAgeOfFirstUseMDMA}
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUseMDMA(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataLastUseMDMA}
+                onChange={handlesubstanceAbuseHistoryDataLastUseMDMA}
+                options={optionsubstanceAbuseHistoryDataLastUseMDMA}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMDMA}
+              />
                       
-                        </td>
-                      </tr>
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyMDMA}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyMDMA}
+                options={optionsubstanceAbuseHistoryDataFrequencyMDMA}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMDMA}
+              />
+                      
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyMDMA}
+                
+                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
+              />
 
-                      {typeArray?.map((i) => (
-                        <tr>
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setType9(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>  
+                    </tr>
+                     }
+                     
+                     {
+                      type10 &&  <tr>
+                      <td>PCP (angel dust)</td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={substanceAbuseHistoryDataAgeOfFirstUsePCP}
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUsePCP(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataLastUsePCP}
+                onChange={hnadlesubstanceAbuseHistoryDataLastUsePCP}
+                options={optionsubstanceAbuseHistoryDataLastUsePCP}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUsePCP}
+              />
+                        
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyPCP}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyPCP}
+                options={optionsubstanceAbuseHistoryDataFrequencyPCP}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyPCP}
+              />
+
+                        
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyPCP}
+                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyPCP}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyPCP}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyPCP}
+              />
+
+                        
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setType10(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>  
+                    </tr>
+                     }
+                     
+                     {
+                      type11 &&  <tr>
+                      <td>Prescription medicine</td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={
+                            substanceAbuseHistoryDataAgeOfFirstUsePrescription
+                          }
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUsePrescription(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataLastUsePrescription}
+                onChange={handlesubstanceAbuseHistoryDataLastUsePrescription}
+                options={optionsubstanceAbuseHistoryDataLastUsePrescription}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUsePrescription}
+              />
+                        
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyPrescription}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyPrescription}
+                options={optionsubstanceAbuseHistoryDataFrequencyPrescription}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyPrescription}
+              />
+
+                        
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyPrescription}
+                
+                onChange={hnadlesubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
+              />
+
+                       
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setType11(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>  
+                    </tr>
+                     }
+
+                     {
+                      type12 &&  <tr>
+                      <td>OTC medicine</td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={substanceAbuseHistoryDataAgeOfFirstUseOTC}
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUseOTC(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataLastUseOTC}
+                onChange={hnadlesubstanceAbuseHistoryDataLastUseOTC}
+                options={optionsubstanceAbuseHistoryDataLastUseOTC}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseOTC}
+              />
+                       
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyOTC}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyOTC}
+                options={optionsubstanceAbuseHistoryDataFrequencyOTC}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyOTC}
+              />
+
+                       
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyOTC}
+                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyOTC}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyOTC}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyOTC}
+              />
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setType12(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>  
+                    </tr>
+                     }
+                     
+
+                      {typeArray?.map((i,index) => (
+                        <tr key={index}>
                           <td>{i.types}</td>
                           <td>{i.ageOfFirstUse} </td>
                           <td>{i.lastUse} </td>
                           <td>{i.frequency} </td>
                           <td>{i.lengthOfSobriety} </td>
+                          <td>
+<AiFillDelete
+        onClick={() => TypeDelete(index)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>  
                         </tr>
                       ))}
 
@@ -9927,10 +10486,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         <th>Not so good</th>
                         <th>Need assist</th>
                         <th>Comments</th>
+                        <th>Delete</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                      {
+                        Independent1 &&   <tr>
                         <td>Bathing/Showering</td>
                         <td>
                           <input
@@ -9989,71 +10550,95 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                        <td>
+<AiFillDelete
+        onClick={() => setIndependent1(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
                       </tr>
-                      <tr>
-                        <td>Grooming/hygiene</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={GroomingGood === true}
-                            onChange={() => setGroomingGood(!GroomingGood)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={GroomingFair === true}
-                            onChange={() => setGroomingFair(!GroomingFair)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={GroomingNotSoGood === true}
-                            onChange={() =>
-                              setGroomingNotSoGood(!GroomingNotSoGood)
+                      }
+                    
+
+                    {
+                      Independent2 && <tr>
+                      <td>Grooming/hygiene</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={GroomingGood === true}
+                          onChange={() => setGroomingGood(!GroomingGood)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={GroomingFair === true}
+                          onChange={() => setGroomingFair(!GroomingFair)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={GroomingNotSoGood === true}
+                          onChange={() =>
+                            setGroomingNotSoGood(!GroomingNotSoGood)
+                          }
+                        />
+                      </td>
+                      <td>
+                        <select
+                          value={GroomingGoodNeedAssist}
+                          onChange={(e) =>
+                            setGroomingGoodNeedAssist(e.target.value)
+                          }
+                        >
+                          <option disabled>Select value</option>
+                          <option value={true}>Yes</option>
+                          <option value={false}>No</option>
+                        </select>
+                      </td>
+                      <td>
+                        <textarea
+                          className="treatment_plan_table"
+                          rows={Math.max(
+                            GroomingComments
+                              ? GroomingComments.split("\n").length
+                              : 1,
+                            1
+                          )}
+                          value={GroomingComments || ""}
+                         
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setGroomingComments(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setGroomingComments(
+                                (prevComment) => prevComment + "\n"
+                              );
                             }
-                          />
-                        </td>
-                        <td>
-                          <select
-                            value={GroomingGoodNeedAssist}
-                            onChange={(e) =>
-                              setGroomingGoodNeedAssist(e.target.value)
-                            }
-                          >
-                            <option disabled>Select value</option>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                          </select>
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              GroomingComments
-                                ? GroomingComments.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={GroomingComments || ""}
-                           
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setGroomingComments(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setGroomingComments(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
+                          }}
+                        />
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setIndependent2(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
+                    </tr>
+                    }
+                      {
+                        Independent3 &&    <tr>
                         <td>Mobility</td>
                         <td>
                           <input
@@ -10115,8 +10700,20 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                        <td>
+<AiFillDelete
+        onClick={() => setIndependent3(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
                       </tr>
-                      <tr>
+                      }
+
+                      {
+                        Independent4 &&   <tr>
                         <td>Housework</td>
                         <td>
                           <input
@@ -10178,197 +10775,248 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                        <td>
+<AiFillDelete
+        onClick={() => setIndependent4(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
                       </tr>
-                      <tr>
-                        <td>Shopping</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ShoppingGood === true}
-                            onChange={() => setShoppingGood(!ShoppingGood)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ShoppingFair === true}
-                            onChange={() => setShoppingFair(!ShoppingFair)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ShoppingNotSoGood === true}
-                            onChange={() =>
-                              setShoppingNotSoGood(!ShoppingNotSoGood)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <select
-                            value={ShoppingGoodNeedAssist}
-                            onChange={(e) =>
-                              setShoppingGoodNeedAssist(e.target.value)
-                            }
-                          >
-                            <option disabled>Select value</option>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                          </select>
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              ShoppingComments
-                                ? ShoppingComments.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={ShoppingComments || ""}
-              
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setShoppingComments(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setShoppingComments(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Managing money/budget</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ManagingGood === true}
-                            onChange={() => setManagingGood(!ManagingGood)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ManagingFair === true}
-                            onChange={() => setManagingFair(!ManagingFair)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ManagingNotSoGood === true}
-                            onChange={() =>
-                              setManagingNotSoGood(!ManagingNotSoGood)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <select
-                            value={ManagingGoodNeedAssist}
-                            onChange={(e) =>
-                              setManagingGoodNeedAssist(e.target.value)
-                            }
-                          >
-                            <option disabled>Select value</option>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                          </select>
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              ManagingComments
-                                ? ManagingComments.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={ManagingComments || ""}
-                            
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setManagingComments(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setManagingComments(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Preparing food</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={PreparingGood === true}
-                            onChange={() => setPreparingGood(!PreparingGood)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={PreparingFair === true}
-                            onChange={() => setPreparingFair(!PreparingFair)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={PreparingNotSoGood === true}
-                            onChange={() =>
-                              setPreparingNotSoGood(!PreparingNotSoGood)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <select
-                            value={PreparingGoodNeedAssist}
-                            onChange={(e) =>
-                              setPreparingGoodNeedAssist(e.target.value)
-                            }
-                          >
-                            <option disabled>Select value</option>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                          </select>
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              PreparingComments
-                                ? PreparingComments.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={PreparingComments || ""}
+                      }
+                   
+                   {
+                    Independent5 &&   <tr>
+                    <td>Shopping</td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={ShoppingGood === true}
+                        onChange={() => setShoppingGood(!ShoppingGood)}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={ShoppingFair === true}
+                        onChange={() => setShoppingFair(!ShoppingFair)}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={ShoppingNotSoGood === true}
+                        onChange={() =>
+                          setShoppingNotSoGood(!ShoppingNotSoGood)
+                        }
+                      />
+                    </td>
+                    <td>
+                      <select
+                        value={ShoppingGoodNeedAssist}
+                        onChange={(e) =>
+                          setShoppingGoodNeedAssist(e.target.value)
+                        }
+                      >
+                        <option disabled>Select value</option>
+                        <option value={true}>Yes</option>
+                        <option value={false}>No</option>
+                      </select>
+                    </td>
+                    <td>
+                      <textarea
+                        className="treatment_plan_table"
+                        rows={Math.max(
+                          ShoppingComments
+                            ? ShoppingComments.split("\n").length
+                            : 1,
+                          1
+                        )}
+                        value={ShoppingComments || ""}
+          
+                        placeholder="___________"
+                        onChange={(e) =>
+                          setShoppingComments(e.target.value)
+                        }
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            e.preventDefault();
+                            setShoppingComments(
+                              (prevComment) => prevComment + "\n"
+                            );
+                          }
+                        }}
+                      />
+                    </td>
+                    <td>
+<AiFillDelete
+        onClick={() => setIndependent5(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
+                  </tr>
+                   }
                     
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setPreparingComments(e.target.value)
+
+                    {
+                      Independent6 && <tr>
+                      <td>Managing money/budget</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={ManagingGood === true}
+                          onChange={() => setManagingGood(!ManagingGood)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={ManagingFair === true}
+                          onChange={() => setManagingFair(!ManagingFair)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={ManagingNotSoGood === true}
+                          onChange={() =>
+                            setManagingNotSoGood(!ManagingNotSoGood)
+                          }
+                        />
+                      </td>
+                      <td>
+                        <select
+                          value={ManagingGoodNeedAssist}
+                          onChange={(e) =>
+                            setManagingGoodNeedAssist(e.target.value)
+                          }
+                        >
+                          <option disabled>Select value</option>
+                          <option value={true}>Yes</option>
+                          <option value={false}>No</option>
+                        </select>
+                      </td>
+                      <td>
+                        <textarea
+                          className="treatment_plan_table"
+                          rows={Math.max(
+                            ManagingComments
+                              ? ManagingComments.split("\n").length
+                              : 1,
+                            1
+                          )}
+                          value={ManagingComments || ""}
+                          
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setManagingComments(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setManagingComments(
+                                (prevComment) => prevComment + "\n"
+                              );
                             }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setPreparingComments(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
+                          }}
+                        />
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setIndependent6(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
+                    </tr>
+                    }
+                    
+
+                    {
+                      Independent7 &&  <tr>
+                      <td>Preparing food</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={PreparingGood === true}
+                          onChange={() => setPreparingGood(!PreparingGood)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={PreparingFair === true}
+                          onChange={() => setPreparingFair(!PreparingFair)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={PreparingNotSoGood === true}
+                          onChange={() =>
+                            setPreparingNotSoGood(!PreparingNotSoGood)
+                          }
+                        />
+                      </td>
+                      <td>
+                        <select
+                          value={PreparingGoodNeedAssist}
+                          onChange={(e) =>
+                            setPreparingGoodNeedAssist(e.target.value)
+                          }
+                        >
+                          <option disabled>Select value</option>
+                          <option value={true}>Yes</option>
+                          <option value={false}>No</option>
+                        </select>
+                      </td>
+                      <td>
+                        <textarea
+                          className="treatment_plan_table"
+                          rows={Math.max(
+                            PreparingComments
+                              ? PreparingComments.split("\n").length
+                              : 1,
+                            1
+                          )}
+                          value={PreparingComments || ""}
+                  
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setPreparingComments(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setPreparingComments(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setIndependent7(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
+                    </tr>
+                    }
+                      
+
+                      {
+                        Independent8 &&   <tr>
                         <td>Eating</td>
                         <td>
                           <input
@@ -10429,70 +11077,95 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                        <td>
+<AiFillDelete
+        onClick={() => setIndependent8(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
                       </tr>
-                      <tr>
-                        <td>Toileting</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ToiletingGood === true}
-                            onChange={() => setToiletingGood(!ToiletingGood)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ToiletingFair === true}
-                            onChange={() => setToiletingFair(!ToiletingFair)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ToiletingNotSoGood === true}
-                            onChange={() =>
-                              setToiletingNotSoGood(!ToiletingNotSoGood)
+                      }
+                     
+                     {
+                      Independent9 &&  <tr>
+                      <td>Toileting</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={ToiletingGood === true}
+                          onChange={() => setToiletingGood(!ToiletingGood)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={ToiletingFair === true}
+                          onChange={() => setToiletingFair(!ToiletingFair)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={ToiletingNotSoGood === true}
+                          onChange={() =>
+                            setToiletingNotSoGood(!ToiletingNotSoGood)
+                          }
+                        />
+                      </td>
+                      <td>
+                        <select
+                          value={ToiletingGoodNeedAssist}
+                          onChange={(e) =>
+                            setToiletingGoodNeedAssist(e.target.value)
+                          }
+                        >
+                          <option disabled>Select value</option>
+                         
+                          <option value={true}>Yes</option>
+                          <option value={false}>No</option>
+                        </select>
+                      </td>
+                      <td>
+                        <textarea
+                          className="treatment_plan_table"
+                          rows={Math.max(
+                            ToiletingComments
+                              ?  ToiletingComments.split("\n").length
+                              : 1,
+                            1
+                          )}
+                          value={ ToiletingComments || ""}
+                          
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setToiletingComments(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setToiletingComments(
+                                (prevComment) => prevComment + "\n"
+                              );
                             }
-                          />
-                        </td>
-                        <td>
-                          <select
-                            value={ToiletingGoodNeedAssist}
-                            onChange={(e) =>
-                              setToiletingGoodNeedAssist(e.target.value)
-                            }
-                          >
-                            <option disabled>Select value</option>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                          </select>
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              ToiletingComments
-                                ?  ToiletingComments.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={ ToiletingComments || ""}
-                            
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setToiletingComments(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setToiletingComments(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
+                          }}
+                        />
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setIndependent9(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
+                    </tr>
+                     }
+                    
+                     
 
                       {handleRiskFactorActivityArray?.map((i, index) => (
                         <tr key={index}>
@@ -10513,7 +11186,16 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           <td>
                             {` ${i.needAssist === true ? "Yes" : "No"}`}{" "}
                           </td>
-                          <td> {i.comments} </td>
+                          <td style={{paddingLeft:"20px"}}> {i.comments} </td>
+                          <td>
+<AiFillDelete
+        onClick={() => IndependentDelete(index)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
                         </tr>
                       ))}
                       <tr>
@@ -13205,9 +13887,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       <th>Yes</th>
                       <th>No</th>
                       <th>Comments</th>
+                     
                     </thead>
                     <tbody>
-                      <tr>
+
+                      {
+                        condition1 &&  <tr>
                         <td>Diabetes</td>
                         <td>
                           <input
@@ -13246,402 +13931,443 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                   
+
                       </tr>
-                      <tr>
-                        <td>Heart disease / heart attack</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesHeart"
-                            checked={yesHeart === true}
-                            onChange={() => setYesHeart(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesHeartno"
-                            checked={yesHeart === false}
-                            onChange={() => setYesHeart(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentHeart ? commentHeart.split("\n").length : 1), 1)}
-                            value={commentHeart || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) => setCommentHeart(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentHeart(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>History of stroke</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesHistory"
-                            checked={yesHistory === true}
-                            onChange={() => setYesHistory(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesHistoryno"
-                            checked={yesHistory === false}
-                            onChange={() => setYesHistory(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentHistory ? commentHistory.split("\n").length : 1), 1)}
-                            value={commentHistory || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) => setCommentHistory(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentHistory(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>High Blood Pressure</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesHigh"
-                            checked={yesHigh === true}
-                            onChange={() => setYesHigh(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesHighno"
-                            checked={yesHigh === false}
-                            onChange={() => setYesHigh(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentHigh ? commentHigh.split("\n").length : 1), 1)}
-                            value={commentHigh || ''}
+                      }
+                     
+                     {
+                      condition2 &&  <tr>
+                      <td>Heart disease / heart attack</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesHeart"
+                          checked={yesHeart === true}
+                          onChange={() => setYesHeart(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesHeartno"
+                          checked={yesHeart === false}
+                          onChange={() => setYesHeart(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((commentHeart ? commentHeart.split("\n").length : 1), 1)}
+                          value={commentHeart || ''}
+                         
+                          placeholder="___________"
+                          onChange={(e) => setCommentHeart(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setCommentHeart(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+              
+                    </tr>
+                     }
+                     
+                     {
+                      condition3 &&  <tr>
+                      <td>History of stroke</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesHistory"
+                          checked={yesHistory === true}
+                          onChange={() => setYesHistory(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesHistoryno"
+                          checked={yesHistory === false}
+                          onChange={() => setYesHistory(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((commentHistory ? commentHistory.split("\n").length : 1), 1)}
+                          value={commentHistory || ''}
+                         
+                          placeholder="___________"
+                          onChange={(e) => setCommentHistory(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setCommentHistory(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                
+                    </tr>
+                     }
+                     
+                     {
+                      condition4 &&   <tr>
+                      <td>High Blood Pressure</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesHigh"
+                          checked={yesHigh === true}
+                          onChange={() => setYesHigh(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesHighno"
+                          checked={yesHigh === false}
+                          onChange={() => setYesHigh(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((commentHigh ? commentHigh.split("\n").length : 1), 1)}
+                          value={commentHigh || ''}
+                      
+                          placeholder="___________"
+                          onChange={(e) => setCommentHigh(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setCommentHigh(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                 
+                    </tr>
+                     }
+
+                     {
+                      condition5 &&  <tr>
+                      <td>Lung disease (ie asthma, COPD, emphysema)</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesLung"
+                          checked={yesLung === true}
+                          onChange={() => setYesLung(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesLungno"
+                          checked={yesLung === false}
+                          onChange={() => setYesLung(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((commentLung ? commentLung.split("\n").length : 1), 1)}
+                          value={commentLung || ''}
                         
-                            placeholder="___________"
-                            onChange={(e) => setCommentHigh(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentHigh(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Lung disease (ie asthma, COPD, emphysema)</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesLung"
-                            checked={yesLung === true}
-                            onChange={() => setYesLung(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesLungno"
-                            checked={yesLung === false}
-                            onChange={() => setYesLung(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentLung ? commentLung.split("\n").length : 1), 1)}
-                            value={commentLung || ''}
-                          
-                            placeholder="___________"
-                            onChange={(e) => setCommentLung(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentLung(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Seizures</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="diabetes"
-                            checked={yesSeizures === true}
-                            onChange={() => setYesSeizures(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesSeizuresno"
-                            checked={yesSeizures === false}
-                            onChange={() => setYesSeizures(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentSeizures ? commentSeizures.split("\n").length : 1), 1)}
-                            value={commentSeizures || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) => setCommentSeizures(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentSeizures(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
+                          placeholder="___________"
+                          onChange={(e) => setCommentLung(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setCommentLung(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+               
+                    </tr>
+                     }
+                    
+                     {
+                      condition6 &&  <tr>
+                      <td>Seizures</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="diabetes"
+                          checked={yesSeizures === true}
+                          onChange={() => setYesSeizures(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesSeizuresno"
+                          checked={yesSeizures === false}
+                          onChange={() => setYesSeizures(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((commentSeizures ? commentSeizures.split("\n").length : 1), 1)}
+                          value={commentSeizures || ''}
+                         
+                          placeholder="___________"
+                          onChange={(e) => setCommentSeizures(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setCommentSeizures(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+            
+                    </tr>
+                     }
+                     {
+                      condition7 && <tr>
+                      <td>Cancer</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesCancer"
+                          checked={yesCancer === true}
+                          onChange={() => setYesCancer(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesCancerno"
+                          checked={yesCancer === false}
+                          onChange={() => setYesCancer(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((commentCancer ? commentCancer.split("\n").length : 1), 1)}
+                          value={commentCancer || ''}
+                        
+                          placeholder="___________"
+                          onChange={(e) => setCommentCancer(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setCommentCancer(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+        
+                    </tr>
+                     }
+{
+  condition8 && <tr>
+  <td>Liver/kidney disease</td>
+  <td>
+    <input
+      type="checkbox"
+      id="yesLiver"
+      checked={yesLiver === true}
+      onChange={() => setYesLiver(true)}
+    />
+  </td>
+  <td>
+    <input
+      type="checkbox"
+      id="yesLiverno"
+      checked={yesLiver === false}
+      onChange={() => setYesLiver(false)}
+    />
+  </td>
+  <td>
+    <textarea
+      style={{
+        border: "none",
+        outline: "none",
+        resize: "none",
+      }}
+      rows={Math.max((commentLiver ? commentLiver.split("\n").length : 1), 1)}
+      value={commentLiver || ''}
+     
+      placeholder="___________"
+      onChange={(e) => setCommentLiver(e.target.value)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          setCommentLiver(
+            (prevComment) => prevComment + "\n"
+          );
+        }
+      }}
+    />
+  </td>
+ 
+</tr>
+}
+                  {
+                    condition9 &&  <tr>
+                    <td>Thyroid disorder</td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        id="yesThyroid"
+                        checked={yesThyroid === true}
+                        onChange={() => setYesThyroid(true)}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        id="setYesThyroidno"
+                        checked={yesThyroid === false}
+                        onChange={() => setYesThyroid(false)}
+                      />
+                    </td>
+                    <td>
+                      <Select
+                        isMulti
+                        value={thyroidDisorder}
+                        onChange={thyroiddisorderhnadler}
+                        options={thyroidOptions}
+                        isCreatable={true}
+                        onKeyDown={handleKeyThyroidDisorder}
+                      />
+                    </td>
+               
+                  </tr>
+                  }    
+                      
+                     {
+                      condition10 && <tr>
+                      <td>History of head trauma/traumatic brain</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesbrain"
+                          checked={yesbrain === true}
+                          onChange={() => setYesBrain(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
 
-                      <tr>
-                        <td>Cancer</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesCancer"
-                            checked={yesCancer === true}
-                            onChange={() => setYesCancer(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesCancerno"
-                            checked={yesCancer === false}
-                            onChange={() => setYesCancer(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentCancer ? commentCancer.split("\n").length : 1), 1)}
-                            value={commentCancer || ''}
+                          type="checkbox"
+                          id="yesbrainno"
+                          checked={yesbrain === false}
+                          onChange={() => setYesBrain(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{ border: "none", outline: "none", resize: "none" }}
+                          rows={Math.max((commentbrain ? commentbrain.split("\n").length : 1), 1)}
+                          value={commentbrain || ''}
                           
-                            placeholder="___________"
-                            onChange={(e) => setCommentCancer(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentCancer(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Liver/kidney disease</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesLiver"
-                            checked={yesLiver === true}
-                            onChange={() => setYesLiver(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesLiverno"
-                            checked={yesLiver === false}
-                            onChange={() => setYesLiver(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentLiver ? commentLiver.split("\n").length : 1), 1)}
-                            value={commentLiver || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) => setCommentLiver(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentLiver(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Thyroid disorder</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesThyroid"
-                            checked={yesThyroid === true}
-                            onChange={() => setYesThyroid(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="setYesThyroidno"
-                            checked={yesThyroid === false}
-                            onChange={() => setYesThyroid(false)}
-                          />
-                        </td>
-                        <td>
-                          <Select
-                            isMulti
-                            value={thyroidDisorder}
-                            onChange={thyroiddisorderhnadler}
-                            options={thyroidOptions}
-                            isCreatable={true}
-                            onKeyDown={handleKeyThyroidDisorder}
-                          />
-                        </td>
-                      </tr>
-                       <tr>
-                        <td>History of head trauma/traumatic brain</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesbrain"
-                            checked={yesbrain === true}
-                            onChange={() => setYesBrain(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
+                          placeholder="___________"
+                          onChange={(e) => setbrain(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setbrain((prevComment) => prevComment + "\n");
+                            }
+                          }}
+                        />
+                      </td>
+                  
+                    </tr> 
+                     }
 
-                            type="checkbox"
-                            id="yesbrainno"
-                            checked={yesbrain === false}
-                            onChange={() => setYesBrain(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{ border: "none", outline: "none", resize: "none" }}
-                            rows={Math.max((commentbrain ? commentbrain.split("\n").length : 1), 1)}
-                            value={commentbrain || ''}
-                            
-                            placeholder="___________"
-                            onChange={(e) => setbrain(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setbrain((prevComment) => prevComment + "\n");
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr> 
-                      <tr>
-                        <td>History of head trauma/traumatic brain injury</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesInjury"
-                            checked={yesInjury === true}
-                            onChange={() => setYesInjury(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesInjuryno"
-                            checked={yesInjury === false}
-                            onChange={() => setYesInjury(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentInjury ? commentInjury.split("\n").length : 1), 1)}
-                            value={commentInjury || ''}
-                            
-                            placeholder="___________"
-                            onChange={(e) => setCommentInjury(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentInjury(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
+                     {
+                      condition11 && <tr>
+                      <td>History of head trauma/traumatic brain injury</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesInjury"
+                          checked={yesInjury === true}
+                          onChange={() => setYesInjury(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesInjuryno"
+                          checked={yesInjury === false}
+                          onChange={() => setYesInjury(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((commentInjury ? commentInjury.split("\n").length : 1), 1)}
+                          value={commentInjury || ''}
+                          
+                          placeholder="___________"
+                          onChange={(e) => setCommentInjury(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setCommentInjury(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                   
+                    </tr>
+                     }
+                       
+                      {
+                        condition12 &&  <tr>
                         <td>Chronic pain</td>
                         <td>
                           <input
@@ -13682,51 +14408,59 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                    
                       </tr>
-                      <tr>
-                        <td>Allergies (food, environment, medications)</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="AllergiesYes"
-                            checked={AllergiesYes === true}
-                            onChange={() => setAllergiesYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="AllergiesYesno"
-                            checked={AllergiesYes === false}
-                            onChange={() => setAllergiesYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((AllergiesComment ? AllergiesComment.split("\n").length : 1), 1)}
-                            value={AllergiesComment || ''}
-                         
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setAllergiesComment(e.target.value)
+                      }
+                     
+                     {
+                      condition13 && <tr>
+                      <td>Allergies (food, environment, medications)</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="AllergiesYes"
+                          checked={AllergiesYes === true}
+                          onChange={() => setAllergiesYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="AllergiesYesno"
+                          checked={AllergiesYes === false}
+                          onChange={() => setAllergiesYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((AllergiesComment ? AllergiesComment.split("\n").length : 1), 1)}
+                          value={AllergiesComment || ''}
+                       
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setAllergiesComment(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setAllergiesComment(
+                                (prevComment) => prevComment + "\n"
+                              );
                             }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setAllergiesComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
+                          }}
+                        />
+                      </td>
+               
+                    </tr>
+                     }
+                      
+                      {
+                        condition14 &&   <tr>
                         <td>Surgeries</td>
                         <td>
                           <input
@@ -13768,137 +14502,153 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                  
                       </tr>
-                      <tr>
-                        <td>Number of pregnancies / births</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="pregnanciesYes"
-                            checked={pregnanciesYes === true}
-                            onChange={() => setPregnanciesYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="pregnanciesYesno"
-                            checked={pregnanciesYes === false}
-                            onChange={() => setPregnanciesYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((pregnanciesComment ? pregnanciesComment.split("\n").length : 1), 1)}
-                            value={pregnanciesComment || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setPregnanciesComment(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setPregnanciesComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Substance use disorder (please specify)</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="SubstanceYes"
-                            checked={SubstanceYes === true}
-                            onChange={() => setSubstanceYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="SubstanceYesno"
-                            checked={SubstanceYes === false}
-                            onChange={() => setSubstanceYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((SubstanceComment ? SubstanceComment.split("\n").length : 1), 1)}
-                            value={SubstanceComment || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setSubstanceComment(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setSubstanceComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Depression</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="DepressionYes"
-                            checked={DepressionYes === true}
-                            onChange={() => setDepressionYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="DepressionYesno"
-                            checked={DepressionYes === false}
-                            onChange={() => setDepressionYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((DepressionComment ? DepressionComment.split("\n").length : 1), 1)}
-                            value={DepressionComment || ''}
+                      }
+                    
+                    {
+                      condition15 &&  <tr>
+                      <td>Number of pregnancies / births</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="pregnanciesYes"
+                          checked={pregnanciesYes === true}
+                          onChange={() => setPregnanciesYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="pregnanciesYesno"
+                          checked={pregnanciesYes === false}
+                          onChange={() => setPregnanciesYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((pregnanciesComment ? pregnanciesComment.split("\n").length : 1), 1)}
+                          value={pregnanciesComment || ''}
                          
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setDepressionComment(e.target.value)
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setPregnanciesComment(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setPregnanciesComment(
+                                (prevComment) => prevComment + "\n"
+                              );
                             }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setDepressionComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
+                          }}
+                        />
+                      </td>
+                  
+                    </tr>
+                    }
+
+                    {
+                      condition16 &&  <tr>
+                      <td>Substance use disorder (please specify)</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="SubstanceYes"
+                          checked={SubstanceYes === true}
+                          onChange={() => setSubstanceYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="SubstanceYesno"
+                          checked={SubstanceYes === false}
+                          onChange={() => setSubstanceYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((SubstanceComment ? SubstanceComment.split("\n").length : 1), 1)}
+                          value={SubstanceComment || ''}
+                         
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setSubstanceComment(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setSubstanceComment(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                  
+                    </tr>
+                    }
+                     
+                     {
+                      condition17 && <tr>
+                      <td>Depression</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="DepressionYes"
+                          checked={DepressionYes === true}
+                          onChange={() => setDepressionYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="DepressionYesno"
+                          checked={DepressionYes === false}
+                          onChange={() => setDepressionYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((DepressionComment ? DepressionComment.split("\n").length : 1), 1)}
+                          value={DepressionComment || ''}
+                       
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setDepressionComment(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setDepressionComment(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+             
+                    </tr>
+                     }
+                      
+                      {
+                        condition18 &&       <tr>
                         <td>Anxiety/panic attacks</td>
                         <td>
                           <input
@@ -13938,8 +14688,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                    
                       </tr>
-                      <tr>
+                      }
+
+                      {
+                        condition19 && <tr>
                         <td>Insomnia</td>
                         <td>
                           <input
@@ -13981,344 +14735,334 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+               
                       </tr>
-                      <tr>
-                        <td>Bipolar disorder</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="BipolarYes"
-                            checked={BipolarYes === true}
-                            onChange={() => setBipolarYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="BipolarYesno"
-                            checked={BipolarYes === false}
-                            onChange={() => setBipolarYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((BipolarComment ? BipolarComment.split("\n").length : 1), 1)}
-                            value={BipolarComment || ''}
-                         
-                            placeholder="___________"
-                            onChange={(e) => setBipolarComment(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setBipolarComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Schizophrenia</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="SchizophreniaYes"
-                            checked={SchizophreniaYes === true}
-                            onChange={() => setSchizophreniaYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="SchizophreniaYesno"
-                            checked={SchizophreniaYes === false}
-                            onChange={() => setSchizophreniaYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((SchizophreniaComment ? SchizophreniaComment.split("\n").length : 1), 1)}
-                            value={SchizophreniaComment || ''}
-                         
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setSchizophreniaComment(e.target.value)
+                      }
+                
+                {
+                  condition20 &&  <tr>
+                  <td>Bipolar disorder</td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      id="BipolarYes"
+                      checked={BipolarYes === true}
+                      onChange={() => setBipolarYes(true)}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      id="BipolarYesno"
+                      checked={BipolarYes === false}
+                      onChange={() => setBipolarYes(false)}
+                    />
+                  </td>
+                  <td>
+                    <textarea
+                      style={{
+                        border: "none",
+                        outline: "none",
+                        resize: "none",
+                      }}
+                      rows={Math.max((BipolarComment ? BipolarComment.split("\n").length : 1), 1)}
+                      value={BipolarComment || ''}
+                   
+                      placeholder="___________"
+                      onChange={(e) => setBipolarComment(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          setBipolarComment(
+                            (prevComment) => prevComment + "\n"
+                          );
+                        }
+                      }}
+                    />
+                  </td>
+            
+                </tr>
+                }
+
+                {
+                  condition21 && <tr>
+                  <td>Schizophrenia</td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      id="SchizophreniaYes"
+                      checked={SchizophreniaYes === true}
+                      onChange={() => setSchizophreniaYes(true)}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      id="SchizophreniaYesno"
+                      checked={SchizophreniaYes === false}
+                      onChange={() => setSchizophreniaYes(false)}
+                    />
+                  </td>
+                  <td>
+                    <textarea
+                      style={{
+                        border: "none",
+                        outline: "none",
+                        resize: "none",
+                      }}
+                      rows={Math.max((SchizophreniaComment ? SchizophreniaComment.split("\n").length : 1), 1)}
+                      value={SchizophreniaComment || ''}
+                   
+                      placeholder="___________"
+                      onChange={(e) =>
+                        setSchizophreniaComment(e.target.value)
+                      }
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          setSchizophreniaComment(
+                            (prevComment) => prevComment + "\n"
+                          );
+                        }
+                      }}
+                    />
+                  </td>
+             
+                </tr>
+                }
+                      
+                     {
+                      condition22 && <tr>
+                      <td>Obsessive compulsive disorder</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="ObsessiveYes"
+                          checked={ObsessiveYes === true}
+                          onChange={() => setObsessiveYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="ObsessiveYesno"
+                          checked={ObsessiveYes === false}
+                          onChange={() => setObsessiveYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((ObsessiveComment ? ObsessiveComment.split("\n").length : 1), 1)}
+                          value={ObsessiveComment || ''}
+                       
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setObsessiveComment(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setObsessiveComment(
+                                (prevComment) => prevComment + "\n"
+                              );
                             }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setSchizophreniaComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Obsessive compulsive disorder</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="ObsessiveYes"
-                            checked={ObsessiveYes === true}
-                            onChange={() => setObsessiveYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="ObsessiveYesno"
-                            checked={ObsessiveYes === false}
-                            onChange={() => setObsessiveYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((ObsessiveComment ? ObsessiveComment.split("\n").length : 1), 1)}
-                            value={ObsessiveComment || ''}
-                         
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setObsessiveComment(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setObsessiveComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Personality disorder (please specify)</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="PersonalityYes"
-                            checked={PersonalityYes === true}
-                            onChange={() => setPersonalityYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="PersonalityYesno"
-                            checked={PersonalityYes === false}
-                            onChange={() => setPersonalityYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((PersonalityComment ? PersonalityComment.split("\n").length : 1), 1)}
-                            value={PersonalityComment || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setPersonalityComment(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setPersonalityComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Phobias</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="PhobiasYes"
-                            checked={PhobiasYes === true}
-                            onChange={() => setPhobiasYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="PhobiasYesno"
-                            checked={PhobiasYes === false}
-                            onChange={() => setPhobiasYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((PhobiasComment ? PhobiasComment.split("\n").length : 1), 1)}
-                            value={PhobiasComment || ''}
-                          
-                            placeholder="___________"
-                            onChange={(e) => setPhobiasComment(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setPhobiasComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Any other health conditions</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="healthConditionsYes"
-                            checked={healthConditionsYes === true}
-                            onChange={() => setHealthConditionsYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="healthConditionsYesno"
-                            checked={healthConditionsYes === false}
-                            onChange={() => setHealthConditionsYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((healthConditionsYesComment ? healthConditionsYesComment.split("\n").length : 1), 1)}
-                            value={healthConditionsYesComment || ''}
-                          
-                            placeholder="___________"
-                            onChange={(e) =>
-                              sethealthConditionsYesComment(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                sethealthConditionsYesComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Infection or Diseases</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="InfectionYes"
-                            checked={InfectionYes === true}
-                            onChange={() => setInfectionYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="InfectionYesno"
-                            checked={InfectionYes === false}
-                            onChange={() => setInfectionYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <Select
-                            isMulti
-                            placeholder="Select Multiple Type"
-                            value={infectionDiseases}
-                            onChange={infectionDiseasesHandler}
-                            options={infectionDiseasesOptions}
-                            isCreatable={true}
-                            onKeyDown={handleKeyInfectionDiseases}
-                          />
-                        </td>
-                      </tr>
+                          }}
+                        />
+                      </td>
+               
+                    </tr>
+                     }
+                      
                       {
+                       condition23 &&   <tr>
+                       <td>Personality disorder (please specify)</td>
+                       <td>
+                         <input
+                           type="checkbox"
+                           id="PersonalityYes"
+                           checked={PersonalityYes === true}
+                           onChange={() => setPersonalityYes(true)}
+                         />
+                       </td>
+                       <td>
+                         <input
+                           type="checkbox"
+                           id="PersonalityYesno"
+                           checked={PersonalityYes === false}
+                           onChange={() => setPersonalityYes(false)}
+                         />
+                       </td>
+                       <td>
+                         <textarea
+                           style={{
+                             border: "none",
+                             outline: "none",
+                             resize: "none",
+                           }}
+                           rows={Math.max((PersonalityComment ? PersonalityComment.split("\n").length : 1), 1)}
+                           value={PersonalityComment || ''}
+                          
+                           placeholder="___________"
+                           onChange={(e) =>
+                             setPersonalityComment(e.target.value)
+                           }
+                           onKeyDown={(e) => {
+                             if (e.key === "Enter") {
+                               e.preventDefault();
+                               setPersonalityComment(
+                                 (prevComment) => prevComment + "\n"
+                               );
+                             }
+                           }}
+                         />
+                       </td>
+                 
+                     </tr>
+                      }
+                     
+                     {
+                      condition24 &&  <tr>
+                      <td>Phobias</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="PhobiasYes"
+                          checked={PhobiasYes === true}
+                          onChange={() => setPhobiasYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="PhobiasYesno"
+                          checked={PhobiasYes === false}
+                          onChange={() => setPhobiasYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((PhobiasComment ? PhobiasComment.split("\n").length : 1), 1)}
+                          value={PhobiasComment || ''}
                         
-                          otherConditionArray.map((i)=><tr>
+                          placeholder="___________"
+                          onChange={(e) => setPhobiasComment(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setPhobiasComment(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                
+                    </tr>
+                     }
+
+                     {
+                      condition25 &&   <tr>
+                      <td>Any other health conditions</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="healthConditionsYes"
+                          checked={healthConditionsYes === true}
+                          onChange={() => setHealthConditionsYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="healthConditionsYesno"
+                          checked={healthConditionsYes === false}
+                          onChange={() => setHealthConditionsYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((healthConditionsYesComment ? healthConditionsYesComment.split("\n").length : 1), 1)}
+                          value={healthConditionsYesComment || ''}
+                        
+                          placeholder="___________"
+                          onChange={(e) =>
+                            sethealthConditionsYesComment(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              sethealthConditionsYesComment(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                 
+                    </tr>
+                     }
+
+                     {
+                      condition26 && <tr>
+                      <td>Infection or Diseases</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="InfectionYes"
+                          checked={InfectionYes === true}
+                          onChange={() => setInfectionYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="InfectionYesno"
+                          checked={InfectionYes === false}
+                          onChange={() => setInfectionYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <Select
+                          isMulti
+                          placeholder="Select Multiple Type"
+                          value={infectionDiseases}
+                          onChange={infectionDiseasesHandler}
+                          options={infectionDiseasesOptions}
+                          isCreatable={true}
+                          onKeyDown={handleKeyInfectionDiseases}
+                        />
+                      </td>
+                    
+                    </tr>
+                     }
+                    
+                      
+                      {
+                          otherConditionArray.map((i,index)=><tr key={index}>
                             <td>{i.condition}</td>
                            <td><input type="checkbox" checked={i.yes===true} /></td>
                            <td><input type="checkbox" checked={i.yes===false} /></td>
-                            <td>{i.comments}</td>
+                            <td style={{paddingLeft:'20px'}}>{i.comments}</td>
+                       
                           </tr>)
                         
                       }
-                      <tr>
-                        <td>Other: <input type="text" className="treatment_plan_table"
-                        value={OtherConditionOther} onChange={(e)=>setOtherConditionOther(e.target.value)} placeholder="___________"/></td>
-                        <td>
-                          <input
-                            type="checkbox"
-                          
-                            checked={otherConditionYesNO === true}
-                            onChange={() => setOtherConditionYesNo(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                   
-                            checked={otherConditionYesNO === false}
-                            onChange={() => setOtherConditionYesNo(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((otherConditionDiscription ? otherConditionDiscription.split("\n").length : 1), 1)}
-                            value={otherConditionDiscription || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) => setOtherConditionDiscription(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setOtherConditionDiscription(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                    
+                     
                       
                     </tbody>
                   </table>
@@ -14539,9 +15283,11 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       <th style={{ fontWeight: "bold" }}>Last Use</th>
                       <th style={{ fontWeight: "bold" }}>Frequency </th>
                       <th style={{ fontWeight: "bold" }}>Length of Sobriety</th>
+                   
                     </thead>
                     <tbody>
-                      <tr>
+                      {
+                        type1 &&  <tr>
                         <td>Alcohol</td>
                         <td>
                           <input
@@ -14591,113 +15337,125 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
                          
                         </td>
+                 
                       </tr>
+                      }
+                     
+                     {
+                      type2  && <tr>
+                      <td>Benzodiazepines</td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={
+                            substanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines
+                          }
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataLastUseBenzodiazepines}
+                onChange={handlesubstanceAbuseHistoryDataLastUseBenzodiazepines}
+                options={optionsubstanceAbuseHistoryDataLastUseBenzodiazepines}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseBenzodiazepines}
+              />
+                       
+                      </td>
+                      <td>
 
-                      <tr>
-                        <td>Benzodiazepines</td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={
-                              substanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseBenzodiazepines}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseBenzodiazepines}
-                  options={optionsubstanceAbuseHistoryDataLastUseBenzodiazepines}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseBenzodiazepines}
-                />
-                         
-                        </td>
-                        <td>
-
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyBenzodiazepines}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyBenzodiazepines}
-                  options={optionsubstanceAbuseHistoryDataFrequencyBenzodiazepines}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyBenzodiazepines}
-                />
-
-                         
-                        </td>
-                        <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
-                  
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
-                />
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyBenzodiazepines}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyBenzodiazepines}
+                options={optionsubstanceAbuseHistoryDataFrequencyBenzodiazepines}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyBenzodiazepines}
+              />
 
                        
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Crack</td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={substanceAbuseHistoryDataAgeOfFirstUseCrack}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUseCrack(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                          <Select
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
+                
+                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
+              />
+
+                     
+                      </td>
                   
-                  value={substanceAbuseHistoryDataLastUseCrack}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseCrack}
-                  options={optionsubstanceAbuseHistoryDataLastUseCrack}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseCrack}
-                />
+                 
+                    </tr>
+                     }
+
+                     {
+                      type3 &&  <tr>
+                      <td>Crack</td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={substanceAbuseHistoryDataAgeOfFirstUseCrack}
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUseCrack(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataLastUseCrack}
+                onChange={handlesubstanceAbuseHistoryDataLastUseCrack}
+                options={optionsubstanceAbuseHistoryDataLastUseCrack}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseCrack}
+              />
+                     
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyCrack}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyCrack}
+                options={optionsubstanceAbuseHistoryDataFrequencyCrack}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyCrack}
+              />
+
+                        
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyCrack}
+                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyCrack}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyCrack}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyCrack}
+              />
+
                        
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyCrack}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyCrack}
-                  options={optionsubstanceAbuseHistoryDataFrequencyCrack}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyCrack}
-                />
-
-                          
-                        </td>
-                        <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyCrack}
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyCrack}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyCrack}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyCrack}
-                />
-
-                         
-                        </td>
-                      </tr>
-                      <tr>
+                      </td>
+                   
+                    </tr>
+                     }
+                      
+                      {
+                        type4 &&  <tr>
                         <td>Heroin</td>
                         <td>
                           <input
@@ -14747,113 +15505,125 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
                          
                         </td>
+                     
                       </tr>
-                      <tr>
-                        <td>Inhalants</td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={
-                              substanceAbuseHistoryDataAgeOfFirstUseInhalants
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUseInhalants(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseInhalants}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseInhalants}
-                  options={optionsubstanceAbuseHistoryDataLastUseInhalants}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseInhalants}
-                />
-                         
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyInhalants}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyInhalants}
-                  options={optionsubstanceAbuseHistoryDataFrequencyInhalants}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyInhalants}
-                />
+                      }
+                     
+                     {
+                      type5 &&   <tr>
+                      <td>Inhalants</td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={
+                            substanceAbuseHistoryDataAgeOfFirstUseInhalants
+                          }
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUseInhalants(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataLastUseInhalants}
+                onChange={handlesubstanceAbuseHistoryDataLastUseInhalants}
+                options={optionsubstanceAbuseHistoryDataLastUseInhalants}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseInhalants}
+              />
+                       
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyInhalants}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyInhalants}
+                options={optionsubstanceAbuseHistoryDataFrequencyInhalants}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyInhalants}
+              />
+
+                    
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyInhalants}
+                
+                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
+              />
+
+                      </td>
+              
+                    </tr>
+                     }
+
+                     {
+                      type6 && <tr>
+                      <td>Marijuana </td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={
+                            substanceAbuseHistoryDataAgeOfFirstUseMarijuana
+                          }
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUseMarijuana(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataLastUseMarijuana}
+                onChange={handlesubstanceAbuseHistoryDataLastUseMarijuana}
+                options={optionsubstanceAbuseHistoryDataLastUseMarijuana}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMarijuana}
+              />
+                      
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyMarijuana}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyMarijuana}
+                options={optionsubstanceAbuseHistoryDataFrequencyMarijuana}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMarijuana}
+              />
 
                       
-                        </td>
-                        <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyInhalants}
-                  
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
-                />
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyMarijuana}
+                
+                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
+              />
 
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Marijuana </td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={
-                              substanceAbuseHistoryDataAgeOfFirstUseMarijuana
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUseMarijuana(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseMarijuana}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseMarijuana}
-                  options={optionsubstanceAbuseHistoryDataLastUseMarijuana}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMarijuana}
-                />
-                        
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyMarijuana}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyMarijuana}
-                  options={optionsubstanceAbuseHistoryDataFrequencyMarijuana}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMarijuana}
-                />
-
-                        
-                        </td>
-                        <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyMarijuana}
-                  
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
-                />
-
-                         
-                        </td>
-                      </tr>
-                      <tr>
+                       
+                      </td>
+               
+                    </tr>
+                     }
+                    
+                      {
+                        type7 &&   <tr>
                         <td>Methamphetamine </td>
                         <td>
                           <input
@@ -14903,8 +15673,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 />
 
                         </td>
+              
                       </tr>
-                      <tr>
+                      }
+
+                      {
+                        type8 &&  <tr>
                         <td>Methadone</td>
                         <td>
                           <input
@@ -14956,209 +15730,226 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
                         
                         </td>
+                
                       </tr>
-                      <tr>
-                        <td>MDMA (ecstasy)</td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={substanceAbuseHistoryDataAgeOfFirstUseMDMA}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUseMDMA(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseMDMA}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseMDMA}
-                  options={optionsubstanceAbuseHistoryDataLastUseMDMA}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMDMA}
-                />
-                        
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyMDMA}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyMDMA}
-                  options={optionsubstanceAbuseHistoryDataFrequencyMDMA}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMDMA}
-                />
-                        
-                        </td>
-                        <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyMDMA}
-                  
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
-                />
-
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>PCP (angel dust)</td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={substanceAbuseHistoryDataAgeOfFirstUsePCP}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUsePCP(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUsePCP}
-                  onChange={hnadlesubstanceAbuseHistoryDataLastUsePCP}
-                  options={optionsubstanceAbuseHistoryDataLastUsePCP}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUsePCP}
-                />
-                          
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyPCP}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyPCP}
-                  options={optionsubstanceAbuseHistoryDataFrequencyPCP}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyPCP}
-                />
-
-                          
-                        </td>
-                        <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyPCP}
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyPCP}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyPCP}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyPCP}
-                />
-
-                          
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Prescription medicine</td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={
-                              substanceAbuseHistoryDataAgeOfFirstUsePrescription
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUsePrescription(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUsePrescription}
-                  onChange={handlesubstanceAbuseHistoryDataLastUsePrescription}
-                  options={optionsubstanceAbuseHistoryDataLastUsePrescription}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUsePrescription}
-                />
-                          
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyPrescription}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyPrescription}
-                  options={optionsubstanceAbuseHistoryDataFrequencyPrescription}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyPrescription}
-                />
-
-                          
-                        </td>
-                        <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyPrescription}
-                  
-                  onChange={hnadlesubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
-                />
-
-                         
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>OTC medicine</td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={substanceAbuseHistoryDataAgeOfFirstUseOTC}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUseOTC(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseOTC}
-                  onChange={hnadlesubstanceAbuseHistoryDataLastUseOTC}
-                  options={optionsubstanceAbuseHistoryDataLastUseOTC}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseOTC}
-                />
-                         
-                        </td>
-                        <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyOTC}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyOTC}
-                  options={optionsubstanceAbuseHistoryDataFrequencyOTC}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyOTC}
-                />
-
-                         
-                        </td>
-                        <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyOTC}
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyOTC}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyOTC}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyOTC}
-                />
-
+                      }
+                    
+                     {
+                      type9 &&  <tr>
+                      <td>MDMA (ecstasy)</td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={substanceAbuseHistoryDataAgeOfFirstUseMDMA}
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUseMDMA(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataLastUseMDMA}
+                onChange={handlesubstanceAbuseHistoryDataLastUseMDMA}
+                options={optionsubstanceAbuseHistoryDataLastUseMDMA}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMDMA}
+              />
                       
-                        </td>
-                      </tr>
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyMDMA}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyMDMA}
+                options={optionsubstanceAbuseHistoryDataFrequencyMDMA}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMDMA}
+              />
+                      
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyMDMA}
+                
+                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
+              />
+
+                      </td>
+              
+                    </tr>
+                     }
+                     
+                     {
+                      type10 &&  <tr>
+                      <td>PCP (angel dust)</td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={substanceAbuseHistoryDataAgeOfFirstUsePCP}
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUsePCP(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataLastUsePCP}
+                onChange={hnadlesubstanceAbuseHistoryDataLastUsePCP}
+                options={optionsubstanceAbuseHistoryDataLastUsePCP}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUsePCP}
+              />
+                        
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyPCP}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyPCP}
+                options={optionsubstanceAbuseHistoryDataFrequencyPCP}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyPCP}
+              />
+
+                        
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyPCP}
+                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyPCP}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyPCP}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyPCP}
+              />
+
+                        
+                      </td>
+                
+                    </tr>
+                     }
+                     
+                     {
+                      type11 &&  <tr>
+                      <td>Prescription medicine</td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={
+                            substanceAbuseHistoryDataAgeOfFirstUsePrescription
+                          }
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUsePrescription(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataLastUsePrescription}
+                onChange={handlesubstanceAbuseHistoryDataLastUsePrescription}
+                options={optionsubstanceAbuseHistoryDataLastUsePrescription}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUsePrescription}
+              />
+                        
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyPrescription}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyPrescription}
+                options={optionsubstanceAbuseHistoryDataFrequencyPrescription}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyPrescription}
+              />
+
+                        
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyPrescription}
+                
+                onChange={hnadlesubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
+              />
+
+                       
+                      </td>
+                 
+                    </tr>
+                     }
+
+                     {
+                      type12 &&  <tr>
+                      <td>OTC medicine</td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={substanceAbuseHistoryDataAgeOfFirstUseOTC}
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUseOTC(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataLastUseOTC}
+                onChange={hnadlesubstanceAbuseHistoryDataLastUseOTC}
+                options={optionsubstanceAbuseHistoryDataLastUseOTC}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseOTC}
+              />
+                       
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyOTC}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyOTC}
+                options={optionsubstanceAbuseHistoryDataFrequencyOTC}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyOTC}
+              />
+
+                       
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyOTC}
+                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyOTC}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyOTC}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyOTC}
+              />
+                      </td>
+           
+                    </tr>
+                     }
+                     
 
                       {typeArray?.map((i) => (
                         <tr>
@@ -15170,62 +15961,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         </tr>
                       ))}
 
-                      <tr >
-                        <td>
-                          Other:
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={otherTypeOther}
-                            onChange={(e) => setOtherTypeOther(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={otherAgeOfFirstUse}
-                            onChange={(e) =>
-                              setOtherAgeOfFirstUse(e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                        <Select
-                  value={otherLastUse}
-                  
-                  onChange={handleotherLastUse}
-                  options={optionotherLastUse}
-                  isCreatable={true}
-                  onKeyDown={handleKeyotherLastUse}
-                />
-          
-                        </td>
-                        <td>
-                        <Select
-                  value={otherFrequancy}
-                  
-                  onChange={handleotherFrequancy}
-                  options={optionotherFrequancy}
-                  isCreatable={true}
-                  onKeyDown={handleKeyotherFrequancy}
-                />
-                        </td>
-                        <td>
-
-                        <Select
-                  value={OtherlengthOfSobrifty}
-                  
-                  onChange={handleOtherlengthOfSobrifty}
-                  options={optionOtherlengthOfSobrifty}
-                  isCreatable={true}
-                  onKeyDown={handleKeyOtherlengthOfSobrifty}
-                />
-                     
-                        </td>
-                      </tr>
+                    
                     </tbody>
                   </table>
                 </div>
@@ -17471,10 +18207,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         <th>Not so good</th>
                         <th>Need assist</th>
                         <th>Comments</th>
+                
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                      {
+                        Independent1 &&   <tr>
                         <td>Bathing/Showering</td>
                         <td>
                           <input
@@ -17533,71 +18271,79 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                        
                       </tr>
-                      <tr>
-                        <td>Grooming/hygiene</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={GroomingGood === true}
-                            onChange={() => setGroomingGood(!GroomingGood)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={GroomingFair === true}
-                            onChange={() => setGroomingFair(!GroomingFair)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={GroomingNotSoGood === true}
-                            onChange={() =>
-                              setGroomingNotSoGood(!GroomingNotSoGood)
+                      }
+                    
+
+                    {
+                      Independent2 && <tr>
+                      <td>Grooming/hygiene</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={GroomingGood === true}
+                          onChange={() => setGroomingGood(!GroomingGood)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={GroomingFair === true}
+                          onChange={() => setGroomingFair(!GroomingFair)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={GroomingNotSoGood === true}
+                          onChange={() =>
+                            setGroomingNotSoGood(!GroomingNotSoGood)
+                          }
+                        />
+                      </td>
+                      <td>
+                        <select
+                          value={GroomingGoodNeedAssist}
+                          onChange={(e) =>
+                            setGroomingGoodNeedAssist(e.target.value)
+                          }
+                        >
+                          <option disabled>Select value</option>
+                          <option value={true}>Yes</option>
+                          <option value={false}>No</option>
+                        </select>
+                      </td>
+                      <td>
+                        <textarea
+                          className="treatment_plan_table"
+                          rows={Math.max(
+                            GroomingComments
+                              ? GroomingComments.split("\n").length
+                              : 1,
+                            1
+                          )}
+                          value={GroomingComments || ""}
+                         
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setGroomingComments(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setGroomingComments(
+                                (prevComment) => prevComment + "\n"
+                              );
                             }
-                          />
-                        </td>
-                        <td>
-                          <select
-                            value={GroomingGoodNeedAssist}
-                            onChange={(e) =>
-                              setGroomingGoodNeedAssist(e.target.value)
-                            }
-                          >
-                            <option disabled>Select value</option>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                          </select>
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              GroomingComments
-                                ? GroomingComments.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={GroomingComments || ""}
-                           
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setGroomingComments(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setGroomingComments(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
+                          }}
+                        />
+                      </td>
+                      
+                    </tr>
+                    }
+                      {
+                        Independent3 &&    <tr>
                         <td>Mobility</td>
                         <td>
                           <input
@@ -17659,8 +18405,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                     
                       </tr>
-                      <tr>
+                      }
+
+                      {
+                        Independent4 &&   <tr>
                         <td>Housework</td>
                         <td>
                           <input
@@ -17722,197 +18472,216 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
-                      </tr>
-                      <tr>
-                        <td>Shopping</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ShoppingGood === true}
-                            onChange={() => setShoppingGood(!ShoppingGood)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ShoppingFair === true}
-                            onChange={() => setShoppingFair(!ShoppingFair)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ShoppingNotSoGood === true}
-                            onChange={() =>
-                              setShoppingNotSoGood(!ShoppingNotSoGood)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <select
-                            value={ShoppingGoodNeedAssist}
-                            onChange={(e) =>
-                              setShoppingGoodNeedAssist(e.target.value)
-                            }
-                          >
-                            <option disabled>Select value</option>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                          </select>
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              ShoppingComments
-                                ? ShoppingComments.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={ShoppingComments || ""}
-              
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setShoppingComments(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setShoppingComments(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Managing money/budget</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ManagingGood === true}
-                            onChange={() => setManagingGood(!ManagingGood)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ManagingFair === true}
-                            onChange={() => setManagingFair(!ManagingFair)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ManagingNotSoGood === true}
-                            onChange={() =>
-                              setManagingNotSoGood(!ManagingNotSoGood)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <select
-                            value={ManagingGoodNeedAssist}
-                            onChange={(e) =>
-                              setManagingGoodNeedAssist(e.target.value)
-                            }
-                          >
-                            <option disabled>Select value</option>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                          </select>
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              ManagingComments
-                                ? ManagingComments.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={ManagingComments || ""}
-                            
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setManagingComments(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setManagingComments(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Preparing food</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={PreparingGood === true}
-                            onChange={() => setPreparingGood(!PreparingGood)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={PreparingFair === true}
-                            onChange={() => setPreparingFair(!PreparingFair)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={PreparingNotSoGood === true}
-                            onChange={() =>
-                              setPreparingNotSoGood(!PreparingNotSoGood)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <select
-                            value={PreparingGoodNeedAssist}
-                            onChange={(e) =>
-                              setPreparingGoodNeedAssist(e.target.value)
-                            }
-                          >
-                            <option disabled>Select value</option>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                          </select>
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              PreparingComments
-                                ? PreparingComments.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={PreparingComments || ""}
                     
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setPreparingComments(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setPreparingComments(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
                       </tr>
-                      <tr>
+                      }
+                   
+                   {
+                    Independent5 &&   <tr>
+                    <td>Shopping</td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={ShoppingGood === true}
+                        onChange={() => setShoppingGood(!ShoppingGood)}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={ShoppingFair === true}
+                        onChange={() => setShoppingFair(!ShoppingFair)}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={ShoppingNotSoGood === true}
+                        onChange={() =>
+                          setShoppingNotSoGood(!ShoppingNotSoGood)
+                        }
+                      />
+                    </td>
+                    <td>
+                      <select
+                        value={ShoppingGoodNeedAssist}
+                        onChange={(e) =>
+                          setShoppingGoodNeedAssist(e.target.value)
+                        }
+                      >
+                        <option disabled>Select value</option>
+                        <option value={true}>Yes</option>
+                        <option value={false}>No</option>
+                      </select>
+                    </td>
+                    <td>
+                      <textarea
+                        className="treatment_plan_table"
+                        rows={Math.max(
+                          ShoppingComments
+                            ? ShoppingComments.split("\n").length
+                            : 1,
+                          1
+                        )}
+                        value={ShoppingComments || ""}
+          
+                        placeholder="___________"
+                        onChange={(e) =>
+                          setShoppingComments(e.target.value)
+                        }
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            e.preventDefault();
+                            setShoppingComments(
+                              (prevComment) => prevComment + "\n"
+                            );
+                          }
+                        }}
+                      />
+                    </td>
+                
+                  </tr>
+                   }
+                    
+
+                    {
+                      Independent6 && <tr>
+                      <td>Managing money/budget</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={ManagingGood === true}
+                          onChange={() => setManagingGood(!ManagingGood)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={ManagingFair === true}
+                          onChange={() => setManagingFair(!ManagingFair)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={ManagingNotSoGood === true}
+                          onChange={() =>
+                            setManagingNotSoGood(!ManagingNotSoGood)
+                          }
+                        />
+                      </td>
+                      <td>
+                        <select
+                          value={ManagingGoodNeedAssist}
+                          onChange={(e) =>
+                            setManagingGoodNeedAssist(e.target.value)
+                          }
+                        >
+                          <option disabled>Select value</option>
+                          <option value={true}>Yes</option>
+                          <option value={false}>No</option>
+                        </select>
+                      </td>
+                      <td>
+                        <textarea
+                          className="treatment_plan_table"
+                          rows={Math.max(
+                            ManagingComments
+                              ? ManagingComments.split("\n").length
+                              : 1,
+                            1
+                          )}
+                          value={ManagingComments || ""}
+                          
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setManagingComments(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setManagingComments(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                     
+                    </tr>
+                    }
+                    
+
+                    {
+                      Independent7 &&  <tr>
+                      <td>Preparing food</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={PreparingGood === true}
+                          onChange={() => setPreparingGood(!PreparingGood)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={PreparingFair === true}
+                          onChange={() => setPreparingFair(!PreparingFair)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={PreparingNotSoGood === true}
+                          onChange={() =>
+                            setPreparingNotSoGood(!PreparingNotSoGood)
+                          }
+                        />
+                      </td>
+                      <td>
+                        <select
+                          value={PreparingGoodNeedAssist}
+                          onChange={(e) =>
+                            setPreparingGoodNeedAssist(e.target.value)
+                          }
+                        >
+                          <option disabled>Select value</option>
+                          <option value={true}>Yes</option>
+                          <option value={false}>No</option>
+                        </select>
+                      </td>
+                      <td>
+                        <textarea
+                          className="treatment_plan_table"
+                          rows={Math.max(
+                            PreparingComments
+                              ? PreparingComments.split("\n").length
+                              : 1,
+                            1
+                          )}
+                          value={PreparingComments || ""}
+                  
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setPreparingComments(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setPreparingComments(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                   
+                    </tr>
+                    }
+                      
+
+                      {
+                        Independent8 &&   <tr>
                         <td>Eating</td>
                         <td>
                           <input
@@ -17973,70 +18742,79 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                      
                       </tr>
-                      <tr>
-                        <td>Toileting</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ToiletingGood === true}
-                            onChange={() => setToiletingGood(!ToiletingGood)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ToiletingFair === true}
-                            onChange={() => setToiletingFair(!ToiletingFair)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ToiletingNotSoGood === true}
-                            onChange={() =>
-                              setToiletingNotSoGood(!ToiletingNotSoGood)
+                      }
+                     
+                     {
+                      Independent9 &&  <tr>
+                      <td>Toileting</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={ToiletingGood === true}
+                          onChange={() => setToiletingGood(!ToiletingGood)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={ToiletingFair === true}
+                          onChange={() => setToiletingFair(!ToiletingFair)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={ToiletingNotSoGood === true}
+                          onChange={() =>
+                            setToiletingNotSoGood(!ToiletingNotSoGood)
+                          }
+                        />
+                      </td>
+                      <td>
+                        <select
+                          value={ToiletingGoodNeedAssist}
+                          onChange={(e) =>
+                            setToiletingGoodNeedAssist(e.target.value)
+                          }
+                        >
+                          <option disabled>Select value</option>
+                         
+                          <option value={true}>Yes</option>
+                          <option value={false}>No</option>
+                        </select>
+                      </td>
+                      <td>
+                        <textarea
+                          className="treatment_plan_table"
+                          rows={Math.max(
+                            ToiletingComments
+                              ?  ToiletingComments.split("\n").length
+                              : 1,
+                            1
+                          )}
+                          value={ ToiletingComments || ""}
+                          
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setToiletingComments(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setToiletingComments(
+                                (prevComment) => prevComment + "\n"
+                              );
                             }
-                          />
-                        </td>
-                        <td>
-                          <select
-                            value={ToiletingGoodNeedAssist}
-                            onChange={(e) =>
-                              setToiletingGoodNeedAssist(e.target.value)
-                            }
-                          >
-                            <option disabled>Select value</option>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                          </select>
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              ToiletingComments
-                                ?  ToiletingComments.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={ ToiletingComments || ""}
-                            
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setToiletingComments(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setToiletingComments(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
+                          }}
+                        />
+                      </td>
+                  
+                    </tr>
+                     }
+                    
+                     
 
                       {handleRiskFactorActivityArray?.map((i, index) => (
                         <tr key={index}>
@@ -18057,101 +18835,18 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           <td>
                             {` ${i.needAssist === true ? "Yes" : "No"}`}{" "}
                           </td>
-                          <td> {i.comments} </td>
+                          <td style={{paddingLeft:"20px"}}> {i.comments} </td>
+                       
                         </tr>
                       ))}
-                      <tr>
-                        <td>
-                          Other:{" "}
-                          <input
-                            type="text"
-                            placeholder="___________"
-                            className="treatment_plan_table"
-                            value={otherCurrentOther}
-                            onChange={(e) =>
-                              setOtherCurrentOther(e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={otherCurrentGood}
-                            onChange={(e) =>
-                              setOtherCurrentGood(!otherCurrentGood)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={otherCurrentFair}
-                            onChange={(e) =>
-                              setOtherCurrentFair(!otherCurrentFair)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={otherCurrentNotSoGood}
-                            onChange={(e) =>
-                              setOtherCurrentNotSoGood(!otherCurrentNotSoGood)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <select
-                            value={otherCurrentNeed}
-                            onChange={(e) =>
-                              setOtherCurrentNeed(e.target.value)
-                            }
-                          >
-                            <option>Select</option>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                          </select>
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              otherCurrentComment
-                                ?  otherCurrentComment.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={ otherCurrentComment || ""}
-                           
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setOtherCurrentComment(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setOtherCurrentComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
+                    
                     </tbody>
                   </table>
                 </div>
               </div>
 
-              <div className="form-actions  hidePrint">
-                <button
-                  type="button"
-                  className="safetybutton"
-                  onClick={handleRiskFactorActivity}
-                >
-                  Add
-                </button>
-              </div>
+
+         
 
 
               <div className="box-image-container">
@@ -18479,10 +19174,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         <th>Yes</th>
                         <th>No</th>
                         <th>Comments</th>
+                      
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                      {
+                        riskFactor1 &&  <tr>
                         <td>Current suicidal ideation </td>
                         <td>
                           <input type="checkbox"  checked={riskYesNo === true}
@@ -18501,8 +19198,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setRiskComment(e.target.value)}}
                           />
                         </td>
+                     
                       </tr>
-                      <tr>
+                      }
+
+                      {
+                        riskFactor2 &&   <tr>
                         <td>Prior suicide attempt</td>
                         <td>
                           <input type="checkbox" checked={PriorYesNo === true}
@@ -18521,29 +19222,37 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setPriorComment(e.target.value)}}
                           />
                         </td>
+                   
                       </tr>
-                      <tr>
-                        <td>Access to means (i.e. weapon)</td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={AccessYesNo === true}
-                          onChange={() => setAccessYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" checked={AccessYesNo === false}
-                      onChange={() => setAccessYesNo(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            style={{ border: "none", outline: "none" }}
-                            type="text"
-                            placeholder="____________"
-                            value={AccessComment}
-                            onChange={(e)=>{setAccessComment(e.target.value)}}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
+                      }
+                     
+                    {
+                      riskFactor3 && <tr>
+                      <td>Access to means (i.e. weapon)</td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={AccessYesNo === true}
+                        onChange={() => setAccessYesNo(true)}/>
+                      </td>
+                      <td>
+                        <input type="checkbox" checked={AccessYesNo === false}
+                    onChange={() => setAccessYesNo(false)}/>
+                      </td>
+                      <td>
+                        <input
+                          style={{ border: "none", outline: "none" }}
+                          type="text"
+                          placeholder="____________"
+                          value={AccessComment}
+                          onChange={(e)=>{setAccessComment(e.target.value)}}
+                        />
+                      </td>
+                    
+                    </tr>
+                    }
+
+                      {
+                        riskFactor4 && <tr>
                         <td>Substance abuse</td>
                         <td>
                           <input type="checkbox" 
@@ -18564,8 +19273,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setSubstanceCommentAbuse(e.target.value)}}
                           />
                         </td>
+                   
                       </tr>
-                      <tr>
+                      }
+
+                      {
+                        riskFactor5 &&  <tr>
                         <td>Other self-abusing behavior</td>
                         <td>
                           <input type="checkbox" 
@@ -18586,8 +19299,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setabusingComment(e.target.value)}}
                           />
                         </td>
+                   
                       </tr>
-                      <tr>
+                      }
+                      
+                      {
+                        riskFactor6 &&  <tr>
                         <td>Recent losses/lack of support</td>
                         <td>
                           <input type="checkbox" 
@@ -18608,106 +19325,131 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setRecentComment(e.target.value)}}
                           />
                         </td>
+
                       </tr>
-                      <tr>
-                        <td>Behavior cues</td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={behaviourYesNO === true}
-                          onChange={() => setBehaviourYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={behaviourYesNO === false}
-                          onChange={() => setBehaviourYesNo(false)}/>
-                        </td>
-                        <td>
+                      }
                      
-                          <Select
-                            value={behaviorcuesDropDown}
-                            isMulti
-                            options={selectedValueRiskFactorsOption1}
-                            onChange={
-                              selectedValueRiskFactorsHandlerBehaviorcues
-                            }
-                            isCreatable={true}
-                            onKeyDown={
-                              handleKeySelectedValueRiskFactorsBehavior
-                            }
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Symptoms of psychosis </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={SymptomsYesNO === true}
-                          onChange={() => setSymptomsYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={SymptomsYesNO === false}
-                          onChange={() => setSymptomsYesNo(false)}/>
-                        </td>
-                        <td>
-                          
-                          <Select
-                            value={symptomsOfPsychosisDropDown}
-                            isMulti
-                            options={selectedValueRiskFactorsOption2}
-                            onChange={selectedValueRiskFactorsHandlerSymptoms}
-                            isCreatable={true}
-                            onKeyDown={
-                              handleKeySelectedValueRiskFactorsSymptoms
-                            }
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Family history of suicide</td>
-                        <td>
-                          <input type="checkbox"
-                         checked={FamilyYesNO === true}
-                          onChange={() => setFamilyYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={FamilyYesNO === false}
-                          onChange={() => setFamilyYesNo(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            style={{ border: "none", outline: "none" }}
-                            type="text"
-                            placeholder="____________"
-                            value={Family}
-                            onChange={(e)=>{setFamily(e.target.value)}}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Terminal physical illness</td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={TerminalYesNO === true}
-                          onChange={() => setTerminalYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={TerminalYesNO === false}
-                          onChange={() => setTerminalYesNo(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            style={{ border: "none", outline: "none" }}
-                            type="text"
-                            placeholder="____________"
-                            value={Terminal}
-                            onChange={(e)=>{setTerminal(e.target.value)}}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
+                     {
+                      riskFactor7 && <tr>
+                      <td>Behavior cues</td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={behaviourYesNO === true}
+                        onChange={() => setBehaviourYesNo(true)}/>
+                      </td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={behaviourYesNO === false}
+                        onChange={() => setBehaviourYesNo(false)}/>
+                      </td>
+                      <td>
+                   
+                        <Select
+                          value={behaviorcuesDropDown}
+                          isMulti
+                          options={selectedValueRiskFactorsOption1}
+                          onChange={
+                            selectedValueRiskFactorsHandlerBehaviorcues
+                          }
+                          isCreatable={true}
+                          onKeyDown={
+                            handleKeySelectedValueRiskFactorsBehavior
+                          }
+                        />
+                      </td>
+                   
+                    </tr>
+                     }
+                     
+
+                     {
+                      riskFactor8 &&  <tr>
+                      <td>Symptoms of psychosis </td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={SymptomsYesNO === true}
+                        onChange={() => setSymptomsYesNo(true)}/>
+                      </td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={SymptomsYesNO === false}
+                        onChange={() => setSymptomsYesNo(false)}/>
+                      </td>
+                      <td>
+                        
+                        <Select
+                          value={symptomsOfPsychosisDropDown}
+                          isMulti
+                          options={selectedValueRiskFactorsOption2}
+                          onChange={selectedValueRiskFactorsHandlerSymptoms}
+                          isCreatable={true}
+                          onKeyDown={
+                            handleKeySelectedValueRiskFactorsSymptoms
+                          }
+                        />
+                      </td>
+
+                  
+                      
+                    </tr>
+                     }
+
+                     {
+                      riskFactor9 && <tr>
+                      <td>Family history of suicide</td>
+                      <td>
+                        <input type="checkbox"
+                       checked={FamilyYesNO === true}
+                        onChange={() => setFamilyYesNo(true)}/>
+                      </td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={FamilyYesNO === false}
+                        onChange={() => setFamilyYesNo(false)}/>
+                      </td>
+                      <td>
+                        <input
+                          style={{ border: "none", outline: "none" }}
+                          type="text"
+                          placeholder="____________"
+                          value={Family}
+                          onChange={(e)=>{setFamily(e.target.value)}}
+                        />
+                      </td>
+                    
+                    </tr>
+
+                     }
+                      
+                     {
+                      riskFactor10 &&  <tr>
+                      <td>Terminal physical illness</td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={TerminalYesNO === true}
+                        onChange={() => setTerminalYesNo(true)}/>
+                      </td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={TerminalYesNO === false}
+                        onChange={() => setTerminalYesNo(false)}/>
+                      </td>
+                      <td>
+                        <input
+                          style={{ border: "none", outline: "none" }}
+                          type="text"
+                          placeholder="____________"
+                          value={Terminal}
+                          onChange={(e)=>{setTerminal(e.target.value)}}
+                        />
+                      </td>
+                     
+                    </tr>
+                     }
+                      
+
+                      {
+                        riskFactor11 &&  <tr>
                         <td>Current stressors (specify)</td>
                         <td>
                           <input type="checkbox" 
@@ -18728,29 +19470,38 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setCurrent(e.target.value)}}
                           />
                         </td>
+                       
                       </tr>
-                      <tr>
-                        <td>Chronic pain</td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={ChronicYesNO === true}
-                          onChange={() => setChronicYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={ChronicYesNO === false}
-                          onChange={() => setChronicYesNo(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            style={{ border: "none", outline: "none" }}
-                            type="text"
-                            placeholder="____________"
-                            value={ChronicPain}
-                            onChange={(e)=>{setChronicPain(e.target.value)}}
-                          />
-                        </td>
-                      </tr>
+                      }
+                     
+
+                     {
+                      riskFactor12 && <tr>
+                      <td>Chronic pain</td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={ChronicYesNO === true}
+                        onChange={() => setChronicYesNo(true)}/>
+                      </td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={ChronicYesNO === false}
+                        onChange={() => setChronicYesNo(false)}/>
+                      </td>
+                      <td>
+                        <input
+                          style={{ border: "none", outline: "none" }}
+                          type="text"
+                          placeholder="____________"
+                          value={ChronicPain}
+                          onChange={(e)=>{setChronicPain(e.target.value)}}
+                        />
+                      </td>
+                  
+                    </tr>
+                     }
+                     
+                      
                       {riskFactorArray.length > 0 && (
                   
                         riskFactorArray?.map((i, index) => (
@@ -18760,35 +19511,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             </td>
                             <td><input type="checkbox" checked={i.yesNo===true}/></td>
                             <td><input type="checkbox" checked={i.yesNo===false}/></td>
-                            <td>{` ${i.comment}`} </td>
+                            <td style={{paddingLeft:"20px"}}>{`${i.comment}`} </td>
+                         
                           </tr>
                         ))
-                   
                   )}
-                      <tr>
-                        <td>Other: 
-                          <input
-                          type="text"
-                          value={otherRiskOther}
-                          placeholder="__________"
-                          className="treatment_plan_table"
-                          onChange={(e)=>setOtherRiskOther(e.target.value)}/> </td>
-                        <td>
-                          <input type="checkbox" checked={otherRiskYesOrNot===true} onChange={()=>setOtherRiskOtherYesOrNot(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" checked={otherRiskYesOrNot===false} onChange={()=>setOtherRiskOtherYesOrNot(false)} />
-                        </td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            placeholder="____________"
-                            value={otherRiskComment}
-                            onChange={(e)=>setOtherRiskComment(e.target.value)}
-                          />
-                        </td>
-                      </tr>
+                      
                     </tbody>
                   </table>
                 </div>
