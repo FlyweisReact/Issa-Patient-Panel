@@ -146,55 +146,8 @@ const InitialAssessment = () => {
   // Behavioral Interventions (Array of Objects)==> check i think remove this section by client
   const [need, setNeed] = useState("");
   const [intervention, setIntervention] = useState("");
-  // 1
-  const [behavioralInterventionsArray, setbehavioralInterventionsArray] =
-    useState([]);
+ 
 
-  // 1
-  const [behavioralInterventions, setBehavioralInterventions] = useState([]);
-// 1
-  const behavioralInterventionaArrayHandle = () => {
-    setbehavioralInterventionsArray((prev) => [
-      ...prev,
-      { need, intervention },
-    ]);
-    setNeed("");
-    setIntervention("");
-  };
-
-  const [dischargePlan, setDischargePlan] = useState("");
-  const [estimateDateOfDischarge, setEstimateDateOfDischarge] = useState("");
-  const [agreementWithPlan, setAgreementWithPlan] = useState();
-
-  // Resident Guardian Agreement
-  const [residentGuardianAgreementName, setResidentGuardianAgreementName] =
-    useState("");
-  const [
-    residentGuardianAgreementSignature,
-    setResidentGuardianAgreementSignature,
-  ] = useState("");
-  const [residentGuardianAgreementDate, setResidentGuardianAgreementDate] =
-    useState("");
-  const [residentGuardianAgreementTime, setResidentGuardianAgreementTime] = useState("");
-
-  // Staff Agreement
-  const [staffAgreementname, setStaffAgreementName] = useState("");
-  const [staffAgreementSignature, setStaffAgreementSignature] = useState("");
-  const [staffAgreementDate, setStaffAgreementDate] = useState("");
-  const [staffAgreementTime, setStaffAgreementTime] = useState("");
-
-  // BHP Agreement
-  const [bhpAgreementName, setBhpAgreementName] = useState("");
-  const [bhpAgreementSignature, setBhpAgreementSignature] = useState("");
-  const [bhpAgreementDate, setBhpAgreementDate] = useState("");
-  const [bhpAgreementTime, setBhpAgreementTime] = useState("");
-
-  // Other
-  const [otherName, setOtherName] = useState("");
-  const [otherRelationship, setOtherRelationship] = useState("");
-  const [otherSignature, setOtherSignature] = useState("");
-  const [otherDate, setOtherDate] = useState("");
-  const [otherTime, setOtherTime] = useState("");
 
   // Medical Conditions (Array of Objects) array second section is start ===>
   // diabetes =======>
@@ -1278,6 +1231,64 @@ const [Additional1Description,setAdditional1Description]=useState("");
   const [bhpSignature, setBhpSignature] = useState("");
   const [bhpDate, setBhpDate] = useState("");
   const [bhpTime, setBhpTime] = useState("");
+
+// ========table delete state
+// Risk Factors:
+const [riskFactor1,setRiskFactor1]=useState(true);
+const [riskFactor2,setRiskFactor2]=useState(true);
+const [riskFactor3,setRiskFactor3]=useState(true);
+const [riskFactor4,setRiskFactor4]=useState(true);
+const [riskFactor5,setRiskFactor5]=useState(true);
+const [riskFactor6,setRiskFactor6]=useState(true);
+const [riskFactor7,setRiskFactor7]=useState(true);
+const [riskFactor8,setRiskFactor8]=useState(true);
+const [riskFactor9,setRiskFactor9]=useState(true);
+const [riskFactor10,setRiskFactor10]=useState(true);
+const [riskFactor11,setRiskFactor11]=useState(true);
+const [riskFactor12,setRiskFactor12]=useState(true);
+
+const RiskDelete=(index)=>{
+  const tempMedicalDelet=[...riskFactorArray];
+  tempMedicalDelet.splice(index,1);
+  setRiskFactoeArray(tempMedicalDelet);
+}
+
+
+// Protective factors:
+const [Protective1,setProtective1]=useState(true);
+const [Protective2,setProtective2]=useState(true);
+const [Protective3,setProtective3]=useState(true);
+const [Protective4,setProtective4]=useState(true);
+const [Protective5,setProtective5]=useState(true);
+
+const ProtectiveDelete=(index)=>{
+  const tempMedicalDelet=[...protectiveFactorsArray];
+  tempMedicalDelet.splice(index,1);
+  setProtectiveFactorsArray(tempMedicalDelet);
+}
+// Diagnoses
+const [Diagnoses1,setDiagnoses1]=useState(true);
+const [Diagnoses2,setDiagnoses2]=useState(true);
+const [Diagnoses3,setDiagnoses3]=useState(true);
+const [Diagnoses4,setDiagnoses4]=useState(true);
+
+const DiagnosesDelete=(index)=>{
+  const tempMedicalDelet=[...psychiatricDiagnosesArray];
+  tempMedicalDelet.splice(index,1);
+  setPsychiatricDiagnosesArray(tempMedicalDelet);
+}
+// Medical Diagnoses:
+const [Medical1,setMatical1]=useState(true);
+const [Medical2,setMatical2]=useState(true);
+const [Medical3,setMatical3]=useState(true);
+const [Medical4,setMatical4]=useState(true);
+
+const medicalDelete=(index)=>{
+  const tempMedicalDelet=[...medicalDiagnosesArray];
+  tempMedicalDelet.splice(index,1);
+  setMedicalDiagnosesArray(tempMedicalDelet);
+}
+
 
   // get array in api
   function getApiArrayData(startIndex,arrayLength,array){
@@ -2710,8 +2721,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
           name:"Primary",
         },
         {
-         
-
           icdCode:secondaryicdCode,
           description:secondaryDescription,
           name:"Secondary"
@@ -5644,7 +5653,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   A. Currently prescribed medications are attached on a separate
                   page.
                 </p>
-                <p style={{ fontWeight: "bold" }}>
+                <p >
                   B. Current and Past Medical/Psychiatric Conditions.
                 </p>
               </div>
@@ -10923,10 +10932,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         <th>Yes</th>
                         <th>No</th>
                         <th>Comments</th>
+                        <th>Delete</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                      {
+                        riskFactor1 &&  <tr>
                         <td>Current suicidal ideation </td>
                         <td>
                           <input type="checkbox"  checked={riskYesNo === true}
@@ -10945,8 +10956,20 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setRiskComment(e.target.value)}}
                           />
                         </td>
+                        <td>
+                        <AiFillDelete
+                                onClick={() => setRiskFactor1(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
+                        </td>
                       </tr>
-                      <tr>
+                      }
+
+                      {
+                        riskFactor2 &&   <tr>
                         <td>Prior suicide attempt</td>
                         <td>
                           <input type="checkbox" checked={PriorYesNo === true}
@@ -10965,29 +10988,53 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setPriorComment(e.target.value)}}
                           />
                         </td>
-                      </tr>
-                      <tr>
-                        <td>Access to means (i.e. weapon)</td>
                         <td>
-                          <input type="checkbox" 
-                          checked={AccessYesNo === true}
-                          onChange={() => setAccessYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" checked={AccessYesNo === false}
-                      onChange={() => setAccessYesNo(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            style={{ border: "none", outline: "none" }}
-                            type="text"
-                            placeholder="____________"
-                            value={AccessComment}
-                            onChange={(e)=>{setAccessComment(e.target.value)}}
-                          />
+                        <AiFillDelete
+                                onClick={() => setRiskFactor2(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
                         </td>
                       </tr>
-                      <tr>
+                      }
+                     
+                    {
+                      riskFactor3 && <tr>
+                      <td>Access to means (i.e. weapon)</td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={AccessYesNo === true}
+                        onChange={() => setAccessYesNo(true)}/>
+                      </td>
+                      <td>
+                        <input type="checkbox" checked={AccessYesNo === false}
+                    onChange={() => setAccessYesNo(false)}/>
+                      </td>
+                      <td>
+                        <input
+                          style={{ border: "none", outline: "none" }}
+                          type="text"
+                          placeholder="____________"
+                          value={AccessComment}
+                          onChange={(e)=>{setAccessComment(e.target.value)}}
+                        />
+                      </td>
+                      <td>
+                        <AiFillDelete
+                                onClick={() => setRiskFactor3(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
+                        </td>
+                    </tr>
+                    }
+
+                      {
+                        riskFactor4 && <tr>
                         <td>Substance abuse</td>
                         <td>
                           <input type="checkbox" 
@@ -11008,8 +11055,20 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setSubstanceCommentAbuse(e.target.value)}}
                           />
                         </td>
+                        <td>
+                        <AiFillDelete
+                                onClick={() => setRiskFactor4(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
+                        </td>
                       </tr>
-                      <tr>
+                      }
+
+                      {
+                        riskFactor5 &&  <tr>
                         <td>Other self-abusing behavior</td>
                         <td>
                           <input type="checkbox" 
@@ -11030,8 +11089,20 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setabusingComment(e.target.value)}}
                           />
                         </td>
+                        <td>
+                        <AiFillDelete
+                                onClick={() => setRiskFactor5(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
+                        </td>
                       </tr>
-                      <tr>
+                      }
+                      
+                      {
+                        riskFactor6 &&  <tr>
                         <td>Recent losses/lack of support</td>
                         <td>
                           <input type="checkbox" 
@@ -11052,106 +11123,171 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setRecentComment(e.target.value)}}
                           />
                         </td>
+                        <td>
+                        <AiFillDelete
+                                onClick={() => setRiskFactor6(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
+                        </td>
                       </tr>
-                      <tr>
-                        <td>Behavior cues</td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={behaviourYesNO === true}
-                          onChange={() => setBehaviourYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={behaviourYesNO === false}
-                          onChange={() => setBehaviourYesNo(false)}/>
-                        </td>
-                        <td>
+                      }
                      
-                          <Select
-                            value={behaviorcuesDropDown}
-                            isMulti
-                            options={selectedValueRiskFactorsOption1}
-                            onChange={
-                              selectedValueRiskFactorsHandlerBehaviorcues
-                            }
-                            isCreatable={true}
-                            onKeyDown={
-                              handleKeySelectedValueRiskFactorsBehavior
-                            }
-                          />
+                     {
+                      riskFactor7 && <tr>
+                      <td>Behavior cues</td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={behaviourYesNO === true}
+                        onChange={() => setBehaviourYesNo(true)}/>
+                      </td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={behaviourYesNO === false}
+                        onChange={() => setBehaviourYesNo(false)}/>
+                      </td>
+                      <td>
+                   
+                        <Select
+                          value={behaviorcuesDropDown}
+                          isMulti
+                          options={selectedValueRiskFactorsOption1}
+                          onChange={
+                            selectedValueRiskFactorsHandlerBehaviorcues
+                          }
+                          isCreatable={true}
+                          onKeyDown={
+                            handleKeySelectedValueRiskFactorsBehavior
+                          }
+                        />
+                      </td>
+                      <td>
+                        <AiFillDelete
+                                onClick={() => setRiskFactor7(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
                         </td>
-                      </tr>
-                      <tr>
-                        <td>Symptoms of psychosis </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={SymptomsYesNO === true}
-                          onChange={() => setSymptomsYesNo(true)}/>
+                    </tr>
+                     }
+                     
+
+                     {
+                      riskFactor8 &&  <tr>
+                      <td>Symptoms of psychosis </td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={SymptomsYesNO === true}
+                        onChange={() => setSymptomsYesNo(true)}/>
+                      </td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={SymptomsYesNO === false}
+                        onChange={() => setSymptomsYesNo(false)}/>
+                      </td>
+                      <td>
+                        
+                        <Select
+                          value={symptomsOfPsychosisDropDown}
+                          isMulti
+                          options={selectedValueRiskFactorsOption2}
+                          onChange={selectedValueRiskFactorsHandlerSymptoms}
+                          isCreatable={true}
+                          onKeyDown={
+                            handleKeySelectedValueRiskFactorsSymptoms
+                          }
+                        />
+                      </td>
+
+                      <td>
+                        <AiFillDelete
+                                onClick={() => setRiskFactor8(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
                         </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={SymptomsYesNO === false}
-                          onChange={() => setSymptomsYesNo(false)}/>
+                      
+                    </tr>
+                     }
+
+                     {
+                      riskFactor9 && <tr>
+                      <td>Family history of suicide</td>
+                      <td>
+                        <input type="checkbox"
+                       checked={FamilyYesNO === true}
+                        onChange={() => setFamilyYesNo(true)}/>
+                      </td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={FamilyYesNO === false}
+                        onChange={() => setFamilyYesNo(false)}/>
+                      </td>
+                      <td>
+                        <input
+                          style={{ border: "none", outline: "none" }}
+                          type="text"
+                          placeholder="____________"
+                          value={Family}
+                          onChange={(e)=>{setFamily(e.target.value)}}
+                        />
+                      </td>
+                      <td>
+                        <AiFillDelete
+                                onClick={() => setRiskFactor9(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
                         </td>
-                        <td>
-                          
-                          <Select
-                            value={symptomsOfPsychosisDropDown}
-                            isMulti
-                            options={selectedValueRiskFactorsOption2}
-                            onChange={selectedValueRiskFactorsHandlerSymptoms}
-                            isCreatable={true}
-                            onKeyDown={
-                              handleKeySelectedValueRiskFactorsSymptoms
-                            }
-                          />
+                    </tr>
+
+                     }
+                      
+                     {
+                      riskFactor10 &&  <tr>
+                      <td>Terminal physical illness</td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={TerminalYesNO === true}
+                        onChange={() => setTerminalYesNo(true)}/>
+                      </td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={TerminalYesNO === false}
+                        onChange={() => setTerminalYesNo(false)}/>
+                      </td>
+                      <td>
+                        <input
+                          style={{ border: "none", outline: "none" }}
+                          type="text"
+                          placeholder="____________"
+                          value={Terminal}
+                          onChange={(e)=>{setTerminal(e.target.value)}}
+                        />
+                      </td>
+                      <td>
+                        <AiFillDelete
+                                onClick={() => setRiskFactor10(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
                         </td>
-                      </tr>
-                      <tr>
-                        <td>Family history of suicide</td>
-                        <td>
-                          <input type="checkbox"
-                         checked={FamilyYesNO === true}
-                          onChange={() => setFamilyYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={FamilyYesNO === false}
-                          onChange={() => setFamilyYesNo(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            style={{ border: "none", outline: "none" }}
-                            type="text"
-                            placeholder="____________"
-                            value={Family}
-                            onChange={(e)=>{setFamily(e.target.value)}}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Terminal physical illness</td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={TerminalYesNO === true}
-                          onChange={() => setTerminalYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={TerminalYesNO === false}
-                          onChange={() => setTerminalYesNo(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            style={{ border: "none", outline: "none" }}
-                            type="text"
-                            placeholder="____________"
-                            value={Terminal}
-                            onChange={(e)=>{setTerminal(e.target.value)}}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
+                    </tr>
+                     }
+                      
+
+                      {
+                        riskFactor11 &&  <tr>
                         <td>Current stressors (specify)</td>
                         <td>
                           <input type="checkbox" 
@@ -11172,29 +11308,54 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setCurrent(e.target.value)}}
                           />
                         </td>
-                      </tr>
-                      <tr>
-                        <td>Chronic pain</td>
                         <td>
-                          <input type="checkbox" 
-                          checked={ChronicYesNO === true}
-                          onChange={() => setChronicYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={ChronicYesNO === false}
-                          onChange={() => setChronicYesNo(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            style={{ border: "none", outline: "none" }}
-                            type="text"
-                            placeholder="____________"
-                            value={ChronicPain}
-                            onChange={(e)=>{setChronicPain(e.target.value)}}
-                          />
+                        <AiFillDelete
+                                onClick={() => setRiskFactor11(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
                         </td>
                       </tr>
+                      }
+                     
+
+                     {
+                      riskFactor12 && <tr>
+                      <td>Chronic pain</td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={ChronicYesNO === true}
+                        onChange={() => setChronicYesNo(true)}/>
+                      </td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={ChronicYesNO === false}
+                        onChange={() => setChronicYesNo(false)}/>
+                      </td>
+                      <td>
+                        <input
+                          style={{ border: "none", outline: "none" }}
+                          type="text"
+                          placeholder="____________"
+                          value={ChronicPain}
+                          onChange={(e)=>{setChronicPain(e.target.value)}}
+                        />
+                      </td>
+                      <td>
+                        <AiFillDelete
+                                onClick={() => setRiskFactor12(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
+                        </td>
+                    </tr>
+                     }
+                     
+                      
                       {riskFactorArray.length > 0 && (
                   
                         riskFactorArray?.map((i, index) => (
@@ -11204,10 +11365,18 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             </td>
                             <td><input type="checkbox" checked={i.yesNo===true}/></td>
                             <td><input type="checkbox" checked={i.yesNo===false}/></td>
-                            <td>{` ${i.comment}`} </td>
+                            <td style={{paddingLeft:"20px"}}>{`${i.comment}`} </td>
+                            <td>
+                        <AiFillDelete
+                                onClick={() => RiskDelete(index)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
+                        </td>
                           </tr>
                         ))
-                   
                   )}
                       <tr>
                         <td>Other: 
@@ -11262,32 +11431,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         <th>Yes</th>
                         <th>No</th>
                         <th>Comments</th>
+                        <th>Delete</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Supports available (family friends)</td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={SupportsYesNo === true}
-                          onChange={() => setSupportsYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={SupportsYesNo === false}
-                          onChange={() => setSupportsYesNo(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="__________"
-                            className="treatment_plan_table"
-                            value={SupportsComment}
-                            onChange={(e)=>{setSupportsComment(e.target.value)}}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
+                      {
+                        Protective1 &&  <tr>
                         <td>Spiritual / religious support</td>
                         <td>
                           <input type="checkbox" 
@@ -11308,8 +11457,20 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setSpiritualComment(e.target.value)}}
                           />
                         </td>
+                        <td>
+                        <AiFillDelete
+                                onClick={() => setProtective1(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
+                        </td>
                       </tr>
-                      <tr>
+                      }
+                      
+                      {
+                        Protective2 &&  <tr>
                         <td>Religious/cultural prohibitions</td>
                         <td>
                           <input type="checkbox" 
@@ -11330,73 +11491,122 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setReligiousComment(e.target.value)}}
                           />
                         </td>
-                      </tr>
-                      <tr>
-                        <td>Fear of consequences</td>
                         <td>
-                          <input type="checkbox" 
-                          checked={FearYesNo === true}
-                          onChange={() => setFearYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={FearYesNo === false}
-                          onChange={() => setFearYesNo(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="__________"
-                            className="treatment_plan_table"
-                            value={FearComment}
-                            onChange={(e)=>{setFearComment(e.target.value)}}
-                          />
+                        <AiFillDelete
+                                onClick={() => setProtective2(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
                         </td>
                       </tr>
-                      <tr>
-                        <td>Able to be engaged in intervention</td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={interventionYesNo === true}
-                          onChange={() => setInterventionYesNo(true)}/>
+                      }
+                    
+{
+  Protective3 &&     
+  <tr>
+    <td>Fear of consequences</td>
+    <td>
+      <input type="checkbox" 
+      checked={FearYesNo === true}
+      onChange={() => setFearYesNo(true)}/>
+    </td>
+    <td>
+      <input type="checkbox" 
+      checked={FearYesNo === false}
+      onChange={() => setFearYesNo(false)}/>
+    </td>
+    <td>
+      <input
+        type="text"
+        placeholder="__________"
+        className="treatment_plan_table"
+        value={FearComment}
+        onChange={(e)=>{setFearComment(e.target.value)}}
+      />
+    </td>
+    <td>
+                        <AiFillDelete
+                                onClick={() => setProtective3(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
                         </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={interventionYesNo === false}
-                          onChange={() => setInterventionYesNo(false)}/>
+  </tr>
+}
+
+{
+  Protective4 &&  <tr>
+  <td>Able to be engaged in intervention</td>
+  <td>
+    <input type="checkbox" 
+    checked={interventionYesNo === true}
+    onChange={() => setInterventionYesNo(true)}/>
+  </td>
+  <td>
+    <input type="checkbox" 
+    checked={interventionYesNo === false}
+    onChange={() => setInterventionYesNo(false)}/>
+  </td>
+  <td>
+    <input
+      type="text"
+      placeholder="__________"
+      className="treatment_plan_table"
+      value={interventionComment}
+      onChange={(e)=>{setInterventionComment(e.target.value)}}
+    />
+  </td> 
+   <td>
+                        <AiFillDelete
+                                onClick={() => setProtective4(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
                         </td>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="__________"
-                            className="treatment_plan_table"
-                            value={interventionComment}
-                            onChange={(e)=>{setInterventionComment(e.target.value)}}
-                          />
+</tr>
+}
+
+           {
+            Protective5 &&   <tr>
+            <td>Willing to commit to keeping self safe</td>
+            <td>
+              <input type="checkbox"  
+              checked={WillingYesNo === true}
+              onChange={() => setWillingYesNo(true)}/>
+            </td>
+            <td>
+              <input type="checkbox"  
+              checked={WillingYesNo === false}
+              onChange={() => setWillingYesNo(false)}/>
+            </td>
+            <td>
+              <input
+                type="text"
+                placeholder="__________"
+                className="treatment_plan_table"
+                value={WillingComment}
+                onChange={(e)=>{setWillingComment(e.target.value)}}
+              />
+            </td>
+            <td>
+                        <AiFillDelete
+                                onClick={() => setProtective5(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
                         </td>
-                      </tr>
-                      <tr>
-                        <td>Willing to commit to keeping self safe</td>
-                        <td>
-                          <input type="checkbox"  
-                          checked={WillingYesNo === true}
-                          onChange={() => setWillingYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox"  
-                          checked={WillingYesNo === false}
-                          onChange={() => setWillingYesNo(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="__________"
-                            className="treatment_plan_table"
-                            value={WillingComment}
-                            onChange={(e)=>{setWillingComment(e.target.value)}}
-                          />
-                        </td>
-                      </tr>
+          </tr>
+           }      
+                     
+                    
                        {protectiveFactorsArray?.map((i, index) => (
                           <tr key={index}>
                             <td>
@@ -11404,7 +11614,16 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             </td>
                            <td><input type="checkbox" checked={i.yesNo===true}/></td>
                            <td><input type="checkbox" checked={i.yesNo===false}/></td>
-                            <td>{` ${i.comment}`} </td>
+                            <td style={{paddingLeft:"20px"}}>{` ${i.comment}`} </td>
+                            <td>
+                        <AiFillDelete
+                                onClick={() => ProtectiveDelete(index)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
+                        </td>
                           </tr>
                         ))} 
                            <tr>
@@ -11496,12 +11715,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <label>High Risk</label>
                 </div>
               </div>
+
+
               <div className="formsheading">
                 <h6 style={{ fontWeight: "bold" }}>Diagnoses:</h6>
               </div>
              
-
-            
 
               <div className="needs-interventions-container2">
                 <div className="needs-interventions-column2">
@@ -11512,7 +11731,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       <th>Description</th>
                     </thead>
                     <tbody>
-                      <tr>
+                      {
+                        Diagnoses1 &&   <tr>
                         <td>Primary*</td>
                         <td>
                         <input
@@ -11547,8 +11767,20 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                        <td>
+                        <AiFillDelete
+                                onClick={() => setDiagnoses1(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
+                        </td>
                       </tr>
-                      <tr>
+                      }
+
+                      {
+                        Diagnoses2 &&  <tr>
                         <td>Secondary</td>
                         <td>
                         <input
@@ -11583,44 +11815,69 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
-                      </tr>
-                      <tr>
-                        <td>Tertiary</td>
                         <td>
-                        <input
-                            className="treatment_plan_table"
-                            type="text"
-                            placeholder="___________"
-                            value={psychiatricTertiaryIcdCode}
-                            onChange={(e)=>setPsychiatricTertiaryIcdCode(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          {" "}
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              psychiatricTertiaryDescription
-                                ? psychiatricTertiaryDescription.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={psychiatricTertiaryDescription || ""}
-                            
-                            placeholder="___________"
-                            onChange={(e) => setPsychiatricTertiaryDescription(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setPsychiatricTertiaryDescription(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
+                        <AiFillDelete
+                                onClick={() => setDiagnoses2(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
                         </td>
                       </tr>
-                      <tr>
+                      }
+                    
+
+                    {
+                      Diagnoses3 && <tr>
+                      <td>Tertiary</td>
+                      <td>
+                      <input
+                          className="treatment_plan_table"
+                          type="text"
+                          placeholder="___________"
+                          value={psychiatricTertiaryIcdCode}
+                          onChange={(e)=>setPsychiatricTertiaryIcdCode(e.target.value)}
+                        />
+                      </td>
+                      <td>
+                        {" "}
+                        <textarea
+                          className="treatment_plan_table"
+                          rows={Math.max(
+                            psychiatricTertiaryDescription
+                              ? psychiatricTertiaryDescription.split("\n").length
+                              : 1,
+                            1
+                          )}
+                          value={psychiatricTertiaryDescription || ""}
+                          
+                          placeholder="___________"
+                          onChange={(e) => setPsychiatricTertiaryDescription(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setPsychiatricTertiaryDescription(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                      <td>
+                        <AiFillDelete
+                                onClick={() => setDiagnoses3(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
+                        </td>
+                    </tr>
+                    }
+                     
+                      {
+                        Diagnoses4 &&   <tr>
                         <td>Additional</td>
                         <td>
                           <input
@@ -11655,15 +11912,34 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                        <td>
+                        <AiFillDelete
+                                onClick={() => setDiagnoses4(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
+                        </td>
                       </tr>
+                      }
+                    
                      
                         {
-                          psychiatricDiagnosesArray.map((i)=>
-                          <tr>
+                          psychiatricDiagnosesArray.map((i,index)=>
+                          <tr key={index}>
                             <td>{i?.name}</td>
-                            <td>{i?.icdCode}</td>
-                            <td>{i?.description}</td>
-                            
+                            <td style={{paddingLeft:"20px"}}>{i?.icdCode}</td>
+                            <td style={{paddingLeft:"20px"}}>{i?.description}</td>
+                            <td>
+                            <AiFillDelete
+                                onClick={() => DiagnosesDelete(index)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
+                        </td>
                           </tr>)
                         }
                   
@@ -11733,9 +12009,11 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       <th>Medical Diagnoses</th>
                       <th>ICD Code</th>
                       <th>Description</th>
+                      <th>Delete</th>
                     </thead>
                     <tbody>
-                      <tr>
+                      {
+                        Medical1 &&  <tr>
                         <td>Primary*</td>
                         <td>
                           <input
@@ -11770,8 +12048,20 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                        <td>
+                        <AiFillDelete
+                                onClick={() => setMatical1(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
+                        </td>
                       </tr>
-                      <tr>
+                      }
+
+                      {
+                        Medical2 &&  <tr>
                         <td>Secondary</td>
                         <td>
                           <input
@@ -11806,87 +12096,131 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                        <td><AiFillDelete
+                                onClick={() => setMatical2(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              /></td>
+                        
                       </tr>
-                      <tr>
-                        <td>Tertiary</td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            placeholder="___________"
-                            value={TertiaryIcdCode}
-                            onChange={(e)=>setTertiaryIcdCode(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          {" "}
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              TertiaryDescription
-                                ? TertiaryDescription.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={TertiaryDescription || ""}
-                      
-                            placeholder="___________"
-                            onChange={(e) => setTertiaryDescription(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setTertiaryDescription(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Additional</td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            placeholder="___________"
-                            value={Additional1icdCode}
-                            onChange={(e)=>setAdditional1IcdCode(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          {" "}
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              Additional1Description
-                                ? Additional1Description.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={Additional1Description || ""}
-                         
-                            placeholder="___________"
-                            onChange={(e) => setAdditional1Description(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setAdditional1Description(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
+                      }
+                     
+                     {
+                      Medical3 &&    <tr>
+                      <td>Tertiary</td>
+                      <td>
+                        <input
+                          className="treatment_plan_table"
+                          type="text"
+                          placeholder="___________"
+                          value={TertiaryIcdCode}
+                          onChange={(e)=>setTertiaryIcdCode(e.target.value)}
+                        />
+                      </td>
+                      <td>
+                        {" "}
+                        <textarea
+                          className="treatment_plan_table"
+                          rows={Math.max(
+                            TertiaryDescription
+                              ? TertiaryDescription.split("\n").length
+                              : 1,
+                            1
+                          )}
+                          value={TertiaryDescription || ""}
+                    
+                          placeholder="___________"
+                          onChange={(e) => setTertiaryDescription(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setTertiaryDescription(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                      <td>
+                      <AiFillDelete
+                                onClick={() => setMatical3(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
+                      </td>
+                     
+                    </tr>
+                     }
+                     
+                   {
+                    Medical4 &&  <tr>
+                    <td>Additional</td>
+                    <td>
+                      <input
+                        className="treatment_plan_table"
+                        type="text"
+                        placeholder="___________"
+                        value={Additional1icdCode}
+                        onChange={(e)=>setAdditional1IcdCode(e.target.value)}
+                      />
+                    </td>
+                    <td>
+                      {" "}
+                      <textarea
+                        className="treatment_plan_table"
+                        rows={Math.max(
+                          Additional1Description
+                            ? Additional1Description.split("\n").length
+                            : 1,
+                          1
+                        )}
+                        value={Additional1Description || ""}
+                     
+                        placeholder="___________"
+                        onChange={(e) => setAdditional1Description(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            e.preventDefault();
+                            setAdditional1Description(
+                              (prevComment) => prevComment + "\n"
+                            );
+                          }
+                        }}
+                      />
+                    </td>
+                    <td>
+                    <AiFillDelete
+                                onClick={() => setMatical4(false)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
+                    </td>
+                    
+                  </tr>
+                   }
+                     
                       
                       {
-                          medicalDiagnosesArray.map((i)=>
-                          <tr>
-                            <td>{i?.name}</td>
-                            <td>{i?.icdCode}</td>
-                            <td>{i?.description}</td>
-                            
+                          medicalDiagnosesArray.map((i,index)=>
+                          <tr key={index}>
+                            <td >{i?.name}</td>
+                            <td style={{paddingLeft:"20px"}}>{i?.icdCode}</td>
+                            <td style={{paddingLeft:"20px"}}>{i?.description}</td>
+                            <td>
+                    <AiFillDelete
+                                onClick={() => medicalDelete(index)}
+                                style={{
+                                  fontSize: "1.5rem",
+                                  cursor: "pointer",
+                                }}
+                              />
+                    </td>
                           </tr>)
                         }
                   
@@ -18474,7 +18808,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
               <div className="formsheading">
                 <h6 style={{ fontWeight: "bold" }}>Protective factors:</h6>
               </div>
-
               <div className="needs-interventions-container2 table-respnosive">
                 <div className="needs-interventions-column2">
                   <table>
@@ -18484,32 +18817,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         <th>Yes</th>
                         <th>No</th>
                         <th>Comments</th>
+                      
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Supports available (family friends)</td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={SupportsYesNo === true}
-                          onChange={() => setSupportsYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={SupportsYesNo === false}
-                          onChange={() => setSupportsYesNo(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="__________"
-                            className="treatment_plan_table"
-                            value={SupportsComment}
-                            onChange={(e)=>{setSupportsComment(e.target.value)}}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
+                      {
+                        Protective1 &&  <tr>
                         <td>Spiritual / religious support</td>
                         <td>
                           <input type="checkbox" 
@@ -18530,8 +18843,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setSpiritualComment(e.target.value)}}
                           />
                         </td>
+                   
                       </tr>
-                      <tr>
+                      }
+                      
+                      {
+                        Protective2 &&  <tr>
                         <td>Religious/cultural prohibitions</td>
                         <td>
                           <input type="checkbox" 
@@ -18552,73 +18869,90 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setReligiousComment(e.target.value)}}
                           />
                         </td>
+                    
                       </tr>
-                      <tr>
-                        <td>Fear of consequences</td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={FearYesNo === true}
-                          onChange={() => setFearYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={FearYesNo === false}
-                          onChange={() => setFearYesNo(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="__________"
-                            className="treatment_plan_table"
-                            value={FearComment}
-                            onChange={(e)=>{setFearComment(e.target.value)}}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Able to be engaged in intervention</td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={interventionYesNo === true}
-                          onChange={() => setInterventionYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={interventionYesNo === false}
-                          onChange={() => setInterventionYesNo(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="__________"
-                            className="treatment_plan_table"
-                            value={interventionComment}
-                            onChange={(e)=>{setInterventionComment(e.target.value)}}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Willing to commit to keeping self safe</td>
-                        <td>
-                          <input type="checkbox"  
-                          checked={WillingYesNo === true}
-                          onChange={() => setWillingYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox"  
-                          checked={WillingYesNo === false}
-                          onChange={() => setWillingYesNo(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="__________"
-                            className="treatment_plan_table"
-                            value={WillingComment}
-                            onChange={(e)=>{setWillingComment(e.target.value)}}
-                          />
-                        </td>
-                      </tr>
+                      }
+                    
+{
+  Protective3 &&     
+  <tr>
+    <td>Fear of consequences</td>
+    <td>
+      <input type="checkbox" 
+      checked={FearYesNo === true}
+      onChange={() => setFearYesNo(true)}/>
+    </td>
+    <td>
+      <input type="checkbox" 
+      checked={FearYesNo === false}
+      onChange={() => setFearYesNo(false)}/>
+    </td>
+    <td>
+      <input
+        type="text"
+        placeholder="__________"
+        className="treatment_plan_table"
+        value={FearComment}
+        onChange={(e)=>{setFearComment(e.target.value)}}
+      />
+    </td>
+
+  </tr>
+}
+
+{
+  Protective4 &&  <tr>
+  <td>Able to be engaged in intervention</td>
+  <td>
+    <input type="checkbox" 
+    checked={interventionYesNo === true}
+    onChange={() => setInterventionYesNo(true)}/>
+  </td>
+  <td>
+    <input type="checkbox" 
+    checked={interventionYesNo === false}
+    onChange={() => setInterventionYesNo(false)}/>
+  </td>
+  <td>
+    <input
+      type="text"
+      placeholder="__________"
+      className="treatment_plan_table"
+      value={interventionComment}
+      onChange={(e)=>{setInterventionComment(e.target.value)}}
+    />
+  </td> 
+
+</tr>
+}
+
+           {
+            Protective5 &&   <tr>
+            <td>Willing to commit to keeping self safe</td>
+            <td>
+              <input type="checkbox"  
+              checked={WillingYesNo === true}
+              onChange={() => setWillingYesNo(true)}/>
+            </td>
+            <td>
+              <input type="checkbox"  
+              checked={WillingYesNo === false}
+              onChange={() => setWillingYesNo(false)}/>
+            </td>
+            <td>
+              <input
+                type="text"
+                placeholder="__________"
+                className="treatment_plan_table"
+                value={WillingComment}
+                onChange={(e)=>{setWillingComment(e.target.value)}}
+              />
+            </td>
+           
+          </tr>
+           }      
+                     
+                    
                        {protectiveFactorsArray?.map((i, index) => (
                           <tr key={index}>
                             <td>
@@ -18626,44 +18960,17 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             </td>
                            <td><input type="checkbox" checked={i.yesNo===true}/></td>
                            <td><input type="checkbox" checked={i.yesNo===false}/></td>
-                            <td>{` ${i.comment}`} </td>
+                            <td style={{paddingLeft:"20px"}}>{` ${i.comment}`} </td>
+                        
                           </tr>
                         ))} 
-                           <tr>
-                        <td>Other: <input type="text" 
-                        className="treatment_plan_table"
-                        placeholder="__________"
-                        value={otherProtectiveFactorsApply} onChange={(e)=>setOtherProtectiveFactorsApply(e.target.value)}/></td>
-                        <td>
-                          <input type="checkbox" checked={otherProtectiveFactorsYesNo===true} onChange={()=>setOtherProtectiveFactorsYesNO(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox"  checked={otherProtectiveFactorsYesNo===false} onChange={()=>setOtherProtectiveFactorsYesNO(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="__________"
-                            className="treatment_plan_table"
-                            value={otherProtectiveFactorsDescription}
-                            onChange={(e)=>setOtherProtectiveFactorsDescription(e.target.value)}
-                          />
-                        </td>
-                      </tr>
+                         
                     </tbody>
                   </table>
                 </div>
               </div>
 
-              <div className="form-actions hidePrint">
-                <button
-                  type="button"
-                  className="safetybutton"
-                  onClick={handleProtectiveFactors}
-                >
-                  Add
-                </button>
-              </div>
+          
 
            
 
@@ -18724,7 +19031,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
              
 
             
-
               <div className="needs-interventions-container2">
                 <div className="needs-interventions-column2">
                   <table>
@@ -18734,7 +19040,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       <th>Description</th>
                     </thead>
                     <tbody>
-                      <tr>
+                      {
+                        Diagnoses1 &&   <tr>
                         <td>Primary*</td>
                         <td>
                         <input
@@ -18769,8 +19076,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                   
                       </tr>
-                      <tr>
+                      }
+
+                      {
+                        Diagnoses2 &&  <tr>
                         <td>Secondary</td>
                         <td>
                         <input
@@ -18805,44 +19116,53 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                    
                       </tr>
-                      <tr>
-                        <td>Tertiary</td>
-                        <td>
-                        <input
-                            className="treatment_plan_table"
-                            type="text"
-                            placeholder="___________"
-                            value={psychiatricTertiaryIcdCode}
-                            onChange={(e)=>setPsychiatricTertiaryIcdCode(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          {" "}
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              psychiatricTertiaryDescription
-                                ? psychiatricTertiaryDescription.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={psychiatricTertiaryDescription || ""}
-                            
-                            placeholder="___________"
-                            onChange={(e) => setPsychiatricTertiaryDescription(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setPsychiatricTertiaryDescription(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
+                      }
+                    
+
+                    {
+                      Diagnoses3 && <tr>
+                      <td>Tertiary</td>
+                      <td>
+                      <input
+                          className="treatment_plan_table"
+                          type="text"
+                          placeholder="___________"
+                          value={psychiatricTertiaryIcdCode}
+                          onChange={(e)=>setPsychiatricTertiaryIcdCode(e.target.value)}
+                        />
+                      </td>
+                      <td>
+                        {" "}
+                        <textarea
+                          className="treatment_plan_table"
+                          rows={Math.max(
+                            psychiatricTertiaryDescription
+                              ? psychiatricTertiaryDescription.split("\n").length
+                              : 1,
+                            1
+                          )}
+                          value={psychiatricTertiaryDescription || ""}
+                          
+                          placeholder="___________"
+                          onChange={(e) => setPsychiatricTertiaryDescription(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setPsychiatricTertiaryDescription(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                   
+                    </tr>
+                    }
+                     
+                      {
+                        Diagnoses4 &&   <tr>
                         <td>Additional</td>
                         <td>
                           <input
@@ -18877,57 +19197,22 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                     
                       </tr>
+                      }
+                    
                      
                         {
-                          psychiatricDiagnosesArray.map((i)=>
-                          <tr>
+                          psychiatricDiagnosesArray.map((i,index)=>
+                          <tr key={index}>
                             <td>{i?.name}</td>
-                            <td>{i?.icdCode}</td>
-                            <td>{i?.description}</td>
-                            
+                            <td style={{paddingLeft:"20px"}}>{i?.icdCode}</td>
+                            <td style={{paddingLeft:"20px"}}>{i?.description}</td>
+                        
                           </tr>)
                         }
                   
-                      <tr>
-                        <td>Other: <input
-                        className="treatment_plan_table"
-                        type="text"
-                        value={otherPsychiatricOption}
-                        placeholder="__________"
-                        onChange={(e)=>setOtherPsychiatricOption(e.target.value)}
-                        /></td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            placeholder="___________"
-                            value={othericdCode}
-                            onChange={(e)=>setOtherIcdCode(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          {" "}
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              otherdescription.split("\n").length,
-                              1
-                            )}
-                            value={otherdescription}
-                            placeholder="___________"
-                            onChange={(e) => setOtherDescription(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setOtherDescription(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
+                   
                     </tbody>
                   </table>
                 </div>
@@ -18957,7 +19242,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       <th>Description</th>
                     </thead>
                     <tbody>
-                      <tr>
+                      {
+                        Medical1 &&  <tr>
                         <td>Primary*</td>
                         <td>
                           <input
@@ -18992,8 +19278,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                      
                       </tr>
-                      <tr>
+                      }
+
+                      {
+                        Medical2 &&  <tr>
                         <td>Secondary</td>
                         <td>
                           <input
@@ -19028,129 +19318,104 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
-                      </tr>
-                      <tr>
-                        <td>Tertiary</td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            placeholder="___________"
-                            value={TertiaryIcdCode}
-                            onChange={(e)=>setTertiaryIcdCode(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          {" "}
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              TertiaryDescription
-                                ? TertiaryDescription.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={TertiaryDescription || ""}
                       
-                            placeholder="___________"
-                            onChange={(e) => setTertiaryDescription(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setTertiaryDescription(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
+                        
                       </tr>
-                      <tr>
-                        <td>Additional</td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            placeholder="___________"
-                            value={Additional1icdCode}
-                            onChange={(e)=>setAdditional1IcdCode(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          {" "}
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              Additional1Description
-                                ? Additional1Description.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={Additional1Description || ""}
-                         
-                            placeholder="___________"
-                            onChange={(e) => setAdditional1Description(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setAdditional1Description(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
+                      }
+                     
+                     {
+                      Medical3 &&    <tr>
+                      <td>Tertiary</td>
+                      <td>
+                        <input
+                          className="treatment_plan_table"
+                          type="text"
+                          placeholder="___________"
+                          value={TertiaryIcdCode}
+                          onChange={(e)=>setTertiaryIcdCode(e.target.value)}
+                        />
+                      </td>
+                      <td>
+                        {" "}
+                        <textarea
+                          className="treatment_plan_table"
+                          rows={Math.max(
+                            TertiaryDescription
+                              ? TertiaryDescription.split("\n").length
+                              : 1,
+                            1
+                          )}
+                          value={TertiaryDescription || ""}
+                    
+                          placeholder="___________"
+                          onChange={(e) => setTertiaryDescription(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setTertiaryDescription(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                     
+                     
+                    </tr>
+                     }
+                     
+                   {
+                    Medical4 &&  <tr>
+                    <td>Additional</td>
+                    <td>
+                      <input
+                        className="treatment_plan_table"
+                        type="text"
+                        placeholder="___________"
+                        value={Additional1icdCode}
+                        onChange={(e)=>setAdditional1IcdCode(e.target.value)}
+                      />
+                    </td>
+                    <td>
+                      {" "}
+                      <textarea
+                        className="treatment_plan_table"
+                        rows={Math.max(
+                          Additional1Description
+                            ? Additional1Description.split("\n").length
+                            : 1,
+                          1
+                        )}
+                        value={Additional1Description || ""}
+                     
+                        placeholder="___________"
+                        onChange={(e) => setAdditional1Description(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            e.preventDefault();
+                            setAdditional1Description(
+                              (prevComment) => prevComment + "\n"
+                            );
+                          }
+                        }}
+                      />
+                    </td>
+                   
+                    
+                  </tr>
+                   }
+                     
                       
                       {
-                          medicalDiagnosesArray.map((i)=>
-                          <tr>
-                            <td>{i?.name}</td>
-                            <td>{i?.icdCode}</td>
-                            <td>{i?.description}</td>
-                            
+                          medicalDiagnosesArray.map((i,index)=>
+                          <tr key={index}>
+                            <td >{i?.name}</td>
+                            <td style={{paddingLeft:"20px"}}>{i?.icdCode}</td>
+                            <td style={{paddingLeft:"20px"}}>{i?.description}</td>
+                         
                           </tr>)
                         }
                   
-                      <tr>
-                        <td>Other: <input
-                        className="treatment_plan_table"
-                        type="text"
-                        value={OtherMedicalOption}
-                        placeholder="__________"
-                        onChange={(e)=>setOtherMedicalOption(e.target.value)}
-                        /></td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            placeholder="___________"
-                            value={OthericdCodeMedicalDiagnoses}
-                            onChange={(e)=>setOtherIcdCodeMedicalDiagnoses(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          {" "}
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              OtherdescriptionMedicalDiagnoses.split("\n").length,
-                              1
-                            )}
-                            value={OtherdescriptionMedicalDiagnoses}
-                            placeholder="___________"
-                            onChange={(e) => setOtherDescriptionMedicalDiagnoses(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setOtherDescriptionMedicalDiagnoses(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
                     </tbody>
                   </table>
                 </div>

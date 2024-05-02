@@ -272,24 +272,6 @@ const Treatmentplan_update = () => {
 
   //Goals for Changes in the Resident psychosocial  Interaction or Behaviour
   const [option1, setOption1] = useState([]);
-  const [option1Boolean, setOption1Boolean] = useState(false);
-  const [option1Other, setoption1Other] = useState("");
-
-  useEffect(() => {
-    // Check if "Other" is present in the Barriers array
-    const isOtherSelected = option1.some(
-      (barrier) => barrier.value === "Other"
-    );
-
-    // Set BarriersBoolean accordingly
-    setOption1Boolean(isOtherSelected);
-
-    // Update BarriersOther only when "Other" is selected
-    if (!isOtherSelected) {
-      setoption1Other("");
-    }
-  }, [option1]);
-
   const [option2, setOption2] = useState([]);
   const [option3, setOption3] = useState([]);
   const [option4, setOption4] = useState([]);
@@ -2187,34 +2169,34 @@ const Treatmentplan_update = () => {
 
 
   // table data treatment plan
-  const [treatmentTable, setTreatmentTable] = useState([]);
+  // const [treatmentTable, setTreatmentTable] = useState([]);
 
-  useEffect(() => {
-    const data = [
-      {
-        treatmentGoals : {
-          heading : "Maintain sobriety" ,
-          options : option1Option ,
-          value : option1 ,
-          changeOperation : option1Handler ,
-          keyOperation : handleKeyOption1
-        },
-        admissionMeasure : {
-          defaulValue : admissionMeasure1 , 
-          setValue  :setAdmissionMeasure1
-        } ,
-        currentMeasure : {
-          value : currentMeasure1 , 
-          setValue :setCurrentMeasure1
-        },
-        dateOfCompletion : {
-          value : estimatedDateOfCompletion1 ,
-          setValue : setEstimatedDateOfCompletion1
-        }
-      }
-    ]
-    setTreatmentTable(data)
-  },[])
+  // useEffect(() => {
+  //   const data = [
+  //     {
+  //       treatmentGoals : {
+  //         heading : "Maintain sobriety" ,
+  //         options : option1Option ,
+  //         value : option1 ,
+  //         changeOperation : option1Handler ,
+  //         keyOperation : handleKeyOption1
+  //       },
+  //       admissionMeasure : {
+  //         defaulValue : admissionMeasure1 , 
+  //         setValue  :setAdmissionMeasure1
+  //       } ,
+  //       currentMeasure : {
+  //         value : currentMeasure1 , 
+  //         setValue :setCurrentMeasure1
+  //       },
+  //       dateOfCompletion : {
+  //         value : estimatedDateOfCompletion1 ,
+  //         setValue : setEstimatedDateOfCompletion1
+  //       }
+  //     }
+  //   ]
+  //   setTreatmentTable(data)
+  // },[])
 
 
   const handleDeleteArray=(index)=>{
@@ -3711,101 +3693,6 @@ const Treatmentplan_update = () => {
                     or Behaviour :
                   </h6>
                 </div>
-
-
-                {/* <div className="needs-interventions-container2 table-respnosive">
-                  <div className="needs-interventions-column2">
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Treatment Goals</th>
-                          <th>Admission Measure</th>
-                          <th>Current Measure</th>
-                          <th>Estimated Date of Goal Completion</th>
-                          <th>Comments</th>
-                          <th>Delete</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {treatmentTable?.map((i ,index) => (
-                            <tr >
-                            <td>
-                              {" "}
-                              <p> {i.treatmentGoals?.heading} </p>
-                              <Select
-                                isMulti
-                                options={i.treatmentGoals?.options}
-                                value={i.treatmentGoals?.value}
-                                onChange={i.treatmentGoals?.changeOperation}
-                                isCreatable={true}
-                                onKeyDown={i.treatmentGoals?.keyOperation}
-                              />
-                            </td>
-                            <td>
-                              <input
-                                className="treatment_plan_table"
-                                type="text"
-                                value={i?.admissionMeasure?.defaulValue}
-                                placeholder="___________"
-                                required
-                                onChange={(e) =>
-i?.admissionMeasure?.setValue(e.target.value)
-                                }
-                              />
-                            </td>
-                            <td>
-                              <input
-                                className="treatment_plan_table"
-                                type="text"
-                                value={i?.currentMeasure?.value}
-                                placeholder="___________"
-                                required
-                                onChange={(e) =>
-                                  i?.currentMeasure?.setValue(e.target.value)
-                                }
-                              />
-                            </td>
-                            <td>
-                              <input
-                                type="date"
-                                value={estimatedDateOfCompletion1}
-                                className="treatment_plan_table"
-                                required
-                                onChange={(e) =>
-                                  setEstimatedDateOfCompletion1(e.target.value)
-                                }
-                              />
-                            </td>
-                            <td>
-                              <textarea
-                                className="treatment_plan_table"
-                                rows={Math.max(
-                                  comments1 ? comments1.split("\n").length : 1,
-                                  1
-                                )}
-                                value={comments1 || ""}
-                                placeholder="___________"
-                                onChange={(e) => setComment1(e.target.value)}
-                                onKeyDown={(e) => {
-                                  if (e.key === "Enter") {
-                                    e.preventDefault();
-                                    setComment1(
-                                      (prevComment) => prevComment + "\n"
-                                    );
-                                  }
-                                }}
-                              />
-                            </td>
-                           
-                          </tr>
-                        ))}
-                              
-                      </tbody>
-                    </table>
-                  </div>
-                </div> */}
-
-
 
                 <div className="needs-interventions-container2 table-respnosive">
                   <div className="needs-interventions-column2">
@@ -7320,7 +7207,8 @@ tableshow7 &&  <tr>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
+                        {
+                          admissionMeasure1 && <tr>
                           <td>
                             {" "}
                             <p>1: Maintain sobriety:</p>
@@ -7389,78 +7277,83 @@ tableshow7 &&  <tr>
                             />
                           </td>
                         </tr>
+                        }
+                        
+{
+  admissionMeasure2 && <tr>
+  <td>
+    {" "}
+    <p>2: Independent Living Skills:</p>
 
-                        <tr>
-                          <td>
-                            {" "}
-                            <p>2: Independent Living Skills:</p>
-                       
-                            <ul>
-                              {option2?.length > 0 &&
-                                option2.map((item, index) => (
-                                  <li key={index}>{item?.value}</li>
-                                ))}
-                            </ul>
-                          </td>
-                          <td>
-                            <input
-                              className="treatment_plan_table"
-                              type="text"
-                              value={admissionMeasure2}
-                              placeholder="___________"
-                              required
-                              onChange={(e) =>
-                                setAdmissionMeasure2(e.target.value)
-                              }
-                            />
-                          </td>
-                          <td>
-                            <input
-                              className="treatment_plan_table"
-                              type="text"
-                              value={currentMeasure2}
-                              placeholder="___________"
-                              required
-                              onChange={(e) =>
-                                setCurrentMeasure2(e.target.value)
-                              }
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="date"
-                              value={estimatedDateOfCompletion2}
-                              className="treatment_plan_table"
-                              required
-                              onChange={(e) =>
-                                setEstimatedDateOfCompletion2(e.target.value)
-                              }
-                            />
-                          </td>
-                          <td>
-                            
-                            <textarea
-                              className="treatment_plan_table"
-                              rows={Math.max(
-                                comments2 ? comments2.split("\n").length : 1,
-                                1
-                              )}
-                              value={comments2 || ""}
-                              placeholder="___________"
-                              onChange={(e) => setComment2(e.target.value)}
-                              onKeyDown={(e) => {
-                                if (e.key === "Enter") {
-                                  e.preventDefault();
-                                  setComment2(
-                                    (prevComment) => prevComment + "\n"
-                                  );
-                                }
-                              }}
-                            />
-                          </td>
-                        </tr>
+    <ul>
+      {option2?.length > 0 &&
+        option2.map((item, index) => (
+          <li key={index}>{item?.value}</li>
+        ))}
+    </ul>
+  </td>
+  <td>
+    <input
+      className="treatment_plan_table"
+      type="text"
+      value={admissionMeasure2}
+      placeholder="___________"
+      required
+      onChange={(e) =>
+        setAdmissionMeasure2(e.target.value)
+      }
+    />
+  </td>
+  <td>
+    <input
+      className="treatment_plan_table"
+      type="text"
+      value={currentMeasure2}
+      placeholder="___________"
+      required
+      onChange={(e) =>
+        setCurrentMeasure2(e.target.value)
+      }
+    />
+  </td>
+  <td>
+    <input
+      type="date"
+      value={estimatedDateOfCompletion2}
+      className="treatment_plan_table"
+      required
+      onChange={(e) =>
+        setEstimatedDateOfCompletion2(e.target.value)
+      }
+    />
+  </td>
+  <td>
+    
+    <textarea
+      className="treatment_plan_table"
+      rows={Math.max(
+        comments2 ? comments2.split("\n").length : 1,
+        1
+      )}
+      value={comments2 || ""}
+      placeholder="___________"
+      onChange={(e) => setComment2(e.target.value)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          setComment2(
+            (prevComment) => prevComment + "\n"
+          );
+        }
+      }}
+    />
+  </td>
+</tr>
 
-                        <tr>
+}
+                        
+                        {
+                          admissionMeasure3 &&  <tr>
                           <td>
                             {" "}
                             <p>3: Employment:</p>
@@ -7536,385 +7429,400 @@ tableshow7 &&  <tr>
                           </td>
                         </tr>
 
-                        <tr>
-                          <td>
-                            {" "}
-                            <p>4: ADLS:</p>
-                            {/* <Select
-                            isMulti
-                            options={option4Option}
-                            value={option4}
-                            onChange={option4Handler}
-                            isCreatable={true}
-                            onKeyDown={handleKeyOption4}
-                          /> */}
-                            <ul>
-                              {option4?.length > 0 &&
-                                option4.map((item, index) => (
-                                  <li key={index}>{item?.value}</li>
-                                ))}
-                            </ul>
-                          </td>
-                          <td>
-                            <input
-                              className="treatment_plan_table"
-                              type="text"
-                              value={admissionMeasure4}
-                              placeholder="___________"
-                              required
-                              onChange={(e) =>
-                                setAdmissionMeasure4(e.target.value)
-                              }
-                            />
-                          </td>
-                          <td>
-                            <input
-                              className="treatment_plan_table"
-                              type="text"
-                              value={currentMeasure4}
-                              placeholder="___________"
-                              required
-                              onChange={(e) =>
-                                setCurrentMeasure4(e.target.value)
-                              }
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="date"
-                              value={estimatedDateOfCompletion4}
-                              className="treatment_plan_table"
-                              required
-                              onChange={(e) =>
-                                setEstimatedDateOfCompletion4(e.target.value)
-                              }
-                            />
-                          </td>
-                          <td>
-                            <textarea
-                              className="treatment_plan_table"
-                              rows={Math.max(
-                                comments4 ? comments4.split("\n").length : 1,
-                                1
-                              )}
-                              value={comments4 || ""}
-                              placeholder="___________"
-                              onChange={(e) => setComment4(e.target.value)}
-                              onKeyDown={(e) => {
-                                if (e.key === "Enter") {
-                                  e.preventDefault();
-                                  setComment4(
-                                    (prevComment) => prevComment + "\n"
-                                  );
-                                }
-                              }}
-                            />
-                          </td>
-                        </tr>
+                        }
 
-                        <tr>
-                          <td>
-                            {" "}
-                            <p>5: Safety:</p>
-                            {/* <Select
-                            isMulti
-                            options={option5Option}
-                            value={option5}
-                            onChange={option5Handler}
-                            isCreatable={true}
-                            onKeyDown={handleKeyOption5}
-                          /> */}
-                            <ul>
-                              {option5?.length > 0 &&
-                                option5.map((item, index) => (
-                                  <li key={index}>{item?.value}</li>
-                                ))}
-                            </ul>
-                          </td>
-                          <td>
-                            <input
-                              className="treatment_plan_table"
-                              type="text"
-                              value={admissionMeasure5}
-                              placeholder="___________"
-                              required
-                              onChange={(e) =>
-                                setAdmissionMeasure5(e.target.value)
-                              }
-                            />
-                          </td>
-                          <td>
-                            <input
-                              className="treatment_plan_table"
-                              type="text"
-                              value={currentMeasure5}
-                              placeholder="___________"
-                              required
-                              onChange={(e) =>
-                                setCurrentMeasure5(e.target.value)
-                              }
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="date"
-                              value={estimatedDateOfCompletion5}
-                              className="treatment_plan_table"
-                              required
-                              onChange={(e) =>
-                                setEstimatedDateOfCompletion5(e.target.value)
-                              }
-                            />
-                          </td>
-                          <td>
-                            <textarea
-                              className="treatment_plan_table"
-                              rows={Math.max(
-                                comments5 ? comments5.split("\n").length : 1,
-                                1
-                              )}
-                              value={comments5 || ""}
-                              placeholder="___________"
-                              onChange={(e) => setComment5(e.target.value)}
-                              onKeyDown={(e) => {
-                                if (e.key === "Enter") {
-                                  e.preventDefault();
-                                  setComment5(
-                                    (prevComment) => prevComment + "\n"
-                                  );
+                        {
+                          admissionMeasure4 &&    
+                          <tr>
+                            <td>
+                              {" "}
+                              <p>4: ADLS:</p>
+                              {/* <Select
+                              isMulti
+                              options={option4Option}
+                              value={option4}
+                              onChange={option4Handler}
+                              isCreatable={true}
+                              onKeyDown={handleKeyOption4}
+                            /> */}
+                              <ul>
+                                {option4?.length > 0 &&
+                                  option4.map((item, index) => (
+                                    <li key={index}>{item?.value}</li>
+                                  ))}
+                              </ul>
+                            </td>
+                            <td>
+                              <input
+                                className="treatment_plan_table"
+                                type="text"
+                                value={admissionMeasure4}
+                                placeholder="___________"
+                                required
+                                onChange={(e) =>
+                                  setAdmissionMeasure4(e.target.value)
                                 }
-                              }}
-                            />
-                          </td>
-                        </tr>
+                              />
+                            </td>
+                            <td>
+                              <input
+                                className="treatment_plan_table"
+                                type="text"
+                                value={currentMeasure4}
+                                placeholder="___________"
+                                required
+                                onChange={(e) =>
+                                  setCurrentMeasure4(e.target.value)
+                                }
+                              />
+                            </td>
+                            <td>
+                              <input
+                                type="date"
+                                value={estimatedDateOfCompletion4}
+                                className="treatment_plan_table"
+                                required
+                                onChange={(e) =>
+                                  setEstimatedDateOfCompletion4(e.target.value)
+                                }
+                              />
+                            </td>
+                            <td>
+                              <textarea
+                                className="treatment_plan_table"
+                                rows={Math.max(
+                                  comments4 ? comments4.split("\n").length : 1,
+                                  1
+                                )}
+                                value={comments4 || ""}
+                                placeholder="___________"
+                                onChange={(e) => setComment4(e.target.value)}
+                                onKeyDown={(e) => {
+                                  if (e.key === "Enter") {
+                                    e.preventDefault();
+                                    setComment4(
+                                      (prevComment) => prevComment + "\n"
+                                    );
+                                  }
+                                }}
+                              />
+                            </td>
+                          </tr>
+                        }
+                    
+{
+  admissionMeasure5 &&  <tr>
+  <td>
+    {" "}
+    <p>5: Safety:</p>
+    {/* <Select
+    isMulti
+    options={option5Option}
+    value={option5}
+    onChange={option5Handler}
+    isCreatable={true}
+    onKeyDown={handleKeyOption5}
+  /> */}
+    <ul>
+      {option5?.length > 0 &&
+        option5.map((item, index) => (
+          <li key={index}>{item?.value}</li>
+        ))}
+    </ul>
+  </td>
+  <td>
+    <input
+      className="treatment_plan_table"
+      type="text"
+      value={admissionMeasure5}
+      placeholder="___________"
+      required
+      onChange={(e) =>
+        setAdmissionMeasure5(e.target.value)
+      }
+    />
+  </td>
+  <td>
+    <input
+      className="treatment_plan_table"
+      type="text"
+      value={currentMeasure5}
+      placeholder="___________"
+      required
+      onChange={(e) =>
+        setCurrentMeasure5(e.target.value)
+      }
+    />
+  </td>
+  <td>
+    <input
+      type="date"
+      value={estimatedDateOfCompletion5}
+      className="treatment_plan_table"
+      required
+      onChange={(e) =>
+        setEstimatedDateOfCompletion5(e.target.value)
+      }
+    />
+  </td>
+  <td>
+    <textarea
+      className="treatment_plan_table"
+      rows={Math.max(
+        comments5 ? comments5.split("\n").length : 1,
+        1
+      )}
+      value={comments5 || ""}
+      placeholder="___________"
+      onChange={(e) => setComment5(e.target.value)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          setComment5(
+            (prevComment) => prevComment + "\n"
+          );
+        }
+      }}
+    />
+  </td>
+</tr>
+}
+                  {
+                    admissionMeasure6 &&  <tr>
+                    <td>
+                      {" "}
+                      <p>6: Medication Education:</p>
+                      {/* <Select
+                      isMulti
+                      options={option6Option}
+                      value={option6}
+                      onChange={option6Handler}
+                      isCreatable={true}
+                      onKeyDown={handleKeyOption6}
+                    /> */}
+                      <ul>
+                        {option6?.length > 0 &&
+                          option6.map((item, index) => (
+                            <li key={index}>{item?.value}</li>
+                          ))}
+                      </ul>
+                    </td>
+                    <td>
+                      <input
+                        className="treatment_plan_table"
+                        type="text"
+                        value={admissionMeasure6}
+                        placeholder="___________"
+                        required
+                        onChange={(e) =>
+                          setAdmissionMeasure6(e.target.value)
+                        }
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="treatment_plan_table"
+                        type="text"
+                        value={currentMeasure6}
+                        placeholder="___________"
+                        required
+                        onChange={(e) =>
+                          setCurrentMeasure6(e.target.value)
+                        }
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="date"
+                        value={estimatedDateOfCompletion6}
+                        className="treatment_plan_table"
+                        required
+                        onChange={(e) =>
+                          setEstimatedDateOfCompletion6(e.target.value)
+                        }
+                      />
+                    </td>
+                    <td>
+                      <textarea
+                        className="treatment_plan_table"
+                        rows={Math.max(
+                          comments6 ? comments6.split("\n").length : 1,
+                          1
+                        )}
+                        value={comments6 || ""}
+                        placeholder="___________"
+                        onChange={(e) => setComment6(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            e.preventDefault();
+                            setComment6(
+                              (prevComment) => prevComment + "\n"
+                            );
+                          }
+                        }}
+                      />
+                    </td>
+                  </tr>
+                  }     
 
-                        <tr>
-                          <td>
-                            {" "}
-                            <p>6: Medication Education:</p>
-                            {/* <Select
-                            isMulti
-                            options={option6Option}
-                            value={option6}
-                            onChange={option6Handler}
-                            isCreatable={true}
-                            onKeyDown={handleKeyOption6}
-                          /> */}
-                            <ul>
-                              {option6?.length > 0 &&
-                                option6.map((item, index) => (
-                                  <li key={index}>{item?.value}</li>
-                                ))}
-                            </ul>
-                          </td>
-                          <td>
-                            <input
-                              className="treatment_plan_table"
-                              type="text"
-                              value={admissionMeasure6}
-                              placeholder="___________"
-                              required
-                              onChange={(e) =>
-                                setAdmissionMeasure6(e.target.value)
-                              }
-                            />
-                          </td>
-                          <td>
-                            <input
-                              className="treatment_plan_table"
-                              type="text"
-                              value={currentMeasure6}
-                              placeholder="___________"
-                              required
-                              onChange={(e) =>
-                                setCurrentMeasure6(e.target.value)
-                              }
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="date"
-                              value={estimatedDateOfCompletion6}
-                              className="treatment_plan_table"
-                              required
-                              onChange={(e) =>
-                                setEstimatedDateOfCompletion6(e.target.value)
-                              }
-                            />
-                          </td>
-                          <td>
-                            <textarea
-                              className="treatment_plan_table"
-                              rows={Math.max(
-                                comments6 ? comments6.split("\n").length : 1,
-                                1
-                              )}
-                              value={comments6 || ""}
-                              placeholder="___________"
-                              onChange={(e) => setComment6(e.target.value)}
-                              onKeyDown={(e) => {
-                                if (e.key === "Enter") {
-                                  e.preventDefault();
-                                  setComment6(
-                                    (prevComment) => prevComment + "\n"
-                                  );
-                                }
-                              }}
-                            />
-                          </td>
-                        </tr>
+                       
+{
+  admissionMeasure7 &&    <tr>
+  <td>
+    {" "}
+    <p>7: Managing Mental Health:</p>
+    {/* <Select
+    isMulti
+    options={option7Option}
+    value={option7}
+    onChange={option7Handler}
+    isCreatable={true}
+    onKeyDown={handleKeyOption7}
+  /> */}
+    <ul>
+      {option7?.length > 0 &&
+        option7.map((item, index) => (
+          <li key={index}>{item?.value}</li>
+        ))}
+    </ul>
+  </td>
+  <td>
+    <input
+      className="treatment_plan_table"
+      type="text"
+      value={admissionMeasure7}
+      placeholder="___________"
+      required
+      onChange={(e) =>
+        setAdmissionMeasure7(e.target.value)
+      }
+    />
+  </td>
+  <td>
+    <input
+      className="treatment_plan_table"
+      type="text"
+      value={currentMeasure7}
+      placeholder="___________"
+      required
+      onChange={(e) =>
+        setCurrentMeasure7(e.target.value)
+      }
+    />
+  </td>
+  <td>
+    <input
+      type="date"
+      value={estimatedDateOfCompletion7}
+      className="treatment_plan_table"
+      required
+      onChange={(e) =>
+        setEstimatedDateOfCompletion7(e.target.value)
+      }
+    />
+  </td>
+  <td>
+    <textarea
+      className="treatment_plan_table"
+      rows={Math.max(
+        comments7 ? comments7.split("\n").length : 1,
+        1
+      )}
+      value={comments7 || ""}
+      placeholder="___________"
+      onChange={(e) => setComment7(e.target.value)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          setComment7(
+            (prevComment) => prevComment + "\n"
+          );
+        }
+      }}
+    />
+  </td>
+</tr>
+}
 
-                        <tr>
-                          <td>
-                            {" "}
-                            <p>7: Managing Mental Health:</p>
-                            {/* <Select
-                            isMulti
-                            options={option7Option}
-                            value={option7}
-                            onChange={option7Handler}
-                            isCreatable={true}
-                            onKeyDown={handleKeyOption7}
-                          /> */}
-                            <ul>
-                              {option7?.length > 0 &&
-                                option7.map((item, index) => (
-                                  <li key={index}>{item?.value}</li>
-                                ))}
-                            </ul>
-                          </td>
-                          <td>
-                            <input
-                              className="treatment_plan_table"
-                              type="text"
-                              value={admissionMeasure7}
-                              placeholder="___________"
-                              required
-                              onChange={(e) =>
-                                setAdmissionMeasure7(e.target.value)
-                              }
-                            />
-                          </td>
-                          <td>
-                            <input
-                              className="treatment_plan_table"
-                              type="text"
-                              value={currentMeasure7}
-                              placeholder="___________"
-                              required
-                              onChange={(e) =>
-                                setCurrentMeasure7(e.target.value)
-                              }
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="date"
-                              value={estimatedDateOfCompletion7}
-                              className="treatment_plan_table"
-                              required
-                              onChange={(e) =>
-                                setEstimatedDateOfCompletion7(e.target.value)
-                              }
-                            />
-                          </td>
-                          <td>
-                            <textarea
-                              className="treatment_plan_table"
-                              rows={Math.max(
-                                comments7 ? comments7.split("\n").length : 1,
-                                1
-                              )}
-                              value={comments7 || ""}
-                              placeholder="___________"
-                              onChange={(e) => setComment7(e.target.value)}
-                              onKeyDown={(e) => {
-                                if (e.key === "Enter") {
-                                  e.preventDefault();
-                                  setComment7(
-                                    (prevComment) => prevComment + "\n"
-                                  );
-                                }
-                              }}
-                            />
-                          </td>
-                        </tr>
+                    {
+                      admissionMeasure8 && <tr>
+                      <td>
+                        {" "}
+                        <p>8: Legal:</p>
+                        {/* <Select
+                        isMulti
+                        options={option8Option}
+                        value={option8}
+                        onChange={option8Handler}
+                        isCreatable={true}
+                        onKeyDown={handleKeyOption8}
+                      /> */}
+                        <ul>
+                          {option8?.length > 0 &&
+                            option8.map((item, index) => (
+                              <li key={index}>{item?.value}</li>
+                            ))}
+                        </ul>
+                      </td>
+                      <td>
+                        <input
+                          className="treatment_plan_table"
+                          type="text"
+                          value={admissionMeasure8}
+                          placeholder="___________"
+                          required
+                          onChange={(e) =>
+                            setAdmissionMeasure8(e.target.value)
+                          }
+                        />
+                      </td>
+                      <td>
+                        <input
+                          className="treatment_plan_table"
+                          type="text"
+                          value={currentMeasure8}
+                          placeholder="___________"
+                          required
+                          onChange={(e) =>
+                            setCurrentMeasure8(e.target.value)
+                          }
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="date"
+                          value={estimatedDateOfCompletion8}
+                          className="treatment_plan_table"
+                          required
+                          onChange={(e) =>
+                            setEstimatedDateOfCompletion8(e.target.value)
+                          }
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          className="treatment_plan_table"
+                          rows={Math.max(
+                            comments8 ? comments8.split("\n").length : 1,
+                            1
+                          )}
+                          value={comments8 || ""}
+                          placeholder="___________"
+                          onChange={(e) => setComment8(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setComment8(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                    </tr>
+                    } 
 
-                        <tr>
-                          <td>
-                            {" "}
-                            <p>8: Legal:</p>
-                            {/* <Select
-                            isMulti
-                            options={option8Option}
-                            value={option8}
-                            onChange={option8Handler}
-                            isCreatable={true}
-                            onKeyDown={handleKeyOption8}
-                          /> */}
-                            <ul>
-                              {option8?.length > 0 &&
-                                option8.map((item, index) => (
-                                  <li key={index}>{item?.value}</li>
-                                ))}
-                            </ul>
-                          </td>
-                          <td>
-                            <input
-                              className="treatment_plan_table"
-                              type="text"
-                              value={admissionMeasure8}
-                              placeholder="___________"
-                              required
-                              onChange={(e) =>
-                                setAdmissionMeasure8(e.target.value)
-                              }
-                            />
-                          </td>
-                          <td>
-                            <input
-                              className="treatment_plan_table"
-                              type="text"
-                              value={currentMeasure8}
-                              placeholder="___________"
-                              required
-                              onChange={(e) =>
-                                setCurrentMeasure8(e.target.value)
-                              }
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="date"
-                              value={estimatedDateOfCompletion8}
-                              className="treatment_plan_table"
-                              required
-                              onChange={(e) =>
-                                setEstimatedDateOfCompletion8(e.target.value)
-                              }
-                            />
-                          </td>
-                          <td>
-                            <textarea
-                              className="treatment_plan_table"
-                              rows={Math.max(
-                                comments8 ? comments8.split("\n").length : 1,
-                                1
-                              )}
-                              value={comments8 || ""}
-                              placeholder="___________"
-                              onChange={(e) => setComment8(e.target.value)}
-                              onKeyDown={(e) => {
-                                if (e.key === "Enter") {
-                                  e.preventDefault();
-                                  setComment8(
-                                    (prevComment) => prevComment + "\n"
-                                  );
-                                }
-                              }}
-                            />
-                          </td>
-                        </tr>
+                        
 
                         {otherArray.length > 0 &&
                           otherArray.map((data, index) => (

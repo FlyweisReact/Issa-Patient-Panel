@@ -295,6 +295,7 @@ export const LoginForm = () => {
                     <Form.Label>User ID</Form.Label>
                     <Form.Control
                       type="email"
+                      required
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter email"
                     />
@@ -303,6 +304,7 @@ export const LoginForm = () => {
                   <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
+                    required
                       onChange={(e) => setPassword(e.target.value)}
                       type="password"
                       placeholder="Password"
@@ -341,7 +343,7 @@ export const LoginForm = () => {
                       LOG IN 
                     </Button>
 
-                    <p
+                    {/* <p
                       onClick={() => setForgetChange("forgot")}
                       style={{
                         color: "#0C5C75",
@@ -353,7 +355,7 @@ export const LoginForm = () => {
                     >
                       {" "}
                       Forgot Your Password
-                    </p>
+                    </p> */}
 
                     <hr style={{ color: "gray" }} />
                     <p style={{ opacity: "60%" }}>
