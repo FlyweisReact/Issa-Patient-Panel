@@ -436,6 +436,20 @@
   height: 10px;
 }
 
+.yeschechbox2 > div > input[type="checkbox"] {
+  margin-right: 10px;
+  margin-bottom: 5px;
+  transform: scale(1.5);
+  width: 14px;
+  height: 10px;
+}
+
+.button_gap {
+  display: flex;
+  gap:"10px";
+  align-items: center;
+}
+
 
 
 

@@ -96,6 +96,7 @@ for (let i = 0; i < form_field_single_update.length; i++) {
   };
 
   //singIn model state
+  const [filedForm,setFiledForm]=useState("")
   const [getApiData,setGetApiData]=useState("");
   const [showSingIn, setShowSingIn] = useState(false);
   const [userDetail, setUserDetail] = useState("");
@@ -226,6 +227,7 @@ function formatDate(dateString) {
   }, [userId, previusData]);
 
   useEffect(() => {
+    setFiledForm(userDetail?.safetyPlan);
     setUserId(userDetail?._id);
     setUser(userDetail?.fullName);
     setDate(userDetail?.dateOfBirth?userDetail?.dateOfBirth.slice(0,10):"")
@@ -234,6 +236,7 @@ function formatDate(dateString) {
 
 
   useEffect(() => {
+   
     user_detail(setUserDetail);
   }, []);
 
@@ -1039,11 +1042,14 @@ function formatDate(dateString) {
           <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
               SUBMIT DETAILS
             </button>
-            <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
             {
+              filedForm &&   <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+            
+              {
                     loading ? <Loader/> : "PREVIOUS FORM"
                   }
             </button>
+            }
           </div>
         </form>
       </div>

@@ -15,6 +15,7 @@ import Loader from "../../Pages/LandingPage/Loader";
 
 const ResidentIntakes = () => {
   const [loading,setLoading]=useState("");
+  const [filedForm,setFiledForm]=useState("");
 
   const navigate = useNavigate();
   //section 1
@@ -1434,9 +1435,10 @@ function formatDate(dateString) {
   }, [userId, previusData]);
 
   useEffect(() => {
+    setFiledForm(userDetail?.residentIntakes);
     setUserId(userDetail?._id);
     setUser(userDetail?.fullName);
-    setCompanyName(userDetail?.companyName)
+    setCompanyName(userDetail?.companyName);
     
   }, [userDetail]);
 
@@ -3321,11 +3323,7 @@ function formatDate(dateString) {
                   <div className="yeschechbox2">
                     <span>Resident has developed an Advanced Directive:</span>
                     <div
-                      style={{
-                        display: "flex",
-                        gap: "10px",
-                        alignItems: "center",
-                      }}
+                    
                     >
                       <input
                         type="checkbox"
@@ -3340,11 +3338,7 @@ function formatDate(dateString) {
                       </span>
                     </div>
                     <div
-                      style={{
-                        display: "flex",
-                        gap: "10px",
-                        alignItems: "center",
-                      }}
+                   
                     >
                       <input
                         type="checkbox"
@@ -3381,7 +3375,7 @@ function formatDate(dateString) {
                       If the Advanced Directive has been executed (developed),
                       is it in the BHRF medical record?
                     </span>
-                    <div>
+                    <div className="button_gap">
                       <input
                         type="checkbox"
                         id="yesCheckbox"
@@ -3390,9 +3384,9 @@ function formatDate(dateString) {
                           setAdvanceDirectivesExecutedInRecord("yes")
                         }
                       />
-                      <span htmlFor="yesCheckbox">Yes</span>
+                      <span htmlFor="yesCheckbox" style={{ marginBottom: "5px" }}>Yes</span>
                     </div>
-                    <div>
+                    <div >
                       <input
                         type="checkbox"
                         id="noCheckbox"
@@ -3401,7 +3395,7 @@ function formatDate(dateString) {
                           setAdvanceDirectivesExecutedInRecord("no")
                         }
                       />
-                      <span htmlFor="noCheckbox">No</span>
+                      <span htmlFor="noCheckbox" style={{ marginBottom: "5px" }}>No</span>
                     </div>
                   </div>
                   {advanceDirectivesExecutedInRecord === "no" && (
@@ -3426,12 +3420,7 @@ function formatDate(dateString) {
                   </div>
                   <div className="yeschechbox2">
                     <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "10px",
-                        marginTop: "10px",
-                      }}
+                    
                     >
                       <input
                         type="checkbox"
@@ -3443,7 +3432,7 @@ function formatDate(dateString) {
                           )
                         }
                       />
-                      <span htmlFor="advanceDirectivesFilingStatusWishNotFiled">
+                      <span htmlFor="advanceDirectivesFilingStatusWishNotFiled" style={{ marginBottom: "5px" }}>
                         Resident does not wish to have it filed in his/her
                         medical record.
                       </span>
@@ -3451,11 +3440,7 @@ function formatDate(dateString) {
                   </div>
                   <div className="yeschechbox2">
                     <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "10px",
-                      }}
+                    
                     >
                       <input
                         type="checkbox"
@@ -3469,18 +3454,14 @@ function formatDate(dateString) {
                           )
                         }
                       />
-                      <span>
+                      <span style={{ marginBottom: "5px" }}>
                         BHRF has asked for a copy, but it has not been provided.
                       </span>
                     </div>
                   </div>
                   <div className="yeschechbox2">
                     <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "10px",
-                      }}
+                  
                     >
                       <input
                         type="checkbox"
@@ -3492,7 +3473,7 @@ function formatDate(dateString) {
                           )
                         }
                       />
-                      Other
+                       <span style={{ marginBottom: "5px" }}>Other</span>
                     </div>
                   </div>
                   <div className="yeschechbox2">
@@ -3507,7 +3488,7 @@ function formatDate(dateString) {
                         been sent to the Member’s PCP?
                       </span>
                     </div>
-                    <div>
+                    <div >
                       <input
                         type="checkbox"
                         id="yesCheckbox"
@@ -3521,9 +3502,9 @@ function formatDate(dateString) {
                           )
                         }
                       />
-                      <span htmlFor="yesCheckbox">Yes</span>
+                      <span htmlFor="yesCheckbox" style={{ marginBottom: "5px" }}>Yes</span>
                     </div>
-                    <div>
+                    <div className="button_gap ">
                       <input
                         type="checkbox"
                         id="noCheckbox"
@@ -3537,7 +3518,7 @@ function formatDate(dateString) {
                           )
                         }
                       />
-                      <span htmlFor="noCheckbox">No</span>
+                      <span htmlFor="noCheckbox" style={{ marginBottom: "5px" }}>No</span>
                     </div>
                   </div>
                   <div className="yeschechbox2">
@@ -3546,7 +3527,7 @@ function formatDate(dateString) {
                         Has the Advance Directive document ever been acted on?
                       </span>
                     </div>
-                    <div>
+                    <div className="button_gap ">
                       <input
                         type="checkbox"
                         id="yesCheckbox"
@@ -3557,9 +3538,9 @@ function formatDate(dateString) {
                           setAdvanceDirectivesCoordinationOfCareActedOn("yes")
                         }
                       />
-                      <span htmlFor="yesCheckbox">Yes</span>
+                      <span htmlFor="yesCheckbox" style={{ marginBottom: "5px" }}>Yes</span>
                     </div>
-                    <div>
+                    <div className="button_gap ">
                       <input
                         type="checkbox"
                         id="noCheckbox"
@@ -3570,7 +3551,7 @@ function formatDate(dateString) {
                           setAdvanceDirectivesCoordinationOfCareActedOn("no")
                         }
                       />
-                      <span htmlFor="noCheckbox">No</span>
+                      <span htmlFor="noCheckbox" style={{ marginBottom: "5px" }}>No</span>
                     </div>
                   </div>
                   <div className="yeschechbox2">
@@ -4847,11 +4828,14 @@ function formatDate(dateString) {
               <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
               SUBMIT DETAILS
             </button>
-               <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
-               {
+            {
+              filedForm &&   <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+            
+              {
                     loading ? <Loader/> : "PREVIOUS FORM"
                   }
             </button>
+            }
              </div>
             }
               

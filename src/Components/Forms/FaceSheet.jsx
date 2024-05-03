@@ -114,7 +114,7 @@ const FaceSheet = () => {
 
 //  get data api
   const [getApiData,setGetApiData]=useState("")
-
+  const [filedForm,setFiledForm]=useState("")
   const [userDetail, setUserDetail] = useState("");
   const navigate = useNavigate();
   const [patientId, setPatientId] = useState("");
@@ -333,6 +333,7 @@ function formatDate(dateString) {
 
 
   useEffect(() => {
+    setFiledForm(userDetail?.faceSheet);
     setPatientId(userDetail?._id);
   }, [userDetail]);
 
@@ -1488,11 +1489,14 @@ function formatDate(dateString) {
             <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
               SUBMIT DETAILS
             </button>
-            <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
             {
+              filedForm &&   <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+            
+              {
                     loading ? <Loader/> : "PREVIOUS FORM"
                   }
             </button>
+            }
             </div>
         </form>
       </div>

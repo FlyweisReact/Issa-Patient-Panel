@@ -27,7 +27,7 @@ const Initial_Assessment_print = ({componentRef}) => {
 
   const [user, setUser] = useState("");
   const [userData, setUserData] = useState("");
-  const [getApiData,setGetApiData]=useState([]);
+  const [getApiData,setGetApiData]=useState("");
   //state define
   const [assessmentType,setAssessmentType]=useState("")
   const [hasNotified, setHasNotified] = useState("");
@@ -1196,6 +1196,140 @@ const [Additional1Description,setAdditional1Description]=useState("");
   const [bhpDate, setBhpDate] = useState("");
   const [bhpTime, setBhpTime] = useState("");
 
+  
+// ========table delete state
+// Conditions
+const [condition1,setConditions1]=useState(true);
+const [condition2,setConditions2]=useState(true);
+const [condition3,setConditions3]=useState(true);
+const [condition4,setConditions4]=useState(true);
+const [condition5,setConditions5]=useState(true);
+const [condition6,setConditions6]=useState(true);
+const [condition7,setConditions7]=useState(true);
+const [condition8,setConditions8]=useState(true);
+const [condition9,setConditions9]=useState(true);
+const [condition10,setConditions10]=useState(true);
+const [condition11,setConditions11]=useState(true);
+const [condition12,setConditions12]=useState(true);
+const [condition13,setConditions13]=useState(true);
+const [condition14,setConditions14]=useState(true);
+const [condition15,setConditions15]=useState(true);
+const [condition16,setConditions16]=useState(true);
+const [condition17,setConditions17]=useState(true);
+const [condition18,setConditions18]=useState(true);
+const [condition19,setConditions19]=useState(true);
+const [condition20,setConditions20]=useState(true);
+const [condition21,setConditions21]=useState(true);
+const [condition22,setConditions22]=useState(true);
+const [condition23,setConditions23]=useState(true);
+const [condition24,setConditions24]=useState(true);
+const [condition25,setConditions25]=useState(true);
+const [condition26,setConditions26]=useState(true);
+
+
+const ConditionDelete=(index)=>{
+  const tempMedicalDelet=[...typeArray];
+  tempMedicalDelet.splice(index,1);
+  setTypeArray(tempMedicalDelet);
+}
+
+// Substance Abuse history type
+const [type1,setType1]=useState(true);
+const [type2,setType2]=useState(true);
+const [type3,setType3]=useState(true);
+const [type4,setType4]=useState(true);
+const [type5,setType5]=useState(true);
+const [type6,setType6]=useState(true);
+const [type7,setType7]=useState(true);
+const [type8,setType8]=useState(true);
+const [type9,setType9]=useState(true);
+const [type10,setType10]=useState(true);
+const [type11,setType11]=useState(true);
+const [type12,setType12]=useState(true);
+
+const TypeDelete=(index)=>{
+  const tempMedicalDelet=[...typeArray];
+  tempMedicalDelet.splice(index,1);
+  setTypeArray(tempMedicalDelet);
+}
+
+// Current Independent Living Skills
+const [Independent1,setIndependent1]=useState(true);
+const [Independent2,setIndependent2]=useState(true);
+const [Independent3,setIndependent3]=useState(true);
+const [Independent4,setIndependent4]=useState(true);
+const [Independent5,setIndependent5]=useState(true);
+const [Independent6,setIndependent6]=useState(true);
+const [Independent7,setIndependent7]=useState(true);
+const [Independent8,setIndependent8]=useState(true);
+const [Independent9,setIndependent9]=useState(true);
+
+
+const IndependentDelete=(index)=>{
+  const tempMedicalDelet=[...handleRiskFactorActivityArray];
+  tempMedicalDelet.splice(index,1);
+  setHandleRiskFactorActivityArray(tempMedicalDelet);
+}
+
+// Risk Factors:
+const [riskFactor1,setRiskFactor1]=useState(true);
+const [riskFactor2,setRiskFactor2]=useState(true);
+const [riskFactor3,setRiskFactor3]=useState(true);
+const [riskFactor4,setRiskFactor4]=useState(true);
+const [riskFactor5,setRiskFactor5]=useState(true);
+const [riskFactor6,setRiskFactor6]=useState(true);
+const [riskFactor7,setRiskFactor7]=useState(true);
+const [riskFactor8,setRiskFactor8]=useState(true);
+const [riskFactor9,setRiskFactor9]=useState(true);
+const [riskFactor10,setRiskFactor10]=useState(true);
+const [riskFactor11,setRiskFactor11]=useState(true);
+const [riskFactor12,setRiskFactor12]=useState(true);
+
+const RiskDelete=(index)=>{
+  const tempMedicalDelet=[...riskFactorArray];
+  tempMedicalDelet.splice(index,1);
+  setRiskFactoeArray(tempMedicalDelet);
+}
+
+
+// Protective factors:
+const [Protective1,setProtective1]=useState(true);
+const [Protective2,setProtective2]=useState(true);
+const [Protective3,setProtective3]=useState(true);
+const [Protective4,setProtective4]=useState(true);
+const [Protective5,setProtective5]=useState(true);
+const [Protective6,setProtective6]=useState(true);
+
+const ProtectiveDelete=(index)=>{
+  const tempMedicalDelet=[...protectiveFactorsArray];
+  tempMedicalDelet.splice(index,1);
+  setProtectiveFactorsArray(tempMedicalDelet);
+}
+// Diagnoses
+const [Diagnoses1,setDiagnoses1]=useState(true);
+const [Diagnoses2,setDiagnoses2]=useState(true);
+const [Diagnoses3,setDiagnoses3]=useState(true);
+const [Diagnoses4,setDiagnoses4]=useState(true);
+
+const DiagnosesDelete=(index)=>{
+  const tempMedicalDelet=[...psychiatricDiagnosesArray];
+  tempMedicalDelet.splice(index,1);
+  setPsychiatricDiagnosesArray(tempMedicalDelet);
+}
+
+console.log(Diagnoses4,"data is Diagnoses4");
+// Medical Diagnoses:
+const [Medical1,setMatical1]=useState(true);
+const [Medical2,setMatical2]=useState(true);
+const [Medical3,setMatical3]=useState(true);
+const [Medical4,setMatical4]=useState(true);
+
+const medicalDelete=(index)=>{
+  const tempMedicalDelet=[...medicalDiagnosesArray];
+  tempMedicalDelet.splice(index,1);
+  setMedicalDiagnosesArray(tempMedicalDelet);
+}
+
   // get array in api
   function getApiArrayData(startIndex,arrayLength,array){
     if (arrayLength <= startIndex) {
@@ -1223,13 +1357,18 @@ return arr;
 
 
   useEffect(()=>{
-    setHasNotified(getApiData?.hasNotified);
+
+    if(getApiData){
+
+      
+setAssessmentType(getApiData?.assessmentType)
+setHasNotified(getApiData?.hasNotified);
 setAssessmentOn(getApiData?.assessmentOn);
 setDob(getApiData?.dob);
 setCompanyName(getApiData?.companyName);
 setResidentName(getApiData?.hasNotified);
 setSex(getApiData?.sex);
-setDateOfAssessment(getApiData?.dateOfAssessment);
+setDateOfAssessment(getApiData?.dateOfAssessment?getApiData?.dateOfAssessment?.slice(0,10):"");
 setAhcccsNumber(getApiData?.ahcccsNumber);
 setPreferredLanguage(getApiData?.preferredLanguage);
 setEthnicity(getApiData?.ethnicity);
@@ -1356,88 +1495,179 @@ sethealthConditionsYesComment(getApiData?.medicalConditions?.[24]?.comments);
 setInfectionYes(getApiData?.medicalConditions?.[25]?.yes);
 setInfectionDiseases(getApiData?.medicalConditions?.[25]?.comment
   ? getApiData?.medicalConditions?.[8].comment?.map(item => ({
-      label: item, // Assuming 'name' is the property you want to use as label
-      value: item    // Assuming 'id' is the property you want to use as value
+      label: item, 
+      value: item    
     }))
   : []);
-// jai maa kali
+
+  setConditions1(getApiData?.medicalConditions?.[0]?.state);
+  setConditions2(getApiData?.medicalConditions?.[1]?.state);
+  setConditions3(getApiData?.medicalConditions?.[2]?.state);
+  setConditions4(getApiData?.medicalConditions?.[33]?.state);
+  setConditions5(getApiData?.medicalConditions?.[4]?.state);
+  setConditions6(getApiData?.medicalConditions?.[5]?.state);
+  setConditions7(getApiData?.medicalConditions?.[6]?.state);
+  setConditions8(getApiData?.medicalConditions?.[7]?.state);
+  setConditions9(getApiData?.medicalConditions?.[8]?.state);
+  setConditions10(getApiData?.medicalConditions?.[9]?.state);
+  setConditions11(getApiData?.medicalConditions?.[10]?.state);
+  setConditions12(getApiData?.medicalConditions?.[11]?.state);
+  setConditions13(getApiData?.medicalConditions?.[12]?.state);
+  setConditions14(getApiData?.medicalConditions?.[13]?.state);
+  setConditions15(getApiData?.medicalConditions?.[14]?.state);
+  setConditions16(getApiData?.medicalConditions?.[15]?.state);
+  setConditions17(getApiData?.medicalConditions?.[16]?.state);
+  setConditions18(getApiData?.medicalConditions?.[17]?.state);
+  setConditions19(getApiData?.medicalConditions?.[18]?.state);
+  setConditions20(getApiData?.medicalConditions?.[19]?.state);
+  setConditions21(getApiData?.medicalConditions?.[20]?.state);
+  setConditions22(getApiData?.medicalConditions?.[21]?.state);
+  setConditions23(getApiData?.medicalConditions?.[22]?.state);
+  setConditions24(getApiData?.medicalConditions?.[23]?.state);
+  setConditions25(getApiData?.medicalConditions?.[24]?.state);
+  setConditions26(getApiData?.medicalConditions?.[25]?.state);
+
+
 setOtherConditionArray(getApiData?.medicalConditions?getApiArrayData(26,getApiData?.medicalConditions?.length,getApiData?.medicalConditions):[]);
+
 setSignificantFamilyMedicalPsychiatricHistory(getApiData?.SignificantFamilyMedicalPsychiatricHistory
   ? getApiData?.SignificantFamilyMedicalPsychiatricHistory.map(item => ({
-      label: item, // Assuming 'name' is the property you want to use as label
-      value: item    // Assuming 'id' is the property you want to use as value
+      label: item, 
+      value: item   
     }))
   : []);
-// jai maa kali
-setMentalHealthTreatmentHistoryTypeOfService([]);
 
-setMentalHealthTreatmentHistoryWhere("");
-setMentalHealthTreatmentHistoryDates("");
-setMentalHealthTreatmentHistoryDiagnosisReason([]);
-setTypeOfServicesArray([])
+setTypeOfServicesArray(getApiData?.mentalHealthTreatmentHistory
+  ?getApiData?.mentalHealthTreatmentHistory?.flatMap((item)=>(
+    {
+      diagnosisReason:item?.diagnosisReason?.map((i) => ({
+        value : i?.value,
+        label : i?.label
+      })),
+      typeOfService:item?.typeOfService?.map((i) => ({
+        value : i?.value,
+        label : i?.label
+      })),
+      dates:item?.dates,
+      where:item?.where
+    }
+  )):[])
+
 
 setSubstanceAbuseHistory(getApiData?.substanceAbuseHistory);
 setSubstanceAbuseDenies(getApiData?.substanceAbuseDenies);
 
 setSubstanceAbuseHistoryDataAgeOfFirstUseAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUseAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.lastUse);
-setSubstanceAbuseHistoryDataFrequencyAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.frequency);
-setSubstanceAbuseHistoryDataLengthOfSobrietyAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.lengthOfSobriety);
+setSubstanceAbuseHistoryDataLastUseAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.lastUse?{
+  label: getApiData?.substanceAbuseHistoryData?.[0]?.lastUse, value :getApiData?.substanceAbuseHistoryData?.[0]?.lastUse
+}:""
+
+);
+setSubstanceAbuseHistoryDataFrequencyAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.frequency?{label:getApiData?.substanceAbuseHistoryData?.[0]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[0]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[0]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[0]?.lengthOfSobriety}:"");
 
 setSubstanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines(getApiData?.substanceAbuseHistoryData?.[1]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUseBenzodiazepines(getApiData?.substanceAbuseHistoryData?.[1]?.lastUse);
-setSubstanceAbuseHistoryDataFrequencyBenzodiazepines(getApiData?.substanceAbuseHistoryData?.[1]?.frequency);
-setSubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines(getApiData?.substanceAbuseHistoryData?.[1]?.lengthOfSobriety);
+setSubstanceAbuseHistoryDataLastUseBenzodiazepines(getApiData?.substanceAbuseHistoryData?.[1]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[1]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[1]?.lastUse}:"");
+setSubstanceAbuseHistoryDataFrequencyBenzodiazepines(getApiData?.substanceAbuseHistoryData?.[1]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[1]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[1]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines(getApiData?.substanceAbuseHistoryData?.[1]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[1]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[1]?.lengthOfSobriety}:"");
 
 setSubstanceAbuseHistoryDataAgeOfFirstUseCrack(getApiData?.substanceAbuseHistoryData?.[2]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUseCrack(getApiData?.substanceAbuseHistoryData?.[2]?.lastUse);
-setSubstanceAbuseHistoryDataFrequencyCrack(getApiData?.substanceAbuseHistoryData?.[2]?.frequency);
-setSubstanceAbuseHistoryDataLengthOfSobrietyCrack(getApiData?.substanceAbuseHistoryData?.[2]?.lengthOfSobriety);
+setSubstanceAbuseHistoryDataLastUseCrack(getApiData?.substanceAbuseHistoryData?.[2]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[2]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[2]?.lastUse}:"");
+setSubstanceAbuseHistoryDataFrequencyCrack(getApiData?.substanceAbuseHistoryData?.[2]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[2]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[2]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyCrack(getApiData?.substanceAbuseHistoryData?.[2]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[2]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[2]?.lengthOfSobriety}:"");
 
 setSubstanceAbuseHistoryDataAgeOfFirstUseHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUseHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.lastUse);
-setSubstanceAbuseHistoryDataFrequencyHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.frequency);
-setSubstanceAbuseHistoryDataLengthOfSobrietyHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.lengthOfSobriety);
+setSubstanceAbuseHistoryDataLastUseHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[3]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[3]?.lastUse}:"");
+setSubstanceAbuseHistoryDataFrequencyHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[3]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[3]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[3]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[3]?.lengthOfSobriety}:"");
 
 setSubstanceAbuseHistoryDataAgeOfFirstUseInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUseInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.lastUse);
-setSubstanceAbuseHistoryDataFrequencyInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.frequency);
-setSubstanceAbuseHistoryDataLengthOfSobrietyInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.lengthOfSobriety);
+setSubstanceAbuseHistoryDataLastUseInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[4]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[4]?.lastUse}:"");
+setSubstanceAbuseHistoryDataFrequencyInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[4]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[4]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[4]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[4]?.lengthOfSobriety}:"");
 
 setSubstanceAbuseHistoryDataAgeOfFirstUseMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUseMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.lastUse);
-setSubstanceAbuseHistoryDataFrequencyMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.frequency);
-setSubstanceAbuseHistoryDataLengthOfSobrietyMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.lengthOfSobriety);
+setSubstanceAbuseHistoryDataLastUseMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[5]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[5]?.lastUse}:"");
+setSubstanceAbuseHistoryDataFrequencyMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[5]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[5]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[5]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[5]?.lengthOfSobriety}:"");
 
 setSubstanceAbuseHistoryDataAgeOfFirstUseMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUseMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.lastUse);
-setSubstanceAbuseHistoryDataFrequencyMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.frequency);
-setSubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.lengthOfSobriety);
+setSubstanceAbuseHistoryDataLastUseMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[6]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[6]?.lastUse}:"");
+setSubstanceAbuseHistoryDataFrequencyMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[6]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[6]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[6]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[6]?.lengthOfSobriety}:"");
 
 setSubstanceAbuseHistoryDataAgeOfFirstUseMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUseMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.lastUse);
-setSubstanceAbuseHistoryDataFrequencyMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.frequency);
-setSubstanceAbuseHistoryDataLengthOfSobrietyMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.lengthOfSobriety);
+setSubstanceAbuseHistoryDataLastUseMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[7]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[7]?.lastUse}:"");
+setSubstanceAbuseHistoryDataFrequencyMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[7]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[7]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[7]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[7]?.lengthOfSobriety}:"");
 
 setSubstanceAbuseHistoryDataAgeOfFirstUseMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUseMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.lastUse);
-setSubstanceAbuseHistoryDataFrequencyMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.frequency);
-setSubstanceAbuseHistoryDataLengthOfSobrietyMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.lengthOfSobriety);
+setSubstanceAbuseHistoryDataLastUseMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[8]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[8]?.lastUse}:"");
+setSubstanceAbuseHistoryDataFrequencyMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[8]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[8]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[8]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[8]?.lengthOfSobriety}:"");
 
 setSubstanceAbuseHistoryDataAgeOfFirstUsePCP(getApiData?.substanceAbuseHistoryData?.[9]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUsePCP(getApiData?.substanceAbuseHistoryData?.[9]?.lastUse);
-setSubstanceAbuseHistoryDataFrequencyPCP(getApiData?.substanceAbuseHistoryData?.[9]?.frequency);
-setSubstanceAbuseHistoryDataLengthOfSobrietyPCP(getApiData?.substanceAbuseHistoryData?.[9]?.lengthOfSobriety);
+setSubstanceAbuseHistoryDataLastUsePCP(getApiData?.substanceAbuseHistoryData?.[9]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[9]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[9]?.lastUse}:"");
+setSubstanceAbuseHistoryDataFrequencyPCP(getApiData?.substanceAbuseHistoryData?.[9]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[9]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[9]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyPCP(getApiData?.substanceAbuseHistoryData?.[9]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[9]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[9]?.lengthOfSobriety}:"");
 
 setSubstanceAbuseHistoryDataAgeOfFirstUsePrescription(getApiData?.substanceAbuseHistoryData?.[10]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUsePrescription(getApiData?.substanceAbuseHistoryData?.[10]?.lastUse);
-setSubstanceAbuseHistoryDataFrequencyPrescription(getApiData?.substanceAbuseHistoryData?.[10]?.frequency);
-setSubstanceAbuseHistoryDataLengthOfSobrietyPrescription(getApiData?.substanceAbuseHistoryData?.[10]?.lengthOfSobriety);
+setSubstanceAbuseHistoryDataLastUsePrescription(getApiData?.substanceAbuseHistoryData?.[10]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[10]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[10]?.lastUse}:"");
+setSubstanceAbuseHistoryDataFrequencyPrescription(getApiData?.substanceAbuseHistoryData?.[10]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[10]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[10]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyPrescription(getApiData?.substanceAbuseHistoryData?.[10]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[10]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[10]?.lengthOfSobriety}:"");
 
 setSubstanceAbuseHistoryDataAgeOfFirstUseOTC(getApiData?.substanceAbuseHistoryData?.[11]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUseOTC(getApiData?.substanceAbuseHistoryData?.[11]?.lastUse);
-setSubstanceAbuseHistoryDataFrequencyOTC(getApiData?.substanceAbuseHistoryData?.[11]?.frequency);
-setSubstanceAbuseHistoryDataLengthOfSobrietyOTC(getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety);
+setSubstanceAbuseHistoryDataLastUseOTC(getApiData?.substanceAbuseHistoryData?.[11]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[11]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[11]?.lastUse}:"");
+setSubstanceAbuseHistoryDataFrequencyOTC(getApiData?.substanceAbuseHistoryData?.[11]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[11]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[11]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyOTC(getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety}:"");
+
+  setType1(getApiData?.substanceAbuseHistoryData?.[0]?.state);
+  setType2(getApiData?.substanceAbuseHistoryData?.[1]?.state);
+  setType3(getApiData?.substanceAbuseHistoryData?.[2]?.state);
+  setType4(getApiData?.substanceAbuseHistoryData?.[3]?.state);
+  setType5(getApiData?.substanceAbuseHistoryData?.[4]?.state);
+  setType6(getApiData?.substanceAbuseHistoryData?.[5]?.state);
+  setType7(getApiData?.substanceAbuseHistoryData?.[6]?.state);
+  setType8(getApiData?.substanceAbuseHistoryData?.[7]?.state);
+  setType9(getApiData?.substanceAbuseHistoryData?.[8]?.state);
+  setType10(getApiData?.substanceAbuseHistoryData?.[9]?.state);
+  setType11(getApiData?.substanceAbuseHistoryData?.[10]?.state);
+  setType12(getApiData?.substanceAbuseHistoryData?.[11]?.state);
+
 setTypeArray(getApiData?.substanceAbuseHistoryData?getApiArrayData(12,getApiData?.substanceAbuseHistoryData?.length,getApiData?.substanceAbuseHistoryData):[]);
 
 // start 
@@ -1685,7 +1915,7 @@ setNoneReportedOrObserved(
     setYesOtherHallucinationsBoolean(getApiData?.mentalStatusExam?.Hallucinations
       ?.otherComment?true:false);
     setYesOtherHallucinationsText(getApiData?.mentalStatusExam?.Hallucinations
-      ?.otherCommen);
+      ?.otherComment);
 
     setNormalGait(getApiData?.mentalStatusExam?.Gait?.Normal);
     setStaggering(getApiData?.mentalStatusExam?.Gait?.Staggering);
@@ -1722,8 +1952,8 @@ setNoneReportedOrObserved(
     setHypoactive(
       getApiData?.mentalStatusExam?.PsychomotorActivity?.Hypoactive
     );
-    setPsychomotorActivityOtherBoolen()
-    setPsychomotorActivityOther()
+    setPsychomotorActivityOtherBoolen(getApiData?.mentalStatusExam?.PsychomotorActivity?.otherComment?true:false)
+    setPsychomotorActivityOther(getApiData?.mentalStatusExam?.PsychomotorActivity?.otherComment)
 
     setNone(getApiData?.mentalStatusExam?.Mannerisms?.None);
     setTics(getApiData?.mentalStatusExam?.Mannerisms?.Tics);
@@ -1835,11 +2065,21 @@ setOtherCurrentNotSoGood(getApiData?.independentLivingSkills?.[9]?.otherCurrentN
 setOtherCurrentNeed(getApiData?.independentLivingSkills?.[9]?.needAssist);
 setOtherCurrentComment(getApiData?.independentLivingSkills?.[9]?.comments);
 
+setIndependent1(getApiData?.independentLivingSkills?.[0]?.state);
+setIndependent2(getApiData?.independentLivingSkills?.[1]?.state);
+setIndependent3(getApiData?.independentLivingSkills?.[2]?.state);
+setIndependent4(getApiData?.independentLivingSkills?.[3]?.state);
+setIndependent5(getApiData?.independentLivingSkills?.[4]?.state);
+setIndependent6(getApiData?.independentLivingSkills?.[5]?.state);
+setIndependent7(getApiData?.independentLivingSkills?.[6]?.state);
+setIndependent8(getApiData?.independentLivingSkills?.[7]?.state);
+setIndependent9(getApiData?.independentLivingSkills?.[8]?.state);
+
 setHandleRiskFactorActivityArray(getApiData?.independentLivingSkills?getApiArrayData(10,getApiData?.independentLivingSkills?.length,getApiData?.independentLivingSkills):[]);
 
 setTriggers(getApiData?.triggers);
-setFallRisk(getApiData?.fallRiskData?.fallRisk);
-setFallRiskExplanation(getApiData?.fallRiskData?.fallRiskExplanation);
+setFallRisk(getApiData?.fallRisk);
+setFallRiskExplanation(getApiData?.fallRiskExplanation);
 setHobbiesLeisureActivities(getApiData?.hobbiesLeisureActivities);
 setSelectedValueMedical(getApiData?.medicalEquipmentArray
   ? getApiData?.medicalEquipmentArray.map(item => ({
@@ -1896,20 +2136,41 @@ setCurrent(getApiData?.riskFactors?.[10]?.comment);
 setChronicYesNo(getApiData?.riskFactors?.[11]?.yesNo);
 setChronicPain(getApiData?.riskFactors?.[11]?.comment);
 
+setRiskFactor1(getApiData?.riskFactors?.[0]?.state)
+setRiskFactor2(getApiData?.riskFactors?.[1]?.state)
+setRiskFactor3(getApiData?.riskFactors?.[2]?.state)
+setRiskFactor4(getApiData?.riskFactors?.[3]?.state)
+setRiskFactor5(getApiData?.riskFactors?.[4]?.state)
+setRiskFactor6(getApiData?.riskFactors?.[5]?.state)
+setRiskFactor7(getApiData?.riskFactors?.[6]?.state)
+setRiskFactor8(getApiData?.riskFactors?.[7]?.state)
+setRiskFactor9(getApiData?.riskFactors?.[8]?.state)
+setRiskFactor10(getApiData?.riskFactors?.[9]?.state)
+setRiskFactor11(getApiData?.riskFactors?.[10]?.state)
+setRiskFactor12(getApiData?.riskFactors?.[11]?.state)
+
+
 setRiskFactoeArray(getApiData?.riskFactors?getApiArrayData(12,getApiData?.riskFactors?.length,getApiData?.riskFactors):[]);
 
 setSupportsYesNo(getApiData?.protectiveFactors?.[0]?.yesNo);
 setSupportsComment(getApiData?.protectiveFactors?.[0]?.comment);
+setProtective1(getApiData?.protectiveFactors?.[0]?.state)
 setSpiritualYesNo(getApiData?.riskFactors?.[1]?.yesNo);
 setSpiritualComment(getApiData?.protectiveFactors?.[1]?.comment);
+setProtective2(getApiData?.protectiveFactors?.[1]?.state)
 setReligiousYesNo(getApiData?.riskFactors?.[2]?.yesNo);
 setReligiousComment(getApiData?.protectiveFactors?.[2]?.comment);
+setProtective3(getApiData?.protectiveFactors?.[2]?.state)
 setFearYesNo(getApiData?.riskFactors?.[3]?.yesNo);
 setFearComment(getApiData?.protectiveFactors?.[3]?.comment);
+setProtective4(getApiData?.protectiveFactors?.[3]?.state)
 setInterventionYesNo(getApiData?.riskFactors?.[4]?.yesNo);
 setInterventionComment(getApiData?.protectiveFactors?.[4]?.comment);
+setProtective5(getApiData?.protectiveFactors?.[4]?.state)
 setWillingYesNo(getApiData?.riskFactors?.[5]?.yesNo);
 setWillingComment(getApiData?.protectiveFactors?.[5]?.comment);
+setProtective6(getApiData?.protectiveFactors?.[5]?.state)
+
 
 setProtectiveFactorsArray(getApiData?.protectiveFactors?getApiArrayData(6,getApiData?.protectiveFactors?.length,getApiData?.protectiveFactors):[]);
 
@@ -1917,23 +2178,32 @@ setRiskLevel(getApiData?.riskLevel);
 
 setPsychiatricPrimaryIcdCode(getApiData?.psychiatricDiagnoses?.[0]?.icdCode);
 setPsychiatricPrimaryDescription(getApiData?.psychiatricDiagnoses?.[0]?.description);
+setDiagnoses1(getApiData?.psychiatricDiagnoses?.[0]?.state)
 setPsychiatricSecondaryIcdCode(getApiData?.psychiatricDiagnoses?.[1]?.icdCode);
 setPsychiatricSecondaryDescription(getApiData?.psychiatricDiagnoses?.[1]?.description);
+setDiagnoses2(getApiData?.psychiatricDiagnoses?.[1]?.state)
 setPsychiatricTertiaryIcdCode(getApiData?.psychiatricDiagnoses?.[2]?.icdCode);
 setPsychiatricTertiaryDescription(getApiData?.psychiatricDiagnoses?.[2]?.description);
+setDiagnoses3(getApiData?.psychiatricDiagnoses?.[2]?.state)
 setPsychiatricAdditionalIcdCode(getApiData?.psychiatricDiagnoses?.[3]?.icdCode);
 setPsychiatricAdditionalDescription(getApiData?.psychiatricDiagnoses?.[3]?.description);
+setDiagnoses4(getApiData?.psychiatricDiagnoses?.[3]?.state)
 
 setPsychiatricDiagnosesArray(getApiData?.psychiatricDiagnoses?getApiArrayData(4,getApiData?.psychiatricDiagnoses?.length,getApiData?.psychiatricDiagnoses):[]);
 
 setPrimaryIcdCode(getApiData?.medicalDiagnoses?.[0]?.icdCode);
 setPrimaryDescription(getApiData?.medicalDiagnoses?.[0]?.description);
+setMatical1(getApiData?.medicalDiagnoses?.[0]?.state)
 setSecondaryIcdCode(getApiData?.medicalDiagnoses?.[1]?.icdCode);
 setSecondaryDescription(getApiData?.medicalDiagnoses?.[1]?.description);
+setMatical2(getApiData?.medicalDiagnoses?.[1]?.state)
 setTertiaryIcdCode(getApiData?.medicalDiagnoses?.[2]?.icdCode);
 setTertiaryDescription(getApiData?.medicalDiagnoses?.[2]?.description);
+setMatical3(getApiData?.medicalDiagnoses?.[2]?.state)
 setAdditional1IcdCode(getApiData?.medicalDiagnoses?.[3]?.icdCode);
 setAdditional1Description(getApiData?.medicalDiagnoses?.[3]?.description);
+setMatical4(getApiData?.medicalDiagnoses?.[3]?.state)
+
 setMedicalDiagnosesArray(getApiData?.medicalDiagnoses?getApiArrayData(4,getApiData?.medicalDiagnoses?.length,getApiData?.medicalDiagnoses):[])
 
 setPrimarySupportGroup(getApiData?.primarySupportGroup);
@@ -1959,33 +2229,36 @@ setDivorceSeparation(getApiData?.significantRecentLosses?.typeOfLoss?.divorceSep
 setViolentActsAgainstPersonFamily(getApiData?.significantRecentLosses?.typeOfLoss?.violentActsAgainstPersonFamily);
 setMedicalSurgical(getApiData?.significantRecentLosses?.typeOfLoss?.medicalSurgical);
 setAccidentInjury(getApiData?.significantRecentLosses?.typeOfLoss?.accidentInjury);
-setOtherSignificantRecentLosses(getApiData?.significantRecentLosses?.typeOfLoss?.other?true:false);
-setOtherSignificantRecentLossesType(getApiData?.significantRecentLosses?.typeOfLoss?.other);
+setOtherSignificantRecentLosses(getApiData?.significantRecentLosses?.comment?true:false);
+setOtherSignificantRecentLossesType(getApiData?.significantRecentLosses?.comment);
 
 setAdditionalNotes(getApiData?.additionalNotes);
-
+setAcceptResident(getApiData?.acceptResident);
 setResidentGuardianName(getApiData?.residentInformation?.ResidentName);
 setResidentGauardianSignature(getApiData?.residentInformation?.ResidentSignature);
-setResidentGuardianDate(getApiData?.residentInformation?.ResidentDate?formatDate(getApiArrayData?.residentInformation?.ResidentDate):"");
+setResidentGuardianDate(getApiData?.residentInformation?.ResidentDate?formatDate(getApiData?.residentInformation?.ResidentDate):"");
 setResidentGuardianTime(getApiData?.residentInformation?.time);
 
 setStaffName(getApiData?.staffInformation?.staffName);
 setStaffSignature(getApiData?.staffInformation?.staffSignature);
-setStaffDate(getApiData?.staffInformation?.staffDate?formatDate(getApiArrayData?.staffInformation?.staffDate):"");
+setStaffDate(getApiData?.staffInformation?.staffDate?formatDate(getApiData?.staffInformation?.staffDate):"");
 setStaffDateTime(getApiData?.staffInformation?.time);
 
 setBhpName(getApiData?.bhpInformation?.bhpName);
 setBhpCredentials(getApiData?.bhpInformation?.bhpCredentials);
 setBhpSignature(getApiData?.bhpInformation?.bhpSignature);
-setBhpDate(getApiData?.bhpInformation?.bhpDate?formatDate(getApiArrayData?.bhpInformation?.bhpDate):"");
+setBhpDate(getApiData?.bhpInformation?.bhpDate?formatDate(getApiData?.bhpInformation?.bhpDate):"");
 setBhpTime(getApiData?.bhpInformation?.time);
+
+    }
 
   },[getApiData])
 
   useEffect(()=>{
-    initial_assestment_get(patientId,setGetApiData);
+    if(patientId){
+      initial_assestment_get(patientId,setGetApiData);
+    }
   },[patientId])
-
 
   useEffect(() => {
     setPatientId(userData?._id);
@@ -4271,9 +4544,9 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
   return (
     <>
-      <div ref={componentRef} style={{ width: "100%", margin: "auto" }}>
+      <div ref={componentRef} >
        
-        <div className="Boss">
+      <div className="Boss">
           <FormUpper setAssessmentType={setAssessmentType} assessmentType={assessmentType}/>
           <p style={{ marginTop: "0.5rem", marginBottom: "0"}}>
             <span>
@@ -4292,7 +4565,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                <AutoSize value={assessmentOn} setValue={setAssessmentOn} placeholder={"_______________"}/>
             </span>
           </p>
-          <form style={{ marginTop: "0.5rem " }}>
+          <form  style={{ marginTop: "0.5rem " }}>
             <h5 style={{ textAlign: "center", fontWeight: "bold" }}>
               SECTION I
             </h5>
@@ -4306,6 +4579,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     <input
                       type="text"
                       id="residentFullName"
+                      className="borderless_input"
                       style={{borderBottom:'none',marginBottom:"3px"}}
                       value={residentName}
                       placeholder="Enter full name"
@@ -4359,8 +4633,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       type="date"
                       id="dateOfBirth"
                       className="borderless_input"
-                      value={dob}
                       style={{borderBottom:'none',marginBottom:"5px"}}
+                      value={dob}
                       placeholder="DD/MM/YYYY"
                       required
                       onChange={(e) => setDob(e.target.value)}
@@ -4370,8 +4644,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     <label>Admission Date:</label>
                     <input
                       type="date"
+                       style={{borderBottom:'none',marginBottom:"5px"}}
                       value={dateOfAssessment}
-                      style={{borderBottom:'none',marginBottom:"5px"}}
                       placeholder="Enter Date"
                       required
                       onChange={(e) => setDateOfAssessment(e.target.value)}
@@ -4387,7 +4661,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     id="AHCCCS"
                     value={ahcccsNumber}
                     placeholder="Enter text"
-                    style={{borderBottom:'none',marginBottom:"5px"}}
                     required
                     onChange={(e) => setAhcccsNumber(e.target.value)}
                   />
@@ -4401,8 +4674,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     </label>
                     <input
                       type="text"
-                      required
                       style={{borderBottom:'none',marginBottom:"5px"}}
+                      required
                       value={preferredLanguage}
                       onChange={(e) => setPreferredLanguage(e.target.value)}
                     />
@@ -4412,8 +4685,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     <label htmlFor="ethnicity">Ethnicity: </label>
                     <input
                       type="text"
-                      required
                       style={{borderBottom:'none',marginBottom:"5px"}}
+                      required
                       value={ethnicity}
                       onChange={(e) => setEthnicity(e.target.value)}
                     />
@@ -4455,13 +4728,13 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     <input
                       type="text"
                       id="attorneystatus"
-                      style={{borderBottom:'none',marginBottom:"5px"}}
                       value={guardianship}
+                      style={{borderBottom:'none',marginBottom:"5px"}}
                       placeholder="Enter text"
                       required
                       onChange={(e) => setGuardianship(e.target.value)}
                     />
-                 
+                   
                   </div>
 
                   <div className="form-field-child">
@@ -4470,8 +4743,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     </label>
                     <input
                       type="text"
-                      style={{borderBottom:'none',marginBottom:"5px"}}
                       id="attorneystatus"
+                      style={{borderBottom:'none',marginBottom:"5px"}}
                       value={powerOfAttorneyStatus}
                       placeholder="Enter text"
                       required
@@ -4481,7 +4754,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </div>
 
                 <div className="border-bootom-line"></div>
-        
+         
 
                 <div className="form-field-single-update">
                   <label htmlFor="todaydate">Today’s Date:</label>
@@ -4489,8 +4762,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     type="date"
                     id="todaydate"
                     value={todayDate}
-                    placeholder="DD/MM/YYYY"
                     style={{borderBottom:'none',marginBottom:"5px"}}
+                    placeholder="DD/MM/YYYY"
                     required
                     onChange={(e) => setTodayDate(e.target.value)}
                   />
@@ -4504,8 +4777,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     type="text"
                     id="fidname"
                     value={guardianshipPoaPubFidName}
-                    placeholder="Enter name"
                     style={{borderBottom:'none',marginBottom:"5px"}}
+                    placeholder="Enter name"
                     required
                     onChange={(e) =>
                       setGuardianshipPoaPubFidName(e.target.value)
@@ -4518,15 +4791,15 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     id="approvedby"
-                    style={{borderBottom:'none',marginBottom:"5px"}}
                     value={approvedBy}
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     placeholder="Enter text"
                     required
                     onChange={(e) => setApprovedBy(e.target.value)}
                   />
                 </div>
               </div>
-              {/* <h2 style={{ marginTop: "1.5rem", fontWeight: "bold" }}>Other Details:</h2> */}
+           
 
               <div className="box-image-container">
                 <div className="form-field-single-update-bold">
@@ -4548,13 +4821,13 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     id="approvedby"
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     value={residentGoals}
                     placeholder="Enter goal"
-                    style={{borderBottom:'none',marginBottom:"5px"}}
                     required
                     onChange={(e) => setResidentGoals(e.target.value)}
                   />
-                
+          
                 </div>
               </div>
 
@@ -4576,9 +4849,9 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     id="approvedby"
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     value={residentLimitations}
                     placeholder="Enter text"
-                    style={{borderBottom:'none',marginBottom:"5px"}}
                     required
                     onChange={(e) => setResidentLimitations(e.target.value)}
                   />
@@ -4594,8 +4867,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     value={currentBehavioralIssues}
-                    placeholder="Enter text"
                     style={{borderBottom:'none',marginBottom:"5px"}}
+                    placeholder="Enter text"
                     onChange={(e) => setCurrentBehavioralIssues(e.target.value)}
                   />
                 </div>
@@ -4629,9 +4902,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       <th>Yes</th>
                       <th>No</th>
                       <th>Comments</th>
+                     
                     </thead>
                     <tbody>
-                      <tr>
+
+                      {
+                        condition1 &&  <tr>
                         <td>Diabetes</td>
                         <td>
                           <input
@@ -4655,7 +4931,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
                               border: "none",
                               outline: "none",
                               resize: "none",
-                              width: "50%",
                             }}
                             rows={Math.max((commentDiabety ? commentDiabety.split("\n").length : 1), 1)}
                             value={commentDiabety || ''}
@@ -4671,402 +4946,443 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                   
+
                       </tr>
-                      <tr>
-                        <td>Heart disease / heart attack</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesHeart"
-                            checked={yesHeart === true}
-                            onChange={() => setYesHeart(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesHeartno"
-                            checked={yesHeart === false}
-                            onChange={() => setYesHeart(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentHeart ? commentHeart.split("\n").length : 1), 1)}
-                            value={commentHeart || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) => setCommentHeart(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentHeart(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>History of stroke</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesHistory"
-                            checked={yesHistory === true}
-                            onChange={() => setYesHistory(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesHistoryno"
-                            checked={yesHistory === false}
-                            onChange={() => setYesHistory(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentHistory ? commentHistory.split("\n").length : 1), 1)}
-                            value={commentHistory || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) => setCommentHistory(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentHistory(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>High Blood Pressure</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesHigh"
-                            checked={yesHigh === true}
-                            onChange={() => setYesHigh(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesHighno"
-                            checked={yesHigh === false}
-                            onChange={() => setYesHigh(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentHigh ? commentHigh.split("\n").length : 1), 1)}
-                            value={commentHigh || ''}
+                      }
+                     
+                     {
+                      condition2 &&  <tr>
+                      <td>Heart disease / heart attack</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesHeart"
+                          checked={yesHeart === true}
+                          onChange={() => setYesHeart(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesHeartno"
+                          checked={yesHeart === false}
+                          onChange={() => setYesHeart(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((commentHeart ? commentHeart.split("\n").length : 1), 1)}
+                          value={commentHeart || ''}
+                         
+                          placeholder="___________"
+                          onChange={(e) => setCommentHeart(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setCommentHeart(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+              
+                    </tr>
+                     }
+                     
+                     {
+                      condition3 &&  <tr>
+                      <td>History of stroke</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesHistory"
+                          checked={yesHistory === true}
+                          onChange={() => setYesHistory(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesHistoryno"
+                          checked={yesHistory === false}
+                          onChange={() => setYesHistory(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((commentHistory ? commentHistory.split("\n").length : 1), 1)}
+                          value={commentHistory || ''}
+                         
+                          placeholder="___________"
+                          onChange={(e) => setCommentHistory(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setCommentHistory(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                
+                    </tr>
+                     }
+                     
+                     {
+                      condition4 &&   <tr>
+                      <td>High Blood Pressure</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesHigh"
+                          checked={yesHigh === true}
+                          onChange={() => setYesHigh(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesHighno"
+                          checked={yesHigh === false}
+                          onChange={() => setYesHigh(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((commentHigh ? commentHigh.split("\n").length : 1), 1)}
+                          value={commentHigh || ''}
+                      
+                          placeholder="___________"
+                          onChange={(e) => setCommentHigh(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setCommentHigh(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                 
+                    </tr>
+                     }
+
+                     {
+                      condition5 &&  <tr>
+                      <td>Lung disease (ie asthma, COPD, emphysema)</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesLung"
+                          checked={yesLung === true}
+                          onChange={() => setYesLung(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesLungno"
+                          checked={yesLung === false}
+                          onChange={() => setYesLung(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((commentLung ? commentLung.split("\n").length : 1), 1)}
+                          value={commentLung || ''}
                         
-                            placeholder="___________"
-                            onChange={(e) => setCommentHigh(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentHigh(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Lung disease (ie asthma, COPD, emphysema)</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesLung"
-                            checked={yesLung === true}
-                            onChange={() => setYesLung(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesLungno"
-                            checked={yesLung === false}
-                            onChange={() => setYesLung(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentLung ? commentLung.split("\n").length : 1), 1)}
-                            value={commentLung || ''}
-                          
-                            placeholder="___________"
-                            onChange={(e) => setCommentLung(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentLung(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Seizures</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="diabetes"
-                            checked={yesSeizures === true}
-                            // onChange={() => setDiabetes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesSeizuresno"
-                            checked={yesSeizures === false}
-                            onChange={() => setYesSeizures(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentSeizures ? commentSeizures.split("\n").length : 1), 1)}
-                            value={commentSeizures || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) => setCommentSeizures(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentSeizures(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
+                          placeholder="___________"
+                          onChange={(e) => setCommentLung(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setCommentLung(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+               
+                    </tr>
+                     }
+                    
+                     {
+                      condition6 &&  <tr>
+                      <td>Seizures</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="diabetes"
+                          checked={yesSeizures === true}
+                          onChange={() => setYesSeizures(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesSeizuresno"
+                          checked={yesSeizures === false}
+                          onChange={() => setYesSeizures(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((commentSeizures ? commentSeizures.split("\n").length : 1), 1)}
+                          value={commentSeizures || ''}
+                         
+                          placeholder="___________"
+                          onChange={(e) => setCommentSeizures(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setCommentSeizures(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+            
+                    </tr>
+                     }
+                     {
+                      condition7 && <tr>
+                      <td>Cancer</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesCancer"
+                          checked={yesCancer === true}
+                          onChange={() => setYesCancer(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesCancerno"
+                          checked={yesCancer === false}
+                          onChange={() => setYesCancer(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((commentCancer ? commentCancer.split("\n").length : 1), 1)}
+                          value={commentCancer || ''}
+                        
+                          placeholder="___________"
+                          onChange={(e) => setCommentCancer(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setCommentCancer(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+        
+                    </tr>
+                     }
+{
+  condition8 && <tr>
+  <td>Liver/kidney disease</td>
+  <td>
+    <input
+      type="checkbox"
+      id="yesLiver"
+      checked={yesLiver === true}
+      onChange={() => setYesLiver(true)}
+    />
+  </td>
+  <td>
+    <input
+      type="checkbox"
+      id="yesLiverno"
+      checked={yesLiver === false}
+      onChange={() => setYesLiver(false)}
+    />
+  </td>
+  <td>
+    <textarea
+      style={{
+        border: "none",
+        outline: "none",
+        resize: "none",
+      }}
+      rows={Math.max((commentLiver ? commentLiver.split("\n").length : 1), 1)}
+      value={commentLiver || ''}
+     
+      placeholder="___________"
+      onChange={(e) => setCommentLiver(e.target.value)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          setCommentLiver(
+            (prevComment) => prevComment + "\n"
+          );
+        }
+      }}
+    />
+  </td>
+ 
+</tr>
+}
+                  {
+                    condition9 &&  <tr>
+                    <td>Thyroid disorder</td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        id="yesThyroid"
+                        checked={yesThyroid === true}
+                        onChange={() => setYesThyroid(true)}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        id="setYesThyroidno"
+                        checked={yesThyroid === false}
+                        onChange={() => setYesThyroid(false)}
+                      />
+                    </td>
+                    <td>
+                      <Select
+                        isMulti
+                        value={thyroidDisorder}
+                        onChange={thyroiddisorderhnadler}
+                        options={thyroidOptions}
+                        isCreatable={true}
+                        onKeyDown={handleKeyThyroidDisorder}
+                      />
+                    </td>
+               
+                  </tr>
+                  }    
+                      
+                     {
+                      condition10 && <tr>
+                      <td>History of head trauma/traumatic brain</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesbrain"
+                          checked={yesbrain === true}
+                          onChange={() => setYesBrain(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
 
-                      <tr>
-                        <td>Cancer</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesCancer"
-                            checked={yesCancer === true}
-                            onChange={() => setYesCancer(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesCancerno"
-                            checked={yesCancer === false}
-                            onChange={() => setYesCancer(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentCancer ? commentCancer.split("\n").length : 1), 1)}
-                            value={commentCancer || ''}
+                          type="checkbox"
+                          id="yesbrainno"
+                          checked={yesbrain === false}
+                          onChange={() => setYesBrain(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{ border: "none", outline: "none", resize: "none" }}
+                          rows={Math.max((commentbrain ? commentbrain.split("\n").length : 1), 1)}
+                          value={commentbrain || ''}
                           
-                            placeholder="___________"
-                            onChange={(e) => setCommentCancer(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentCancer(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Liver/kidney disease</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesLiver"
-                            checked={yesLiver === true}
-                            onChange={() => setYesLiver(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesLiverno"
-                            checked={yesLiver === false}
-                            onChange={() => setYesLiver(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentLiver ? commentLiver.split("\n").length : 1), 1)}
-                            value={commentLiver || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) => setCommentLiver(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentLiver(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Thyroid disorder</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesThyroid"
-                            checked={yesThyroid === true}
-                            onChange={() => setYesThyroid(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="setYesThyroidno"
-                            checked={yesThyroid === false}
-                            onChange={() => setYesThyroid(false)}
-                          />
-                        </td>
-                        <td>
-                          <Select
-                            isMulti
-                            value={thyroidDisorder}
-                            onChange={thyroiddisorderhnadler}
-                            options={thyroidOptions}
-                            isCreatable={true}
-                            onKeyDown={handleKeyThyroidDisorder}
-                          />
-                        </td>
-                      </tr>
-                       <tr>
-                        <td>History of head trauma/traumatic brain</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesbrain"
-                            checked={yesbrain === true}
-                            onChange={() => setYesBrain(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
+                          placeholder="___________"
+                          onChange={(e) => setbrain(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setbrain((prevComment) => prevComment + "\n");
+                            }
+                          }}
+                        />
+                      </td>
+                  
+                    </tr> 
+                     }
 
-                            type="checkbox"
-                            id="yesbrainno"
-                            checked={yesbrain === false}
-                            onChange={() => setYesBrain(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{ border: "none", outline: "none", resize: "none" }}
-                            rows={Math.max((commentbrain ? commentbrain.split("\n").length : 1), 1)}
-                            value={commentbrain || ''}
-                            
-                            placeholder="___________"
-                            onChange={(e) => setbrain(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setbrain((prevComment) => prevComment + "\n");
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr> 
-                      <tr>
-                        <td>History of head trauma/traumatic brain injury</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesInjury"
-                            checked={yesInjury === true}
-                            onChange={() => setYesInjury(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="yesInjuryno"
-                            checked={yesInjury === false}
-                            onChange={() => setYesInjury(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((commentInjury ? commentInjury.split("\n").length : 1), 1)}
-                            value={commentInjury || ''}
-                            
-                            placeholder="___________"
-                            onChange={(e) => setCommentInjury(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setCommentInjury(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
+                     {
+                      condition11 && <tr>
+                      <td>History of head trauma/traumatic brain injury</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesInjury"
+                          checked={yesInjury === true}
+                          onChange={() => setYesInjury(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="yesInjuryno"
+                          checked={yesInjury === false}
+                          onChange={() => setYesInjury(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((commentInjury ? commentInjury.split("\n").length : 1), 1)}
+                          value={commentInjury || ''}
+                          
+                          placeholder="___________"
+                          onChange={(e) => setCommentInjury(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setCommentInjury(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                   
+                    </tr>
+                     }
+                       
+                      {
+                        condition12 &&  <tr>
                         <td>Chronic pain</td>
                         <td>
                           <input
@@ -5107,51 +5423,59 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                    
                       </tr>
-                      <tr>
-                        <td>Allergies (food, environment, medications)</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="AllergiesYes"
-                            checked={AllergiesYes === true}
-                            onChange={() => setAllergiesYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="AllergiesYesno"
-                            checked={AllergiesYes === false}
-                            onChange={() => setAllergiesYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((AllergiesComment ? AllergiesComment.split("\n").length : 1), 1)}
-                            value={AllergiesComment || ''}
-                         
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setAllergiesComment(e.target.value)
+                      }
+                     
+                     {
+                      condition13 && <tr>
+                      <td>Allergies (food, environment, medications)</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="AllergiesYes"
+                          checked={AllergiesYes === true}
+                          onChange={() => setAllergiesYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="AllergiesYesno"
+                          checked={AllergiesYes === false}
+                          onChange={() => setAllergiesYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((AllergiesComment ? AllergiesComment.split("\n").length : 1), 1)}
+                          value={AllergiesComment || ''}
+                       
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setAllergiesComment(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setAllergiesComment(
+                                (prevComment) => prevComment + "\n"
+                              );
                             }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setAllergiesComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
+                          }}
+                        />
+                      </td>
+               
+                    </tr>
+                     }
+                      
+                      {
+                        condition14 &&   <tr>
                         <td>Surgeries</td>
                         <td>
                           <input
@@ -5193,137 +5517,153 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                  
                       </tr>
-                      <tr>
-                        <td>Number of pregnancies / births</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="pregnanciesYes"
-                            checked={pregnanciesYes === true}
-                            onChange={() => setPregnanciesYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="pregnanciesYesno"
-                            checked={pregnanciesYes === false}
-                            onChange={() => setPregnanciesYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((pregnanciesComment ? pregnanciesComment.split("\n").length : 1), 1)}
-                            value={pregnanciesComment || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setPregnanciesComment(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setPregnanciesComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Substance use disorder (please specify)</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="SubstanceYes"
-                            checked={SubstanceYes === true}
-                            onChange={() => setSubstanceYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="SubstanceYesno"
-                            checked={SubstanceYes === false}
-                            onChange={() => setSubstanceYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((SubstanceComment ? SubstanceComment.split("\n").length : 1), 1)}
-                            value={SubstanceComment || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setSubstanceComment(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setSubstanceComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Depression</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="DepressionYes"
-                            checked={DepressionYes === true}
-                            onChange={() => setDepressionYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="DepressionYesno"
-                            checked={DepressionYes === false}
-                            onChange={() => setDepressionYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((DepressionComment ? DepressionComment.split("\n").length : 1), 1)}
-                            value={DepressionComment || ''}
+                      }
+                    
+                    {
+                      condition15 &&  <tr>
+                      <td>Number of pregnancies / births</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="pregnanciesYes"
+                          checked={pregnanciesYes === true}
+                          onChange={() => setPregnanciesYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="pregnanciesYesno"
+                          checked={pregnanciesYes === false}
+                          onChange={() => setPregnanciesYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((pregnanciesComment ? pregnanciesComment.split("\n").length : 1), 1)}
+                          value={pregnanciesComment || ''}
                          
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setDepressionComment(e.target.value)
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setPregnanciesComment(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setPregnanciesComment(
+                                (prevComment) => prevComment + "\n"
+                              );
                             }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setDepressionComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
+                          }}
+                        />
+                      </td>
+                  
+                    </tr>
+                    }
+
+                    {
+                      condition16 &&  <tr>
+                      <td>Substance use disorder (please specify)</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="SubstanceYes"
+                          checked={SubstanceYes === true}
+                          onChange={() => setSubstanceYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="SubstanceYesno"
+                          checked={SubstanceYes === false}
+                          onChange={() => setSubstanceYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((SubstanceComment ? SubstanceComment.split("\n").length : 1), 1)}
+                          value={SubstanceComment || ''}
+                         
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setSubstanceComment(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setSubstanceComment(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                  
+                    </tr>
+                    }
+                     
+                     {
+                      condition17 && <tr>
+                      <td>Depression</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="DepressionYes"
+                          checked={DepressionYes === true}
+                          onChange={() => setDepressionYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="DepressionYesno"
+                          checked={DepressionYes === false}
+                          onChange={() => setDepressionYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((DepressionComment ? DepressionComment.split("\n").length : 1), 1)}
+                          value={DepressionComment || ''}
+                       
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setDepressionComment(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setDepressionComment(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+             
+                    </tr>
+                     }
+                      
+                      {
+                        condition18 &&       <tr>
                         <td>Anxiety/panic attacks</td>
                         <td>
                           <input
@@ -5363,8 +5703,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                    
                       </tr>
-                      <tr>
+                      }
+
+                      {
+                        condition19 && <tr>
                         <td>Insomnia</td>
                         <td>
                           <input
@@ -5406,344 +5750,332 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+               
                       </tr>
-                      <tr>
-                        <td>Bipolar disorder</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="BipolarYes"
-                            checked={BipolarYes === true}
-                            onChange={() => setBipolarYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="BipolarYesno"
-                            checked={BipolarYes === false}
-                            onChange={() => setBipolarYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((BipolarComment ? BipolarComment.split("\n").length : 1), 1)}
-                            value={BipolarComment || ''}
-                         
-                            placeholder="___________"
-                            onChange={(e) => setBipolarComment(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setBipolarComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Schizophrenia</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="SchizophreniaYes"
-                            checked={SchizophreniaYes === true}
-                            onChange={() => setSchizophreniaYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="SchizophreniaYesno"
-                            checked={SchizophreniaYes === false}
-                            onChange={() => setSchizophreniaYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((SchizophreniaComment ? SchizophreniaComment.split("\n").length : 1), 1)}
-                            value={SchizophreniaComment || ''}
-                         
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setSchizophreniaComment(e.target.value)
+                      }
+                
+                {
+                  condition20 &&  <tr>
+                  <td>Bipolar disorder</td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      id="BipolarYes"
+                      checked={BipolarYes === true}
+                      onChange={() => setBipolarYes(true)}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      id="BipolarYesno"
+                      checked={BipolarYes === false}
+                      onChange={() => setBipolarYes(false)}
+                    />
+                  </td>
+                  <td>
+                    <textarea
+                      style={{
+                        border: "none",
+                        outline: "none",
+                        resize: "none",
+                      }}
+                      rows={Math.max((BipolarComment ? BipolarComment.split("\n").length : 1), 1)}
+                      value={BipolarComment || ''}
+                   
+                      placeholder="___________"
+                      onChange={(e) => setBipolarComment(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          setBipolarComment(
+                            (prevComment) => prevComment + "\n"
+                          );
+                        }
+                      }}
+                    />
+                  </td>
+            
+                </tr>
+                }
+
+                {
+                  condition21 && <tr>
+                  <td>Schizophrenia</td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      id="SchizophreniaYes"
+                      checked={SchizophreniaYes === true}
+                      onChange={() => setSchizophreniaYes(true)}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      id="SchizophreniaYesno"
+                      checked={SchizophreniaYes === false}
+                      onChange={() => setSchizophreniaYes(false)}
+                    />
+                  </td>
+                  <td>
+                    <textarea
+                      style={{
+                        border: "none",
+                        outline: "none",
+                        resize: "none",
+                      }}
+                      rows={Math.max((SchizophreniaComment ? SchizophreniaComment.split("\n").length : 1), 1)}
+                      value={SchizophreniaComment || ''}
+                   
+                      placeholder="___________"
+                      onChange={(e) =>
+                        setSchizophreniaComment(e.target.value)
+                      }
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          setSchizophreniaComment(
+                            (prevComment) => prevComment + "\n"
+                          );
+                        }
+                      }}
+                    />
+                  </td>
+             
+                </tr>
+                }
+                      
+                     {
+                      condition22 && <tr>
+                      <td>Obsessive compulsive disorder</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="ObsessiveYes"
+                          checked={ObsessiveYes === true}
+                          onChange={() => setObsessiveYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="ObsessiveYesno"
+                          checked={ObsessiveYes === false}
+                          onChange={() => setObsessiveYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((ObsessiveComment ? ObsessiveComment.split("\n").length : 1), 1)}
+                          value={ObsessiveComment || ''}
+                       
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setObsessiveComment(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setObsessiveComment(
+                                (prevComment) => prevComment + "\n"
+                              );
                             }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setSchizophreniaComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Obsessive compulsive disorder</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="ObsessiveYes"
-                            checked={ObsessiveYes === true}
-                            onChange={() => setObsessiveYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="ObsessiveYesno"
-                            checked={ObsessiveYes === false}
-                            onChange={() => setObsessiveYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((ObsessiveComment ? ObsessiveComment.split("\n").length : 1), 1)}
-                            value={ObsessiveComment || ''}
-                         
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setObsessiveComment(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setObsessiveComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Personality disorder (please specify)</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="PersonalityYes"
-                            checked={PersonalityYes === true}
-                            onChange={() => setPersonalityYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="PersonalityYesno"
-                            checked={PersonalityYes === false}
-                            onChange={() => setPersonalityYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((PersonalityComment ? PersonalityComment.split("\n").length : 1), 1)}
-                            value={PersonalityComment || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setPersonalityComment(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setPersonalityComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Phobias</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="PhobiasYes"
-                            checked={PhobiasYes === true}
-                            onChange={() => setPhobiasYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="PhobiasYesno"
-                            checked={PhobiasYes === false}
-                            onChange={() => setPhobiasYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((PhobiasComment ? PhobiasComment.split("\n").length : 1), 1)}
-                            value={PhobiasComment || ''}
-                          
-                            placeholder="___________"
-                            onChange={(e) => setPhobiasComment(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setPhobiasComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Any other health conditions</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="healthConditionsYes"
-                            checked={healthConditionsYes === true}
-                            onChange={() => setHealthConditionsYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="healthConditionsYesno"
-                            checked={healthConditionsYes === false}
-                            onChange={() => setHealthConditionsYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((healthConditionsYesComment ? healthConditionsYesComment.split("\n").length : 1), 1)}
-                            value={healthConditionsYesComment || ''}
-                          
-                            placeholder="___________"
-                            onChange={(e) =>
-                              sethealthConditionsYesComment(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                sethealthConditionsYesComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Infection or Diseases</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="InfectionYes"
-                            checked={InfectionYes === true}
-                            onChange={() => setInfectionYes(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id="InfectionYesno"
-                            checked={InfectionYes === false}
-                            onChange={() => setInfectionYes(false)}
-                          />
-                        </td>
-                        <td>
-                          <Select
-                            isMulti
-                            placeholder="Select Multiple Type"
-                            value={infectionDiseases}
-                            onChange={infectionDiseasesHandler}
-                            options={infectionDiseasesOptions}
-                            isCreatable={true}
-                            onKeyDown={handleKeyInfectionDiseases}
-                          />
-                        </td>
-                      </tr>
+                          }}
+                        />
+                      </td>
+               
+                    </tr>
+                     }
+                      
                       {
+                       condition23 &&   <tr>
+                       <td>Personality disorder (please specify)</td>
+                       <td>
+                         <input
+                           type="checkbox"
+                           id="PersonalityYes"
+                           checked={PersonalityYes === true}
+                           onChange={() => setPersonalityYes(true)}
+                         />
+                       </td>
+                       <td>
+                         <input
+                           type="checkbox"
+                           id="PersonalityYesno"
+                           checked={PersonalityYes === false}
+                           onChange={() => setPersonalityYes(false)}
+                         />
+                       </td>
+                       <td>
+                         <textarea
+                           style={{
+                             border: "none",
+                             outline: "none",
+                             resize: "none",
+                           }}
+                           rows={Math.max((PersonalityComment ? PersonalityComment.split("\n").length : 1), 1)}
+                           value={PersonalityComment || ''}
+                          
+                           placeholder="___________"
+                           onChange={(e) =>
+                             setPersonalityComment(e.target.value)
+                           }
+                           onKeyDown={(e) => {
+                             if (e.key === "Enter") {
+                               e.preventDefault();
+                               setPersonalityComment(
+                                 (prevComment) => prevComment + "\n"
+                               );
+                             }
+                           }}
+                         />
+                       </td>
+                 
+                     </tr>
+                      }
+                     
+                     {
+                      condition24 &&  <tr>
+                      <td>Phobias</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="PhobiasYes"
+                          checked={PhobiasYes === true}
+                          onChange={() => setPhobiasYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="PhobiasYesno"
+                          checked={PhobiasYes === false}
+                          onChange={() => setPhobiasYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((PhobiasComment ? PhobiasComment.split("\n").length : 1), 1)}
+                          value={PhobiasComment || ''}
                         
-                          otherConditionArray.map((i)=><tr>
+                          placeholder="___________"
+                          onChange={(e) => setPhobiasComment(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setPhobiasComment(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                
+                    </tr>
+                     }
+
+                     {
+                      condition25 &&   <tr>
+                      <td>Any other health conditions</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="healthConditionsYes"
+                          checked={healthConditionsYes === true}
+                          onChange={() => setHealthConditionsYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="healthConditionsYesno"
+                          checked={healthConditionsYes === false}
+                          onChange={() => setHealthConditionsYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            resize: "none",
+                          }}
+                          rows={Math.max((healthConditionsYesComment ? healthConditionsYesComment.split("\n").length : 1), 1)}
+                          value={healthConditionsYesComment || ''}
+                        
+                          placeholder="___________"
+                          onChange={(e) =>
+                            sethealthConditionsYesComment(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              sethealthConditionsYesComment(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                 
+                    </tr>
+                     }
+
+                     {
+                      condition26 && <tr>
+                      <td>Infection or Diseases</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="InfectionYes"
+                          checked={InfectionYes === true}
+                          onChange={() => setInfectionYes(true)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          id="InfectionYesno"
+                          checked={InfectionYes === false}
+                          onChange={() => setInfectionYes(false)}
+                        />
+                      </td>
+                      <td>
+                        <Select
+                          isMulti
+                          placeholder="Select Multiple Type"
+                          value={infectionDiseases}
+                          onChange={infectionDiseasesHandler}
+                          options={infectionDiseasesOptions}
+                          isCreatable={true}
+                          onKeyDown={handleKeyInfectionDiseases}
+                        />
+                      </td>
+                    
+                    </tr>
+                     }
+                    
+                      
+                      {
+                          otherConditionArray.map((i,index)=><tr key={index}>
                             <td>{i.condition}</td>
                            <td><input type="checkbox" checked={i.yes===true} /></td>
                            <td><input type="checkbox" checked={i.yes===false} /></td>
-                            <td>{i.comments}</td>
+                            <td style={{paddingLeft:'20px',fontWeight:"500"}}>{i.comments}</td>
                           </tr>)
                         
                       }
-                      <tr>
-                        <td>Other: <input type="text" className="treatment_plan_table"
-                        value={OtherConditionOther} onChange={(e)=>setOtherConditionOther(e.target.value)} placeholder="___________"/></td>
-                        <td>
-                          <input
-                            type="checkbox"
-                          
-                            checked={otherConditionYesNO === true}
-                            onChange={() => setOtherConditionYesNo(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                   
-                            checked={otherConditionYesNO === false}
-                            onChange={() => setOtherConditionYesNo(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((otherConditionDiscription ? otherConditionDiscription.split("\n").length : 1), 1)}
-                            value={otherConditionDiscription || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) => setOtherConditionDiscription(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setOtherConditionDiscription(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                    
                       
                     </tbody>
                   </table>
@@ -5931,14 +6263,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                      <label style={{ fontWeight: "bold" }}>
                     Substance Abuse history:
                   </label>
-                    <input
-                      type="checkbox"
-                      id="substanceAbuseHistory"
-                      checked={substanceAbuseHistory}
-                      onChange={() =>
-                        setSubstanceAbuseHistory(!substanceAbuseHistory)
-                      }
-                    />
+                
                 
                 </div>
                   
@@ -5971,9 +6296,11 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       <th style={{ fontWeight: "bold" }}>Last Use</th>
                       <th style={{ fontWeight: "bold" }}>Frequency </th>
                       <th style={{ fontWeight: "bold" }}>Length of Sobriety</th>
+                   
                     </thead>
                     <tbody>
-                      <tr>
+                      {
+                        type1 &&  <tr>
                         <td>Alcohol</td>
                         <td>
                           <input
@@ -5991,94 +6318,157 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                <p>{substanceAbuseHistoryDataLastUseAlcohol}</p>
-                
-                       
+                        <Select
+                  value={substanceAbuseHistoryDataLastUseAlcohol}
+                  onChange={handlersubstanceAbuseHistoryDataLastUseAlcohol}
+                  options={selectedsubstanceAbuseHistoryDataLastUseAlcohol}
+                  isCreatable={true}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseAlcohol}
+                />  
                         </td>
+                              
                         <td>
-                      <p>{substanceAbuseHistoryDataFrequencyAlcohol}</p>
-
-                 
-                        </td>
-                        <td>
-
-                     
-                <p>{substanceAbuseHistoryDataLengthOfSobrietyAlcohol}</p>
-
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>Benzodiazepines</td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={
-                              substanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                  
-                  <p>{substanceAbuseHistoryDataLastUseBenzodiazepines}</p>
-                       
-                        </td>
-                        <td>
-
-                
-
-<p>{substanceAbuseHistoryDataFrequencyBenzodiazepines}</p>
+                        <Select
+                  value={substanceAbuseHistoryDataFrequencyAlcohol}
+                  onChange={handlersubstanceAbuseHistoryDataFrequencyAlcohol}
+                  options={selectedsubstanceAbuseHistoryDataFrequencyAlcohol}
+                  isCreatable={true}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyAlcohol}
+                />
 
                          
                         </td>
                         <td>
 
-<p>{substanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}</p>
+                          <Select
+                  value={substanceAbuseHistoryDataLengthOfSobrietyAlcohol}
+                  onChange={handlersubstanceAbuseHistoryDataLengthOfSobrietyAlcohol}
+                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyAlcohol}
+                  isCreatable={true}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyAlcohol}
+                />
 
+                         
                         </td>
+                 
                       </tr>
-                      <tr>
-                        <td>Crack</td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={substanceAbuseHistoryDataAgeOfFirstUseCrack}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUseCrack(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                    
-                <p>{substanceAbuseHistoryDataLastUseCrack}</p>
-                       
-                        </td>
-                        <td>
-                    
-                <p>{substanceAbuseHistoryDataFrequencyCrack}</p>
-
+                      }
+                     
+                     {
+                      type2  && <tr>
+                      <td>Benzodiazepines</td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={
+                            substanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines
+                          }
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
                 
-                        </td>
-                        <td>
+                value={substanceAbuseHistoryDataLastUseBenzodiazepines}
+                onChange={handlesubstanceAbuseHistoryDataLastUseBenzodiazepines}
+                options={optionsubstanceAbuseHistoryDataLastUseBenzodiazepines}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseBenzodiazepines}
+              />
+                       
+                      </td>
+                      <td>
+
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyBenzodiazepines}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyBenzodiazepines}
+                options={optionsubstanceAbuseHistoryDataFrequencyBenzodiazepines}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyBenzodiazepines}
+              />
+
+                       
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
+                
+                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
+              />
+
+                     
+                      </td>
                   
+                 
+                    </tr>
+                     }
 
-<p>{substanceAbuseHistoryDataLengthOfSobrietyCrack}</p>
+                     {
+                      type3 &&  <tr>
+                      <td>Crack</td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={substanceAbuseHistoryDataAgeOfFirstUseCrack}
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUseCrack(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataLastUseCrack}
+                onChange={handlesubstanceAbuseHistoryDataLastUseCrack}
+                options={optionsubstanceAbuseHistoryDataLastUseCrack}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseCrack}
+              />
+                     
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyCrack}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyCrack}
+                options={optionsubstanceAbuseHistoryDataFrequencyCrack}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyCrack}
+              />
 
-                          
-                        </td>
-                      </tr>
-                      <tr>
+                        
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyCrack}
+                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyCrack}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyCrack}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyCrack}
+              />
+
+                       
+                      </td>
+                   
+                    </tr>
+                     }
+                      
+                      {
+                        type4 &&  <tr>
                         <td>Heroin</td>
                         <td>
                           <input
@@ -6094,97 +6484,159 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                     
-                <p>{substanceAbuseHistoryDataLastUseHeroin}</p>
-                         
-                        </td>
-                        <td>
+                          <Select
                   
-
-<p>{substanceAbuseHistoryDataFrequencyHeroin}</p>
-
+                  value={substanceAbuseHistoryDataLastUseHeroin}
+                  onChange={handlesubstanceAbuseHistoryDataLastUseHeroin}
+                  options={optionsubstanceAbuseHistoryDataLastUseHeroin}
+                  isCreatable={true}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseHeroin}
+                />
                         
                         </td>
                         <td>
-                    
-
-<p>{substanceAbuseHistoryDataLengthOfSobrietyHeroin}</p>
+                          <Select
+                  
+                  value={substanceAbuseHistoryDataFrequencyHeroin}
+                  onChange={handlesubstanceAbuseHistoryDataFrequencyHeroin}
+                  options={optionsubstanceAbuseHistoryDataFrequencyHeroin}
+                  isCreatable={true}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyHeroin}
+                />
 
                          
                         </td>
-                      </tr>
-                      <tr>
-                        <td>Inhalants</td>
                         <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={
-                              substanceAbuseHistoryDataAgeOfFirstUseInhalants
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUseInhalants(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                      
+                          <Select
+                  value={substanceAbuseHistoryDataLengthOfSobrietyHeroin}
+                  
+                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyHeroin}
+                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyHeroin}
+                  isCreatable={true}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyHeroin}
+                />
 
-<p>{substanceAbuseHistoryDataLastUseInhalants}</p>
-                    
-                        </td>
-                        <td>
                          
-                <p>{substanceAbuseHistoryDataFrequencyInhalants}</p>
-
-                          
                         </td>
-                        <td>
                      
-                  <p>{substanceAbuseHistoryDataLengthOfSobrietyInhalants}</p>
-
-                        </td>
                       </tr>
-                      <tr>
-                        <td>Marijuana </td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={
-                              substanceAbuseHistoryDataAgeOfFirstUseMarijuana
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUseMarijuana(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                      
-                <p>{substanceAbuseHistoryDataLastUseMarijuana}</p>
+                      }
+                     
+                     {
+                      type5 &&   <tr>
+                      <td>Inhalants</td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={
+                            substanceAbuseHistoryDataAgeOfFirstUseInhalants
+                          }
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUseInhalants(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataLastUseInhalants}
+                onChange={handlesubstanceAbuseHistoryDataLastUseInhalants}
+                options={optionsubstanceAbuseHistoryDataLastUseInhalants}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseInhalants}
+              />
                        
-                        </td>
-                        <td>
-                  
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyInhalants}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyInhalants}
+                options={optionsubstanceAbuseHistoryDataFrequencyInhalants}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyInhalants}
+              />
 
-<p>{substanceAbuseHistoryDataFrequencyMarijuana}</p>
-
-                          
-                        </td>
-                        <td>
                     
-                <p>{substanceAbuseHistoryDataLengthOfSobrietyMarijuana}</p>
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyInhalants}
+                
+                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
+              />
 
-                        
-                        </td>
-                      </tr>
-                      <tr>
+                      </td>
+              
+                    </tr>
+                     }
+
+                     {
+                      type6 && <tr>
+                      <td>Marijuana </td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={
+                            substanceAbuseHistoryDataAgeOfFirstUseMarijuana
+                          }
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUseMarijuana(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataLastUseMarijuana}
+                onChange={handlesubstanceAbuseHistoryDataLastUseMarijuana}
+                options={optionsubstanceAbuseHistoryDataLastUseMarijuana}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMarijuana}
+              />
+                      
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyMarijuana}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyMarijuana}
+                options={optionsubstanceAbuseHistoryDataFrequencyMarijuana}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMarijuana}
+              />
+
+                      
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyMarijuana}
+                
+                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
+              />
+
+                       
+                      </td>
+               
+                    </tr>
+                     }
+                    
+                      {
+                        type7 &&   <tr>
                         <td>Methamphetamine </td>
                         <td>
                           <input
@@ -6202,23 +6654,44 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                     
-                     <p>{substanceAbuseHistoryDataLastUseMethamphetamine}</p>
-                     
-                        </td>
-                        <td>
+                          <Select
                   
-                 <p>{substanceAbuseHistoryDataFrequencyMethamphetamine}</p>
+                  value={substanceAbuseHistoryDataLastUseMethamphetamine}
+                  onChange={handlesubstanceAbuseHistoryDataLastUseMethamphetamine}
+                  options={optionsubstanceAbuseHistoryDataLastUseMethamphetamine}
+                  isCreatable={true}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMethamphetamine}
+                />
+                         
+                        </td>
+                        <td>
+                          <Select
+                  
+                  value={substanceAbuseHistoryDataFrequencyMethamphetamine}
+                  onChange={handlesubstanceAbuseHistoryDataFrequencyMethamphetamine}
+                  options={optionsubstanceAbuseHistoryDataFrequencyMethamphetamine}
+                  isCreatable={true}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMethamphetamine}
+                />
 
                         </td>
                         <td>
-               
-
-<p>{substanceAbuseHistoryDataLengthOfSobrietyMethamphetamine}</p>
+                          <Select
+                  value={substanceAbuseHistoryDataLengthOfSobrietyMethamphetamine}
+                  
+                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine}
+                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine}
+                  isCreatable={true}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine}
+                />
 
                         </td>
+              
                       </tr>
-                      <tr>
+                      }
+
+                      {
+                        type8 &&  <tr>
                         <td>Methadone</td>
                         <td>
                           <input
@@ -6236,166 +6709,260 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                      
-                <p>{substanceAbuseHistoryDataLastUseMethadone}</p>
-                        
-                        </td>
-                        <td>
-                 
-
-<p>{substanceAbuseHistoryDataFrequencyMethadone}</p>
-
-                         
-                        </td>
-                        <td>
-                    
-
-<p>{substanceAbuseHistoryDataLengthOfSobrietyMethadone}</p>
-
-                        
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>MDMA (ecstasy)</td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={substanceAbuseHistoryDataAgeOfFirstUseMDMA}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUseMDMA(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                 
-<p>{substanceAbuseHistoryDataLastUseMDMA}</p>
-                         
-                        </td>
-                        <td>
-                 
-
-<p>{substanceAbuseHistoryDataFrequencyMDMA}</p>
-
-                         
-                        </td>
-                        <td>
-                   
-
-<p>{substanceAbuseHistoryDataLengthOfSobrietyMDMA}</p>
-
-                         
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>PCP (angel dust)</td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={substanceAbuseHistoryDataAgeOfFirstUsePCP}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUsePCP(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                       
-                <p>{substanceAbuseHistoryDataLastUsePCP}</p>
-                         
-                        </td>
-                        <td>
-                 
-
-<p>{substanceAbuseHistoryDataFrequencyPCP}</p>
-
-                         
-                        </td>
-                        <td>
-                
-
-<p>{substanceAbuseHistoryDataLengthOfSobrietyPCP}</p>
-
-                        
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Prescription medicine</td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={
-                              substanceAbuseHistoryDataAgeOfFirstUsePrescription
-                            }
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUsePrescription(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                   
-
-<p>{substanceAbuseHistoryDataLastUsePrescription}</p>
-                      
-                        </td>
-                        <td>
+                          <Select
                   
-
-<p>{substanceAbuseHistoryDataFrequencyPrescription}</p>
+                  value={substanceAbuseHistoryDataLastUseMethadone}
+                  onChange={handlesubstanceAbuseHistoryDataLastUseMethadone}
+                  options={optionsubstanceAbuseHistoryDataLastUseMethadone}
+                  isCreatable={true}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMethadone}
+                />
+                         
+                        </td>
+                        <td>
+                          <Select
+                  
+                  value={substanceAbuseHistoryDataFrequencyMethadone}
+                  onChange={handlesubstanceAbuseHistoryDataFrequencyMethadone}
+                  options={optionsubstanceAbuseHistoryDataFrequencyMethadone}
+                  isCreatable={true}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMethadone}
+                />
 
                          
                         </td>
                         <td>
-                      
-                <p>{substanceAbuseHistoryDataLengthOfSobrietyPrescription}</p>
+                          <Select
+                  value={substanceAbuseHistoryDataLengthOfSobrietyMethadone}
+                  
+                  onChange={hnadlesubstanceAbuseHistoryDataLengthOfSobrietyMethadone}
+                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMethadone}
+                  isCreatable={true}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMethadone}
+                />
 
-                         
+                        
                         </td>
-                      </tr>
-                      <tr>
-                        <td>OTC medicine</td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={substanceAbuseHistoryDataAgeOfFirstUseOTC}
-                            onChange={(e) =>
-                              setSubstanceAbuseHistoryDataAgeOfFirstUseOTC(
-                                e.target.value
-                              )
-                            }
-                          />
-                        </td>
-                        <td>
-                 
-                     <p>{substanceAbuseHistoryDataLastUseOTC}</p>
-                       
-                        </td>
-                        <td>
-                      
-
-<p>{substanceAbuseHistoryDataFrequencyOTC}</p>
-                          
-                        </td>
-                        <td>
-                 
                 
-<p>{substanceAbuseHistoryDataLengthOfSobrietyOTC}</p>
-
-                         
-                        </td>
                       </tr>
+                      }
+                    
+                     {
+                      type9 &&  <tr>
+                      <td>MDMA (ecstasy)</td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={substanceAbuseHistoryDataAgeOfFirstUseMDMA}
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUseMDMA(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataLastUseMDMA}
+                onChange={handlesubstanceAbuseHistoryDataLastUseMDMA}
+                options={optionsubstanceAbuseHistoryDataLastUseMDMA}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMDMA}
+              />
+                      
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyMDMA}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyMDMA}
+                options={optionsubstanceAbuseHistoryDataFrequencyMDMA}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMDMA}
+              />
+                      
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyMDMA}
+                
+                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
+              />
+
+                      </td>
+              
+                    </tr>
+                     }
+                     
+                     {
+                      type10 &&  <tr>
+                      <td>PCP (angel dust)</td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={substanceAbuseHistoryDataAgeOfFirstUsePCP}
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUsePCP(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataLastUsePCP}
+                onChange={hnadlesubstanceAbuseHistoryDataLastUsePCP}
+                options={optionsubstanceAbuseHistoryDataLastUsePCP}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUsePCP}
+              />
+                        
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyPCP}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyPCP}
+                options={optionsubstanceAbuseHistoryDataFrequencyPCP}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyPCP}
+              />
+
+                        
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyPCP}
+                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyPCP}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyPCP}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyPCP}
+              />
+
+                        
+                      </td>
+                
+                    </tr>
+                     }
+                     
+                     {
+                      type11 &&  <tr>
+                      <td>Prescription medicine</td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={
+                            substanceAbuseHistoryDataAgeOfFirstUsePrescription
+                          }
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUsePrescription(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataLastUsePrescription}
+                onChange={handlesubstanceAbuseHistoryDataLastUsePrescription}
+                options={optionsubstanceAbuseHistoryDataLastUsePrescription}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUsePrescription}
+              />
+                        
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyPrescription}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyPrescription}
+                options={optionsubstanceAbuseHistoryDataFrequencyPrescription}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyPrescription}
+              />
+
+                        
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyPrescription}
+                
+                onChange={hnadlesubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
+              />
+
+                       
+                      </td>
+                 
+                    </tr>
+                     }
+
+                     {
+                      type12 &&  <tr>
+                      <td>OTC medicine</td>
+                      <td>
+                        <input
+                          type="text"
+                          className="treatment_plan_table"
+                          placeholder="_________"
+                          value={substanceAbuseHistoryDataAgeOfFirstUseOTC}
+                          onChange={(e) =>
+                            setSubstanceAbuseHistoryDataAgeOfFirstUseOTC(
+                              e.target.value
+                            )
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataLastUseOTC}
+                onChange={hnadlesubstanceAbuseHistoryDataLastUseOTC}
+                options={optionsubstanceAbuseHistoryDataLastUseOTC}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseOTC}
+              />
+                       
+                      </td>
+                      <td>
+                        <Select
+                
+                value={substanceAbuseHistoryDataFrequencyOTC}
+                onChange={handlesubstanceAbuseHistoryDataFrequencyOTC}
+                options={optionsubstanceAbuseHistoryDataFrequencyOTC}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyOTC}
+              />
+
+                       
+                      </td>
+                      <td>
+                        <Select
+                value={substanceAbuseHistoryDataLengthOfSobrietyOTC}
+                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyOTC}
+                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyOTC}
+                isCreatable={true}
+                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyOTC}
+              />
+                      </td>
+           
+                    </tr>
+                     }
+                     
 
                       {typeArray?.map((i) => (
                         <tr>
@@ -6407,107 +6974,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         </tr>
                       ))}
 
-                      <tr >
-                        <td>
-                          Other:
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={otherTypeOther}
-                            onChange={(e) => setOtherTypeOther(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={otherAgeOfFirstUse}
-                            onChange={(e) =>
-                              setOtherAgeOfFirstUse(e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                        <Select
-                  value={otherLastUse}
-                  
-                  onChange={handleotherLastUse}
-                  options={optionotherLastUse}
-                  isCreatable={true}
-                  onKeyDown={handleKeyotherLastUse}
-                />
-                  
-                        </td>
-                        <td>
-                        <Select
-                  value={otherFrequancy}
-                  
-                  onChange={handleotherFrequancy}
-                  options={optionotherFrequancy}
-                  isCreatable={true}
-                  onKeyDown={handleKeyotherFrequancy}
-                />
-                          {/* <Form.Select
-                            value={otherFrequancy}
-                            onChange={(e) => setOtherFrequancy(e.target.value)}
-                          >
-                            <option>Select</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Two to four times weekly">
-                              Two to four times weekly
-                            </option>
-                            <option value="Multiple times a day">
-                              Multiple times a day
-                            </option>
-                            <option value="Chronic">Chronic</option>
-                            <option value="Intermittent">Intermittent</option>
-                            <option value="Only on social events">
-                              Only on social events
-                            </option>
-                            <option value="Only on weekends">
-                              Only on weekends
-                            </option>
-                            <option value="Few times a month">
-                              Few times a month
-                            </option>
-                          </Form.Select> */}
-                        </td>
-                        <td>
-
-                        <Select
-                  value={OtherlengthOfSobrifty}
-                  
-                  onChange={handleOtherlengthOfSobrifty}
-                  options={optionOtherlengthOfSobrifty}
-                  isCreatable={true}
-                  onKeyDown={handleKeyOtherlengthOfSobrifty}
-                />
-                          {/* <Form.Select
-                            value={OtherlengthOfSobrifty}
-                            onChange={(e) =>
-                              setOtherLengthOfSobirty(e.target.value)
-                            }
-                          >
-                            <option>Select</option>
-                            <option value="One week">One week</option>
-                            <option value="A few days ago">
-                              A few days ago
-                            </option>
-                            <option value="One month">One month</option>
-                            <option value="Two months">Two months</option>
-                            <option value="Three months">Three months</option>
-                            <option value="Four months">Four months</option>
-                            <option value="Five to Six months">
-                              Five to Six months
-                            </option>
-                            <option value="One year">One year</option>
-                            <option value="Two years">Two years</option>
-                            <option value="Many years">Many years</option>
-                          </Form.Select> */}
-                        </td>
-                      </tr>
+                    
                     </tbody>
                   </table>
                 </div>
@@ -6527,7 +6994,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 <label style={{ fontWeight: "bold" }}>
                   Active Withdrawal Symptoms:
                 </label>
-                {/* chechbox12-aligment411 */}
+             
                 <div class="checkBox_style_update">
                  
                     <div class="checkboxitem">
@@ -6832,9 +7299,9 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       style={{width:"auto"}}
                       className="treatment_plan_table"
                       placeholder="____________"
-                      checked={olderOther}
-                      onChange={() =>
-                        setOlderOther(!olderOther)
+                      value={olderOther}
+                      onChange={(e) =>
+                        setOlderOther(e.target.value)
                       }/>
                       </div>
                     }
@@ -6894,7 +7361,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       style={{width:"auto"}}
                       className="treatment_plan_table"
                       placeholder="____________"
-                      checked={heigthOther}
+                      value={heigthOther}
                       onChange={(e) =>
                         setHeigthOther(e.target.value)
                       }/>
@@ -6913,7 +7380,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       type="checkbox"
                       id="averageWeight"
                       checked={averageWeight}
-                      onChange={() => setAverageWeight(!averageHeight)}
+                      onChange={() => setAverageWeight(!averageWeight)}
                     />
                     <label htmlFor="averageWeight">Average</label>
                   </div>
@@ -6973,7 +7440,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       style={{width:"auto"}}
                       className="treatment_plan_table"
                       placeholder="____________"
-                      checked={WeightOther}
+                      value={WeightOther}
                       onChange={(e) =>
                         setWeightOther(e.target.value)
                       }/>
@@ -7043,7 +7510,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       style={{width:"auto"}}
                       className="treatment_plan_table"
                       placeholder="____________"
-                      checked={attireOther}
+                      value={attireOther}
                       onChange={(e) =>
                         setAttireOther(e.target.value)
                       }/>
@@ -7113,7 +7580,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       style={{width:"auto"}}
                       className="treatment_plan_table"
                       placeholder="____________"
-                      checked={GroomingOther}
+                      value={GroomingOther}
                       onChange={(e) =>
                         setGroomingOther(e.target.value)
                       }/>
@@ -7933,9 +8400,9 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         }
                       />
                       <label htmlFor="gaitOtherBoolen">other</label>
-                      {gaitOther && (
+                      {gaitOtherBoolen && (
                     
-                        <AutoSize value={setgetOther} setValue={setYesOtherHallucinationsText} placeholder={"_______________"}/>
+                        <AutoSize type="text" value={gaitOther} setValue={setgetOther} placeholder={"_______________"}/>
                       )}
                     </div>
 
@@ -8005,7 +8472,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       <label htmlFor="PostureOtherBoolen">other</label>
                       {PostureOtherBoolen && (
                     
-                        <AutoSize value={PostureOther} setValue={setPostureOther} placeholder={"_______________"}/>
+                        <AutoSize type="text" value={PostureOther} setValue={setPostureOther} placeholder={"_______________"}/>
                       )}
                     </div>
                 </div>
@@ -8078,7 +8545,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       <label htmlFor="PsychomotorActivityOtherBoolen">other</label>
                       {PsychomotorActivityOtherBoolen && (
                     
-                        <AutoSize value={PsychomotorActivityOther} setValue={setPsychomotorActivityOther} placeholder={"_______________"}/>
+                        <AutoSize type="text" value={PsychomotorActivityOther} setValue={setPsychomotorActivityOther} placeholder={"_______________"}/>
                       )}
                     </div>
                 </div>
@@ -8148,7 +8615,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       <label htmlFor="yesOtherHallucinations">other</label>
                       {MannerismsOtherBoolen && (
                     
-                        <AutoSize value={MannerismsOther} setValue={setMannerismsOther} placeholder={"_______________"}/>
+                        <AutoSize type="text" value={MannerismsOther} setValue={setMannerismsOther} placeholder={"_______________"}/>
                       )}
                     </div>
                 </div>
@@ -8265,17 +8732,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     <label htmlFor="timeno">No</label>
                   </div>
                 </div>
-                {/* <div style={{ display: "flex", gap: "10px", alignItems: "center", display: "none" }}>
-              <label htmlFor="">Circumstances:</label>
-              <div style={{display:"flex",gap:"10px",alignItems:"center"}}>
-              <input type="checkbox" id="circumstances" checked={circumstances===true} onChange={()=>setCircumstances(true)}/>
-                    <label htmlFor="circumstances">Yes</label>
-              </div>
-              <div style={{display:"flex",gap:"10px",alignItems:"center"}}>
-                    <input type="checkbox" id="circumstancesno" checked={circumstances === false} onChange={() => setCircumstances(false)} />
-                    <label htmlFor="circumstancesno">No</label>
-              </div>
-                </div> */}
+             
               </div>
 
               <div className="yeschechbox">
@@ -8516,9 +8973,9 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     id="approvedby"
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     value={significantSocialDevelopmentalHistory}
                     placeholder="Enter "
-                    style={{borderBottom:'none',marginBottom:"5px"}}
                     required
                     onChange={(e) =>
                       setSignificantSocialDevelopmentalHistory(e.target.value)
@@ -8529,18 +8986,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
               <div
                 className="form-field-single-update"
-                style={{ merginLeft: "10px" }}
+                style={{ merginLeft: "10px",marginTop:"0.5rem" }}
               >
                 <label>Educational history:</label>
-                <input
-                  type="text"
-                  id="approvedby"
-                  value={educationalHistory}
-                  placeholder="Enter here"
-                  style={{borderBottom:'none',marginBottom:"5px"}}
-                  required
-                  onChange={(e) => setEducationalHistory(e.target.value)}
-                />
+              
               </div>
 
               <div className="form-field-update">
@@ -8549,8 +8998,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     value={highestEducation}
-                    style={{borderBottom:'none',marginBottom:"5px"}}
                     placeholder="Enter education"
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     required
                     onChange={(e) => setHighestEducation(e.target.value)}
                   />
@@ -8570,6 +9019,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     <div className="checkboxitem-update">
                       <input
                         type="checkbox"
+                        
                         checked={specialEducation === true}
                         onChange={() => setSpecialEducation(true)}
                       />
@@ -8619,8 +9069,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     value={ifYesWhere}
-                    style={{borderBottom:'none',marginBottom:"5px"}}
                     placeholder="Enter text"
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     required
                     onChange={(e) => setIfYesWhere(e.target.value)}
                   />
@@ -8664,9 +9114,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     style={{borderBottom:'none',marginBottom:"5px"}}
+                    required
                     value={employmentLocation}
                     placeholder="Enter text"
-                    required
+                    
                     onChange={(e) => setEmploymentLocation(e.target.value)}
                   />
                 </div>
@@ -8769,10 +9220,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         <th>Not so good</th>
                         <th>Need assist</th>
                         <th>Comments</th>
+                
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                      {
+                        Independent1 &&   <tr>
                         <td>Bathing/Showering</td>
                         <td>
                           <input
@@ -8798,9 +9251,16 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                         
-                          <p>{BathingGoodNeedAssist===true?"Yes":"No"}</p>
-
+                          <select
+                            value={BathingGoodNeedAssist}
+                            onChange={(e) =>
+                              setBathingGoodNeedAssist(e.target.value)
+                            }
+                          >
+                            <option disabled>Select value</option>
+                            <option value={true}>Yes</option>
+                            <option value={false}>No</option>
+                          </select>
                         </td>
                         <td>
                           <textarea
@@ -8812,7 +9272,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                               1
                             )}
                             value={BathingComments || ""}
-                            placeholder="_"
+                            placeholder="___________"
                             onChange={(e) => setBathingComments(e.target.value)}
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
@@ -8824,63 +9284,79 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                        
                       </tr>
-                      <tr>
-                        <td>Grooming/hygiene</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={GroomingGood === true}
-                            onChange={() => setGroomingGood(!GroomingGood)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={GroomingFair === true}
-                            onChange={() => setGroomingFair(!GroomingFair)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={GroomingNotSoGood === true}
-                            onChange={() =>
-                              setGroomingNotSoGood(!GroomingNotSoGood)
-                            }
-                          />
-                        </td>
-                        <td>
+                      }
                     
-                          <p>{GroomingGoodNeedAssist===true?"Yes":"No"}</p>
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              GroomingComments
-                                ? GroomingComments.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={GroomingComments || ""}
-                           
-                            placeholder="_"
-                            onChange={(e) =>
-                              setGroomingComments(e.target.value)
+
+                    {
+                      Independent2 && <tr>
+                      <td>Grooming/hygiene</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={GroomingGood === true}
+                          onChange={() => setGroomingGood(!GroomingGood)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={GroomingFair === true}
+                          onChange={() => setGroomingFair(!GroomingFair)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={GroomingNotSoGood === true}
+                          onChange={() =>
+                            setGroomingNotSoGood(!GroomingNotSoGood)
+                          }
+                        />
+                      </td>
+                      <td>
+                        <select
+                          value={GroomingGoodNeedAssist}
+                          onChange={(e) =>
+                            setGroomingGoodNeedAssist(e.target.value)
+                          }
+                        >
+                          <option disabled>Select value</option>
+                          <option value={true}>Yes</option>
+                          <option value={false}>No</option>
+                        </select>
+                      </td>
+                      <td>
+                        <textarea
+                          className="treatment_plan_table"
+                          rows={Math.max(
+                            GroomingComments
+                              ? GroomingComments.split("\n").length
+                              : 1,
+                            1
+                          )}
+                          value={GroomingComments || ""}
+                         
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setGroomingComments(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setGroomingComments(
+                                (prevComment) => prevComment + "\n"
+                              );
                             }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setGroomingComments(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
+                          }}
+                        />
+                      </td>
+                      
+                    </tr>
+                    }
+                      {
+                        Independent3 &&    <tr>
                         <td>Mobility</td>
                         <td>
                           <input
@@ -8906,8 +9382,16 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                        
-                          <p>{MobilityGoodNeedAssist===true?"Yes":"No"}</p>
+                          <select
+                            value={MobilityGoodNeedAssist}
+                            onChange={(e) =>
+                              setMobilityGoodNeedAssist(e.target.value)
+                            }
+                          >
+                            <option disabled>Select value</option>
+                            <option value={true}>Yes</option>
+                            <option value={false}>No</option>
+                          </select>
                         </td>
                         <td>
                           <textarea
@@ -8920,7 +9404,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             )}
                             value={MobilityComments || ""}
                          
-                            placeholder="_"
+                            placeholder="___________"
                             onChange={(e) =>
                               setMobilityComments(e.target.value)
                             }
@@ -8934,8 +9418,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                     
                       </tr>
-                      <tr>
+                      }
+
+                      {
+                        Independent4 &&   <tr>
                         <td>Housework</td>
                         <td>
                           <input
@@ -8961,9 +9449,16 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                         
-
-                          <p>{HouseworkGoodNeedAssist===true?"Yes":"No"}</p>
+                          <select
+                            value={HouseworkGoodNeedAssist}
+                            onChange={(e) =>
+                              setHouseworkGoodNeedAssist(e.target.value)
+                            }
+                          >
+                            <option disabled>Select value</option>
+                            <option value={true}>Yes</option>
+                            <option value={false}>No</option>
+                          </select>
                         </td>
                         <td>
                           <textarea
@@ -8976,7 +9471,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             )}
                             value={HouseworkComments || ""}
                           
-                            placeholder="_"
+                            placeholder="___________"
                             onChange={(e) =>
                               setHouseworkComments(e.target.value)
                             }
@@ -8990,174 +9485,216 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
-                      </tr>
-                      <tr>
-                        <td>Shopping</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ShoppingGood === true}
-                            onChange={() => setShoppingGood(!ShoppingGood)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ShoppingFair === true}
-                            onChange={() => setShoppingFair(!ShoppingFair)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ShoppingNotSoGood === true}
-                            onChange={() =>
-                              setShoppingNotSoGood(!ShoppingNotSoGood)
-                            }
-                          />
-                        </td>
-                        <td>
-                      
-                          <p>{ShoppingGoodNeedAssist===true?"Yes":"No"}</p>
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              ShoppingComments
-                                ? ShoppingComments.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={ShoppingComments || ""}
-              
-                            placeholder="_"
-                            onChange={(e) =>
-                              setShoppingComments(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setShoppingComments(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Managing money/budget</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ManagingGood === true}
-                            onChange={() => setManagingGood(!ManagingGood)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ManagingFair === true}
-                            onChange={() => setManagingFair(!ManagingFair)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ManagingNotSoGood === true}
-                            onChange={() =>
-                              setManagingNotSoGood(!ManagingNotSoGood)
-                            }
-                          />
-                        </td>
-                        <td>
                     
-                          <p>{ManagingGoodNeedAssist===true?"Yes":"No"}</p>
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              ManagingComments
-                                ? ManagingComments.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={ManagingComments || ""}
-                            
-                            placeholder="_"
-                            onChange={(e) =>
-                              setManagingComments(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setManagingComments(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
                       </tr>
-                      <tr>
-                        <td>Preparing food</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={PreparingGood === true}
-                            onChange={() => setPreparingGood(!PreparingGood)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={PreparingFair === true}
-                            onChange={() => setPreparingFair(!PreparingFair)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={PreparingNotSoGood === true}
-                            onChange={() =>
-                              setPreparingNotSoGood(!PreparingNotSoGood)
-                            }
-                          />
-                        </td>
-                        <td>
-                     
+                      }
+                   
+                   {
+                    Independent5 &&   <tr>
+                    <td>Shopping</td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={ShoppingGood === true}
+                        onChange={() => setShoppingGood(!ShoppingGood)}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={ShoppingFair === true}
+                        onChange={() => setShoppingFair(!ShoppingFair)}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={ShoppingNotSoGood === true}
+                        onChange={() =>
+                          setShoppingNotSoGood(!ShoppingNotSoGood)
+                        }
+                      />
+                    </td>
+                    <td>
+                      <select
+                        value={ShoppingGoodNeedAssist}
+                        onChange={(e) =>
+                          setShoppingGoodNeedAssist(e.target.value)
+                        }
+                      >
+                        <option disabled>Select value</option>
+                        <option value={true}>Yes</option>
+                        <option value={false}>No</option>
+                      </select>
+                    </td>
+                    <td>
+                      <textarea
+                        className="treatment_plan_table"
+                        rows={Math.max(
+                          ShoppingComments
+                            ? ShoppingComments.split("\n").length
+                            : 1,
+                          1
+                        )}
+                        value={ShoppingComments || ""}
+          
+                        placeholder="___________"
+                        onChange={(e) =>
+                          setShoppingComments(e.target.value)
+                        }
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            e.preventDefault();
+                            setShoppingComments(
+                              (prevComment) => prevComment + "\n"
+                            );
+                          }
+                        }}
+                      />
+                    </td>
+                
+                  </tr>
+                   }
+                    
 
-                          <p>{PreparingGoodNeedAssist===true?"Yes":"No"}</p>
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              PreparingComments
-                                ? PreparingComments.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={PreparingComments || ""}
-                    
-                            placeholder="_"
-                            onChange={(e) =>
-                              setPreparingComments(e.target.value)
+                    {
+                      Independent6 && <tr>
+                      <td>Managing money/budget</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={ManagingGood === true}
+                          onChange={() => setManagingGood(!ManagingGood)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={ManagingFair === true}
+                          onChange={() => setManagingFair(!ManagingFair)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={ManagingNotSoGood === true}
+                          onChange={() =>
+                            setManagingNotSoGood(!ManagingNotSoGood)
+                          }
+                        />
+                      </td>
+                      <td>
+                        <select
+                          value={ManagingGoodNeedAssist}
+                          onChange={(e) =>
+                            setManagingGoodNeedAssist(e.target.value)
+                          }
+                        >
+                          <option disabled>Select value</option>
+                          <option value={true}>Yes</option>
+                          <option value={false}>No</option>
+                        </select>
+                      </td>
+                      <td>
+                        <textarea
+                          className="treatment_plan_table"
+                          rows={Math.max(
+                            ManagingComments
+                              ? ManagingComments.split("\n").length
+                              : 1,
+                            1
+                          )}
+                          value={ManagingComments || ""}
+                          
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setManagingComments(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setManagingComments(
+                                (prevComment) => prevComment + "\n"
+                              );
                             }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setPreparingComments(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
+                          }}
+                        />
+                      </td>
+                     
+                    </tr>
+                    }
+                    
+
+                    {
+                      Independent7 &&  <tr>
+                      <td>Preparing food</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={PreparingGood === true}
+                          onChange={() => setPreparingGood(!PreparingGood)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={PreparingFair === true}
+                          onChange={() => setPreparingFair(!PreparingFair)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={PreparingNotSoGood === true}
+                          onChange={() =>
+                            setPreparingNotSoGood(!PreparingNotSoGood)
+                          }
+                        />
+                      </td>
+                      <td>
+                        <select
+                          value={PreparingGoodNeedAssist}
+                          onChange={(e) =>
+                            setPreparingGoodNeedAssist(e.target.value)
+                          }
+                        >
+                          <option disabled>Select value</option>
+                          <option value={true}>Yes</option>
+                          <option value={false}>No</option>
+                        </select>
+                      </td>
+                      <td>
+                        <textarea
+                          className="treatment_plan_table"
+                          rows={Math.max(
+                            PreparingComments
+                              ? PreparingComments.split("\n").length
+                              : 1,
+                            1
+                          )}
+                          value={PreparingComments || ""}
+                  
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setPreparingComments(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setPreparingComments(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                   
+                    </tr>
+                    }
+                      
+
+                      {
+                        Independent8 &&   <tr>
                         <td>Eating</td>
                         <td>
                           <input
@@ -9183,8 +9720,16 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                  
-                          <p>{EatingGoodNeedAssist===true?"Yes":"No"}</p>
+                          <select
+                            value={EatingGoodNeedAssist}
+                            onChange={(e) =>
+                              setEatingGoodNeedAssist(e.target.value)
+                            }
+                          >
+                            <option disabled>Select value</option>
+                            <option value={true}>Yes</option>
+                            <option value={false}>No</option>
+                          </select>
                         </td>
                         <td>
                           <textarea
@@ -9198,7 +9743,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             value={ EatingComments || ""}
                     
                       
-                            placeholder="_"
+                            placeholder="___________"
                             onChange={(e) => setEatingComments(e.target.value)}
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
@@ -9210,62 +9755,79 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
-                      </tr>
-                      <tr>
-                        <td>Toileting</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ToiletingGood === true}
-                            onChange={() => setToiletingGood(!ToiletingGood)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ToiletingFair === true}
-                            onChange={() => setToiletingFair(!ToiletingFair)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={ToiletingNotSoGood === true}
-                            onChange={() =>
-                              setToiletingNotSoGood(!ToiletingNotSoGood)
-                            }
-                          />
-                        </td>
-                        <td>
                       
-                          <p>{ToiletingGoodNeedAssist===true?"Yes":"No"}</p>
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              ToiletingComments
-                                ?  ToiletingComments.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={ ToiletingComments || ""}
-                            
-                            placeholder="_"
-                            onChange={(e) =>
-                              setToiletingComments(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setToiletingComments(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
                       </tr>
+                      }
+                     
+                     {
+                      Independent9 &&  <tr>
+                      <td>Toileting</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={ToiletingGood === true}
+                          onChange={() => setToiletingGood(!ToiletingGood)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={ToiletingFair === true}
+                          onChange={() => setToiletingFair(!ToiletingFair)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={ToiletingNotSoGood === true}
+                          onChange={() =>
+                            setToiletingNotSoGood(!ToiletingNotSoGood)
+                          }
+                        />
+                      </td>
+                      <td>
+                        <select
+                          value={ToiletingGoodNeedAssist}
+                          onChange={(e) =>
+                            setToiletingGoodNeedAssist(e.target.value)
+                          }
+                        >
+                          <option disabled>Select value</option>
+                         
+                          <option value={true}>Yes</option>
+                          <option value={false}>No</option>
+                        </select>
+                      </td>
+                      <td>
+                        <textarea
+                          className="treatment_plan_table"
+                          rows={Math.max(
+                            ToiletingComments
+                              ?  ToiletingComments.split("\n").length
+                              : 1,
+                            1
+                          )}
+                          value={ ToiletingComments || ""}
+                          
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setToiletingComments(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setToiletingComments(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                  
+                    </tr>
+                     }
+                    
+                     
 
                       {handleRiskFactorActivityArray?.map((i, index) => (
                         <tr key={index}>
@@ -9286,107 +9848,35 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           <td>
                             {` ${i.needAssist === true ? "Yes" : "No"}`}{" "}
                           </td>
-                          <td> {i.comments} </td>
+                          <td style={{paddingLeft:"20px"}}> {i.comments} </td>
+                       
                         </tr>
                       ))}
-                      <tr>
-                        <td>
-                          Other:{" "}
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            value={otherCurrentOther}
-                            onChange={(e) =>
-                              setOtherCurrentOther(e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={otherCurrentGood}
-                            onChange={(e) =>
-                              setOtherCurrentGood(!otherCurrentGood)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={otherCurrentFair}
-                            onChange={(e) =>
-                              setOtherCurrentFair(!otherCurrentFair)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={otherCurrentNotSoGood}
-                            onChange={(e) =>
-                              setOtherCurrentNotSoGood(!otherCurrentNotSoGood)
-                            }
-                          />
-                        </td>
-                        <td>
-                      
-                          <p>{otherCurrentNeed===true?"Yes":"No"}</p>
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              otherCurrentComment
-                                ?  otherCurrentComment.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={ otherCurrentComment || ""}
-                           
-                            placeholder="_"
-                            onChange={(e) =>
-                              setOtherCurrentComment(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setOtherCurrentComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
+                    
                     </tbody>
                   </table>
                 </div>
               </div>
 
-              <div className="form-actions  hidePrint">
-                <button
-                  type="button"
-                  className="safetybutton"
-                  onClick={handleRiskFactorActivity}
-                >
-                  Add
-                </button>
-              </div>
+
+         
+
 
               <div className="box-image-container">
                 <div className="form-field-single-update ">
-                  <label>Triggers:</label>
+                  <label>Behavioral Triggers:</label>
                   <input
                     type="text"
                     placeholder="Enter text"
-                    
+                    required
+                    style={{borderBottom:'none'}}
                     value={triggers}
                     onChange={(e) => setTriggers(e.target.value)}
                   />
                 </div>
                 <div
                   className="yeschechboxFall-risk"
-                  style={{ marginTop: "1rem", marginLeft: "10px" }}
+                  style={{ marginTop: "0.5rem", marginLeft: "10px" }}
                 >
                   <label htmlFor="">Fall risk:</label>
                   <div
@@ -9425,6 +9915,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     id="approvedby"
+                    style={{borderBottom:'none'}}
                     value={fallRiskExplanation}
                     placeholder="Enter text"
                     
@@ -9439,6 +9930,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     id="approvedby"
+                    style={{borderBottom:'none'}}
                     value={hobbiesLeisureActivities}
                     placeholder="Enter text"
                     
@@ -9511,7 +10003,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
               <div className="yeschechbox1">
                 <label style={{ fontWeight: "bold" }}>Ideation</label>
-           
 
                 <div className="employment-Aligmant-location">
                   <div
@@ -9577,7 +10068,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </div>
               </div>
 
-              {/* api add some time */}
               <div className="increasingClass">
                 <label style={{ fontWeight: "bold" }}>Increasing in:</label>
 
@@ -9697,10 +10187,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         <th>Yes</th>
                         <th>No</th>
                         <th>Comments</th>
+                      
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                      {
+                        riskFactor1 &&  <tr>
                         <td>Current suicidal ideation </td>
                         <td>
                           <input type="checkbox"  checked={riskYesNo === true}
@@ -9719,8 +10211,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setRiskComment(e.target.value)}}
                           />
                         </td>
+                     
                       </tr>
-                      <tr>
+                      }
+
+                      {
+                        riskFactor2 &&   <tr>
                         <td>Prior suicide attempt</td>
                         <td>
                           <input type="checkbox" checked={PriorYesNo === true}
@@ -9739,29 +10235,37 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setPriorComment(e.target.value)}}
                           />
                         </td>
+                   
                       </tr>
-                      <tr>
-                        <td>Access to means (i.e. weapon)</td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={AccessYesNo === true}
-                          onChange={() => setAccessYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" checked={AccessYesNo === true}
-                      onChange={() => setAccessYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input
-                            style={{ border: "none", outline: "none" }}
-                            type="text"
-                            placeholder="____________"
-                            value={AccessComment}
-                            onChange={(e)=>{setAccessComment(e.target.value)}}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
+                      }
+                     
+                    {
+                      riskFactor3 && <tr>
+                      <td>Access to means (i.e. weapon)</td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={AccessYesNo === true}
+                        onChange={() => setAccessYesNo(true)}/>
+                      </td>
+                      <td>
+                        <input type="checkbox" checked={AccessYesNo === false}
+                    onChange={() => setAccessYesNo(false)}/>
+                      </td>
+                      <td>
+                        <input
+                          style={{ border: "none", outline: "none" }}
+                          type="text"
+                          placeholder="____________"
+                          value={AccessComment}
+                          onChange={(e)=>{setAccessComment(e.target.value)}}
+                        />
+                      </td>
+                    
+                    </tr>
+                    }
+
+                      {
+                        riskFactor4 && <tr>
                         <td>Substance abuse</td>
                         <td>
                           <input type="checkbox" 
@@ -9782,8 +10286,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setSubstanceCommentAbuse(e.target.value)}}
                           />
                         </td>
+                   
                       </tr>
-                      <tr>
+                      }
+
+                      {
+                        riskFactor5 &&  <tr>
                         <td>Other self-abusing behavior</td>
                         <td>
                           <input type="checkbox" 
@@ -9804,8 +10312,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setabusingComment(e.target.value)}}
                           />
                         </td>
+                   
                       </tr>
-                      <tr>
+                      }
+                      
+                      {
+                        riskFactor6 &&  <tr>
                         <td>Recent losses/lack of support</td>
                         <td>
                           <input type="checkbox" 
@@ -9826,106 +10338,131 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setRecentComment(e.target.value)}}
                           />
                         </td>
+
                       </tr>
-                      <tr>
-                        <td>Behavior cues</td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={behaviourYesNO === true}
-                          onChange={() => setBehaviourYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={behaviourYesNO === false}
-                          onChange={() => setBehaviourYesNo(false)}/>
-                        </td>
-                        <td>
-                          {/* setBehaviorcuesDropDown */}
-                          <Select
-                            value={behaviorcuesDropDown}
-                            isMulti
-                            options={selectedValueRiskFactorsOption1}
-                            onChange={
-                              selectedValueRiskFactorsHandlerBehaviorcues
-                            }
-                            isCreatable={true}
-                            onKeyDown={
-                              handleKeySelectedValueRiskFactorsBehavior
-                            }
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Symptoms of psychosis </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={SymptomsYesNO === true}
-                          onChange={() => setSymptomsYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={SymptomsYesNO === false}
-                          onChange={() => setSymptomsYesNo(false)}/>
-                        </td>
-                        <td>
+                      }
+                     
+                     {
+                      riskFactor7 && <tr>
+                      <td>Behavior cues</td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={behaviourYesNO === true}
+                        onChange={() => setBehaviourYesNo(true)}/>
+                      </td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={behaviourYesNO === false}
+                        onChange={() => setBehaviourYesNo(false)}/>
+                      </td>
+                      <td>
+                   
+                        <Select
+                          value={behaviorcuesDropDown}
+                          isMulti
+                          options={selectedValueRiskFactorsOption1}
+                          onChange={
+                            selectedValueRiskFactorsHandlerBehaviorcues
+                          }
+                          isCreatable={true}
+                          onKeyDown={
+                            handleKeySelectedValueRiskFactorsBehavior
+                          }
+                        />
+                      </td>
+                   
+                    </tr>
+                     }
+                     
+
+                     {
+                      riskFactor8 &&  <tr>
+                      <td>Symptoms of psychosis </td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={SymptomsYesNO === true}
+                        onChange={() => setSymptomsYesNo(true)}/>
+                      </td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={SymptomsYesNO === false}
+                        onChange={() => setSymptomsYesNo(false)}/>
+                      </td>
+                      <td>
                         
-                          <Select
-                            value={symptomsOfPsychosisDropDown}
-                            isMulti
-                            options={selectedValueRiskFactorsOption2}
-                            onChange={selectedValueRiskFactorsHandlerSymptoms}
-                            isCreatable={true}
-                            onKeyDown={
-                              handleKeySelectedValueRiskFactorsSymptoms
-                            }
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Family history of suicide</td>
-                        <td>
-                          <input type="checkbox"
-                         checked={FamilyYesNO === true}
-                          onChange={() => setFamilyYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={FamilyYesNO === false}
-                          onChange={() => setFamilyYesNo(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            style={{ border: "none", outline: "none" }}
-                            type="text"
-                            placeholder="____________"
-                            value={Family}
-                            onChange={(e)=>{setFamily(e.target.value)}}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Terminal physical illness</td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={TerminalYesNO === true}
-                          onChange={() => setTerminalYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={TerminalYesNO === false}
-                          onChange={() => setTerminalYesNo(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            style={{ border: "none", outline: "none" }}
-                            type="text"
-                            placeholder="____________"
-                            value={Terminal}
-                            onChange={(e)=>{setTerminal(e.target.value)}}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
+                        <Select
+                          value={symptomsOfPsychosisDropDown}
+                          isMulti
+                          options={selectedValueRiskFactorsOption2}
+                          onChange={selectedValueRiskFactorsHandlerSymptoms}
+                          isCreatable={true}
+                          onKeyDown={
+                            handleKeySelectedValueRiskFactorsSymptoms
+                          }
+                        />
+                      </td>
+
+                  
+                      
+                    </tr>
+                     }
+
+                     {
+                      riskFactor9 && <tr>
+                      <td>Family history of suicide</td>
+                      <td>
+                        <input type="checkbox"
+                       checked={FamilyYesNO === true}
+                        onChange={() => setFamilyYesNo(true)}/>
+                      </td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={FamilyYesNO === false}
+                        onChange={() => setFamilyYesNo(false)}/>
+                      </td>
+                      <td>
+                        <input
+                          style={{ border: "none", outline: "none" }}
+                          type="text"
+                          placeholder="____________"
+                          value={Family}
+                          onChange={(e)=>{setFamily(e.target.value)}}
+                        />
+                      </td>
+                    
+                    </tr>
+
+                     }
+                      
+                     {
+                      riskFactor10 &&  <tr>
+                      <td>Terminal physical illness</td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={TerminalYesNO === true}
+                        onChange={() => setTerminalYesNo(true)}/>
+                      </td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={TerminalYesNO === false}
+                        onChange={() => setTerminalYesNo(false)}/>
+                      </td>
+                      <td>
+                        <input
+                          style={{ border: "none", outline: "none" }}
+                          type="text"
+                          placeholder="____________"
+                          value={Terminal}
+                          onChange={(e)=>{setTerminal(e.target.value)}}
+                        />
+                      </td>
+                     
+                    </tr>
+                     }
+                      
+
+                      {
+                        riskFactor11 &&  <tr>
                         <td>Current stressors (specify)</td>
                         <td>
                           <input type="checkbox" 
@@ -9946,29 +10483,38 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setCurrent(e.target.value)}}
                           />
                         </td>
+                       
                       </tr>
-                      <tr>
-                        <td>Chronic pain</td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={ChronicYesNO === true}
-                          onChange={() => setChronicYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={ChronicYesNO === false}
-                          onChange={() => setChronicYesNo(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            style={{ border: "none", outline: "none" }}
-                            type="text"
-                            placeholder="____________"
-                            value={ChronicPain}
-                            onChange={(e)=>{setChronicPain(e.target.value)}}
-                          />
-                        </td>
-                      </tr>
+                      }
+                     
+
+                     {
+                      riskFactor12 && <tr>
+                      <td>Chronic pain</td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={ChronicYesNO === true}
+                        onChange={() => setChronicYesNo(true)}/>
+                      </td>
+                      <td>
+                        <input type="checkbox" 
+                        checked={ChronicYesNO === false}
+                        onChange={() => setChronicYesNo(false)}/>
+                      </td>
+                      <td>
+                        <input
+                          style={{ border: "none", outline: "none" }}
+                          type="text"
+                          placeholder="____________"
+                          value={ChronicPain}
+                          onChange={(e)=>{setChronicPain(e.target.value)}}
+                        />
+                      </td>
+                  
+                    </tr>
+                     }
+                     
+                      
                       {riskFactorArray.length > 0 && (
                   
                         riskFactorArray?.map((i, index) => (
@@ -9978,35 +10524,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             </td>
                             <td><input type="checkbox" checked={i.yesNo===true}/></td>
                             <td><input type="checkbox" checked={i.yesNo===false}/></td>
-                            <td>{` ${i.comment}`} </td>
+                            <td style={{paddingLeft:"20px"}}>{`${i.comment}`} </td>
+                         
                           </tr>
                         ))
-                   
                   )}
-                      <tr>
-                        <td>Other: 
-                          <input
-                          type="text"
-                          value={otherRiskOther}
-                          placeholder="__________"
-                          className="treatment_plan_table"
-                          onChange={(e)=>setOtherRiskOther(e.target.value)}/> </td>
-                        <td>
-                          <input type="checkbox" checked={otherRiskYesOrNot===true} onChange={()=>setOtherRiskOtherYesOrNot(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" checked={otherRiskYesOrNot===false} onChange={()=>setOtherRiskOtherYesOrNot(false)} />
-                        </td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            placeholder="____________"
-                            value={otherRiskComment}
-                            onChange={(e)=>setOtherRiskComment(e.target.value)}
-                          />
-                        </td>
-                      </tr>
+                      
                     </tbody>
                   </table>
                 </div>
@@ -10022,11 +10545,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </button>
               </div>
 
-             <div>
+
               <div className="formsheading">
                 <h6 style={{ fontWeight: "bold" }}>Protective factors:</h6>
               </div>
-
               <div className="needs-interventions-container2 table-respnosive">
                 <div className="needs-interventions-column2">
                   <table>
@@ -10036,10 +10558,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         <th>Yes</th>
                         <th>No</th>
                         <th>Comments</th>
+                      
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                    {
+                        Protective1 &&  <tr>
                         <td>Supports available (family friends)</td>
                         <td>
                           <input type="checkbox" 
@@ -10060,8 +10584,11 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setSupportsComment(e.target.value)}}
                           />
                         </td>
+                   
                       </tr>
-                      <tr>
+                      }
+                      {
+                        Protective2 &&  <tr>
                         <td>Spiritual / religious support</td>
                         <td>
                           <input type="checkbox" 
@@ -10082,8 +10609,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setSpiritualComment(e.target.value)}}
                           />
                         </td>
+                   
                       </tr>
-                      <tr>
+                      }
+                      
+                      {
+                        Protective3 &&  <tr>
                         <td>Religious/cultural prohibitions</td>
                         <td>
                           <input type="checkbox" 
@@ -10104,73 +10635,90 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setReligiousComment(e.target.value)}}
                           />
                         </td>
+                    
                       </tr>
-                      <tr>
-                        <td>Fear of consequences</td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={FearYesNo === true}
-                          onChange={() => setFearYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={FearYesNo === false}
-                          onChange={() => setFearYesNo(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="__________"
-                            className="treatment_plan_table"
-                            value={FearComment}
-                            onChange={(e)=>{setFearComment(e.target.value)}}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Able to be engaged in intervention</td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={interventionYesNo === true}
-                          onChange={() => setInterventionYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" 
-                          checked={interventionYesNo === false}
-                          onChange={() => setInterventionYesNo(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="__________"
-                            className="treatment_plan_table"
-                            value={interventionComment}
-                            onChange={(e)=>{setInterventionComment(e.target.value)}}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Willing to commit to keeping self safe</td>
-                        <td>
-                          <input type="checkbox"  
-                          checked={WillingYesNo === true}
-                          onChange={() => setWillingYesNo(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox"  
-                          checked={WillingYesNo === false}
-                          onChange={() => setWillingYesNo(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="__________"
-                            className="treatment_plan_table"
-                            value={WillingComment}
-                            onChange={(e)=>{setWillingComment(e.target.value)}}
-                          />
-                        </td>
-                      </tr>
+                      }
+                    
+{
+  Protective4 &&     
+  <tr>
+    <td>Fear of consequences</td>
+    <td>
+      <input type="checkbox" 
+      checked={FearYesNo === true}
+      onChange={() => setFearYesNo(true)}/>
+    </td>
+    <td>
+      <input type="checkbox" 
+      checked={FearYesNo === false}
+      onChange={() => setFearYesNo(false)}/>
+    </td>
+    <td>
+      <input
+        type="text"
+        placeholder="__________"
+        className="treatment_plan_table"
+        value={FearComment}
+        onChange={(e)=>{setFearComment(e.target.value)}}
+      />
+    </td>
+
+  </tr>
+}
+
+{
+  Protective5 &&  <tr>
+  <td>Able to be engaged in intervention</td>
+  <td>
+    <input type="checkbox" 
+    checked={interventionYesNo === true}
+    onChange={() => setInterventionYesNo(true)}/>
+  </td>
+  <td>
+    <input type="checkbox" 
+    checked={interventionYesNo === false}
+    onChange={() => setInterventionYesNo(false)}/>
+  </td>
+  <td>
+    <input
+      type="text"
+      placeholder="__________"
+      className="treatment_plan_table"
+      value={interventionComment}
+      onChange={(e)=>{setInterventionComment(e.target.value)}}
+    />
+  </td> 
+
+</tr>
+}
+
+           {
+            Protective6 &&   <tr>
+            <td>Willing to commit to keeping self safe</td>
+            <td>
+              <input type="checkbox"  
+              checked={WillingYesNo === true}
+              onChange={() => setWillingYesNo(true)}/>
+            </td>
+            <td>
+              <input type="checkbox"  
+              checked={WillingYesNo === false}
+              onChange={() => setWillingYesNo(false)}/>
+            </td>
+            <td>
+              <input
+                type="text"
+                placeholder="__________"
+                className="treatment_plan_table"
+                value={WillingComment}
+                onChange={(e)=>{setWillingComment(e.target.value)}}
+              />
+            </td>
+           
+          </tr>
+           }      
+                     
+                    
                        {protectiveFactorsArray?.map((i, index) => (
                           <tr key={index}>
                             <td>
@@ -10178,48 +10726,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             </td>
                            <td><input type="checkbox" checked={i.yesNo===true}/></td>
                            <td><input type="checkbox" checked={i.yesNo===false}/></td>
-                            <td>{` ${i.comment}`} </td>
+                            <td style={{paddingLeft:"20px"}}>{` ${i.comment}`} </td>
+                        
                           </tr>
                         ))} 
-                           <tr>
-                        <td>Other: <input type="text" 
-                        className="treatment_plan_table"
-                        placeholder="__________"
-                        value={otherProtectiveFactorsApply} onChange={(e)=>setOtherProtectiveFactorsApply(e.target.value)}/></td>
-                        <td>
-                          <input type="checkbox" checked={otherProtectiveFactorsYesNo===true} onChange={()=>setOtherProtectiveFactorsYesNO(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox"  checked={otherProtectiveFactorsYesNo===false} onChange={()=>setOtherProtectiveFactorsYesNO(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="__________"
-                            className="treatment_plan_table"
-                            value={otherProtectiveFactorsDescription}
-                            onChange={(e)=>setOtherProtectiveFactorsDescription(e.target.value)}
-                          />
-                        </td>
-                      </tr>
+                         
                     </tbody>
                   </table>
                 </div>
               </div>
 
-              </div>
-              
-              <div className="form-actions hidePrint">
-                <button
-                  type="button"
-                  className="safetybutton"
-                  onClick={handleProtectiveFactors}
-                >
-                  Add
-                </button>
-              </div>
+          
 
-             
+           
 
               <div className="formsheading">
                 <p>
@@ -10277,8 +10796,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
               </div>
              
 
-             
-
+            
               <div className="needs-interventions-container2">
                 <div className="needs-interventions-column2">
                   <table>
@@ -10288,7 +10806,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       <th>Description</th>
                     </thead>
                     <tbody>
-                      <tr>
+                      {
+                        Diagnoses1 &&   <tr>
                         <td>Primary*</td>
                         <td>
                         <input
@@ -10323,8 +10842,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                   
                       </tr>
-                      <tr>
+                      }
+
+                      {
+                        Diagnoses2 &&  <tr>
                         <td>Secondary</td>
                         <td>
                         <input
@@ -10359,44 +10882,53 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                    
                       </tr>
-                      <tr>
-                        <td>Tertiary</td>
-                        <td>
-                        <input
-                            className="treatment_plan_table"
-                            type="text"
-                            placeholder="___________"
-                            value={psychiatricTertiaryIcdCode}
-                            onChange={(e)=>setPsychiatricTertiaryIcdCode(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          {" "}
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              psychiatricTertiaryDescription
-                                ? psychiatricTertiaryDescription.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={psychiatricTertiaryDescription || ""}
-                            
-                            placeholder="___________"
-                            onChange={(e) => setPsychiatricTertiaryDescription(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setPsychiatricTertiaryDescription(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
+                      }
+                    
+
+                    {
+                      Diagnoses3 && <tr>
+                      <td>Tertiary</td>
+                      <td>
+                      <input
+                          className="treatment_plan_table"
+                          type="text"
+                          placeholder="___________"
+                          value={psychiatricTertiaryIcdCode}
+                          onChange={(e)=>setPsychiatricTertiaryIcdCode(e.target.value)}
+                        />
+                      </td>
+                      <td>
+                        {" "}
+                        <textarea
+                          className="treatment_plan_table"
+                          rows={Math.max(
+                            psychiatricTertiaryDescription
+                              ? psychiatricTertiaryDescription.split("\n").length
+                              : 1,
+                            1
+                          )}
+                          value={psychiatricTertiaryDescription || ""}
+                          
+                          placeholder="___________"
+                          onChange={(e) => setPsychiatricTertiaryDescription(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setPsychiatricTertiaryDescription(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                   
+                    </tr>
+                    }
+                     
+                      {
+                        Diagnoses4 &&   <tr>
                         <td>Additional</td>
                         <td>
                           <input
@@ -10431,57 +10963,22 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                     
                       </tr>
+                      }
+                    
                      
                         {
-                          psychiatricDiagnosesArray.map((i)=>
-                          <tr>
+                          psychiatricDiagnosesArray.map((i,index)=>
+                          <tr key={index}>
                             <td>{i?.name}</td>
-                            <td>{i?.icdCode}</td>
-                            <td>{i?.description}</td>
-                            
+                            <td style={{paddingLeft:"20px"}}>{i?.icdCode}</td>
+                            <td style={{paddingLeft:"20px"}}>{i?.description}</td>
+                        
                           </tr>)
                         }
                   
-                      <tr>
-                        <td>Other: <input
-                        className="treatment_plan_table"
-                        type="text"
-                        value={otherPsychiatricOption}
-                        placeholder="__________"
-                        onChange={(e)=>setOtherPsychiatricOption(e.target.value)}
-                        /></td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            placeholder="___________"
-                            value={othericdCode}
-                            onChange={(e)=>setOtherIcdCode(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          {" "}
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              otherdescription.split("\n").length,
-                              1
-                            )}
-                            value={otherdescription}
-                            placeholder="___________"
-                            onChange={(e) => setOtherDescription(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setOtherDescription(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
+                   
                     </tbody>
                   </table>
                 </div>
@@ -10511,7 +11008,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       <th>Description</th>
                     </thead>
                     <tbody>
-                      <tr>
+                      {
+                        Medical1 &&  <tr>
                         <td>Primary*</td>
                         <td>
                           <input
@@ -10546,8 +11044,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
+                      
                       </tr>
-                      <tr>
+                      }
+
+                      {
+                        Medical2 &&  <tr>
                         <td>Secondary</td>
                         <td>
                           <input
@@ -10582,129 +11084,104 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
-                      </tr>
-                      <tr>
-                        <td>Tertiary</td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            placeholder="___________"
-                            value={TertiaryIcdCode}
-                            onChange={(e)=>setTertiaryIcdCode(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          {" "}
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              TertiaryDescription
-                                ? TertiaryDescription.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={TertiaryDescription || ""}
                       
-                            placeholder="___________"
-                            onChange={(e) => setTertiaryDescription(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setTertiaryDescription(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
+                        
                       </tr>
-                      <tr>
-                        <td>Additional</td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            placeholder="___________"
-                            value={Additional1icdCode}
-                            onChange={(e)=>setAdditional1IcdCode(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          {" "}
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              Additional1Description
-                                ? Additional1Description.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={Additional1Description || ""}
-                         
-                            placeholder="___________"
-                            onChange={(e) => setAdditional1Description(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setAdditional1Description(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
+                      }
+                     
+                     {
+                      Medical3 &&    <tr>
+                      <td>Tertiary</td>
+                      <td>
+                        <input
+                          className="treatment_plan_table"
+                          type="text"
+                          placeholder="___________"
+                          value={TertiaryIcdCode}
+                          onChange={(e)=>setTertiaryIcdCode(e.target.value)}
+                        />
+                      </td>
+                      <td>
+                        {" "}
+                        <textarea
+                          className="treatment_plan_table"
+                          rows={Math.max(
+                            TertiaryDescription
+                              ? TertiaryDescription.split("\n").length
+                              : 1,
+                            1
+                          )}
+                          value={TertiaryDescription || ""}
+                    
+                          placeholder="___________"
+                          onChange={(e) => setTertiaryDescription(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setTertiaryDescription(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                     
+                     
+                    </tr>
+                     }
+                     
+                   {
+                    Medical4 &&  <tr>
+                    <td>Additional</td>
+                    <td>
+                      <input
+                        className="treatment_plan_table"
+                        type="text"
+                        placeholder="___________"
+                        value={Additional1icdCode}
+                        onChange={(e)=>setAdditional1IcdCode(e.target.value)}
+                      />
+                    </td>
+                    <td>
+                      {" "}
+                      <textarea
+                        className="treatment_plan_table"
+                        rows={Math.max(
+                          Additional1Description
+                            ? Additional1Description.split("\n").length
+                            : 1,
+                          1
+                        )}
+                        value={Additional1Description || ""}
+                     
+                        placeholder="___________"
+                        onChange={(e) => setAdditional1Description(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            e.preventDefault();
+                            setAdditional1Description(
+                              (prevComment) => prevComment + "\n"
+                            );
+                          }
+                        }}
+                      />
+                    </td>
                    
+                    
+                  </tr>
+                   }
+                     
+                      
                       {
-                          medicalDiagnosesArray.map((i)=>
-                          <tr>
-                            <td>{i?.name}</td>
-                            <td>{i?.icdCode}</td>
-                            <td>{i?.description}</td>
-                            
+                          medicalDiagnosesArray.map((i,index)=>
+                          <tr key={index}>
+                            <td >{i?.name}</td>
+                            <td style={{paddingLeft:"20px"}}>{i?.icdCode}</td>
+                            <td style={{paddingLeft:"20px"}}>{i?.description}</td>
+                         
                           </tr>)
                         }
                   
-                      <tr>
-                        <td>Other: <input
-                        className="treatment_plan_table"
-                        type="text"
-                        value={OtherMedicalOption}
-                        placeholder="__________"
-                        onChange={(e)=>setOtherMedicalOption(e.target.value)}
-                        /></td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            placeholder="___________"
-                            value={OthericdCodeMedicalDiagnoses}
-                            onChange={(e)=>setOtherIcdCodeMedicalDiagnoses(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          {" "}
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              OtherdescriptionMedicalDiagnoses.split("\n").length,
-                              1
-                            )}
-                            value={OtherdescriptionMedicalDiagnoses}
-                            placeholder="___________"
-                            onChange={(e) => setOtherDescriptionMedicalDiagnoses(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setOtherDescriptionMedicalDiagnoses(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -10904,8 +11381,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </div>
               </div>
 
-
               <div className="formsheading">
+           
               </div>
               <div class="checkbox-container">
                 <div class="chechbox12-correct">
@@ -11033,7 +11510,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     id="approvedby"
                     value={additionalNotes}
                     placeholder="Enter text"
-                    required
+                    style={{borderBottom:'none'}}
                     onChange={(e) => setAdditionalNotes(e.target.value)}
                   />
                 </div>
@@ -11071,6 +11548,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </div>
               </div>
 
+  
               <div
                 className="box-image-container"
                 style={{ paddingBottom: "10px" }}
@@ -11081,8 +11559,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     type="text"
                     value={residentGuardianName}
                     placeholder="Enter text"
-                    required
-                    style={{borderBottom:'none',marginBottom:"5px"}}
+                    
+                    style={{borderBottom:'none'}}
                     onChange={(e) => setResidentGuardianName(e.target.value)}
                   />
                 </div>
@@ -11127,25 +11605,25 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     setSignatureTime={setResidentGuardianTime}
                   />
                 )}
-           
+    
                 <div className="form-field-single-update">
                   <label>Staff name, title:</label>
                   <input
                     type="text"
                     id="approvedby"
+                    required
                     value={staffName}
                     placeholder="Enter text"
-                    required
-                    style={{borderBottom:'none',marginBottom:"5px"}}
+                    style={{borderBottom:'none'}}
                     onChange={(e) => setStaffName(e.target.value)}
                   />
                 </div>
 
                 <div
-                  class="file-upload-box "
+                  class="file-upload-box hidePrint"
                   style={{ marginLeft: "10px" }}
                 >
-                  <div className="file-upload-box-child hidePrint">
+                  <div className="file-upload-box-child">
                     <button
                       className="upload-button1"
                       type="button"
@@ -11188,20 +11666,20 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       type="text"
                       id="approvedby"
                       value={bhpName}
-                      placeholder="Enter text"
                       required
-                      style={{borderBottom:'none',marginBottom:"5px"}}
+                      placeholder="Enter text"
+                      style={{borderBottom:'none'}}
                       onChange={(e) => setBhpName(e.target.value)}
                     />
                   </div>
                   <div className="form-field-child">
                     <label htmlFor="bhpCredentials">
-                      Enter BHP Credentials:
+                      BHP Credentials:
                     </label>
                     <input
                       type="text"
+                      style={{borderBottom:'none'}}
                       required
-                      style={{borderBottom:'none',marginBottom:"5px"}}
                       value={bhpCredentials}
                       onChange={(e) => setBhpCredentials(e.target.value)}
                     />
@@ -11209,10 +11687,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </div>
 
                 <div
-                  class="file-upload-box "
+                  class="file-upload-box hidePrint"
                   style={{ marginLeft: "10px" }}
                 >
-                  <div className="file-upload-box-child hidePrint">
+                  <div className="file-upload-box-child">
                     <div>
                       <button
                         className="upload-button1"
@@ -11235,7 +11713,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       <button
                         className="upload-button signature_shift_margin"
                         type="button"
-                        // onClick={handlePrint2}
+                        
                       >
                         PRINT THIS FORM
                       </button>
@@ -11268,6 +11746,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
               <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
               SUBMIT DETAILS
             </button>
+         
             </div>
           </form>
         </div>

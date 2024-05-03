@@ -122,6 +122,7 @@ for (let i = 0; i < bodyiamge.length; i++) {
   };
 
   const navigate = useNavigate();
+  const [filedForm,setFiledForm]=useState("")
   const [employ,setEmploy]=useState([])
   const [getApiData,setGetApiData]=useState("");
   const [userDetail, setUserDetail] = useState("");
@@ -353,7 +354,7 @@ const ageInMilliseconds = new Date(timeDiff);
 const ageInYears = Math.abs(ageInMilliseconds.getUTCFullYear() - 1970);
 
     setAge(ageInYears);
-
+    setFiledForm(userDetail?.nursingAssessment);
     setUserId(userDetail?._id);
     setName(userDetail?.fullName)
     setSex(userDetail?.gender)
@@ -3010,11 +3011,14 @@ const handlerepsychosocialSymptoms = (symptom) => {
             <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
               SUBMIT DETAILS
             </button>
-            <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
             {
+              filedForm &&   <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+            
+              {
                     loading ? <Loader/> : "PREVIOUS FORM"
                   }
             </button>
+            }
           </div>
 
         </form>

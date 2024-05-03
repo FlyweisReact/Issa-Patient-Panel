@@ -160,7 +160,8 @@
   }
 }
 
-@media(max-width: 568px) {
+
+@media(max-width: 480px) {
   .formsheading2 {
     width: 90%;
     height: auto;
@@ -205,3 +206,4 @@
   }
 
 }
+
