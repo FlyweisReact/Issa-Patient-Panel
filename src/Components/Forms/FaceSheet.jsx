@@ -257,8 +257,8 @@ function formatDate(dateString) {
   return `${month}-${day}-${year}`;
 }
 
-
-    setResidentName(getApiData?.residentName);
+if(getApiData){
+  setResidentName(getApiData?.residentName);
     setDob(getApiData?.dob?getApiData?.dob.slice(0,10):"");
     setDateOfAdmit(getApiData?.dateOfAdmit?getApiData?.dateOfAdmit.slice(0,10):0);
     setFacilityAddress(getApiData?.facilityAddress);
@@ -309,6 +309,7 @@ function formatDate(dateString) {
     setSignature(getApiData?.bhpSignature);
     setSignatureDate(getApiData?.bhpDate?formatDate(getApiData?.bhpDate):"");
     setSegnatureTime(getApiData?.time);
+}
   },[getApiData])
 
   const [previusData,setPreviusData]=useState("");
@@ -319,17 +320,29 @@ function formatDate(dateString) {
   //   }
   // },[patientId,previusData])
 
+  // useEffect(() => {
+  //   setLoading(true); 
+  //   if (previusData) {
+  //     faceSheet_form_get(patientId, (data) => {
+  //       setGetApiData(data);
+  //       setLoading(false); 
+  //     });
+  //   } else {
+  //     setLoading(false); 
+  //   }
+  // }, [patientId, previusData]);
+
+    
   useEffect(() => {
     setLoading(true); 
     if (previusData) {
-      faceSheet_form_get(patientId, (data) => {
-        setGetApiData(data);
-        setLoading(false); 
-      });
+      faceSheet_form_get(patientId, setGetApiData, setLoading);
     } else {
       setLoading(false); 
     }
   }, [patientId, previusData]);
+
+  
 
 
   useEffect(() => {
@@ -399,7 +412,7 @@ function formatDate(dateString) {
       saveAsDraft,
       patientId,
       residentName,
-      dob,
+      dateOfBirth:dob,
       dateOfAdmit,
       facilityAddress,
       facilityPhoneNumber,
@@ -729,7 +742,7 @@ function formatDate(dateString) {
             </div>
             <div className="border-bootom-line"></div>
               <div className="form-field-single-update">
-                <label >MEDICATION Allergies:</label>
+                <label >Medication Allergies:</label>
               <input
                 type="text"
 
@@ -1458,11 +1471,14 @@ function formatDate(dateString) {
                   SAVED AND SIGNED
                 </button>
                 </div>
-                <div>
+                {
+                  filedForm &&  <div>
                   <button className="upload-button signature_shift_margin" type="button" onClick={handlePrint2} >
                   PRINT THIS FORM
                 </button>
                 </div>
+                }
+               
               </div> 
               <div >
                 {
@@ -1486,11 +1502,11 @@ function formatDate(dateString) {
             }
     
             <div className="form-actions hidePrint">
-            <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+            <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
               SUBMIT DETAILS
             </button>
             {
-              filedForm &&   <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+              filedForm &&   <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
             
               {
                     loading ? <Loader/> : "PREVIOUS FORM"

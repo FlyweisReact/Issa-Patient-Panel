@@ -1360,11 +1360,12 @@ return arr;
 
     if(getApiData){
 
-      
+      setSex(getApiData?.gender)
+setDob(getApiData?.dob?getApiData.dob.slice(0,10):"")
+setResidentName(getApiData?.fullName)
 setAssessmentType(getApiData?.assessmentType)
 setHasNotified(getApiData?.hasNotified);
 setAssessmentOn(getApiData?.assessmentOn);
-setDob(getApiData?.dob);
 setCompanyName(getApiData?.companyName);
 setResidentName(getApiData?.hasNotified);
 setSex(getApiData?.sex);
@@ -2262,11 +2263,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
   useEffect(() => {
     setPatientId(userData?._id);
-    setUser(userData?.fullName);
-    setSex(userData?.gender)
     setCompanyName(userData?.companyName)
-    setDob(userData?.dateOfBirth?userData.dateOfBirth.slice(0,10):"")
-    setResidentName(userData?.fullName)
   }, [userData]);
 
 
@@ -4659,6 +4656,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     id="AHCCCS"
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     value={ahcccsNumber}
                     placeholder="Enter text"
                     required
@@ -6318,36 +6316,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                        <Select
-                  value={substanceAbuseHistoryDataLastUseAlcohol}
-                  onChange={handlersubstanceAbuseHistoryDataLastUseAlcohol}
-                  options={selectedsubstanceAbuseHistoryDataLastUseAlcohol}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseAlcohol}
-                />  
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseAlcohol?.value}/>
+                     
                         </td>
                               
                         <td>
-                        <Select
-                  value={substanceAbuseHistoryDataFrequencyAlcohol}
-                  onChange={handlersubstanceAbuseHistoryDataFrequencyAlcohol}
-                  options={selectedsubstanceAbuseHistoryDataFrequencyAlcohol}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyAlcohol}
-                />
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyAlcohol?.value}/>
+                      
 
                          
                         </td>
                         <td>
-
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyAlcohol}
-                  onChange={handlersubstanceAbuseHistoryDataLengthOfSobrietyAlcohol}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyAlcohol}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyAlcohol}
-                />
-
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyAlcohol?.value}/>
+                     
                          
                         </td>
                  
@@ -6373,38 +6354,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataLastUseBenzodiazepines}
-                onChange={handlesubstanceAbuseHistoryDataLastUseBenzodiazepines}
-                options={optionsubstanceAbuseHistoryDataLastUseBenzodiazepines}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseBenzodiazepines}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseBenzodiazepines?.value}/>
+                    
                        
                       </td>
                       <td>
-
-                        <Select
-                
-                value={substanceAbuseHistoryDataFrequencyBenzodiazepines}
-                onChange={handlesubstanceAbuseHistoryDataFrequencyBenzodiazepines}
-                options={optionsubstanceAbuseHistoryDataFrequencyBenzodiazepines}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyBenzodiazepines}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyBenzodiazepines?.value}/>
+                      
 
                        
                       </td>
                       <td>
-                        <Select
-                value={substanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
-                
-                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
-                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines?.value}/>
+                   
 
                      
                       </td>
@@ -6430,36 +6392,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataLastUseCrack}
-                onChange={handlesubstanceAbuseHistoryDataLastUseCrack}
-                options={optionsubstanceAbuseHistoryDataLastUseCrack}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseCrack}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseCrack?.value}/>
+                      
                      
                       </td>
                       <td>
-                        <Select
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyCrack?.value}/>
                 
-                value={substanceAbuseHistoryDataFrequencyCrack}
-                onChange={handlesubstanceAbuseHistoryDataFrequencyCrack}
-                options={optionsubstanceAbuseHistoryDataFrequencyCrack}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyCrack}
-              />
 
                         
                       </td>
                       <td>
-                        <Select
-                value={substanceAbuseHistoryDataLengthOfSobrietyCrack}
-                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyCrack}
-                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyCrack}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyCrack}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyCrack?.value}/>
+                   
 
                        
                       </td>
@@ -6484,37 +6429,18 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseHeroin}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseHeroin}
-                  options={optionsubstanceAbuseHistoryDataLastUseHeroin}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseHeroin}
-                />
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseHeroin?.value}/>
+                    
                         
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyHeroin}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyHeroin}
-                  options={optionsubstanceAbuseHistoryDataFrequencyHeroin}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyHeroin}
-                />
-
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyHeroin?.value}/>
+                    
                          
                         </td>
                         <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyHeroin}
-                  
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyHeroin}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyHeroin}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyHeroin}
-                />
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyHeroin?.value}/>
+                    
 
                          
                         </td>
@@ -6541,37 +6467,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataLastUseInhalants}
-                onChange={handlesubstanceAbuseHistoryDataLastUseInhalants}
-                options={optionsubstanceAbuseHistoryDataLastUseInhalants}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseInhalants}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseInhalants?.value}/>
+                     
                        
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataFrequencyInhalants}
-                onChange={handlesubstanceAbuseHistoryDataFrequencyInhalants}
-                options={optionsubstanceAbuseHistoryDataFrequencyInhalants}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyInhalants}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyInhalants?.value}/>
+                    
 
                     
                       </td>
                       <td>
-                        <Select
-                value={substanceAbuseHistoryDataLengthOfSobrietyInhalants}
-                
-                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
-                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyInhalants?.value}/>
+                   
 
                       </td>
               
@@ -6597,38 +6505,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataLastUseMarijuana}
-                onChange={handlesubstanceAbuseHistoryDataLastUseMarijuana}
-                options={optionsubstanceAbuseHistoryDataLastUseMarijuana}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMarijuana}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseMarijuana?.value}/>
+                    
                       
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataFrequencyMarijuana}
-                onChange={handlesubstanceAbuseHistoryDataFrequencyMarijuana}
-                options={optionsubstanceAbuseHistoryDataFrequencyMarijuana}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMarijuana}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyMarijuana?.value}/>
+                    
 
                       
                       </td>
                       <td>
-                        <Select
-                value={substanceAbuseHistoryDataLengthOfSobrietyMarijuana}
-                
-                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
-                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
-              />
-
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyMarijuana?.value}/>
+                     
                        
                       </td>
                
@@ -6654,37 +6543,18 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseMethamphetamine}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseMethamphetamine}
-                  options={optionsubstanceAbuseHistoryDataLastUseMethamphetamine}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMethamphetamine}
-                />
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseMethamphetamine?.value}/>
+                       
                          
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyMethamphetamine}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyMethamphetamine}
-                  options={optionsubstanceAbuseHistoryDataFrequencyMethamphetamine}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMethamphetamine}
-                />
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyMethamphetamine?.value}/>
+                      
 
                         </td>
                         <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyMethamphetamine}
-                  
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine}
-                />
-
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyMethamphetamine?.value}/>
+                     
                         </td>
               
                       </tr>
@@ -6709,37 +6579,18 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseMethadone}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseMethadone}
-                  options={optionsubstanceAbuseHistoryDataLastUseMethadone}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMethadone}
-                />
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseMethadone?.value}/>
+                     
                          
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyMethadone}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyMethadone}
-                  options={optionsubstanceAbuseHistoryDataFrequencyMethadone}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMethadone}
-                />
-
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyMethadone?.value}/>
+                     
                          
                         </td>
                         <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyMethadone}
-                  
-                  onChange={hnadlesubstanceAbuseHistoryDataLengthOfSobrietyMethadone}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMethadone}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMethadone}
-                />
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyMethadone?.value}/>
+                     
 
                         
                         </td>
@@ -6764,36 +6615,17 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataLastUseMDMA}
-                onChange={handlesubstanceAbuseHistoryDataLastUseMDMA}
-                options={optionsubstanceAbuseHistoryDataLastUseMDMA}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMDMA}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseMDMA?.value}/>
+                   
                       
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataFrequencyMDMA}
-                onChange={handlesubstanceAbuseHistoryDataFrequencyMDMA}
-                options={optionsubstanceAbuseHistoryDataFrequencyMDMA}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMDMA}
-              />
-                      
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyMDMA?.value}/>
+                        
                       </td>
                       <td>
-                        <Select
-                value={substanceAbuseHistoryDataLengthOfSobrietyMDMA}
-                
-                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
-                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
-              />
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyMDMA?.value}/>
+                     
 
                       </td>
               
@@ -6817,36 +6649,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataLastUsePCP}
-                onChange={hnadlesubstanceAbuseHistoryDataLastUsePCP}
-                options={optionsubstanceAbuseHistoryDataLastUsePCP}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUsePCP}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUsePCP?.value}/>
+                     
                         
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataFrequencyPCP}
-                onChange={handlesubstanceAbuseHistoryDataFrequencyPCP}
-                options={optionsubstanceAbuseHistoryDataFrequencyPCP}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyPCP}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyPCP?.value}/>
+                  
 
                         
                       </td>
                       <td>
-                        <Select
-                value={substanceAbuseHistoryDataLengthOfSobrietyPCP}
-                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyPCP}
-                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyPCP}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyPCP}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyPCP?.value}/>
+                  
 
                         
                       </td>
@@ -6873,37 +6688,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataLastUsePrescription}
-                onChange={handlesubstanceAbuseHistoryDataLastUsePrescription}
-                options={optionsubstanceAbuseHistoryDataLastUsePrescription}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUsePrescription}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUsePrescription?.value}/>
+                 
                         
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataFrequencyPrescription}
-                onChange={handlesubstanceAbuseHistoryDataFrequencyPrescription}
-                options={optionsubstanceAbuseHistoryDataFrequencyPrescription}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyPrescription}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyPrescription?.value}/>
+                   
 
                         
                       </td>
                       <td>
-                        <Select
-                value={substanceAbuseHistoryDataLengthOfSobrietyPrescription}
-                
-                onChange={hnadlesubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
-                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyPrescription?.value}/>
+                  
 
                        
                       </td>
@@ -6928,36 +6725,19 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataLastUseOTC}
-                onChange={hnadlesubstanceAbuseHistoryDataLastUseOTC}
-                options={optionsubstanceAbuseHistoryDataLastUseOTC}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseOTC}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseOTC?.value}/>
+                      
                        
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataFrequencyOTC}
-                onChange={handlesubstanceAbuseHistoryDataFrequencyOTC}
-                options={optionsubstanceAbuseHistoryDataFrequencyOTC}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyOTC}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyOTC?.value}/>
+                   
 
                        
                       </td>
                       <td>
-                        <Select
-                value={substanceAbuseHistoryDataLengthOfSobrietyOTC}
-                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyOTC}
-                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyOTC}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyOTC}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyOTC?.value}/>
+                 
                       </td>
            
                     </tr>
@@ -9251,7 +9031,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <select
+                          {
+                            BathingGoodNeedAssist ? <p>True</p>: <p>False</p>
+                          }
+                          {/* <select
                             value={BathingGoodNeedAssist}
                             onChange={(e) =>
                               setBathingGoodNeedAssist(e.target.value)
@@ -9260,7 +9043,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option disabled>Select value</option>
                             <option value={true}>Yes</option>
                             <option value={false}>No</option>
-                          </select>
+                          </select> */}
                         </td>
                         <td>
                           <textarea
@@ -9316,7 +9099,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <select
+                      {
+                            GroomingGoodNeedAssist ? <p>True</p>: <p>False</p>
+                          }
+                        {/* <select
                           value={GroomingGoodNeedAssist}
                           onChange={(e) =>
                             setGroomingGoodNeedAssist(e.target.value)
@@ -9325,7 +9111,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           <option disabled>Select value</option>
                           <option value={true}>Yes</option>
                           <option value={false}>No</option>
-                        </select>
+                        </select> */}
                       </td>
                       <td>
                         <textarea
@@ -9382,7 +9168,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <select
+                        {
+                            MobilityGoodNeedAssist ? <p>True</p>: <p>False</p>
+                          }
+                          {/* <select
                             value={MobilityGoodNeedAssist}
                             onChange={(e) =>
                               setMobilityGoodNeedAssist(e.target.value)
@@ -9391,7 +9180,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option disabled>Select value</option>
                             <option value={true}>Yes</option>
                             <option value={false}>No</option>
-                          </select>
+                          </select> */}
                         </td>
                         <td>
                           <textarea
@@ -9449,7 +9238,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <select
+                        {
+                            HouseworkGoodNeedAssist ? <p>True</p>: <p>False</p>
+                          }
+                          {/* <select
                             value={HouseworkGoodNeedAssist}
                             onChange={(e) =>
                               setHouseworkGoodNeedAssist(e.target.value)
@@ -9458,7 +9250,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option disabled>Select value</option>
                             <option value={true}>Yes</option>
                             <option value={false}>No</option>
-                          </select>
+                          </select> */}
                         </td>
                         <td>
                           <textarea
@@ -9516,7 +9308,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       />
                     </td>
                     <td>
-                      <select
+                    {
+                            ShoppingGoodNeedAssist ? <p>True</p>: <p>False</p>
+                          }
+                      {/* <select
                         value={ShoppingGoodNeedAssist}
                         onChange={(e) =>
                           setShoppingGoodNeedAssist(e.target.value)
@@ -9525,7 +9320,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         <option disabled>Select value</option>
                         <option value={true}>Yes</option>
                         <option value={false}>No</option>
-                      </select>
+                      </select> */}
                     </td>
                     <td>
                       <textarea
@@ -9584,7 +9379,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <select
+                      {
+                            ManagingGoodNeedAssist ? <p>True</p>: <p>False</p>
+                          }
+                        {/* <select
                           value={ManagingGoodNeedAssist}
                           onChange={(e) =>
                             setManagingGoodNeedAssist(e.target.value)
@@ -9593,7 +9391,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           <option disabled>Select value</option>
                           <option value={true}>Yes</option>
                           <option value={false}>No</option>
-                        </select>
+                        </select> */}
                       </td>
                       <td>
                         <textarea
@@ -9652,7 +9450,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <select
+                      {
+                            PreparingGoodNeedAssist ? <p>True</p>: <p>False</p>
+                          }
+                        {/* <select
                           value={PreparingGoodNeedAssist}
                           onChange={(e) =>
                             setPreparingGoodNeedAssist(e.target.value)
@@ -9661,7 +9462,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           <option disabled>Select value</option>
                           <option value={true}>Yes</option>
                           <option value={false}>No</option>
-                        </select>
+                        </select> */}
                       </td>
                       <td>
                         <textarea
@@ -9720,7 +9521,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <select
+                        {
+                            EatingGoodNeedAssist ? <p>True</p>: <p>False</p>
+                          }
+                          {/* <select
                             value={EatingGoodNeedAssist}
                             onChange={(e) =>
                               setEatingGoodNeedAssist(e.target.value)
@@ -9729,7 +9533,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option disabled>Select value</option>
                             <option value={true}>Yes</option>
                             <option value={false}>No</option>
-                          </select>
+                          </select> */}
                         </td>
                         <td>
                           <textarea
@@ -9786,7 +9590,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <select
+                      {
+                            ToiletingGoodNeedAssist ? <p>True</p>: <p>False</p>
+                          }
+                        {/* <select
                           value={ToiletingGoodNeedAssist}
                           onChange={(e) =>
                             setToiletingGoodNeedAssist(e.target.value)
@@ -9796,7 +9603,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                          
                           <option value={true}>Yes</option>
                           <option value={false}>No</option>
-                        </select>
+                        </select> */}
                       </td>
                       <td>
                         <textarea

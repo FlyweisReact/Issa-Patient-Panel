@@ -1258,160 +1258,161 @@ function formatDate(dateString) {
 }
 
   useEffect(()=>{
-    setiAgree(getApiData?.iAgree);
-    // setResidentName("");
-    setResidentSignature(getApiData?.residentSignature);
-    setResidentDate(getApiData?.residentDate? formatDate(getApiData?.residentDate): "");
-    setResidentSignatureTime(getApiData?.residentSignatureTime);
-    setGuardianRepresentativeName(getApiData?.guardianRepresentativeName);
-    setGuardianRepresentativeSignature(getApiData?.guardianRepresentativeSignature);
-    setGuardianRepresentativeDate(getApiData?.guardianRepresentativeDate? formatDate(getApiData?.guardianRepresentativeDate): "");
-    setGuardianRepresentativeTime(getApiData?.guardianRepresentativeTime);
-    setStaffName(getApiData?.staffName);
-    setStaffSignature(getApiData?.staffSignature);
-    setStaffDate(getApiData?.staffDate? formatDate(getApiData?.staffDate): "");
-    setStaffTime(getApiData?.staffTime);
-    // setInternalName(getApiData?.guardianRepresentativeTime);
-    // setInternalRelationship(getApiData?.guardianRepresentativeTime);
-    // setInternalContect(getApiData?.guardianRepresentativeTime);
-    setInternalDisclosureList(getApiData?.internalDisclosureList?getApiData?.internalDisclosureList:[]);
-    setInternalDisclosureListExpire(getApiData?.internalDisclosureListExpire?getApiData?.internalDisclosureListExpire?.slice(0,10):"");
-    setInternalDisclosureListResidentName(getApiData?.internalDisclosureListResidentName);
-    setInternalDisclosureListResidentSignature(getApiData?.internalDisclosureListResidentSignature);
-    setInternalDisclosureListResidentDate(getApiData?.internalDisclosureListResidentDate?formatDate(getApiData?.internalDisclosureListResidentDate): "");
-    setInternalDisclosureListResidentTime(getApiData?.internalDisclosureListResidentTime);
-    setInternalDisclosureListGuardianRepresentativeName(getApiData?.internalDisclosureListGuardianRepresentativeName);
-    setInternalDisclosureListGuardianRepresentativeSignature(getApiData?.internalDisclosureListGuardianRepresentativeSignature);
-    setInternalDisclosureListGuardianRepresentativeDate(getApiData?.internalDisclosureListGuardianRepresentativeDate? formatDate(getApiData?.internalDisclosureListGuardianRepresentativeDate): "");
-    setInternalDisclosureListGuardianRepresentativeTime(getApiData?.internalDisclosureListGuardianRepresentativeTime);
-    // setInternalDisclosureListStaffName(getApiData?.guardianRepresentativeTime);
-    setInternalDisclosureListStaffSignature(getApiData?.internalDisclosureListStaffSignature);
-    setInternalDisclosureListStaffDate(getApiData?.internalDisclosureListStaffDate? formatDate(getApiData?.internalDisclosureListStaffDate): "");
-    setInternalDisclosureListStaffTime(getApiData?.internalDisclosureListStaffTime);
-    setResidentRightsResidentSignatureValue(getApiData?.residentRightsResidentSignatureValue);
-    setResidentRightsResidentSignatureValueDate(getApiData?.residentRightsResidentSignatureValueDate?getApiData?.residentRightsResidentSignatureValueDate?.slice(0,10):'');
-    setResidentRightsResidentSignatureValueTime(getApiData?.internalDisclosureListStaffTime)
-    setResidentRightsResidentName(getApiData?.residentRightsResidentName);
-    setResidentRightsResidentSignature(getApiData?.residentRightsResidentSignature);
-    setResidentRightsResidentDate(getApiData?.residentRightsResidentDate? formatDate(getApiData?.residentRightsResidentDate): "");
-    // new value
-    setResidentRightsResidentTime(getApiData?.residentRightsResidentTime);
-    // setResidentRightsGuardianRepresentativeName(getApiData?.guardianRepresentativeTime);
-    setResidentRightsGuardianRepresentativeSignature(getApiData?.residentRightsGuardianRepresentativeSignature);
-    setResidentRightsGuardianRepresentativeDate(getApiData?.residentRightsGuardianRepresentativeDate? formatDate(getApiData?.residentRightsGuardianRepresentativeDate): "");
-    setResidentRightsGuardianRepresentativeTime(getApiData?.residentRightsGuardianRepresentativeTime);
-
-    setPhotoVideoConsentResidentName(getApiData?.photoVideoConsentResidentName);
-    setPhotoVideoConsentDateOfBirth(getApiData?.photoVideoConsentDateOfBirth? getApiData?.photoVideoConsentDateOfBirth.slice(0,10):"");
-    setPhotoVideoConsentAdmissionDate(getApiData?.photoVideoConsentAdmissionDate? getApiData?.photoVideoConsentAdmissionDate.slice(0,10): "");
-    setPhotoVideoConsentConsentGiven(getApiData?.photoVideoConsentConsentGiven);
-    setPhotoVideoConsentConsentWithdrawn(getApiData?.photoVideoConsentConsentWithdrawn);
-    setPhotoVideoConsentResidentSignature(getApiData?.photoVideoConsentResidentSignature);
-    setPhotoVideoConsentResidentDate(getApiData?.photoVideoConsentResidentDate? formatDate(getApiData?.photoVideoConsentResidentDate): "");
-    setPhotoVideoConsentResidentTime(getApiData?.photoVideoConsentResidentTime);
-    setPhotoVideoConsentGuardianRepresentativeName(getApiData?.photoVideoConsentGuardianRepresentativeName);
-    setPhotoVideoConsentGuardianRepresentativeSignature(getApiData?.photoVideoConsentGuardianRepresentativeSignature);
-    setPhotoVideoConsentGuardianRepresentativeDate(getApiData?.photoVideoConsentGuardianRepresentativeDate? formatDate(getApiData?.photoVideoConsentGuardianRepresentativeDate): "");
-    setPhotoVideoConsentGuardianRepresentativeTime(getApiData?.photoVideoConsentGuardianRepresentativeTime);
-    setAdvanceDirectivesResidentName(getApiData?.advanceDirectivesResidentName);
-    setAdvanceDirectivesResidentGender(getApiData?.advanceDirectivesResidentGender);
-    setAdvanceDirectivesResidentDateOfBirth(getApiData?.advanceDirectivesResidentDateOfBirth?getApiData?.advanceDirectivesResidentDateOfBirth?.slice(0,10):"");
-    setAdvanceDirectivesResidentAddress(getApiData?.advanceDirectivesResidentAddress);
-    setAdvanceDirectivesResidentDate(getApiData?.advanceDirectivesResidentDate? getApiData?.advanceDirectivesResidentDate.slice(0,10): "");
-    setAdvanceDirectivesProvidedInfoInitials(getApiData?.advanceDirectivesProvidedInfoInitials);
-    setAdvanceDirectivesProvidedInfoDate(getApiData?.advanceDirectivesProvidedInfoDate? getApiData?.advanceDirectivesProvidedInfoDate.slice(0,10): "");
-    setAdvanceDirectivesProvidedInfoTime(getApiData?.guardianRepresentativeTime);
-    setAdvanceDirectivesProvidedInfoRefusingInitials(getApiData?.advanceDirectivesProvidedInfoRefusingInitials);
-    setAdvanceDirectivesProvidedInfoRefusingDate(getApiData?.advanceDirectivesProvidedInfoRefusingDate? getApiData?.advanceDirectivesProvidedInfoRefusingDate.slice(0,10): "");
-    setAdvanceDirectivesProvidedInfoRefusingTime(getApiData?.advanceDirectivesProvidedInfoRefusingTime);
-    setAdvanceDirectivesDeveloped(getApiData?.advanceDirectivesDeveloped);
-    setAdvanceDirectivesDevelopedComment(getApiData?.advanceDirectivesDevelopedComment);
-    setAdvanceDirectivesExecutedInRecord(getApiData?.advanceDirectivesExecutedInRecord);
-    setAdvanceDirectivesExecutedInRecordComment(getApiData?.advanceDirectivesExecutedInRecordComment);
-    setAdvanceDirectivesFilingStatusWishNotFiled(getApiData?.advanceDirectivesFilingStatusWishNotFiled);
-    setAdvanceDirectivesFilingStatusAskedForCopyNotProvided(getApiData?.advanceDirectivesFilingStatusAskedForCopyNotProvided);
-    setAdvanceDirectivesFilingStatusOther(getApiData?.advanceDirectivesFilingStatusOther);
-    setAdvanceDirectivesCoordinationOfCareCopySentToPCP(getApiData?.advanceDirectivesCoordinationOfCareCopySentToPCP);
-    setAdvanceDirectivesCoordinationOfCareActedOn(getApiData?.advanceDirectivesCoordinationOfCareActedOn);
-    setAdvanceDirectivesCoordinationOfCareAppropriatePartiesNotified(getApiData?.advanceDirectivesCoordinationOfCareAppropriatePartiesNotified);
-    setAdvanceDirectivesCoordinationOfCareAppropriatePartiesNotifiedComment(getApiData?.advanceDirectivesCoordinationOfCareAppropriatePartiesNotifiedComment);
-    setComplaintProcessAcknowledgementCompany(getApiData?.complaintProcessAcknowledgementCompany);
-    setComplaintProcessAcknowledgementResidentName(getApiData?.complaintProcessAcknowledgementResidentName);
-    setComplaintProcessAcknowledgementResidentSignature(getApiData?.complaintProcessAcknowledgementResidentSignature);
-    setComplaintProcessAcknowledgementResidentDate(getApiData?.complaintProcessAcknowledgementResidentDate? formatDate(getApiData?.complaintProcessAcknowledgementResidentDate): "");
-    setComplaintProcessAcknowledgementResidentTime(getApiData?.complaintProcessAcknowledgementResidentTime)
-    setComplaintProcessAcknowledgementGuardianRepresentativeName(getApiData?.complaintProcessAcknowledgementGuardianRepresentativeName);
-    setComplaintProcessAcknowledgementGuardianRepresentativeSignature(getApiData?.complaintProcessAcknowledgementGuardianRepresentativeSignature);
-    setComplaintProcessAcknowledgementGuardianRepresentativeDate(getApiData?.complaintProcessAcknowledgementGuardianRepresentativeDate? formatDate(getApiData?.complaintProcessAcknowledgementGuardianRepresentativeDate): "");
-    setComplaintProcessAcknowledgementGuardianRepresentativeTime(getApiData?.complaintProcessAcknowledgementGuardianRepresentativeTime);
-    // setOrientationToAgencyCompanyFollowing(getApiData?.guardianRepresentativeTime);
-    setOrientationToAgencyCompany(getApiData?.orientationToAgencyCompany);
-    setORIENTATIONDropDown(getApiData?.orientationToAgencyCompanyFollowing ? getApiData?.orientationToAgencyCompanyFollowing?.map(item => ({
-      label: item, 
-      value: item    
-    }))
-  : []);
-    // setOrientationToAgencyResidentName("");
-    setOrientationToAgencyResidentSignature(getApiData?.orientationToAgencyResidentSignature);
-    setOrientationToAgencyResidentDate(getApiData?.orientationToAgencyResidentDate? formatDate(getApiData?.orientationToAgencyResidentDate): "");
-    setOrientationToAgencyResidentTime(getApiData?.orientationToAgencyResidentTime);
-    setOrientationToAgencyGuardianRepresentativeName(getApiData?.orientationToAgencyGuardianRepresentativeName);
-    setOrientationToAgencyGuardianRepresentativeSignature(getApiData?.orientationToAgencyGuardianRepresentativeSignature);
-    setOrientationToAgencyGuardianRepresentativeDate(getApiData?.orientationToAgencyGuardianRepresentativeDate? formatDate(getApiData?.orientationToAgencyGuardianRepresentativeDate): "");
-    setOrientationToAgencyGuardianRepresentativeTime(getApiData?.orientationToAgencyGuardianRepresentativeTime);
-    setPromotionTalkStrategicApproach(getApiData?.promotionTalkStrategicApproach);
-    setLockBoxKeyIssueReturnDateKeyIssued(getApiData?.lockBoxKeyIssueReturnDateKeyIssued?getApiData?.lockBoxKeyIssueReturnDateKeyIssued?.slice(0,10):"");
-    setLockBoxKeyIssueReturnDateKeyReturned(getApiData?.lockBoxKeyIssueReturnDateKeyReturned?getApiData?.lockBoxKeyIssueReturnDateKeyReturned?.slice(0,10):'');
-    setLockBoxKeyIssueReturnAddress(getApiData?.lockBoxKeyIssueReturnAddress);
-    setLockBoxKeyIssueReturnResponsibleFor(getApiData?.lockBoxKeyIssueReturnResponsibleFor);
-    setLockBoxKeyIssueReturnResponsibleForCorporation(getApiData?.lockBoxKeyIssueReturnResponsibleForCorporation);
-    setLockBoxKeyIssueReturnCharged(getApiData?.lockBoxKeyIssueReturnCharged);
-    // setLockBoxKeyIssueReturnResidentName(getApiData?.lockBoxKeyIssueReturnResidentName);
-    setLockBoxKeyIssueReturnResidentSignature(getApiData?.lockBoxKeyIssueReturnResidentSignature);
-    setLockBoxKeyIssueReturnResidentDate(getApiData?.lockBoxKeyIssueReturnResidentDate? formatDate(getApiData?.lockBoxKeyIssueReturnResidentDate): "");
-    setLockBoxKeyIssueReturnResidentTime(getApiData?.lockBoxKeyIssueReturnResidentTime);
-    setLockBoxKeyIssueReturnGuardianRepresentativeName(getApiData?.lockBoxKeyIssueReturnGuardianRepresentativeName);
-    setLockBoxKeyIssueReturnGuardianRepresentativeSignature(getApiData?.lockBoxKeyIssueReturnGuardianRepresentativeSignature);
-    setLockBoxKeyIssueReturnGuardianRepresentativeDate(getApiData?.lockBoxKeyIssueReturnGuardianRepresentativeDate? formatDate(getApiData?.lockBoxKeyIssueReturnGuardianRepresentativeDate): "");
-    setLockBoxKeyIssueReturnGuardianRepresentativeTime(getApiData?.lockBoxKeyIssueReturnGuardianRepresentativeTime);
-    setLockBoxKeyIssueReturnStaffName(getApiData?.lockBoxKeyIssueReturnStaffName);
-    setLockBoxKeyIssueReturnStaffSignature(getApiData?.lockBoxKeyIssueReturnStaffSignature);
-    setLockBoxKeyIssueReturnStaffDate(getApiData?.lockBoxKeyIssueReturnStaffDate?formatDate(getApiData?.lockBoxKeyIssueReturnStaffDate): "");
-    setLockBoxKeyIssueReturnStaffTime(getApiData?.lockBoxKeyIssueReturnStaffTime);
-    setInsuranceInformationPrimaryInsurancePolicyholderName(getApiData?.insuranceInformationPrimaryInsurancePolicyholderName);
-    setInsuranceInformationPrimaryInsurancePolicyholderDateOfBirth(getApiData?.insuranceInformationPrimaryInsurancePolicyholderDateOfBirth? getApiData?.insuranceInformationPrimaryInsurancePolicyholderDateOfBirth.slice(0,10): "");
-    setInsuranceInformationPrimaryInsurancePolicyholderAddress(getApiData?.insuranceInformationPrimaryInsurancePolicyholderAddress);
-    setInsuranceInformationPrimaryInsurancePolicyholderCity(getApiData?.insuranceInformationPrimaryInsurancePolicyholderCity);
-    setInsuranceInformationPrimaryInsurancePolicyholderState(getApiData?.insuranceInformationPrimaryInsurancePolicyholderState);
-    setInsuranceInformationPrimaryInsurancePolicyholderZip(getApiData?.insuranceInformationPrimaryInsurancePolicyholderZip);
-    setInsuranceInformationPrimaryInsurancePolicyholderPhone(getApiData?.insuranceInformationPrimaryInsurancePolicyholderPhone);
-    setInsuranceInformationPrimaryInsurancePolicyholderRelationship(getApiData?.insuranceInformationPrimaryInsurancePolicyholderRelationship);
-    setInsuranceInformationPrimaryInsuranceCompany(getApiData?.insuranceInformationPrimaryInsuranceCompany);
-    setInsuranceInformationPrimaryInsuranceCustomerServicePhone(getApiData?.insuranceInformationPrimaryInsuranceCustomerServicePhone);
-    setInsuranceInformationPrimaryInsuranceSubscriberNumber(getApiData?.insuranceInformationPrimaryInsuranceSubscriberNumber);
-    setInsuranceInformationPrimaryInsuranceSubscriberGroup(getApiData?.insuranceInformationPrimaryInsuranceSubscriberGroup);
-    setInsuranceInformationPrimaryInsuranceSubscriberEffectiveDate(getApiData?.insuranceInformationPrimaryInsuranceSubscriberEffectiveDate?getApiData?.insuranceInformationPrimaryInsuranceSubscriberEffectiveDate.slice(0,10):"");
-    setInsuranceInformationSecondaryInsurancePolicyholderName(getApiData?.insuranceInformationSecondaryInsurancePolicyholderName);
-    setInsuranceInformationSecondaryInsurancePolicyholderDateOfBirth(getApiData?.insuranceInformationSecondaryInsurancePolicyholderDateOfBirth ? getApiData?.insuranceInformationSecondaryInsurancePolicyholderDateOfBirth.slice(0,10):"");
-    setInsuranceInformationSecondaryInsurancePolicyholderAddress(getApiData?.insuranceInformationSecondaryInsurancePolicyholderAddress);
-    setInsuranceInformationSecondaryInsurancePolicyholderCity(getApiData?.insuranceInformationSecondaryInsurancePolicyholderCity);
-    setInsuranceInformationSecondaryInsurancePolicyholderState(getApiData?.insuranceInformationSecondaryInsurancePolicyholderState);
-    setInsuranceInformationSecondaryInsurancePolicyholderZip(getApiData?.insuranceInformationSecondaryInsurancePolicyholderZip);
-    setInsuranceInformationSecondaryInsurancePolicyholderPhone(getApiData?.insuranceInformationSecondaryInsurancePolicyholderPhone);
-    setInsuranceInformationSecondaryInsurancePolicyholderRelationship(getApiData?.insuranceInformationSecondaryInsurancePolicyholderRelationship);
-    setInsuranceInformationSecondaryInsuranceCompany(getApiData?.insuranceInformationSecondaryInsuranceCompany);
-    setInsuranceInformationSecondaryInsuranceCustomerServicePhone(getApiData?.insuranceInformationSecondaryInsuranceCustomerServicePhone);
-    setInsuranceInformationSecondaryInsuranceSubscriberNumber(getApiData?.insuranceInformationSecondaryInsuranceSubscriberNumber);
-    setInsuranceInformationSecondaryInsuranceSubscriberGroup(getApiData?.insuranceInformationSecondaryInsuranceSubscriberGroup);
-    setInsuranceInformationSecondaryInsuranceSubscriberEffectiveDate(getApiData?.insuranceInformationSecondaryInsuranceSubscriberEffectiveDate?getApiData?.insuranceInformationSecondaryInsuranceSubscriberEffectiveDate.slice(0,10):'');
-    setObligationsAndAuthorizationResidentName(getApiData?.obligationsAndAuthorizationResidentName);
-    setObligationsAndAuthorizationResidentSignature(getApiData?.obligationsAndAuthorizationResidentSignature);
-    setObligationsAndAuthorizationResidentDate(getApiData?.obligationsAndAuthorizationResidentDate? formatDate(getApiData?.obligationsAndAuthorizationResidentDate): "");
-    setObligationsAndAuthorizationResidentTime(getApiData?.obligationsAndAuthorizationResidentTime);
-    setObligationsAndAuthorizationGuardianRepresentativeName(getApiData?.obligationsAndAuthorizationGuardianRepresentativeName);
-    setObligationsAndAuthorizationGuardianRepresentativeSignature(getApiData?.obligationsAndAuthorizationGuardianRepresentativeSignature);
-    setObligationsAndAuthorizationGuardianRepresentativeDate(getApiData?.obligationsAndAuthorizationGuardianRepresentativeDate? formatDate(getApiData?.obligationsAndAuthorizationGuardianRepresentativeDate): "");
-    setObligationsAndAuthorizationGuardianRepresentativeTime(getApiData?.obligationsAndAuthorizationGuardianRepresentativeTime);
+    if(getApiData){
+      setiAgree(getApiData?.iAgree);
+      setResidentSignature(getApiData?.residentSignature);
+      setResidentDate(getApiData?.residentDate? formatDate(getApiData?.residentDate): "");
+      setResidentSignatureTime(getApiData?.residentSignatureTime);
+      setGuardianRepresentativeName(getApiData?.guardianRepresentativeName);
+      setGuardianRepresentativeSignature(getApiData?.guardianRepresentativeSignature);
+      setGuardianRepresentativeDate(getApiData?.guardianRepresentativeDate? formatDate(getApiData?.guardianRepresentativeDate): "");
+      setGuardianRepresentativeTime(getApiData?.guardianRepresentativeTime);
+      setStaffName(getApiData?.staffName);
+      setStaffSignature(getApiData?.staffSignature);
+      setStaffDate(getApiData?.staffDate? formatDate(getApiData?.staffDate): "");
+      setStaffTime(getApiData?.staffTime);
+      // setInternalName(getApiData?.guardianRepresentativeTime);
+      // setInternalRelationship(getApiData?.guardianRepresentativeTime);
+      // setInternalContect(getApiData?.guardianRepresentativeTime);
+      setInternalDisclosureList(getApiData?.internalDisclosureList?getApiData?.internalDisclosureList:[]);
+      setInternalDisclosureListExpire(getApiData?.internalDisclosureListExpire?getApiData?.internalDisclosureListExpire?.slice(0,10):"");
+      setInternalDisclosureListResidentName(getApiData?.internalDisclosureListResidentName);
+      setInternalDisclosureListResidentSignature(getApiData?.internalDisclosureListResidentSignature);
+      setInternalDisclosureListResidentDate(getApiData?.internalDisclosureListResidentDate?formatDate(getApiData?.internalDisclosureListResidentDate): "");
+      setInternalDisclosureListResidentTime(getApiData?.internalDisclosureListResidentTime);
+      setInternalDisclosureListGuardianRepresentativeName(getApiData?.internalDisclosureListGuardianRepresentativeName);
+      setInternalDisclosureListGuardianRepresentativeSignature(getApiData?.internalDisclosureListGuardianRepresentativeSignature);
+      setInternalDisclosureListGuardianRepresentativeDate(getApiData?.internalDisclosureListGuardianRepresentativeDate? formatDate(getApiData?.internalDisclosureListGuardianRepresentativeDate): "");
+      setInternalDisclosureListGuardianRepresentativeTime(getApiData?.internalDisclosureListGuardianRepresentativeTime);
+      // setInternalDisclosureListStaffName(getApiData?.guardianRepresentativeTime);
+      setInternalDisclosureListStaffSignature(getApiData?.internalDisclosureListStaffSignature);
+      setInternalDisclosureListStaffDate(getApiData?.internalDisclosureListStaffDate? formatDate(getApiData?.internalDisclosureListStaffDate): "");
+      setInternalDisclosureListStaffTime(getApiData?.internalDisclosureListStaffTime);
+      setResidentRightsResidentSignatureValue(getApiData?.residentRightsResidentSignatureValue);
+      setResidentRightsResidentSignatureValueDate(getApiData?.residentRightsResidentSignatureValueDate?getApiData?.residentRightsResidentSignatureValueDate?.slice(0,10):'');
+      setResidentRightsResidentSignatureValueTime(getApiData?.internalDisclosureListStaffTime)
+      setResidentRightsResidentName(getApiData?.residentRightsResidentName);
+      setResidentRightsResidentSignature(getApiData?.residentRightsResidentSignature);
+      setResidentRightsResidentDate(getApiData?.residentRightsResidentDate? formatDate(getApiData?.residentRightsResidentDate): "");
+      // new value
+      setResidentRightsResidentTime(getApiData?.residentRightsResidentTime);
+      // setResidentRightsGuardianRepresentativeName(getApiData?.guardianRepresentativeTime);
+      setResidentRightsGuardianRepresentativeSignature(getApiData?.residentRightsGuardianRepresentativeSignature);
+      setResidentRightsGuardianRepresentativeDate(getApiData?.residentRightsGuardianRepresentativeDate? formatDate(getApiData?.residentRightsGuardianRepresentativeDate): "");
+      setResidentRightsGuardianRepresentativeTime(getApiData?.residentRightsGuardianRepresentativeTime);
+  
+      setPhotoVideoConsentResidentName(getApiData?.photoVideoConsentResidentName);
+      setPhotoVideoConsentDateOfBirth(getApiData?.photoVideoConsentDateOfBirth? getApiData?.photoVideoConsentDateOfBirth.slice(0,10):"");
+      setPhotoVideoConsentAdmissionDate(getApiData?.photoVideoConsentAdmissionDate? getApiData?.photoVideoConsentAdmissionDate.slice(0,10): "");
+      setPhotoVideoConsentConsentGiven(getApiData?.photoVideoConsentConsentGiven);
+      setPhotoVideoConsentConsentWithdrawn(getApiData?.photoVideoConsentConsentWithdrawn);
+      setPhotoVideoConsentResidentSignature(getApiData?.photoVideoConsentResidentSignature);
+      setPhotoVideoConsentResidentDate(getApiData?.photoVideoConsentResidentDate? formatDate(getApiData?.photoVideoConsentResidentDate): "");
+      setPhotoVideoConsentResidentTime(getApiData?.photoVideoConsentResidentTime);
+      setPhotoVideoConsentGuardianRepresentativeName(getApiData?.photoVideoConsentGuardianRepresentativeName);
+      setPhotoVideoConsentGuardianRepresentativeSignature(getApiData?.photoVideoConsentGuardianRepresentativeSignature);
+      setPhotoVideoConsentGuardianRepresentativeDate(getApiData?.photoVideoConsentGuardianRepresentativeDate? formatDate(getApiData?.photoVideoConsentGuardianRepresentativeDate): "");
+      setPhotoVideoConsentGuardianRepresentativeTime(getApiData?.photoVideoConsentGuardianRepresentativeTime);
+      setAdvanceDirectivesResidentName(getApiData?.advanceDirectivesResidentName);
+      setAdvanceDirectivesResidentGender(getApiData?.advanceDirectivesResidentGender);
+      setAdvanceDirectivesResidentDateOfBirth(getApiData?.advanceDirectivesResidentDateOfBirth?getApiData?.advanceDirectivesResidentDateOfBirth?.slice(0,10):"");
+      setAdvanceDirectivesResidentAddress(getApiData?.advanceDirectivesResidentAddress);
+      setAdvanceDirectivesResidentDate(getApiData?.advanceDirectivesResidentDate? getApiData?.advanceDirectivesResidentDate.slice(0,10): "");
+      setAdvanceDirectivesProvidedInfoInitials(getApiData?.advanceDirectivesProvidedInfoInitials);
+      setAdvanceDirectivesProvidedInfoDate(getApiData?.advanceDirectivesProvidedInfoDate? getApiData?.advanceDirectivesProvidedInfoDate.slice(0,10): "");
+      setAdvanceDirectivesProvidedInfoTime(getApiData?.guardianRepresentativeTime);
+      setAdvanceDirectivesProvidedInfoRefusingInitials(getApiData?.advanceDirectivesProvidedInfoRefusingInitials);
+      setAdvanceDirectivesProvidedInfoRefusingDate(getApiData?.advanceDirectivesProvidedInfoRefusingDate? getApiData?.advanceDirectivesProvidedInfoRefusingDate.slice(0,10): "");
+      setAdvanceDirectivesProvidedInfoRefusingTime(getApiData?.advanceDirectivesProvidedInfoRefusingTime);
+      setAdvanceDirectivesDeveloped(getApiData?.advanceDirectivesDeveloped);
+      setAdvanceDirectivesDevelopedComment(getApiData?.advanceDirectivesDevelopedComment);
+      setAdvanceDirectivesExecutedInRecord(getApiData?.advanceDirectivesExecutedInRecord);
+      setAdvanceDirectivesExecutedInRecordComment(getApiData?.advanceDirectivesExecutedInRecordComment);
+      setAdvanceDirectivesFilingStatusWishNotFiled(getApiData?.advanceDirectivesFilingStatusWishNotFiled);
+      setAdvanceDirectivesFilingStatusAskedForCopyNotProvided(getApiData?.advanceDirectivesFilingStatusAskedForCopyNotProvided);
+      setAdvanceDirectivesFilingStatusOther(getApiData?.advanceDirectivesFilingStatusOther);
+      setAdvanceDirectivesCoordinationOfCareCopySentToPCP(getApiData?.advanceDirectivesCoordinationOfCareCopySentToPCP);
+      setAdvanceDirectivesCoordinationOfCareActedOn(getApiData?.advanceDirectivesCoordinationOfCareActedOn);
+      setAdvanceDirectivesCoordinationOfCareAppropriatePartiesNotified(getApiData?.advanceDirectivesCoordinationOfCareAppropriatePartiesNotified);
+      setAdvanceDirectivesCoordinationOfCareAppropriatePartiesNotifiedComment(getApiData?.advanceDirectivesCoordinationOfCareAppropriatePartiesNotifiedComment);
+      setComplaintProcessAcknowledgementCompany(getApiData?.complaintProcessAcknowledgementCompany);
+      setComplaintProcessAcknowledgementResidentName(getApiData?.complaintProcessAcknowledgementResidentName);
+      setComplaintProcessAcknowledgementResidentSignature(getApiData?.complaintProcessAcknowledgementResidentSignature);
+      setComplaintProcessAcknowledgementResidentDate(getApiData?.complaintProcessAcknowledgementResidentDate? formatDate(getApiData?.complaintProcessAcknowledgementResidentDate): "");
+      setComplaintProcessAcknowledgementResidentTime(getApiData?.complaintProcessAcknowledgementResidentTime)
+      setComplaintProcessAcknowledgementGuardianRepresentativeName(getApiData?.complaintProcessAcknowledgementGuardianRepresentativeName);
+      setComplaintProcessAcknowledgementGuardianRepresentativeSignature(getApiData?.complaintProcessAcknowledgementGuardianRepresentativeSignature);
+      setComplaintProcessAcknowledgementGuardianRepresentativeDate(getApiData?.complaintProcessAcknowledgementGuardianRepresentativeDate? formatDate(getApiData?.complaintProcessAcknowledgementGuardianRepresentativeDate): "");
+      setComplaintProcessAcknowledgementGuardianRepresentativeTime(getApiData?.complaintProcessAcknowledgementGuardianRepresentativeTime);
+      // setOrientationToAgencyCompanyFollowing(getApiData?.guardianRepresentativeTime);
+      setOrientationToAgencyCompany(getApiData?.orientationToAgencyCompany);
+      setORIENTATIONDropDown(getApiData?.orientationToAgencyCompanyFollowing ? getApiData?.orientationToAgencyCompanyFollowing?.map(item => ({
+        label: item, 
+        value: item    
+      }))
+    : []);
+      // setOrientationToAgencyResidentName("");
+      setOrientationToAgencyResidentSignature(getApiData?.orientationToAgencyResidentSignature);
+      setOrientationToAgencyResidentDate(getApiData?.orientationToAgencyResidentDate? formatDate(getApiData?.orientationToAgencyResidentDate): "");
+      setOrientationToAgencyResidentTime(getApiData?.orientationToAgencyResidentTime);
+      setOrientationToAgencyGuardianRepresentativeName(getApiData?.orientationToAgencyGuardianRepresentativeName);
+      setOrientationToAgencyGuardianRepresentativeSignature(getApiData?.orientationToAgencyGuardianRepresentativeSignature);
+      setOrientationToAgencyGuardianRepresentativeDate(getApiData?.orientationToAgencyGuardianRepresentativeDate? formatDate(getApiData?.orientationToAgencyGuardianRepresentativeDate): "");
+      setOrientationToAgencyGuardianRepresentativeTime(getApiData?.orientationToAgencyGuardianRepresentativeTime);
+      setPromotionTalkStrategicApproach(getApiData?.promotionTalkStrategicApproach);
+      setLockBoxKeyIssueReturnDateKeyIssued(getApiData?.lockBoxKeyIssueReturnDateKeyIssued?getApiData?.lockBoxKeyIssueReturnDateKeyIssued?.slice(0,10):"");
+      setLockBoxKeyIssueReturnDateKeyReturned(getApiData?.lockBoxKeyIssueReturnDateKeyReturned?getApiData?.lockBoxKeyIssueReturnDateKeyReturned?.slice(0,10):'');
+      setLockBoxKeyIssueReturnAddress(getApiData?.lockBoxKeyIssueReturnAddress);
+      setLockBoxKeyIssueReturnResponsibleFor(getApiData?.lockBoxKeyIssueReturnResponsibleFor);
+      setLockBoxKeyIssueReturnResponsibleForCorporation(getApiData?.lockBoxKeyIssueReturnResponsibleForCorporation);
+      setLockBoxKeyIssueReturnCharged(getApiData?.lockBoxKeyIssueReturnCharged);
+      // setLockBoxKeyIssueReturnResidentName(getApiData?.lockBoxKeyIssueReturnResidentName);
+      setLockBoxKeyIssueReturnResidentSignature(getApiData?.lockBoxKeyIssueReturnResidentSignature);
+      setLockBoxKeyIssueReturnResidentDate(getApiData?.lockBoxKeyIssueReturnResidentDate? formatDate(getApiData?.lockBoxKeyIssueReturnResidentDate): "");
+      setLockBoxKeyIssueReturnResidentTime(getApiData?.lockBoxKeyIssueReturnResidentTime);
+      setLockBoxKeyIssueReturnGuardianRepresentativeName(getApiData?.lockBoxKeyIssueReturnGuardianRepresentativeName);
+      setLockBoxKeyIssueReturnGuardianRepresentativeSignature(getApiData?.lockBoxKeyIssueReturnGuardianRepresentativeSignature);
+      setLockBoxKeyIssueReturnGuardianRepresentativeDate(getApiData?.lockBoxKeyIssueReturnGuardianRepresentativeDate? formatDate(getApiData?.lockBoxKeyIssueReturnGuardianRepresentativeDate): "");
+      setLockBoxKeyIssueReturnGuardianRepresentativeTime(getApiData?.lockBoxKeyIssueReturnGuardianRepresentativeTime);
+      setLockBoxKeyIssueReturnStaffName(getApiData?.lockBoxKeyIssueReturnStaffName);
+      setLockBoxKeyIssueReturnStaffSignature(getApiData?.lockBoxKeyIssueReturnStaffSignature);
+      setLockBoxKeyIssueReturnStaffDate(getApiData?.lockBoxKeyIssueReturnStaffDate?formatDate(getApiData?.lockBoxKeyIssueReturnStaffDate): "");
+      setLockBoxKeyIssueReturnStaffTime(getApiData?.lockBoxKeyIssueReturnStaffTime);
+      setInsuranceInformationPrimaryInsurancePolicyholderName(getApiData?.insuranceInformationPrimaryInsurancePolicyholderName);
+      setInsuranceInformationPrimaryInsurancePolicyholderDateOfBirth(getApiData?.insuranceInformationPrimaryInsurancePolicyholderDateOfBirth? getApiData?.insuranceInformationPrimaryInsurancePolicyholderDateOfBirth.slice(0,10): "");
+      setInsuranceInformationPrimaryInsurancePolicyholderAddress(getApiData?.insuranceInformationPrimaryInsurancePolicyholderAddress);
+      setInsuranceInformationPrimaryInsurancePolicyholderCity(getApiData?.insuranceInformationPrimaryInsurancePolicyholderCity);
+      setInsuranceInformationPrimaryInsurancePolicyholderState(getApiData?.insuranceInformationPrimaryInsurancePolicyholderState);
+      setInsuranceInformationPrimaryInsurancePolicyholderZip(getApiData?.insuranceInformationPrimaryInsurancePolicyholderZip);
+      setInsuranceInformationPrimaryInsurancePolicyholderPhone(getApiData?.insuranceInformationPrimaryInsurancePolicyholderPhone);
+      setInsuranceInformationPrimaryInsurancePolicyholderRelationship(getApiData?.insuranceInformationPrimaryInsurancePolicyholderRelationship);
+      setInsuranceInformationPrimaryInsuranceCompany(getApiData?.insuranceInformationPrimaryInsuranceCompany);
+      setInsuranceInformationPrimaryInsuranceCustomerServicePhone(getApiData?.insuranceInformationPrimaryInsuranceCustomerServicePhone);
+      setInsuranceInformationPrimaryInsuranceSubscriberNumber(getApiData?.insuranceInformationPrimaryInsuranceSubscriberNumber);
+      setInsuranceInformationPrimaryInsuranceSubscriberGroup(getApiData?.insuranceInformationPrimaryInsuranceSubscriberGroup);
+      setInsuranceInformationPrimaryInsuranceSubscriberEffectiveDate(getApiData?.insuranceInformationPrimaryInsuranceSubscriberEffectiveDate?getApiData?.insuranceInformationPrimaryInsuranceSubscriberEffectiveDate.slice(0,10):"");
+      setInsuranceInformationSecondaryInsurancePolicyholderName(getApiData?.insuranceInformationSecondaryInsurancePolicyholderName);
+      setInsuranceInformationSecondaryInsurancePolicyholderDateOfBirth(getApiData?.insuranceInformationSecondaryInsurancePolicyholderDateOfBirth ? getApiData?.insuranceInformationSecondaryInsurancePolicyholderDateOfBirth.slice(0,10):"");
+      setInsuranceInformationSecondaryInsurancePolicyholderAddress(getApiData?.insuranceInformationSecondaryInsurancePolicyholderAddress);
+      setInsuranceInformationSecondaryInsurancePolicyholderCity(getApiData?.insuranceInformationSecondaryInsurancePolicyholderCity);
+      setInsuranceInformationSecondaryInsurancePolicyholderState(getApiData?.insuranceInformationSecondaryInsurancePolicyholderState);
+      setInsuranceInformationSecondaryInsurancePolicyholderZip(getApiData?.insuranceInformationSecondaryInsurancePolicyholderZip);
+      setInsuranceInformationSecondaryInsurancePolicyholderPhone(getApiData?.insuranceInformationSecondaryInsurancePolicyholderPhone);
+      setInsuranceInformationSecondaryInsurancePolicyholderRelationship(getApiData?.insuranceInformationSecondaryInsurancePolicyholderRelationship);
+      setInsuranceInformationSecondaryInsuranceCompany(getApiData?.insuranceInformationSecondaryInsuranceCompany);
+      setInsuranceInformationSecondaryInsuranceCustomerServicePhone(getApiData?.insuranceInformationSecondaryInsuranceCustomerServicePhone);
+      setInsuranceInformationSecondaryInsuranceSubscriberNumber(getApiData?.insuranceInformationSecondaryInsuranceSubscriberNumber);
+      setInsuranceInformationSecondaryInsuranceSubscriberGroup(getApiData?.insuranceInformationSecondaryInsuranceSubscriberGroup);
+      setInsuranceInformationSecondaryInsuranceSubscriberEffectiveDate(getApiData?.insuranceInformationSecondaryInsuranceSubscriberEffectiveDate?getApiData?.insuranceInformationSecondaryInsuranceSubscriberEffectiveDate.slice(0,10):'');
+      setObligationsAndAuthorizationResidentName(getApiData?.obligationsAndAuthorizationResidentName);
+      setObligationsAndAuthorizationResidentSignature(getApiData?.obligationsAndAuthorizationResidentSignature);
+      setObligationsAndAuthorizationResidentDate(getApiData?.obligationsAndAuthorizationResidentDate? formatDate(getApiData?.obligationsAndAuthorizationResidentDate): "");
+      setObligationsAndAuthorizationResidentTime(getApiData?.obligationsAndAuthorizationResidentTime);
+      setObligationsAndAuthorizationGuardianRepresentativeName(getApiData?.obligationsAndAuthorizationGuardianRepresentativeName);
+      setObligationsAndAuthorizationGuardianRepresentativeSignature(getApiData?.obligationsAndAuthorizationGuardianRepresentativeSignature);
+      setObligationsAndAuthorizationGuardianRepresentativeDate(getApiData?.obligationsAndAuthorizationGuardianRepresentativeDate? formatDate(getApiData?.obligationsAndAuthorizationGuardianRepresentativeDate): "");
+      setObligationsAndAuthorizationGuardianRepresentativeTime(getApiData?.obligationsAndAuthorizationGuardianRepresentativeTime);
+    }
   },[getApiData])
 
   const [previusData,setPreviusData]=useState(false)
@@ -1422,13 +1423,22 @@ function formatDate(dateString) {
   //   }
   // },[userId,previusData])
 
+  // useEffect(() => {
+  //   setLoading(true); 
+  //   if (previusData) {
+  //     Resident_form_get(userId, (data) => {
+  //       setGetApiData(data);
+  //       setLoading(false); 
+  //     });
+  //   } else {
+  //     setLoading(false); 
+  //   }
+  // }, [userId, previusData]);
+
   useEffect(() => {
     setLoading(true); 
     if (previusData) {
-      Resident_form_get(userId, (data) => {
-        setGetApiData(data);
-        setLoading(false); 
-      });
+      Resident_form_get(userId, setGetApiData, setLoading);
     } else {
       setLoading(false); 
     }
@@ -1437,7 +1447,7 @@ function formatDate(dateString) {
   useEffect(() => {
     setFiledForm(userDetail?.residentIntakes);
     setUserId(userDetail?._id);
-    setUser(userDetail?.fullName);
+    // setUser(userDetail?.fullName);
     setCompanyName(userDetail?.companyName);
     
   }, [userDetail]);
@@ -1778,9 +1788,9 @@ function formatDate(dateString) {
     },
     {
       label:
-        "A description of the expectations for resident behavior and rules",
+        "A description of the expectations for resident behavior and program rules",
       value:
-        "A description of the expectations for resident behavior and rules",
+        "A description of the expectations for resident behavior and program rules",
     },
     {
       label: "A tour of the premises and identification of the evacuation path",
@@ -2962,7 +2972,7 @@ function formatDate(dateString) {
                       style={{
                         display: "flex",
                         alignItems: "center",
-                        gap: "10px",
+                        gap: "5px",
                       }}
                     >
                       <input
@@ -2975,7 +2985,7 @@ function formatDate(dateString) {
                           )
                         }
                       />
-                      <span htmlFor="photoVideoConsentConsentGiven">
+                      <span htmlFor="photoVideoConsentConsentGiven" style={{marginBottom:"5px"}}>
                         {" "}
                         I DO give consent to appear in photographs and
                         videotapes.
@@ -2987,7 +2997,7 @@ function formatDate(dateString) {
                       style={{
                         display: "flex",
                         alignItems: "center",
-                        gap: "10px",
+                        gap: "5px",
                       }}
                     >
                       <input
@@ -3000,7 +3010,7 @@ function formatDate(dateString) {
                           )
                         }
                       />
-                      <span htmlFor="photoVideoConsentConsentWithdrawn">
+                      <span htmlFor="photoVideoConsentConsentWithdrawn"  style={{marginBottom:"5px"}}>
                         {" "}
                         I DO NOT give consent to appear in photographs and
                         videotapes.
@@ -3714,7 +3724,7 @@ function formatDate(dateString) {
                     have been explained by facility staff of the facility
                     resident complaint process. Resident/Guardian understands
                     that they have the right to file complaint with the
-                    facility, and with the Arizona Department of Residential
+                    facility administrator, and with the Arizona Department of Residential
                     Licensing when complaint can not be resolved with the
                     facility.
                   </p>
@@ -4825,11 +4835,11 @@ function formatDate(dateString) {
             )}
             {  page===8 && 
                <div className="form-actions">
-              <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+              <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
               SUBMIT DETAILS
             </button>
             {
-              filedForm &&   <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+              filedForm &&   <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
             
               {
                     loading ? <Loader/> : "PREVIOUS FORM"

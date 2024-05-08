@@ -131,7 +131,8 @@ for (let i = 0; i < bodyiamge.length; i++) {
   const [userId, setUserId] = useState("");
   const [todayDate, setTodayDate] = useState("");
   const [admissionDate, setAdmissionDate] = useState("");
-  const [name, setName] = useState("");
+  // const [name, setName] = useState("");
+  const [residentName,setResidentName]=useState("")
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [age, setAge] = useState("");
   const [sex, setSex] = useState("");
@@ -246,94 +247,93 @@ function formatDate(dateString) {
 }
 
   useEffect(()=>{
-    setSaveAsDraft(getApiData?.saveAsDraft);
-    setAdmissionDate(getApiData?.admissionDate?getApiData?.admissionDate.slice(0,10):"");
-    setTodayDate(getApiData?.todayDate?getApiData?.todayDate.slice(0,10):"");
-    setAdmissionDiagnoses(getApiData?.admissionDiagnoses);
-    setCodeStatus(getApiData?.codeStatus?getApiData?.codeStatus:[]);
-    setLastTBScreeningDate(getApiData?.lastTBScreeningDate?getApiData.lastTBScreeningDate.slice(0,10):"");
-    setTbScreeningResults(getApiData?.tbScreeningResults);
-    setCareProvidedPhysicalServices(getApiData?.careProvided?getApiData?.careProvided:[]);
-    setVitalsBloodPressure(getApiData?.vitalsBloodPressure);
-    setVitalsPulse(getApiData?.vitalsPulse);
-    setVitalsRespiratoryRate(getApiData?.vitalsRespiratoryRate);
-    setVitalsOxygenLevel(getApiData?.vitalsOxygenLevel);
-    setVitalsTemperature(getApiData?.vitalsTemperature);
-    setVitalsWeight(getApiData?.vitalsWeight);
-    setVitalsHeightFeet(getApiData?.vitalsHeightFeet);
-    setVitalsHeightInches(getApiData?.vitalsHeightInches);
-    setAllergies(getApiData?.allergies);
-    setReviewOfSystemsConstitutional(getApiData?.reviewOfSystemsConstitutional);
-    setReviewOfSystemsConstitutionalOther(getApiData?.reviewOfSystemsConstitutionalComment)
-    setReviewOfSystemsCardiovascular(getApiData?.reviewOfSystemsCardiovascular);
-    setReviewOfSystemsCardiovascularOther(getApiData?.reviewOfSystemsCardiovascularComment)
-    setReviewOfSystemsEndocrine(getApiData?.reviewOfSystemsEndocrine);
-    setReviewOfSystemsEndocrineOther(getApiData?.reviewOfSystemsEndocrineComment)
-    setReviewOfSystemsGastrointestinal(getApiData?.reviewOfSystemsGastrointestinal);
-    setReviewOfSystemsGastrointestinalOther(getApiData?.reviewOfSystemsGastrointestinalComment)
-    setReviewOfSystemsGenitourinary(getApiData?.reviewOfSystemsGenitourinary);
-    setReviewOfSystemsGenitourinaryOther(getApiData?.reviewOfSystemsGenitourinaryComment)
-    setReviewOfSystemsHematologyOncology(getApiData?.reviewOfSystemsHematologyOncology);
-    setReviewOfSystemsHematologyOncologyOther(getApiData?.reviewOfSystemsHematologyOncologyomment)
-    setReviewOfSystemsHeadNeckThroat(getApiData?.reviewOfSystemsHeadNeckThroat);
-    setReviewOfSystemsHeadNeckThroatOther(getApiData?.reviewOfSystemsHeadNeckThroatComment)
-    setReviewOfSystemsIntegumentary(getApiData?.reviewOfSystemsIntegumentary);
-    setReviewOfSystemsIntegumentaryOther(getApiData?.reviewOfSystemsIntegumentaryComment)
-    setReviewOfSystemsMusculoskeletal(getApiData?.reviewOfSystemsMusculoskeletal);
-    setReviewOfSystemsMusculoskeletalOther(getApiData?.reviewOfSystemsMusculoskeletalComment)
-    setReviewOfSystemsPsychiatric(getApiData?.reviewOfSystemsPsychiatric);
-    setReviewOfSystemsPsychiatricOther(getApiData?.reviewOfSystemsPsychiatricComment)
-    setReviewOfSystemsNeurologic(getApiData?.reviewOfSystemsNeurologic);
-    setReviewOfSystemsNeurologicOther(getApiData?.reviewOfSystemsNeurologicComment)
-    setReviewOfSystemsRespiratory(getApiData?.reviewOfSystemsRespiratory);
-    setReviewOfSystemsRespiratoryOther(getApiData?.reviewOfSystemsRespiratoryComment)
-    setReviewOfSystemsAllergicImmunologic(getApiData?.reviewOfSystemsAllergicImmunologic);
-    setReviewOfSystemsAllergicImmunologicOther(getApiData?.reviewOfSystemsAllergicImmunologicComment)
-    setSuicidalRiskAssessmentDeniesSymptomsBellow(getApiData?.suicidalRiskAssessmentDeniesSymptomsBellow);
-    setBehavioralSymptoms(getApiData?.behavioralSymptoms?getApiData?.behavioralSymptoms:[]);
-    setPhysicalSymptoms(getApiData?.physicalSymptoms?getApiData?.physicalSymptoms:[]);
-    setPsychosocialSymptoms(getApiData?.psychosocialSymptoms?getApiData?.psychosocialSymptoms:[]);
-    setCurrentMedications(getApiData?.currentMedications);
-    setNutritionDiet(getApiData?.nutritionDiet);
-    setNutritionSpecialDietOrder(getApiData?.nutritionSpecialDietOrder);
-    setNutritionFluidRestrictions(getApiData?.nutritionFluidRestrictions);
-    setSkinCheck(getApiData?.skinCheck);
-    setResidentDeniesSkinConcerns(getApiData?.residentDeniesSkinConcerns);
-    setFront(getApiData?.front);
-    setBack(getApiData?.back);
-    setSideLeft(getApiData?.sideLeft);
-    setSideRight(getApiData?.sideRight);
-    setLegFront(getApiData?.legFront);
-    setLegBack(getApiData?.legBack);
-    setLegLeft(getApiData?.legLeft);
-    setLegRight(getApiData?.legRight);
-    setCommentFigure(getApiData?.legComment)
-    setBhtName(getApiData?.bhtName?._id);
-    setBhtSignature(getApiData?.bhtSignature);
-    setbhtDate(getApiData?.bhpDate?formatDate(getApiData?.bhpDate):"")
-    setBhpTime(getApiData?.bhpTime)
-    setRnName(getApiData?.rnName?._id);
-    setRnSignature(getApiData?.rnSignature);
-    setrnDate(getApiData?.rnDate?formatDate(getApiData?.rnDate):"")
-    setRnTime(getApiData?.rnTime)
+    if(getApiData){
+      setSaveAsDraft(getApiData?.saveAsDraft);
+      setResidentName(getApiData?.residentFullName);
+      setDateOfBirth(getApiData?.dateOfBirth?getApiData?.dateOfBirth?.slice(0,10):"");
+      setAge(getApiData?.age);
+      setSex(getApiData?.sex)
+      setAdmissionDate(getApiData?.admissionDate?getApiData?.admissionDate.slice(0,10):"");
+      setTodayDate(getApiData?.todayDate?getApiData?.todayDate.slice(0,10):"");
+      setAdmissionDiagnoses(getApiData?.admissionDiagnoses);
+      setCodeStatus(getApiData?.codeStatus?getApiData?.codeStatus:[]);
+      setLastTBScreeningDate(getApiData?.lastTBScreeningDate?getApiData.lastTBScreeningDate.slice(0,10):"");
+      setTbScreeningResults(getApiData?.tbScreeningResults);
+      setCareProvidedPhysicalServices(getApiData?.careProvided?getApiData?.careProvided:[]);
+      setVitalsBloodPressure(getApiData?.vitalsBloodPressure);
+      setVitalsPulse(getApiData?.vitalsPulse);
+      setVitalsRespiratoryRate(getApiData?.vitalsRespiratoryRate);
+      setVitalsOxygenLevel(getApiData?.vitalsOxygenLevel);
+      setVitalsTemperature(getApiData?.vitalsTemperature);
+      setVitalsWeight(getApiData?.vitalsWeight);
+      setVitalsHeightFeet(getApiData?.vitalsHeightFeet);
+      setVitalsHeightInches(getApiData?.vitalsHeightInches);
+      setAllergies(getApiData?.allergies);
+      setReviewOfSystemsConstitutional(getApiData?.reviewOfSystemsConstitutional);
+      setReviewOfSystemsConstitutionalOther(getApiData?.reviewOfSystemsConstitutionalComment)
+      setReviewOfSystemsCardiovascular(getApiData?.reviewOfSystemsCardiovascular);
+      setReviewOfSystemsCardiovascularOther(getApiData?.reviewOfSystemsCardiovascularComment)
+      setReviewOfSystemsEndocrine(getApiData?.reviewOfSystemsEndocrine);
+      setReviewOfSystemsEndocrineOther(getApiData?.reviewOfSystemsEndocrineComment)
+      setReviewOfSystemsGastrointestinal(getApiData?.reviewOfSystemsGastrointestinal);
+      setReviewOfSystemsGastrointestinalOther(getApiData?.reviewOfSystemsGastrointestinalComment)
+      setReviewOfSystemsGenitourinary(getApiData?.reviewOfSystemsGenitourinary);
+      setReviewOfSystemsGenitourinaryOther(getApiData?.reviewOfSystemsGenitourinaryComment)
+      setReviewOfSystemsHematologyOncology(getApiData?.reviewOfSystemsHematologyOncology);
+      setReviewOfSystemsHematologyOncologyOther(getApiData?.reviewOfSystemsHematologyOncologyomment)
+      setReviewOfSystemsHeadNeckThroat(getApiData?.reviewOfSystemsHeadNeckThroat);
+      setReviewOfSystemsHeadNeckThroatOther(getApiData?.reviewOfSystemsHeadNeckThroatComment)
+      setReviewOfSystemsIntegumentary(getApiData?.reviewOfSystemsIntegumentary);
+      setReviewOfSystemsIntegumentaryOther(getApiData?.reviewOfSystemsIntegumentaryComment)
+      setReviewOfSystemsMusculoskeletal(getApiData?.reviewOfSystemsMusculoskeletal);
+      setReviewOfSystemsMusculoskeletalOther(getApiData?.reviewOfSystemsMusculoskeletalComment)
+      setReviewOfSystemsPsychiatric(getApiData?.reviewOfSystemsPsychiatric);
+      setReviewOfSystemsPsychiatricOther(getApiData?.reviewOfSystemsPsychiatricComment)
+      setReviewOfSystemsNeurologic(getApiData?.reviewOfSystemsNeurologic);
+      setReviewOfSystemsNeurologicOther(getApiData?.reviewOfSystemsNeurologicComment)
+      setReviewOfSystemsRespiratory(getApiData?.reviewOfSystemsRespiratory);
+      setReviewOfSystemsRespiratoryOther(getApiData?.reviewOfSystemsRespiratoryComment)
+      setReviewOfSystemsAllergicImmunologic(getApiData?.reviewOfSystemsAllergicImmunologic);
+      setReviewOfSystemsAllergicImmunologicOther(getApiData?.reviewOfSystemsAllergicImmunologicComment)
+      setSuicidalRiskAssessmentDeniesSymptomsBellow(getApiData?.suicidalRiskAssessmentDeniesSymptomsBellow);
+      setBehavioralSymptoms(getApiData?.behavioralSymptoms?getApiData?.behavioralSymptoms:[]);
+      setPhysicalSymptoms(getApiData?.physicalSymptoms?getApiData?.physicalSymptoms:[]);
+      setPsychosocialSymptoms(getApiData?.psychosocialSymptoms?getApiData?.psychosocialSymptoms:[]);
+      setCurrentMedications(getApiData?.currentMedications);
+      setNutritionDiet(getApiData?.nutritionDiet);
+      setNutritionSpecialDietOrder(getApiData?.nutritionSpecialDietOrder);
+      setNutritionFluidRestrictions(getApiData?.nutritionFluidRestrictions);
+      setSkinCheck(getApiData?.skinCheck);
+      setResidentDeniesSkinConcerns(getApiData?.residentDeniesSkinConcerns);
+      setFront(getApiData?.front);
+      setBack(getApiData?.back);
+      setSideLeft(getApiData?.sideLeft);
+      setSideRight(getApiData?.sideRight);
+      setLegFront(getApiData?.legFront);
+      setLegBack(getApiData?.legBack);
+      setLegLeft(getApiData?.legLeft);
+      setLegRight(getApiData?.legRight);
+      setCommentFigure(getApiData?.legComment)
+      setBhtName(getApiData?.bhtName?._id);
+      setBhtSignature(getApiData?.bhtSignature);
+      setbhtDate(getApiData?.bhpDate?formatDate(getApiData?.bhpDate):"")
+      setBhpTime(getApiData?.bhpTime)
+      setRnName(getApiData?.rnName?._id);
+      setRnSignature(getApiData?.rnSignature);
+      setrnDate(getApiData?.rnDate?formatDate(getApiData?.rnDate):"")
+      setRnTime(getApiData?.rnTime)
+    }
   },[getApiData])
 
   
   const [previusData,setPreviusData]=useState(false);
 
-  // useEffect(()=>{
-  //   if(previusData){
-  //     Nurssing_form_get(userId,setGetApiData);
-  //   }
-  // },[userId,previusData])
+
 
   useEffect(() => {
     setLoading(true); 
     if (previusData) {
-      Nurssing_form_get(userId, (data) => {
-        setGetApiData(data);
-        setLoading(false); 
-      });
+      Nurssing_form_get(userId, setGetApiData, setLoading);
     } else {
       setLoading(false); 
     }
@@ -341,24 +341,24 @@ function formatDate(dateString) {
 
   useEffect(() => {
     //calculater date
-    const birthDate =new Date(userDetail?.dateOfBirth);
+    // const birthDate =new Date(userDetail?.dateOfBirth);
 
     // Get the current date
-    const currentDate = new Date();
+    // const currentDate = new Date();
 
     // Calculate the difference in milliseconds between the current date and the birth date
-    const timeDiff = currentDate.getTime() - birthDate.getTime();
+    // const timeDiff = currentDate.getTime() - birthDate.getTime();
 
     // Convert the time difference from milliseconds to years
-const ageInMilliseconds = new Date(timeDiff);
-const ageInYears = Math.abs(ageInMilliseconds.getUTCFullYear() - 1970);
+// const ageInMilliseconds = new Date(timeDiff);
+// const ageInYears = Math.abs(ageInMilliseconds.getUTCFullYear() - 1970);
 
-    setAge(ageInYears);
+    // setAge(ageInYears);
     setFiledForm(userDetail?.nursingAssessment);
     setUserId(userDetail?._id);
-    setName(userDetail?.fullName)
-    setSex(userDetail?.gender)
-    setDateOfBirth(userDetail?.dateOfBirth?userDetail?.dateOfBirth.slice(0,10):"")
+    // setName(userDetail?.fullName)
+    // setSex(userDetail?.gender)
+    // setDateOfBirth(userDetail?.dateOfBirth?userDetail?.dateOfBirth.slice(0,10):"")
   }, [userDetail]);
 
   useEffect(() => {
@@ -367,6 +367,10 @@ const ageInYears = Math.abs(ageInMilliseconds.getUTCFullYear() - 1970);
   }, []);
 
   const initialData = () => {
+    setResidentName("");
+    setSex("");
+    setDateOfBirth("");
+    setAge("");
     setUserId("");
     setAdmissionDate("");
     setSex("");
@@ -444,7 +448,10 @@ const ageInYears = Math.abs(ageInMilliseconds.getUTCFullYear() - 1970);
     const data = {
       patientId: userId,
       saveAsDraft,
+      residentName,
+      dateOfBirth,
       admissionDate,
+      age,
       sex,
       todayDate,
       admissionDiagnoses,
@@ -770,10 +777,10 @@ const handlerepsychosocialSymptoms = (symptom) => {
 
               type="text"
               id="dateOfBirth"
-              value={name}
+              value={residentName}
               placeholder="Enter name"
               required
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setResidentName(e.target.value)}
                 />
               </div>
               <div className="form-field-child">
@@ -1080,7 +1087,7 @@ const handlerepsychosocialSymptoms = (symptom) => {
                 <label htmlFor="AHCCCS">Weight:</label>
                 <input
                   type="number"
-                  style={{width:`${vitalsWeight?.length?vitalsWeight?.length*20+"px":"30px"}`}}
+                  style={{width:`${vitalsWeight?.length?vitalsWeight?.length*20+"px":"50px"}`}}
                   value={vitalsWeight}
                   required
 
@@ -1100,7 +1107,7 @@ const handlerepsychosocialSymptoms = (symptom) => {
                 <label htmlFor="AHCCCS">Height:</label>
                 <input
                   type="number"
-                  style={{width:`${vitalsHeightFeet?.length?vitalsHeightFeet?.length*20+"px":"30px"}`}}
+                  style={{width:`${vitalsHeightFeet?.length?vitalsHeightFeet?.length*20+"px":"50px"}`}}
                   value={vitalsHeightFeet}
                   required
 
@@ -1127,8 +1134,9 @@ const handlerepsychosocialSymptoms = (symptom) => {
 
 
           <div className="formsheading">
-              <h6 style={{ fontWeight: "bold" }}>Review Of Systems</h6>
+          <label className="label-review" style={{fontWeight:"bold",marginTop:"0.5rem"}}>Review Of Systems:</label>
           </div>
+          
           <label  className="label-review" style={{fontWeight:"bold"}}>Constitutional:</label>
 
           <div className="yeschechbox-review">
@@ -1848,7 +1856,7 @@ const handlerepsychosocialSymptoms = (symptom) => {
                   handlereviewOfSystemsIntegumentary("Severe itching")
                 }
               />
-              <label htmlFor="severeItching">Severe itching</label>
+              <label htmlFor="severeItching">Server itching</label>
             </div>
             <div>
               <input
@@ -2100,7 +2108,7 @@ const handlerepsychosocialSymptoms = (symptom) => {
                   handlereviewOfSystemsNeurologic("Scalp tenderness")
                 }
               />
-              <label htmlFor="scalpTenderness">Scalp tenderness</label>
+              <label htmlFor="scalpTenderness">Scalp tendemess</label>
             </div>
             <div>
               <input
@@ -2559,20 +2567,20 @@ const handlerepsychosocialSymptoms = (symptom) => {
             <div>
               <input
                 type="checkbox"
-                id="depression"
+                id="depression11111"
                 checked={psychosocialSymptoms?.includes("depression")}
                 onChange={() => handlerepsychosocialSymptoms("depression")}
               />
-              <label htmlFor="depression">Depression</label>
+              <label htmlFor="depression11111">Depression</label>
             </div>
             <div>
               <input
                 type="checkbox"
-                id="anxiety"
+                id="anxiety1111"
                 checked={psychosocialSymptoms?.includes("anxiety")}
                 onChange={() => handlerepsychosocialSymptoms("anxiety")}
               />
-              <label htmlFor="anxiety">Anxiety</label>
+              <label htmlFor="anxiety1111">Anxiety</label>
             </div>
             <div>
               <input
@@ -2731,7 +2739,7 @@ const handlerepsychosocialSymptoms = (symptom) => {
                 checked={skinCheck}
                 onChange={(e) => setSkinCheck(!skinCheck)}
               />
-              <span>Resident denies skin concerns</span>
+              <span style={{marginBottom:"5px"}}>Resident denies skin concerns</span>
             </div>
           </div>
 
@@ -2982,11 +2990,14 @@ const handlerepsychosocialSymptoms = (symptom) => {
                   SAVED AND SIGNED
                 </button>
                 </div>
-                <div>
+                {
+                  filedForm &&   <div>
                   <button onClick={handlePrint2} className="upload-button signature_shift_margin" type="button" >
                   PRINT THIS FORM
                 </button>
                 </div>
+                }
+              
               </div> 
               <div>
                 {
@@ -3008,11 +3019,11 @@ const handlerepsychosocialSymptoms = (symptom) => {
             </div>
 
             <div className="form-actions hidePrint">
-            <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+            <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
               SUBMIT DETAILS
             </button>
             {
-              filedForm &&   <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+              filedForm &&   <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
             
               {
                     loading ? <Loader/> : "PREVIOUS FORM"

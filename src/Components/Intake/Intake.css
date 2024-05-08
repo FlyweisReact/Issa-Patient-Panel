@@ -128,7 +128,7 @@ align-items: center;
   .new_intakecontainer .small-card{
     width: 120px  ;
     margin: 0;
-    height: 150px;
+    height: fit-content;
     padding: 2px;
   }
   .new_intakecontainer .small-card img {

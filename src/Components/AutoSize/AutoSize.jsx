@@ -7,7 +7,7 @@ function AutoSize({type: type1,value,setValue,placeholder}) {
       const canvas = document.createElement('canvas');
       const context = canvas.getContext('2d');
       context.font = '16px Arial'; 
-      return context.measureText(text).width + 10; 
+      return context.measureText(text).width + 20; 
     };
   
   useEffect(() => {
@@ -28,7 +28,7 @@ function AutoSize({type: type1,value,setValue,placeholder}) {
     padding: '5px',
     fontSize: '16px',
     width: `${calculateWidth(value)}px`, 
-    minWidth: `${type1?"125px":"25px"}`,
+    minWidth: `${type1?"130px":"25px"}`,
     maxWidth: `100%`,
     boxSizing: 'border-box', 
     border:"none",

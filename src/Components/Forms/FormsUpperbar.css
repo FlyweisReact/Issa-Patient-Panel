@@ -160,6 +160,34 @@
   }
 }
 
+@media(max-width: 768px) {
+
+  .formsheading_updated_treatment{
+    width: 100%;
+    height: auto;
+  }
+  
+  .formsheading_updated_treatment_nursing{
+    width: 100%;
+  }
+  
+
+  .formsheading_faceSheet{
+    width: 100%;
+    height: auto;
+    padding: 10px 0;
+  }
+  .formsheading_safety_plane{
+    width: 100%;
+  }
+
+  .formsheading-initial-assestment{
+    width: 100%;
+    height: auto;
+  }
+
+}
+
 
 @media(max-width: 480px) {
   .formsheading2 {

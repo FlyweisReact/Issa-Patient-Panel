@@ -21,12 +21,15 @@ import { LoginForm } from "./Components/form/LoginForm";
 import FileUpload from "./Components/Appointments/FileUpload";
 import Treatmentplan_update from "./Components/Forms/TreatmentPlan_update";
 import Chat from "./chat/Chat";
+import Protected_Route from "./Protected_Route";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<LoginForm />} />
+
+        <Route element={<Protected_Route/>}>
         <Route
           path="/patient_panel"
           element={<Home Wcomponenet={Appointments} />}
@@ -64,6 +67,9 @@ function App() {
         <Route path="/update-profile" element={<UpdateProfile />} />
         <Route path="/manageappointment" element={<ManageAppointments />} />
         <Route path="/cancel_appointment" element={<CancelAppointment />} />
+        </Route>
+
+       
       </Routes>
     </Router>
   );

@@ -180,17 +180,28 @@ export const safety_form = async (payLoad) => {
   }
 };
 
-export const Safety_form_get = async (id,setGetApiData) => {
+
+
+export const Safety_form_get = async (id, setGetApiData, setLoading) => {
   try {
-    const {data} = await axios.get(
+    const { data } = await axios.get(
       `${BaseUrl}Patient/getResidentSafetyPlan/${id}`,
-      
       Token
     );
     setGetApiData(data?.data);
     return data;
-  } catch (e) {
-    // show_notification("fail !", `${e?.response?.data?.message}`, "danger");
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      if (setLoading) {
+        show_notification("fail !", `${error?.response?.data?.message}`, "danger");
+        setLoading(false);
+      }
+    }
+  }
+  finally {
+    if (setLoading) {
+      setLoading(false);
+    }
   }
 };
 
@@ -208,16 +219,26 @@ export const initialAssestment_form = async (payLoad) => {
   }
 };
 
-export const initial_assestment_get = async (id,setGetApiData) => {
+export const initial_assestment_get = async (id, setGetApiData, setLoading) => {
   try {
-    const {data} = await axios.get(
+    const { data } = await axios.get(
       `${BaseUrl}Patient/InitialAssessment/${id}`,
       Token
     );
     setGetApiData(data?.data);
     return data;
-  } catch (e) {
-    // show_notification("fail !", `${e?.response?.data?.message}`, "danger");
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      if (setLoading) {
+        show_notification("fail !", `${error?.response?.data?.message}`, "danger");
+        setLoading(false);
+      }
+    }
+  }
+  finally {
+    if (setLoading) {
+      setLoading(false);
+    }
   }
 };
 
@@ -236,16 +257,26 @@ export const patient_form = async (payLoad) => {
 };
 
 
-export const patient_form_treatment_get = async (id,setGetApiData) => {
+export const patient_form_treatment_get = async (id, setGetApiData, setLoading) => {
   try {
-    const {data} = await axios.get(
+    const { data } = await axios.get(
       `${BaseUrl}Patient/getTreatmentPlan/${id}`,
       Token
     );
     setGetApiData(data?.data);
     return data;
-  } catch (e) {
-    // show_notification("fail !", `${e?.response?.data?.message}`, "danger");
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      if (setLoading) {
+        show_notification("fail !", `${error?.response?.data?.message}`, "danger");
+        setLoading(false);
+      }
+    }
+  }
+  finally {
+    if (setLoading) {
+      setLoading(false);
+    }
   }
 };
 
@@ -263,17 +294,27 @@ export const Resident_form = async (payLoad) => {
   }
 };
 
-export const Resident_form_get = async (id,setGetApiData) => {
+
+export const Resident_form_get = async (id, setGetApiData, setLoading) => {
   try {
-    const {data} = await axios.get(
+    const { data } = await axios.get(
       `${BaseUrl}Patient/ResidentIntake/${id}`,
-      
       Token
     );
     setGetApiData(data?.data);
     return data;
-  } catch (e) {
-    // show_notification("fail !", `${e?.response?.data?.message}`, "danger");
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      if (setLoading) {
+        show_notification("fail !", `${error?.response?.data?.message}`, "danger");
+        setLoading(false);
+      }
+    }
+  }
+  finally {
+    if (setLoading) {
+      setLoading(false);
+    }
   }
 };
 
@@ -291,16 +332,27 @@ export const Nurssing_form = async (payLoad) => {
   }
 };
 
-export const Nurssing_form_get = async (id,setGetApiData) => {
+
+export const Nurssing_form_get = async (id, setGetApiData, setLoading) => {
   try {
-    const {data} = await axios.get(
+    const { data } = await axios.get(
       `${BaseUrl}Patient/getNursingAssessment/${id}`,
       Token
     );
     setGetApiData(data?.data);
     return data;
-  } catch (e) {
-    // show_notification("fail !", `${e?.response?.data?.message}`, "danger");
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      if (setLoading) {
+        show_notification("fail !", `${error?.response?.data?.message}`, "danger");
+        setLoading(false);
+      }
+    }
+  }
+  finally {
+    if (setLoading) {
+      setLoading(false);
+    }
   }
 };
 
@@ -318,17 +370,27 @@ export const faceSheet_form = async (payLoad) => {
   }
 };
 
-export const faceSheet_form_get = async (id,setGetApiData) => {
+
+export const faceSheet_form_get = async (id, setGetApiData, setLoading) => {
   try {
-    const {data} = await axios.get(
+    const { data } = await axios.get(
       `${BaseUrl}Patient/getFaceSheet/${id}`,
-      
       Token
     );
     setGetApiData(data?.data);
     return data;
-  } catch (e) {
-    // show_notification("fail !", `${e?.response?.data?.message}`, "danger");
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      if (setLoading) {
+        show_notification("fail !", `${error?.response?.data?.message}`, "danger");
+        setLoading(false);
+      }
+    }
+  }
+  finally {
+    if (setLoading) {
+      setLoading(false);
+    }
   }
 };
 

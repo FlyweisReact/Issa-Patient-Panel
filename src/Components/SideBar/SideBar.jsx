@@ -11,8 +11,12 @@ import { MdClose } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import logo from "../../img/OasisNotes.png";
 import { show_notification } from "../../Api_Collection/Api.js";
+import { useDispatch } from 'react-redux';
+import { LOGOUT } from '../../Store/authSlice.js';
 
 const Sidebar = ({ toggleMenu }) => {
+  const dispatch = useDispatch();
+  
   const navigate = useNavigate();
   const location = useLocation();
   const [activeItem, setActiveItem] = useState(null);
@@ -68,6 +72,7 @@ const Sidebar = ({ toggleMenu }) => {
         <div className="icon1">
           <IoMdLogOut
             onClick={() => {
+              dispatch(LOGOUT());
               show_notification(
                 "LogOut!",
                 "User_LogOut successfully",

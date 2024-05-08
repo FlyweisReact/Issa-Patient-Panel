@@ -398,6 +398,8 @@ const TreatmentPlanPrint = ({componentRef}) => {
   useEffect(() => {
     setInitialUpdate(getApiData?.name);
     setSaveAsDraft(getApiData?.saveAsDraft);
+    setResidentName(user?.residentName);
+    setDob(user?.dateOfBirth ? user?.dateOfBirth?.slice(0, 10) : "");
     setDate(getApiData?.date ? getApiData?.date?.slice(0, 10) : "");
     setAdminDate(
       getApiData?.admitDate ? getApiData?.admitDate.slice(0, 10) : ""
@@ -846,8 +848,7 @@ const TreatmentPlanPrint = ({componentRef}) => {
   useEffect(() => {
     setFiledForm(user?.treatmentPlan);
     setUserId(user?._id);
-    setResidentName(user?.fullName);
-    setDob(user?.dateOfBirth ? user?.dateOfBirth?.slice(0, 10) : "");
+    
   }, [user]);
 
   useEffect(() => {
@@ -3358,9 +3359,9 @@ const TreatmentPlanPrint = ({componentRef}) => {
                   </h6>
                 </div>
 
-                <div className="needs-interventions-container2 table-respnosive">
-                  <div className="needs-interventions-column2">
-                    <table>
+          
+                  <div className="needs-interventions-treatments">
+                    <table >
                       <thead>
                         <tr>
                           <th>Treatment Goals</th>
@@ -4097,7 +4098,7 @@ const TreatmentPlanPrint = ({componentRef}) => {
                       </tbody>
                     </table>
                   </div>
-                </div>
+               
 
                 <div className="form-actions  hidePrint">
                   <button

@@ -89,6 +89,7 @@ const UpperBar = ({ isMenuOpen, toggleMenu }) => {
   const openChattingModal = () => {
     setChattingModalOpen(true);
   };
+  
   const closeChattingModal = () => {
     setChattingModalOpen(false);
   };
@@ -136,7 +137,7 @@ const UpperBar = ({ isMenuOpen, toggleMenu }) => {
       {isProfileModalOpen && (
         <ProfileModal onClose={closeProfileModal}>
           <div className="profilemodal-container">
-            <div className="profilemodal-header">
+            <div className="profilemodal-header" >
               <img
                 src={user?.profilePic}
                 alt="Profile"

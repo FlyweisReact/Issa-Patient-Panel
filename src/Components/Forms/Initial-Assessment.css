@@ -94,7 +94,7 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  
+  flex-wrap: wrap;
 }
 
 .inner_field_aligment{
@@ -204,6 +204,7 @@
   /* margin-top: 1rem; */
   align-items: center;
   padding: 10px;
+  flex-wrap: wrap;
 }
 
 .form-field-single-update-care label {
@@ -941,7 +942,6 @@ input[type="checkbox"] {
   width: 100%;
   border: 1px solid black;
   overflow-y: auto;
-  
 }
 
 .needs-interventions-column2 table tr {
@@ -954,6 +954,31 @@ input[type="checkbox"] {
 }
 
 .needs-interventions-column2 table thead th {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+/* treatment print */
+.needs-interventions-treatments {
+  width: 100%;
+}
+
+.needs-interventions-treatments table {
+  width: 100%;
+  border: 1px solid black;
+  overflow-y: auto;
+}
+
+.needs-interventions-treatments table tr {
+  border: 1px solid black;
+}
+
+.needs-interventions-treatments table tr td {
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.needs-interventions-treatments table thead th {
   border: 1px solid black;
   padding: 10px;
 }

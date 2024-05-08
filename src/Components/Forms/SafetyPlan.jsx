@@ -161,9 +161,9 @@ function formatDate(dateString) {
   
   useEffect(()=>{
     // add patient name key and date key
-    // setUser();
-    // setUserId("");
-    // setDate("");
+    if(getApiData){
+      setUser(getApiData?.residentName);
+    setDate(getApiData?.dateOfBirth?getApiData.dateOfBirth?.slice(0,10):"");
     setWarning1(getApiData?.warningSigns?.[0]?.warning1);
     setWarning2(getApiData?.warningSigns?.[0]?.warning2);
     setWarning3(getApiData?.warningSigns?.[0]?.warning3);
@@ -204,23 +204,18 @@ function formatDate(dateString) {
     setSingIn(getApiData?.signature);
     setSignatureDate(formatDate(getApiData?.signatureDate));
     setSignatureTime(getApiData?.signatureTime);
+    }
+  
   },[getApiData])
 
   const [previusData,setPreviusData]=useState(false)
 
-  // useEffect(()=>{
-  //   if(previusData){
-  //     Safety_form_get(userId,setGetApiData);
-  //   }
-  // },[userId,previusData])
- 
+
+
   useEffect(() => {
     setLoading(true); 
     if (previusData) {
-      Safety_form_get(userId, (data) => {
-        setGetApiData(data);
-        setLoading(false); 
-      });
+      Safety_form_get(userId, setGetApiData, setLoading);
     } else {
       setLoading(false); 
     }
@@ -229,8 +224,7 @@ function formatDate(dateString) {
   useEffect(() => {
     setFiledForm(userDetail?.safetyPlan);
     setUserId(userDetail?._id);
-    setUser(userDetail?.fullName);
-    setDate(userDetail?.dateOfBirth?userDetail?.dateOfBirth.slice(0,10):"")
+    
   }, [userDetail]);
 
 
@@ -295,7 +289,8 @@ function formatDate(dateString) {
     const data = {
       saveAsDraft,
       patientId: userId,
-      date: date,
+      residentName:user,
+      dateOfBirth: date,
       warningSigns:[{
         warning1,
         warning2,
@@ -565,7 +560,7 @@ function formatDate(dateString) {
             </h5>
             <p>
               Things I can do to take my mind off my problems without contacting
-                other Person:
+                other's Person:
             </p>
             <div className="form-field-single-update">
                 <label >
@@ -1012,11 +1007,14 @@ function formatDate(dateString) {
                   SAVED AND SIGNED
                 </button>
                 </div>
-                <div>
-                    <button className="upload-button signature_shift_margin" type="button" onClick={()=>handlePrint2()}>
-                  PRINT THIS FORM
-                </button>
-                </div>
+                {
+                  filedForm &&  <div>
+                  <button className="upload-button signature_shift_margin" type="button" onClick={()=>handlePrint2()}>
+                PRINT THIS FORM
+              </button>
+              </div>
+                }
+               
               </div>
               <div >
                 {
@@ -1039,11 +1037,11 @@ function formatDate(dateString) {
            
           </div>
           <div className="form-actions hidePrint">
-          <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+          <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
               SUBMIT DETAILS
             </button>
             {
-              filedForm &&   <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+              filedForm &&   <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
             
               {
                     loading ? <Loader/> : "PREVIOUS FORM"

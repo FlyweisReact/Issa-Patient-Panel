@@ -43,8 +43,7 @@ const InitialAssessment = () => {
       // print under line hidden
       var form_field_gender = document.getElementsByClassName("form-field-child-gender");
 
-      // var form_field_single_update=document.getElementsByClassName("form-field-single-update");
-
+  
 
     for (let i = 0; i < hideData.length; i++) {
       hideData[i].style.display = "block";
@@ -66,6 +65,7 @@ const InitialAssessment = () => {
     for (let i = 0; i < form_field_gender.length; i++) {
       form_field_gender[i].style.borderBottom = "none";
     }
+
 
 
 
@@ -94,6 +94,8 @@ const InitialAssessment = () => {
         form_field_gender[i].style.borderBottom = "1px solid black";
       }
 
+   
+
 
     }, 1000);
   };
@@ -110,7 +112,6 @@ const InitialAssessment = () => {
   const [signInModel8, setSigInModel8] = useState(false);
 
   const [filedForm,setFiledForm]=useState("")
-  const [user, setUser] = useState("");
   const [userData, setUserData] = useState("");
   const [getApiData,setGetApiData]=useState([]);
   //state define
@@ -1396,12 +1397,12 @@ return arr;
   useEffect(()=>{
 
     if(getApiData){
-
-      
+setSex(getApiData?.gender)
+setDob(getApiData?.dob?getApiData.dob.slice(0,10):"")
+setResidentName(getApiData?.fullName)
 setAssessmentType(getApiData?.assessmentType)
 setHasNotified(getApiData?.hasNotified);
 setAssessmentOn(getApiData?.assessmentOn);
-setDob(getApiData?.dob);
 setCompanyName(getApiData?.companyName);
 setResidentName(getApiData?.hasNotified);
 setSex(getApiData?.sex);
@@ -2217,21 +2218,11 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
   const [previusData,setPreviusData]=useState(false);
 
-  // useEffect(()=>{
-  //   if(previusData){
-  //     initial_assestment_get(patientId,setGetApiData);
-  //   }
-    
-  // },[patientId,previusData])
-
 
   useEffect(() => {
     setLoading(true); 
     if (previusData) {
-      initial_assestment_get(patientId, (data) => {
-        setGetApiData(data);
-        setLoading(false); 
-      });
+      initial_assestment_get(patientId, setGetApiData, setLoading);
     } else {
       setLoading(false); 
     }
@@ -2239,15 +2230,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
   useEffect(() => {
     setPatientId(userData?._id);
-    setUser(userData?.fullName);
-    setSex(userData?.gender)
+    // setSex(userData?.gender)
     setCompanyName(userData?.companyName)
-    setDob(userData?.dateOfBirth?userData.dateOfBirth.slice(0,10):"")
-    setResidentName(userData?.fullName)
+    // setDob(userData?.dateOfBirth?userData.dateOfBirth.slice(0,10):"")
+    // setResidentName(userData?.fullName)
     setFiledForm(userData?.initialAssessment)
   }, [userData]);
-
-  console.log(userData,"userDtate");
 
   useEffect(() => {
     user_detail(setUserData);
@@ -2268,7 +2256,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
     { label: "Team work", value: "Team work" },
     { label: "Family", value: "Family" },
     { label: "Writing", value: "Writing" },
-    { label: "Coloring", value: "Coloring" },
     { label: "Art", value: "Art" },
   ];
 
@@ -2907,9 +2894,11 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
 
     const data = {
+      residentName,
+      dateOfBirth:dob,
+      sex,
       assessmentType,
       patientId:patientId,
-      dob,
       hasNotified,
       assessmentOn,
       companyName,
@@ -5606,6 +5595,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     onChange={(e) => setAhcccsNumber(e.target.value)}
                   />
                 </div>
+
                 <div className="border-bootom-line"></div>
 
                 <div className="form-field-update">
@@ -13581,15 +13571,21 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         SAVED AND SIGNED
                       </button>
                     </div>
-                    <div>
-                      <button
-                        className="upload-button signature_shift_margin"
-                        type="button"
-                        onClick={handlePrint2}
-                      >
-                        PRINT THIS FORM
-                      </button>
-                    </div>
+                  {
+                      
+                        filedForm &&   <div>
+
+                        <button
+                          className="upload-button signature_shift_margin"
+                          type="button"
+                          onClick={handlePrint2}
+                        >
+                          PRINT THIS FORM
+                        </button>
+                      </div>
+                      
+                  }
+                  
                   </div>
                   <div>
                     {bhpSignature && (
@@ -13615,12 +13611,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
           
           <div className="form-actions hidePrint">
-              <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+              <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
               SUBMIT DETAILS
             </button>
 
             {
-              filedForm &&   <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+              filedForm &&   <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
             
               {
                     loading ? <Loader/> : "PREVIOUS FORM"

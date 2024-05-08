@@ -488,6 +488,8 @@ const Treatmentplan_update = () => {
   useEffect(() => {
     setInitialUpdate(getApiData?.name);
     setSaveAsDraft(getApiData?.saveAsDraft);
+    setResidentName(getApiData?.residentName);
+    setDob(getApiData?.dateOfBirth?getApiData?.dateOfBirth?.slice(0,10):"");
     setDate(getApiData?.date ? getApiData?.date?.slice(0, 10) : "");
     setAdminDate(
       getApiData?.admitDate ? getApiData?.admitDate.slice(0, 10) : ""
@@ -933,23 +935,36 @@ const Treatmentplan_update = () => {
   const [previusData,setPreviusData]=useState(false)
 
 
+  // useEffect(() => {
+  //   setLoading(true); 
+  //   if (previusData) {
+  //     patient_form_treatment_get(userId, (data) => {
+  //       setGetApiData(data);
+  //       setLoading(false); 
+  //     });
+  //   } else {
+  //     setLoading(false); 
+  //   }
+  // }, [userId, previusData]);
+
+  
   useEffect(() => {
     setLoading(true); 
     if (previusData) {
-      patient_form_treatment_get(userId, (data) => {
-        setGetApiData(data);
-        setLoading(false); 
-      });
+      patient_form_treatment_get(userId, setGetApiData, setLoading);
     } else {
       setLoading(false); 
     }
   }, [userId, previusData]);
 
+
+
+
   useEffect(() => {
     setFiledForm(user?.treatmentPlan);
     setUserId(user?._id);
-    setResidentName(user?.fullName);
-    setDob(user?.dateOfBirth ? user?.dateOfBirth?.slice(0, 10) : "");
+    // setResidentName(user?.fullName);
+    // setDob(user?.dateOfBirth ? user?.dateOfBirth?.slice(0, 10) : "");
   }, [user]);
 
   useEffect(() => {
@@ -1022,6 +1037,8 @@ const Treatmentplan_update = () => {
 
     const data = {
       saveAsDraft,
+      residentName,
+      dateOfBirth: dob,
       patientId: userId,
       name: initialUpdate,
       dateOfBirth: dob,
@@ -1363,6 +1380,7 @@ const Treatmentplan_update = () => {
   }, [counselingOptions, supportSystem]);
   // Presenting Problems
   const presentingPriceOption = [
+    { label: "Anxiety", value: "Anxiety" },
     { label: "Depression", value: "Depression" },
     { label: "Mood Changes", value: "Mood Changes" },
     {
@@ -1370,9 +1388,9 @@ const Treatmentplan_update = () => {
       value: "Trouble Falling / staying Asleep",
     },
     { label: "Mood Swings", value: "Mood Swings" },
-    { label: "Social Withdrawals", value: "Social Withdrawals" },
+    { label: "Social Withdrawal", value: "Social Withdrawal" },
     { label: "Changes in Eating habits", value: "Changes in Eating habits" },
-    { label: "Feeling of anger", value: "Feeling of anger" },
+    { label: "Feelings of anger", value: "Feelings of anger" },
     { label: "Negative thoughts", value: "Negative thoughts" },
     { label: "Confused thinking ", value: "Confused thinking " },
     { label: "Irritability", value: "Irritability" },
@@ -1455,15 +1473,17 @@ const Treatmentplan_update = () => {
   const strengthsOption = [
     { label: "Self Motivated", value: "Self Motivated" },
     { label: "Loving", value: "Loving" },
-    { label: "Honest", value: "Honest" },
-    { label: "Helping Others", value: "Helping Others" },
-    { label: "Communication", value: "Communication" },
+    { label: "Honesty", value: "Honesty" },
+    { label: "Like to help others ", value: "Like to help others " },
+    { label: "Good at Communication ", value: "Good at Communication " },
     { label: "Creative", value: "Creative" },
     { label: "Patient", value: "Patient" },
-    { label: "Dedication", value: "Dedication" },
-    { label: "Coloring", value: "Coloring" },
-    { label: "Decision Making", value: "Decision Making" },
-    { label: "Team Work", value: "Team Work" },
+    { label: "Dedicated", value: "Dedicated" },
+    { label: "Artistic", value: "Artistic" },
+    { label: "Friendly", value: "Friendly" },
+    { label: "Team work", value: "Team work" },
+    { label: "Confident", value: "Confident" },
+    { label: "Intelligent", value: "Intelligent" },
   ];
 
   const handleKeyStrengths = (event) => {
@@ -1507,21 +1527,18 @@ const Treatmentplan_update = () => {
     { label: "Cognitive", value: "Cognitive" },
     { label: "Lack of Insight", value: "Lack of Insight" },
     { label: "Financial", value: "Financial" },
-    { label: "Refusal of Treatment", value: "Refusal of Treatment" },
     { label: "Social Stigma", value: "Social Stigma" },
-    { label: "Racial", value: "Racial" },
+    { label: "Refusal of Treatment", value: "Refusal of Treatment" },
+
     {
-      label: "Limited availibility to Mental Health awareness & Education",
-      value: "Limited availibility to Mental Health awareness & Education",
+      label: "Limited mental health literacy",
+      value: "Limited mental health literacy",
     },
     {
-      label: "Lack of Mental Health professionals & Services",
-      value: "Lack of Mental Health professionals & Services",
+      label: "Limited  mental health services",
+      value: "Limited  mental health services",
     },
-    {
-      label: "Risk Assessment / Warning Signs & Symptoms of Suicidal Ideations",
-      value: "Risk Assessment / Warning Signs & Symptoms of Suicidal Ideations",
-    },
+  
   ];
 
   const handleKeyBarriers = (event) => {
@@ -1763,8 +1780,8 @@ const Treatmentplan_update = () => {
   const option3Option = [
     { label: "Resident to Create resume", value: "Resident to Create resume" },
     {
-      label: "Resident will Call, email, or contact ",
-      value: "Resident will Call, email, or contact ",
+      label: "Resident will Call, email, or contact agencies for employment",
+      value: "Resident will Call, email, or contact agencies for employment",
     },
     {
       label: "Resident to learn mock interview",
@@ -2816,16 +2833,16 @@ const Treatmentplan_update = () => {
                     <input
                       type="checkbox"
                       id="talkingorwriting"
-                      checked={behavioralSymptoms.includes("talkingorwriting")}
+                      checked={behavioralSymptoms.includes("TalkingorwritingAboutdeath")}
                       onChange={() =>
-                        handleCheckboxChangeBehavioral("talkingorwriting")
+                        handleCheckboxChangeBehavioral("TalkingorwritingAboutdeath")
                       }
                     />
                     <label htmlFor="talkingorwriting">
-                      Talking, or writing
+                      Talking, or writing About death 
                     </label>
                   </div>
-                  <div>
+                  {/* <div>
                     <input
                       type="checkbox"
                       id="aboutdeath"
@@ -2835,7 +2852,7 @@ const Treatmentplan_update = () => {
                       }
                     />
                     <label htmlFor="aboutdeath">About death </label>
-                  </div>
+                  </div> */}
 
                   <div>
                     <input
@@ -3371,6 +3388,21 @@ const Treatmentplan_update = () => {
                     />
                     <label htmlFor="Conflict resolution">
                       Conflict resolution
+                    </label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="Sponsors, and support programs & people"
+                      checked={interventionsImplemented.includes(
+                        "Sponsors, and support programs & people"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChange("Sponsors, and support programs & people")
+                      }
+                    />
+                    <label htmlFor="Sponsors, and support programs & people">
+                    Sponsors, and support programs & people
                     </label>
                   </div>
                   <div>
@@ -4938,7 +4970,7 @@ tableshow7 &&  <tr>
                     />
                     <label htmlFor="personalFinances">
                       Resident requires Assistance to maintain personal funds
-                      and/or hand personal finances
+                      and/or handle personal finances
                     </label>
                   </div>
                 </div>
@@ -5641,15 +5673,19 @@ tableshow7 &&  <tr>
                       SAVED AND SIGNED
                     </button>
                   </div>
-                  <div>
-                    <button
-                      className="upload-button signature_shift_margin"
-                      type="button"
-                      onClick={handlePrint2}
-                    >
-                      PRINT THIS FORM
-                    </button>
-                  </div>
+
+                    {
+                      filedForm &&  <div>
+                      <button
+                        className="upload-button signature_shift_margin"
+                        type="button"
+                        onClick={handlePrint2}
+                      >
+                        PRINT THIS FORM
+                      </button>
+                    </div>
+                    }
+                 
                 </div>
                 <div>
                   {signatureBhp && (
@@ -5671,25 +5707,12 @@ tableshow7 &&  <tr>
               )}
 
               <div className="form-actions hidePrint">
-                {/* <button
-                  type="submit"
-                  style={{
-                    padding: "5px 20px",
-                    border: "none",
-                    outline: "none",
-                    backgroundColor: "#1A9FB2",
-                    borderRadius: "5px",
-                    marginBottom: "2.5rem",
-                    textAlign: "center",
-                  }}
-                >
-                  SUBMIT DETAILS
-                </button> */}
-                 <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+              
+                 <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
               SUBMIT DETAILS
             </button>
             {
-              filedForm &&   <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
+              filedForm &&   <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
             
               {
                     loading ? <Loader/> : "PREVIOUS FORM"
