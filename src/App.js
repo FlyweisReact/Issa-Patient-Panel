@@ -54,7 +54,7 @@ function App() {
           element={<Home Wcomponenet={NursingAssessment} />}
         />
         <Route
-          path="/treatmentplanUpdate"
+          path="/treatmentplan"
           element={<Home Wcomponenet={Treatmentplan_update} />}
         />
         <Route

@@ -2567,7 +2567,7 @@ const Treatmentplan_update = () => {
                 >
                   ADLS:
                 </label>
-                <div className="yeschechbox-review">
+                <div className="nursing-Cardiovascular">
                   <div>
                     <input
                       type="checkbox"
@@ -2587,7 +2587,7 @@ const Treatmentplan_update = () => {
                       onChange={() => setAdls("personalCareLevel")}
                     />
                     <label htmlFor="personalCareLevel">
-                      Personal care level
+                      Personal care level – See Attached personal care treatment plan
                     </label>
                   </div>
                 </div>

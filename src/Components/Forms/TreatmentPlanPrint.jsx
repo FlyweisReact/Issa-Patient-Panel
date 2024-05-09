@@ -2269,7 +2269,7 @@ const TreatmentPlanPrint = ({componentRef}) => {
                     onChange={(e) => setBtext(e.target.value)}
                   />
                 </div>
-                <div className="box-image-container">
+                <div className="box-image-container" style={{marginTop: "5rem"}}>
                   <div className="form-field-single-update">
                     <label>Primary Care Provider:</label>
                     {/* khf */}
@@ -5189,16 +5189,7 @@ const TreatmentPlanPrint = ({componentRef}) => {
               </div>
 
               <div className="form-field-update">
-                <div className="form-field-child">
-                  <label>First and Last Name:</label>
-                  <input
-                    type="text"
-                    value={nameResident}
-                    placeholder="Enter text"
-                    required
-                    onChange={(e) => setNameResident(e.target.value)}
-                  />
-                </div>
+               
 
                 <div class="file-upload-box" style={{ marginTop: "0.5rem" }}>
                   <div className="file-upload-box-child hidePrint">
@@ -5220,7 +5211,7 @@ const TreatmentPlanPrint = ({componentRef}) => {
                   <div>
                     {signatureResident && (
                       <p className="signature_name_print">
-                        Digitally Sign by {signatureResident} {dateResident}{" "}
+                      {nameResident}{" "}Digitally Sign by {signatureResident} {dateResident}{" "}
                         {timeResident}
                       </p>
                     )}
@@ -5239,16 +5230,6 @@ const TreatmentPlanPrint = ({componentRef}) => {
               </div>
 
               <div className="form-field-update">
-                <div className="form-field-child">
-                  <label>First and Last Name:</label>
-                  <input
-                    type="text"
-                    value={nameFacilityRep}
-                    placeholder="Enter text"
-                    required
-                    onChange={(e) => setNameFacilityRep(e.target.value)}
-                  />
-                </div>
 
                 <div className="form-field-child">
                   <label>Facility Representative:</label>
@@ -5282,7 +5263,7 @@ const TreatmentPlanPrint = ({componentRef}) => {
                 <div>
                   {signatureFacilityRep && (
                     <p className="signature_name_print">
-                      Digitally Sign by {signatureFacilityRep} {dateFacilityRep}{" "}
+                      {nameFacilityRep}{" "}Digitally Sign by {signatureFacilityRep} {dateFacilityRep}{" "}
                       {timeFacality}
                     </p>
                   )}
@@ -5300,16 +5281,7 @@ const TreatmentPlanPrint = ({componentRef}) => {
               )}
 
               <div className="form-field-update ">
-                <div className="form-field-child">
-                  <label>First and Last Name:</label>
-                  <input
-                    type="text"
-                    value={nameBhp}
-                    placeholder="Enter text"
-                    required
-                    onChange={(e) => setNameBhp(e.target.value)}
-                  />
-                </div>
+              
                 <div className="form-field-child">
                   <label>Behavioral Health Professional:</label>
                   <input
@@ -5355,7 +5327,7 @@ const TreatmentPlanPrint = ({componentRef}) => {
                 <div>
                   {signatureBhp && (
                     <p className="signature_name_print">
-                      Digitally Sign by {signatureBhp} {dateBhp} {timeBhp}
+                      {nameBhp}{" "}Digitally Sign by {signatureBhp} {dateBhp} {timeBhp}
                     </p>
                   )}
                 </div>

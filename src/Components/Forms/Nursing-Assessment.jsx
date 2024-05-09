@@ -160,8 +160,10 @@ for (let i = 0; i < bodyiamge.length; i++) {
     useState("");
   const [reviewOfSystemsCardiovascular, setReviewOfSystemsCardiovascular] =
     useState([]);
+  const [cardiovascularBloodPressure,setCardiovascularBloodPressure]=useState("")
     const [reviewOfSystemsCardiovascularOther,setReviewOfSystemsCardiovascularOther]=useState("")
   const [reviewOfSystemsEndocrine, setReviewOfSystemsEndocrine] = useState([]);
+  const [endocrineBloodSuger,setEndocrineBloodSuger]=useState("");
   const [reviewOfSystemsEndocrineOther,setReviewOfSystemsEndocrineOther]=useState("")
   const [reviewOfSystemsGastrointestinal, setReviewOfSystemsGastrointestinal] =
     useState([]);
@@ -274,6 +276,8 @@ function formatDate(dateString) {
       setReviewOfSystemsCardiovascular(getApiData?.reviewOfSystemsCardiovascular);
       setReviewOfSystemsCardiovascularOther(getApiData?.reviewOfSystemsCardiovascularComment)
       setReviewOfSystemsEndocrine(getApiData?.reviewOfSystemsEndocrine);
+      setCardiovascularBloodPressure(getApiData?.cardiovascularBloodPressure);
+      setEndocrineBloodSuger(getApiData?.endocrineBloodSuger);
       setReviewOfSystemsEndocrineOther(getApiData?.reviewOfSystemsEndocrineComment)
       setReviewOfSystemsGastrointestinal(getApiData?.reviewOfSystemsGastrointestinal);
       setReviewOfSystemsGastrointestinalOther(getApiData?.reviewOfSystemsGastrointestinalComment)
@@ -390,6 +394,8 @@ function formatDate(dateString) {
     setVitalsHeightInches(0);
     setAllergies("");
     setReviewOfSystemsConstitutional([]);
+    setCardiovascularBloodPressure("")
+    setEndocrineBloodSuger("")
     setReviewOfSystemsConstitutionalOther("")
     setReviewOfSystemsCardiovascular([]);
     setReviewOfSystemsCardiovascularOther("")
@@ -473,8 +479,10 @@ function formatDate(dateString) {
 reviewOfSystemsConstitutional,
 reviewOfSystemsConstitutionalComment:reviewOfSystemsConstitutionalOther,
 reviewOfSystemsCardiovascular,
+cardiovascularBloodPressure,
 reviewOfSystemsCardiovascularComment:reviewOfSystemsCardiovascularOther,
 reviewOfSystemsEndocrine,
+endocrineBloodSuger,
 reviewOfSystemsEndocrineComment:reviewOfSystemsEndocrineOther,
 reviewOfSystemsGastrointestinal,
 reviewOfSystemsGastrointestinalComment:reviewOfSystemsGastrointestinalOther,
@@ -577,6 +585,7 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
       }
     });
 };
+
 
 const handlereviewOfSystemsEndocrine = (symptom) => {
   setReviewOfSystemsEndocrine(prevState => {
@@ -1144,11 +1153,11 @@ const handlerepsychosocialSymptoms = (symptom) => {
               <input
                 type="checkbox"
            
-              
+                id="DENIES222"
                 checked={reviewOfSystemsConstitutional?.includes("DENIES")}
                 onChange={() => handlereviewOfSystemsConstitutional("DENIES")}
               />
-              <label >DENIES</label>
+              <label htmlFor="DENIES222">DENIES</label>
             </div>
             <div>
               <input
@@ -1260,11 +1269,11 @@ const handlerepsychosocialSymptoms = (symptom) => {
             <div>
               <input
                 type="checkbox"
-              
+                id="DENIES111"
                 checked={reviewOfSystemsCardiovascular?.includes("DENIES")}
                 onChange={() => handlereviewOfSystemsCardiovascular("DENIES")}
               />
-              <label htmlFor="DENIES">DENIES</label>
+              <label htmlFor="DENIES111">DENIES</label>
             </div>
             <div>
               <input
@@ -1328,6 +1337,51 @@ const handlerepsychosocialSymptoms = (symptom) => {
               <label htmlFor="Irregular heartbeat">Irregular heartbeat</label>
             </div>
           </div>
+
+          
+          <div className="nursing-Cardiovascular">
+           <div>
+                <label htmlFor="Is your blood pressure under control?">Is your blood pressure under control?</label>
+              </div> 
+               <div>
+              <input
+                type="checkbox"
+                id="Yes"
+                checked={cardiovascularBloodPressure === "Yes"}
+                onChange={() => setCardiovascularBloodPressure("Yes")}
+              />
+                <label htmlFor="Yes">Yes</label>
+              </div> 
+               <div>
+              <input
+                type="checkbox"
+                id="no"
+                checked={cardiovascularBloodPressure === "No"}
+                onChange={() => setCardiovascularBloodPressure("No")}
+              />
+                <label htmlFor="no">No</label>
+              </div> 
+               <div>
+              <input
+                type="checkbox"
+                id="Unsure"
+                checked={cardiovascularBloodPressure === "Unsure"}
+                onChange={() => setCardiovascularBloodPressure("Unsure")}
+              />
+                <label htmlFor="Unsure">Unsure</label>
+              </div>
+              <div>
+              <input
+                type="checkbox"
+                id="N/A"
+                checked={cardiovascularBloodPressure === "N/A"}
+                onChange={() => setCardiovascularBloodPressure("N/A")}
+              />
+                <label htmlFor="N/A">N/A</label>
+              </div>
+              </div>
+
+      
         
             <div className="form-field">
               <label htmlFor="reviewOfSystemsCardiovascularOther">Comment:</label>
@@ -1404,13 +1458,55 @@ const handlerepsychosocialSymptoms = (symptom) => {
             <div>
               <input
                 type="checkbox"
-                id="N/a"
-                checked={reviewOfSystemsEndocrine?.includes("N/a")}
-                onChange={() => handlereviewOfSystemsEndocrine("N/a")}
+                id="Dry skin"
+                checked={reviewOfSystemsEndocrine?.includes("Dry skin")}
+                onChange={() => handlereviewOfSystemsEndocrine("Dry skin")}
               />
-                <label htmlFor="N/a">N/A</label>
+                <label htmlFor="Dry skin">Dry skin</label>
               </div> 
           </div>
+
+          <div className="nursing-Cardiovascular">
+           <div>
+                <label htmlFor="Is resident’s blood sugar under control?">Is resident’s blood sugar under control?</label>
+              </div> 
+               <div>
+              <input
+                type="checkbox"
+                id="Yes1"
+                checked={endocrineBloodSuger === "Yes"}
+                onChange={() => setEndocrineBloodSuger("Yes")}
+              />
+                <label htmlFor="Yes1">Yes</label>
+              </div> 
+               <div>
+              <input
+                type="checkbox"
+                id="no1"
+                checked={endocrineBloodSuger === "No"}
+                onChange={() => setEndocrineBloodSuger("No")}
+              />
+                <label htmlFor="no1">No</label>
+              </div> 
+               <div>
+              <input
+                type="checkbox"
+                id="Unsure1"
+                checked={endocrineBloodSuger === "Unsure"}
+                onChange={() => setEndocrineBloodSuger("Unsure")}
+              />
+                <label htmlFor="Unsure1">Unsure</label>
+              </div>
+              <div>
+              <input
+                type="checkbox"
+                id="N/A1"
+                checked={endocrineBloodSuger === "N/A"}
+                onChange={() => setEndocrineBloodSuger("N/A")}
+              />
+                <label htmlFor="N/A1">N/A</label>
+              </div>
+              </div>
           
            <div className="form-field">
               <label htmlFor="reviewOfSystemsEndocrineOther">Comment:</label>

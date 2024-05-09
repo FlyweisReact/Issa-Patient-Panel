@@ -199,6 +199,19 @@
 }
 
 /* nursing assestment */
+.nursing-Cardiovascular{
+display: flex;
+gap: 1rem;
+flex-wrap: wrap;
+}
+
+.nursing-Cardiovascular > div{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+
 .form-field-single-update-care {
   display: flex;
   /* margin-top: 1rem; */
