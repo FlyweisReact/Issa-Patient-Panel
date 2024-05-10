@@ -74,7 +74,7 @@ useEffect(()=>{
           treatment &&  <div className="small-card">
           <img src={intake3} alt="Icon" className="card-icon" />
           <p>Treatment Plan</p>
-          <Link to={"/treatmentplanUpdate"}>
+          <Link to={"/treatmentplan"}>
             <span>
               <MdOutlineFileUpload /> upload
             </span>

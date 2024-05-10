@@ -552,6 +552,40 @@ const InitialAssessment = () => {
     substanceAbuseHistoryDataLengthOfSobrietyOTC,
     setSubstanceAbuseHistoryDataLengthOfSobrietyOTC,
   ] = useState("");
+    //Cocaine
+    const [
+      substanceAbuseHistoryDataAgeOfFirstUseCocaine,
+      setSubstanceAbuseHistoryDataAgeOfFirstUseCocaine,
+    ] = useState("");
+    const [
+      substanceAbuseHistoryDataLastUseCocaine,
+      setSubstanceAbuseHistoryDataLastUseCocaine,
+    ] = useState("");
+    const [
+      substanceAbuseHistoryDataFrequencyCocaine,
+      setSubstanceAbuseHistoryDataFrequencyCocaine,
+    ] = useState("");
+    const [
+      substanceAbuseHistoryDataLengthOfSobrietyCocaine,
+      setSubstanceAbuseHistoryDataLengthOfSobrietyCocaine,
+    ] = useState("");
+      //Hallucinogens
+  const [
+    substanceAbuseHistoryDataAgeOfFirstUseHallucinogens,
+    setSubstanceAbuseHistoryDataAgeOfFirstUseHallucinogens,
+  ] = useState("");
+  const [
+    substanceAbuseHistoryDataLastUseHallucinogens,
+    setSubstanceAbuseHistoryDataLastUseHallucinogens,
+  ] = useState("");
+  const [
+    substanceAbuseHistoryDataFrequencyHallucinogens,
+    setSubstanceAbuseHistoryDataFrequencyHallucinogens,
+  ] = useState("");
+  const [
+    substanceAbuseHistoryDataLengthOfSobrietyHallucinogens,
+    setSubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens,
+  ] = useState("");
 
   // arr the value in array
   const [typeArray, setTypeArray] = useState([]);
@@ -923,6 +957,11 @@ const InitialAssessment = () => {
   const [ToiletingGoodNeedAssist,setToiletingGoodNeedAssist]=useState(null);
   const [ToiletingComments,setToiletingComments]=useState("");
 
+  const [TakingGood,setTakingGood]=useState(false);
+  const [TakingFair,setTakingFair]=useState(false);
+  const [TakingNotSoGood,setTakingNotSoGood]=useState(false);
+  const [TakingGoodNeedAssist,setTakingGoodNeedAssist]=useState(null);
+  const [TakingComments,setTakingComments]=useState("");
     // Current Independent Living Skills:
     const [otherCurrentOther,setOtherCurrentOther]=useState("");
     const [otherCurrentGood,setOtherCurrentGood]=useState(false);
@@ -1285,6 +1324,8 @@ const [type9,setType9]=useState(true);
 const [type10,setType10]=useState(true);
 const [type11,setType11]=useState(true);
 const [type12,setType12]=useState(true);
+const [type13,setType13]=useState(true);
+const [type14,setType14]=useState(true);
 
 const TypeDelete=(index)=>{
   const tempMedicalDelet=[...typeArray];
@@ -1302,6 +1343,7 @@ const [Independent6,setIndependent6]=useState(true);
 const [Independent7,setIndependent7]=useState(true);
 const [Independent8,setIndependent8]=useState(true);
 const [Independent9,setIndependent9]=useState(true);
+const [Independent10,setIndependent10]=useState(true);
 
 
 const IndependentDelete=(index)=>{
@@ -1664,7 +1706,23 @@ setSubstanceAbuseHistoryDataFrequencyOTC(getApiData?.substanceAbuseHistoryData?.
 setSubstanceAbuseHistoryDataLengthOfSobrietyOTC(getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety
   ?{label:getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety}:"");
 
-setTypeArray(getApiData?.substanceAbuseHistoryData?getApiArrayData(12,getApiData?.substanceAbuseHistoryData?.length,getApiData?.substanceAbuseHistoryData):[]);
+  setSubstanceAbuseHistoryDataAgeOfFirstUseCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.ageOfFirstUse);
+  setSubstanceAbuseHistoryDataLastUseCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[12]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[12]?.lastUse}:"");
+  setSubstanceAbuseHistoryDataFrequencyCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[12]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[12]?.frequency}:"");
+  setSubstanceAbuseHistoryDataLengthOfSobrietyCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[12]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[12]?.lengthOfSobriety}:"");
+
+  setSubstanceAbuseHistoryDataAgeOfFirstUseHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.ageOfFirstUse);
+  setSubstanceAbuseHistoryDataLastUseHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[13]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[13]?.lastUse}:"");
+  setSubstanceAbuseHistoryDataFrequencyHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[13]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[13]?.frequency}:"");
+  setSubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[13]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[13]?.lengthOfSobriety}:"");
+
+setTypeArray(getApiData?.substanceAbuseHistoryData?getApiArrayData(14,getApiData?.substanceAbuseHistoryData?.length,getApiData?.substanceAbuseHistoryData):[]);
 
 // start 
 setNoneReportedOrObserved(
@@ -2055,11 +2113,18 @@ setToiletingGoodNeedAssist(getApiData?.independentLivingSkills?.[8]?.needAssist)
 setToiletingComments(getApiData?.independentLivingSkills?.[8]?.comments);
 // setOtherCurrentOther(getApiArrayData?.independentLivingSkills?.[0]?.comments);
 
-setOtherCurrentGood(getApiData?.independentLivingSkills?.[9]?.good);
-setOtherCurrentFair(getApiData?.independentLivingSkills?.[9]?.fair);
-setOtherCurrentNotSoGood(getApiData?.independentLivingSkills?.[9]?.otherCurrentNotSoGood);
-setOtherCurrentNeed(getApiData?.independentLivingSkills?.[9]?.needAssist);
-setOtherCurrentComment(getApiData?.independentLivingSkills?.[9]?.comments);
+// setOtherCurrentGood(getApiData?.independentLivingSkills?.[9]?.good);
+// setOtherCurrentFair(getApiData?.independentLivingSkills?.[9]?.fair);
+// setOtherCurrentNotSoGood(getApiData?.independentLivingSkills?.[9]?.otherCurrentNotSoGood);
+// setOtherCurrentNeed(getApiData?.independentLivingSkills?.[9]?.needAssist);
+// setOtherCurrentComment(getApiData?.independentLivingSkills?.[9]?.comments);
+
+
+setTakingGood(getApiData?.independentLivingSkills?.[9]?.good);
+setTakingFair(getApiData?.independentLivingSkills?.[9]?.fair);
+setTakingNotSoGood(getApiData?.independentLivingSkills?.[9]?.otherCurrentNotSoGood);
+setTakingGoodNeedAssist(getApiData?.independentLivingSkills?.[9]?.needAssist);
+setTakingComments(getApiData?.independentLivingSkills?.[9]?.comments);
 
 setHandleRiskFactorActivityArray(getApiData?.independentLivingSkills?getApiArrayData(10,getApiData?.independentLivingSkills?.length,getApiData?.independentLivingSkills):[]);
 
@@ -2617,6 +2682,22 @@ setBhpTime(getApiData?.bhpInformation?.time);
         lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyOTC?.value,
         state: type12
       },
+      {
+        types: "Cocaine",
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseCocaine,
+        lastUse: substanceAbuseHistoryDataLastUseCocaine?.value,
+        frequency: substanceAbuseHistoryDataFrequencyCocaine?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyCocaine?.value,
+        state: type13
+      },
+      {
+        types: "Hallucinogens",
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseHallucinogens,
+        lastUse: substanceAbuseHistoryDataLastUseHallucinogens?.value,
+        frequency: substanceAbuseHistoryDataFrequencyHallucinogens?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyHallucinogens?.value,
+        state: type14
+      },
     ]
 
     const typeArrayTempAns=[ ...typeArrayTemp,...typeArray]
@@ -2702,6 +2783,15 @@ setBhpTime(getApiData?.bhpInformation?.time);
           needAssist: ToiletingGoodNeedAssist,
           comments: ToiletingComments,
           state: Independent9
+        },
+        {
+          type: "Taking medications",
+          good: TakingGood,
+          fair: TakingFair,
+          otherCurrentNotSoGood:TakingNotSoGood,
+          needAssist: TakingGoodNeedAssist,
+          comments: TakingComments,
+          state: Independent10
         },
       ]
 
@@ -3590,8 +3680,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
     { label: "Stabilization", value: "Stabilization" },
     { label: "Detox", value: "Detox" },
     {
-      label: "DTS/DTO Other (Please specify)",
-      value: "DTS/DTO Other (Please specify)",
+      label: "DTS/DTO",
+      value: "DTS/DTO",
     },
   ];
 
@@ -5348,7 +5438,243 @@ setBhpTime(getApiData?.bhpInformation?.time);
       setSubstanceAbuseHistoryDataLengthOfSobrietyOTC(optionValue);
     };
 
-    // 13 additional value
+      // 13
+    // last use
+    const optionsubstanceAbuseHistoryDataLastUseCocaine = [
+      { label: "Weeks ago", value: "Weeks ago" },
+      { label: "Days ago", value: "Days ago" },
+      { label: "Yesterday", value: "Yesterday" },
+      { label: "Months ago", value: "Months ago" },
+      { label: "Few hours ago", value: "Few hours ago" },
+      { label: "Unsure", value: "Unsure" }
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataLastUseCocaine = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+  
+    //  
+        const optionExists = optionsubstanceAbuseHistoryDataLastUseCocaine.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+          
+  
+          setSubstanceAbuseHistoryDataLastUseCocaine(newOptions);
+  
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const hnadlesubstanceAbuseHistoryDataLastUseCocaine = (optionValue) => {
+      setSubstanceAbuseHistoryDataLastUseCocaine(optionValue);
+    };
+  
+    // frequancy
+    const optionsubstanceAbuseHistoryDataFrequencyCocaine = [
+      { label: "Daily", value: "Daily" },
+      { label: "Two to four times weekly", value: "Two to four times weekly" },
+      { label: "Multiple times a day", value: "Multiple times a day" },
+      { label: "Chronic", value: "Chronic" },
+      { label: "Intermittent", value: "Intermittent" },
+      { label: "Only on social events", value: "Only on social events" },
+      { label: "Only on weekends", value: "Only on weekends" },
+      { label: "Few times a month", value: "Few times a month" }
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataFrequencyCocaine = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+     
+        const optionExists = optionsubstanceAbuseHistoryDataFrequencyCocaine.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+        
+  
+          setSubstanceAbuseHistoryDataFrequencyCocaine(newOptions);
+  
+      
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const handlesubstanceAbuseHistoryDataFrequencyCocaine = (optionValue) => {
+      setSubstanceAbuseHistoryDataFrequencyCocaine(optionValue);
+    };
+  
+    // length of soberty
+    const optionsubstanceAbuseHistoryDataLengthOfSobrietyCocaine = [
+      { label: "One week", value: "One week" },
+      { label: "A few days ago", value: "A few days ago" },
+      { label: "One month", value: "One month" },
+      { label: "Two months", value: "Two months" },
+      { label: "Three months", value: "Three months" },
+      { label: "Four months", value: "Four months" },
+      { label: "Five to Six months", value: "Five to Six months" },
+      { label: "One year", value: "One year" },
+      { label: "Two years", value: "Two years" },
+      { label: "Many years", value: "Many years" }
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataLengthOfSobrietyCocaine = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+  
+     
+        const optionExists = optionsubstanceAbuseHistoryDataLengthOfSobrietyCocaine.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+          
+  
+          setSubstanceAbuseHistoryDataLengthOfSobrietyCocaine(newOptions);
+
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const handlesubstanceAbuseHistoryDataLengthOfSobrietyCocaine = (optionValue) => {
+      setSubstanceAbuseHistoryDataLengthOfSobrietyCocaine(optionValue);
+    };
+    
+      // 14
+    // last use
+    const optionsubstanceAbuseHistoryDataLastUseHallucinogens = [
+      { label: "Weeks ago", value: "Weeks ago" },
+      { label: "Days ago", value: "Days ago" },
+      { label: "Yesterday", value: "Yesterday" },
+      { label: "Months ago", value: "Months ago" },
+      { label: "Few hours ago", value: "Few hours ago" },
+      { label: "Unsure", value: "Unsure" }
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataLastUseHallucinogens = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+  
+    //  
+        const optionExists = optionsubstanceAbuseHistoryDataLastUseHallucinogens.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+          
+  
+          setSubstanceAbuseHistoryDataLastUseHallucinogens(newOptions);
+  
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const hnadlesubstanceAbuseHistoryDataLastUseHallucinogens = (optionValue) => {
+      setSubstanceAbuseHistoryDataLastUseHallucinogens(optionValue);
+    };
+  
+    // frequancy
+    const optionsubstanceAbuseHistoryDataFrequencyHallucinogens = [
+      { label: "Daily", value: "Daily" },
+      { label: "Two to four times weekly", value: "Two to four times weekly" },
+      { label: "Multiple times a day", value: "Multiple times a day" },
+      { label: "Chronic", value: "Chronic" },
+      { label: "Intermittent", value: "Intermittent" },
+      { label: "Only on social events", value: "Only on social events" },
+      { label: "Only on weekends", value: "Only on weekends" },
+      { label: "Few times a month", value: "Few times a month" }
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataFrequencyHallucinogens = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+     
+        const optionExists = optionsubstanceAbuseHistoryDataFrequencyHallucinogens.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+        
+  
+          setSubstanceAbuseHistoryDataFrequencyHallucinogens(newOptions);
+  
+      
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const handlesubstanceAbuseHistoryDataFrequencyHallucinogens = (optionValue) => {
+      setSubstanceAbuseHistoryDataFrequencyHallucinogens(optionValue);
+    };
+  
+    // length of soberty
+    const optionsubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens = [
+      { label: "One week", value: "One week" },
+      { label: "A few days ago", value: "A few days ago" },
+      { label: "One month", value: "One month" },
+      { label: "Two months", value: "Two months" },
+      { label: "Three months", value: "Three months" },
+      { label: "Four months", value: "Four months" },
+      { label: "Five to Six months", value: "Five to Six months" },
+      { label: "One year", value: "One year" },
+      { label: "Two years", value: "Two years" },
+      { label: "Many years", value: "Many years" }
+    ];
+  
+    const handleKeysubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens = (event) => {
+      if (event.key === "Enter" && event.target.value) {
+        const inputValue = event.target.value.trim();
+  
+     
+        const optionExists = optionsubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens.some(
+          (option) => option.value === inputValue
+        );
+  
+        if (!optionExists) {
+          const newOptions = 
+            
+            { value: inputValue, label: inputValue }
+          
+  
+          setSubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens(newOptions);
+
+        }
+  
+        event.target.value = "";
+      }
+    };
+  
+    const handlesubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens = (optionValue) => {
+      setSubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens(optionValue);
+    };
+
+    // 15 additional value
     const optionotherLastUse = [
       { label: "Weeks ago", value: "Weeks ago" },
       { label: "Days ago", value: "Days ago" },
@@ -8238,6 +8564,133 @@ setBhpTime(getApiData?.bhpInformation?.time);
 </td>  
                     </tr>
                      }
+
+                      {/* add some extra */}
+                      {
+                        type13 &&  <tr>
+                        <td>Cocaine</td>
+                        <td>
+                          <input
+                            type="text"
+                            className="treatment_plan_table"
+                            placeholder="_________"
+                            value={substanceAbuseHistoryDataAgeOfFirstUseCocaine}
+                            onChange={(e) =>
+                              setSubstanceAbuseHistoryDataAgeOfFirstUseCocaine(
+                                e.target.value
+                              )
+                            }
+                          />
+                        </td>
+                        <td>
+                          <Select
+                  
+                  value={substanceAbuseHistoryDataLastUseCocaine}
+                  onChange={hnadlesubstanceAbuseHistoryDataLastUseCocaine}
+                  options={optionsubstanceAbuseHistoryDataLastUseCocaine}
+                  isCreatable={true}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseCocaine}
+                />
+                        
+                        </td>
+                        <td>
+                          <Select
+                  
+                  value={substanceAbuseHistoryDataFrequencyCocaine}
+                  onChange={handlesubstanceAbuseHistoryDataFrequencyCocaine}
+                  options={optionsubstanceAbuseHistoryDataFrequencyCocaine}
+                  isCreatable={true}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyCocaine}
+                />
+
+                         
+                        </td>
+                        <td>
+                          <Select
+                  value={substanceAbuseHistoryDataLengthOfSobrietyCocaine}
+                  
+                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyCocaine}
+                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyCocaine}
+                  isCreatable={true}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyCocaine}
+                />
+
+                         
+                        </td>
+                        <td>
+<AiFillDelete
+        onClick={() => setType13(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>  
+                      </tr>
+                      }
+
+{
+                        type14 &&  <tr>
+                        <td>Hallucinogens<br/>(LSD,mescaline,etc.)</td>
+                        <td>
+                          <input
+                            type="text"
+                            className="treatment_plan_table"
+                            placeholder="_________"
+                            value={substanceAbuseHistoryDataAgeOfFirstUseHallucinogens}
+                            onChange={(e) =>
+                              setSubstanceAbuseHistoryDataAgeOfFirstUseHallucinogens(
+                                e.target.value
+                              )
+                            }
+                          />
+                        </td>
+                        <td>
+                          <Select
+                  
+                  value={substanceAbuseHistoryDataLastUseHallucinogens}
+                  onChange={hnadlesubstanceAbuseHistoryDataLastUseHallucinogens}
+                  options={optionsubstanceAbuseHistoryDataLastUseHallucinogens}
+                  isCreatable={true}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseHallucinogens}
+                />
+                        
+                        </td>
+                        <td>
+                          <Select
+                  
+                  value={substanceAbuseHistoryDataFrequencyHallucinogens}
+                  onChange={handlesubstanceAbuseHistoryDataFrequencyHallucinogens}
+                  options={optionsubstanceAbuseHistoryDataFrequencyHallucinogens}
+                  isCreatable={true}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyHallucinogens}
+                />
+
+                         
+                        </td>
+                        <td>
+                          <Select
+                  value={substanceAbuseHistoryDataLengthOfSobrietyHallucinogens}
+                  
+                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens}
+                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens}
+                  isCreatable={true}
+                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens}
+                />
+
+                         
+                        </td>
+                        <td>
+<AiFillDelete
+        onClick={() => setType14(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td>  
+                      </tr>
+                      }
                      
 
                       {typeArray?.map((i,index) => (
@@ -10005,7 +10458,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 <div
                   style={{ display: "flex", gap: "10px", alignItems: "center" }}
                 >
-                  <label>Place:</label>
+                  <label style={{ fontWeight: "bold" }}>Place:</label>
                   <div
                     style={{
                       display: "flex",
@@ -10040,7 +10493,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 <div
                   style={{ display: "flex", gap: "10px", alignItems: "center" }}
                 >
-                  <label htmlFor="">Time:</label>
+                  <label style={{ fontWeight: "bold" }}>Time:</label>
                   <div
                     style={{
                       display: "flex",
@@ -11233,12 +11686,90 @@ setBhpTime(getApiData?.bhpInformation?.time);
 </td> 
                     </tr>
                      }
+
+{
+                      Independent10 &&  <tr>
+                      <td>Taking medications</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={TakingGood === true}
+                          onChange={() => setTakingGood(!TakingGood)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={TakingFair === true}
+                          onChange={() => setTakingFair(!TakingFair)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={TakingNotSoGood === true}
+                          onChange={() =>
+                            setTakingNotSoGood(!TakingNotSoGood)
+                          }
+                        />
+                      </td>
+                      <td>
+                        <select
+                          value={TakingGoodNeedAssist}
+                          onChange={(e) =>
+                            setTakingGoodNeedAssist(e.target.value)
+                          }
+                        >
+                          <option disabled>Select value</option>
+                         
+                          <option value={true}>Yes</option>
+                          <option value={false}>No</option>
+                        </select>
+                      </td>
+                      <td>
+                        <textarea
+                          className="treatment_plan_table"
+                          rows={Math.max(
+                            TakingComments
+                              ?  TakingComments.split("\n").length
+                              : 1,
+                            1
+                          )}
+                          value={ TakingComments || ""}
+                          
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setTakingComments(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setTakingComments(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                      <td>
+<AiFillDelete
+        onClick={() => setIndependent10(false)}
+        style={{
+          fontSize: "1.5rem",
+          cursor: "pointer",
+        }}
+      />
+</td> 
+                    </tr>
+                     }
+
+                     
                     
                      
 
                       {handleRiskFactorActivityArray?.map((i, index) => (
                         <tr key={index}>
-                          <td>Other: {i?.type}</td>
+                          <td>{i?.type}</td>
 
                           <td>
                             <input type="checkbox" checked={i.good === true} />
@@ -11376,7 +11907,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   className="yeschechboxFall-risk"
                   style={{ marginTop: "0.5rem", marginLeft: "10px" }}
                 >
-                  <label htmlFor="">Fall risk:</label>
+                  <label style={{fontWeight:"bold"}}>Fall risk:</label>
                   <div
                     style={{
                       display: "flex",

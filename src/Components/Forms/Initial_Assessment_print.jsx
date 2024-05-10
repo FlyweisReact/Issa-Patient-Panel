@@ -511,6 +511,42 @@ const Initial_Assessment_print = ({componentRef}) => {
     setSubstanceAbuseHistoryDataLengthOfSobrietyOTC,
   ] = useState("");
 
+   //Cocaine
+   const [
+    substanceAbuseHistoryDataAgeOfFirstUseCocaine,
+    setSubstanceAbuseHistoryDataAgeOfFirstUseCocaine,
+  ] = useState("");
+  const [
+    substanceAbuseHistoryDataLastUseCocaine,
+    setSubstanceAbuseHistoryDataLastUseCocaine,
+  ] = useState("");
+  const [
+    substanceAbuseHistoryDataFrequencyCocaine,
+    setSubstanceAbuseHistoryDataFrequencyCocaine,
+  ] = useState("");
+  const [
+    substanceAbuseHistoryDataLengthOfSobrietyCocaine,
+    setSubstanceAbuseHistoryDataLengthOfSobrietyCocaine,
+  ] = useState("");
+    //Hallucinogens
+const [
+  substanceAbuseHistoryDataAgeOfFirstUseHallucinogens,
+  setSubstanceAbuseHistoryDataAgeOfFirstUseHallucinogens,
+] = useState("");
+const [
+  substanceAbuseHistoryDataLastUseHallucinogens,
+  setSubstanceAbuseHistoryDataLastUseHallucinogens,
+] = useState("");
+const [
+  substanceAbuseHistoryDataFrequencyHallucinogens,
+  setSubstanceAbuseHistoryDataFrequencyHallucinogens,
+] = useState("");
+const [
+  substanceAbuseHistoryDataLengthOfSobrietyHallucinogens,
+  setSubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens,
+] = useState("");
+
+
   // arr the value in array
   const [typeArray, setTypeArray] = useState([]);
   // other array
@@ -881,6 +917,13 @@ const Initial_Assessment_print = ({componentRef}) => {
   const [ToiletingGoodNeedAssist,setToiletingGoodNeedAssist]=useState(false);
   const [ToiletingComments,setToiletingComments]=useState("");
 
+  
+  const [TakingGood,setTakingGood]=useState(false);
+  const [TakingFair,setTakingFair]=useState(false);
+  const [TakingNotSoGood,setTakingNotSoGood]=useState(false);
+  const [TakingGoodNeedAssist,setTakingGoodNeedAssist]=useState(null);
+  const [TakingComments,setTakingComments]=useState("");
+
     // Current Independent Living Skills:
     const [otherCurrentOther,setOtherCurrentOther]=useState("");
     const [otherCurrentGood,setOtherCurrentGood]=useState(false);
@@ -1246,6 +1289,8 @@ const [type9,setType9]=useState(true);
 const [type10,setType10]=useState(true);
 const [type11,setType11]=useState(true);
 const [type12,setType12]=useState(true);
+const [type13,setType13]=useState(true);
+const [type14,setType14]=useState(true);
 
 const TypeDelete=(index)=>{
   const tempMedicalDelet=[...typeArray];
@@ -1263,6 +1308,7 @@ const [Independent6,setIndependent6]=useState(true);
 const [Independent7,setIndependent7]=useState(true);
 const [Independent8,setIndependent8]=useState(true);
 const [Independent9,setIndependent9]=useState(true);
+const [Independent10,setIndependent10]=useState(true);
 
 
 const IndependentDelete=(index)=>{
@@ -1655,6 +1701,24 @@ setSubstanceAbuseHistoryDataFrequencyOTC(getApiData?.substanceAbuseHistoryData?.
   ?{label:getApiData?.substanceAbuseHistoryData?.[11]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[11]?.frequency}:"");
 setSubstanceAbuseHistoryDataLengthOfSobrietyOTC(getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety
   ?{label:getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety}:"");
+
+  setSubstanceAbuseHistoryDataAgeOfFirstUseCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.ageOfFirstUse);
+  setSubstanceAbuseHistoryDataLastUseCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[12]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[12]?.lastUse}:"");
+  setSubstanceAbuseHistoryDataFrequencyCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[12]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[12]?.frequency}:"");
+  setSubstanceAbuseHistoryDataLengthOfSobrietyCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[12]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[12]?.lengthOfSobriety}:"");
+
+  setSubstanceAbuseHistoryDataAgeOfFirstUseHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.ageOfFirstUse);
+  setSubstanceAbuseHistoryDataLastUseHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[13]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[13]?.lastUse}:"");
+  setSubstanceAbuseHistoryDataFrequencyHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[13]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[13]?.frequency}:"");
+  setSubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[13]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[13]?.lengthOfSobriety}:"");
+
+setTypeArray(getApiData?.substanceAbuseHistoryData?getApiArrayData(14,getApiData?.substanceAbuseHistoryData?.length,getApiData?.substanceAbuseHistoryData):[]);
 
   setType1(getApiData?.substanceAbuseHistoryData?.[0]?.state);
   setType2(getApiData?.substanceAbuseHistoryData?.[1]?.state);
@@ -2060,11 +2124,18 @@ setToiletingGoodNeedAssist(getApiData?.independentLivingSkills?.[8]?.needAssist)
 setToiletingComments(getApiData?.independentLivingSkills?.[8]?.comments);
 // setOtherCurrentOther(getApiArrayData?.independentLivingSkills?.[0]?.comments);
 
-setOtherCurrentGood(getApiData?.independentLivingSkills?.[9]?.good);
-setOtherCurrentFair(getApiData?.independentLivingSkills?.[9]?.fair);
-setOtherCurrentNotSoGood(getApiData?.independentLivingSkills?.[9]?.otherCurrentNotSoGood);
-setOtherCurrentNeed(getApiData?.independentLivingSkills?.[9]?.needAssist);
-setOtherCurrentComment(getApiData?.independentLivingSkills?.[9]?.comments);
+// setOtherCurrentGood(getApiData?.independentLivingSkills?.[9]?.good);
+// setOtherCurrentFair(getApiData?.independentLivingSkills?.[9]?.fair);
+// setOtherCurrentNotSoGood(getApiData?.independentLivingSkills?.[9]?.otherCurrentNotSoGood);
+// setOtherCurrentNeed(getApiData?.independentLivingSkills?.[9]?.needAssist);
+// setOtherCurrentComment(getApiData?.independentLivingSkills?.[9]?.comments);
+
+
+setTakingGood(getApiData?.independentLivingSkills?.[9]?.good);
+setTakingFair(getApiData?.independentLivingSkills?.[9]?.fair);
+setTakingNotSoGood(getApiData?.independentLivingSkills?.[9]?.otherCurrentNotSoGood);
+setTakingGoodNeedAssist(getApiData?.independentLivingSkills?.[9]?.needAssist);
+setTakingComments(getApiData?.independentLivingSkills?.[9]?.comments);
 
 setIndependent1(getApiData?.independentLivingSkills?.[0]?.state);
 setIndependent2(getApiData?.independentLivingSkills?.[1]?.state);
@@ -4944,8 +5015,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
-                   
-
                       </tr>
                       }
                      
@@ -6742,6 +6811,79 @@ setBhpTime(getApiData?.bhpInformation?.time);
            
                     </tr>
                      }
+
+                      {/* add some extra */}
+                      {
+                        type13 &&  <tr>
+                        <td>Cocaine</td>
+                        <td>
+                          <input
+                            type="text"
+                            className="treatment_plan_table"
+                            placeholder="_________"
+                            value={substanceAbuseHistoryDataAgeOfFirstUseCocaine}
+                            onChange={(e) =>
+                              setSubstanceAbuseHistoryDataAgeOfFirstUseCocaine(
+                                e.target.value
+                              )
+                            }
+                          />
+                        </td>
+                        <td>
+
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseCocaine?.value}/>
+                        
+                        </td>
+                        <td>
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyCocaine?.value}/>
+                         
+
+                         
+                        </td>
+                        <td>
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyCocaine?.value}/>
+                  
+
+                         
+                        </td>
+                     
+                      </tr>
+                      }
+
+{
+                        type14 &&  <tr>
+                        <td>Hallucinogens<br/>(LSD,mescaline,etc.)</td>
+                        <td>
+                          <input
+                            type="text"
+                            className="treatment_plan_table"
+                            placeholder="_________"
+                            value={substanceAbuseHistoryDataAgeOfFirstUseHallucinogens}
+                            onChange={(e) =>
+                              setSubstanceAbuseHistoryDataAgeOfFirstUseHallucinogens(
+                                e.target.value
+                              )
+                            }
+                          />
+                        </td>
+                        <td>
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseHallucinogens?.value}/>
+                     
+                        
+                        </td>
+                        <td>
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyHallucinogens?.value}/>
+                   
+
+                         
+                        </td>
+                        <td>
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyHallucinogens?.value}/>
+                         
+                        </td>
+                    
+                      </tr>
+                      }
                      
 
                       {typeArray?.map((i) => (
@@ -8445,7 +8587,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 <div
                   style={{ display: "flex", gap: "10px", alignItems: "center" }}
                 >
-                  <label>Place:</label>
+                  <label style={{ fontWeight: "bold" }}>Place:</label>
                   <div
                     style={{
                       display: "flex",
@@ -8480,7 +8622,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 <div
                   style={{ display: "flex", gap: "10px", alignItems: "center" }}
                 >
-                  <label htmlFor="">Time:</label>
+                  <label style={{ fontWeight: "bold" }}>Time:</label>
                   <div
                     style={{
                       display: "flex",
@@ -9633,12 +9775,73 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   
                     </tr>
                      }
+
+{
+                      Independent10 &&  <tr>
+                      <td>Taking medications</td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={TakingGood === true}
+                          onChange={() => setTakingGood(!TakingGood)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={TakingFair === true}
+                          onChange={() => setTakingFair(!TakingFair)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={TakingNotSoGood === true}
+                          onChange={() =>
+                            setTakingNotSoGood(!TakingNotSoGood)
+                          }
+                        />
+                      </td>
+                      <td>
+                      {
+                            TakingGoodNeedAssist ? <p>True</p>: <p>False</p>
+                          }
+                      
+                      </td>
+                      <td>
+                        <textarea
+                          className="treatment_plan_table"
+                          rows={Math.max(
+                            TakingComments
+                              ?  TakingComments.split("\n").length
+                              : 1,
+                            1
+                          )}
+                          value={ TakingComments || ""}
+                          
+                          placeholder="___________"
+                          onChange={(e) =>
+                            setTakingComments(e.target.value)
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setTakingComments(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                 
+                    </tr>
+                     }
                     
                      
 
                       {handleRiskFactorActivityArray?.map((i, index) => (
                         <tr key={index}>
-                          <td>Other: {i?.type}</td>
+                          <td>{i?.type}</td>
 
                           <td>
                             <input type="checkbox" checked={i.good === true} />
