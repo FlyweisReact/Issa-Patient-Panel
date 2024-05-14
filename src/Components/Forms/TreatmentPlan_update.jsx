@@ -348,11 +348,9 @@ const Treatmentplan_update = () => {
   const [commentsOther, setCommentOther] = useState("");
   //other array add add on array
   const [otherArray, setOtherArray] = useState([]);
-  const [showOther, setShowOther] = useState(false);
 
   const handleAddButtonClick = () => {
     // Create a new object with the form values
-    setShowOther(true);
 
     if (
       optionOther ||
@@ -630,188 +628,263 @@ const Treatmentplan_update = () => {
       getApiData?.counselingFrequencyComment ? true : false
     );
 
-    // Resetting goals for changes state variables
-    setOption1(
-      getApiData?.maintainSobrietyType
-        ? getApiData.maintainSobrietyType.map((item) => ({
-            label: item, // Assuming 'name' is the property you want to use as label
-            value: item, // Assuming 'id' is the property you want to use as value
-          }))
-        : []
-    );
-
-    // Resetting option2 state variables
-    setOption2(
-      getApiData?.independentLivingSkillsType
-        ? getApiData.independentLivingSkillsType.map((item) => ({
-            label: item, // Assuming 'name' is the property you want to use as label
-            value: item, // Assuming 'id' is the property you want to use as value
-          }))
-        : []
-    );
-
-    // Resetting option3 state variables
-    setOption3(
-      getApiData?.employmentType
-        ? getApiData.employmentType.map((item) => ({
-            label: item, // Assuming 'name' is the property you want to use as label
-            value: item, // Assuming 'id' is the property you want to use as value
-          }))
-        : []
-    );
-
-    // Resetting option4 state variables
-    setOption4(
-      getApiData?.adlsSecondType
-        ? getApiData.adlsSecondType.map((item) => ({
-            label: item, // Assuming 'name' is the property you want to use as label
-            value: item, // Assuming 'id' is the property you want to use as value
-          }))
-        : []
-    );
-
-    // Resetting option5 state variables
-    setOption5(
-      getApiData?.safetyType
-        ? getApiData.safetyType.map((item) => ({
-            label: item, // Assuming 'name' is the property you want to use as label
-            value: item, // Assuming 'id' is the property you want to use as value
-          }))
-        : []
-    );
-
-    // Resetting option6 state variables
-    setOption6(
-      getApiData?.medicationEducationType
-        ? getApiData.medicationEducationType.map((item) => ({
-            label: item, // Assuming 'name' is the property you want to use as label
-            value: item, // Assuming 'id' is the property you want to use as value
-          }))
-        : []
-    );
-
-    // Resetting option7 state variables
-    setOption7(
-      getApiData?.managingMentalHealthType
-        ? getApiData.managingMentalHealthType.map((item) => ({
-            label: item, // Assuming 'name' is the property you want to use as label
-            value: item, // Assuming 'id' is the property you want to use as value
-          }))
-        : []
-    );
-
-    // Resetting option8 state variables
-    setOption8(
-      getApiData?.legalType
-        ? getApiData.legalType.map((item) => ({
-            label: item, // Assuming 'name' is the property you want to use as label
-            value: item, // Assuming 'id' is the property you want to use as value
-          }))
-        : []
-    );
 
     // Resetting admissionMeasure1 state variables
-    setAdmissionMeasure1(getApiData?.maintainSobrietyAdmissionMeasure);
-
-    setCurrentMeasure1(getApiData?.maintainSobrietyCurrentMeasure);
-    setEstimatedDateOfCompletion1(
-      getApiData?.maintainSobrietyEstimatedDateOfCompletion
-        ? getApiData?.maintainSobrietyEstimatedDateOfCompletion?.slice(0, 10)
-        : ""
-    );
-    setComment1(getApiData?.maintainSobrietyComments);
+    if(getApiData?.maintainSobrietyPreviousMeasure){
+      setOption1(
+        getApiData?.maintainSobrietyType
+          ? getApiData.maintainSobrietyType.map((item) => ({
+              label: item,
+              value: item, 
+            }))
+          : []
+      );
+      setAdmissionMeasure1(getApiData?.maintainSobrietyAdmissionMeasure);
+      setCurrentMeasure1(getApiData?.maintainSobrietyCurrentMeasure);
+      setEstimatedDateOfCompletion1(
+        getApiData?.maintainSobrietyEstimatedDateOfCompletion
+          ? getApiData?.maintainSobrietyEstimatedDateOfCompletion?.slice(0, 10)
+          : ""
+      );
+      setComment1(getApiData?.maintainSobrietyComments);
+    }else{
+      setOption1([]);
+      setAdmissionMeasure1("");
+      setCurrentMeasure1("");
+      setEstimatedDateOfCompletion1(
+        ""
+      );
+      setComment1("");
+    }
+    
 
     // Resetting admissionMeasure2 state variables
-    setAdmissionMeasure2(getApiData?.independentLivingSkillsAdmissionMeasure);
+    if(getApiData?.independentLivingSkillsPreviousMeasure){
+      setOption2(
+        getApiData?.independentLivingSkillsType
+          ? getApiData.independentLivingSkillsType.map((item) => ({
+              label: item,
+              value: item, 
+            }))
+          : []
+      );
+      setAdmissionMeasure2(getApiData?.independentLivingSkillsAdmissionMeasure);
+      setCurrentMeasure2(getApiData?.independentLivingSkillsCurrentMeasure);
+      setEstimatedDateOfCompletion2(
+        getApiData?.independentLivingSkillsEstimatedDateOfCompletion
+          ? getApiData?.independentLivingSkillsEstimatedDateOfCompletion?.slice(
+              0,
+              10
+            )
+          : ""
+      );
+      setComment2(getApiData?.independentLivingSkillsComments);
+    }else{
+      setOption2(
+      []
+      );
+      setAdmissionMeasure2("");
+      setCurrentMeasure2("");
+      setEstimatedDateOfCompletion2(
+      ""
+      );
+      setComment2("");
+    }
 
-    setCurrentMeasure2(getApiData?.independentLivingSkillsCurrentMeasure);
-    setEstimatedDateOfCompletion2(
-      getApiData?.independentLivingSkillsEstimatedDateOfCompletion
-        ? getApiData?.independentLivingSkillsEstimatedDateOfCompletion?.slice(
-            0,
-            10
-          )
-        : ""
-    );
-    setComment2(getApiData?.independentLivingSkillsComments);
+   
 
     // Resetting admissionMeasure3 state variables
-    setAdmissionMeasure3(getApiData?.employmentAdmissionMeasure);
-
-    setCurrentMeasure3(getApiData?.employmentCurrentMeasure);
-    setEstimatedDateOfCompletion3(
-      getApiData?.employmentEstimatedDateOfCompletion
-        ? getApiData?.employmentEstimatedDateOfCompletion?.slice(0, 10)
-        : ""
-    );
-    setComment3(getApiData?.employmentComments);
+    if(getApiData?.employmentPreviousMeasure){
+      setOption3(
+        getApiData?.employmentType
+          ? getApiData.employmentType.map((item) => ({
+              label: item, 
+              value: item, 
+            }))
+          : []
+      );
+      setAdmissionMeasure3(getApiData?.employmentAdmissionMeasure);
+      setCurrentMeasure3(getApiData?.employmentCurrentMeasure);
+      setEstimatedDateOfCompletion3(
+        getApiData?.employmentEstimatedDateOfCompletion
+          ? getApiData?.employmentEstimatedDateOfCompletion?.slice(0, 10)
+          : ""
+      );
+      setComment3(getApiData?.employmentComments);
+    }else{
+      setOption3(
+  []
+      );
+      setAdmissionMeasure3("");
+      setCurrentMeasure3("");
+      setEstimatedDateOfCompletion3(
+       ""
+      );
+      setComment3("");
+    }
+ 
 
     // Resetting admissionMeasure4 state variables
-    setAdmissionMeasure4(getApiData?.adlsSecondAdmissionMeasure);
-
-    setCurrentMeasure4(getApiData?.adlsSecondCurrentMeasure);
-    setEstimatedDateOfCompletion4(
-      getApiData?.adlsSecondEstimatedDateOfCompletion
-        ? getApiData?.adlsSecondEstimatedDateOfCompletion?.slice(0, 10)
-        : ""
-    );
-    setComment4(getApiData?.adlsSecondComments);
+    if(getApiData?.adlsSecondPreviousMeasure){
+      setOption4(
+        getApiData?.adlsSecondType
+          ? getApiData.adlsSecondType.map((item) => ({
+              label: item, 
+              value: item, 
+            }))
+          : []
+      );
+      setAdmissionMeasure4(getApiData?.adlsSecondAdmissionMeasure);
+      setCurrentMeasure4(getApiData?.adlsSecondCurrentMeasure);
+      setEstimatedDateOfCompletion4(
+        getApiData?.adlsSecondEstimatedDateOfCompletion
+          ? getApiData?.adlsSecondEstimatedDateOfCompletion?.slice(0, 10)
+          : ""
+      );
+      setComment4(getApiData?.adlsSecondComments);
+    }else{
+      setOption4(
+        []
+      );
+      setAdmissionMeasure4("");
+      setCurrentMeasure4("");
+      setEstimatedDateOfCompletion4(
+        ""
+      );
+      setComment4("");
+    }
+ 
 
     // Resetting admissionMeasure5 state variables
-    setAdmissionMeasure5(getApiData?.safetyAdmissionMeasure);
-
-    setCurrentMeasure5(getApiData?.safetyCurrentMeasure);
-    setEstimatedDateOfCompletion5(
-      getApiData?.safetyEstimatedDateOfCompletion
-        ? getApiData?.safetyEstimatedDateOfCompletion?.slice(0, 10)
-        : ""
-    );
-    setComment5(getApiData?.safetyComments);
+    if(getApiData?.safetyPreviousMeasure){
+      setOption5(
+        getApiData?.safetyType
+          ? getApiData.safetyType.map((item) => ({
+              label: item, 
+              value: item, 
+            }))
+          : []
+      );
+      setAdmissionMeasure5(getApiData?.safetyAdmissionMeasure);
+      setCurrentMeasure5(getApiData?.safetyCurrentMeasure);
+      setEstimatedDateOfCompletion5(
+        getApiData?.safetyEstimatedDateOfCompletion
+          ? getApiData?.safetyEstimatedDateOfCompletion?.slice(0, 10)
+          : ""
+      );
+      setComment5(getApiData?.safetyComments);
+    }else{
+      setOption5(
+ []
+      );
+      setAdmissionMeasure5("");
+      setCurrentMeasure5("");
+      setEstimatedDateOfCompletion5(
+      ""
+      );
+      setComment5("");
+    }
+   
 
     // Resetting admissionMeasure6 state variables
-    setAdmissionMeasure6(getApiData?.medicationEducationAdmissionMeasure);
-
-    setCurrentMeasure6(getApiData?.medicationEducationCurrentMeasure);
-    setEstimatedDateOfCompletion6(
-      getApiData?.medicationEducationEstimatedDateOfCompletion
-        ? getApiData?.medicationEducationEstimatedDateOfCompletion?.slice(0, 10)
-        : ""
-    );
-    setComment6(getApiData?.medicationEducationComments);
+    if(getApiData?.medicationEducationPreviousMeasure){
+      setOption6(
+        getApiData?.medicationEducationType
+          ? getApiData.medicationEducationType.map((item) => ({
+              label: item, 
+              value: item, 
+            }))
+          : []
+      );
+      setAdmissionMeasure6(getApiData?.medicationEducationAdmissionMeasure);
+      setCurrentMeasure6(getApiData?.medicationEducationCurrentMeasure);
+      setEstimatedDateOfCompletion6(
+        getApiData?.medicationEducationEstimatedDateOfCompletion
+          ? getApiData?.medicationEducationEstimatedDateOfCompletion?.slice(0, 10)
+          : ""
+      );
+      setComment6(getApiData?.medicationEducationComments);
+    }else{
+      setOption6(
+       []
+      );
+      setAdmissionMeasure6("");
+      setCurrentMeasure6("");
+      setEstimatedDateOfCompletion6(
+      ""
+      );
+      setComment6("");
+    }
+    
 
     // Resetting admissionMeasure7 state variables
-    setAdmissionMeasure7(getApiData?.managingMentalHealthAdmissionMeasure);
-
-    setCurrentMeasure7(getApiData?.managingMentalHealthCurrentMeasure);
-    setEstimatedDateOfCompletion7(
-      getApiData?.managingMentalHealthEstimatedDateOfCompletion
-        ? getApiData?.managingMentalHealthEstimatedDateOfCompletion?.slice(
-            0,
-            10
-          )
-        : ""
-    );
-    setComment7(getApiData?.managingMentalHealthComments);
+    if(getApiData?.managingMentalHealthPreviousMeasure){
+      setOption7(
+        getApiData?.managingMentalHealthType
+          ? getApiData.managingMentalHealthType.map((item) => ({
+              label: item, 
+              value: item, 
+            }))
+          : []
+      );
+      setAdmissionMeasure7(getApiData?.managingMentalHealthAdmissionMeasure);
+      setCurrentMeasure7(getApiData?.managingMentalHealthCurrentMeasure);
+      setEstimatedDateOfCompletion7(
+        getApiData?.managingMentalHealthEstimatedDateOfCompletion
+          ? getApiData?.managingMentalHealthEstimatedDateOfCompletion?.slice(
+              0,
+              10
+            )
+          : ""
+      );
+      setComment7(getApiData?.managingMentalHealthComments);
+    }else{
+      setOption7(
+     []
+      );
+      setAdmissionMeasure7("");
+      setCurrentMeasure7("");
+      setEstimatedDateOfCompletion7(
+      ""
+      );
+      setComment7("");
+    }
+  
 
     // Resetting admissionMeasure8 state variables
-    setAdmissionMeasure8(getApiData?.legalAdmissionMeasure);
-    setCurrentMeasure8(getApiData?.legalCurrentMeasure);
-    setEstimatedDateOfCompletion8(
-      getApiData?.legalEstimatedDateOfCompletion
-        ? getApiData?.legalEstimatedDateOfCompletion?.slice(0, 10)
-        : ""
-    );
-    setComment8(getApiData?.legalComments);
-    // Resetting optionOther state variables
-    // setOptionOther("");
-    // setAdmissionMeasureOther("");
-    // setCurrentMeasureOther("");
-    // setEstimatedDateOfCompletionOther("");
-    // setCommentOther("");
+    if(getApiData?.legalPreviousMeasure){
+      setOption8(
+        getApiData?.legalType
+          ? getApiData.legalType.map((item) => ({
+              label: item, 
+              value: item, 
+            }))
+          : []
+      );
+      setAdmissionMeasure8(getApiData?.legalAdmissionMeasure);
+      setCurrentMeasure8(getApiData?.legalCurrentMeasure);
+      setEstimatedDateOfCompletion8(
+        getApiData?.legalEstimatedDateOfCompletion
+          ? getApiData?.legalEstimatedDateOfCompletion?.slice(0, 10)
+          : ""
+      );
+      setComment8(getApiData?.legalComments);
+    }else{
+      setOption8(
+        []
+      );
+      setAdmissionMeasure8("");
+      setCurrentMeasure8("");
+      setEstimatedDateOfCompletion8(
+      ""
+      );
+      setComment8("");
+    }
+  
+ 
 
     // Resetting otherArray state variables
     setOtherArray(getApiData?.other ? getApiData?.other : []);
-    setShowOther(false);
 
     // Resetting resident overall participation state variables
     setResidentParticipation(getApiData?.residentParticipation);
@@ -4371,7 +4444,7 @@ tableshow7 &&  <tr>
                             </tr>
                           ))}
 
-                        {showOther && (
+                     
                           <tr>
                             <td>
                               <div className="treatment_table_other">
@@ -4406,7 +4479,7 @@ tableshow7 &&  <tr>
                                 type="text"
                                 value={admissionMeasureOther}
                                 placeholder="___________"
-                                required
+                                
                                 onChange={(e) =>
                                   setAdmissionMeasureOther(e.target.value)
                                 }
@@ -4418,7 +4491,7 @@ tableshow7 &&  <tr>
                                 type="text"
                                 value={currentMeasureOther}
                                 placeholder="___________"
-                                required
+                                
                                 onChange={(e) =>
                                   setCurrentMeasureOther(e.target.value)
                                 }
@@ -4429,7 +4502,7 @@ tableshow7 &&  <tr>
                                 type="date"
                                 value={estimatedDateOfCompletionOther}
                                 className="treatment_plan_table"
-                                required
+                                
                                 onChange={(e) =>
                                   setEstimatedDateOfCompletionOther(
                                     e.target.value
@@ -4459,11 +4532,9 @@ tableshow7 &&  <tr>
                                 }}
                               />
                             </td>
-                            <td>
-  <AiFillDelete style={{fontSize:"20px",cursor:"pointer"}} onClick={()=>handleDeleteArray()}/>
- </td>
+                       
                           </tr>
-                        )}
+                      
                       </tbody>
                     </table>
                   </div>

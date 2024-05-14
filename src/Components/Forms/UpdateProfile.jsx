@@ -13,6 +13,8 @@ const UpdateProfile = () => {
   const [mobileNumber, setMobileNumber] = useState("");
   const [gender, setGender] = useState("");
   const [address, setAdress] = useState("");
+  const [dateOfBirth,setDateOfBirth]=useState("");
+  const [admitDate,setAdminDate]=useState("");
 
   const [image, setImage] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -24,6 +26,8 @@ const UpdateProfile = () => {
     setGender(user?.gender);
     setImageUrl(user?.profilePic);
     setAdress(user?.address);
+    setDateOfBirth(user?.dateOfBirth?user?.dateOfBirth?.slice(0,10):"");
+    setAdminDate(user?.admitDate?user?.admitDate?.slice(0,10):'')
   }, [user]);
 
   useEffect(() => {
@@ -38,6 +42,9 @@ const UpdateProfile = () => {
     fromData.append("mobileNumber", mobileNumber);
     fromData.append("gender", gender);
     fromData.append("address", address);
+    fromData.append("dateOfBirth", dateOfBirth);
+    fromData.append("admitDate", admitDate);
+    
     {
       image && fromData.append("image", image);
     }
@@ -115,11 +122,31 @@ const UpdateProfile = () => {
                 <label htmlFor="AHCCCS">Name:</label>
                 <input
                   type="text"
-                  id="AHCCCS"
+                
                   value={name}
                   placeholder="Type Here....."
                   required
                   onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+              <div className="form-field">
+                <label htmlFor="AHCCCS">Date Of Birth:</label>
+                <input
+                  type="date"
+                  value={dateOfBirth}
+                  placeholder="Type Here....."
+                  required
+                  onChange={(e) => setDateOfBirth(e.target.value)}
+                />
+              </div>
+              <div className="form-field">
+                <label htmlFor="AHCCCS">Admit Date:</label>
+                <input
+                  type="date"
+                  value={admitDate}
+                  placeholder="Type Here....."
+                  required
+                  onChange={(e) => setAdminDate(e.target.value)}
                 />
               </div>
               <div className="form-field">
@@ -144,6 +171,7 @@ const UpdateProfile = () => {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
+
               <div className="form-field">
                 <label htmlFor="AHCCCS">Gender:</label>
                 <select

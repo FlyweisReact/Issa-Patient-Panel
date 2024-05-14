@@ -147,11 +147,6 @@ const InitialAssessment = () => {
   const [residentLimitations, setResidentLimitations] = useState("");
   const [currentBehavioralIssues, setCurrentBehavioralIssues] = useState("");
 
-  // Behavioral Interventions (Array of Objects)==> check i think remove this section by client
-  const [need, setNeed] = useState("");
-  const [intervention, setIntervention] = useState("");
- 
-
 
   // Medical Conditions (Array of Objects) array second section is start ===>
   // diabetes =======>
@@ -967,7 +962,7 @@ const InitialAssessment = () => {
     const [otherCurrentGood,setOtherCurrentGood]=useState(false);
     const [otherCurrentFair,setOtherCurrentFair]=useState(false);
     const [otherCurrentNotSoGood,setOtherCurrentNotSoGood]=useState(false);
-    const [otherCurrentNeed,setOtherCurrentNeed]=useState(false);
+    const [otherCurrentNeed,setOtherCurrentNeed]=useState(null);
     const [otherCurrentComment,setOtherCurrentComment]=useState("");
 
 
@@ -1306,9 +1301,9 @@ const [condition26,setConditions26]=useState(true);
 
 
 const ConditionDelete=(index)=>{
-  const tempMedicalDelet=[...typeArray];
+  const tempMedicalDelet=[...otherConditionArray];
   tempMedicalDelet.splice(index,1);
-  setTypeArray(tempMedicalDelet);
+  setOtherConditionArray(tempMedicalDelet);
 }
 
 // Substance Abuse history type
@@ -1492,95 +1487,250 @@ setResidentStrengths(
 setResidentLimitations(getApiData?.residentLimitations);
 setCurrentBehavioralIssues(getApiData?.currentBehavioralIssues);
 
-setYesDiabetes(getApiData?.medicalConditions?.[0]?.yes);
-setCommentDeabetes(getApiData?.medicalConditions?.[0]?.comments);
+if(getApiData?.medicalConditions?.[0]?.state){
+  setYesDiabetes(getApiData?.medicalConditions?.[0]?.yes);
+ setCommentDeabetes(getApiData?.medicalConditions?.[0]?.comments);
+}else{
+  setYesDiabetes();
+  setCommentDeabetes("");
+}
 
-setYesHeart(getApiData?.medicalConditions?.[1]?.yes);
-setCommentHeart(getApiData?.medicalConditions?.[1]?.comments);
+// Heart condition
+if(getApiData?.medicalConditions?.[1]?.state){
+  setYesHeart(getApiData?.medicalConditions?.[1]?.yes);
+  setCommentHeart(getApiData?.medicalConditions?.[1]?.comments);
+} else {
+  setYesHeart();
+  setCommentHeart("");
+}
 
-setYesHistory(getApiData?.medicalConditions?.[2]?.yes);
-setCommentHistory(getApiData?.medicalConditions?.[2]?.comments);
+// Medical history
+if(getApiData?.medicalConditions?.[2]?.state){
+  setYesHistory(getApiData?.medicalConditions?.[2]?.yes);
+  setCommentHistory(getApiData?.medicalConditions?.[2]?.comments);
+} else {
+  setYesHistory();
+  setCommentHistory("");
+}
 
-setYesHigh(getApiData?.medicalConditions?.[3]?.yes);
-setCommentHigh(getApiData?.medicalConditions?.[3]?.comments);
+// High blood pressure
+if(getApiData?.medicalConditions?.[3]?.state){
+  setYesHigh(getApiData?.medicalConditions?.[3]?.yes);
+  setCommentHigh(getApiData?.medicalConditions?.[3]?.comments);
+} else {
+  setYesHigh();
+  setCommentHigh("");
+}
 
-setYesLung(getApiData?.medicalConditions?.[4]?.yes);
-setCommentLung(getApiData?.medicalConditions?.[4]?.comments);
+// Lung condition
+if(getApiData?.medicalConditions?.[4]?.state){
+  setYesLung(getApiData?.medicalConditions?.[4]?.yes);
+  setCommentLung(getApiData?.medicalConditions?.[4]?.comments);
+} else {
+  setYesLung();
+  setCommentLung("");
+}
 
-setYesSeizures(getApiData?.medicalConditions?.[5]?.yes);
-setCommentSeizures(getApiData?.medicalConditions?.[5]?.comments);
+// Seizures
+if(getApiData?.medicalConditions?.[5]?.state){
+  setYesSeizures(getApiData?.medicalConditions?.[5]?.yes);
+  setCommentSeizures(getApiData?.medicalConditions?.[5]?.comments);
+} else {
+  setYesSeizures();
+  setCommentSeizures("");
+}
 
-setYesCancer(getApiData?.medicalConditions?.[6]?.yes);
-setCommentCancer(getApiData?.medicalConditions?.[6]?.comments);
+if(getApiData?.medicalConditions?.[6]?.state){
+  setYesCancer(getApiData?.medicalConditions?.[6]?.yes);
+  setCommentCancer(getApiData?.medicalConditions?.[6]?.comments);
+} else {
+  setYesCancer();
+  setCommentCancer("");
+}
 
-setYesLiver(getApiData?.medicalConditions?.[7]?.yes);
-setCommentLiver(getApiData?.medicalConditions?.[7]?.comments);
+if (getApiData?.medicalConditions?.[7]?.state) {
+  setYesLiver(getApiData?.medicalConditions?.[7]?.yes);
+  setCommentLiver(getApiData?.medicalConditions?.[7]?.comments);
+} else {
+  setYesLiver();
+  setCommentLiver("");
+}
 
-setYesThyroid(getApiData?.medicalConditions?.[8]?.yes);
-setThyroidDisorder(getApiData?.medicalConditions?.[8]?.comment
-  ? getApiData?.medicalConditions?.[8].comment?.map(item => ({
-      label: item, // Assuming 'name' is the property you want to use as label
-      value: item    // Assuming 'id' is the property you want to use as value
-    }))
-  : []);
+if (getApiData?.medicalConditions?.[8]?.state) {
+  setYesThyroid(getApiData?.medicalConditions?.[8]?.yes);
+  setThyroidDisorder(
+    getApiData?.medicalConditions?.[8]?.comments
+      ? getApiData?.medicalConditions?.[8]?.comments?.map(item => ({
+          label: item,
+          value: item   
+        }))
+      : []
+  );
+} else {
+  setYesThyroid();
+  setThyroidDisorder([]);
+}
 
-setYesBrain(getApiData?.medicalConditions?.[9]?.yes);
-setbrain(getApiData?.medicalConditions?.[9]?.comments);
+if (getApiData?.medicalConditions?.[9]?.state) {
+  setYesBrain(getApiData?.medicalConditions?.[9]?.yes);
+  setbrain(getApiData?.medicalConditions?.[9]?.comments);
+} else {
+  setYesBrain();
+  setbrain("");
+}
 
-setYesInjury(getApiData?.medicalConditions?.[10]?.yes);
-setCommentInjury(getApiData?.medicalConditions?.[10]?.comments);
+// Injury
+if (getApiData?.medicalConditions?.[10]?.state) {
+  setYesInjury(getApiData?.medicalConditions?.[10]?.yes);
+  setCommentInjury(getApiData?.medicalConditions?.[10]?.comments);
+} else {
+  setYesInjury();
+  setCommentInjury("");
+}
 
-setYesChronic(getApiData?.medicalConditions?.[11]?.yes);
-setChronicCommit(getApiData?.medicalConditions?.[11]?.comments);
+// Chronic conditions
+if (getApiData?.medicalConditions?.[11]?.state) {
+  setYesChronic(getApiData?.medicalConditions?.[11]?.yes);
+  setChronicCommit(getApiData?.medicalConditions?.[11]?.comments);
+} else {
+  setYesChronic();
+  setChronicCommit("");
+}
 
-setAllergiesYes(getApiData?.medicalConditions?.[12]?.yes);
-setAllergiesComment(getApiData?.medicalConditions?.[12]?.comments);
+// Allergies
+if (getApiData?.medicalConditions?.[12]?.state) {
+  setAllergiesYes(getApiData?.medicalConditions?.[12]?.yes);
+  setAllergiesComment(getApiData?.medicalConditions?.[12]?.comments);
+} else {
+  setAllergiesYes();
+  setAllergiesComment("");
+}
 
-setSurgeriessYes(getApiData?.medicalConditions?.[13]?.yes);
-setSurgeriesComment(getApiData?.medicalConditions?.[13]?.comments);
+// Surgeries
+if (getApiData?.medicalConditions?.[13]?.state) {
+  setSurgeriessYes(getApiData?.medicalConditions?.[13]?.yes);
+  setSurgeriesComment(getApiData?.medicalConditions?.[13]?.comments);
+} else {
+  setSurgeriessYes();
+  setSurgeriesComment("");
+}
 
-setPregnanciesYes(getApiData?.medicalConditions?.[14]?.yes);
-setPregnanciesComment(getApiData?.medicalConditions?.[14]?.comments);
+// Pregnancies
+if (getApiData?.medicalConditions?.[14]?.state) {
+  setPregnanciesYes(getApiData?.medicalConditions?.[14]?.yes);
+  setPregnanciesComment(getApiData?.medicalConditions?.[14]?.comments);
+} else {
+  setPregnanciesYes();
+  setPregnanciesComment("");
+}
 
-setSubstanceYes(getApiData?.medicalConditions?.[15]?.yes);
-setSubstanceComment(getApiData?.medicalConditions?.[15]?.comments);
+// Substance abuse
+if (getApiData?.medicalConditions?.[15]?.state) {
+  setSubstanceYes(getApiData?.medicalConditions?.[15]?.yes);
+  setSubstanceComment(getApiData?.medicalConditions?.[15]?.comments);
+} else {
+  setSubstanceYes();
+  setSubstanceComment("");
+}
 
-setDepressionYes(getApiData?.medicalConditions?.[16]?.yes);
-setDepressionComment(getApiData?.medicalConditions?.[16]?.comments);
+// Depression
+if (getApiData?.medicalConditions?.[16]?.state) {
+  setDepressionYes(getApiData?.medicalConditions?.[16]?.yes);
+  setDepressionComment(getApiData?.medicalConditions?.[16]?.comments);
+} else {
+  setDepressionYes();
+  setDepressionComment("");
+}
 
-setAnxietyYes(getApiData?.medicalConditions?.[17]?.yes);
-setAnxietyComment(getApiData?.medicalConditions?.[17]?.comments);
+// Anxiety
+if (getApiData?.medicalConditions?.[17]?.state) {
+  setAnxietyYes(getApiData?.medicalConditions?.[17]?.yes);
+  setAnxietyComment(getApiData?.medicalConditions?.[17]?.comments);
+} else {
+  setAnxietyYes();
+  setAnxietyComment("");
+}
 
-setInsomniaYes(getApiData?.medicalConditions?.[18]?.yes);
-setInsomniaComment(getApiData?.medicalConditions?.[18]?.comments);
+// Insomnia
+if (getApiData?.medicalConditions?.[18]?.state) {
+  setInsomniaYes(getApiData?.medicalConditions?.[18]?.yes);
+  setInsomniaComment(getApiData?.medicalConditions?.[18]?.comments);
+} else {
+  setInsomniaYes();
+  setInsomniaComment("");
+}
 
-setBipolarYes(getApiData?.medicalConditions?.[19]?.yes);
-setBipolarComment(getApiData?.medicalConditions?.[19]?.comments);
+// Bipolar disorder
+if (getApiData?.medicalConditions?.[19]?.state) {
+  setBipolarYes(getApiData?.medicalConditions?.[19]?.yes);
+  setBipolarComment(getApiData?.medicalConditions?.[19]?.comments);
+} else {
+  setBipolarYes();
+  setBipolarComment("");
+}
 
-setSchizophreniaYes(getApiData?.medicalConditions?.[20]?.yes);
-setSchizophreniaComment(getApiData?.medicalConditions?.[20]?.comments);
+// Schizophrenia
+if (getApiData?.medicalConditions?.[20]?.state) {
+  setSchizophreniaYes(getApiData?.medicalConditions?.[20]?.yes);
+  setSchizophreniaComment(getApiData?.medicalConditions?.[20]?.comments);
+} else {
+  setSchizophreniaYes();
+  setSchizophreniaComment("");
+}
 
-setObsessiveYes(getApiData?.medicalConditions?.[21]?.yes);
-setObsessiveComment(getApiData?.medicalConditions?.[21]?.comments);
+// Obsessive-compulsive disorder
+if (getApiData?.medicalConditions?.[21]?.state) {
+  setObsessiveYes(getApiData?.medicalConditions?.[21]?.yes);
+  setObsessiveComment(getApiData?.medicalConditions?.[21]?.comments);
+} else {
+  setObsessiveYes();
+  setObsessiveComment("");
+}
 
-setPersonalityYes(getApiData?.medicalConditions?.[22]?.yes);
-setPersonalityComment(getApiData?.medicalConditions?.[22]?.comments);
+// Personality disorders
+if (getApiData?.medicalConditions?.[22]?.state) {
+  setPersonalityYes(getApiData?.medicalConditions?.[22]?.yes);
+  setPersonalityComment(getApiData?.medicalConditions?.[22]?.comments);
+} else {
+  setPersonalityYes();
+  setPersonalityComment("");
+}
 
-setPhobiasYes(getApiData?.medicalConditions?.[23]?.yes);
-setPhobiasComment(getApiData?.medicalConditions?.[23]?.comments);
+// Phobias
+if (getApiData?.medicalConditions?.[23]?.state) {
+  setPhobiasYes(getApiData?.medicalConditions?.[23]?.yes);
+  setPhobiasComment(getApiData?.medicalConditions?.[23]?.comments);
+} else {
+  setPhobiasYes();
+  setPhobiasComment("");
+}
 
-setHealthConditionsYes(getApiData?.medicalConditions?.[24]?.yes);
-sethealthConditionsYesComment(getApiData?.medicalConditions?.[24]?.comments);
+// Health conditions
+if (getApiData?.medicalConditions?.[24]?.state) {
+  setHealthConditionsYes(getApiData?.medicalConditions?.[24]?.yes);
+  sethealthConditionsYesComment(getApiData?.medicalConditions?.[24]?.comments);
+} else {
+  setHealthConditionsYes();
+  sethealthConditionsYesComment("");
+}
 
-setInfectionYes(getApiData?.medicalConditions?.[25]?.yes);
-setInfectionDiseases(getApiData?.medicalConditions?.[25]?.comment
-  ? getApiData?.medicalConditions?.[8].comment?.map(item => ({
-      label: item, 
-      value: item    
-    }))
-  : []);
-
+// Infection diseases
+if (getApiData?.medicalConditions?.[25]?.state) {
+  setInfectionYes(getApiData?.medicalConditions?.[25]?.yes);
+  setInfectionDiseases(
+    getApiData?.medicalConditions?.[25]?.comments
+      ? getApiData?.medicalConditions?.[25]?.comments?.map(item => ({
+          label: item,
+          value: item   
+        }))
+      : []
+  );
+} else {
+  setInfectionYes();
+  setInfectionDiseases([]);
+}
 setOtherConditionArray(getApiData?.medicalConditions?getApiArrayData(26,getApiData?.medicalConditions?.length,getApiData?.medicalConditions):[]);
+
 setSignificantFamilyMedicalPsychiatricHistory(getApiData?.SignificantFamilyMedicalPsychiatricHistory
   ? getApiData?.SignificantFamilyMedicalPsychiatricHistory.map(item => ({
       label: item, 
@@ -1608,119 +1758,258 @@ setTypeOfServicesArray(getApiData?.mentalHealthTreatmentHistory
 setSubstanceAbuseHistory(getApiData?.substanceAbuseHistory);
 setSubstanceAbuseDenies(getApiData?.substanceAbuseDenies);
 
-setSubstanceAbuseHistoryDataAgeOfFirstUseAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUseAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.lastUse?{
-  label: getApiData?.substanceAbuseHistoryData?.[0]?.lastUse, value :getApiData?.substanceAbuseHistoryData?.[0]?.lastUse
-}:""
+if(getApiData?.substanceAbuseHistoryData?.[0]?.state){
+  setSubstanceAbuseHistoryDataAgeOfFirstUseAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.ageOfFirstUse);
+  setSubstanceAbuseHistoryDataLastUseAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.lastUse?{
+    label: getApiData?.substanceAbuseHistoryData?.[0]?.lastUse, value :getApiData?.substanceAbuseHistoryData?.[0]?.lastUse
+  }:"");
+  setSubstanceAbuseHistoryDataFrequencyAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.frequency?{label:getApiData?.substanceAbuseHistoryData?.[0]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[0]?.frequency}:"");
+  setSubstanceAbuseHistoryDataLengthOfSobrietyAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.lengthOfSobriety
+    ?{label:getApiData?.substanceAbuseHistoryData?.[0]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[0]?.lengthOfSobriety}:"");
+}else{
+  setSubstanceAbuseHistoryDataAgeOfFirstUseAlcohol("");
+setSubstanceAbuseHistoryDataLastUseAlcohol("");
+setSubstanceAbuseHistoryDataFrequencyAlcohol("");
+setSubstanceAbuseHistoryDataLengthOfSobrietyAlcohol("");
+}
 
-);
-setSubstanceAbuseHistoryDataFrequencyAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.frequency?{label:getApiData?.substanceAbuseHistoryData?.[0]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[0]?.frequency}:"");
-setSubstanceAbuseHistoryDataLengthOfSobrietyAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.lengthOfSobriety
-  ?{label:getApiData?.substanceAbuseHistoryData?.[0]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[0]?.lengthOfSobriety}:"");
 
-setSubstanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines(getApiData?.substanceAbuseHistoryData?.[1]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUseBenzodiazepines(getApiData?.substanceAbuseHistoryData?.[1]?.lastUse
-  ?{label:getApiData?.substanceAbuseHistoryData?.[1]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[1]?.lastUse}:"");
-setSubstanceAbuseHistoryDataFrequencyBenzodiazepines(getApiData?.substanceAbuseHistoryData?.[1]?.frequency
-  ?{label:getApiData?.substanceAbuseHistoryData?.[1]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[1]?.frequency}:"");
-setSubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines(getApiData?.substanceAbuseHistoryData?.[1]?.lengthOfSobriety
-  ?{label:getApiData?.substanceAbuseHistoryData?.[1]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[1]?.lengthOfSobriety}:"");
+if (getApiData?.substanceAbuseHistoryData?.[1]?.state) {
+  setSubstanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines(
+    getApiData?.substanceAbuseHistoryData?.[1]?.ageOfFirstUse
+  );
+  setSubstanceAbuseHistoryDataLastUseBenzodiazepines(
+    getApiData?.substanceAbuseHistoryData?.[1]?.lastUse
+      ? {
+          label: getApiData?.substanceAbuseHistoryData?.[1]?.lastUse,
+          value: getApiData?.substanceAbuseHistoryData?.[1]?.lastUse
+        }
+      : ""
+  );
+  setSubstanceAbuseHistoryDataFrequencyBenzodiazepines(
+    getApiData?.substanceAbuseHistoryData?.[1]?.frequency
+      ? {
+          label: getApiData?.substanceAbuseHistoryData?.[1]?.frequency,
+          value: getApiData?.substanceAbuseHistoryData?.[1]?.frequency
+        }
+      : ""
+  );
+  setSubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines(
+    getApiData?.substanceAbuseHistoryData?.[1]?.lengthOfSobriety
+      ? {
+          label: getApiData?.substanceAbuseHistoryData?.[1]?.lengthOfSobriety,
+          value: getApiData?.substanceAbuseHistoryData?.[1]?.lengthOfSobriety
+        }
+      : ""
+  );
+} else {
+  setSubstanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines("");
+  setSubstanceAbuseHistoryDataLastUseBenzodiazepines("");
+  setSubstanceAbuseHistoryDataFrequencyBenzodiazepines("");
+  setSubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines("");
+}
 
-setSubstanceAbuseHistoryDataAgeOfFirstUseCrack(getApiData?.substanceAbuseHistoryData?.[2]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUseCrack(getApiData?.substanceAbuseHistoryData?.[2]?.lastUse
-  ?{label:getApiData?.substanceAbuseHistoryData?.[2]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[2]?.lastUse}:"");
-setSubstanceAbuseHistoryDataFrequencyCrack(getApiData?.substanceAbuseHistoryData?.[2]?.frequency
-  ?{label:getApiData?.substanceAbuseHistoryData?.[2]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[2]?.frequency}:"");
-setSubstanceAbuseHistoryDataLengthOfSobrietyCrack(getApiData?.substanceAbuseHistoryData?.[2]?.lengthOfSobriety
-  ?{label:getApiData?.substanceAbuseHistoryData?.[2]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[2]?.lengthOfSobriety}:"");
+if(getApiData?.substanceAbuseHistoryData?.[2]?.state){
+  setSubstanceAbuseHistoryDataAgeOfFirstUseCrack(getApiData?.substanceAbuseHistoryData?.[2]?.ageOfFirstUse);
+  setSubstanceAbuseHistoryDataLastUseCrack(getApiData?.substanceAbuseHistoryData?.[2]?.lastUse
+    ?{label:getApiData?.substanceAbuseHistoryData?.[2]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[2]?.lastUse}:"");
+  setSubstanceAbuseHistoryDataFrequencyCrack(getApiData?.substanceAbuseHistoryData?.[2]?.frequency
+    ?{label:getApiData?.substanceAbuseHistoryData?.[2]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[2]?.frequency}:"");
+  setSubstanceAbuseHistoryDataLengthOfSobrietyCrack(getApiData?.substanceAbuseHistoryData?.[2]?.lengthOfSobriety
+    ?{label:getApiData?.substanceAbuseHistoryData?.[2]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[2]?.lengthOfSobriety}:"");
+}else{
+  setSubstanceAbuseHistoryDataAgeOfFirstUseCrack("");
+  setSubstanceAbuseHistoryDataLastUseCrack("");
+  setSubstanceAbuseHistoryDataFrequencyCrack("");
+  setSubstanceAbuseHistoryDataLengthOfSobrietyCrack("");
+}
 
-setSubstanceAbuseHistoryDataAgeOfFirstUseHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUseHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.lastUse
-  ?{label:getApiData?.substanceAbuseHistoryData?.[3]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[3]?.lastUse}:"");
-setSubstanceAbuseHistoryDataFrequencyHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.frequency
-  ?{label:getApiData?.substanceAbuseHistoryData?.[3]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[3]?.frequency}:"");
-setSubstanceAbuseHistoryDataLengthOfSobrietyHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.lengthOfSobriety
-  ?{label:getApiData?.substanceAbuseHistoryData?.[3]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[3]?.lengthOfSobriety}:"");
 
-setSubstanceAbuseHistoryDataAgeOfFirstUseInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUseInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.lastUse
-  ?{label:getApiData?.substanceAbuseHistoryData?.[4]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[4]?.lastUse}:"");
-setSubstanceAbuseHistoryDataFrequencyInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.frequency
-  ?{label:getApiData?.substanceAbuseHistoryData?.[4]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[4]?.frequency}:"");
-setSubstanceAbuseHistoryDataLengthOfSobrietyInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.lengthOfSobriety
-  ?{label:getApiData?.substanceAbuseHistoryData?.[4]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[4]?.lengthOfSobriety}:"");
+  if(getApiData?.substanceAbuseHistoryData?.[3]?.state){
+    setSubstanceAbuseHistoryDataAgeOfFirstUseHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.ageOfFirstUse);
+    setSubstanceAbuseHistoryDataLastUseHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.lastUse
+      ?{label:getApiData?.substanceAbuseHistoryData?.[3]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[3]?.lastUse}:"");
+    setSubstanceAbuseHistoryDataFrequencyHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.frequency
+      ?{label:getApiData?.substanceAbuseHistoryData?.[3]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[3]?.frequency}:"");
+    setSubstanceAbuseHistoryDataLengthOfSobrietyHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.lengthOfSobriety
+      ?{label:getApiData?.substanceAbuseHistoryData?.[3]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[3]?.lengthOfSobriety}:"");
+  }else{
+    setSubstanceAbuseHistoryDataAgeOfFirstUseHeroin("");
+    setSubstanceAbuseHistoryDataLastUseHeroin("");
+    setSubstanceAbuseHistoryDataFrequencyHeroin("");
+    setSubstanceAbuseHistoryDataLengthOfSobrietyHeroin("");
+  }
 
-setSubstanceAbuseHistoryDataAgeOfFirstUseMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUseMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.lastUse
-  ?{label:getApiData?.substanceAbuseHistoryData?.[5]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[5]?.lastUse}:"");
-setSubstanceAbuseHistoryDataFrequencyMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.frequency
-  ?{label:getApiData?.substanceAbuseHistoryData?.[5]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[5]?.frequency}:"");
-setSubstanceAbuseHistoryDataLengthOfSobrietyMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.lengthOfSobriety
-  ?{label:getApiData?.substanceAbuseHistoryData?.[5]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[5]?.lengthOfSobriety}:"");
 
-setSubstanceAbuseHistoryDataAgeOfFirstUseMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUseMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.lastUse
-  ?{label:getApiData?.substanceAbuseHistoryData?.[6]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[6]?.lastUse}:"");
-setSubstanceAbuseHistoryDataFrequencyMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.frequency
-  ?{label:getApiData?.substanceAbuseHistoryData?.[6]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[6]?.frequency}:"");
-setSubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.lengthOfSobriety
-  ?{label:getApiData?.substanceAbuseHistoryData?.[6]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[6]?.lengthOfSobriety}:"");
 
-setSubstanceAbuseHistoryDataAgeOfFirstUseMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUseMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.lastUse
-  ?{label:getApiData?.substanceAbuseHistoryData?.[7]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[7]?.lastUse}:"");
-setSubstanceAbuseHistoryDataFrequencyMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.frequency
-  ?{label:getApiData?.substanceAbuseHistoryData?.[7]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[7]?.frequency}:"");
-setSubstanceAbuseHistoryDataLengthOfSobrietyMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.lengthOfSobriety
-  ?{label:getApiData?.substanceAbuseHistoryData?.[7]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[7]?.lengthOfSobriety}:"");
+  if(getApiData?.substanceAbuseHistoryData?.[4]?.state){
+    setSubstanceAbuseHistoryDataAgeOfFirstUseInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.ageOfFirstUse);
+    setSubstanceAbuseHistoryDataLastUseInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.lastUse
+      ?{label:getApiData?.substanceAbuseHistoryData?.[4]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[4]?.lastUse}:"");
+    setSubstanceAbuseHistoryDataFrequencyInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.frequency
+      ?{label:getApiData?.substanceAbuseHistoryData?.[4]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[4]?.frequency}:"");
+    setSubstanceAbuseHistoryDataLengthOfSobrietyInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.lengthOfSobriety
+      ?{label:getApiData?.substanceAbuseHistoryData?.[4]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[4]?.lengthOfSobriety}:"");
+  }else{
+    setSubstanceAbuseHistoryDataAgeOfFirstUseInhalants("");
+    setSubstanceAbuseHistoryDataLastUseInhalants("");
+    setSubstanceAbuseHistoryDataFrequencyInhalants("");
+    setSubstanceAbuseHistoryDataLengthOfSobrietyInhalants("");
+  }
 
-setSubstanceAbuseHistoryDataAgeOfFirstUseMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUseMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.lastUse
-  ?{label:getApiData?.substanceAbuseHistoryData?.[8]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[8]?.lastUse}:"");
-setSubstanceAbuseHistoryDataFrequencyMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.frequency
-  ?{label:getApiData?.substanceAbuseHistoryData?.[8]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[8]?.frequency}:"");
-setSubstanceAbuseHistoryDataLengthOfSobrietyMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.lengthOfSobriety
-  ?{label:getApiData?.substanceAbuseHistoryData?.[8]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[8]?.lengthOfSobriety}:"");
 
-setSubstanceAbuseHistoryDataAgeOfFirstUsePCP(getApiData?.substanceAbuseHistoryData?.[9]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUsePCP(getApiData?.substanceAbuseHistoryData?.[9]?.lastUse
-  ?{label:getApiData?.substanceAbuseHistoryData?.[9]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[9]?.lastUse}:"");
-setSubstanceAbuseHistoryDataFrequencyPCP(getApiData?.substanceAbuseHistoryData?.[9]?.frequency
-  ?{label:getApiData?.substanceAbuseHistoryData?.[9]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[9]?.frequency}:"");
-setSubstanceAbuseHistoryDataLengthOfSobrietyPCP(getApiData?.substanceAbuseHistoryData?.[9]?.lengthOfSobriety
-  ?{label:getApiData?.substanceAbuseHistoryData?.[9]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[9]?.lengthOfSobriety}:"");
+  if(getApiData?.substanceAbuseHistoryData?.[5]?.state){
+    setSubstanceAbuseHistoryDataAgeOfFirstUseMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.ageOfFirstUse);
+    setSubstanceAbuseHistoryDataLastUseMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.lastUse
+      ?{label:getApiData?.substanceAbuseHistoryData?.[5]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[5]?.lastUse}:"");
+    setSubstanceAbuseHistoryDataFrequencyMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.frequency
+      ?{label:getApiData?.substanceAbuseHistoryData?.[5]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[5]?.frequency}:"");
+    setSubstanceAbuseHistoryDataLengthOfSobrietyMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.lengthOfSobriety
+      ?{label:getApiData?.substanceAbuseHistoryData?.[5]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[5]?.lengthOfSobriety}:"");
+  }else{
+    setSubstanceAbuseHistoryDataAgeOfFirstUseMarijuana("");
+    setSubstanceAbuseHistoryDataLastUseMarijuana("");
+    setSubstanceAbuseHistoryDataFrequencyMarijuana("");
+    setSubstanceAbuseHistoryDataLengthOfSobrietyMarijuana("");
+  }
 
-setSubstanceAbuseHistoryDataAgeOfFirstUsePrescription(getApiData?.substanceAbuseHistoryData?.[10]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUsePrescription(getApiData?.substanceAbuseHistoryData?.[10]?.lastUse
-  ?{label:getApiData?.substanceAbuseHistoryData?.[10]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[10]?.lastUse}:"");
-setSubstanceAbuseHistoryDataFrequencyPrescription(getApiData?.substanceAbuseHistoryData?.[10]?.frequency
-  ?{label:getApiData?.substanceAbuseHistoryData?.[10]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[10]?.frequency}:"");
-setSubstanceAbuseHistoryDataLengthOfSobrietyPrescription(getApiData?.substanceAbuseHistoryData?.[10]?.lengthOfSobriety
-  ?{label:getApiData?.substanceAbuseHistoryData?.[10]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[10]?.lengthOfSobriety}:"");
 
-setSubstanceAbuseHistoryDataAgeOfFirstUseOTC(getApiData?.substanceAbuseHistoryData?.[11]?.ageOfFirstUse);
-setSubstanceAbuseHistoryDataLastUseOTC(getApiData?.substanceAbuseHistoryData?.[11]?.lastUse
-  ?{label:getApiData?.substanceAbuseHistoryData?.[11]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[11]?.lastUse}:"");
-setSubstanceAbuseHistoryDataFrequencyOTC(getApiData?.substanceAbuseHistoryData?.[11]?.frequency
-  ?{label:getApiData?.substanceAbuseHistoryData?.[11]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[11]?.frequency}:"");
-setSubstanceAbuseHistoryDataLengthOfSobrietyOTC(getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety
-  ?{label:getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety}:"");
 
-  setSubstanceAbuseHistoryDataAgeOfFirstUseCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.ageOfFirstUse);
-  setSubstanceAbuseHistoryDataLastUseCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.lastUse
-  ?{label:getApiData?.substanceAbuseHistoryData?.[12]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[12]?.lastUse}:"");
-  setSubstanceAbuseHistoryDataFrequencyCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.frequency
-  ?{label:getApiData?.substanceAbuseHistoryData?.[12]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[12]?.frequency}:"");
-  setSubstanceAbuseHistoryDataLengthOfSobrietyCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.lengthOfSobriety
-  ?{label:getApiData?.substanceAbuseHistoryData?.[12]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[12]?.lengthOfSobriety}:"");
+  if(getApiData?.substanceAbuseHistoryData?.[6]?.state){
+    setSubstanceAbuseHistoryDataAgeOfFirstUseMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.ageOfFirstUse);
+    setSubstanceAbuseHistoryDataLastUseMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.lastUse
+      ?{label:getApiData?.substanceAbuseHistoryData?.[6]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[6]?.lastUse}:"");
+    setSubstanceAbuseHistoryDataFrequencyMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.frequency
+      ?{label:getApiData?.substanceAbuseHistoryData?.[6]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[6]?.frequency}:"");
+    setSubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.lengthOfSobriety
+      ?{label:getApiData?.substanceAbuseHistoryData?.[6]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[6]?.lengthOfSobriety}:"");
+  }else{
+    setSubstanceAbuseHistoryDataAgeOfFirstUseMethamphetamine("");
+    setSubstanceAbuseHistoryDataLastUseMethamphetamine("");
+    setSubstanceAbuseHistoryDataFrequencyMethamphetamine("");
+    setSubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine("");
+  }
 
-  setSubstanceAbuseHistoryDataAgeOfFirstUseHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.ageOfFirstUse);
-  setSubstanceAbuseHistoryDataLastUseHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.lastUse
-  ?{label:getApiData?.substanceAbuseHistoryData?.[13]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[13]?.lastUse}:"");
-  setSubstanceAbuseHistoryDataFrequencyHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.frequency
-  ?{label:getApiData?.substanceAbuseHistoryData?.[13]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[13]?.frequency}:"");
-  setSubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.lengthOfSobriety
-  ?{label:getApiData?.substanceAbuseHistoryData?.[13]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[13]?.lengthOfSobriety}:"");
+
+
+  if(getApiData?.substanceAbuseHistoryData?.[7]?.state){
+    setSubstanceAbuseHistoryDataAgeOfFirstUseMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.ageOfFirstUse);
+    setSubstanceAbuseHistoryDataLastUseMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.lastUse
+      ?{label:getApiData?.substanceAbuseHistoryData?.[7]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[7]?.lastUse}:"");
+    setSubstanceAbuseHistoryDataFrequencyMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.frequency
+      ?{label:getApiData?.substanceAbuseHistoryData?.[7]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[7]?.frequency}:"");
+    setSubstanceAbuseHistoryDataLengthOfSobrietyMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.lengthOfSobriety
+      ?{label:getApiData?.substanceAbuseHistoryData?.[7]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[7]?.lengthOfSobriety}:"");
+  }else{
+    setSubstanceAbuseHistoryDataAgeOfFirstUseMethadone("");
+    setSubstanceAbuseHistoryDataLastUseMethadone("");
+    setSubstanceAbuseHistoryDataFrequencyMethadone("");
+    setSubstanceAbuseHistoryDataLengthOfSobrietyMethadone("");
+  }
+
+
+
+  if(getApiData?.substanceAbuseHistoryData?.[8]?.state){
+    setSubstanceAbuseHistoryDataAgeOfFirstUseMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.ageOfFirstUse);
+    setSubstanceAbuseHistoryDataLastUseMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.lastUse
+      ?{label:getApiData?.substanceAbuseHistoryData?.[8]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[8]?.lastUse}:"");
+    setSubstanceAbuseHistoryDataFrequencyMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.frequency
+      ?{label:getApiData?.substanceAbuseHistoryData?.[8]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[8]?.frequency}:"");
+    setSubstanceAbuseHistoryDataLengthOfSobrietyMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.lengthOfSobriety
+      ?{label:getApiData?.substanceAbuseHistoryData?.[8]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[8]?.lengthOfSobriety}:"");
+  }else{
+    setSubstanceAbuseHistoryDataAgeOfFirstUseMDMA("");
+    setSubstanceAbuseHistoryDataLastUseMDMA("");
+    setSubstanceAbuseHistoryDataFrequencyMDMA("");
+    setSubstanceAbuseHistoryDataLengthOfSobrietyMDMA("");
+  }
+
+
+
+  if(getApiData?.substanceAbuseHistoryData?.[9]?.state){
+    setSubstanceAbuseHistoryDataAgeOfFirstUsePCP(getApiData?.substanceAbuseHistoryData?.[9]?.ageOfFirstUse);
+    setSubstanceAbuseHistoryDataLastUsePCP(getApiData?.substanceAbuseHistoryData?.[9]?.lastUse
+      ?{label:getApiData?.substanceAbuseHistoryData?.[9]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[9]?.lastUse}:"");
+    setSubstanceAbuseHistoryDataFrequencyPCP(getApiData?.substanceAbuseHistoryData?.[9]?.frequency
+      ?{label:getApiData?.substanceAbuseHistoryData?.[9]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[9]?.frequency}:"");
+    setSubstanceAbuseHistoryDataLengthOfSobrietyPCP(getApiData?.substanceAbuseHistoryData?.[9]?.lengthOfSobriety
+      ?{label:getApiData?.substanceAbuseHistoryData?.[9]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[9]?.lengthOfSobriety}:"");
+  }else{
+    setSubstanceAbuseHistoryDataAgeOfFirstUsePCP("");
+    setSubstanceAbuseHistoryDataLastUsePCP("");
+    setSubstanceAbuseHistoryDataFrequencyPCP("");
+    setSubstanceAbuseHistoryDataLengthOfSobrietyPCP("");
+  }
+
+
+
+  if(getApiData?.substanceAbuseHistoryData?.[10]?.state){
+    setSubstanceAbuseHistoryDataAgeOfFirstUsePrescription(getApiData?.substanceAbuseHistoryData?.[10]?.ageOfFirstUse);
+    setSubstanceAbuseHistoryDataLastUsePrescription(getApiData?.substanceAbuseHistoryData?.[10]?.lastUse
+      ?{label:getApiData?.substanceAbuseHistoryData?.[10]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[10]?.lastUse}:"");
+    setSubstanceAbuseHistoryDataFrequencyPrescription(getApiData?.substanceAbuseHistoryData?.[10]?.frequency
+      ?{label:getApiData?.substanceAbuseHistoryData?.[10]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[10]?.frequency}:"");
+    setSubstanceAbuseHistoryDataLengthOfSobrietyPrescription(getApiData?.substanceAbuseHistoryData?.[10]?.lengthOfSobriety
+      ?{label:getApiData?.substanceAbuseHistoryData?.[10]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[10]?.lengthOfSobriety}:"");
+  }else{
+    setSubstanceAbuseHistoryDataAgeOfFirstUsePrescription("");
+    setSubstanceAbuseHistoryDataLastUsePrescription("");
+    setSubstanceAbuseHistoryDataFrequencyPrescription("");
+    setSubstanceAbuseHistoryDataLengthOfSobrietyPrescription("");
+  }
+
+
+
+  if(getApiData?.substanceAbuseHistoryData?.[11]?.state){
+    setSubstanceAbuseHistoryDataAgeOfFirstUseOTC(getApiData?.substanceAbuseHistoryData?.[11]?.ageOfFirstUse);
+    setSubstanceAbuseHistoryDataLastUseOTC(getApiData?.substanceAbuseHistoryData?.[11]?.lastUse
+      ?{label:getApiData?.substanceAbuseHistoryData?.[11]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[11]?.lastUse}:"");
+    setSubstanceAbuseHistoryDataFrequencyOTC(getApiData?.substanceAbuseHistoryData?.[11]?.frequency
+      ?{label:getApiData?.substanceAbuseHistoryData?.[11]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[11]?.frequency}:"");
+    setSubstanceAbuseHistoryDataLengthOfSobrietyOTC(getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety
+      ?{label:getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety}:"");
+  }else{
+    setSubstanceAbuseHistoryDataAgeOfFirstUseOTC("");
+    setSubstanceAbuseHistoryDataLastUseOTC("");
+    setSubstanceAbuseHistoryDataFrequencyOTC("");
+    setSubstanceAbuseHistoryDataLengthOfSobrietyOTC("");
+  }
+
+
+
+  if(getApiData?.substanceAbuseHistoryData?.[12]?.state){
+    setSubstanceAbuseHistoryDataAgeOfFirstUseCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.ageOfFirstUse);
+    setSubstanceAbuseHistoryDataLastUseCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.lastUse
+    ?{label:getApiData?.substanceAbuseHistoryData?.[12]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[12]?.lastUse}:"");
+    setSubstanceAbuseHistoryDataFrequencyCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.frequency
+    ?{label:getApiData?.substanceAbuseHistoryData?.[12]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[12]?.frequency}:"");
+    setSubstanceAbuseHistoryDataLengthOfSobrietyCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.lengthOfSobriety
+    ?{label:getApiData?.substanceAbuseHistoryData?.[12]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[12]?.lengthOfSobriety}:"");
+  }else{
+    setSubstanceAbuseHistoryDataAgeOfFirstUseCocaine("");
+    setSubstanceAbuseHistoryDataLastUseCocaine("");
+    setSubstanceAbuseHistoryDataFrequencyCocaine("");
+    setSubstanceAbuseHistoryDataLengthOfSobrietyCocaine("");
+  
+  }
+
+
+
+  if(getApiData?.substanceAbuseHistoryData?.[13]?.state){
+    setSubstanceAbuseHistoryDataAgeOfFirstUseHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.ageOfFirstUse);
+    setSubstanceAbuseHistoryDataLastUseHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.lastUse
+    ?{label:getApiData?.substanceAbuseHistoryData?.[13]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[13]?.lastUse}:"");
+    setSubstanceAbuseHistoryDataFrequencyHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.frequency
+    ?{label:getApiData?.substanceAbuseHistoryData?.[13]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[13]?.frequency}:"");
+    setSubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.lengthOfSobriety
+    ?{label:getApiData?.substanceAbuseHistoryData?.[13]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[13]?.lengthOfSobriety}:"");
+  }else{
+    setSubstanceAbuseHistoryDataAgeOfFirstUseHallucinogens("");
+  setSubstanceAbuseHistoryDataLastUseHallucinogens("");
+  setSubstanceAbuseHistoryDataFrequencyHallucinogens("");
+  setSubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens("");
+  }
+
 
 setTypeArray(getApiData?.substanceAbuseHistoryData?getApiArrayData(14,getApiData?.substanceAbuseHistoryData?.length,getApiData?.substanceAbuseHistoryData):[]);
 
@@ -2058,59 +2347,139 @@ setSelectedValue(getApiData?.legalHistory
     }))
   : []);
 
-setBathingGood(getApiData?.independentLivingSkills?.[0]?.good);
-setBathingFair(getApiData?.independentLivingSkills?.[0]?.fair);
-setBathingNotSoGood(getApiData?.independentLivingSkills?.[0]?.otherCurrentNotSoGood);
-setBathingGoodNeedAssist(getApiData?.independentLivingSkills?.[0]?.needAssist );
-setBathingComments(getApiData?.independentLivingSkills?.[0]?.comments);
+  if(getApiData?.independentLivingSkills?.[0]?.state){
+    setBathingGood(getApiData?.independentLivingSkills?.[0]?.good);
+    setBathingFair(getApiData?.independentLivingSkills?.[0]?.fair);
+    setBathingNotSoGood(getApiData?.independentLivingSkills?.[0]?.otherCurrentNotSoGood);
+    setBathingGoodNeedAssist(getApiData?.independentLivingSkills?.[0]?.needAssist );
+    setBathingComments(getApiData?.independentLivingSkills?.[0]?.comments);
+  }else{
+    setBathingGood(false);
+setBathingFair(false);
+setBathingNotSoGood(false);
+setBathingGoodNeedAssist(null);
+setBathingComments("");
+  }
 
-setGroomingGood(getApiData?.independentLivingSkills?.[1]?.good);
-setGroomingFair(getApiData?.independentLivingSkills?.[1]?.fair);
-setGroomingNotSoGood(getApiData?.independentLivingSkills?.[1]?.otherCurrentNotSoGood);
-setGroomingGoodNeedAssist(getApiData?.independentLivingSkills?.[1]?.needAssist);
-setGroomingComments(getApiData?.independentLivingSkills?.[1]?.comments);
 
-setMobilityGood(getApiData?.independentLivingSkills?.[2]?.good);
-setMobilityFair(getApiData?.independentLivingSkills?.[2]?.fair);
-setMobilityNotSoGood(getApiData?.independentLivingSkills?.[2]?.otherCurrentNotSoGood);
-setMobilityGoodNeedAssist(getApiData?.independentLivingSkills?.[2]?.needAssist);
-setMobilityComments(getApiData?.independentLivingSkills?.[2]?.comments);
+  if (getApiData?.independentLivingSkills?.[1]?.state) {
+    setGroomingGood(getApiData?.independentLivingSkills?.[1]?.good);
+    setGroomingFair(getApiData?.independentLivingSkills?.[1]?.fair);
+    setGroomingNotSoGood(getApiData?.independentLivingSkills?.[1]?.otherCurrentNotSoGood);
+    setGroomingGoodNeedAssist(getApiData?.independentLivingSkills?.[1]?.needAssist);
+    setGroomingComments(getApiData?.independentLivingSkills?.[1]?.comments);
+  } else {
+    setGroomingGood(false);
+    setGroomingFair(false);
+    setGroomingNotSoGood(false);
+    setGroomingGoodNeedAssist(null);
+    setGroomingComments("");
+  }
 
-setHouseworkGood(getApiData?.independentLivingSkills?.[3]?.good);
-setHouseworkFair(getApiData?.independentLivingSkills?.[3]?.fair);
-setHouseworkNotSoGood(getApiData?.independentLivingSkills?.[3]?.otherCurrentNotSoGood);
-setHouseworkGoodNeedAssist(getApiData?.independentLivingSkills?.[3]?.needAssist);
-setHouseworkComments(getApiData?.independentLivingSkills?.[3]?.comments);
+  if (getApiData?.independentLivingSkills?.[2]?.state) {
+    setMobilityGood(getApiData?.independentLivingSkills?.[2]?.good);
+    setMobilityFair(getApiData?.independentLivingSkills?.[2]?.fair);
+    setMobilityNotSoGood(getApiData?.independentLivingSkills?.[2]?.otherCurrentNotSoGood);
+    setMobilityGoodNeedAssist(getApiData?.independentLivingSkills?.[2]?.needAssist);
+    setMobilityComments(getApiData?.independentLivingSkills?.[2]?.comments);
+  } else {
+    setMobilityGood(false);
+    setMobilityFair(false);
+    setMobilityNotSoGood(false);
+    setMobilityGoodNeedAssist(null);
+    setMobilityComments("");
+  }
 
-setShoppingGood(getApiData?.independentLivingSkills?.[4]?.good);
-setShoppingFair(getApiData?.independentLivingSkills?.[4]?.fair);
-setShoppingNotSoGood(getApiData?.independentLivingSkills?.[4]?.otherCurrentNotSoGood);
-setShoppingGoodNeedAssist(getApiData?.independentLivingSkills?.[4]?.needAssist);
-setShoppingComments(getApiData?.independentLivingSkills?.[4]?.comments);
+  if (getApiData?.independentLivingSkills?.[3]?.state) {
+    setHouseworkGood(getApiData?.independentLivingSkills?.[3]?.good);
+    setHouseworkFair(getApiData?.independentLivingSkills?.[3]?.fair);
+    setHouseworkNotSoGood(getApiData?.independentLivingSkills?.[3]?.otherCurrentNotSoGood);
+    setHouseworkGoodNeedAssist(getApiData?.independentLivingSkills?.[3]?.needAssist);
+    setHouseworkComments(getApiData?.independentLivingSkills?.[3]?.comments);
+  } else {
+    setHouseworkGood(false);
+    setHouseworkFair(false);
+    setHouseworkNotSoGood(false);
+    setHouseworkGoodNeedAssist(null);
+    setHouseworkComments("");
+  }
 
-setManagingGood(getApiData?.independentLivingSkills?.[5]?.good);
-setManagingFair(getApiData?.independentLivingSkills?.[5]?.fair);
-setManagingNotSoGood(getApiData?.independentLivingSkills?.[5]?.otherCurrentNotSoGood);
-setManagingGoodNeedAssist(getApiData?.independentLivingSkills?.[5]?.needAssist);
-setManagingComments(getApiData?.independentLivingSkills?.[5]?.comments);
+// Shopping
+if (getApiData?.independentLivingSkills?.[4]?.state) {
+  setShoppingGood(getApiData?.independentLivingSkills?.[4]?.good);
+  setShoppingFair(getApiData?.independentLivingSkills?.[4]?.fair);
+  setShoppingNotSoGood(getApiData?.independentLivingSkills?.[4]?.otherCurrentNotSoGood);
+  setShoppingGoodNeedAssist(getApiData?.independentLivingSkills?.[4]?.needAssist);
+  setShoppingComments(getApiData?.independentLivingSkills?.[4]?.comments);
+} else {
+  setShoppingGood(false);
+  setShoppingFair(false);
+  setShoppingNotSoGood(false);
+  setShoppingGoodNeedAssist(null);
+  setShoppingComments("");
+}
 
-setPreparingGood(getApiData?.independentLivingSkills?.[6]?.good);
-setPreparingFair(getApiData?.independentLivingSkills?.[6]?.fair);
-setPreparingNotSoGood(getApiData?.independentLivingSkills?.[6]?.otherCurrentNotSoGood);
-setPreparingGoodNeedAssist(getApiData?.independentLivingSkills?.[6]?.needAssist);
-setPreparingComments(getApiData?.independentLivingSkills?.[6]?.comments);
+// Managing
+if (getApiData?.independentLivingSkills?.[5]?.state) {
+  setManagingGood(getApiData?.independentLivingSkills?.[5]?.good);
+  setManagingFair(getApiData?.independentLivingSkills?.[5]?.fair);
+  setManagingNotSoGood(getApiData?.independentLivingSkills?.[5]?.otherCurrentNotSoGood);
+  setManagingGoodNeedAssist(getApiData?.independentLivingSkills?.[5]?.needAssist);
+  setManagingComments(getApiData?.independentLivingSkills?.[5]?.comments);
+} else {
+  setManagingGood(false);
+  setManagingFair(false);
+  setManagingNotSoGood(false);
+  setManagingGoodNeedAssist(null);
+  setManagingComments("");
+}
 
-setEatingGood(getApiData?.independentLivingSkills?.[7]?.good);
-setEatingFair(getApiData?.independentLivingSkills?.[7]?.fair);
-setEatingNotSoGood(getApiData?.independentLivingSkills?.[7]?.otherCurrentNotSoGood);
-setEatingGoodNeedAssist(getApiData?.independentLivingSkills?.[7]?.needAssist);
-setEatingComments(getApiData?.independentLivingSkills?.[7]?.comments);
+// Preparing
+if (getApiData?.independentLivingSkills?.[6]?.state) {
+  setPreparingGood(getApiData?.independentLivingSkills?.[6]?.good);
+  setPreparingFair(getApiData?.independentLivingSkills?.[6]?.fair);
+  setPreparingNotSoGood(getApiData?.independentLivingSkills?.[6]?.otherCurrentNotSoGood);
+  setPreparingGoodNeedAssist(getApiData?.independentLivingSkills?.[6]?.needAssist);
+  setPreparingComments(getApiData?.independentLivingSkills?.[6]?.comments);
+} else {
+  setPreparingGood(false);
+  setPreparingFair(false);
+  setPreparingNotSoGood(false);
+  setPreparingGoodNeedAssist(null);
+  setPreparingComments("");
+}
 
-setToiletingGood(getApiData?.independentLivingSkills?.[8]?.good);
-setToiletingFair(getApiData?.independentLivingSkills?.[8]?.fair);
-setToiletingNotSoGood(getApiData?.independentLivingSkills?.[8]?.otherCurrentNotSoGood);
-setToiletingGoodNeedAssist(getApiData?.independentLivingSkills?.[8]?.needAssist);
-setToiletingComments(getApiData?.independentLivingSkills?.[8]?.comments);
+// Eating
+if (getApiData?.independentLivingSkills?.[7]?.state) {
+  setEatingGood(getApiData?.independentLivingSkills?.[7]?.good);
+  setEatingFair(getApiData?.independentLivingSkills?.[7]?.fair);
+  setEatingNotSoGood(getApiData?.independentLivingSkills?.[7]?.otherCurrentNotSoGood);
+  setEatingGoodNeedAssist(getApiData?.independentLivingSkills?.[7]?.needAssist);
+  setEatingComments(getApiData?.independentLivingSkills?.[7]?.comments);
+} else {
+  setEatingGood(false);
+  setEatingFair(false);
+  setEatingNotSoGood(false);
+  setEatingGoodNeedAssist(null);
+  setEatingComments("");
+}
+
+// Toileting
+if (getApiData?.independentLivingSkills?.[8]?.state) {
+  setToiletingGood(getApiData?.independentLivingSkills?.[8]?.good);
+  setToiletingFair(getApiData?.independentLivingSkills?.[8]?.fair);
+  setToiletingNotSoGood(getApiData?.independentLivingSkills?.[8]?.otherCurrentNotSoGood);
+  setToiletingGoodNeedAssist(getApiData?.independentLivingSkills?.[8]?.needAssist);
+  setToiletingComments(getApiData?.independentLivingSkills?.[8]?.comments);
+} else {
+  setToiletingGood(false);
+  setToiletingFair(false);
+  setToiletingNotSoGood(false);
+  setToiletingGoodNeedAssist(null);
+  setToiletingComments("");
+}
+
+
 // setOtherCurrentOther(getApiArrayData?.independentLivingSkills?.[0]?.comments);
 
 // setOtherCurrentGood(getApiData?.independentLivingSkills?.[9]?.good);
@@ -2152,82 +2521,262 @@ setSuicidalIdeationUrgency(getApiData?.suicidalIdeationUrgency);
 setSuicidalIdeationSeverity(getApiData?.suicidalIdeationSeverity);
 setCurrentThoughtsOfHarmingOthers(getApiData?.currentThoughtsOfHarmingOthers);
 
-setRiskYesNo(getApiData?.riskFactors?.[0]?.yesNo);
-setRiskComment(getApiData?.riskFactors?.[0]?.comment);
-setPriorYesNo(getApiData?.riskFactors?.[1]?.yesNo);
-setPriorComment(getApiData?.riskFactors?.[1]?.comment);
-setAccessYesNo(getApiData?.riskFactors?.[2]?.yesNo);
-setAccessComment(getApiData?.riskFactors?.[2]?.comment);
-setSubstanceYesNo(getApiData?.riskFactors?.[3]?.yesNo);
-setSubstanceCommentAbuse(getApiData?.riskFactors?.[3]?.comment);
-setabusingYesNo(getApiData?.riskFactors?.[4]?.yesNo);
-setabusingComment(getApiData?.riskFactors?.[4]?.comment);
-setRecentYesNo(getApiData?.riskFactors?.[5]?.yesNo);
-setRecentComment(getApiData?.riskFactors?.[5]?.comment);
-setBehaviourYesNo(getApiData?.riskFactors?.[6]?.yesNo);
-setBehaviorcuesDropDown(getApiData?.riskFactors?.[6]?.comments
-  ? getApiData?.riskFactors?.[6]?.comments.map(item => ({
-      label: item, // Assuming 'name' is the property you want to use as label
-      value: item    // Assuming 'id' is the property you want to use as value
-    }))
-  : []);
-setSymptomsYesNo(getApiData?.riskFactors?.[7]?.yesNo);
-setSymptomsOfPsychosisDropDown(getApiData?.riskFactors?.[7]?.comments
-  ? getApiData?.riskFactors?.[7]?.comments.map(item => ({
-      label: item, // Assuming 'name' is the property you want to use as label
-      value: item    // Assuming 'id' is the property you want to use as value
-    }))
-  : []);
-setFamilyYesNo(getApiData?.riskFactors?.[8]?.yesNo);
-setFamily(getApiData?.riskFactors?.[8]?.comment);
-setTerminalYesNo(getApiData?.riskFactors?.[9]?.yesNo);
-setTerminal(getApiData?.riskFactors?.[9]?.comment);
-setCurrentYesNo(getApiData?.riskFactors?.[10]?.yesNo);
-setCurrent(getApiData?.riskFactors?.[10]?.comment);
-setChronicYesNo(getApiData?.riskFactors?.[11]?.yesNo);
-setChronicPain(getApiData?.riskFactors?.[11]?.comment);
+
+if(getApiData?.riskFactors?.[0]?.state){
+  setRiskYesNo(getApiData?.riskFactors?.[0]?.yesNo);
+  setRiskComment(getApiData?.riskFactors?.[0]?.comment);
+}else{
+  setRiskYesNo(null);
+setRiskComment("");
+}
+
+
+if (getApiData?.riskFactors?.[1]?.state) {
+  setPriorYesNo(getApiData?.riskFactors?.[1]?.yesNo);
+  setPriorComment(getApiData?.riskFactors?.[1]?.comment);
+} else {
+  setPriorYesNo(null);
+  setPriorComment("");
+}
+
+
+if (getApiData?.riskFactors?.[2]?.state) {
+  setAccessYesNo(getApiData?.riskFactors?.[2]?.yesNo);
+  setAccessComment(getApiData?.riskFactors?.[2]?.comment);
+} else {
+  setAccessYesNo(null);
+  setAccessComment("");
+}
+
+if(getApiData?.riskFactors?.[3]?.state){
+  setSubstanceYesNo(getApiData?.riskFactors?.[3]?.yesNo);
+  setSubstanceCommentAbuse(getApiData?.riskFactors?.[3]?.comment);
+}else{
+  setSubstanceYesNo(null);
+  setSubstanceCommentAbuse("");
+}
+
+
+
+if(getApiData?.riskFactors?.[4]?.state){
+  setabusingYesNo(getApiData?.riskFactors?.[4]?.yesNo);
+  setabusingComment(getApiData?.riskFactors?.[4]?.comment);
+}else{
+  setabusingYesNo(null);
+  setabusingComment("");
+}
+
+
+if(getApiData?.riskFactors?.[5]?.state){
+  setRecentYesNo(getApiData?.riskFactors?.[5]?.yesNo);
+  setRecentComment(getApiData?.riskFactors?.[5]?.comment);
+}else{
+  setRecentYesNo(null);
+  setRecentComment("");
+}
+
+
+if(getApiData?.riskFactors?.[6]?.state){
+  setBehaviourYesNo(getApiData?.riskFactors?.[6]?.yesNo);
+  setBehaviorcuesDropDown(getApiData?.riskFactors?.[6]?.comments
+    ? getApiData?.riskFactors?.[6]?.comments.map(item => ({
+        label: item, 
+        value: item    
+      }))
+    : []);
+}else{
+  setBehaviourYesNo(null);
+  setBehaviorcuesDropDown([]);
+}
+
+
+  if(getApiData?.riskFactors?.[7]?.state){
+    setSymptomsYesNo(getApiData?.riskFactors?.[7]?.yesNo);
+    setSymptomsOfPsychosisDropDown(getApiData?.riskFactors?.[7]?.comments
+      ? getApiData?.riskFactors?.[7]?.comments.map(item => ({
+          label: item, 
+          value: item   
+        }))
+      : []);
+  }else{
+    setSymptomsYesNo(null);
+    setSymptomsOfPsychosisDropDown([]);
+  }
+
+
+  if(getApiData?.riskFactors?.[8]?.state){
+    setFamilyYesNo(getApiData?.riskFactors?.[8]?.yesNo);
+    setFamily(getApiData?.riskFactors?.[8]?.comment);
+  }else{
+    setFamilyYesNo(null);
+    setFamily("");
+  }
+
+
+if(getApiData?.riskFactors?.[9]?.state){
+  setTerminalYesNo(getApiData?.riskFactors?.[9]?.yesNo);
+  setTerminal(getApiData?.riskFactors?.[9]?.comment);
+}else{
+  setTerminalYesNo(null);
+  setTerminal('');
+}
+
+
+if(getApiData?.riskFactors?.[10]?.state){
+  setCurrentYesNo(getApiData?.riskFactors?.[10]?.yesNo);
+  setCurrent(getApiData?.riskFactors?.[10]?.comment);
+}else{
+  setCurrentYesNo(null);
+  setCurrent("");
+}
+
+
+if(getApiData?.riskFactors?.[11]?.state){
+  setChronicYesNo(getApiData?.riskFactors?.[11]?.yesNo);
+  setChronicPain(getApiData?.riskFactors?.[11]?.comment);
+}else{
+  setChronicYesNo(null);
+  setChronicPain("");
+}
+
 
 setRiskFactoeArray(getApiData?.riskFactors?getApiArrayData(12,getApiData?.riskFactors?.length,getApiData?.riskFactors):[]);
 
-setSupportsYesNo(getApiData?.protectiveFactors?.[0]?.yesNo);
-setSupportsComment(getApiData?.protectiveFactors?.[0]?.comment);
-setSpiritualYesNo(getApiData?.riskFactors?.[1]?.yesNo);
-setSpiritualComment(getApiData?.protectiveFactors?.[1]?.comment);
-setReligiousYesNo(getApiData?.riskFactors?.[2]?.yesNo);
-setReligiousComment(getApiData?.protectiveFactors?.[2]?.comment);
-setFearYesNo(getApiData?.riskFactors?.[3]?.yesNo);
-setFearComment(getApiData?.protectiveFactors?.[3]?.comment);
-setInterventionYesNo(getApiData?.riskFactors?.[4]?.yesNo);
-setInterventionComment(getApiData?.protectiveFactors?.[4]?.comment);
-setWillingYesNo(getApiData?.riskFactors?.[5]?.yesNo);
+if(getApiData?.protectiveFactors?.[0]?.state){
+  setSupportsYesNo(getApiData?.protectiveFactors?.[0]?.yesNo);
+  setSupportsComment(getApiData?.protectiveFactors?.[0]?.comment);
+}else{
+  setSupportsYesNo(null);
+ setSupportsComment("");
+}
+
+if(getApiData?.protectiveFactors?.[1]?.state){
+  setSpiritualYesNo(getApiData?.protectiveFactors?.[1]?.yesNo);
+  setSpiritualComment(getApiData?.protectiveFactors?.[1]?.comment);
+}else{
+  setSpiritualYesNo(null);
+setSpiritualComment("");
+}
+
+
+if(getApiData?.protectiveFactors?.[2]?.state){
+  setReligiousYesNo(getApiData?.protectiveFactors?.[2]?.yesNo);
+  setReligiousComment(getApiData?.protectiveFactors?.[2]?.comment);
+}else{
+  setReligiousYesNo(null);
+setReligiousComment("");
+}
+
+
+if(getApiData?.protectiveFactors?.[3]?.state){
+  setFearYesNo(getApiData?.protectiveFactors?.[3]?.yesNo);
+  setFearComment(getApiData?.protectiveFactors?.[3]?.comment);
+}else{
+  setFearYesNo(null);
+setFearComment("");
+}
+
+
+if(getApiData?.protectiveFactors?.[4]?.state){
+  setInterventionYesNo(getApiData?.protectiveFactors?.[4]?.yesNo);
+  setInterventionComment(getApiData?.protectiveFactors?.[4]?.comment);
+}else{
+  setInterventionYesNo(null);
+setInterventionComment("");
+}
+
+
+if(getApiData?.protectiveFactors?.[5]?.state){
+setWillingYesNo(getApiData?.protectiveFactors?.[5]?.yesNo);
 setWillingComment(getApiData?.protectiveFactors?.[5]?.comment);
+}else{
+  
+setWillingYesNo(null);
+setWillingComment("");
+}
+
 
 setProtectiveFactorsArray(getApiData?.protectiveFactors?getApiArrayData(6,getApiData?.protectiveFactors?.length,getApiData?.protectiveFactors):[]);
 
 setRiskLevel(getApiData?.riskLevel);
 
-setPsychiatricPrimaryIcdCode(getApiData?.psychiatricDiagnoses?.[0]?.icdCode);
-setPsychiatricPrimaryDescription(getApiData?.psychiatricDiagnoses?.[0]?.description);
-setPsychiatricSecondaryIcdCode(getApiData?.psychiatricDiagnoses?.[1]?.icdCode);
+if(getApiData?.psychiatricDiagnoses?.[0]?.state){
+  setPsychiatricPrimaryIcdCode(getApiData?.psychiatricDiagnoses?.[0]?.icdCode);
+  setPsychiatricPrimaryDescription(getApiData?.psychiatricDiagnoses?.[0]?.description);
+}else{
+  setPsychiatricPrimaryIcdCode(null);
+  setPsychiatricPrimaryDescription("");
+}
+
+if(getApiData?.psychiatricDiagnoses?.[1]?.state){
+  setPsychiatricSecondaryIcdCode(getApiData?.psychiatricDiagnoses?.[1]?.icdCode);
 setPsychiatricSecondaryDescription(getApiData?.psychiatricDiagnoses?.[1]?.description);
-setPsychiatricTertiaryIcdCode(getApiData?.psychiatricDiagnoses?.[2]?.icdCode);
+}else{
+  setPsychiatricSecondaryIcdCode(null);
+  setPsychiatricSecondaryDescription("");
+}
+
+
+
+if(getApiData?.psychiatricDiagnoses?.[2]?.state){
+  setPsychiatricTertiaryIcdCode(getApiData?.psychiatricDiagnoses?.[2]?.icdCode);
 setPsychiatricTertiaryDescription(getApiData?.psychiatricDiagnoses?.[2]?.description);
-setPsychiatricAdditionalIcdCode(getApiData?.psychiatricDiagnoses?.[3]?.icdCode);
+}else{
+  setPsychiatricTertiaryIcdCode(null);
+  setPsychiatricTertiaryDescription("");
+}
+
+
+
+if(getApiData?.psychiatricDiagnoses?.[3]?.state){
+  setPsychiatricAdditionalIcdCode(getApiData?.psychiatricDiagnoses?.[3]?.icdCode);
 setPsychiatricAdditionalDescription(getApiData?.psychiatricDiagnoses?.[3]?.description);
+}else{
+  setPsychiatricAdditionalIcdCode(null);
+  setPsychiatricAdditionalDescription("");
+}
+
 
 setPsychiatricDiagnosesArray(getApiData?.psychiatricDiagnoses?getApiArrayData(4,getApiData?.psychiatricDiagnoses?.length,getApiData?.psychiatricDiagnoses):[]);
 
-setPrimaryIcdCode(getApiData?.medicalDiagnoses?.[0]?.icdCode);
-setPrimaryDescription(getApiData?.medicalDiagnoses?.[0]?.description);
+if(getApiData?.medicalDiagnoses?.[0]?.state){
+  setPrimaryIcdCode(getApiData?.medicalDiagnoses?.[0]?.icdCode);
+  setPrimaryDescription(getApiData?.medicalDiagnoses?.[0]?.description);
+}else{
+  setPrimaryIcdCode(null);
+  setPrimaryDescription("");
+}
+
+if(getApiData?.medicalDiagnoses?.[1]?.state){
+  setSecondaryIcdCode(getApiData?.medicalDiagnoses?.[1]?.icdCode);
+  setSecondaryDescription(getApiData?.medicalDiagnoses?.[1]?.description);
+}else{
+  setSecondaryIcdCode(null);
+  setSecondaryDescription("");
+}
 // setMatical1(getApiData?.medicalDiagnoses?.[0]?.state)
-setSecondaryIcdCode(getApiData?.medicalDiagnoses?.[1]?.icdCode);
-setSecondaryDescription(getApiData?.medicalDiagnoses?.[1]?.description);
+
+
+if(getApiData?.medicalDiagnoses?.[2]?.state){
+  setTertiaryIcdCode(getApiData?.medicalDiagnoses?.[2]?.icdCode);
+  setTertiaryDescription(getApiData?.medicalDiagnoses?.[2]?.description);
+}else{
+  setTertiaryIcdCode(null);
+  setTertiaryDescription("");
+}
 // setMatical2(getApiData?.medicalDiagnoses?.[1]?.state)
-setTertiaryIcdCode(getApiData?.medicalDiagnoses?.[2]?.icdCode);
-setTertiaryDescription(getApiData?.medicalDiagnoses?.[2]?.description);
+
+
+if(getApiData?.medicalDiagnoses?.[3]?.state){
+  setAdditional1IcdCode(getApiData?.medicalDiagnoses?.[3]?.icdCode);
+  setAdditional1Description(getApiData?.medicalDiagnoses?.[3]?.description);
+}else{
+  setAdditional1IcdCode(null);
+  setAdditional1Description("");
+}
 // setMatical3(getApiData?.medicalDiagnoses?.[2]?.state)
-setAdditional1IcdCode(getApiData?.medicalDiagnoses?.[3]?.icdCode);
-setAdditional1Description(getApiData?.medicalDiagnoses?.[3]?.description);
+
+
 // setMatical4(getApiData?.medicalDiagnoses?.[3]?.state)
 
 setMedicalDiagnosesArray(getApiData?.medicalDiagnoses?getApiArrayData(4,getApiData?.medicalDiagnoses?.length,getApiData?.medicalDiagnoses):[])

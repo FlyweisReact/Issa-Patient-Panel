@@ -398,7 +398,7 @@ const TreatmentPlanPrint = ({componentRef}) => {
   useEffect(() => {
     setInitialUpdate(getApiData?.name);
     setSaveAsDraft(getApiData?.saveAsDraft);
-    setResidentName(user?.residentName);
+    setResidentName(getApiData?.residentName);
     setDob(user?.dateOfBirth ? user?.dateOfBirth?.slice(0, 10) : "");
     setDate(getApiData?.date ? getApiData?.date?.slice(0, 10) : "");
     setAdminDate(

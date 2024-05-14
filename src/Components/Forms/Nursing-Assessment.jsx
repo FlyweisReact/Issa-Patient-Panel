@@ -42,6 +42,7 @@ const NursingAssessment = () => {
     var submitButton=document.getElementsByClassName("form-actions");
     var bodyiamge=document.getElementsByClassName("bodyiamge");
 
+
     // hide bottom
     var form_field_gender = document.getElementsByClassName("form-field-child");
     var form_field_single_update = document.getElementsByClassName("form-field-single-update");
@@ -77,8 +78,9 @@ const NursingAssessment = () => {
 }
 
 for (let i = 0; i < bodyiamge.length; i++) {
-  bodyiamge[i].style.margin = "30px 20px"
+  bodyiamge[i].style.margin = "70px 20px"
 }
+
 
 
    
@@ -117,6 +119,8 @@ for (let i = 0; i < bodyiamge.length; i++) {
   for (let i = 0; i < bodyiamge.length; i++) {
     bodyiamge[i].style.margin = "20px 20px"
   }
+
+   
 
     }, 1000);
   };
