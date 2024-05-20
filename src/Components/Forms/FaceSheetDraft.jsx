@@ -4,14 +4,15 @@ import { useNavigate } from "react-router-dom";
 import formupload from "../../img/formupload.png";
 import {
   user_detail,
-  faceSheet_form,faceSheet_form_get
+  faceSheet_form,
+  faceSheet_form_get_Draft
 } from "../../Api_Collection/Api";
 import Draftinmodel from "../Modal/Draftinmodel";
 import { useReactToPrint } from "react-to-print";
 import SingInUpdateModel from "../Modal/SingInUpdateModel";
 import Loader from "../../Pages/LandingPage/Loader";
 
-const FaceSheet = () => {
+const FaceSheetDraft = () => {
   const [loading,setLoading]=useState(false);
   const [showSignature,setShowSignature]=useState(false);
   const [saveAsDraft,setSaveAsDraft]=useState(false);
@@ -312,7 +313,7 @@ if(getApiData){
 }
   },[getApiData])
 
-  const [previusData,setPreviusData]=useState("");
+  // const [previusData,setPreviusData]=useState("");
 
   // useEffect(()=>{
   //   if(previusData){
@@ -320,27 +321,24 @@ if(getApiData){
   //   }
   // },[patientId,previusData])
 
+  useEffect(() => {
+    setLoading(true); 
+    if (patientId) {
+      faceSheet_form_get_Draft(patientId, setGetApiData, setLoading);
+    } else {
+      setLoading(false); 
+    }
+  }, [patientId]);
+
+    
   // useEffect(() => {
   //   setLoading(true); 
   //   if (previusData) {
-  //     faceSheet_form_get(patientId, (data) => {
-  //       setGetApiData(data);
-  //       setLoading(false); 
-  //     });
+  //     faceSheet_form_get_Draft(patientId, setGetApiData, setLoading);
   //   } else {
   //     setLoading(false); 
   //   }
   // }, [patientId, previusData]);
-
-    
-  useEffect(() => {
-    setLoading(true); 
-    if (previusData) {
-      faceSheet_form_get(patientId, setGetApiData, setLoading);
-    } else {
-      setLoading(false); 
-    }
-  }, [patientId, previusData]);
 
   
 
@@ -466,7 +464,7 @@ if(getApiData){
     };
     faceSheet_form(data,saveAsDraft);
     initial_Value();
-    navigate("/intake");
+    navigate("/draft-intake");
   };
 
   const handlePrimaryCareProviderOtherSpecialists = (e) => {
@@ -532,7 +530,7 @@ if(getApiData){
                 id="residentFullName"
                 value={residentName}
                 placeholder="Type Here"
-                required
+                
                 onChange={(e) => setResidentName(e.target.value)}
               />
             </div>
@@ -545,7 +543,7 @@ if(getApiData){
                 id="dateOfBirth"
                 value={dob?.slice(0,10)}
                 placeholder={dob?.slice(0,10)}
-                required
+                
                 onChange={(e) => setDob(e.target.value)}
               />
             </div>
@@ -559,7 +557,7 @@ if(getApiData){
                 id="dateOfBirth"
                 value={dateOfAdmit}
                 placeholder="MM/DD/YYYY"
-                required
+                
                 onChange={(e) => setDateOfAdmit(e.target.value)}
               />
             </div>
@@ -573,7 +571,7 @@ if(getApiData){
                 id="AHCCCS"
                 value={facilityAddress}
                 placeholder="Type Here....."
-                required
+                
                 onChange={(e) => setFacilityAddress(e.target.value)}
               />
             </div>
@@ -585,7 +583,7 @@ if(getApiData){
                 id="AHCCCS"
                 value={facilityPhoneNumber}
                 placeholder="Type Here....."
-                required
+                
                 onChange={(e) => setFacilityPhoneNumber(e.target.value)}
               />
             </div>
@@ -601,7 +599,7 @@ if(getApiData){
                 id="AHCCCS"
                 value={placeOfBirth}
                 placeholder="Type Here....."
-                required
+                
                 onChange={(e) => setPlaceOfBirth(e.target.value)}
               />
             </div>
@@ -612,7 +610,7 @@ if(getApiData){
                 id="AHCCCS"
                 value={eyeColor}
                 placeholder="Type Here....."
-                required
+                
                 onChange={(e) => setEyeColor(e.target.value)}
               />
             </div>
@@ -623,7 +621,7 @@ if(getApiData){
                 id="AHCCCS"
                 value={race}
                 placeholder="Type Here....."
-                required
+                
                 onChange={(e) => setRace(e.target.value)}
               />
             </div>
@@ -637,7 +635,7 @@ if(getApiData){
 
                 value={height}
                 placeholder="Type Here....."
-                required
+                
                 onChange={(e) => setHeight(e.target.value)}
               />
             </div>
@@ -648,7 +646,7 @@ if(getApiData){
 
                 value={weight}
                 placeholder="Type Here....."
-                required
+                
                 onChange={(e) => setWeight(e.target.value)}
               />
             </div>
@@ -660,7 +658,7 @@ if(getApiData){
 
                 value={hairColor}
                 placeholder="Type Here....."
-                required
+                
                 onChange={(e) => setHairColor(e.target.value)}
               />
             </div>
@@ -674,7 +672,7 @@ if(getApiData){
                 id="AHCCCS"
                 value={identifiableMarks}
                 placeholder="Type Here....."
-                required
+                
                 onChange={(e) => setIdentifiableMarks(e.target.value)}
               />
             </div>
@@ -686,7 +684,7 @@ if(getApiData){
                 id="AHCCCS"
                 value={primaryLanguage}
                 placeholder="Type Here....."
-                required
+                
                 onChange={(e) => setPrimaryLanguage(e.target.value)}
               />
             </div>
@@ -725,7 +723,7 @@ if(getApiData){
 
                   value={familyGuardianEmergencyName}
                   placeholder="Type Here....."
-                  required
+                  
                   onChange={(e) => setFamilyGuardianEmergencyName(e.target.value)}
                 />
               </div>
@@ -736,7 +734,7 @@ if(getApiData){
 
                 value={facilityEmergencyContact}
                 placeholder="Type Here....."
-                required
+                
                 onChange={(e) => setFacilityEmergencyContact(e.target.value)}
               />
             </div>
@@ -748,7 +746,7 @@ if(getApiData){
 
                 value={medicationAllergies}
                 placeholder="Type Here....."
-                required
+                
                 onChange={(e) => setMedicationAllergies(e.target.value)}
               />
             </div>
@@ -761,7 +759,7 @@ if(getApiData){
 
                 value={otherAllergies}
                 placeholder="Type Here....."
-                required
+                
                 onChange={(e) => setOtherAllergies(e.target.value)}
               />
             </div>
@@ -779,7 +777,7 @@ if(getApiData){
                     type="text"
                 value={primaryCareProviderName}
                 placeholder="Type Here....."
-                required
+                
                 onChange={(e) => setPrimaryCareProviderName(e.target.value)}
               />
             </div>
@@ -787,7 +785,7 @@ if(getApiData){
                   <label >Phone Number:</label>
               <input
                 type="number"
-                required
+                
                 value={primaryCareProviderPhone}
                 placeholder="Type number....."
                 
@@ -798,7 +796,7 @@ if(getApiData){
                   <label >Address:</label>
               <input
                 type="text"
-                required
+                
                 value={primaryCareProviderAddress}
                 placeholder="Type Here....."
                 
@@ -903,7 +901,7 @@ if(getApiData){
                   <label >Preferred Hospital:</label>
                   <input
                     type="text"
-                    required
+                    
                     value={preferredHospitalName}
                     placeholder="Type Here....."
                     
@@ -918,7 +916,7 @@ if(getApiData){
 
                     value={preferredHospitalPhone}
                     placeholder="Type Here....."
-                    required
+                    
                     onChange={(e) => setPreferredHospitalPhone(e.target.value)}
                   />
                 </div>
@@ -927,7 +925,7 @@ if(getApiData){
                   <label >Preferred Hospital Address:</label>
                   <input
                     type="text"
-                    required
+                    
                     value={preferredHospitalAddress}
                     placeholder="Type Here....."
                     
@@ -943,7 +941,7 @@ if(getApiData){
                   <label >Name:</label>
               <input
                 type="text"
-                required
+                
                 value={psychiatricProviderName}
                 placeholder="Type Here....."
                 
@@ -955,7 +953,7 @@ if(getApiData){
                   <label >Phone Number:</label>
               <input
                 type="number"
-                required
+                
                 value={psychiatricProviderPhone}
                 placeholder="Type number....."
                 
@@ -967,7 +965,7 @@ if(getApiData){
                   <label >Address:</label>
               <input
                 type="text"
-                required
+                
                 value={psychiatricProviderAddress}
                 placeholder="Type Here....."
                 
@@ -1068,7 +1066,7 @@ if(getApiData){
 
                     value={healthPlan}
                     placeholder="Type Here....."
-                    required
+                    
                     onChange={(e) => setHealthPlan(e.target.value)}
                   />
                 </div>
@@ -1080,7 +1078,7 @@ if(getApiData){
 
                     value={healthPlanId}
                     placeholder="Type Here....."
-                    required
+                    
                     onChange={(e) => setHealthPlanId(e.target.value)}
                   />
                 </div>
@@ -1326,7 +1324,7 @@ if(getApiData){
 
                     value={caseManagerName}
                 placeholder="Type Here....."
-                required
+                
                     onChange={(e) => setCaseManagerName(e.target.value)}
               />
             </div>
@@ -1337,7 +1335,7 @@ if(getApiData){
 
                     value={caseManagerPhone}
                 placeholder="Type Here....."
-                required
+                
                     onChange={(e) => setCaseManagerPhone(e.target.value)}
               />
             </div>
@@ -1348,7 +1346,7 @@ if(getApiData){
 
                     value={caseManagerEmail}
                 placeholder="Type Here....."
-                required
+                
                     onChange={(e) => setCaseManagerEmail(e.target.value)}
               />
                 </div>
@@ -1367,7 +1365,7 @@ if(getApiData){
 
                 value={socialSecurityRepresentativePayeeName}
                 placeholder="Type Here....."
-                required
+                
                 onChange={(e) =>
                   setSocialSecurityRepresentativePayeeName(e.target.value)
                 }
@@ -1380,7 +1378,7 @@ if(getApiData){
 
                 value={socialSecurityRepresentativePayeePhone}
                 placeholder="Type Here....."
-                required
+                
                 onChange={(e) =>
                   setSocialSecurityRepresentativePayeePhone(e.target.value)
                 }
@@ -1393,7 +1391,7 @@ if(getApiData){
 
                 value={socialSecurityRepresentativePayeeEmail}
                 placeholder="Type Here....."
-                required
+                
                 onChange={(e) =>
                   setSocialSecurityRepresentativePayeeEmail(e.target.value)
                 }
@@ -1410,7 +1408,7 @@ if(getApiData){
 
                 value={mentalHealthDiagnoses}
                 placeholder="Type Here....."
-                required
+                
                 onChange={(e) => setMentalHealthDiagnoses(e.target.value)}
               />
             </div>
@@ -1421,7 +1419,7 @@ if(getApiData){
 
                 value={medicalDiagnosesHistory}
                 placeholder="Type Here....."
-                required
+                
                 onChange={(e) => setMedicalDiagnosesHistory(e.target.value)}
               />
             </div>
@@ -1432,7 +1430,7 @@ if(getApiData){
 
                 value={pastSurgeries}
                 placeholder="Type Here....."
-                required
+                
                 onChange={(e) => setPastSurgeries(e.target.value)}
               />
             </div>
@@ -1462,7 +1460,7 @@ if(getApiData){
               
               <div className="file-upload-box-child hidePrint">
                <div >
-               <button className="upload-button1" type="button" onClick={() => { setDraftModel(!draftModel); setSaveAsDraft(!saveAsDraft) }}>
+                  <button className="upload-button1" type="button" onClick={() => { setDraftModel(!draftModel); setSaveAsDraft(!saveAsDraft) }}>
                      { saveAsDraft ? "Saved" : "SAVED AS DRAFT" }       
                 </button>
                 </div>
@@ -1505,14 +1503,14 @@ if(getApiData){
             <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
               SUBMIT DETAILS
             </button>
-            {
+            {/* {
               filedForm &&   <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
             
               {
                     loading ? <Loader/> : "PREVIOUS FORM"
                   }
             </button>
-            }
+            } */}
             </div>
         </form>
       </div>
@@ -1524,4 +1522,4 @@ if(getApiData){
   );
 };
 
-export default FaceSheet;
+export default FaceSheetDraft;

@@ -8,7 +8,10 @@ import { Update_Profile, user_detail } from "../../Api_Collection/Api";
 const UpdateProfile = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState("");
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName,setLastName]=useState("");
+
+
   const [email, setEmail] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const [gender, setGender] = useState("");
@@ -20,14 +23,18 @@ const UpdateProfile = () => {
   const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
-    setName(user.fullName);
-    setEmail(user?.email);
-    setMobileNumber(user?.mobileNumber);
-    setGender(user?.gender);
-    setImageUrl(user?.profilePic);
-    setAdress(user?.address);
-    setDateOfBirth(user?.dateOfBirth?user?.dateOfBirth?.slice(0,10):"");
-    setAdminDate(user?.admitDate?user?.admitDate?.slice(0,10):'')
+    if(user){
+      setFirstName(user?.firstName);
+      setLastName(user?.lastName);
+      setEmail(user?.email);
+      setMobileNumber(user?.mobileNumber);
+      setGender(user?.gender);
+      setImageUrl(user?.profilePic);
+      setAdress(user?.address);
+      setDateOfBirth(user?.dateOfBirth?user?.dateOfBirth?.slice(0,10):"");
+      setAdminDate(user?.admitDate?user?.admitDate?.slice(0,10):'')
+    }
+   
   }, [user]);
 
   useEffect(() => {
@@ -37,7 +44,8 @@ const UpdateProfile = () => {
   const handlePostData = (e) => {
     e.preventDefault();
     const fromData = new FormData();
-    fromData.append("fullName", name);
+    fromData.append("firstName", firstName);
+    fromData.append("lastName", lastName);
     fromData.append("email", email);
     fromData.append("mobileNumber", mobileNumber);
     fromData.append("gender", gender);
@@ -119,14 +127,25 @@ const UpdateProfile = () => {
               <h2>Resident Details</h2>
 
               <div className="form-field">
-                <label htmlFor="AHCCCS">Name:</label>
+                <label htmlFor="AHCCCS">First Name:</label>
                 <input
                   type="text"
                 
-                  value={name}
+                  value={firstName}
                   placeholder="Type Here....."
                   required
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+              </div>
+              <div className="form-field">
+                <label htmlFor="AHCCCS">Last Name:</label>
+                <input
+                  type="text"
+                
+                  value={lastName}
+                  placeholder="Type Here....."
+                  required
+                  onChange={(e) => setLastName(e.target.value)}
                 />
               </div>
               <div className="form-field">

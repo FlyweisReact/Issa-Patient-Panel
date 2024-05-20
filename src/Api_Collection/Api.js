@@ -356,14 +356,14 @@ export const Nurssing_form_get = async (id, setGetApiData, setLoading) => {
   }
 };
 
-export const faceSheet_form = async (payLoad) => {
+export const faceSheet_form = async (payLoad,saveAsDraft) => {
   try {
     const res = await axios.post(
       `${BaseUrl}Patient/createFaceSheet`,
       payLoad,
       Token
     );
-    show_notification("Success !", "Form Submit Successfully", "success");
+    show_notification("Success !", `${saveAsDraft? "Saved As Draft" : "Form Submit Successfully" }`, "success");
     return res;
   } catch (e) {
     show_notification("fail !", `${e?.response?.data?.message}`, "danger");
@@ -375,6 +375,29 @@ export const faceSheet_form_get = async (id, setGetApiData, setLoading) => {
   try {
     const { data } = await axios.get(
       `${BaseUrl}Patient/getFaceSheet/${id}`,
+      Token
+    );
+    setGetApiData(data?.data);
+    return data;
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      if (setLoading) {
+        show_notification("fail !", `${error?.response?.data?.message}`, "danger");
+        setLoading(false);
+      }
+    }
+  }
+  finally {
+    if (setLoading) {
+      setLoading(false);
+    }
+  }
+};
+
+export const faceSheet_form_get_Draft = async (id, setGetApiData, setLoading) => {
+  try {
+    const { data } = await axios.get(
+      `${BaseUrl}Patient/getFaceSheetSaveAsDraft/${id}`,
       Token
     );
     setGetApiData(data?.data);

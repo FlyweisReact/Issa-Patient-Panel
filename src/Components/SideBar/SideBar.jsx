@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../img/OasisNotes.png";
 import { show_notification } from "../../Api_Collection/Api.js";
 import { useDispatch } from 'react-redux';
+import { CiSaveDown2 } from "react-icons/ci";
 import { LOGOUT } from '../../Store/authSlice.js';
 
 const Sidebar = ({ toggleMenu }) => {
@@ -39,6 +40,11 @@ const Sidebar = ({ toggleMenu }) => {
       title: "Intake",
       icon: <FaRegFileAlt />,
       link: "/intake",
+    },
+    {
+      title: "Draft Intake",
+      icon: <CiSaveDown2 /> ,
+      link: "/draft-intake",
     },
   ];
 

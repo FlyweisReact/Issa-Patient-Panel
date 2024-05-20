@@ -22,6 +22,13 @@ import FileUpload from "./Components/Appointments/FileUpload";
 import Treatmentplan_update from "./Components/Forms/TreatmentPlan_update";
 import Chat from "./chat/Chat";
 import Protected_Route from "./Protected_Route";
+import SaveAsDraft from "./Components/Intake/SaveAsDraft";
+import InitialAssessmentDraft from "./Components/Forms/Initial-AssessmentDraft";
+import FaceSheetDraft from "./Components/Forms/FaceSheetDraft";
+import SafetyPlanDraft from "./Components/Forms/SafetyPlanDraft";
+import NursingAssessmentDarft from "./Components/Forms/Nursing-AssessmentDraft";
+import Treatmentplan_updateDraft from "./Components/Forms/TreatmentPlan_updateDarft";
+import ResidentIntakesDraft from "./Components/Forms/ResidentIntakesDraft";
 
 function App() {
   return (
@@ -39,6 +46,8 @@ function App() {
           element={<Home Wcomponenet={FileUpload} />}
         />
         <Route path="/intake" element={<Home Wcomponenet={Intake} />} />
+        <Route path="/draft-intake" element={<Home Wcomponenet={SaveAsDraft} />} />
+
         <Route
           path="/appointment_scheduling"
           element={<Home Wcomponenet={Appointment_Scheduling} />}
@@ -61,6 +70,29 @@ function App() {
           path="/Residentintakes"
           element={<Home Wcomponenet={ResidentIntakes} />}
         />
+
+
+          {/* save as draft */}
+          <Route
+          path="/initial-Assessment-draft"
+          element={<Home Wcomponenet={InitialAssessmentDraft} />}
+        />
+        <Route path="/facesheet-draft" element={<Home Wcomponenet={FaceSheetDraft} />} />
+        <Route path="/safetyplan-draft" element={<Home Wcomponenet={SafetyPlanDraft} />} />
+        <Route
+          path="/nursing-assessment-draft"
+          element={<Home Wcomponenet={NursingAssessmentDarft} />}
+        />
+        <Route
+          path="/treatmentplan-draft"
+          element={<Home Wcomponenet={Treatmentplan_updateDraft} />}
+        />
+        <Route
+          path="/Residentintakes-draft"
+          element={<Home Wcomponenet={ResidentIntakesDraft} />}
+        />
+
+
         <Route path="/Chat" element={<Home Wcomponenet={Chat} />} />
         <Route path="/booknewappointment" element={<BookAppointment />} />
         <Route path="/appointmenthistory" element={<AppointmentHistory />} />
