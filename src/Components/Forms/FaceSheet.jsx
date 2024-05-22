@@ -68,11 +68,8 @@ const FaceSheet = () => {
       }
   }
 
-
-    // Trigger the print action
     handlePrint();
 
-    // Use setTimeout to show the elements after a delay (adjust the timeout as needed)
     setTimeout(() => {
       for (var i = 0; i < elements.length; i++) {
         elements[i].style.display = "flex";
@@ -466,37 +463,24 @@ if(getApiData){
     };
     faceSheet_form(data,saveAsDraft);
     initial_Value();
-    navigate("/intake");
-  };
-
-  const handlePrimaryCareProviderOtherSpecialists = (e) => {
-    const selectedValue = e.target.value;
-
-    if (
-      !primaryCareProviderOtherSpecialists.includes(selectedValue) &&
-      selectedValue !== ""
-    ) {
-      setPrimaryCareProviderOtherSpecialists((prev) => [
-        ...prev,
-        selectedValue,
-      ]);
+    {
+      !saveAsDraft && navigate("/intake")
     }
   };
 
-  const handlePsychiatricProviderOtherSpecialists = (e) => {
-    const selectedValue = e.target.value;
 
-    if (
-      !psychiatricProviderOtherSpecialists.includes(selectedValue) &&
-      selectedValue !== ""
-    ) {
-      setPsychiatricProviderOtherSpecialists((prev) => [
-        ...prev,
-        selectedValue,
-      ]);
+  useEffect(()=>{
+    if(saveAsDraft){
+      handleData();
     }
-  };
+  },[saveAsDraft])
 
+  const handleSaveAsDraft=()=>{
+    // setDraftModel(!draftModel); 
+    setSaveAsDraft(!saveAsDraft);
+  }
+
+ 
   return (
     <>
     <div ref={componentRef} >
@@ -1090,233 +1074,6 @@ if(getApiData){
             </div>
 
 
-            {/* <div className="formsheading">
-                <h6 style={{ fontWeight: "bold" }}>Primary Care Provider:</h6>
-              </div> */}
-
-              {/* <div className="form-field-update">
-                <div className="form-field-child">
-                  <label >Name:</label>
-              <input
-                    type="text"
-                value={primaryCareProviderName}
-                placeholder="Type Here....."
-                
-                onChange={(e) => setPrimaryCareProviderName(e.target.value)}
-              />
-            </div>
-                <div className="form-field-child">
-                  <label >Phone Number:</label>
-              <input
-                type="number"
-
-                value={primaryCareProviderPhone}
-                placeholder="Type number....."
-                
-                onChange={(e) => setPrimaryCareProviderPhone(e.target.value)}
-              />
-            </div>
-                <div className="form-field-child">
-                  <label >Address:</label>
-              <input
-                type="text"
-
-                value={primaryCareProviderAddress}
-                placeholder="Type Here....."
-                
-                onChange={(e) => setPrimaryCareProviderAddress(e.target.value)}
-              />
-            </div>
-
-                <div className="form-field-child">
-                  <label>Other Specialist - please specify:</label>
-                  <input
-                    type="text"
-
-                    value={primaryCareProviderOtherSpecialists}
-                    placeholder="Type Here....."
-
-                    onChange={(e) => setPrimaryCareProviderOtherSpecialists(e.target.value)}
-                  />
-                </div>
-
-                <div className="form-field-child">
-                  <label >Preferred Hospital Name:</label>
-                  <input
-                    type="text"
-
-                    value={preferredHospitalName}
-                    placeholder="Type Here....."
-                    required
-                    onChange={(e) => setPreferredHospitalName(e.target.value)}
-                  />
-                </div>
-
-                <div className="form-field-child">
-                  <label >Preferred Hospital Phone Number:</label>
-                  <input
-                    type="text"
-
-                    value={preferredHospitalPhone}
-                    placeholder="Type Here....."
-                    required
-                    onChange={(e) => setPreferredHospitalPhone(e.target.value)}
-                  />
-                </div>
-
-                <div className="form-field-child">
-                  <label >Preferred Hospital Address:</label>
-                  <input
-                    type="text"
-
-                    value={preferredHospitalAddress}
-                    placeholder="Type Here....."
-                    required
-                    onChange={(e) => setPreferredHospitalAddress(e.target.value)}
-                  />
-                </div>
-
-
-
-              </div> */}
-
-
-
-              {/* <div className="form-actions hidePrint">
-              <button
-                type="button"
-                className="safetybutton"
-                onClick={handlePrimaryCareArray}
-              >
-                Add
-              </button>
-            </div> */}
-
-
-            
-            {/* <div className="formsheading">
-                <h6 style={{ fontWeight: "bold" }}>Psychiatric Provider:</h6>
-              </div> */}
-
-              {/* <div className="form-field-update">
-                <div className="form-field-child">
-                  <label >Name:</label>
-              <input
-                type="text"
-
-                value={psychiatricProviderName}
-                placeholder="Type Here....."
-                
-                onChange={(e) => setPsychiatricProviderName(e.target.value)}
-              />
-            </div>
-                <div className="form-field-child">
-                  <label >Phone Number:</label>
-              <input
-                type="number"
-
-                value={psychiatricProviderPhone}
-                placeholder="Type number....."
-                
-                onChange={(e) => setPsychiatricProviderPhone(e.target.value)}
-              />
-            </div>
-
-
-                <div className="form-field-child">
-                  <label >Address:</label>
-              <input
-                type="text"
-
-                value={psychiatricProviderAddress}
-                placeholder="Type Here....."
-                
-                onChange={(e) => setPsychiatricProviderAddress(e.target.value)}
-              />
-            </div>
-                <div className="form-field-child">
-                  <label >Other Specialist - please specify:</label>
-              <input
-                type="text"
-
-                value={psychiatricProviderOtherSpecialists}
-                placeholder="Type Here....."
-                
-                onChange={(e)=>setPsychiatricProviderOtherSpecialists(e.target.value)}
-              />
-            </div>
-                <div className="form-field-child">
-                  <label >Health Plan:</label>
-                  <input
-                    type="text"
-
-                    value={healthPlan}
-                    placeholder="Type Here....."
-                    required
-                    onChange={(e) => setHealthPlan(e.target.value)}
-                  />
-                </div>
-                <div className="form-field-child">
-                  <label >ID #:</label>
-                  <input
-                    type="text"
-
-                    value={healthPlanId}
-                    placeholder="Type Here....."
-                    required
-                    onChange={(e) => setHealthPlanId(e.target.value)}
-                  />
-                </div>
-
-              </div> */}
-
-
-
-              {/* <div className="form-actions hidePrint">
-              <button
-                type="button"
-                className="safetybutton"
-                onClick={handlePsychiatricArray}
-              >
-                Add
-              </button>
-            </div> */}
-
-
-            {/* <div className="needs-interventions-container">
-  <div className="needs-interventions-column3">
-    {psychiatricArray.length > 0 && (
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Phone Number</th>
-            <th>Address</th>
-            <th>Other Specify</th>
-                          <th>Health Plane</th>
-                          <th>Health Plane Id</th>
-          </tr>
-        </thead>
-        <tbody>
-          {psychiatricArray?.map((i, index) => (
-            <tr key={index}>
-              <td>
-                {i?.psychiatricProviderName}
-              </td>
-              <td> {i?.psychiatricProviderPhone} </td>
-              <td>  {i?.psychiatricProviderAddress}</td>
-              <td>  {i?.psychiatricProviderOtherSpecialists}</td>
-              <td>  {i?.healthPlan}</td>
-              <td>  {i?.healthPlanId}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    )}
-  </div>
-</div> */}
-
-
 <div className="box-image-container">
               <div className="form-field-update">
                 <div className="form-field-child">
@@ -1438,32 +1195,14 @@ if(getApiData){
             </div>
 
             </div>
-            {/* signature is not add now */}
-            {/* <div class="file-upload-box">
-              <input type="file" id="fileInput" style={{ display: "none" }} />
-              <div class="upload-icon">
-                <img
-                  src={formupload}
-                  alt=""
-                  style={{ width: "100px", height: "100px" }}
-                />
-              </div>
-              <div style={{ display: "block" }}>
-                <button className="upload-button1" onclick="uploadFile()">
-                  SAVED AS DRAFT
-                </button>
-                <button className="upload-button" onclick="uploadFile()">
-                  SAVED AND SIGNED
-                </button>
-              </div>
-            </div> */}
+       
           </div>
             <div class="file-upload-box" style={{marginTop:"0.5rem"}}>
               
               <div className="file-upload-box-child hidePrint">
                <div >
-               <button className="upload-button1" type="button" onClick={() => { setDraftModel(!draftModel); setSaveAsDraft(!saveAsDraft) }}>
-                     { saveAsDraft ? "Saved" : "SAVED AS DRAFT" }       
+               <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
+                     { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
                 </button>
                 </div>
                 <div>

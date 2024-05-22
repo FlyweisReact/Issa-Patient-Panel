@@ -348,25 +348,10 @@ function formatDate(dateString) {
   }, [userId, previusData]);
 
   useEffect(() => {
-    //calculater date
-    // const birthDate =new Date(userDetail?.dateOfBirth);
 
-    // Get the current date
-    // const currentDate = new Date();
-
-    // Calculate the difference in milliseconds between the current date and the birth date
-    // const timeDiff = currentDate.getTime() - birthDate.getTime();
-
-    // Convert the time difference from milliseconds to years
-// const ageInMilliseconds = new Date(timeDiff);
-// const ageInYears = Math.abs(ageInMilliseconds.getUTCFullYear() - 1970);
-
-    // setAge(ageInYears);
     setFiledForm(userDetail?.nursingAssessment);
     setUserId(userDetail?._id);
-    // setName(userDetail?.fullName)
-    // setSex(userDetail?.gender)
-    // setDateOfBirth(userDetail?.dateOfBirth?userDetail?.dateOfBirth.slice(0,10):"")
+
   }, [userDetail]);
 
   useEffect(() => {
@@ -536,10 +521,108 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
       rnDate,
       rnTime
     };
-    Nurssing_form(data);
+    Nurssing_form(data,saveAsDraft);
     initialData();
     navigate("/intake");
   };
+
+  const handleData = () => {
+    
+    const data = {
+      patientId: userId,
+      saveAsDraft,
+      residentName,
+      dateOfBirth,
+      admissionDate,
+      age,
+      sex,
+      todayDate,
+      admissionDiagnoses,
+      codeStatus,
+      lastTBScreeningDate,
+      tbScreeningResults,
+      careProvided:careProvidedPhysicalServices,
+      // careProvidedBehavioralHealthServices,
+      vitalsBloodPressure,
+      vitalsPulse,
+      vitalsRespiratoryRate,
+      vitalsOxygenLevel,
+      vitalsTemperature,
+      vitalsWeight,
+      vitalsHeightFeet,
+      vitalsHeightInches,
+      allergies,
+// add value
+reviewOfSystemsConstitutional,
+reviewOfSystemsConstitutionalComment:reviewOfSystemsConstitutionalOther,
+reviewOfSystemsCardiovascular,
+cardiovascularBloodPressure,
+reviewOfSystemsCardiovascularComment:reviewOfSystemsCardiovascularOther,
+reviewOfSystemsEndocrine,
+endocrineBloodSuger,
+reviewOfSystemsEndocrineComment:reviewOfSystemsEndocrineOther,
+reviewOfSystemsGastrointestinal,
+reviewOfSystemsGastrointestinalComment:reviewOfSystemsGastrointestinalOther,
+reviewOfSystemsGenitourinary,
+reviewOfSystemsGenitourinaryComment:reviewOfSystemsGenitourinaryOther,
+reviewOfSystemsHematologyOncology,
+reviewOfSystemsHematologyOncologyomment:reviewOfSystemsHematologyOncologyOther,
+reviewOfSystemsHeadNeckThroat,
+reviewOfSystemsHeadNeckThroatComment:reviewOfSystemsHeadNeckThroatOther,
+reviewOfSystemsIntegumentary:reviewOfSystemsIntegumentary,
+reviewOfSystemsIntegumentaryComment:reviewOfSystemsIntegumentaryOther,
+reviewOfSystemsMusculoskeletal,
+reviewOfSystemsMusculoskeletalComment:reviewOfSystemsMusculoskeletalOther,
+reviewOfSystemsPsychiatric,
+reviewOfSystemsPsychiatricComment:reviewOfSystemsPsychiatricOther,
+reviewOfSystemsNeurologic,
+reviewOfSystemsNeurologicComment:reviewOfSystemsNeurologicOther,
+reviewOfSystemsRespiratory,
+reviewOfSystemsRespiratoryComment:reviewOfSystemsRespiratoryOther,
+reviewOfSystemsAllergicImmunologic,
+reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOther,
+      suicidalRiskAssessmentDeniesSymptomsBellow,
+      behavioralSymptoms,
+      physicalSymptoms,
+      psychosocialSymptoms,
+      currentMedications,
+      nutritionDiet,
+      nutritionSpecialDietOrder,
+      nutritionFluidRestrictions,
+      skinCheck,
+      residentDeniesSkinConcerns,
+      front,
+      back,
+      sideLeft,
+      sideRight,
+      legFront,
+      legBack,
+      legLeft,
+      legRight,
+      legComment:commentFigure,
+      bhtName,
+      bhtSignature,
+      bhtDate,
+      bhpTime,
+      rnName,
+      rnSignature,
+      rnDate,
+      rnTime
+    };
+    Nurssing_form(data,saveAsDraft);
+
+  };
+
+  useEffect(()=>{
+    if(saveAsDraft){
+      handleData();
+    }
+  },[saveAsDraft])
+
+  const handleSaveAsDraft=()=>{
+    // setDraftModel(!draftModel); 
+    setSaveAsDraft(!saveAsDraft);
+  }
 
 
   const careProvidedPhysicalServicesHandler = (status) => {
@@ -3035,8 +3118,8 @@ const handlerepsychosocialSymptoms = (symptom) => {
        
             <div class="file-upload-box " style={{marginLeft:"10px"}}> 
                 <div className="file-upload-box-child hidePrint">
-                <button className="upload-button1" type="button" onClick={() => {setDraftModel(true);setSaveAsDraft(true)}}>
-                  SAVED AS DRAFT
+                <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
+                     { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
                 </button>
                 <button className="upload-button" type="button" onClick={() => setShowSingInOne(true)}>
                   SAVED AND SIGNED
@@ -3080,9 +3163,9 @@ const handlerepsychosocialSymptoms = (symptom) => {
             <div class="file-upload-box " style={{marginLeft:"10px",paddingBottom:"1rem"}}>
               
               <div className="file-upload-box-child hidePrint">
-               <div >
-                <button className="upload-button1" type="button" onClick={() => {setDraftModel(true); setSaveAsDraft(true)}}>
-                  SAVED AS DRAFT
+              <div >
+               <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
+                     { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
                 </button>
                 </div>
                 <div>

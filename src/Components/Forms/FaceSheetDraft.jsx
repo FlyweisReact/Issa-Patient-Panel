@@ -245,12 +245,8 @@ const FaceSheetDraft = () => {
   const [signatureTime,setSegnatureTime]=useState("");
 
   useEffect(()=>{
-
-
-
-// Function to format the date as MM-DD-YYYY
 function formatDate(dateString) {
-  if (!dateString) return ''; // handle null or undefined value
+  if (!dateString) return ''; 
   const dateObj = new Date(dateString);
   const month = ('0' + (dateObj.getMonth() + 1)).slice(-2);
   const day = ('0' + dateObj.getDate()).slice(-2);
@@ -313,13 +309,7 @@ if(getApiData){
 }
   },[getApiData])
 
-  // const [previusData,setPreviusData]=useState("");
 
-  // useEffect(()=>{
-  //   if(previusData){
-  //     faceSheet_form_get(patientId,setGetApiData);
-  //   }
-  // },[patientId,previusData])
 
   useEffect(() => {
     setLoading(true); 
@@ -464,36 +454,22 @@ if(getApiData){
     };
     faceSheet_form(data,saveAsDraft);
     initial_Value();
-    navigate("/draft-intake");
-  };
-
-  const handlePrimaryCareProviderOtherSpecialists = (e) => {
-    const selectedValue = e.target.value;
-
-    if (
-      !primaryCareProviderOtherSpecialists.includes(selectedValue) &&
-      selectedValue !== ""
-    ) {
-      setPrimaryCareProviderOtherSpecialists((prev) => [
-        ...prev,
-        selectedValue,
-      ]);
+    {
+      !saveAsDraft && navigate("/draft-intake")
     }
   };
 
-  const handlePsychiatricProviderOtherSpecialists = (e) => {
-    const selectedValue = e.target.value;
-
-    if (
-      !psychiatricProviderOtherSpecialists.includes(selectedValue) &&
-      selectedValue !== ""
-    ) {
-      setPsychiatricProviderOtherSpecialists((prev) => [
-        ...prev,
-        selectedValue,
-      ]);
+  useEffect(()=>{
+    if(saveAsDraft){
+      handleData();
     }
-  };
+  },[saveAsDraft])
+
+  const handleSaveAsDraft=()=>{
+    // setDraftModel(!draftModel); 
+    setSaveAsDraft(!saveAsDraft);
+  }
+
 
   return (
     <>
@@ -815,21 +791,13 @@ if(getApiData){
 
             <div className="form-field-child-face-sheet-table table_inner_padding">
                   <label style={{fontWeight:"bold"}}>Other Specialist - please specify:</label>
-                  {/* <input
-                  <label style={{fontWeight:"bold"}}>Other Specialist - please specify:</label>
-                  {/* <input
-                    type="text"
-                    required
-                    value={primaryCareProviderOtherSpecialists}
-                    placeholder="Type Here....."
-
-                    onChange={(e) => setPrimaryCareProviderOtherSpecialists(e.target.value)}
-                  /> */}
                 </div>
 
                 {
                   primaryCareProviderOtherSpecialistsArray.length>0 && primaryCareProviderOtherSpecialistsArray.map((item,index)=>(
                     <>
+
+
                     <div className="form-field-child-face-sheet-table table_inner_padding" >
                   <label >Name:</label>
               <input
@@ -1459,9 +1427,9 @@ if(getApiData){
             <div class="file-upload-box" style={{marginTop:"0.5rem"}}>
               
               <div className="file-upload-box-child hidePrint">
-               <div >
-                  <button className="upload-button1" type="button" onClick={() => { setDraftModel(!draftModel); setSaveAsDraft(!saveAsDraft) }}>
-                     { saveAsDraft ? "Saved" : "SAVED AS DRAFT" }       
+              <div >
+               <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
+                     { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
                 </button>
                 </div>
                 <div>

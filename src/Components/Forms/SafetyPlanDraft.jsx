@@ -3,7 +3,7 @@ import { IoArrowBackCircle } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import formupload from "../../img/formupload.png";
 import { CiCirclePlus } from "react-icons/ci";
-import { user_detail, safety_form,Safety_form_get } from "../../Api_Collection/Api";
+import { user_detail, safety_form, Safety_form_get_Draft } from "../../Api_Collection/Api";
 import SingInModel from "../Modal/SingInModel";
 import Select from "react-select";
 import Draftinmodel from "../Modal/Draftinmodel";
@@ -208,18 +208,16 @@ function formatDate(dateString) {
   
   },[getApiData])
 
-  const [previusData,setPreviusData]=useState(false)
-
-
 
   useEffect(() => {
     setLoading(true); 
-    if (previusData) {
-      Safety_form_get(userId, setGetApiData, setLoading);
+    if (userId) {
+      Safety_form_get_Draft(userId, setGetApiData, setLoading);
     } else {
       setLoading(false); 
     }
-  }, [userId, previusData]);
+  }, [userId]);
+
 
   useEffect(() => {
     setFiledForm(userDetail?.safetyPlan);
@@ -230,7 +228,6 @@ function formatDate(dateString) {
 
 
   useEffect(() => {
-   
     user_detail(setUserDetail);
   }, []);
 
@@ -341,23 +338,92 @@ function formatDate(dateString) {
       signatureDate,
       signatureTime
     };
-    safety_form(data);
+    safety_form(data,saveAsDraft);
     initial_value();
     navigate("/intake");
   };
 
-  // const handleSocialArray = () => {
+  const handleData = () => {
+   
+
+    const enviromentAdressArray=[];
+
+    for(let i=0;i<enviromentAdress.length;i++){
+      enviromentAdressArray.push(enviromentAdress[i].value);
+    }
     
-  //   const newContact = {
-  //     name: socialName,
-  //     phone: socialPhone,
-  //     relationship: socialRelationship,
-  //   };
-  //   setSocialArray((prev) => [...prev, newContact]);
-  //   setSocialName("");
-  //   setSocialPhone("");
-  //   setSocialRelationship("");
-  // };
+
+    const data = {
+      saveAsDraft,
+      patientId: userId,
+      residentName:user,
+      dateOfBirth: date,
+      warningSigns:[{
+        warning1,
+        warning2,
+        warning3
+      }] ,
+      internalCopingStrategies: [{
+        internalCopy1,
+        internalCopy2,
+        internalCopy3
+      }],
+      distractionsPeople :[
+        {
+          name: socialName,
+          phone: socialPhone,
+          relationship: socialRelationship
+        },
+        {
+          name: socialName1,
+          phone: socialPhone1,
+          relationship: socialRelationship1
+        }
+      ],
+      // internalCopyinternalCopy: socialArray,
+      distractionsPlace: address,
+      distractionsPlane: place,
+      // array add
+      helpContactsPeople: helpArray,
+      // Professionals or agencies I can contact during Crisis
+      professionalsClinicianName,
+      professionalsPhone,
+      professionalsRelationship,
+      // professionals: crisisArray,
+      professionals: [
+        {
+          clinicianName: crisisName,
+          phone : crisisPhone,
+          relationship: crisisRelationship
+        },
+        {
+          clinicianName: crisisName1,
+          phone:  crisisPhone1,
+         relationship: crisisRelationship1
+        }
+      ],
+      //penddig
+      environmentSafetyMedications: enviromentAdressArray,
+      signature: singin,
+      signatureDate,
+      signatureTime
+    };
+    safety_form(data,saveAsDraft);
+  };
+
+
+  useEffect(()=>{
+    if(saveAsDraft){
+      handleData();
+    }
+  },[saveAsDraft])
+
+  const handleSaveAsDraft=()=>{
+    // setDraftModel(!draftModel); 
+    setSaveAsDraft(!saveAsDraft);
+  }
+
+
   const handleHelpArray = () => {
     if(helpName || helpPhone || helpRelationship){
       const newContact = {
@@ -997,9 +1063,9 @@ function formatDate(dateString) {
               <div class="file-upload-box ">
               
               <div className="file-upload-box-child hidePrint">
-               <div >
-                <button className="upload-button1" type="button" onClick={() => {setDraftModel(true);setSaveAsDraft(true)}}>
-                  SAVED AS DRAFT
+              <div >
+               <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
+                     { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
                 </button>
                 </div>
                 <div>
@@ -1040,14 +1106,7 @@ function formatDate(dateString) {
           <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
               SUBMIT DETAILS
             </button>
-            {
-              filedForm &&   <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
-            
-              {
-                    loading ? <Loader/> : "PREVIOUS FORM"
-                  }
-            </button>
-            }
+          
           </div>
         </form>
       </div>

@@ -484,8 +484,8 @@ const Treatmentplan_update = () => {
   }
 
   useEffect(() => {
+   if(getApiData){
     setInitialUpdate(getApiData?.name);
-    setSaveAsDraft(getApiData?.saveAsDraft);
     setResidentName(getApiData?.residentName);
     setDob(getApiData?.dateOfBirth?getApiData?.dateOfBirth?.slice(0,10):"");
     setDate(getApiData?.date ? getApiData?.date?.slice(0, 10) : "");
@@ -1003,6 +1003,7 @@ const Treatmentplan_update = () => {
         : ""
     );
     setTimeBhp(getApiData?.signaturesBhp?.time);
+   }
   }, [getApiData]);
 
   const [previusData,setPreviusData]=useState(false)
@@ -1265,11 +1266,246 @@ const Treatmentplan_update = () => {
         time: timeBhp,
       },
     };
-    patient_form(data);
+    patient_form(data,saveAsDraft);
     navigate("/intake");
   };
 
-  console.log(saveAsDraft, "saveAsdraft value ");
+  const handleData = () => {
+ 
+
+    let presentingPriceArray = [];
+
+    presentingPrice.forEach((item) => {
+      presentingPriceArray.push(item?.value);
+    });
+
+    let strengthsArray = [];
+    strengths.forEach((item) => {
+      strengthsArray.push(item?.value);
+    });
+
+    let BarriersArray = [];
+    Barriers.forEach((item) => {
+      BarriersArray.push(item?.value);
+    });
+
+    let option1Array = [];
+    option1.forEach((item) => {
+      option1Array.push(item?.value);
+    });
+
+    let option2Array = [];
+    option2.forEach((item) => {
+      option2Array.push(item?.value);
+    });
+
+    let option3Array = [];
+    option3.forEach((item) => {
+      option3Array.push(item?.value);
+    });
+
+    let option4Array = [];
+    option4.forEach((item) => {
+      option4Array.push(item?.value);
+    });
+
+    let option5Array = [];
+    option5.forEach((item) => {
+      option5Array.push(item?.value);
+    });
+
+    let option6Array = [];
+    option6.forEach((item) => {
+      option6Array.push(item?.value);
+    });
+
+    let option7Array = [];
+    option7.forEach((item) => {
+      option7Array.push(item?.value);
+    });
+
+    let option8Array = [];
+    option8.forEach((item) => {
+      option8Array.push(item?.value);
+    });
+
+    let clinicalSummaryArray = [];
+    clinicalSummary.forEach((item) => {
+      clinicalSummaryArray.push(item?.value);
+    });
+
+    const data = {
+      saveAsDraft,
+      residentName,
+      dateOfBirth: dob,
+      patientId: userId,
+      name: initialUpdate,
+      dateOfBirth: dob,
+      date: date,
+      admitDate: admitDate,
+      care: [physicalService, behavior],
+      medicationService: [medicationAdministation, medicationAssistance],
+      presentingProblems: presentingPriceArray,
+      diagonsis,
+      mentalStatus: mendelHealth,
+      mentalStatusOther: mentelText,
+      moodLevel: mind,
+      moodLevelOther: mindText,
+      adls: adls,
+      adlsOther: adlsText,
+      behavioralHealthServices: BHealth,
+      behavioralHealthServicesOther: Btext,
+      primaryCareProvider: primaryCare,
+      psychiatricProvider: psychiatricProvider,
+      residentGoals: residentGoal,
+      allergies: allergies,
+      triggers: Triggers,
+      strengths: strengthsArray,
+      barriers: BarriersArray,
+      riskAssessment: {
+        behavioralSymptoms: behavioralSymptoms,
+        behavioralSymptomsOther: behavioralSymptomsOther,
+        physicalSymptoms: physicalSymptoms,
+        physicalSymptomsOther: physicalSymptomsOther,
+        cognitiveSymptoms: consnotiveSymptoms,
+        cognitiveSymptomsOther: consnotiveSymptomsOther,
+        psychosocialSymptoms: psychosocialSymptoms,
+        psychosocialSymptomsOther: psychosocialSymptomssOther,
+      },
+      interventions: interventionsImplemented,
+      interventionsComment: interventionsImplementedOther,
+      counselingFrequency: counselingOptions,
+      counselingFrequencyMinimum: minimumHoure,
+      counselingFrequencyComment: counselingOptionsText,
+      IndividualComment,
+
+      maintainSobrietyType: option1Array,
+      maintainSobrietyAdmissionMeasure: admissionMeasure1,
+      maintainSobrietyCurrentMeasure: currentMeasure1,
+      maintainSobrietyEstimatedDateOfCompletion: estimatedDateOfCompletion1,
+      maintainSobrietyComments: comments1,
+      maintainSobrietyPreviousMeasure:tableshow1,
+
+      independentLivingSkillsType: option2Array,
+      independentLivingSkillsAdmissionMeasure: admissionMeasure2,
+      independentLivingSkillsCurrentMeasure: currentMeasure2,
+      independentLivingSkillsEstimatedDateOfCompletion:
+        estimatedDateOfCompletion2,
+      independentLivingSkillsComments: comments2,
+      independentLivingSkillsPreviousMeasure:tableshow2,
+
+      employmentType: option3Array,
+      employmentAdmissionMeasure: admissionMeasure3,
+      employmentCurrentMeasure: currentMeasure3,
+      employmentEstimatedDateOfCompletion: estimatedDateOfCompletion3,
+      employmentComments: comments3,
+      employmentPreviousMeasure:tableshow3,
+
+      adlsSecondType: option4Array,
+      adlsSecondAdmissionMeasure: admissionMeasure4,
+      adlsSecondCurrentMeasure: currentMeasure4,
+      adlsSecondEstimatedDateOfCompletion: estimatedDateOfCompletion4,
+      adlsSecondComments: comments4,
+      adlsSecondPreviousMeasure:tableshow4,
+
+      safetyType: option5Array,
+      safetyAdmissionMeasure: admissionMeasure5,
+      safetyCurrentMeasure: currentMeasure5,
+      safetyEstimatedDateOfCompletion: estimatedDateOfCompletion5,
+      safetyComments: comments5,
+      safetyPreviousMeasure:tableshow5,
+
+      medicationEducationType: option6Array,
+      medicationEducationAdmissionMeasure: admissionMeasure6,
+      medicationEducationCurrentMeasure: currentMeasure6,
+      medicationEducationEstimatedDateOfCompletion: estimatedDateOfCompletion6,
+      medicationEducationComments: comments6,
+      medicationEducationPreviousMeasure:tableshow6,
+
+      managingMentalHealthType: option7Array,
+      managingMentalHealthAdmissionMeasure: admissionMeasure7,
+      managingMentalHealthCurrentMeasure: currentMeasure7,
+      managingMentalHealthEstimatedDateOfCompletion: estimatedDateOfCompletion7,
+      managingMentalHealthComments: comments7,
+      managingMentalHealthPreviousMeasure:tableshow7,
+
+      legalType: option8Array,
+      legalAdmissionMeasure: admissionMeasure8,
+      legalCurrentMeasure: currentMeasure8,
+      legalEstimatedDateOfCompletion: estimatedDateOfCompletion8,
+      legalComments: comments8,
+      legalPreviousMeasure:tableshow8,
+
+      other: otherArray,
+
+      residentParticipation,
+      residentAttitude: residentAttitute,
+      residentProgress,
+      supportSystem,
+      supportSystemPhoneNumber: supportSystemPhoneNumber,
+      currentMedications,
+      religiousPreference,
+      nutritionAndWellnessPlanning,
+      recommendationToExtendResidentialTreatment,
+      personalFinances,
+      dischargePlanning,
+      additionalComment,
+      recommendationsForFurtherPrograms,
+      recommendationsForFurtherProgramsOther,
+      afterCareAndTransitionPlanning,
+      clinicalSummaryBeforeDate: textData,
+      clinicalSummary: clinicalSummaryArray,
+      treatmentPlanReviewDate,
+      dischargePlanDate,
+
+      individualsParticipatingInServicePlan: {
+        resident: resident,
+        guardian: guardian,
+        staff: staff,
+        bhp: bpn,
+        comment: commentIndividual,
+      },
+
+      residentAgreementIsReason: isReason,
+      residentAgreementRefusalReason: refusalReason,
+
+      signaturesResident: {
+        name: nameResident,
+        credentials: credentialsResident,
+        signature: signatureResident,
+        date: dateResident,
+        time: timeResident,
+      },
+      signaturesFacilityRep: {
+        name: nameFacilityRep,
+        credentials: credentialsFacilityRep,
+        signature: signatureFacilityRep,
+        date: dateFacilityRep,
+        time: timeFacality,
+      },
+      signaturesBhp: {
+        name: nameBhp,
+        credentials: credentialsBhp,
+        signature: signatureBhp,
+        date: dateBhp,
+        time: timeBhp,
+      },
+    };
+    patient_form(data,saveAsDraft);
+  };
+
+
+  
+  useEffect(()=>{
+    if(saveAsDraft){
+      handleData();
+    }
+  },[saveAsDraft])
+
+  const handleSaveAsDraft=()=>{
+    // setDraftModel(!draftModel); 
+    setSaveAsDraft(!saveAsDraft);
+  }
 
   //handle check box
   const handleCheckboxChangeMentalHealth = (value) => {
@@ -5604,13 +5840,10 @@ tableshow7 &&  <tr>
 
                 <div class="file-upload-box" style={{ marginTop: "0.5rem" }}>
                   <div className="file-upload-box-child hidePrint">
-                    <button
-                      className="upload-button1"
-                      type="button"
-                      onClick={() => handleDraftValue()}
-                    >
-                      SAVED AS DRAFT
-                    </button>
+                   
+               <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
+                     { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
+                </button>
                     <button
                       className="upload-button"
                       type="button"
@@ -5666,13 +5899,11 @@ tableshow7 &&  <tr>
 
               <div class="file-upload-box " style={{ marginTop: "0.2rem" }}>
                 <div className="file-upload-box-child hidePrint">
-                  <button
-                    className="upload-button1"
-                    type="button"
-                    onClick={() => handleDraftValue()}
-                  >
-                    SAVED AS DRAFT
-                  </button>
+            
+               <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
+                     { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
+                </button>
+           
                   <button
                     className="upload-button"
                     type="button"
@@ -5726,15 +5957,11 @@ tableshow7 &&  <tr>
 
               <div class="file-upload-box " style={{ marginTop: "0.2rem" }}>
                 <div className="file-upload-box-child hidePrint">
-                  <div>
-                    <button
-                      className="upload-button1"
-                      type="button"
-                      onClick={() => handleDraftValue()}
-                    >
-                      SAVED AS DRAFT
-                    </button>
-                  </div>
+                <div >
+               <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
+                     { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
+                </button>
+                </div>
                   <div>
                     <button
                       className="upload-button"

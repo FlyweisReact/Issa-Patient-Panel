@@ -166,14 +166,14 @@ export const Update_Profile = async (payLoad) => {
   }
 };
 
-export const safety_form = async (payLoad) => {
+export const safety_form = async (payLoad,saveAsDraft) => {
   try {
     const res = await axios.post(
       `${BaseUrl}Patient/createResidentSafetyPlan`,
       payLoad,
       Token
     );
-    show_notification("Success !", "Form Submit Successfully", "success");
+    show_notification("Success !", `${saveAsDraft? "Saved As Draft" : "Form Submit Successfully" }`, "success");
     return res;
   } catch (e) {
     show_notification("fail !", `${e?.response?.data?.message}`, "danger");
@@ -205,14 +205,37 @@ export const Safety_form_get = async (id, setGetApiData, setLoading) => {
   }
 };
 
-export const initialAssestment_form = async (payLoad) => {
+export const Safety_form_get_Draft = async (id, setGetApiData, setLoading) => {
+  try {
+    const { data } = await axios.get(
+      `${BaseUrl}Patient/getResidentSafetyPlanSaveAsDraft/${id}`,
+      Token
+    );
+    setGetApiData(data?.data);
+    return data;
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      if (setLoading) {
+        show_notification("fail !", `${error?.response?.data?.message}`, "danger");
+        setLoading(false);
+      }
+    }
+  }
+  finally {
+    if (setLoading) {
+      setLoading(false);
+    }
+  }
+};
+
+export const initialAssestment_form = async (payLoad,saveAsDraft) => {
   try {
     const res = await axios.post(
       `${BaseUrl}Patient/createInitialAssessment`,
       payLoad,
       Token
     );
-    show_notification("Success !", "Form Submit Successfully", "success");
+    show_notification("Success !", `${saveAsDraft? "Saved As Draft" : "Form Submit Successfully" }`, "success");
     return res;
   } catch (e) {
     show_notification("fail !", `${e?.response?.data?.message}`, "danger");
@@ -242,14 +265,37 @@ export const initial_assestment_get = async (id, setGetApiData, setLoading) => {
   }
 };
 
-export const patient_form = async (payLoad) => {
+export const initial_assestment_get_Draft = async (id, setGetApiData, setLoading) => {
+  try {
+    const { data } = await axios.get(
+      `${BaseUrl}Patient/getInitialAssessmentSaveAsDraft/${id}`,
+      Token
+    );
+    setGetApiData(data?.data);
+    return data;
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      if (setLoading) {
+        show_notification("fail !", `${error?.response?.data?.message}`, "danger");
+        setLoading(false);
+      }
+    }
+  }
+  finally {
+    if (setLoading) {
+      setLoading(false);
+    }
+  }
+};
+
+export const patient_form = async (payLoad,saveAsDraft) => {
   try {
     const res = await axios.post(
       `${BaseUrl}Patient/createTreatmentPlan`,
       payLoad,
       Token
     );
-    show_notification("Success !", "Form Submit Successfully", "success");
+    show_notification("Success !", `${saveAsDraft? "Saved As Draft" : "Form Submit Successfully" }`, "success");
     return res;
   } catch (e) {
     show_notification("fail !", `${e?.response?.data?.message}`, "danger");
@@ -280,14 +326,37 @@ export const patient_form_treatment_get = async (id, setGetApiData, setLoading) 
   }
 };
 
-export const Resident_form = async (payLoad) => {
+export const patient_form_treatment_get_Draft = async (id, setGetApiData, setLoading) => {
+  try {
+    const { data } = await axios.get(
+      `${BaseUrl}Patient/getTreatmentPlanSaveAsDraft/${id}`,
+      Token
+    );
+    setGetApiData(data?.data);
+    return data;
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      if (setLoading) {
+        show_notification("fail !", `${error?.response?.data?.message}`, "danger");
+        setLoading(false);
+      }
+    }
+  }
+  finally {
+    if (setLoading) {
+      setLoading(false);
+    }
+  }
+};
+
+export const Resident_form = async (payLoad,saveAsDraft) => {
   try {
     const res = await axios.post(
       `${BaseUrl}Patient/createResidentIntake`,
       payLoad,
       Token
     );
-    show_notification("Success !", "Form Submit Successfully", "success");
+    show_notification("Success !", `${saveAsDraft? "Saved As Draft" : "Form Submit Successfully" }`, "success");
     return res;
   } catch (e) {
     show_notification("fail !", `${e?.response?.data?.message}`, "danger");
@@ -318,14 +387,37 @@ export const Resident_form_get = async (id, setGetApiData, setLoading) => {
   }
 };
 
-export const Nurssing_form = async (payLoad) => {
+export const Resident_form_get_Draft = async (id, setGetApiData, setLoading) => {
+  try {
+    const { data } = await axios.get(
+      `${BaseUrl}Patient/getResidentIntakeSaveAsDraft/${id}`,
+      Token
+    );
+    setGetApiData(data?.data);
+    return data;
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      if (setLoading) {
+        show_notification("fail !", `${error?.response?.data?.message}`, "danger");
+        setLoading(false);
+      }
+    }
+  }
+  finally {
+    if (setLoading) {
+      setLoading(false);
+    }
+  }
+};
+
+export const Nurssing_form = async (payLoad,saveAsDraft) => {
   try {
     const res = await axios.post(
       `${BaseUrl}Patient/createNursingAssessment`,
       payLoad,
       Token
     );
-    show_notification("Success !", "Form Submit Successfully", "success");
+    show_notification("Success !", `${saveAsDraft? "Saved As Draft" : "Form Submit Successfully" }`, "success");
     return res;
   } catch (e) {
     show_notification("fail !", `${e?.response?.data?.message}`, "danger");
@@ -337,6 +429,29 @@ export const Nurssing_form_get = async (id, setGetApiData, setLoading) => {
   try {
     const { data } = await axios.get(
       `${BaseUrl}Patient/getNursingAssessment/${id}`,
+      Token
+    );
+    setGetApiData(data?.data);
+    return data;
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      if (setLoading) {
+        show_notification("fail !", `${error?.response?.data?.message}`, "danger");
+        setLoading(false);
+      }
+    }
+  }
+  finally {
+    if (setLoading) {
+      setLoading(false);
+    }
+  }
+};
+
+export const Nurssing_form_get_Draft = async (id, setGetApiData, setLoading) => {
+  try {
+    const { data } = await axios.get(
+      `${BaseUrl}Patient/getNursingAssessmentSaveAsDraft/${id}`,
       Token
     );
     setGetApiData(data?.data);

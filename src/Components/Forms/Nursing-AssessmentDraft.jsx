@@ -10,7 +10,7 @@ import body6 from "../../img/body6.png";
 import body7 from "../../img/body7.png";
 import body8 from "../../img/body8.png";
 import Select from "react-select";
-import { user_detail, Nurssing_form, Nurssing_form_get,employ_Detail } from "../../Api_Collection/Api";
+import { user_detail, Nurssing_form, Nurssing_form_get,employ_Detail, Nurssing_form_get_Draft } from "../../Api_Collection/Api";
 import SingInModel from "../Modal/SingInModel";
 import Draftinmodel from "../Modal/Draftinmodel";
 import SingInUpdateModel from "../Modal/SingInUpdateModel";
@@ -254,7 +254,6 @@ function formatDate(dateString) {
 
   useEffect(()=>{
     if(getApiData){
-      setSaveAsDraft(getApiData?.saveAsDraft);
       setResidentName(getApiData?.residentFullName);
       setDateOfBirth(getApiData?.dateOfBirth?getApiData?.dateOfBirth?.slice(0,10):"");
       setAge(getApiData?.age);
@@ -336,16 +335,24 @@ function formatDate(dateString) {
   
   const [previusData,setPreviusData]=useState(false);
 
-
-
   useEffect(() => {
     setLoading(true); 
-    if (previusData) {
-      Nurssing_form_get(userId, setGetApiData, setLoading);
+    if (userId) {
+      Nurssing_form_get_Draft(userId, setGetApiData, setLoading);
     } else {
       setLoading(false); 
     }
-  }, [userId, previusData]);
+  }, [userId]);
+
+
+  // useEffect(() => {
+  //   setLoading(true); 
+  //   if (previusData) {
+  //     Nurssing_form_get(userId, setGetApiData, setLoading);
+  //   } else {
+  //     setLoading(false); 
+  //   }
+  // }, [userId, previusData]);
 
   useEffect(() => {
     //calculater date
@@ -536,10 +543,108 @@ reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOthe
       rnDate,
       rnTime
     };
-    Nurssing_form(data);
+    Nurssing_form(data,saveAsDraft);
     initialData();
     navigate("/intake");
   };
+
+  const handleData = () => {
+  
+    const data = {
+      patientId: userId,
+      saveAsDraft,
+      residentName,
+      dateOfBirth,
+      admissionDate,
+      age,
+      sex,
+      todayDate,
+      admissionDiagnoses,
+      codeStatus,
+      lastTBScreeningDate,
+      tbScreeningResults,
+      careProvided:careProvidedPhysicalServices,
+      // careProvidedBehavioralHealthServices,
+      vitalsBloodPressure,
+      vitalsPulse,
+      vitalsRespiratoryRate,
+      vitalsOxygenLevel,
+      vitalsTemperature,
+      vitalsWeight,
+      vitalsHeightFeet,
+      vitalsHeightInches,
+      allergies,
+// add value
+reviewOfSystemsConstitutional,
+reviewOfSystemsConstitutionalComment:reviewOfSystemsConstitutionalOther,
+reviewOfSystemsCardiovascular,
+cardiovascularBloodPressure,
+reviewOfSystemsCardiovascularComment:reviewOfSystemsCardiovascularOther,
+reviewOfSystemsEndocrine,
+endocrineBloodSuger,
+reviewOfSystemsEndocrineComment:reviewOfSystemsEndocrineOther,
+reviewOfSystemsGastrointestinal,
+reviewOfSystemsGastrointestinalComment:reviewOfSystemsGastrointestinalOther,
+reviewOfSystemsGenitourinary,
+reviewOfSystemsGenitourinaryComment:reviewOfSystemsGenitourinaryOther,
+reviewOfSystemsHematologyOncology,
+reviewOfSystemsHematologyOncologyomment:reviewOfSystemsHematologyOncologyOther,
+reviewOfSystemsHeadNeckThroat,
+reviewOfSystemsHeadNeckThroatComment:reviewOfSystemsHeadNeckThroatOther,
+reviewOfSystemsIntegumentary:reviewOfSystemsIntegumentary,
+reviewOfSystemsIntegumentaryComment:reviewOfSystemsIntegumentaryOther,
+reviewOfSystemsMusculoskeletal,
+reviewOfSystemsMusculoskeletalComment:reviewOfSystemsMusculoskeletalOther,
+reviewOfSystemsPsychiatric,
+reviewOfSystemsPsychiatricComment:reviewOfSystemsPsychiatricOther,
+reviewOfSystemsNeurologic,
+reviewOfSystemsNeurologicComment:reviewOfSystemsNeurologicOther,
+reviewOfSystemsRespiratory,
+reviewOfSystemsRespiratoryComment:reviewOfSystemsRespiratoryOther,
+reviewOfSystemsAllergicImmunologic,
+reviewOfSystemsAllergicImmunologicComment:reviewOfSystemsAllergicImmunologicOther,
+      suicidalRiskAssessmentDeniesSymptomsBellow,
+      behavioralSymptoms,
+      physicalSymptoms,
+      psychosocialSymptoms,
+      currentMedications,
+      nutritionDiet,
+      nutritionSpecialDietOrder,
+      nutritionFluidRestrictions,
+      skinCheck,
+      residentDeniesSkinConcerns,
+      front,
+      back,
+      sideLeft,
+      sideRight,
+      legFront,
+      legBack,
+      legLeft,
+      legRight,
+      legComment:commentFigure,
+      bhtName,
+      bhtSignature,
+      bhtDate,
+      bhpTime,
+      rnName,
+      rnSignature,
+      rnDate,
+      rnTime
+    };
+    Nurssing_form(data,saveAsDraft);
+
+  };
+
+  useEffect(()=>{
+    if(saveAsDraft){
+      handleData();
+    }
+  },[saveAsDraft])
+
+  const handleSaveAsDraft=()=>{
+    // setDraftModel(!draftModel); 
+    setSaveAsDraft(!saveAsDraft);
+  }
 
 
   const careProvidedPhysicalServicesHandler = (status) => {
@@ -3035,9 +3140,11 @@ const handlerepsychosocialSymptoms = (symptom) => {
        
             <div class="file-upload-box " style={{marginLeft:"10px"}}> 
                 <div className="file-upload-box-child hidePrint">
-                <button className="upload-button1" type="button" onClick={() => {setDraftModel(true);setSaveAsDraft(true)}}>
-                  SAVED AS DRAFT
+              
+               <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
+                     { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
                 </button>
+              
                 <button className="upload-button" type="button" onClick={() => setShowSingInOne(true)}>
                   SAVED AND SIGNED
                 </button>
@@ -3080,9 +3187,9 @@ const handlerepsychosocialSymptoms = (symptom) => {
             <div class="file-upload-box " style={{marginLeft:"10px",paddingBottom:"1rem"}}>
               
               <div className="file-upload-box-child hidePrint">
-               <div >
-                <button className="upload-button1" type="button" onClick={() => {setDraftModel(true); setSaveAsDraft(true)}}>
-                  SAVED AS DRAFT
+              <div >
+               <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
+                     { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
                 </button>
                 </div>
                 <div>
@@ -3122,14 +3229,7 @@ const handlerepsychosocialSymptoms = (symptom) => {
             <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
               SUBMIT DETAILS
             </button>
-            {
-              filedForm &&   <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
-            
-              {
-                    loading ? <Loader/> : "PREVIOUS FORM"
-                  }
-            </button>
-            }
+          
           </div>
 
         </form>

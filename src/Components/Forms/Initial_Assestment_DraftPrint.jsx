@@ -3,119 +3,31 @@
 import React, { useEffect, useState } from "react";
 import "./Initial-Assessment.css";
 import FormUpper from "./FormsUpperbar";
+import formupload from "../../img/formupload.png";
+import Chechkbox from "../chechkbox";
 import { AiFillDelete } from "react-icons/ai";
+import locate from "../../img/locate.png";
 import { IoArrowBackCircle } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { user_detail, initialAssestment_form,initial_assestment_get, initial_assestment_get_Draft } from "../../Api_Collection/Api";
 import Select from "react-select";
 import SingInUpdateModel from "../Modal/SingInUpdateModel";
 import Draftinmodel from "../Modal/Draftinmodel";
-import Loader from "../../Pages/LandingPage/Loader";
-
 import { useReactToPrint } from "react-to-print";
 import AutoSize from "../AutoSize/AutoSize";
 
-import Initial_Assessment_print from "./Initial_Assessment_print";
-import Initial_Assessment_print_Draft from "./Initial_Assestment_DraftPrint";
-
-const InitialAssessmentDraft = () => {
-  const [loading,setLoading]=useState(false);
-
-  const navigate = useNavigate();
-  const componentRef = React.useRef();
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-  });
-
-  let hideData = document.getElementsByClassName("hidaData");
-
-  for (let i = 0; i < hideData.length; i++) {
-    hideData[i].style.display = "none";
-  }
-
-
-
-  const handlePrint2 = () => {
-    var elements = document.getElementsByClassName("hidePrint");
-    var hidePrintButton = document.getElementsByClassName("hidePrintButton");
-    var signatureRightAndSide =
-      document.getElementsByClassName("file-upload-box");
-
-      // print under line hidden
-      var form_field_gender = document.getElementsByClassName("form-field-child-gender");
-
-  
-
-    for (let i = 0; i < hideData.length; i++) {
-      hideData[i].style.display = "block";
-    }
-
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].style.display = "none";
-    }
-
-    for (let i = 0; i < hidePrintButton.length; i++) {
-      hidePrintButton[i].style.display = "none";
-    }
-
-    for (let i = 0; i < signatureRightAndSide.length; i++) {
-      signatureRightAndSide[i].style.justifyContent = "right";
-    }
-
-    // print functinality
-    for (let i = 0; i < form_field_gender.length; i++) {
-      form_field_gender[i].style.borderBottom = "none";
-    }
-
-
-
-
-    handlePrint();
-
-    setTimeout(() => {
-      for (var i = 0; i < elements.length; i++) {
-        elements[i].style.display = "flex";
-        elements[i].style.justifyContent = "center";
-      }
-
-      for (let i = 0; i < hidePrintButton.length; i++) {
-        hidePrintButton[i].style.display = "flex";
-      }
-
-      for (let i = 0; i < signatureRightAndSide.length; i++) {
-        signatureRightAndSide[i].style.justifyContent = "space-between";
-      }
-
-      for (let i = 0; i < hideData.length; i++) {
-        hideData[i].style.display = "none";
-      }
-
-      // print functinality
-      for (let i = 0; i < form_field_gender.length; i++) {
-        form_field_gender[i].style.borderBottom = "1px solid black";
-      }
-
-   
-
-
-    }, 1000);
-  };
+const Initial_Assessment_print_Draft = ({componentRef}) => {
 
   //singin model
-  const [saveAsDraft,setSaveAsDraft]=useState(false);
   const [draftModel, setDraftModel] = useState(false);
-  const [signInModel1, setSigInModel1] = useState(false);
-  const [signInModel2, setSigInModel2] = useState(false);
-  const [signInModel3, setSigInModel3] = useState(false);
-  const [signInModel4, setSigInModel4] = useState(false);
-  const [signInModel5, setSigInModel5] = useState(false);
+
   const [signInModel6, setSigInModel6] = useState(false);
   const [signInModel7, setSigInModel7] = useState(false);
   const [signInModel8, setSigInModel8] = useState(false);
 
-  const [filedForm,setFiledForm]=useState("")
+  const [user, setUser] = useState("");
   const [userData, setUserData] = useState("");
-  const [getApiData,setGetApiData]=useState([]);
+  const [getApiData,setGetApiData]=useState("");
   //state define
   const [assessmentType,setAssessmentType]=useState("")
   const [hasNotified, setHasNotified] = useState("");
@@ -149,6 +61,58 @@ const InitialAssessmentDraft = () => {
   const [residentLimitations, setResidentLimitations] = useState("");
   const [currentBehavioralIssues, setCurrentBehavioralIssues] = useState("");
 
+  // Behavioral Interventions (Array of Objects)==> check i think remove this section by client
+  const [need, setNeed] = useState("");
+  const [intervention, setIntervention] = useState("");
+  // 1
+  const [behavioralInterventionsArray, setbehavioralInterventionsArray] =
+    useState([]);
+
+  // 1
+  const [behavioralInterventions, setBehavioralInterventions] = useState([]);
+// 1
+  const behavioralInterventionaArrayHandle = () => {
+    setbehavioralInterventionsArray((prev) => [
+      ...prev,
+      { need, intervention },
+    ]);
+    setNeed("");
+    setIntervention("");
+  };
+
+  const [dischargePlan, setDischargePlan] = useState("");
+  const [estimateDateOfDischarge, setEstimateDateOfDischarge] = useState("");
+  const [agreementWithPlan, setAgreementWithPlan] = useState();
+
+  // Resident Guardian Agreement
+  const [residentGuardianAgreementName, setResidentGuardianAgreementName] =
+    useState("");
+  const [
+    residentGuardianAgreementSignature,
+    setResidentGuardianAgreementSignature,
+  ] = useState("");
+  const [residentGuardianAgreementDate, setResidentGuardianAgreementDate] =
+    useState("");
+  const [residentGuardianAgreementTime, setResidentGuardianAgreementTime] = useState("");
+
+  // Staff Agreement
+  const [staffAgreementname, setStaffAgreementName] = useState("");
+  const [staffAgreementSignature, setStaffAgreementSignature] = useState("");
+  const [staffAgreementDate, setStaffAgreementDate] = useState("");
+  const [staffAgreementTime, setStaffAgreementTime] = useState("");
+
+  // BHP Agreement
+  const [bhpAgreementName, setBhpAgreementName] = useState("");
+  const [bhpAgreementSignature, setBhpAgreementSignature] = useState("");
+  const [bhpAgreementDate, setBhpAgreementDate] = useState("");
+  const [bhpAgreementTime, setBhpAgreementTime] = useState("");
+
+  // Other
+  const [otherName, setOtherName] = useState("");
+  const [otherRelationship, setOtherRelationship] = useState("");
+  const [otherSignature, setOtherSignature] = useState("");
+  const [otherDate, setOtherDate] = useState("");
+  const [otherTime, setOtherTime] = useState("");
 
   // Medical Conditions (Array of Objects) array second section is start ===>
   // diabetes =======>
@@ -306,6 +270,8 @@ const InitialAssessmentDraft = () => {
   ] = useState([]);
 
 
+// 2 pendinggggggg
+  //type of service shispal 
   const [typeOfServiceArray, setTypeOfServicesArray] = useState([]);
   const handleTypeOfService = () => {
     if (
@@ -315,10 +281,10 @@ const InitialAssessmentDraft = () => {
       mentalHealthTreatmentHistoryTypeOfService
     ) {
       const data = {
-        diagnosisReason:mentalHealthTreatmentHistoryDiagnosisReason?.map((item)=>item),
+        diagnosisReason:mentalHealthTreatmentHistoryDiagnosisReason,
         dates:mentalHealthTreatmentHistoryDates,
         where:mentalHealthTreatmentHistoryWhere,
-        typeOfService:mentalHealthTreatmentHistoryTypeOfService?.map((item)=>item),
+        typeOfService:mentalHealthTreatmentHistoryTypeOfService,
       };
       setTypeOfServicesArray((prev) => [...prev, data]);
       setMentalHealthTreatmentHistoryTypeOfService([]);
@@ -327,11 +293,6 @@ const InitialAssessmentDraft = () => {
       setMentalHealthTreatmentHistoryDiagnosisReason([]);
     }
   };
-
-
-
-
-
 
   // Event handler for removing an item from the array
   const handleRemoveItem = (index) => {
@@ -549,40 +510,42 @@ const InitialAssessmentDraft = () => {
     substanceAbuseHistoryDataLengthOfSobrietyOTC,
     setSubstanceAbuseHistoryDataLengthOfSobrietyOTC,
   ] = useState("");
-    //Cocaine
-    const [
-      substanceAbuseHistoryDataAgeOfFirstUseCocaine,
-      setSubstanceAbuseHistoryDataAgeOfFirstUseCocaine,
-    ] = useState("");
-    const [
-      substanceAbuseHistoryDataLastUseCocaine,
-      setSubstanceAbuseHistoryDataLastUseCocaine,
-    ] = useState("");
-    const [
-      substanceAbuseHistoryDataFrequencyCocaine,
-      setSubstanceAbuseHistoryDataFrequencyCocaine,
-    ] = useState("");
-    const [
-      substanceAbuseHistoryDataLengthOfSobrietyCocaine,
-      setSubstanceAbuseHistoryDataLengthOfSobrietyCocaine,
-    ] = useState("");
-      //Hallucinogens
-  const [
-    substanceAbuseHistoryDataAgeOfFirstUseHallucinogens,
-    setSubstanceAbuseHistoryDataAgeOfFirstUseHallucinogens,
+
+   //Cocaine
+   const [
+    substanceAbuseHistoryDataAgeOfFirstUseCocaine,
+    setSubstanceAbuseHistoryDataAgeOfFirstUseCocaine,
   ] = useState("");
   const [
-    substanceAbuseHistoryDataLastUseHallucinogens,
-    setSubstanceAbuseHistoryDataLastUseHallucinogens,
+    substanceAbuseHistoryDataLastUseCocaine,
+    setSubstanceAbuseHistoryDataLastUseCocaine,
   ] = useState("");
   const [
-    substanceAbuseHistoryDataFrequencyHallucinogens,
-    setSubstanceAbuseHistoryDataFrequencyHallucinogens,
+    substanceAbuseHistoryDataFrequencyCocaine,
+    setSubstanceAbuseHistoryDataFrequencyCocaine,
   ] = useState("");
   const [
-    substanceAbuseHistoryDataLengthOfSobrietyHallucinogens,
-    setSubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens,
+    substanceAbuseHistoryDataLengthOfSobrietyCocaine,
+    setSubstanceAbuseHistoryDataLengthOfSobrietyCocaine,
   ] = useState("");
+    //Hallucinogens
+const [
+  substanceAbuseHistoryDataAgeOfFirstUseHallucinogens,
+  setSubstanceAbuseHistoryDataAgeOfFirstUseHallucinogens,
+] = useState("");
+const [
+  substanceAbuseHistoryDataLastUseHallucinogens,
+  setSubstanceAbuseHistoryDataLastUseHallucinogens,
+] = useState("");
+const [
+  substanceAbuseHistoryDataFrequencyHallucinogens,
+  setSubstanceAbuseHistoryDataFrequencyHallucinogens,
+] = useState("");
+const [
+  substanceAbuseHistoryDataLengthOfSobrietyHallucinogens,
+  setSubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens,
+] = useState("");
+
 
   // arr the value in array
   const [typeArray, setTypeArray] = useState([]);
@@ -604,9 +567,9 @@ const InitialAssessmentDraft = () => {
       const data = {
         types:otherTypeOther,
         ageOfFirstUse:otherAgeOfFirstUse,
-        lastUse:otherLastUse?.value,
-        frequency:otherFrequancy?.value,
-        lengthOfSobriety:OtherlengthOfSobrifty?.value,
+        lastUse:otherLastUse,
+        frequency:otherFrequancy,
+        lengthOfSobriety:OtherlengthOfSobrifty,
       };
       setTypeArray((prev) => [...prev, data]);
       setOtherAgeOfFirstUse("");
@@ -903,68 +866,70 @@ const InitialAssessmentDraft = () => {
   const [BathingGood,setBathingGood]=useState(false);
   const [BathingFair,setBathingFair]=useState(false);
   const [BathingNotSoGood,setBathingNotSoGood]=useState(false);
-  const [BathingGoodNeedAssist,setBathingGoodNeedAssist]=useState(null);
+  const [BathingGoodNeedAssist,setBathingGoodNeedAssist]=useState(false);
   const [BathingComments,setBathingComments]=useState("");
 
   const [GroomingGood,setGroomingGood]=useState(false);
   const [GroomingFair,setGroomingFair]=useState(false);
   const [GroomingNotSoGood,setGroomingNotSoGood]=useState(false);
-  const [GroomingGoodNeedAssist,setGroomingGoodNeedAssist]=useState(null);
+  const [GroomingGoodNeedAssist,setGroomingGoodNeedAssist]=useState(false);
   const [GroomingComments,setGroomingComments]=useState("");
 
   const [MobilityGood,setMobilityGood]=useState(false);
   const [MobilityFair,setMobilityFair]=useState(false);
   const [MobilityNotSoGood,setMobilityNotSoGood]=useState(false);
-  const [MobilityGoodNeedAssist,setMobilityGoodNeedAssist]=useState(null);
+  const [MobilityGoodNeedAssist,setMobilityGoodNeedAssist]=useState(false);
   const [MobilityComments,setMobilityComments]=useState("");
 
   const [HouseworkGood,setHouseworkGood]=useState(false);
   const [HouseworkFair,setHouseworkFair]=useState(false);
   const [HouseworkNotSoGood,setHouseworkNotSoGood]=useState(false);
-  const [HouseworkGoodNeedAssist,setHouseworkGoodNeedAssist]=useState(null);
+  const [HouseworkGoodNeedAssist,setHouseworkGoodNeedAssist]=useState(false);
   const [HouseworkComments,setHouseworkComments]=useState("");
 
   const [ShoppingGood,setShoppingGood]=useState(false);
   const [ShoppingFair,setShoppingFair]=useState(false);
   const [ShoppingNotSoGood,setShoppingNotSoGood]=useState(false);
-  const [ShoppingGoodNeedAssist,setShoppingGoodNeedAssist]=useState(null);
+  const [ShoppingGoodNeedAssist,setShoppingGoodNeedAssist]=useState(false);
   const [ShoppingComments,setShoppingComments]=useState("");
 
   const [ManagingGood,setManagingGood]=useState(false);
   const [ManagingFair,setManagingFair]=useState(false);
   const [ManagingNotSoGood,setManagingNotSoGood]=useState(false);
-  const [ManagingGoodNeedAssist,setManagingGoodNeedAssist]=useState(null);
+  const [ManagingGoodNeedAssist,setManagingGoodNeedAssist]=useState(false);
   const [ManagingComments,setManagingComments]=useState("");
 
   const [PreparingGood,setPreparingGood]=useState(false);
   const [PreparingFair,setPreparingFair]=useState(false);
   const [PreparingNotSoGood,setPreparingNotSoGood]=useState(false);
-  const [PreparingGoodNeedAssist,setPreparingGoodNeedAssist]=useState(null);
+  const [PreparingGoodNeedAssist,setPreparingGoodNeedAssist]=useState(false);
   const [PreparingComments,setPreparingComments]=useState("");
 
   const [EatingGood,setEatingGood]=useState(false);
   const [EatingFair,setEatingFair]=useState(false);
   const [EatingNotSoGood,setEatingNotSoGood]=useState(false);
-  const [EatingGoodNeedAssist,setEatingGoodNeedAssist]=useState(null);
+  const [EatingGoodNeedAssist,setEatingGoodNeedAssist]=useState(false);
   const [EatingComments,setEatingComments]=useState("");
 
   const [ToiletingGood,setToiletingGood]=useState(false);
   const [ToiletingFair,setToiletingFair]=useState(false);
   const [ToiletingNotSoGood,setToiletingNotSoGood]=useState(false);
-  const [ToiletingGoodNeedAssist,setToiletingGoodNeedAssist]=useState(null);
+  const [ToiletingGoodNeedAssist,setToiletingGoodNeedAssist]=useState(false);
   const [ToiletingComments,setToiletingComments]=useState("");
 
+  
   const [TakingGood,setTakingGood]=useState(false);
   const [TakingFair,setTakingFair]=useState(false);
   const [TakingNotSoGood,setTakingNotSoGood]=useState(false);
   const [TakingGoodNeedAssist,setTakingGoodNeedAssist]=useState(null);
   const [TakingComments,setTakingComments]=useState("");
+
     // Current Independent Living Skills:
     const [otherCurrentOther,setOtherCurrentOther]=useState("");
     const [otherCurrentGood,setOtherCurrentGood]=useState(false);
     const [otherCurrentFair,setOtherCurrentFair]=useState(false);
     const [otherCurrentNotSoGood,setOtherCurrentNotSoGood]=useState(false);
-    const [otherCurrentNeed,setOtherCurrentNeed]=useState(null);
+    const [otherCurrentNeed,setOtherCurrentNeed]=useState(false);
     const [otherCurrentComment,setOtherCurrentComment]=useState("");
 
 
@@ -1102,7 +1067,7 @@ const InitialAssessmentDraft = () => {
   // protectiveFactors other
   const [otherProtectiveFactorsApply,setOtherProtectiveFactorsApply]=useState("")
   // shispal
-  const [otherProtectiveFactorsYesNo,setOtherProtectiveFactorsYesNO]=useState(null)
+  const [otherProtectiveFactorsYesNo,setOtherProtectiveFactorsYesNO]=useState(false)
   const [otherProtectiveFactorsDescription,setOtherProtectiveFactorsDescription]=useState("")
 
   const [protectiveFactorsArray, setProtectiveFactorsArray] = useState([]);
@@ -1251,7 +1216,9 @@ const [Additional1Description,setAdditional1Description]=useState("");
 
   const [additionalNotes, setAdditionalNotes] = useState("");
 
-  const [acceptResident,setAcceptResident]=useState(false);
+  // shishpal
+  const [acceptResident,setAcceptResident]=useState(false)
+
   //gresedent gaudent name and information
   const [residentGuardianName, setResidentGuardianName] = useState("");
   const [residentGauardianSignature, setResidentGauardianSignature] =
@@ -1272,6 +1239,7 @@ const [Additional1Description,setAdditional1Description]=useState("");
   const [bhpDate, setBhpDate] = useState("");
   const [bhpTime, setBhpTime] = useState("");
 
+  
 // ========table delete state
 // Conditions
 const [condition1,setConditions1]=useState(true);
@@ -1303,9 +1271,9 @@ const [condition26,setConditions26]=useState(true);
 
 
 const ConditionDelete=(index)=>{
-  const tempMedicalDelet=[...otherConditionArray];
+  const tempMedicalDelet=[...typeArray];
   tempMedicalDelet.splice(index,1);
-  setOtherConditionArray(tempMedicalDelet);
+  setTypeArray(tempMedicalDelet);
 }
 
 // Substance Abuse history type
@@ -1433,10 +1401,12 @@ return arr;
     return `${month}-${day}-${year}`;
   }
 
+
   useEffect(()=>{
 
     if(getApiData){
-setSex(getApiData?.gender)
+
+      setSex(getApiData?.gender)
 setDob(getApiData?.dob?getApiData.dob.slice(0,10):"")
 setResidentName(getApiData?.fullName)
 setAssessmentType(getApiData?.assessmentType)
@@ -1489,248 +1459,122 @@ setResidentStrengths(
 setResidentLimitations(getApiData?.residentLimitations);
 setCurrentBehavioralIssues(getApiData?.currentBehavioralIssues);
 
-if(getApiData?.medicalConditions?.[0]?.state){
-  setYesDiabetes(getApiData?.medicalConditions?.[0]?.yes);
- setCommentDeabetes(getApiData?.medicalConditions?.[0]?.comments);
-}else{
-  setYesDiabetes();
-  setCommentDeabetes("");
-}
+setYesDiabetes(getApiData?.medicalConditions?.[0]?.yes);
+setCommentDeabetes(getApiData?.medicalConditions?.[0]?.comments);
 
-// Heart condition
-if(getApiData?.medicalConditions?.[1]?.state){
-  setYesHeart(getApiData?.medicalConditions?.[1]?.yes);
-  setCommentHeart(getApiData?.medicalConditions?.[1]?.comments);
-} else {
-  setYesHeart();
-  setCommentHeart("");
-}
+setYesHeart(getApiData?.medicalConditions?.[1]?.yes);
+setCommentHeart(getApiData?.medicalConditions?.[1]?.comments);
 
-// Medical history
-if(getApiData?.medicalConditions?.[2]?.state){
-  setYesHistory(getApiData?.medicalConditions?.[2]?.yes);
-  setCommentHistory(getApiData?.medicalConditions?.[2]?.comments);
-} else {
-  setYesHistory();
-  setCommentHistory("");
-}
+setYesHistory(getApiData?.medicalConditions?.[2]?.yes);
+setCommentHistory(getApiData?.medicalConditions?.[2]?.comments);
 
-// High blood pressure
-if(getApiData?.medicalConditions?.[3]?.state){
-  setYesHigh(getApiData?.medicalConditions?.[3]?.yes);
-  setCommentHigh(getApiData?.medicalConditions?.[3]?.comments);
-} else {
-  setYesHigh();
-  setCommentHigh("");
-}
+setYesHigh(getApiData?.medicalConditions?.[3]?.yes);
+setCommentHigh(getApiData?.medicalConditions?.[3]?.comments);
 
-// Lung condition
-if(getApiData?.medicalConditions?.[4]?.state){
-  setYesLung(getApiData?.medicalConditions?.[4]?.yes);
-  setCommentLung(getApiData?.medicalConditions?.[4]?.comments);
-} else {
-  setYesLung();
-  setCommentLung("");
-}
+setYesLung(getApiData?.medicalConditions?.[4]?.yes);
+setCommentLung(getApiData?.medicalConditions?.[4]?.comments);
 
-// Seizures
-if(getApiData?.medicalConditions?.[5]?.state){
-  setYesSeizures(getApiData?.medicalConditions?.[5]?.yes);
-  setCommentSeizures(getApiData?.medicalConditions?.[5]?.comments);
-} else {
-  setYesSeizures();
-  setCommentSeizures("");
-}
+setYesSeizures(getApiData?.medicalConditions?.[5]?.yes);
+setCommentSeizures(getApiData?.medicalConditions?.[5]?.comments);
 
-if(getApiData?.medicalConditions?.[6]?.state){
-  setYesCancer(getApiData?.medicalConditions?.[6]?.yes);
-  setCommentCancer(getApiData?.medicalConditions?.[6]?.comments);
-} else {
-  setYesCancer();
-  setCommentCancer("");
-}
+setYesCancer(getApiData?.medicalConditions?.[6]?.yes);
+setCommentCancer(getApiData?.medicalConditions?.[6]?.comments);
 
-if (getApiData?.medicalConditions?.[7]?.state) {
-  setYesLiver(getApiData?.medicalConditions?.[7]?.yes);
-  setCommentLiver(getApiData?.medicalConditions?.[7]?.comments);
-} else {
-  setYesLiver();
-  setCommentLiver("");
-}
+setYesLiver(getApiData?.medicalConditions?.[7]?.yes);
+setCommentLiver(getApiData?.medicalConditions?.[7]?.comments);
 
-if (getApiData?.medicalConditions?.[8]?.state) {
-  setYesThyroid(getApiData?.medicalConditions?.[8]?.yes);
-  setThyroidDisorder(
-    getApiData?.medicalConditions?.[8]?.comments
-      ? getApiData?.medicalConditions?.[8]?.comments?.map(item => ({
-          label: item,
-          value: item   
-        }))
-      : []
-  );
-} else {
-  setYesThyroid();
-  setThyroidDisorder([]);
-}
+setYesThyroid(getApiData?.medicalConditions?.[8]?.yes);
+setThyroidDisorder(getApiData?.medicalConditions?.[8]?.comment
+  ? getApiData?.medicalConditions?.[8].comment?.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
 
-if (getApiData?.medicalConditions?.[9]?.state) {
-  setYesBrain(getApiData?.medicalConditions?.[9]?.yes);
-  setbrain(getApiData?.medicalConditions?.[9]?.comments);
-} else {
-  setYesBrain();
-  setbrain("");
-}
+setYesBrain(getApiData?.medicalConditions?.[9]?.yes);
+setbrain(getApiData?.medicalConditions?.[9]?.comments);
 
-// Injury
-if (getApiData?.medicalConditions?.[10]?.state) {
-  setYesInjury(getApiData?.medicalConditions?.[10]?.yes);
-  setCommentInjury(getApiData?.medicalConditions?.[10]?.comments);
-} else {
-  setYesInjury();
-  setCommentInjury("");
-}
+setYesInjury(getApiData?.medicalConditions?.[10]?.yes);
+setCommentInjury(getApiData?.medicalConditions?.[10]?.comments);
 
-// Chronic conditions
-if (getApiData?.medicalConditions?.[11]?.state) {
-  setYesChronic(getApiData?.medicalConditions?.[11]?.yes);
-  setChronicCommit(getApiData?.medicalConditions?.[11]?.comments);
-} else {
-  setYesChronic();
-  setChronicCommit("");
-}
+setYesChronic(getApiData?.medicalConditions?.[11]?.yes);
+setChronicCommit(getApiData?.medicalConditions?.[11]?.comments);
 
-// Allergies
-if (getApiData?.medicalConditions?.[12]?.state) {
-  setAllergiesYes(getApiData?.medicalConditions?.[12]?.yes);
-  setAllergiesComment(getApiData?.medicalConditions?.[12]?.comments);
-} else {
-  setAllergiesYes();
-  setAllergiesComment("");
-}
+setAllergiesYes(getApiData?.medicalConditions?.[12]?.yes);
+setAllergiesComment(getApiData?.medicalConditions?.[12]?.comments);
 
-// Surgeries
-if (getApiData?.medicalConditions?.[13]?.state) {
-  setSurgeriessYes(getApiData?.medicalConditions?.[13]?.yes);
-  setSurgeriesComment(getApiData?.medicalConditions?.[13]?.comments);
-} else {
-  setSurgeriessYes();
-  setSurgeriesComment("");
-}
+setSurgeriessYes(getApiData?.medicalConditions?.[13]?.yes);
+setSurgeriesComment(getApiData?.medicalConditions?.[13]?.comments);
 
-// Pregnancies
-if (getApiData?.medicalConditions?.[14]?.state) {
-  setPregnanciesYes(getApiData?.medicalConditions?.[14]?.yes);
-  setPregnanciesComment(getApiData?.medicalConditions?.[14]?.comments);
-} else {
-  setPregnanciesYes();
-  setPregnanciesComment("");
-}
+setPregnanciesYes(getApiData?.medicalConditions?.[14]?.yes);
+setPregnanciesComment(getApiData?.medicalConditions?.[14]?.comments);
 
-// Substance abuse
-if (getApiData?.medicalConditions?.[15]?.state) {
-  setSubstanceYes(getApiData?.medicalConditions?.[15]?.yes);
-  setSubstanceComment(getApiData?.medicalConditions?.[15]?.comments);
-} else {
-  setSubstanceYes();
-  setSubstanceComment("");
-}
+setSubstanceYes(getApiData?.medicalConditions?.[15]?.yes);
+setSubstanceComment(getApiData?.medicalConditions?.[15]?.comments);
 
-// Depression
-if (getApiData?.medicalConditions?.[16]?.state) {
-  setDepressionYes(getApiData?.medicalConditions?.[16]?.yes);
-  setDepressionComment(getApiData?.medicalConditions?.[16]?.comments);
-} else {
-  setDepressionYes();
-  setDepressionComment("");
-}
+setDepressionYes(getApiData?.medicalConditions?.[16]?.yes);
+setDepressionComment(getApiData?.medicalConditions?.[16]?.comments);
 
-// Anxiety
-if (getApiData?.medicalConditions?.[17]?.state) {
-  setAnxietyYes(getApiData?.medicalConditions?.[17]?.yes);
-  setAnxietyComment(getApiData?.medicalConditions?.[17]?.comments);
-} else {
-  setAnxietyYes();
-  setAnxietyComment("");
-}
+setAnxietyYes(getApiData?.medicalConditions?.[17]?.yes);
+setAnxietyComment(getApiData?.medicalConditions?.[17]?.comments);
 
-// Insomnia
-if (getApiData?.medicalConditions?.[18]?.state) {
-  setInsomniaYes(getApiData?.medicalConditions?.[18]?.yes);
-  setInsomniaComment(getApiData?.medicalConditions?.[18]?.comments);
-} else {
-  setInsomniaYes();
-  setInsomniaComment("");
-}
+setInsomniaYes(getApiData?.medicalConditions?.[18]?.yes);
+setInsomniaComment(getApiData?.medicalConditions?.[18]?.comments);
 
-// Bipolar disorder
-if (getApiData?.medicalConditions?.[19]?.state) {
-  setBipolarYes(getApiData?.medicalConditions?.[19]?.yes);
-  setBipolarComment(getApiData?.medicalConditions?.[19]?.comments);
-} else {
-  setBipolarYes();
-  setBipolarComment("");
-}
+setBipolarYes(getApiData?.medicalConditions?.[19]?.yes);
+setBipolarComment(getApiData?.medicalConditions?.[19]?.comments);
 
-// Schizophrenia
-if (getApiData?.medicalConditions?.[20]?.state) {
-  setSchizophreniaYes(getApiData?.medicalConditions?.[20]?.yes);
-  setSchizophreniaComment(getApiData?.medicalConditions?.[20]?.comments);
-} else {
-  setSchizophreniaYes();
-  setSchizophreniaComment("");
-}
+setSchizophreniaYes(getApiData?.medicalConditions?.[20]?.yes);
+setSchizophreniaComment(getApiData?.medicalConditions?.[20]?.comments);
 
-// Obsessive-compulsive disorder
-if (getApiData?.medicalConditions?.[21]?.state) {
-  setObsessiveYes(getApiData?.medicalConditions?.[21]?.yes);
-  setObsessiveComment(getApiData?.medicalConditions?.[21]?.comments);
-} else {
-  setObsessiveYes();
-  setObsessiveComment("");
-}
+setObsessiveYes(getApiData?.medicalConditions?.[21]?.yes);
+setObsessiveComment(getApiData?.medicalConditions?.[21]?.comments);
 
-// Personality disorders
-if (getApiData?.medicalConditions?.[22]?.state) {
-  setPersonalityYes(getApiData?.medicalConditions?.[22]?.yes);
-  setPersonalityComment(getApiData?.medicalConditions?.[22]?.comments);
-} else {
-  setPersonalityYes();
-  setPersonalityComment("");
-}
+setPersonalityYes(getApiData?.medicalConditions?.[22]?.yes);
+setPersonalityComment(getApiData?.medicalConditions?.[22]?.comments);
 
-// Phobias
-if (getApiData?.medicalConditions?.[23]?.state) {
-  setPhobiasYes(getApiData?.medicalConditions?.[23]?.yes);
-  setPhobiasComment(getApiData?.medicalConditions?.[23]?.comments);
-} else {
-  setPhobiasYes();
-  setPhobiasComment("");
-}
+setPhobiasYes(getApiData?.medicalConditions?.[23]?.yes);
+setPhobiasComment(getApiData?.medicalConditions?.[23]?.comments);
 
-// Health conditions
-if (getApiData?.medicalConditions?.[24]?.state) {
-  setHealthConditionsYes(getApiData?.medicalConditions?.[24]?.yes);
-  sethealthConditionsYesComment(getApiData?.medicalConditions?.[24]?.comments);
-} else {
-  setHealthConditionsYes();
-  sethealthConditionsYesComment("");
-}
+setHealthConditionsYes(getApiData?.medicalConditions?.[24]?.yes);
+sethealthConditionsYesComment(getApiData?.medicalConditions?.[24]?.comments);
 
-// Infection diseases
-if (getApiData?.medicalConditions?.[25]?.state) {
-  setInfectionYes(getApiData?.medicalConditions?.[25]?.yes);
-  setInfectionDiseases(
-    getApiData?.medicalConditions?.[25]?.comments
-      ? getApiData?.medicalConditions?.[25]?.comments?.map(item => ({
-          label: item,
-          value: item   
-        }))
-      : []
-  );
-} else {
-  setInfectionYes();
-  setInfectionDiseases([]);
-}
+setInfectionYes(getApiData?.medicalConditions?.[25]?.yes);
+setInfectionDiseases(getApiData?.medicalConditions?.[25]?.comment
+  ? getApiData?.medicalConditions?.[8].comment?.map(item => ({
+      label: item, 
+      value: item    
+    }))
+  : []);
+
+  setConditions1(getApiData?.medicalConditions?.[0]?.state);
+  setConditions2(getApiData?.medicalConditions?.[1]?.state);
+  setConditions3(getApiData?.medicalConditions?.[2]?.state);
+  setConditions4(getApiData?.medicalConditions?.[33]?.state);
+  setConditions5(getApiData?.medicalConditions?.[4]?.state);
+  setConditions6(getApiData?.medicalConditions?.[5]?.state);
+  setConditions7(getApiData?.medicalConditions?.[6]?.state);
+  setConditions8(getApiData?.medicalConditions?.[7]?.state);
+  setConditions9(getApiData?.medicalConditions?.[8]?.state);
+  setConditions10(getApiData?.medicalConditions?.[9]?.state);
+  setConditions11(getApiData?.medicalConditions?.[10]?.state);
+  setConditions12(getApiData?.medicalConditions?.[11]?.state);
+  setConditions13(getApiData?.medicalConditions?.[12]?.state);
+  setConditions14(getApiData?.medicalConditions?.[13]?.state);
+  setConditions15(getApiData?.medicalConditions?.[14]?.state);
+  setConditions16(getApiData?.medicalConditions?.[15]?.state);
+  setConditions17(getApiData?.medicalConditions?.[16]?.state);
+  setConditions18(getApiData?.medicalConditions?.[17]?.state);
+  setConditions19(getApiData?.medicalConditions?.[18]?.state);
+  setConditions20(getApiData?.medicalConditions?.[19]?.state);
+  setConditions21(getApiData?.medicalConditions?.[20]?.state);
+  setConditions22(getApiData?.medicalConditions?.[21]?.state);
+  setConditions23(getApiData?.medicalConditions?.[22]?.state);
+  setConditions24(getApiData?.medicalConditions?.[23]?.state);
+  setConditions25(getApiData?.medicalConditions?.[24]?.state);
+  setConditions26(getApiData?.medicalConditions?.[25]?.state);
+
+
 setOtherConditionArray(getApiData?.medicalConditions?getApiArrayData(26,getApiData?.medicalConditions?.length,getApiData?.medicalConditions):[]);
 
 setSignificantFamilyMedicalPsychiatricHistory(getApiData?.SignificantFamilyMedicalPsychiatricHistory
@@ -1760,260 +1604,136 @@ setTypeOfServicesArray(getApiData?.mentalHealthTreatmentHistory
 setSubstanceAbuseHistory(getApiData?.substanceAbuseHistory);
 setSubstanceAbuseDenies(getApiData?.substanceAbuseDenies);
 
-if(getApiData?.substanceAbuseHistoryData?.[0]?.state){
-  setSubstanceAbuseHistoryDataAgeOfFirstUseAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.ageOfFirstUse);
-  setSubstanceAbuseHistoryDataLastUseAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.lastUse?{
-    label: getApiData?.substanceAbuseHistoryData?.[0]?.lastUse, value :getApiData?.substanceAbuseHistoryData?.[0]?.lastUse
-  }:"");
-  setSubstanceAbuseHistoryDataFrequencyAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.frequency?{label:getApiData?.substanceAbuseHistoryData?.[0]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[0]?.frequency}:"");
-  setSubstanceAbuseHistoryDataLengthOfSobrietyAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.lengthOfSobriety
-    ?{label:getApiData?.substanceAbuseHistoryData?.[0]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[0]?.lengthOfSobriety}:"");
-}else{
-  setSubstanceAbuseHistoryDataAgeOfFirstUseAlcohol("");
-setSubstanceAbuseHistoryDataLastUseAlcohol("");
-setSubstanceAbuseHistoryDataFrequencyAlcohol("");
-setSubstanceAbuseHistoryDataLengthOfSobrietyAlcohol("");
-}
+setSubstanceAbuseHistoryDataAgeOfFirstUseAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUseAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.lastUse?{
+  label: getApiData?.substanceAbuseHistoryData?.[0]?.lastUse, value :getApiData?.substanceAbuseHistoryData?.[0]?.lastUse
+}:""
 
+);
+setSubstanceAbuseHistoryDataFrequencyAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.frequency?{label:getApiData?.substanceAbuseHistoryData?.[0]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[0]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyAlcohol(getApiData?.substanceAbuseHistoryData?.[0]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[0]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[0]?.lengthOfSobriety}:"");
 
-if (getApiData?.substanceAbuseHistoryData?.[1]?.state) {
-  setSubstanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines(
-    getApiData?.substanceAbuseHistoryData?.[1]?.ageOfFirstUse
-  );
-  setSubstanceAbuseHistoryDataLastUseBenzodiazepines(
-    getApiData?.substanceAbuseHistoryData?.[1]?.lastUse
-      ? {
-          label: getApiData?.substanceAbuseHistoryData?.[1]?.lastUse,
-          value: getApiData?.substanceAbuseHistoryData?.[1]?.lastUse
-        }
-      : ""
-  );
-  setSubstanceAbuseHistoryDataFrequencyBenzodiazepines(
-    getApiData?.substanceAbuseHistoryData?.[1]?.frequency
-      ? {
-          label: getApiData?.substanceAbuseHistoryData?.[1]?.frequency,
-          value: getApiData?.substanceAbuseHistoryData?.[1]?.frequency
-        }
-      : ""
-  );
-  setSubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines(
-    getApiData?.substanceAbuseHistoryData?.[1]?.lengthOfSobriety
-      ? {
-          label: getApiData?.substanceAbuseHistoryData?.[1]?.lengthOfSobriety,
-          value: getApiData?.substanceAbuseHistoryData?.[1]?.lengthOfSobriety
-        }
-      : ""
-  );
-} else {
-  setSubstanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines("");
-  setSubstanceAbuseHistoryDataLastUseBenzodiazepines("");
-  setSubstanceAbuseHistoryDataFrequencyBenzodiazepines("");
-  setSubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines("");
-}
+setSubstanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines(getApiData?.substanceAbuseHistoryData?.[1]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUseBenzodiazepines(getApiData?.substanceAbuseHistoryData?.[1]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[1]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[1]?.lastUse}:"");
+setSubstanceAbuseHistoryDataFrequencyBenzodiazepines(getApiData?.substanceAbuseHistoryData?.[1]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[1]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[1]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines(getApiData?.substanceAbuseHistoryData?.[1]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[1]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[1]?.lengthOfSobriety}:"");
 
-if(getApiData?.substanceAbuseHistoryData?.[2]?.state){
-  setSubstanceAbuseHistoryDataAgeOfFirstUseCrack(getApiData?.substanceAbuseHistoryData?.[2]?.ageOfFirstUse);
-  setSubstanceAbuseHistoryDataLastUseCrack(getApiData?.substanceAbuseHistoryData?.[2]?.lastUse
-    ?{label:getApiData?.substanceAbuseHistoryData?.[2]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[2]?.lastUse}:"");
-  setSubstanceAbuseHistoryDataFrequencyCrack(getApiData?.substanceAbuseHistoryData?.[2]?.frequency
-    ?{label:getApiData?.substanceAbuseHistoryData?.[2]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[2]?.frequency}:"");
-  setSubstanceAbuseHistoryDataLengthOfSobrietyCrack(getApiData?.substanceAbuseHistoryData?.[2]?.lengthOfSobriety
-    ?{label:getApiData?.substanceAbuseHistoryData?.[2]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[2]?.lengthOfSobriety}:"");
-}else{
-  setSubstanceAbuseHistoryDataAgeOfFirstUseCrack("");
-  setSubstanceAbuseHistoryDataLastUseCrack("");
-  setSubstanceAbuseHistoryDataFrequencyCrack("");
-  setSubstanceAbuseHistoryDataLengthOfSobrietyCrack("");
-}
+setSubstanceAbuseHistoryDataAgeOfFirstUseCrack(getApiData?.substanceAbuseHistoryData?.[2]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUseCrack(getApiData?.substanceAbuseHistoryData?.[2]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[2]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[2]?.lastUse}:"");
+setSubstanceAbuseHistoryDataFrequencyCrack(getApiData?.substanceAbuseHistoryData?.[2]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[2]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[2]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyCrack(getApiData?.substanceAbuseHistoryData?.[2]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[2]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[2]?.lengthOfSobriety}:"");
 
+setSubstanceAbuseHistoryDataAgeOfFirstUseHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUseHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[3]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[3]?.lastUse}:"");
+setSubstanceAbuseHistoryDataFrequencyHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[3]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[3]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[3]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[3]?.lengthOfSobriety}:"");
 
-  if(getApiData?.substanceAbuseHistoryData?.[3]?.state){
-    setSubstanceAbuseHistoryDataAgeOfFirstUseHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.ageOfFirstUse);
-    setSubstanceAbuseHistoryDataLastUseHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.lastUse
-      ?{label:getApiData?.substanceAbuseHistoryData?.[3]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[3]?.lastUse}:"");
-    setSubstanceAbuseHistoryDataFrequencyHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.frequency
-      ?{label:getApiData?.substanceAbuseHistoryData?.[3]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[3]?.frequency}:"");
-    setSubstanceAbuseHistoryDataLengthOfSobrietyHeroin(getApiData?.substanceAbuseHistoryData?.[3]?.lengthOfSobriety
-      ?{label:getApiData?.substanceAbuseHistoryData?.[3]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[3]?.lengthOfSobriety}:"");
-  }else{
-    setSubstanceAbuseHistoryDataAgeOfFirstUseHeroin("");
-    setSubstanceAbuseHistoryDataLastUseHeroin("");
-    setSubstanceAbuseHistoryDataFrequencyHeroin("");
-    setSubstanceAbuseHistoryDataLengthOfSobrietyHeroin("");
-  }
+setSubstanceAbuseHistoryDataAgeOfFirstUseInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUseInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[4]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[4]?.lastUse}:"");
+setSubstanceAbuseHistoryDataFrequencyInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[4]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[4]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[4]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[4]?.lengthOfSobriety}:"");
 
+setSubstanceAbuseHistoryDataAgeOfFirstUseMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUseMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[5]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[5]?.lastUse}:"");
+setSubstanceAbuseHistoryDataFrequencyMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[5]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[5]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[5]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[5]?.lengthOfSobriety}:"");
 
+setSubstanceAbuseHistoryDataAgeOfFirstUseMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUseMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[6]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[6]?.lastUse}:"");
+setSubstanceAbuseHistoryDataFrequencyMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[6]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[6]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[6]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[6]?.lengthOfSobriety}:"");
 
-  if(getApiData?.substanceAbuseHistoryData?.[4]?.state){
-    setSubstanceAbuseHistoryDataAgeOfFirstUseInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.ageOfFirstUse);
-    setSubstanceAbuseHistoryDataLastUseInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.lastUse
-      ?{label:getApiData?.substanceAbuseHistoryData?.[4]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[4]?.lastUse}:"");
-    setSubstanceAbuseHistoryDataFrequencyInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.frequency
-      ?{label:getApiData?.substanceAbuseHistoryData?.[4]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[4]?.frequency}:"");
-    setSubstanceAbuseHistoryDataLengthOfSobrietyInhalants(getApiData?.substanceAbuseHistoryData?.[4]?.lengthOfSobriety
-      ?{label:getApiData?.substanceAbuseHistoryData?.[4]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[4]?.lengthOfSobriety}:"");
-  }else{
-    setSubstanceAbuseHistoryDataAgeOfFirstUseInhalants("");
-    setSubstanceAbuseHistoryDataLastUseInhalants("");
-    setSubstanceAbuseHistoryDataFrequencyInhalants("");
-    setSubstanceAbuseHistoryDataLengthOfSobrietyInhalants("");
-  }
+setSubstanceAbuseHistoryDataAgeOfFirstUseMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUseMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[7]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[7]?.lastUse}:"");
+setSubstanceAbuseHistoryDataFrequencyMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[7]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[7]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[7]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[7]?.lengthOfSobriety}:"");
 
+setSubstanceAbuseHistoryDataAgeOfFirstUseMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUseMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[8]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[8]?.lastUse}:"");
+setSubstanceAbuseHistoryDataFrequencyMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[8]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[8]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[8]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[8]?.lengthOfSobriety}:"");
 
-  if(getApiData?.substanceAbuseHistoryData?.[5]?.state){
-    setSubstanceAbuseHistoryDataAgeOfFirstUseMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.ageOfFirstUse);
-    setSubstanceAbuseHistoryDataLastUseMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.lastUse
-      ?{label:getApiData?.substanceAbuseHistoryData?.[5]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[5]?.lastUse}:"");
-    setSubstanceAbuseHistoryDataFrequencyMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.frequency
-      ?{label:getApiData?.substanceAbuseHistoryData?.[5]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[5]?.frequency}:"");
-    setSubstanceAbuseHistoryDataLengthOfSobrietyMarijuana(getApiData?.substanceAbuseHistoryData?.[5]?.lengthOfSobriety
-      ?{label:getApiData?.substanceAbuseHistoryData?.[5]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[5]?.lengthOfSobriety}:"");
-  }else{
-    setSubstanceAbuseHistoryDataAgeOfFirstUseMarijuana("");
-    setSubstanceAbuseHistoryDataLastUseMarijuana("");
-    setSubstanceAbuseHistoryDataFrequencyMarijuana("");
-    setSubstanceAbuseHistoryDataLengthOfSobrietyMarijuana("");
-  }
+setSubstanceAbuseHistoryDataAgeOfFirstUsePCP(getApiData?.substanceAbuseHistoryData?.[9]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUsePCP(getApiData?.substanceAbuseHistoryData?.[9]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[9]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[9]?.lastUse}:"");
+setSubstanceAbuseHistoryDataFrequencyPCP(getApiData?.substanceAbuseHistoryData?.[9]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[9]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[9]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyPCP(getApiData?.substanceAbuseHistoryData?.[9]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[9]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[9]?.lengthOfSobriety}:"");
 
+setSubstanceAbuseHistoryDataAgeOfFirstUsePrescription(getApiData?.substanceAbuseHistoryData?.[10]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUsePrescription(getApiData?.substanceAbuseHistoryData?.[10]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[10]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[10]?.lastUse}:"");
+setSubstanceAbuseHistoryDataFrequencyPrescription(getApiData?.substanceAbuseHistoryData?.[10]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[10]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[10]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyPrescription(getApiData?.substanceAbuseHistoryData?.[10]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[10]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[10]?.lengthOfSobriety}:"");
 
+setSubstanceAbuseHistoryDataAgeOfFirstUseOTC(getApiData?.substanceAbuseHistoryData?.[11]?.ageOfFirstUse);
+setSubstanceAbuseHistoryDataLastUseOTC(getApiData?.substanceAbuseHistoryData?.[11]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[11]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[11]?.lastUse}:"");
+setSubstanceAbuseHistoryDataFrequencyOTC(getApiData?.substanceAbuseHistoryData?.[11]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[11]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[11]?.frequency}:"");
+setSubstanceAbuseHistoryDataLengthOfSobrietyOTC(getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety}:"");
 
-  if(getApiData?.substanceAbuseHistoryData?.[6]?.state){
-    setSubstanceAbuseHistoryDataAgeOfFirstUseMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.ageOfFirstUse);
-    setSubstanceAbuseHistoryDataLastUseMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.lastUse
-      ?{label:getApiData?.substanceAbuseHistoryData?.[6]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[6]?.lastUse}:"");
-    setSubstanceAbuseHistoryDataFrequencyMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.frequency
-      ?{label:getApiData?.substanceAbuseHistoryData?.[6]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[6]?.frequency}:"");
-    setSubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine(getApiData?.substanceAbuseHistoryData?.[6]?.lengthOfSobriety
-      ?{label:getApiData?.substanceAbuseHistoryData?.[6]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[6]?.lengthOfSobriety}:"");
-  }else{
-    setSubstanceAbuseHistoryDataAgeOfFirstUseMethamphetamine("");
-    setSubstanceAbuseHistoryDataLastUseMethamphetamine("");
-    setSubstanceAbuseHistoryDataFrequencyMethamphetamine("");
-    setSubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine("");
-  }
+  setSubstanceAbuseHistoryDataAgeOfFirstUseCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.ageOfFirstUse);
+  setSubstanceAbuseHistoryDataLastUseCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[12]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[12]?.lastUse}:"");
+  setSubstanceAbuseHistoryDataFrequencyCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[12]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[12]?.frequency}:"");
+  setSubstanceAbuseHistoryDataLengthOfSobrietyCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[12]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[12]?.lengthOfSobriety}:"");
 
-
-
-  if(getApiData?.substanceAbuseHistoryData?.[7]?.state){
-    setSubstanceAbuseHistoryDataAgeOfFirstUseMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.ageOfFirstUse);
-    setSubstanceAbuseHistoryDataLastUseMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.lastUse
-      ?{label:getApiData?.substanceAbuseHistoryData?.[7]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[7]?.lastUse}:"");
-    setSubstanceAbuseHistoryDataFrequencyMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.frequency
-      ?{label:getApiData?.substanceAbuseHistoryData?.[7]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[7]?.frequency}:"");
-    setSubstanceAbuseHistoryDataLengthOfSobrietyMethadone(getApiData?.substanceAbuseHistoryData?.[7]?.lengthOfSobriety
-      ?{label:getApiData?.substanceAbuseHistoryData?.[7]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[7]?.lengthOfSobriety}:"");
-  }else{
-    setSubstanceAbuseHistoryDataAgeOfFirstUseMethadone("");
-    setSubstanceAbuseHistoryDataLastUseMethadone("");
-    setSubstanceAbuseHistoryDataFrequencyMethadone("");
-    setSubstanceAbuseHistoryDataLengthOfSobrietyMethadone("");
-  }
-
-
-
-  if(getApiData?.substanceAbuseHistoryData?.[8]?.state){
-    setSubstanceAbuseHistoryDataAgeOfFirstUseMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.ageOfFirstUse);
-    setSubstanceAbuseHistoryDataLastUseMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.lastUse
-      ?{label:getApiData?.substanceAbuseHistoryData?.[8]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[8]?.lastUse}:"");
-    setSubstanceAbuseHistoryDataFrequencyMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.frequency
-      ?{label:getApiData?.substanceAbuseHistoryData?.[8]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[8]?.frequency}:"");
-    setSubstanceAbuseHistoryDataLengthOfSobrietyMDMA(getApiData?.substanceAbuseHistoryData?.[8]?.lengthOfSobriety
-      ?{label:getApiData?.substanceAbuseHistoryData?.[8]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[8]?.lengthOfSobriety}:"");
-  }else{
-    setSubstanceAbuseHistoryDataAgeOfFirstUseMDMA("");
-    setSubstanceAbuseHistoryDataLastUseMDMA("");
-    setSubstanceAbuseHistoryDataFrequencyMDMA("");
-    setSubstanceAbuseHistoryDataLengthOfSobrietyMDMA("");
-  }
-
-
-
-  if(getApiData?.substanceAbuseHistoryData?.[9]?.state){
-    setSubstanceAbuseHistoryDataAgeOfFirstUsePCP(getApiData?.substanceAbuseHistoryData?.[9]?.ageOfFirstUse);
-    setSubstanceAbuseHistoryDataLastUsePCP(getApiData?.substanceAbuseHistoryData?.[9]?.lastUse
-      ?{label:getApiData?.substanceAbuseHistoryData?.[9]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[9]?.lastUse}:"");
-    setSubstanceAbuseHistoryDataFrequencyPCP(getApiData?.substanceAbuseHistoryData?.[9]?.frequency
-      ?{label:getApiData?.substanceAbuseHistoryData?.[9]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[9]?.frequency}:"");
-    setSubstanceAbuseHistoryDataLengthOfSobrietyPCP(getApiData?.substanceAbuseHistoryData?.[9]?.lengthOfSobriety
-      ?{label:getApiData?.substanceAbuseHistoryData?.[9]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[9]?.lengthOfSobriety}:"");
-  }else{
-    setSubstanceAbuseHistoryDataAgeOfFirstUsePCP("");
-    setSubstanceAbuseHistoryDataLastUsePCP("");
-    setSubstanceAbuseHistoryDataFrequencyPCP("");
-    setSubstanceAbuseHistoryDataLengthOfSobrietyPCP("");
-  }
-
-
-
-  if(getApiData?.substanceAbuseHistoryData?.[10]?.state){
-    setSubstanceAbuseHistoryDataAgeOfFirstUsePrescription(getApiData?.substanceAbuseHistoryData?.[10]?.ageOfFirstUse);
-    setSubstanceAbuseHistoryDataLastUsePrescription(getApiData?.substanceAbuseHistoryData?.[10]?.lastUse
-      ?{label:getApiData?.substanceAbuseHistoryData?.[10]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[10]?.lastUse}:"");
-    setSubstanceAbuseHistoryDataFrequencyPrescription(getApiData?.substanceAbuseHistoryData?.[10]?.frequency
-      ?{label:getApiData?.substanceAbuseHistoryData?.[10]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[10]?.frequency}:"");
-    setSubstanceAbuseHistoryDataLengthOfSobrietyPrescription(getApiData?.substanceAbuseHistoryData?.[10]?.lengthOfSobriety
-      ?{label:getApiData?.substanceAbuseHistoryData?.[10]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[10]?.lengthOfSobriety}:"");
-  }else{
-    setSubstanceAbuseHistoryDataAgeOfFirstUsePrescription("");
-    setSubstanceAbuseHistoryDataLastUsePrescription("");
-    setSubstanceAbuseHistoryDataFrequencyPrescription("");
-    setSubstanceAbuseHistoryDataLengthOfSobrietyPrescription("");
-  }
-
-
-
-  if(getApiData?.substanceAbuseHistoryData?.[11]?.state){
-    setSubstanceAbuseHistoryDataAgeOfFirstUseOTC(getApiData?.substanceAbuseHistoryData?.[11]?.ageOfFirstUse);
-    setSubstanceAbuseHistoryDataLastUseOTC(getApiData?.substanceAbuseHistoryData?.[11]?.lastUse
-      ?{label:getApiData?.substanceAbuseHistoryData?.[11]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[11]?.lastUse}:"");
-    setSubstanceAbuseHistoryDataFrequencyOTC(getApiData?.substanceAbuseHistoryData?.[11]?.frequency
-      ?{label:getApiData?.substanceAbuseHistoryData?.[11]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[11]?.frequency}:"");
-    setSubstanceAbuseHistoryDataLengthOfSobrietyOTC(getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety
-      ?{label:getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[11]?.lengthOfSobriety}:"");
-  }else{
-    setSubstanceAbuseHistoryDataAgeOfFirstUseOTC("");
-    setSubstanceAbuseHistoryDataLastUseOTC("");
-    setSubstanceAbuseHistoryDataFrequencyOTC("");
-    setSubstanceAbuseHistoryDataLengthOfSobrietyOTC("");
-  }
-
-
-
-  if(getApiData?.substanceAbuseHistoryData?.[12]?.state){
-    setSubstanceAbuseHistoryDataAgeOfFirstUseCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.ageOfFirstUse);
-    setSubstanceAbuseHistoryDataLastUseCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.lastUse
-    ?{label:getApiData?.substanceAbuseHistoryData?.[12]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[12]?.lastUse}:"");
-    setSubstanceAbuseHistoryDataFrequencyCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.frequency
-    ?{label:getApiData?.substanceAbuseHistoryData?.[12]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[12]?.frequency}:"");
-    setSubstanceAbuseHistoryDataLengthOfSobrietyCocaine(getApiData?.substanceAbuseHistoryData?.[12]?.lengthOfSobriety
-    ?{label:getApiData?.substanceAbuseHistoryData?.[12]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[12]?.lengthOfSobriety}:"");
-  }else{
-    setSubstanceAbuseHistoryDataAgeOfFirstUseCocaine("");
-    setSubstanceAbuseHistoryDataLastUseCocaine("");
-    setSubstanceAbuseHistoryDataFrequencyCocaine("");
-    setSubstanceAbuseHistoryDataLengthOfSobrietyCocaine("");
-  
-  }
-
-
-
-  if(getApiData?.substanceAbuseHistoryData?.[13]?.state){
-    setSubstanceAbuseHistoryDataAgeOfFirstUseHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.ageOfFirstUse);
-    setSubstanceAbuseHistoryDataLastUseHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.lastUse
-    ?{label:getApiData?.substanceAbuseHistoryData?.[13]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[13]?.lastUse}:"");
-    setSubstanceAbuseHistoryDataFrequencyHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.frequency
-    ?{label:getApiData?.substanceAbuseHistoryData?.[13]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[13]?.frequency}:"");
-    setSubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.lengthOfSobriety
-    ?{label:getApiData?.substanceAbuseHistoryData?.[13]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[13]?.lengthOfSobriety}:"");
-  }else{
-    setSubstanceAbuseHistoryDataAgeOfFirstUseHallucinogens("");
-  setSubstanceAbuseHistoryDataLastUseHallucinogens("");
-  setSubstanceAbuseHistoryDataFrequencyHallucinogens("");
-  setSubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens("");
-  }
-
+  setSubstanceAbuseHistoryDataAgeOfFirstUseHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.ageOfFirstUse);
+  setSubstanceAbuseHistoryDataLastUseHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.lastUse
+  ?{label:getApiData?.substanceAbuseHistoryData?.[13]?.lastUse,value:getApiData?.substanceAbuseHistoryData?.[13]?.lastUse}:"");
+  setSubstanceAbuseHistoryDataFrequencyHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.frequency
+  ?{label:getApiData?.substanceAbuseHistoryData?.[13]?.frequency,value:getApiData?.substanceAbuseHistoryData?.[13]?.frequency}:"");
+  setSubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens(getApiData?.substanceAbuseHistoryData?.[13]?.lengthOfSobriety
+  ?{label:getApiData?.substanceAbuseHistoryData?.[13]?.lengthOfSobriety,value:getApiData?.substanceAbuseHistoryData?.[13]?.lengthOfSobriety}:"");
 
 setTypeArray(getApiData?.substanceAbuseHistoryData?getApiArrayData(14,getApiData?.substanceAbuseHistoryData?.length,getApiData?.substanceAbuseHistoryData):[]);
+
+  setType1(getApiData?.substanceAbuseHistoryData?.[0]?.state);
+  setType2(getApiData?.substanceAbuseHistoryData?.[1]?.state);
+  setType3(getApiData?.substanceAbuseHistoryData?.[2]?.state);
+  setType4(getApiData?.substanceAbuseHistoryData?.[3]?.state);
+  setType5(getApiData?.substanceAbuseHistoryData?.[4]?.state);
+  setType6(getApiData?.substanceAbuseHistoryData?.[5]?.state);
+  setType7(getApiData?.substanceAbuseHistoryData?.[6]?.state);
+  setType8(getApiData?.substanceAbuseHistoryData?.[7]?.state);
+  setType9(getApiData?.substanceAbuseHistoryData?.[8]?.state);
+  setType10(getApiData?.substanceAbuseHistoryData?.[9]?.state);
+  setType11(getApiData?.substanceAbuseHistoryData?.[10]?.state);
+  setType12(getApiData?.substanceAbuseHistoryData?.[11]?.state);
+
+setTypeArray(getApiData?.substanceAbuseHistoryData?getApiArrayData(12,getApiData?.substanceAbuseHistoryData?.length,getApiData?.substanceAbuseHistoryData):[]);
 
 // start 
 setNoneReportedOrObserved(
@@ -2349,139 +2069,59 @@ setSelectedValue(getApiData?.legalHistory
     }))
   : []);
 
-  if(getApiData?.independentLivingSkills?.[0]?.state){
-    setBathingGood(getApiData?.independentLivingSkills?.[0]?.good);
-    setBathingFair(getApiData?.independentLivingSkills?.[0]?.fair);
-    setBathingNotSoGood(getApiData?.independentLivingSkills?.[0]?.otherCurrentNotSoGood);
-    setBathingGoodNeedAssist(getApiData?.independentLivingSkills?.[0]?.needAssist );
-    setBathingComments(getApiData?.independentLivingSkills?.[0]?.comments);
-  }else{
-    setBathingGood(false);
-setBathingFair(false);
-setBathingNotSoGood(false);
-setBathingGoodNeedAssist(null);
-setBathingComments("");
-  }
+setBathingGood(getApiData?.independentLivingSkills?.[0]?.good);
+setBathingFair(getApiData?.independentLivingSkills?.[0]?.fair);
+setBathingNotSoGood(getApiData?.independentLivingSkills?.[0]?.otherCurrentNotSoGood);
+setBathingGoodNeedAssist(getApiData?.independentLivingSkills?.[0]?.needAssist );
+setBathingComments(getApiData?.independentLivingSkills?.[0]?.comments);
 
+setGroomingGood(getApiData?.independentLivingSkills?.[1]?.good);
+setGroomingFair(getApiData?.independentLivingSkills?.[1]?.fair);
+setGroomingNotSoGood(getApiData?.independentLivingSkills?.[1]?.otherCurrentNotSoGood);
+setGroomingGoodNeedAssist(getApiData?.independentLivingSkills?.[1]?.needAssist);
+setGroomingComments(getApiData?.independentLivingSkills?.[1]?.comments);
 
-  if (getApiData?.independentLivingSkills?.[1]?.state) {
-    setGroomingGood(getApiData?.independentLivingSkills?.[1]?.good);
-    setGroomingFair(getApiData?.independentLivingSkills?.[1]?.fair);
-    setGroomingNotSoGood(getApiData?.independentLivingSkills?.[1]?.otherCurrentNotSoGood);
-    setGroomingGoodNeedAssist(getApiData?.independentLivingSkills?.[1]?.needAssist);
-    setGroomingComments(getApiData?.independentLivingSkills?.[1]?.comments);
-  } else {
-    setGroomingGood(false);
-    setGroomingFair(false);
-    setGroomingNotSoGood(false);
-    setGroomingGoodNeedAssist(null);
-    setGroomingComments("");
-  }
+setMobilityGood(getApiData?.independentLivingSkills?.[2]?.good);
+setMobilityFair(getApiData?.independentLivingSkills?.[2]?.fair);
+setMobilityNotSoGood(getApiData?.independentLivingSkills?.[2]?.otherCurrentNotSoGood);
+setMobilityGoodNeedAssist(getApiData?.independentLivingSkills?.[2]?.needAssist);
+setMobilityComments(getApiData?.independentLivingSkills?.[2]?.comments);
 
-  if (getApiData?.independentLivingSkills?.[2]?.state) {
-    setMobilityGood(getApiData?.independentLivingSkills?.[2]?.good);
-    setMobilityFair(getApiData?.independentLivingSkills?.[2]?.fair);
-    setMobilityNotSoGood(getApiData?.independentLivingSkills?.[2]?.otherCurrentNotSoGood);
-    setMobilityGoodNeedAssist(getApiData?.independentLivingSkills?.[2]?.needAssist);
-    setMobilityComments(getApiData?.independentLivingSkills?.[2]?.comments);
-  } else {
-    setMobilityGood(false);
-    setMobilityFair(false);
-    setMobilityNotSoGood(false);
-    setMobilityGoodNeedAssist(null);
-    setMobilityComments("");
-  }
+setHouseworkGood(getApiData?.independentLivingSkills?.[3]?.good);
+setHouseworkFair(getApiData?.independentLivingSkills?.[3]?.fair);
+setHouseworkNotSoGood(getApiData?.independentLivingSkills?.[3]?.otherCurrentNotSoGood);
+setHouseworkGoodNeedAssist(getApiData?.independentLivingSkills?.[3]?.needAssist);
+setHouseworkComments(getApiData?.independentLivingSkills?.[3]?.comments);
 
-  if (getApiData?.independentLivingSkills?.[3]?.state) {
-    setHouseworkGood(getApiData?.independentLivingSkills?.[3]?.good);
-    setHouseworkFair(getApiData?.independentLivingSkills?.[3]?.fair);
-    setHouseworkNotSoGood(getApiData?.independentLivingSkills?.[3]?.otherCurrentNotSoGood);
-    setHouseworkGoodNeedAssist(getApiData?.independentLivingSkills?.[3]?.needAssist);
-    setHouseworkComments(getApiData?.independentLivingSkills?.[3]?.comments);
-  } else {
-    setHouseworkGood(false);
-    setHouseworkFair(false);
-    setHouseworkNotSoGood(false);
-    setHouseworkGoodNeedAssist(null);
-    setHouseworkComments("");
-  }
+setShoppingGood(getApiData?.independentLivingSkills?.[4]?.good);
+setShoppingFair(getApiData?.independentLivingSkills?.[4]?.fair);
+setShoppingNotSoGood(getApiData?.independentLivingSkills?.[4]?.otherCurrentNotSoGood);
+setShoppingGoodNeedAssist(getApiData?.independentLivingSkills?.[4]?.needAssist);
+setShoppingComments(getApiData?.independentLivingSkills?.[4]?.comments);
 
-// Shopping
-if (getApiData?.independentLivingSkills?.[4]?.state) {
-  setShoppingGood(getApiData?.independentLivingSkills?.[4]?.good);
-  setShoppingFair(getApiData?.independentLivingSkills?.[4]?.fair);
-  setShoppingNotSoGood(getApiData?.independentLivingSkills?.[4]?.otherCurrentNotSoGood);
-  setShoppingGoodNeedAssist(getApiData?.independentLivingSkills?.[4]?.needAssist);
-  setShoppingComments(getApiData?.independentLivingSkills?.[4]?.comments);
-} else {
-  setShoppingGood(false);
-  setShoppingFair(false);
-  setShoppingNotSoGood(false);
-  setShoppingGoodNeedAssist(null);
-  setShoppingComments("");
-}
+setManagingGood(getApiData?.independentLivingSkills?.[5]?.good);
+setManagingFair(getApiData?.independentLivingSkills?.[5]?.fair);
+setManagingNotSoGood(getApiData?.independentLivingSkills?.[5]?.otherCurrentNotSoGood);
+setManagingGoodNeedAssist(getApiData?.independentLivingSkills?.[5]?.needAssist);
+setManagingComments(getApiData?.independentLivingSkills?.[5]?.comments);
 
-// Managing
-if (getApiData?.independentLivingSkills?.[5]?.state) {
-  setManagingGood(getApiData?.independentLivingSkills?.[5]?.good);
-  setManagingFair(getApiData?.independentLivingSkills?.[5]?.fair);
-  setManagingNotSoGood(getApiData?.independentLivingSkills?.[5]?.otherCurrentNotSoGood);
-  setManagingGoodNeedAssist(getApiData?.independentLivingSkills?.[5]?.needAssist);
-  setManagingComments(getApiData?.independentLivingSkills?.[5]?.comments);
-} else {
-  setManagingGood(false);
-  setManagingFair(false);
-  setManagingNotSoGood(false);
-  setManagingGoodNeedAssist(null);
-  setManagingComments("");
-}
+setPreparingGood(getApiData?.independentLivingSkills?.[6]?.good);
+setPreparingFair(getApiData?.independentLivingSkills?.[6]?.fair);
+setPreparingNotSoGood(getApiData?.independentLivingSkills?.[6]?.otherCurrentNotSoGood);
+setPreparingGoodNeedAssist(getApiData?.independentLivingSkills?.[6]?.needAssist);
+setPreparingComments(getApiData?.independentLivingSkills?.[6]?.comments);
 
-// Preparing
-if (getApiData?.independentLivingSkills?.[6]?.state) {
-  setPreparingGood(getApiData?.independentLivingSkills?.[6]?.good);
-  setPreparingFair(getApiData?.independentLivingSkills?.[6]?.fair);
-  setPreparingNotSoGood(getApiData?.independentLivingSkills?.[6]?.otherCurrentNotSoGood);
-  setPreparingGoodNeedAssist(getApiData?.independentLivingSkills?.[6]?.needAssist);
-  setPreparingComments(getApiData?.independentLivingSkills?.[6]?.comments);
-} else {
-  setPreparingGood(false);
-  setPreparingFair(false);
-  setPreparingNotSoGood(false);
-  setPreparingGoodNeedAssist(null);
-  setPreparingComments("");
-}
+setEatingGood(getApiData?.independentLivingSkills?.[7]?.good);
+setEatingFair(getApiData?.independentLivingSkills?.[7]?.fair);
+setEatingNotSoGood(getApiData?.independentLivingSkills?.[7]?.otherCurrentNotSoGood);
+setEatingGoodNeedAssist(getApiData?.independentLivingSkills?.[7]?.needAssist);
+setEatingComments(getApiData?.independentLivingSkills?.[7]?.comments);
 
-// Eating
-if (getApiData?.independentLivingSkills?.[7]?.state) {
-  setEatingGood(getApiData?.independentLivingSkills?.[7]?.good);
-  setEatingFair(getApiData?.independentLivingSkills?.[7]?.fair);
-  setEatingNotSoGood(getApiData?.independentLivingSkills?.[7]?.otherCurrentNotSoGood);
-  setEatingGoodNeedAssist(getApiData?.independentLivingSkills?.[7]?.needAssist);
-  setEatingComments(getApiData?.independentLivingSkills?.[7]?.comments);
-} else {
-  setEatingGood(false);
-  setEatingFair(false);
-  setEatingNotSoGood(false);
-  setEatingGoodNeedAssist(null);
-  setEatingComments("");
-}
-
-// Toileting
-if (getApiData?.independentLivingSkills?.[8]?.state) {
-  setToiletingGood(getApiData?.independentLivingSkills?.[8]?.good);
-  setToiletingFair(getApiData?.independentLivingSkills?.[8]?.fair);
-  setToiletingNotSoGood(getApiData?.independentLivingSkills?.[8]?.otherCurrentNotSoGood);
-  setToiletingGoodNeedAssist(getApiData?.independentLivingSkills?.[8]?.needAssist);
-  setToiletingComments(getApiData?.independentLivingSkills?.[8]?.comments);
-} else {
-  setToiletingGood(false);
-  setToiletingFair(false);
-  setToiletingNotSoGood(false);
-  setToiletingGoodNeedAssist(null);
-  setToiletingComments("");
-}
-
-
+setToiletingGood(getApiData?.independentLivingSkills?.[8]?.good);
+setToiletingFair(getApiData?.independentLivingSkills?.[8]?.fair);
+setToiletingNotSoGood(getApiData?.independentLivingSkills?.[8]?.otherCurrentNotSoGood);
+setToiletingGoodNeedAssist(getApiData?.independentLivingSkills?.[8]?.needAssist);
+setToiletingComments(getApiData?.independentLivingSkills?.[8]?.comments);
 // setOtherCurrentOther(getApiArrayData?.independentLivingSkills?.[0]?.comments);
 
 // setOtherCurrentGood(getApiData?.independentLivingSkills?.[9]?.good);
@@ -2496,6 +2136,16 @@ setTakingFair(getApiData?.independentLivingSkills?.[9]?.fair);
 setTakingNotSoGood(getApiData?.independentLivingSkills?.[9]?.otherCurrentNotSoGood);
 setTakingGoodNeedAssist(getApiData?.independentLivingSkills?.[9]?.needAssist);
 setTakingComments(getApiData?.independentLivingSkills?.[9]?.comments);
+
+setIndependent1(getApiData?.independentLivingSkills?.[0]?.state);
+setIndependent2(getApiData?.independentLivingSkills?.[1]?.state);
+setIndependent3(getApiData?.independentLivingSkills?.[2]?.state);
+setIndependent4(getApiData?.independentLivingSkills?.[3]?.state);
+setIndependent5(getApiData?.independentLivingSkills?.[4]?.state);
+setIndependent6(getApiData?.independentLivingSkills?.[5]?.state);
+setIndependent7(getApiData?.independentLivingSkills?.[6]?.state);
+setIndependent8(getApiData?.independentLivingSkills?.[7]?.state);
+setIndependent9(getApiData?.independentLivingSkills?.[8]?.state);
 
 setHandleRiskFactorActivityArray(getApiData?.independentLivingSkills?getApiArrayData(10,getApiData?.independentLivingSkills?.length,getApiData?.independentLivingSkills):[]);
 
@@ -2523,263 +2173,108 @@ setSuicidalIdeationUrgency(getApiData?.suicidalIdeationUrgency);
 setSuicidalIdeationSeverity(getApiData?.suicidalIdeationSeverity);
 setCurrentThoughtsOfHarmingOthers(getApiData?.currentThoughtsOfHarmingOthers);
 
+setRiskYesNo(getApiData?.riskFactors?.[0]?.yesNo);
+setRiskComment(getApiData?.riskFactors?.[0]?.comment);
+setPriorYesNo(getApiData?.riskFactors?.[1]?.yesNo);
+setPriorComment(getApiData?.riskFactors?.[1]?.comment);
+setAccessYesNo(getApiData?.riskFactors?.[2]?.yesNo);
+setAccessComment(getApiData?.riskFactors?.[2]?.comment);
+setSubstanceYesNo(getApiData?.riskFactors?.[3]?.yesNo);
+setSubstanceCommentAbuse(getApiData?.riskFactors?.[3]?.comment);
+setabusingYesNo(getApiData?.riskFactors?.[4]?.yesNo);
+setabusingComment(getApiData?.riskFactors?.[4]?.comment);
+setRecentYesNo(getApiData?.riskFactors?.[5]?.yesNo);
+setRecentComment(getApiData?.riskFactors?.[5]?.comment);
+setBehaviourYesNo(getApiData?.riskFactors?.[6]?.yesNo);
+setBehaviorcuesDropDown(getApiData?.riskFactors?.[6]?.comments
+  ? getApiData?.riskFactors?.[6]?.comments.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+setSymptomsYesNo(getApiData?.riskFactors?.[7]?.yesNo);
+setSymptomsOfPsychosisDropDown(getApiData?.riskFactors?.[7]?.comments
+  ? getApiData?.riskFactors?.[7]?.comments.map(item => ({
+      label: item, // Assuming 'name' is the property you want to use as label
+      value: item    // Assuming 'id' is the property you want to use as value
+    }))
+  : []);
+setFamilyYesNo(getApiData?.riskFactors?.[8]?.yesNo);
+setFamily(getApiData?.riskFactors?.[8]?.comment);
+setTerminalYesNo(getApiData?.riskFactors?.[9]?.yesNo);
+setTerminal(getApiData?.riskFactors?.[9]?.comment);
+setCurrentYesNo(getApiData?.riskFactors?.[10]?.yesNo);
+setCurrent(getApiData?.riskFactors?.[10]?.comment);
+setChronicYesNo(getApiData?.riskFactors?.[11]?.yesNo);
+setChronicPain(getApiData?.riskFactors?.[11]?.comment);
 
-if(getApiData?.riskFactors?.[0]?.state){
-  setRiskYesNo(getApiData?.riskFactors?.[0]?.yesNo);
-  setRiskComment(getApiData?.riskFactors?.[0]?.comment);
-}else{
-  setRiskYesNo(null);
-setRiskComment("");
-}
-
-
-if (getApiData?.riskFactors?.[1]?.state) {
-  setPriorYesNo(getApiData?.riskFactors?.[1]?.yesNo);
-  setPriorComment(getApiData?.riskFactors?.[1]?.comment);
-} else {
-  setPriorYesNo(null);
-  setPriorComment("");
-}
-
-
-if (getApiData?.riskFactors?.[2]?.state) {
-  setAccessYesNo(getApiData?.riskFactors?.[2]?.yesNo);
-  setAccessComment(getApiData?.riskFactors?.[2]?.comment);
-} else {
-  setAccessYesNo(null);
-  setAccessComment("");
-}
-
-if(getApiData?.riskFactors?.[3]?.state){
-  setSubstanceYesNo(getApiData?.riskFactors?.[3]?.yesNo);
-  setSubstanceCommentAbuse(getApiData?.riskFactors?.[3]?.comment);
-}else{
-  setSubstanceYesNo(null);
-  setSubstanceCommentAbuse("");
-}
-
-
-
-if(getApiData?.riskFactors?.[4]?.state){
-  setabusingYesNo(getApiData?.riskFactors?.[4]?.yesNo);
-  setabusingComment(getApiData?.riskFactors?.[4]?.comment);
-}else{
-  setabusingYesNo(null);
-  setabusingComment("");
-}
-
-
-if(getApiData?.riskFactors?.[5]?.state){
-  setRecentYesNo(getApiData?.riskFactors?.[5]?.yesNo);
-  setRecentComment(getApiData?.riskFactors?.[5]?.comment);
-}else{
-  setRecentYesNo(null);
-  setRecentComment("");
-}
-
-
-if(getApiData?.riskFactors?.[6]?.state){
-  setBehaviourYesNo(getApiData?.riskFactors?.[6]?.yesNo);
-  setBehaviorcuesDropDown(getApiData?.riskFactors?.[6]?.comments
-    ? getApiData?.riskFactors?.[6]?.comments.map(item => ({
-        label: item, 
-        value: item    
-      }))
-    : []);
-}else{
-  setBehaviourYesNo(null);
-  setBehaviorcuesDropDown([]);
-}
-
-
-  if(getApiData?.riskFactors?.[7]?.state){
-    setSymptomsYesNo(getApiData?.riskFactors?.[7]?.yesNo);
-    setSymptomsOfPsychosisDropDown(getApiData?.riskFactors?.[7]?.comments
-      ? getApiData?.riskFactors?.[7]?.comments.map(item => ({
-          label: item, 
-          value: item   
-        }))
-      : []);
-  }else{
-    setSymptomsYesNo(null);
-    setSymptomsOfPsychosisDropDown([]);
-  }
-
-
-  if(getApiData?.riskFactors?.[8]?.state){
-    setFamilyYesNo(getApiData?.riskFactors?.[8]?.yesNo);
-    setFamily(getApiData?.riskFactors?.[8]?.comment);
-  }else{
-    setFamilyYesNo(null);
-    setFamily("");
-  }
-
-
-if(getApiData?.riskFactors?.[9]?.state){
-  setTerminalYesNo(getApiData?.riskFactors?.[9]?.yesNo);
-  setTerminal(getApiData?.riskFactors?.[9]?.comment);
-}else{
-  setTerminalYesNo(null);
-  setTerminal('');
-}
-
-
-if(getApiData?.riskFactors?.[10]?.state){
-  setCurrentYesNo(getApiData?.riskFactors?.[10]?.yesNo);
-  setCurrent(getApiData?.riskFactors?.[10]?.comment);
-}else{
-  setCurrentYesNo(null);
-  setCurrent("");
-}
-
-
-if(getApiData?.riskFactors?.[11]?.state){
-  setChronicYesNo(getApiData?.riskFactors?.[11]?.yesNo);
-  setChronicPain(getApiData?.riskFactors?.[11]?.comment);
-}else{
-  setChronicYesNo(null);
-  setChronicPain("");
-}
+setRiskFactor1(getApiData?.riskFactors?.[0]?.state)
+setRiskFactor2(getApiData?.riskFactors?.[1]?.state)
+setRiskFactor3(getApiData?.riskFactors?.[2]?.state)
+setRiskFactor4(getApiData?.riskFactors?.[3]?.state)
+setRiskFactor5(getApiData?.riskFactors?.[4]?.state)
+setRiskFactor6(getApiData?.riskFactors?.[5]?.state)
+setRiskFactor7(getApiData?.riskFactors?.[6]?.state)
+setRiskFactor8(getApiData?.riskFactors?.[7]?.state)
+setRiskFactor9(getApiData?.riskFactors?.[8]?.state)
+setRiskFactor10(getApiData?.riskFactors?.[9]?.state)
+setRiskFactor11(getApiData?.riskFactors?.[10]?.state)
+setRiskFactor12(getApiData?.riskFactors?.[11]?.state)
 
 
 setRiskFactoeArray(getApiData?.riskFactors?getApiArrayData(12,getApiData?.riskFactors?.length,getApiData?.riskFactors):[]);
 
-if(getApiData?.protectiveFactors?.[0]?.state){
-  setSupportsYesNo(getApiData?.protectiveFactors?.[0]?.yesNo);
-  setSupportsComment(getApiData?.protectiveFactors?.[0]?.comment);
-}else{
-  setSupportsYesNo(null);
- setSupportsComment("");
-}
-
-if(getApiData?.protectiveFactors?.[1]?.state){
-  setSpiritualYesNo(getApiData?.protectiveFactors?.[1]?.yesNo);
-  setSpiritualComment(getApiData?.protectiveFactors?.[1]?.comment);
-}else{
-  setSpiritualYesNo(null);
-setSpiritualComment("");
-}
-
-
-if(getApiData?.protectiveFactors?.[2]?.state){
-  setReligiousYesNo(getApiData?.protectiveFactors?.[2]?.yesNo);
-  setReligiousComment(getApiData?.protectiveFactors?.[2]?.comment);
-}else{
-  setReligiousYesNo(null);
-setReligiousComment("");
-}
-
-
-if(getApiData?.protectiveFactors?.[3]?.state){
-  setFearYesNo(getApiData?.protectiveFactors?.[3]?.yesNo);
-  setFearComment(getApiData?.protectiveFactors?.[3]?.comment);
-}else{
-  setFearYesNo(null);
-setFearComment("");
-}
-
-
-if(getApiData?.protectiveFactors?.[4]?.state){
-  setInterventionYesNo(getApiData?.protectiveFactors?.[4]?.yesNo);
-  setInterventionComment(getApiData?.protectiveFactors?.[4]?.comment);
-}else{
-  setInterventionYesNo(null);
-setInterventionComment("");
-}
-
-
-if(getApiData?.protectiveFactors?.[5]?.state){
-setWillingYesNo(getApiData?.protectiveFactors?.[5]?.yesNo);
+setSupportsYesNo(getApiData?.protectiveFactors?.[0]?.yesNo);
+setSupportsComment(getApiData?.protectiveFactors?.[0]?.comment);
+setProtective1(getApiData?.protectiveFactors?.[0]?.state)
+setSpiritualYesNo(getApiData?.riskFactors?.[1]?.yesNo);
+setSpiritualComment(getApiData?.protectiveFactors?.[1]?.comment);
+setProtective2(getApiData?.protectiveFactors?.[1]?.state)
+setReligiousYesNo(getApiData?.riskFactors?.[2]?.yesNo);
+setReligiousComment(getApiData?.protectiveFactors?.[2]?.comment);
+setProtective3(getApiData?.protectiveFactors?.[2]?.state)
+setFearYesNo(getApiData?.riskFactors?.[3]?.yesNo);
+setFearComment(getApiData?.protectiveFactors?.[3]?.comment);
+setProtective4(getApiData?.protectiveFactors?.[3]?.state)
+setInterventionYesNo(getApiData?.riskFactors?.[4]?.yesNo);
+setInterventionComment(getApiData?.protectiveFactors?.[4]?.comment);
+setProtective5(getApiData?.protectiveFactors?.[4]?.state)
+setWillingYesNo(getApiData?.riskFactors?.[5]?.yesNo);
 setWillingComment(getApiData?.protectiveFactors?.[5]?.comment);
-}else{
-  
-setWillingYesNo(null);
-setWillingComment("");
-}
+setProtective6(getApiData?.protectiveFactors?.[5]?.state)
 
 
 setProtectiveFactorsArray(getApiData?.protectiveFactors?getApiArrayData(6,getApiData?.protectiveFactors?.length,getApiData?.protectiveFactors):[]);
 
 setRiskLevel(getApiData?.riskLevel);
 
-if(getApiData?.psychiatricDiagnoses?.[0]?.state){
-  setPsychiatricPrimaryIcdCode(getApiData?.psychiatricDiagnoses?.[0]?.icdCode);
-  setPsychiatricPrimaryDescription(getApiData?.psychiatricDiagnoses?.[0]?.description);
-}else{
-  setPsychiatricPrimaryIcdCode(null);
-  setPsychiatricPrimaryDescription("");
-}
-
-if(getApiData?.psychiatricDiagnoses?.[1]?.state){
-  setPsychiatricSecondaryIcdCode(getApiData?.psychiatricDiagnoses?.[1]?.icdCode);
+setPsychiatricPrimaryIcdCode(getApiData?.psychiatricDiagnoses?.[0]?.icdCode);
+setPsychiatricPrimaryDescription(getApiData?.psychiatricDiagnoses?.[0]?.description);
+setDiagnoses1(getApiData?.psychiatricDiagnoses?.[0]?.state)
+setPsychiatricSecondaryIcdCode(getApiData?.psychiatricDiagnoses?.[1]?.icdCode);
 setPsychiatricSecondaryDescription(getApiData?.psychiatricDiagnoses?.[1]?.description);
-}else{
-  setPsychiatricSecondaryIcdCode(null);
-  setPsychiatricSecondaryDescription("");
-}
-
-
-
-if(getApiData?.psychiatricDiagnoses?.[2]?.state){
-  setPsychiatricTertiaryIcdCode(getApiData?.psychiatricDiagnoses?.[2]?.icdCode);
+setDiagnoses2(getApiData?.psychiatricDiagnoses?.[1]?.state)
+setPsychiatricTertiaryIcdCode(getApiData?.psychiatricDiagnoses?.[2]?.icdCode);
 setPsychiatricTertiaryDescription(getApiData?.psychiatricDiagnoses?.[2]?.description);
-}else{
-  setPsychiatricTertiaryIcdCode(null);
-  setPsychiatricTertiaryDescription("");
-}
-
-
-
-if(getApiData?.psychiatricDiagnoses?.[3]?.state){
-  setPsychiatricAdditionalIcdCode(getApiData?.psychiatricDiagnoses?.[3]?.icdCode);
+setDiagnoses3(getApiData?.psychiatricDiagnoses?.[2]?.state)
+setPsychiatricAdditionalIcdCode(getApiData?.psychiatricDiagnoses?.[3]?.icdCode);
 setPsychiatricAdditionalDescription(getApiData?.psychiatricDiagnoses?.[3]?.description);
-}else{
-  setPsychiatricAdditionalIcdCode(null);
-  setPsychiatricAdditionalDescription("");
-}
-
+setDiagnoses4(getApiData?.psychiatricDiagnoses?.[3]?.state)
 
 setPsychiatricDiagnosesArray(getApiData?.psychiatricDiagnoses?getApiArrayData(4,getApiData?.psychiatricDiagnoses?.length,getApiData?.psychiatricDiagnoses):[]);
 
-if(getApiData?.medicalDiagnoses?.[0]?.state){
-  setPrimaryIcdCode(getApiData?.medicalDiagnoses?.[0]?.icdCode);
-  setPrimaryDescription(getApiData?.medicalDiagnoses?.[0]?.description);
-}else{
-  setPrimaryIcdCode(null);
-  setPrimaryDescription("");
-}
-
-if(getApiData?.medicalDiagnoses?.[1]?.state){
-  setSecondaryIcdCode(getApiData?.medicalDiagnoses?.[1]?.icdCode);
-  setSecondaryDescription(getApiData?.medicalDiagnoses?.[1]?.description);
-}else{
-  setSecondaryIcdCode(null);
-  setSecondaryDescription("");
-}
-// setMatical1(getApiData?.medicalDiagnoses?.[0]?.state)
-
-
-if(getApiData?.medicalDiagnoses?.[2]?.state){
-  setTertiaryIcdCode(getApiData?.medicalDiagnoses?.[2]?.icdCode);
-  setTertiaryDescription(getApiData?.medicalDiagnoses?.[2]?.description);
-}else{
-  setTertiaryIcdCode(null);
-  setTertiaryDescription("");
-}
-// setMatical2(getApiData?.medicalDiagnoses?.[1]?.state)
-
-
-if(getApiData?.medicalDiagnoses?.[3]?.state){
-  setAdditional1IcdCode(getApiData?.medicalDiagnoses?.[3]?.icdCode);
-  setAdditional1Description(getApiData?.medicalDiagnoses?.[3]?.description);
-}else{
-  setAdditional1IcdCode(null);
-  setAdditional1Description("");
-}
-// setMatical3(getApiData?.medicalDiagnoses?.[2]?.state)
-
-
-// setMatical4(getApiData?.medicalDiagnoses?.[3]?.state)
+setPrimaryIcdCode(getApiData?.medicalDiagnoses?.[0]?.icdCode);
+setPrimaryDescription(getApiData?.medicalDiagnoses?.[0]?.description);
+setMatical1(getApiData?.medicalDiagnoses?.[0]?.state)
+setSecondaryIcdCode(getApiData?.medicalDiagnoses?.[1]?.icdCode);
+setSecondaryDescription(getApiData?.medicalDiagnoses?.[1]?.description);
+setMatical2(getApiData?.medicalDiagnoses?.[1]?.state)
+setTertiaryIcdCode(getApiData?.medicalDiagnoses?.[2]?.icdCode);
+setTertiaryDescription(getApiData?.medicalDiagnoses?.[2]?.description);
+setMatical3(getApiData?.medicalDiagnoses?.[2]?.state)
+setAdditional1IcdCode(getApiData?.medicalDiagnoses?.[3]?.icdCode);
+setAdditional1Description(getApiData?.medicalDiagnoses?.[3]?.description);
+setMatical4(getApiData?.medicalDiagnoses?.[3]?.state)
 
 setMedicalDiagnosesArray(getApiData?.medicalDiagnoses?getApiArrayData(4,getApiData?.medicalDiagnoses?.length,getApiData?.medicalDiagnoses):[])
 
@@ -2831,34 +2326,17 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
   },[getApiData])
 
-
-  useEffect(() => {
-    setLoading(true); 
-    if (patientId) {
-      initial_assestment_get_Draft(patientId, setGetApiData, setLoading);
-    } else {
-      setLoading(false); 
+  useEffect(()=>{
+    if(patientId){
+      initial_assestment_get_Draft(patientId,setGetApiData);
     }
-  }, [patientId]);
-
-
-  // useEffect(() => {
-  //   setLoading(true); 
-  //   if (previusData) {
-  //     initial_assestment_get(patientId, setGetApiData, setLoading);
-  //   } else {
-  //     setLoading(false); 
-  //   }
-  // }, [patientId, previusData]);
+  },[patientId])
 
   useEffect(() => {
     setPatientId(userData?._id);
-    // setSex(userData?.gender)
     setCompanyName(userData?.companyName)
-    // setDob(userData?.dateOfBirth?userData.dateOfBirth.slice(0,10):"")
-    // setResidentName(userData?.fullName)
-    setFiledForm(userData?.initialAssessment)
   }, [userData]);
+
 
   useEffect(() => {
     user_detail(setUserData);
@@ -2879,6 +2357,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
     { label: "Team work", value: "Team work" },
     { label: "Family", value: "Family" },
     { label: "Writing", value: "Writing" },
+    { label: "Coloring", value: "Coloring" },
     { label: "Art", value: "Art" },
   ];
 
@@ -2917,1980 +2396,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
   const handleSelectChange = (selectedOptions) => {
     setResidentStrengths(selectedOptions);
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const stringValues = residentStrengths.map((item) => item.value);
-
-    let SignificantFamilyMedicalPsychiatricHistoryArray=[];
-    SignificantFamilyMedicalPsychiatricHistory.forEach((item)=>{
-      SignificantFamilyMedicalPsychiatricHistoryArray.push(item?.value);
-    })
-
-    const admissionStatusArray=[];
-    admissionStatus.forEach((item)=>{
-      admissionStatusArray.push(item?.value)
-    })
-
-    const selectedValueArray=[];
-    selectedValue.forEach((item)=>{
-      selectedValueArray.push(item?.value)
-    })
-
-    const selectedValueMedicalArray=[];
-    selectedValueMedical.forEach((item)=>{
-      selectedValueMedicalArray.push(item?.value);
-    })
-
-    const selectedValueSpecialPrecautionsArray=[];
-    selectedValueSpecialPrecautions.forEach((item)=>{
-      selectedValueSpecialPrecautionsArray.push(item?.value)
-    })
-
-    const thyroidDisorderArray=[];
-    thyroidDisorder.forEach((item)=>{
-      thyroidDisorderArray.push(item.value)
-    })
-
-    const infectionDiseasesArray=[];
-    infectionDiseases.forEach((item)=>{
-      infectionDiseasesArray.push(item.value)
-    })
-
-    const reasonForAdmissionArray=[];
-    reasonForAdmission.forEach((item)=>{
-      reasonForAdmissionArray.push(item?.value);
-    })
-
-    const riskFacrtor1=[];
-    behaviorcuesDropDown.forEach((item)=>{
-      riskFacrtor1.push(item?.value);
-    })
-
-    const riskFacrtor2=[];
-    symptomsOfPsychosisDropDown.forEach((item)=>{
-      riskFacrtor2.push(item?.value);
-    })
-
-    // medical condition
-    const otherConditionArrayTemp=[
-      {
-        condition: "diabetes",
-        yes: yesDiabetes,
-        comments: commentDiabety,
-        state: condition1
-      },
-      {
-        condition: "Heart disease / heart attack",
-        yes: yesHeart,
-        comments: commentHeart,
-        state: condition2
-      },
-      {
-        condition: "History",
-        yes: yesHistory,
-        comments: commentHistory,
-        state: condition3
-      }
-      ,
-      {
-        condition: "High Blood Pressure",
-        yes: yesHigh,
-        comments: commentHigh,
-        state: condition4
-      }
-      ,
-      {
-        condition: "Lung disease (ie asthma, COPD, emphysema)",
-        yes: yesLung,
-        comments: commentLung,
-        state: condition5
-      }
-      ,
-      {
-        condition: "Seizures",
-        yes: yesSeizures,
-        comments: commentSeizures,
-        state: condition6
-      }
-      ,
-      {
-        condition: "Cancer",
-        yes: yesCancer,
-        comments: commentCancer,
-        state: condition7
-      }
-      ,
-      {
-        condition: "Liver/kidney disease",
-        yes: yesLiver,
-        comments: commentLiver,
-        state: condition8
-      }
-      ,
-      {
-        condition: "Thyroid disorder",
-        yes: yesThyroid,
-        comment: thyroidDisorderArray,
-        state: condition9
-      }
-      ,
-      {
-        condition: "History of head trauma/traumatic brain injury",
-        yes: yesbrain,
-        comments: commentbrain,
-        state: condition10
-      }
-      ,
-      {
-        condition: "injury",
-        yes: yesInjury,
-        comments: commentInjury,
-        state: condition11
-      }
-      ,
-      {
-        condition: "Chronic painChronic pain",
-        yes: yesChronic,
-        comments: chronicCommit,
-        state: condition12
-      },  {
-        condition: "Allergies",
-        yes: AllergiesYes,
-        comments: AllergiesComment,
-        state: condition13
-      },  {
-        condition: "Surgeries",
-        yes: SurgeriesYes,
-        comments: SurgeriesComment,
-        state: condition14
-      }
-      ,  {
-        condition: "Number of pregnancies / births",
-        yes: pregnanciesYes,
-        comments: pregnanciesComment,
-        state: condition15
-      }
-      ,  {
-        condition: "Substance use disorder (please specify)",
-        yes: SubstanceYes,
-        comments: SubstanceComment,
-        state: condition16
-      }
-      ,  {
-        condition: "Depression",
-        yes: DepressionYes,
-        comments: DepressionComment,
-        state: condition17
-      }
-      ,  {
-        condition: "Anxiety/panic attacks",
-        yes: AnxietyYes,
-        comments: AnxietyComment,
-        state: condition18
-      }
-      ,  {
-        condition: "Insomnia",
-        yes: InsomniaYes,
-        comments: InsomniaComment,
-        state: condition19
-      }
-      ,  {
-        condition: "Bipolar disorder",
-        yes: BipolarYes,
-        comments: BipolarComment,
-        state: condition20
-      }
-      ,  {
-        condition: "Schizophrenia",
-        yes: SchizophreniaYes,
-        comments: SchizophreniaComment,
-        state: condition21
-      }
-      ,  {
-        condition: "Obsessive compulsive disorder",
-        yes: ObsessiveYes,
-        comments: ObsessiveComment,
-        state: condition22
-      }
-      ,  {
-        condition: "Personality disorder (please specify)",
-        yes: PersonalityYes,
-        comments: PersonalityComment,
-        state: condition23
-      }
-      ,  {
-        condition: "Phobias",
-        yes: PhobiasYes,
-        comments: PhobiasComment,
-        state: condition24
-      }
-      ,  {
-        condition: "Any other health conditions",
-        yes: healthConditionsYes,
-        comments: healthConditionsYesComment,
-        state: condition25
-      }
-      ,  {
-        condition: "Infection or Diseases",
-        yes: healthConditionsYes,
-        comment: infectionDiseasesArray,
-        state: condition26
-      }
-    ]
-
-    const otherConditionArrayTempAns=[...otherConditionArrayTemp,...otherConditionArray]
-
-    // substance array
-    const typeArrayTemp= [
-      {
-        types: "Alcohol",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseAlcohol,
-        lastUse: substanceAbuseHistoryDataLastUseAlcohol?.value,
-        frequency: substanceAbuseHistoryDataFrequencyAlcohol?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyAlcohol?.value,
-        state: type1
-      },
-      {
-        types: "Benzodiazepines",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines,
-        lastUse: substanceAbuseHistoryDataLastUseBenzodiazepines?.value,
-        frequency: substanceAbuseHistoryDataFrequencyBenzodiazepines?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines?.value,
-        state: type2
-      },
-      {
-        types: "Crack",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseCrack,
-        lastUse: substanceAbuseHistoryDataLastUseCrack?.value,
-        frequency: substanceAbuseHistoryDataFrequencyCrack?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyCrack?.value,
-        state: type3
-      },
-      {
-        types: "Heroin",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseHeroin,
-        lastUse: substanceAbuseHistoryDataLastUseHeroin?.value,
-        frequency: substanceAbuseHistoryDataFrequencyHeroin?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyHeroin?.value,
-        state: type4
-      },
-      {
-        types: "Inhalants",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseInhalants,
-        lastUse: substanceAbuseHistoryDataLastUseInhalants?.value,
-        frequency: substanceAbuseHistoryDataFrequencyInhalants?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyInhalants?.value,
-        state: type5
-      },
-      {
-        types: "Marijuana",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMarijuana,
-        lastUse: substanceAbuseHistoryDataLastUseMarijuana?.value,
-        frequency: substanceAbuseHistoryDataFrequencyMarijuana?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMarijuana?.value,
-        state: type6
-      },
-      {
-        types: "Methamphetamine",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMethamphetamine,
-        lastUse: substanceAbuseHistoryDataLastUseMethamphetamine?.value,
-        frequency: substanceAbuseHistoryDataFrequencyMethamphetamine?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMethamphetamine?.value,
-        state: type7
-      },
-      {
-        types: "Methadone",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMethadone,
-        lastUse: substanceAbuseHistoryDataLastUseMethadone?.value,
-        frequency: substanceAbuseHistoryDataFrequencyMethadone?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMethadone?.value,
-        state: type8
-      },
-      {
-        types: "MDMA (ecstasy)",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMDMA,
-        lastUse: substanceAbuseHistoryDataLastUseMDMA?.value,
-        frequency: substanceAbuseHistoryDataFrequencyMDMA?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMDMA?.value,
-        state: type9
-      },
-      {
-        types: "PCP (angel dust)",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUsePCP,
-        lastUse: substanceAbuseHistoryDataLastUsePCP?.value,
-        frequency: substanceAbuseHistoryDataFrequencyPCP?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyPCP?.value,
-        state: type10
-      },
-      {
-        types: "Prescription medicine",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUsePrescription,
-        lastUse: substanceAbuseHistoryDataLastUsePrescription?.value,
-        frequency: substanceAbuseHistoryDataFrequencyPrescription?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyPrescription?.value,
-        state: type11
-      },
-      {
-        types: "OTC medicine",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseOTC,
-        lastUse: substanceAbuseHistoryDataLastUseOTC?.value,
-        frequency: substanceAbuseHistoryDataFrequencyOTC?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyOTC?.value,
-        state: type12
-      },
-      {
-        types: "Cocaine",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseCocaine,
-        lastUse: substanceAbuseHistoryDataLastUseCocaine?.value,
-        frequency: substanceAbuseHistoryDataFrequencyCocaine?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyCocaine?.value,
-        state: type13
-      },
-      {
-        types: "Hallucinogens",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseHallucinogens,
-        lastUse: substanceAbuseHistoryDataLastUseHallucinogens?.value,
-        frequency: substanceAbuseHistoryDataFrequencyHallucinogens?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyHallucinogens?.value,
-        state: type14
-      },
-    ]
-
-    const typeArrayTempAns=[ ...typeArrayTemp,...typeArray]
-
-    const handleRiskFactorActivityArrayTemp= [
-        {
-          type: "Bathing/Showering",
-          good: BathingGood,
-          fair: BathingFair,
-          otherCurrentNotSoGood:BathingNotSoGood,
-          needAssist: BathingGoodNeedAssist,
-          comments: BathingComments,
-          state: Independent1
-        },
-        {
-          type: "Grooming/hygiene",
-          good: GroomingGood,
-          fair: GroomingFair,
-          otherCurrentNotSoGood:GroomingNotSoGood,
-          needAssist: GroomingGoodNeedAssist,
-          comments: GroomingComments,
-          state: Independent2
-        },
-        {
-          type: "Mobility",
-          good: MobilityGood,
-          fair: MobilityFair,
-          otherCurrentNotSoGood:MobilityNotSoGood,
-          needAssist: MobilityGoodNeedAssist,
-          comments: MobilityComments,
-          state: Independent3
-        },
-        {
-          type: "Housework",
-          good: HouseworkGood,
-          fair: HouseworkFair,
-          otherCurrentNotSoGood:HouseworkNotSoGood,
-          needAssist: HouseworkGoodNeedAssist,
-          comments: HouseworkComments,
-          state: Independent4
-        },
-        {
-          type: "Shopping",
-          good: ShoppingGood,
-          fair: ShoppingFair,
-          otherCurrentNotSoGood:ShoppingNotSoGood,
-          needAssist: ShoppingGoodNeedAssist,
-          comments: ShoppingComments,
-          state: Independent5
-        },
-        {
-          type: "Managing money/budget",
-          good: ManagingGood,
-          fair: ManagingFair,
-          otherCurrentNotSoGood:ManagingNotSoGood,
-          needAssist:ManagingGoodNeedAssist ,
-          comments: ManagingComments,
-          state: Independent6
-        },
-        {
-          type: "Preparing food",
-          good: PreparingGood,
-          fair: PreparingFair,
-          otherCurrentNotSoGood:PreparingNotSoGood,
-          needAssist: PreparingGoodNeedAssist,
-          comments: PreparingComments,
-          state: Independent7
-        },
-        {
-          type: "Eating",
-          good: EatingGood,
-          fair: EatingFair,
-          otherCurrentNotSoGood:EatingNotSoGood,
-          needAssist: EatingGoodNeedAssist,
-          comments: EatingComments,
-          state: Independent8
-        },
-        {
-          type: "Toileting",
-          good: ToiletingGood,
-          fair: ToiletingFair,
-          otherCurrentNotSoGood:ToiletingNotSoGood,
-          needAssist: ToiletingGoodNeedAssist,
-          comments: ToiletingComments,
-          state: Independent9
-        },
-        {
-          type: "Taking medications",
-          good: TakingGood,
-          fair: TakingFair,
-          otherCurrentNotSoGood:TakingNotSoGood,
-          needAssist: TakingGoodNeedAssist,
-          comments: TakingComments,
-          state: Independent10
-        },
-      ]
-
-      const handleRiskFactorActivityArrayTempAns= [...handleRiskFactorActivityArrayTemp,...handleRiskFactorActivityArray]
-
-    // riskFactors
-    const riskFactorsTemp= [
-      {
-        type:"Current suicidal ideation",
-        yesNo:riskYesNo,
-        comment:riskComment,
-        state: riskFactor1
-      },
-      {
-        type:"Prior suicide attempt",
-        yesNo:PriorYesNo,
-        comment:PriorComment,
-        state: riskFactor2
-      },
-      {
-        type:"Access to means (i.e. weapon)",
-        yesNo:AccessYesNo,
-        comment:AccessComment,
-        state: riskFactor3
-      },
-      {
-        type:"Substance abuse",
-        yesNo:SubstanceYesNo,
-        comment:SubstanceAbuseComment,
-        state: riskFactor4
-      },
-      {
-        type:"Other self-abusing behavior",
-        yesNo:abusingYesNo,
-        comment:abusingComment,
-        state: riskFactor5
-      },
-      {
-        type:"Recent losses/lack of support",
-        yesNo:RecentYesNo,
-        comment:RecentComment,
-        state: riskFactor6
-      },
-      {
-        type:"Behavior cues",
-        yesNo:behaviourYesNO,
-        comments:riskFacrtor1,
-        state: riskFactor7
-      },
-      {
-        type:"Symptoms of psychosis",
-        yesNo:SymptomsYesNO,
-        comments:riskFacrtor2,
-        state: riskFactor8
-      },
-      {
-        type:"Family history of suicide",
-        yesNo:FamilyYesNO,
-        comment:Family,
-        state: riskFactor9
-      },
-      {
-        type:"Terminal physical illness",
-        yesNo:TerminalYesNO,
-        comment:Terminal,
-        state: riskFactor10
-      },
-      {
-        type:"Current stressors (specify)",
-        yesNo:CurrentYesNO,
-        comment:Current,
-        state: riskFactor11
-      },
-      {
-        type:"Chronic pain",
-        yesNo:ChronicYesNO,
-        comment:ChronicPain,
-        state: riskFactor12
-      },
-    ]
-
-    const riskFactorArrayTempAns=[...riskFactorsTemp,...riskFactorArray]
-
-    // protectiveFactorsArray
-    const protectiveFactorsArrayTemp=[
-      {
-        type:"Supports available (family friends)",
-        yesNo:SupportsYesNo,
-        comment:SupportsComment,
-        state: Protective1
-      },
-      {
-        type:"Spiritual / religious support",
-        yesNo:SpiritualYesNo,
-        comment:SpiritualComment,
-        state: Protective2
-      },
-      {
-        type:"Religious/cultural prohibitions",
-        yesNo:ReligiousYesNo,
-        comment:ReligiousComment,
-        state: Protective3
-      },
-      {
-        type:"Fear of consequences",
-        yesNo:FearYesNo,
-        comment:FearComment,
-        state: Protective4
-      },
-      {
-        type:"Able to be engaged in intervention",
-        yesNo:interventionYesNo,
-        comment:interventionComment,
-        state: Protective5
-      },
-      {
-        type:"Willing to commit to keeping self safe",
-        yesNo:WillingYesNo,
-        comment:WillingComment,
-        state: Protective6
-      },
-    ]
-
-
-    
-    const protectiveFactorsArrayTempAns=[...protectiveFactorsArrayTemp,...protectiveFactorsArray]
-
-    //psychiatricDiagnoses
-      const psychiatricDiagnosesArrayTemp=[
-        {
-          icdCode:psychiatricPrimaryIcdCode,
-          description:psychiatricPrimaryDescription,
-          name:"Primary",
-          state: Diagnoses1
-        },
-        {
-          icdCode:psychiatricSecondaryicdCode,
-          description:psychiatricSecondaryDescription,
-          name:"Secondary",
-          state: Diagnoses2
-          
-        },
-        {
-          icdCode:psychiatricTertiaryIcdCode,
-          description:psychiatricTertiaryDescription,
-          name:"Tertiary",
-          state: Diagnoses3
-          
-        },
-        {
-          icdCode:psychiatricAdditionalicdCode,
-          description:psychiatricAdditionalDescription,
-          name:"Additional",
-          state: Diagnoses4
-         
-        },
-      ]
-
-
-      const psychiatricDiagnosesArrayAns=[...psychiatricDiagnosesArrayTemp,...psychiatricDiagnosesArray]
-
-      const medicalDiagnosesArrayTemp=[
-        {
-          icdCode:primaryIcdCode,
-          description:primaryDescription,
-          name:"Primary",
-          state: Medical1
-        },
-        {
-          icdCode:secondaryicdCode,
-          description:secondaryDescription,
-          name:"Secondary",
-          state: Medical2
-        },
-        {
-          icdCode:TertiaryIcdCode,
-          description:TertiaryDescription,
-          name:"Tertiary",
-          state: Medical3
-        },
-        {
-          icdCode:Additional1icdCode,
-          description:Additional1Description,
-          name:"Additional",
-          state: Medical4
-        },
-      ]
-
-      const medicalDiagnosesArrayTempAns=[...medicalDiagnosesArrayTemp,...psychiatricDiagnosesArray]
-
-
-    const data = {
-      residentName,
-      dateOfBirth:dob,
-      sex,
-      assessmentType,
-      patientId:patientId,
-      hasNotified,
-      assessmentOn,
-      companyName,
-      residentName,
-      sex,
-      dateOfAssessment,
-      ahcccsNumber,
-      preferredLanguage,
-      ethnicity,
-      admissionStatus:admissionStatusArray,
-      programLocation,
-      guardianship,
-      powerOfAttorneyStatus,
-      todayDate,
-      guardianshipPoaPubFidName,
-      approvedBy,
-      reasonForAdmission:reasonForAdmissionArray,
-      residentGoals,
-      residentStrengths: stringValues,
-      residentLimitations,
-      currentBehavioralIssues,
-      medicalConditions: otherConditionArrayTempAns,
-      SignificantFamilyMedicalPsychiatricHistory:SignificantFamilyMedicalPsychiatricHistoryArray,
-      
-      mentalHealthTreatmentHistory:typeOfServiceArray,
-     
-      substanceAbuseHistory,
-      substanceAbuseDenies,
-
-      substanceAbuseHistoryData : typeArrayTempAns,
-
-      ActiveWithdrawalSymptoms :{
-        noneReportedOrObserved,
-        Agitation,
-        Nausea,
-        Vomiting,
-        Headache,
-        TactileDisturbances,
-        Anxiety,
-        Tremors,
-        VisualDisturbances,
-        AuditoryDisturbances:VisualDisturbancesOtherType,
-        Sweats,
-        Paranoia,
-        GooseBumps,
-        Runningnose,
-        BonePain,
-        Tearing,
-        Seizures,
-        LossofMuscleCoordination,
-        LossofMuscleCoordinationOtherType
-      },
-      mentalStatusExam: {
-        apparentAge:{
-          consistent:consistent,
-          younger,
-          older,
-          
-          otherComment:olderOther
-        },
-        height:{
-          average:averageHeight,
-          short,
-          tall,
-          otherComment:heigthOther
-        },
-        weight:{
-          average:averageWeight,
-          obese,
-          overweight,
-          thin,
-          emaciated,
-          otherComment:WeightOther
-        },
-        attire:{
-          Casual:casual,
-          Neat:neat,
-          Tattered:tattered,
-          Dirty:dirty,
-          otherComment:attireOther
-        },
-        grooming:{
-          wellGroomed:wellGroomed,
-          adequate:adequateGrooming,
-          unkempt,
-          disheveled,
-          otherComment:GroomingOther
-        },
-        Mood:{
-          Euthymic:euthymic,
-          Irritable:irritable,
-          Elevated: elevated,
-          Depressed:depressedMood,
-          Anxious:anxious,
-          otherComment:euthymicOtherBooleanType
-        },
-        Affect:{
-          normalRange,
-          Depressed:depressedAffect,
-          Labile:labile,
-          Constricted:constricted,
-          otherComment:otherText
-        },
-        EyeContact:{
-          Appropriate:appropriate,
-          Minimal:minimal,
-          Poor:poor,
-          Adequate:adequateEyeContact,
-          otherComment:EyeContactOtherBooleanType
-        },
-        Cooperation:{
-          Appropriate:appropriateCooperation,
-          Hostile:hostile,
-          Evasive: evasive,
-          Defensive:defensive,
-          Indifferent:indifferent,
-          otherComment: CooperationOtherBooleanType
-        },
-        Articulation:{
-          Normal:normalArticulation,
-          Unintelligible:unintelligible,
-          Mumbled:mumbled,
-          Slurred:slurred,
-          Stuttered:stuttered,
-          otherComment:ArticulationOtherBooleanOther
-        },
-        Tone:{
-          Normal:normalTone,
-          Soft:soft,
-          Loud:loud,
-          Pressured:pressured,
-          otherComment:ToneOtherBooleanOther
-        },
-        Rate:{
-          Normal:normalRate,
-          Slow:slow,
-          Fast:fast,
-          otherComment:RateOtherBooleanOther
-        },
-        Quantity:{
-          Normal:normalQuantity,
-          Verbose:verbose,
-          Mutism:mutism,
-          otherComment:QuantityOtherBooleanOther,
-
-        },
-        responseLatency:{
-          Normal:normalresponseLatency,
-          Delayed:delayed,
-          Shortened:shortened,
-          otherComment:responseLatencyOtherBooleanOther
-        },
-
-        thoughtContent:{
-          Unremarkable:unremarkablethoughtContent,
-          Suspicious:suspicious,
-          Negative:negative,
-          Concrete:concrete,
-          otherComment:thoughtContentOther
-        },
-
-        thoughtProcesses:{
-          logicalCoherent:logicalCoherent,
-          Tangential:tangential,
-          Circumstantial:circumstantial,
-          Vague:vague,
-          otherComment:thoughtProcessesOther
-        },
-
-        Delusions:{
-          No:noDelusions,
-          YesPersecutory: yesPersecutory,
-          YesSomatic:yesSomatic,
-          YesGrandiose:yesGrandiose,
-          otherComment:yesOtherDelusionsText
-        },
-
-        Hallucinations:{
-          Unremarkable:unremarkableHallucinations,
-          VisualHallucinations:visualHallucinations,
-          AuditoryHallucinations:auditoryHallucinations,
-          TactileHallucinations:tactileHallucinations,
-          otherComment:yesOtherHallucinationsText
-        },
-
-        Gait:{
-          Normal:normalGait,
-          Staggering:staggering,
-          Shuffling:shuffling,
-          Slow:slowGait,
-          Awkward:awkward,
-          otherComment:gaitOther,
-        },
-
-        Posture:{
-          Normal:normalPosture,
-          Relaxed:relaxed,
-          Rigid:rigid,
-          Tense:tense,
-          Slouched:slouched,
-          otherComment:PostureOther,
-        },
-
-        PsychomotorActivity:{
-          Withinnormallimits:withinNormalLimits,
-          Calm:calm,
-          Hyperactive:hyperactive,
-          Agitated:agitated,
-          Hypoactive:hypoactive,
-          otherComment:PsychomotorActivityOther,
-        },
-
-        Mannerisms:{
-          None:none,
-          Tics:tics,
-          Tremors:tremorsMannerisms,
-          Rocking:rocking,
-          Picking:picking,
-          otherComment:MannerismsOther,
-        },
-
-        orientation:{
-          person,
-          place,
-          time,
-          circumstances:circumstances
-        },
-
-        Judgment:{
-          Good:goodJudgment,
-          Fair:fairJudgment,
-          Poor:poorJudgment
-        },
-
-        Insight:{
-          Good:goodInsight,
-          Fair:fairInsight,
-          Poor:poorInsight
-        },
-        Memory:{
-          Good:goodMemory,
-          Fair:fairMemory,
-          Poor:poorMemory
-        },
-        AbilityToConcentration:{
-          Intact:intactAbilityToConcentration,
-          Other:otherAbilityToConcentration
-        },
-      },
-
-      significantSocialDevelopmentalHistory,
-
-      personalInformation:{
-        educationalHistory,
-        highestEducation,
-        specialEducation,
-        currentStudent,
-        currentStudentLocation:ifYesWhere
-      },
-
-      employmentHistory:{
-        currentlyEmployed,
-        employmentLocation,
-      
-      },
-      workHistory,
-      militaryHistory:{
-        militaryService,
-        activeDuty
-      },
-      legalHistory:selectedValueArray,
-
-      independentLivingSkills:handleRiskFactorActivityArrayTempAns,
-      triggers,
-      fallRisk,
-      fallRiskExplanation,
-      hobbiesLeisureActivities,
-      medicalEquipmentArray:selectedValueMedicalArray,
-      specialPrecautions:selectedValueSpecialPrecautionsArray,
-      currentThoughtsOfHarmingSelf,
-  
-      suicidalIdeation,
-      suicidalIdeationUrgency,
-      suicidalIdeationSeverity,
-      currentThoughtsOfHarmingOthers,
-
-      riskFactors:riskFactorArrayTempAns,
-      protectiveFactors:protectiveFactorsArrayTempAns,
-
-      riskLevel,
-
-      psychiatricDiagnoses:psychiatricDiagnosesArrayAns,
-
-      medicalDiagnoses:medicalDiagnosesArrayTempAns,
-
-                primarySupportGroup,
-                maritalProblems,
-                accessToHealthCareServices,
-                educationalProblems,
-                housingProblems,
-                familyProblems,
-                occupationalProblems,
-                interactionWithLegalSystem,
-                substanceUseInHome,
-                sexualProblems,
-                otherStressors,
-
-     
-
-      significantRecentLosses:{
-        yes:setNoAndYes,
-        typeOfLoss:{
-          death,
-          injury,
-          medicalSurgical,
-          job,
-          divorceSeparation:divorceSeparation,
-          accidentInjury,
-          childRemovedFromHouse,
-          violentActsAgainstPersonFamily:violentActsAgainstPersonFamily,
-          comment:otherSignificantRecentLossesType?true:false,
-        },
-        comment:otherSignificantRecentLossesType
-      },
-
-      additionalNotes,
-      acceptResident,
-
-      residentInformation: {
-        ResidentName: residentGuardianName,
-        ResidentSignature: residentGauardianSignature,
-        ResidentDate: residentGuardianDate,
-        time:residentGuardianTime,
-      },
-      staffInformation: {
-        staffName: staffName,
-        staffSignature: staffSignature,
-        staffDate: staffDate,
-        time:staffDateTime
-      },
-      bhpInformation: {
-        bhpName: bhpName,
-        bhpCredentials: bhpCredentials,
-        bhpSignature: bhpSignature,
-        bhpDate:bhpDate,
-        time:bhpTime,
-      },
-      saveAsDraft:saveAsDraft
-    };
-
-    initialAssestment_form(data,saveAsDraft);
-    navigate("/intake");
-  };
-
-  const handleData = () => {
- 
-    const stringValues = residentStrengths.map((item) => item.value);
-
-    let SignificantFamilyMedicalPsychiatricHistoryArray=[];
-    SignificantFamilyMedicalPsychiatricHistory.forEach((item)=>{
-      SignificantFamilyMedicalPsychiatricHistoryArray.push(item?.value);
-    })
-
-    const admissionStatusArray=[];
-    admissionStatus.forEach((item)=>{
-      admissionStatusArray.push(item?.value)
-    })
-
-    const selectedValueArray=[];
-    selectedValue.forEach((item)=>{
-      selectedValueArray.push(item?.value)
-    })
-
-    const selectedValueMedicalArray=[];
-    selectedValueMedical.forEach((item)=>{
-      selectedValueMedicalArray.push(item?.value);
-    })
-
-    const selectedValueSpecialPrecautionsArray=[];
-    selectedValueSpecialPrecautions.forEach((item)=>{
-      selectedValueSpecialPrecautionsArray.push(item?.value)
-    })
-
-    const thyroidDisorderArray=[];
-    thyroidDisorder.forEach((item)=>{
-      thyroidDisorderArray.push(item.value)
-    })
-
-    const infectionDiseasesArray=[];
-    infectionDiseases.forEach((item)=>{
-      infectionDiseasesArray.push(item.value)
-    })
-
-    const reasonForAdmissionArray=[];
-    reasonForAdmission.forEach((item)=>{
-      reasonForAdmissionArray.push(item?.value);
-    })
-
-    const riskFacrtor1=[];
-    behaviorcuesDropDown.forEach((item)=>{
-      riskFacrtor1.push(item?.value);
-    })
-
-    const riskFacrtor2=[];
-    symptomsOfPsychosisDropDown.forEach((item)=>{
-      riskFacrtor2.push(item?.value);
-    })
-
-    // medical condition
-    const otherConditionArrayTemp=[
-      {
-        condition: "diabetes",
-        yes: yesDiabetes,
-        comments: commentDiabety,
-        state: condition1
-      },
-      {
-        condition: "Heart disease / heart attack",
-        yes: yesHeart,
-        comments: commentHeart,
-        state: condition2
-      },
-      {
-        condition: "History",
-        yes: yesHistory,
-        comments: commentHistory,
-        state: condition3
-      }
-      ,
-      {
-        condition: "High Blood Pressure",
-        yes: yesHigh,
-        comments: commentHigh,
-        state: condition4
-      }
-      ,
-      {
-        condition: "Lung disease (ie asthma, COPD, emphysema)",
-        yes: yesLung,
-        comments: commentLung,
-        state: condition5
-      }
-      ,
-      {
-        condition: "Seizures",
-        yes: yesSeizures,
-        comments: commentSeizures,
-        state: condition6
-      }
-      ,
-      {
-        condition: "Cancer",
-        yes: yesCancer,
-        comments: commentCancer,
-        state: condition7
-      }
-      ,
-      {
-        condition: "Liver/kidney disease",
-        yes: yesLiver,
-        comments: commentLiver,
-        state: condition8
-      }
-      ,
-      {
-        condition: "Thyroid disorder",
-        yes: yesThyroid,
-        comment: thyroidDisorderArray,
-        state: condition9
-      }
-      ,
-      {
-        condition: "History of head trauma/traumatic brain injury",
-        yes: yesbrain,
-        comments: commentbrain,
-        state: condition10
-      }
-      ,
-      {
-        condition: "injury",
-        yes: yesInjury,
-        comments: commentInjury,
-        state: condition11
-      }
-      ,
-      {
-        condition: "Chronic painChronic pain",
-        yes: yesChronic,
-        comments: chronicCommit,
-        state: condition12
-      },  {
-        condition: "Allergies",
-        yes: AllergiesYes,
-        comments: AllergiesComment,
-        state: condition13
-      },  {
-        condition: "Surgeries",
-        yes: SurgeriesYes,
-        comments: SurgeriesComment,
-        state: condition14
-      }
-      ,  {
-        condition: "Number of pregnancies / births",
-        yes: pregnanciesYes,
-        comments: pregnanciesComment,
-        state: condition15
-      }
-      ,  {
-        condition: "Substance use disorder (please specify)",
-        yes: SubstanceYes,
-        comments: SubstanceComment,
-        state: condition16
-      }
-      ,  {
-        condition: "Depression",
-        yes: DepressionYes,
-        comments: DepressionComment,
-        state: condition17
-      }
-      ,  {
-        condition: "Anxiety/panic attacks",
-        yes: AnxietyYes,
-        comments: AnxietyComment,
-        state: condition18
-      }
-      ,  {
-        condition: "Insomnia",
-        yes: InsomniaYes,
-        comments: InsomniaComment,
-        state: condition19
-      }
-      ,  {
-        condition: "Bipolar disorder",
-        yes: BipolarYes,
-        comments: BipolarComment,
-        state: condition20
-      }
-      ,  {
-        condition: "Schizophrenia",
-        yes: SchizophreniaYes,
-        comments: SchizophreniaComment,
-        state: condition21
-      }
-      ,  {
-        condition: "Obsessive compulsive disorder",
-        yes: ObsessiveYes,
-        comments: ObsessiveComment,
-        state: condition22
-      }
-      ,  {
-        condition: "Personality disorder (please specify)",
-        yes: PersonalityYes,
-        comments: PersonalityComment,
-        state: condition23
-      }
-      ,  {
-        condition: "Phobias",
-        yes: PhobiasYes,
-        comments: PhobiasComment,
-        state: condition24
-      }
-      ,  {
-        condition: "Any other health conditions",
-        yes: healthConditionsYes,
-        comments: healthConditionsYesComment,
-        state: condition25
-      }
-      ,  {
-        condition: "Infection or Diseases",
-        yes: healthConditionsYes,
-        comment: infectionDiseasesArray,
-        state: condition26
-      }
-    ]
-
-    const otherConditionArrayTempAns=[...otherConditionArrayTemp,...otherConditionArray]
-
-    // substance array
-    const typeArrayTemp= [
-      {
-        types: "Alcohol",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseAlcohol,
-        lastUse: substanceAbuseHistoryDataLastUseAlcohol?.value,
-        frequency: substanceAbuseHistoryDataFrequencyAlcohol?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyAlcohol?.value,
-        state: type1
-      },
-      {
-        types: "Benzodiazepines",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines,
-        lastUse: substanceAbuseHistoryDataLastUseBenzodiazepines?.value,
-        frequency: substanceAbuseHistoryDataFrequencyBenzodiazepines?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines?.value,
-        state: type2
-      },
-      {
-        types: "Crack",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseCrack,
-        lastUse: substanceAbuseHistoryDataLastUseCrack?.value,
-        frequency: substanceAbuseHistoryDataFrequencyCrack?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyCrack?.value,
-        state: type3
-      },
-      {
-        types: "Heroin",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseHeroin,
-        lastUse: substanceAbuseHistoryDataLastUseHeroin?.value,
-        frequency: substanceAbuseHistoryDataFrequencyHeroin?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyHeroin?.value,
-        state: type4
-      },
-      {
-        types: "Inhalants",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseInhalants,
-        lastUse: substanceAbuseHistoryDataLastUseInhalants?.value,
-        frequency: substanceAbuseHistoryDataFrequencyInhalants?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyInhalants?.value,
-        state: type5
-      },
-      {
-        types: "Marijuana",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMarijuana,
-        lastUse: substanceAbuseHistoryDataLastUseMarijuana?.value,
-        frequency: substanceAbuseHistoryDataFrequencyMarijuana?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMarijuana?.value,
-        state: type6
-      },
-      {
-        types: "Methamphetamine",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMethamphetamine,
-        lastUse: substanceAbuseHistoryDataLastUseMethamphetamine?.value,
-        frequency: substanceAbuseHistoryDataFrequencyMethamphetamine?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMethamphetamine?.value,
-        state: type7
-      },
-      {
-        types: "Methadone",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMethadone,
-        lastUse: substanceAbuseHistoryDataLastUseMethadone?.value,
-        frequency: substanceAbuseHistoryDataFrequencyMethadone?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMethadone?.value,
-        state: type8
-      },
-      {
-        types: "MDMA (ecstasy)",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMDMA,
-        lastUse: substanceAbuseHistoryDataLastUseMDMA?.value,
-        frequency: substanceAbuseHistoryDataFrequencyMDMA?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMDMA?.value,
-        state: type9
-      },
-      {
-        types: "PCP (angel dust)",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUsePCP,
-        lastUse: substanceAbuseHistoryDataLastUsePCP?.value,
-        frequency: substanceAbuseHistoryDataFrequencyPCP?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyPCP?.value,
-        state: type10
-      },
-      {
-        types: "Prescription medicine",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUsePrescription,
-        lastUse: substanceAbuseHistoryDataLastUsePrescription?.value,
-        frequency: substanceAbuseHistoryDataFrequencyPrescription?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyPrescription?.value,
-        state: type11
-      },
-      {
-        types: "OTC medicine",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseOTC,
-        lastUse: substanceAbuseHistoryDataLastUseOTC?.value,
-        frequency: substanceAbuseHistoryDataFrequencyOTC?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyOTC?.value,
-        state: type12
-      },
-      {
-        types: "Cocaine",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseCocaine,
-        lastUse: substanceAbuseHistoryDataLastUseCocaine?.value,
-        frequency: substanceAbuseHistoryDataFrequencyCocaine?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyCocaine?.value,
-        state: type13
-      },
-      {
-        types: "Hallucinogens",
-        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseHallucinogens,
-        lastUse: substanceAbuseHistoryDataLastUseHallucinogens?.value,
-        frequency: substanceAbuseHistoryDataFrequencyHallucinogens?.value,
-        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyHallucinogens?.value,
-        state: type14
-      },
-    ]
-
-    const typeArrayTempAns=[ ...typeArrayTemp,...typeArray]
-
-    const handleRiskFactorActivityArrayTemp= [
-        {
-          type: "Bathing/Showering",
-          good: BathingGood,
-          fair: BathingFair,
-          otherCurrentNotSoGood:BathingNotSoGood,
-          needAssist: BathingGoodNeedAssist,
-          comments: BathingComments,
-          state: Independent1
-        },
-        {
-          type: "Grooming/hygiene",
-          good: GroomingGood,
-          fair: GroomingFair,
-          otherCurrentNotSoGood:GroomingNotSoGood,
-          needAssist: GroomingGoodNeedAssist,
-          comments: GroomingComments,
-          state: Independent2
-        },
-        {
-          type: "Mobility",
-          good: MobilityGood,
-          fair: MobilityFair,
-          otherCurrentNotSoGood:MobilityNotSoGood,
-          needAssist: MobilityGoodNeedAssist,
-          comments: MobilityComments,
-          state: Independent3
-        },
-        {
-          type: "Housework",
-          good: HouseworkGood,
-          fair: HouseworkFair,
-          otherCurrentNotSoGood:HouseworkNotSoGood,
-          needAssist: HouseworkGoodNeedAssist,
-          comments: HouseworkComments,
-          state: Independent4
-        },
-        {
-          type: "Shopping",
-          good: ShoppingGood,
-          fair: ShoppingFair,
-          otherCurrentNotSoGood:ShoppingNotSoGood,
-          needAssist: ShoppingGoodNeedAssist,
-          comments: ShoppingComments,
-          state: Independent5
-        },
-        {
-          type: "Managing money/budget",
-          good: ManagingGood,
-          fair: ManagingFair,
-          otherCurrentNotSoGood:ManagingNotSoGood,
-          needAssist:ManagingGoodNeedAssist ,
-          comments: ManagingComments,
-          state: Independent6
-        },
-        {
-          type: "Preparing food",
-          good: PreparingGood,
-          fair: PreparingFair,
-          otherCurrentNotSoGood:PreparingNotSoGood,
-          needAssist: PreparingGoodNeedAssist,
-          comments: PreparingComments,
-          state: Independent7
-        },
-        {
-          type: "Eating",
-          good: EatingGood,
-          fair: EatingFair,
-          otherCurrentNotSoGood:EatingNotSoGood,
-          needAssist: EatingGoodNeedAssist,
-          comments: EatingComments,
-          state: Independent8
-        },
-        {
-          type: "Toileting",
-          good: ToiletingGood,
-          fair: ToiletingFair,
-          otherCurrentNotSoGood:ToiletingNotSoGood,
-          needAssist: ToiletingGoodNeedAssist,
-          comments: ToiletingComments,
-          state: Independent9
-        },
-        {
-          type: "Taking medications",
-          good: TakingGood,
-          fair: TakingFair,
-          otherCurrentNotSoGood:TakingNotSoGood,
-          needAssist: TakingGoodNeedAssist,
-          comments: TakingComments,
-          state: Independent10
-        },
-      ]
-
-      const handleRiskFactorActivityArrayTempAns= [...handleRiskFactorActivityArrayTemp,...handleRiskFactorActivityArray]
-
-    // riskFactors
-    const riskFactorsTemp= [
-      {
-        type:"Current suicidal ideation",
-        yesNo:riskYesNo,
-        comment:riskComment,
-        state: riskFactor1
-      },
-      {
-        type:"Prior suicide attempt",
-        yesNo:PriorYesNo,
-        comment:PriorComment,
-        state: riskFactor2
-      },
-      {
-        type:"Access to means (i.e. weapon)",
-        yesNo:AccessYesNo,
-        comment:AccessComment,
-        state: riskFactor3
-      },
-      {
-        type:"Substance abuse",
-        yesNo:SubstanceYesNo,
-        comment:SubstanceAbuseComment,
-        state: riskFactor4
-      },
-      {
-        type:"Other self-abusing behavior",
-        yesNo:abusingYesNo,
-        comment:abusingComment,
-        state: riskFactor5
-      },
-      {
-        type:"Recent losses/lack of support",
-        yesNo:RecentYesNo,
-        comment:RecentComment,
-        state: riskFactor6
-      },
-      {
-        type:"Behavior cues",
-        yesNo:behaviourYesNO,
-        comments:riskFacrtor1,
-        state: riskFactor7
-      },
-      {
-        type:"Symptoms of psychosis",
-        yesNo:SymptomsYesNO,
-        comments:riskFacrtor2,
-        state: riskFactor8
-      },
-      {
-        type:"Family history of suicide",
-        yesNo:FamilyYesNO,
-        comment:Family,
-        state: riskFactor9
-      },
-      {
-        type:"Terminal physical illness",
-        yesNo:TerminalYesNO,
-        comment:Terminal,
-        state: riskFactor10
-      },
-      {
-        type:"Current stressors (specify)",
-        yesNo:CurrentYesNO,
-        comment:Current,
-        state: riskFactor11
-      },
-      {
-        type:"Chronic pain",
-        yesNo:ChronicYesNO,
-        comment:ChronicPain,
-        state: riskFactor12
-      },
-    ]
-
-    const riskFactorArrayTempAns=[...riskFactorsTemp,...riskFactorArray]
-
-    // protectiveFactorsArray
-    const protectiveFactorsArrayTemp=[
-      {
-        type:"Supports available (family friends)",
-        yesNo:SupportsYesNo,
-        comment:SupportsComment,
-        state: Protective1
-      },
-      {
-        type:"Spiritual / religious support",
-        yesNo:SpiritualYesNo,
-        comment:SpiritualComment,
-        state: Protective2
-      },
-      {
-        type:"Religious/cultural prohibitions",
-        yesNo:ReligiousYesNo,
-        comment:ReligiousComment,
-        state: Protective3
-      },
-      {
-        type:"Fear of consequences",
-        yesNo:FearYesNo,
-        comment:FearComment,
-        state: Protective4
-      },
-      {
-        type:"Able to be engaged in intervention",
-        yesNo:interventionYesNo,
-        comment:interventionComment,
-        state: Protective5
-      },
-      {
-        type:"Willing to commit to keeping self safe",
-        yesNo:WillingYesNo,
-        comment:WillingComment,
-        state: Protective6
-      },
-    ]
-
-
-    
-    const protectiveFactorsArrayTempAns=[...protectiveFactorsArrayTemp,...protectiveFactorsArray]
-
-    //psychiatricDiagnoses
-      const psychiatricDiagnosesArrayTemp=[
-        {
-          icdCode:psychiatricPrimaryIcdCode,
-          description:psychiatricPrimaryDescription,
-          name:"Primary",
-          state: Diagnoses1
-        },
-        {
-          icdCode:psychiatricSecondaryicdCode,
-          description:psychiatricSecondaryDescription,
-          name:"Secondary",
-          state: Diagnoses2
-          
-        },
-        {
-          icdCode:psychiatricTertiaryIcdCode,
-          description:psychiatricTertiaryDescription,
-          name:"Tertiary",
-          state: Diagnoses3
-          
-        },
-        {
-          icdCode:psychiatricAdditionalicdCode,
-          description:psychiatricAdditionalDescription,
-          name:"Additional",
-          state: Diagnoses4
-         
-        },
-      ]
-
-
-      const psychiatricDiagnosesArrayAns=[...psychiatricDiagnosesArrayTemp,...psychiatricDiagnosesArray]
-
-      const medicalDiagnosesArrayTemp=[
-        {
-          icdCode:primaryIcdCode,
-          description:primaryDescription,
-          name:"Primary",
-          state: Medical1
-        },
-        {
-          icdCode:secondaryicdCode,
-          description:secondaryDescription,
-          name:"Secondary",
-          state: Medical2
-        },
-        {
-          icdCode:TertiaryIcdCode,
-          description:TertiaryDescription,
-          name:"Tertiary",
-          state: Medical3
-        },
-        {
-          icdCode:Additional1icdCode,
-          description:Additional1Description,
-          name:"Additional",
-          state: Medical4
-        },
-      ]
-
-      const medicalDiagnosesArrayTempAns=[...medicalDiagnosesArrayTemp,...psychiatricDiagnosesArray]
-
-
-    const data = {
-      residentName,
-      dateOfBirth:dob,
-      sex,
-      assessmentType,
-      patientId:patientId,
-      hasNotified,
-      assessmentOn,
-      companyName,
-      residentName,
-      sex,
-      dateOfAssessment,
-      ahcccsNumber,
-      preferredLanguage,
-      ethnicity,
-      admissionStatus:admissionStatusArray,
-      programLocation,
-      guardianship,
-      powerOfAttorneyStatus,
-      todayDate,
-      guardianshipPoaPubFidName,
-      approvedBy,
-      reasonForAdmission:reasonForAdmissionArray,
-      residentGoals,
-      residentStrengths: stringValues,
-      residentLimitations,
-      currentBehavioralIssues,
-      medicalConditions: otherConditionArrayTempAns,
-      SignificantFamilyMedicalPsychiatricHistory:SignificantFamilyMedicalPsychiatricHistoryArray,
-      
-      mentalHealthTreatmentHistory:typeOfServiceArray,
-     
-      substanceAbuseHistory,
-      substanceAbuseDenies,
-
-      substanceAbuseHistoryData : typeArrayTempAns,
-
-      ActiveWithdrawalSymptoms :{
-        noneReportedOrObserved,
-        Agitation,
-        Nausea,
-        Vomiting,
-        Headache,
-        TactileDisturbances,
-        Anxiety,
-        Tremors,
-        VisualDisturbances,
-        AuditoryDisturbances:VisualDisturbancesOtherType,
-        Sweats,
-        Paranoia,
-        GooseBumps,
-        Runningnose,
-        BonePain,
-        Tearing,
-        Seizures,
-        LossofMuscleCoordination,
-        LossofMuscleCoordinationOtherType
-      },
-      mentalStatusExam: {
-        apparentAge:{
-          consistent:consistent,
-          younger,
-          older,
-          
-          otherComment:olderOther
-        },
-        height:{
-          average:averageHeight,
-          short,
-          tall,
-          otherComment:heigthOther
-        },
-        weight:{
-          average:averageWeight,
-          obese,
-          overweight,
-          thin,
-          emaciated,
-          otherComment:WeightOther
-        },
-        attire:{
-          Casual:casual,
-          Neat:neat,
-          Tattered:tattered,
-          Dirty:dirty,
-          otherComment:attireOther
-        },
-        grooming:{
-          wellGroomed:wellGroomed,
-          adequate:adequateGrooming,
-          unkempt,
-          disheveled,
-          otherComment:GroomingOther
-        },
-        Mood:{
-          Euthymic:euthymic,
-          Irritable:irritable,
-          Elevated: elevated,
-          Depressed:depressedMood,
-          Anxious:anxious,
-          otherComment:euthymicOtherBooleanType
-        },
-        Affect:{
-          normalRange,
-          Depressed:depressedAffect,
-          Labile:labile,
-          Constricted:constricted,
-          otherComment:otherText
-        },
-        EyeContact:{
-          Appropriate:appropriate,
-          Minimal:minimal,
-          Poor:poor,
-          Adequate:adequateEyeContact,
-          otherComment:EyeContactOtherBooleanType
-        },
-        Cooperation:{
-          Appropriate:appropriateCooperation,
-          Hostile:hostile,
-          Evasive: evasive,
-          Defensive:defensive,
-          Indifferent:indifferent,
-          otherComment: CooperationOtherBooleanType
-        },
-        Articulation:{
-          Normal:normalArticulation,
-          Unintelligible:unintelligible,
-          Mumbled:mumbled,
-          Slurred:slurred,
-          Stuttered:stuttered,
-          otherComment:ArticulationOtherBooleanOther
-        },
-        Tone:{
-          Normal:normalTone,
-          Soft:soft,
-          Loud:loud,
-          Pressured:pressured,
-          otherComment:ToneOtherBooleanOther
-        },
-        Rate:{
-          Normal:normalRate,
-          Slow:slow,
-          Fast:fast,
-          otherComment:RateOtherBooleanOther
-        },
-        Quantity:{
-          Normal:normalQuantity,
-          Verbose:verbose,
-          Mutism:mutism,
-          otherComment:QuantityOtherBooleanOther,
-
-        },
-        responseLatency:{
-          Normal:normalresponseLatency,
-          Delayed:delayed,
-          Shortened:shortened,
-          otherComment:responseLatencyOtherBooleanOther
-        },
-
-        thoughtContent:{
-          Unremarkable:unremarkablethoughtContent,
-          Suspicious:suspicious,
-          Negative:negative,
-          Concrete:concrete,
-          otherComment:thoughtContentOther
-        },
-
-        thoughtProcesses:{
-          logicalCoherent:logicalCoherent,
-          Tangential:tangential,
-          Circumstantial:circumstantial,
-          Vague:vague,
-          otherComment:thoughtProcessesOther
-        },
-
-        Delusions:{
-          No:noDelusions,
-          YesPersecutory: yesPersecutory,
-          YesSomatic:yesSomatic,
-          YesGrandiose:yesGrandiose,
-          otherComment:yesOtherDelusionsText
-        },
-
-        Hallucinations:{
-          Unremarkable:unremarkableHallucinations,
-          VisualHallucinations:visualHallucinations,
-          AuditoryHallucinations:auditoryHallucinations,
-          TactileHallucinations:tactileHallucinations,
-          otherComment:yesOtherHallucinationsText
-        },
-
-        Gait:{
-          Normal:normalGait,
-          Staggering:staggering,
-          Shuffling:shuffling,
-          Slow:slowGait,
-          Awkward:awkward,
-          otherComment:gaitOther,
-        },
-
-        Posture:{
-          Normal:normalPosture,
-          Relaxed:relaxed,
-          Rigid:rigid,
-          Tense:tense,
-          Slouched:slouched,
-          otherComment:PostureOther,
-        },
-
-        PsychomotorActivity:{
-          Withinnormallimits:withinNormalLimits,
-          Calm:calm,
-          Hyperactive:hyperactive,
-          Agitated:agitated,
-          Hypoactive:hypoactive,
-          otherComment:PsychomotorActivityOther,
-        },
-
-        Mannerisms:{
-          None:none,
-          Tics:tics,
-          Tremors:tremorsMannerisms,
-          Rocking:rocking,
-          Picking:picking,
-          otherComment:MannerismsOther,
-        },
-
-        orientation:{
-          person,
-          place,
-          time,
-          circumstances:circumstances
-        },
-
-        Judgment:{
-          Good:goodJudgment,
-          Fair:fairJudgment,
-          Poor:poorJudgment
-        },
-
-        Insight:{
-          Good:goodInsight,
-          Fair:fairInsight,
-          Poor:poorInsight
-        },
-        Memory:{
-          Good:goodMemory,
-          Fair:fairMemory,
-          Poor:poorMemory
-        },
-        AbilityToConcentration:{
-          Intact:intactAbilityToConcentration,
-          Other:otherAbilityToConcentration
-        },
-      },
-
-      significantSocialDevelopmentalHistory,
-
-      personalInformation:{
-        educationalHistory,
-        highestEducation,
-        specialEducation,
-        currentStudent,
-        currentStudentLocation:ifYesWhere
-      },
-
-      employmentHistory:{
-        currentlyEmployed,
-        employmentLocation,
-      
-      },
-      workHistory,
-      militaryHistory:{
-        militaryService,
-        activeDuty
-      },
-      legalHistory:selectedValueArray,
-
-      independentLivingSkills:handleRiskFactorActivityArrayTempAns,
-      triggers,
-      fallRisk,
-      fallRiskExplanation,
-      hobbiesLeisureActivities,
-      medicalEquipmentArray:selectedValueMedicalArray,
-      specialPrecautions:selectedValueSpecialPrecautionsArray,
-      currentThoughtsOfHarmingSelf,
-  
-      suicidalIdeation,
-      suicidalIdeationUrgency,
-      suicidalIdeationSeverity,
-      currentThoughtsOfHarmingOthers,
-
-      riskFactors:riskFactorArrayTempAns,
-      protectiveFactors:protectiveFactorsArrayTempAns,
-
-      riskLevel,
-
-      psychiatricDiagnoses:psychiatricDiagnosesArrayAns,
-
-      medicalDiagnoses:medicalDiagnosesArrayTempAns,
-
-                primarySupportGroup,
-                maritalProblems,
-                accessToHealthCareServices,
-                educationalProblems,
-                housingProblems,
-                familyProblems,
-                occupationalProblems,
-                interactionWithLegalSystem,
-                substanceUseInHome,
-                sexualProblems,
-                otherStressors,
-
-     
-
-      significantRecentLosses:{
-        yes:setNoAndYes,
-        typeOfLoss:{
-          death,
-          injury,
-          medicalSurgical,
-          job,
-          divorceSeparation:divorceSeparation,
-          accidentInjury,
-          childRemovedFromHouse,
-          violentActsAgainstPersonFamily:violentActsAgainstPersonFamily,
-          comment:otherSignificantRecentLossesType?true:false,
-        },
-        comment:otherSignificantRecentLossesType
-      },
-
-      additionalNotes,
-      acceptResident,
-
-      residentInformation: {
-        ResidentName: residentGuardianName,
-        ResidentSignature: residentGauardianSignature,
-        ResidentDate: residentGuardianDate,
-        time:residentGuardianTime,
-      },
-      staffInformation: {
-        staffName: staffName,
-        staffSignature: staffSignature,
-        staffDate: staffDate,
-        time:staffDateTime
-      },
-      bhpInformation: {
-        bhpName: bhpName,
-        bhpCredentials: bhpCredentials,
-        bhpSignature: bhpSignature,
-        bhpDate:bhpDate,
-        time:bhpTime,
-      },
-      saveAsDraft:saveAsDraft
-    };
-    initialAssestment_form(data,saveAsDraft);
-  };
-
-  useEffect(()=>{
-    if(saveAsDraft){
-      handleData();
-    }
-  },[saveAsDraft])
-
-  const handleSaveAsDraft=()=>{
-    // setDraftModel(!draftModel); 
-    setSaveAsDraft(!saveAsDraft);
-  }
 
   const option_value_Admission = [
     { label: "Voluntary", value: "Voluntary" },
@@ -5230,8 +2735,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
     { label: "Stabilization", value: "Stabilization" },
     { label: "Detox", value: "Detox" },
     {
-      label: "DTS/DTO",
-      value: "DTS/DTO",
+      label: "DTS/DTO Other (Please specify)",
+      value: "DTS/DTO Other (Please specify)",
     },
   ];
 
@@ -6988,243 +4493,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
       setSubstanceAbuseHistoryDataLengthOfSobrietyOTC(optionValue);
     };
 
-      // 13
-    // last use
-    const optionsubstanceAbuseHistoryDataLastUseCocaine = [
-      { label: "Weeks ago", value: "Weeks ago" },
-      { label: "Days ago", value: "Days ago" },
-      { label: "Yesterday", value: "Yesterday" },
-      { label: "Months ago", value: "Months ago" },
-      { label: "Few hours ago", value: "Few hours ago" },
-      { label: "Unsure", value: "Unsure" }
-    ];
-  
-    const handleKeysubstanceAbuseHistoryDataLastUseCocaine = (event) => {
-      if (event.key === "Enter" && event.target.value) {
-        const inputValue = event.target.value.trim();
-  
-    //  
-        const optionExists = optionsubstanceAbuseHistoryDataLastUseCocaine.some(
-          (option) => option.value === inputValue
-        );
-  
-        if (!optionExists) {
-          const newOptions = 
-            
-            { value: inputValue, label: inputValue }
-          
-  
-          setSubstanceAbuseHistoryDataLastUseCocaine(newOptions);
-  
-        }
-  
-        event.target.value = "";
-      }
-    };
-  
-    const hnadlesubstanceAbuseHistoryDataLastUseCocaine = (optionValue) => {
-      setSubstanceAbuseHistoryDataLastUseCocaine(optionValue);
-    };
-  
-    // frequancy
-    const optionsubstanceAbuseHistoryDataFrequencyCocaine = [
-      { label: "Daily", value: "Daily" },
-      { label: "Two to four times weekly", value: "Two to four times weekly" },
-      { label: "Multiple times a day", value: "Multiple times a day" },
-      { label: "Chronic", value: "Chronic" },
-      { label: "Intermittent", value: "Intermittent" },
-      { label: "Only on social events", value: "Only on social events" },
-      { label: "Only on weekends", value: "Only on weekends" },
-      { label: "Few times a month", value: "Few times a month" }
-    ];
-  
-    const handleKeysubstanceAbuseHistoryDataFrequencyCocaine = (event) => {
-      if (event.key === "Enter" && event.target.value) {
-        const inputValue = event.target.value.trim();
-     
-        const optionExists = optionsubstanceAbuseHistoryDataFrequencyCocaine.some(
-          (option) => option.value === inputValue
-        );
-  
-        if (!optionExists) {
-          const newOptions = 
-            
-            { value: inputValue, label: inputValue }
-        
-  
-          setSubstanceAbuseHistoryDataFrequencyCocaine(newOptions);
-  
-      
-        }
-  
-        event.target.value = "";
-      }
-    };
-  
-    const handlesubstanceAbuseHistoryDataFrequencyCocaine = (optionValue) => {
-      setSubstanceAbuseHistoryDataFrequencyCocaine(optionValue);
-    };
-  
-    // length of soberty
-    const optionsubstanceAbuseHistoryDataLengthOfSobrietyCocaine = [
-      { label: "One week", value: "One week" },
-      { label: "A few days ago", value: "A few days ago" },
-      { label: "One month", value: "One month" },
-      { label: "Two months", value: "Two months" },
-      { label: "Three months", value: "Three months" },
-      { label: "Four months", value: "Four months" },
-      { label: "Five to Six months", value: "Five to Six months" },
-      { label: "One year", value: "One year" },
-      { label: "Two years", value: "Two years" },
-      { label: "Many years", value: "Many years" }
-    ];
-  
-    const handleKeysubstanceAbuseHistoryDataLengthOfSobrietyCocaine = (event) => {
-      if (event.key === "Enter" && event.target.value) {
-        const inputValue = event.target.value.trim();
-  
-     
-        const optionExists = optionsubstanceAbuseHistoryDataLengthOfSobrietyCocaine.some(
-          (option) => option.value === inputValue
-        );
-  
-        if (!optionExists) {
-          const newOptions = 
-            
-            { value: inputValue, label: inputValue }
-          
-  
-          setSubstanceAbuseHistoryDataLengthOfSobrietyCocaine(newOptions);
-
-        }
-  
-        event.target.value = "";
-      }
-    };
-  
-    const handlesubstanceAbuseHistoryDataLengthOfSobrietyCocaine = (optionValue) => {
-      setSubstanceAbuseHistoryDataLengthOfSobrietyCocaine(optionValue);
-    };
-    
-      // 14
-    // last use
-    const optionsubstanceAbuseHistoryDataLastUseHallucinogens = [
-      { label: "Weeks ago", value: "Weeks ago" },
-      { label: "Days ago", value: "Days ago" },
-      { label: "Yesterday", value: "Yesterday" },
-      { label: "Months ago", value: "Months ago" },
-      { label: "Few hours ago", value: "Few hours ago" },
-      { label: "Unsure", value: "Unsure" }
-    ];
-  
-    const handleKeysubstanceAbuseHistoryDataLastUseHallucinogens = (event) => {
-      if (event.key === "Enter" && event.target.value) {
-        const inputValue = event.target.value.trim();
-  
-    //  
-        const optionExists = optionsubstanceAbuseHistoryDataLastUseHallucinogens.some(
-          (option) => option.value === inputValue
-        );
-  
-        if (!optionExists) {
-          const newOptions = 
-            
-            { value: inputValue, label: inputValue }
-          
-  
-          setSubstanceAbuseHistoryDataLastUseHallucinogens(newOptions);
-  
-        }
-  
-        event.target.value = "";
-      }
-    };
-  
-    const hnadlesubstanceAbuseHistoryDataLastUseHallucinogens = (optionValue) => {
-      setSubstanceAbuseHistoryDataLastUseHallucinogens(optionValue);
-    };
-  
-    // frequancy
-    const optionsubstanceAbuseHistoryDataFrequencyHallucinogens = [
-      { label: "Daily", value: "Daily" },
-      { label: "Two to four times weekly", value: "Two to four times weekly" },
-      { label: "Multiple times a day", value: "Multiple times a day" },
-      { label: "Chronic", value: "Chronic" },
-      { label: "Intermittent", value: "Intermittent" },
-      { label: "Only on social events", value: "Only on social events" },
-      { label: "Only on weekends", value: "Only on weekends" },
-      { label: "Few times a month", value: "Few times a month" }
-    ];
-  
-    const handleKeysubstanceAbuseHistoryDataFrequencyHallucinogens = (event) => {
-      if (event.key === "Enter" && event.target.value) {
-        const inputValue = event.target.value.trim();
-     
-        const optionExists = optionsubstanceAbuseHistoryDataFrequencyHallucinogens.some(
-          (option) => option.value === inputValue
-        );
-  
-        if (!optionExists) {
-          const newOptions = 
-            
-            { value: inputValue, label: inputValue }
-        
-  
-          setSubstanceAbuseHistoryDataFrequencyHallucinogens(newOptions);
-  
-      
-        }
-  
-        event.target.value = "";
-      }
-    };
-  
-    const handlesubstanceAbuseHistoryDataFrequencyHallucinogens = (optionValue) => {
-      setSubstanceAbuseHistoryDataFrequencyHallucinogens(optionValue);
-    };
-  
-    // length of soberty
-    const optionsubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens = [
-      { label: "One week", value: "One week" },
-      { label: "A few days ago", value: "A few days ago" },
-      { label: "One month", value: "One month" },
-      { label: "Two months", value: "Two months" },
-      { label: "Three months", value: "Three months" },
-      { label: "Four months", value: "Four months" },
-      { label: "Five to Six months", value: "Five to Six months" },
-      { label: "One year", value: "One year" },
-      { label: "Two years", value: "Two years" },
-      { label: "Many years", value: "Many years" }
-    ];
-  
-    const handleKeysubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens = (event) => {
-      if (event.key === "Enter" && event.target.value) {
-        const inputValue = event.target.value.trim();
-  
-     
-        const optionExists = optionsubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens.some(
-          (option) => option.value === inputValue
-        );
-  
-        if (!optionExists) {
-          const newOptions = 
-            
-            { value: inputValue, label: inputValue }
-          
-  
-          setSubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens(newOptions);
-
-        }
-  
-        event.target.value = "";
-      }
-    };
-  
-    const handlesubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens = (optionValue) => {
-      setSubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens(optionValue);
-    };
-
-    // 15 additional value
+    // 13 additional value
     const optionotherLastUse = [
       { label: "Weeks ago", value: "Weeks ago" },
       { label: "Days ago", value: "Days ago" },
@@ -7339,23 +4608,13 @@ setBhpTime(getApiData?.bhpInformation?.time);
     const handleOtherlengthOfSobrifty = (optionValue) => {
       setOtherLengthOfSobirty(optionValue);
     };
-
     
+
   return (
     <>
-      <div >
-        <div style={{ width: "20px" }} className="backbutton">
-          <IoArrowBackCircle
-            style={{
-              color: "#1A9FB2",
-              width: "40px",
-              height: "40px",
-              cursor: "pointer",
-            }}
-            onClick={() => navigate("/intake")}
-          />
-        </div>
-        <div className="Boss">
+      <div ref={componentRef} >
+       
+      <div className="Boss">
           <FormUpper setAssessmentType={setAssessmentType} assessmentType={assessmentType}/>
           <p style={{ marginTop: "0.5rem", marginBottom: "0"}}>
             <span>
@@ -7374,7 +4633,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                <AutoSize value={assessmentOn} setValue={setAssessmentOn} placeholder={"_______________"}/>
             </span>
           </p>
-          <form onSubmit={handleSubmit} style={{ marginTop: "0.5rem " }}>
+          <form  style={{ marginTop: "0.5rem " }}>
             <h5 style={{ textAlign: "center", fontWeight: "bold" }}>
               SECTION I
             </h5>
@@ -7389,6 +4648,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       type="text"
                       id="residentFullName"
                       className="borderless_input"
+                      style={{borderBottom:'none',marginBottom:"3px"}}
                       value={residentName}
                       placeholder="Enter full name"
                       required
@@ -7441,6 +4701,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       type="date"
                       id="dateOfBirth"
                       className="borderless_input"
+                      style={{borderBottom:'none',marginBottom:"5px"}}
                       value={dob}
                       placeholder="DD/MM/YYYY"
                       required
@@ -7451,6 +4712,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     <label>Admission Date:</label>
                     <input
                       type="date"
+                       style={{borderBottom:'none',marginBottom:"5px"}}
                       value={dateOfAssessment}
                       placeholder="Enter Date"
                       required
@@ -7465,13 +4727,13 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     id="AHCCCS"
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     value={ahcccsNumber}
                     placeholder="Enter text"
                     required
                     onChange={(e) => setAhcccsNumber(e.target.value)}
                   />
                 </div>
-
                 <div className="border-bootom-line"></div>
 
                 <div className="form-field-update">
@@ -7481,6 +4743,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     </label>
                     <input
                       type="text"
+                      style={{borderBottom:'none',marginBottom:"5px"}}
                       required
                       value={preferredLanguage}
                       onChange={(e) => setPreferredLanguage(e.target.value)}
@@ -7491,6 +4754,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     <label htmlFor="ethnicity">Ethnicity: </label>
                     <input
                       type="text"
+                      style={{borderBottom:'none',marginBottom:"5px"}}
                       required
                       value={ethnicity}
                       onChange={(e) => setEthnicity(e.target.value)}
@@ -7519,6 +4783,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     required
+                    style={{borderBottom:'none'}}
                     value={programLocation}
                     onChange={(e) => setProgramLocation(e.target.value)}
                   />
@@ -7533,6 +4798,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       type="text"
                       id="attorneystatus"
                       value={guardianship}
+                      style={{borderBottom:'none',marginBottom:"5px"}}
                       placeholder="Enter text"
                       required
                       onChange={(e) => setGuardianship(e.target.value)}
@@ -7547,6 +4813,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     <input
                       type="text"
                       id="attorneystatus"
+                      style={{borderBottom:'none',marginBottom:"5px"}}
                       value={powerOfAttorneyStatus}
                       placeholder="Enter text"
                       required
@@ -7564,6 +4831,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     type="date"
                     id="todaydate"
                     value={todayDate}
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     placeholder="DD/MM/YYYY"
                     required
                     onChange={(e) => setTodayDate(e.target.value)}
@@ -7578,6 +4846,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     type="text"
                     id="fidname"
                     value={guardianshipPoaPubFidName}
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     placeholder="Enter name"
                     required
                     onChange={(e) =>
@@ -7592,6 +4861,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     type="text"
                     id="approvedby"
                     value={approvedBy}
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     placeholder="Enter text"
                     required
                     onChange={(e) => setApprovedBy(e.target.value)}
@@ -7620,6 +4890,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     id="approvedby"
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     value={residentGoals}
                     placeholder="Enter goal"
                     required
@@ -7647,6 +4918,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     id="approvedby"
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     value={residentLimitations}
                     placeholder="Enter text"
                     required
@@ -7664,6 +4936,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     value={currentBehavioralIssues}
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     placeholder="Enter text"
                     onChange={(e) => setCurrentBehavioralIssues(e.target.value)}
                   />
@@ -7685,7 +4958,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   A. Currently prescribed medications are attached on a separate
                   page.
                 </p>
-                <p >
+                <p style={{ fontWeight: "bold" }}>
                   B. Current and Past Medical/Psychiatric Conditions.
                 </p>
               </div>
@@ -7698,7 +4971,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       <th>Yes</th>
                       <th>No</th>
                       <th>Comments</th>
-                      <th>Delete</th>
+                     
                     </thead>
                     <tbody>
 
@@ -7742,16 +5015,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
-                        <td>
-<AiFillDelete
-        onClick={() => setConditions1(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>
-
                       </tr>
                       }
                      
@@ -7796,15 +5059,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           }}
                         />
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setConditions2(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>
+              
                     </tr>
                      }
                      
@@ -7849,15 +5104,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           }}
                         />
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setConditions3(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>
+                
                     </tr>
                      }
                      
@@ -7902,15 +5149,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           }}
                         />
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setConditions4(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>
+                 
                     </tr>
                      }
 
@@ -7955,15 +5194,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           }}
                         />
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setConditions5(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>
+               
                     </tr>
                      }
                     
@@ -8008,15 +5239,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           }}
                         />
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setConditions6(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>
+            
                     </tr>
                      }
                      {
@@ -8060,15 +5283,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           }}
                         />
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setConditions7(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>
+        
                     </tr>
                      }
 {
@@ -8112,15 +5327,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
       }}
     />
   </td>
-  <td>
-<AiFillDelete
-        onClick={() => setConditions8(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>
+ 
 </tr>
 }
                   {
@@ -8152,15 +5359,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         onKeyDown={handleKeyThyroidDisorder}
                       />
                     </td>
-                    <td>
-<AiFillDelete
-        onClick={() => setConditions9(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>
+               
                   </tr>
                   }    
                       
@@ -8200,15 +5399,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           }}
                         />
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setConditions10(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>
+                  
                     </tr> 
                      }
 
@@ -8253,15 +5444,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           }}
                         />
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setConditions11(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>
+                   
                     </tr>
                      }
                        
@@ -8307,15 +5490,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
-                        <td>
-<AiFillDelete
-        onClick={() => setConditions12(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>
+                    
                       </tr>
                       }
                      
@@ -8362,15 +5537,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           }}
                         />
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setConditions13(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>
+               
                     </tr>
                      }
                       
@@ -8417,15 +5584,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
-                        <td>
-<AiFillDelete
-        onClick={() => setConditions14(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>
+                  
                       </tr>
                       }
                     
@@ -8472,15 +5631,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           }}
                         />
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setConditions15(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+                  
                     </tr>
                     }
 
@@ -8527,15 +5678,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           }}
                         />
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setConditions16(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+                  
                     </tr>
                     }
                      
@@ -8582,15 +5725,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           }}
                         />
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setConditions17(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+             
                     </tr>
                      }
                       
@@ -8635,15 +5770,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
-                        <td>
-<AiFillDelete
-        onClick={() => setConditions18(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+                    
                       </tr>
                       }
 
@@ -8690,15 +5817,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
-                        <td>
-<AiFillDelete
-        onClick={() => setConditions19(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+               
                       </tr>
                       }
                 
@@ -8743,15 +5862,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       }}
                     />
                   </td>
-                  <td>
-<AiFillDelete
-        onClick={() => setConditions20(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+            
                 </tr>
                 }
 
@@ -8798,15 +5909,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       }}
                     />
                   </td>
-                  <td>
-<AiFillDelete
-        onClick={() => setConditions21(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+             
                 </tr>
                 }
                       
@@ -8853,15 +5956,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           }}
                         />
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setConditions22(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+               
                     </tr>
                      }
                       
@@ -8908,15 +6003,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                            }}
                          />
                        </td>
-                       <td>
-<AiFillDelete
-        onClick={() => setConditions23(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+                 
                      </tr>
                       }
                      
@@ -8961,15 +6048,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           }}
                         />
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setConditions24(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+                
                     </tr>
                      }
 
@@ -9016,15 +6095,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           }}
                         />
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setConditions25(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+                 
                     </tr>
                      }
 
@@ -9058,15 +6129,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           onKeyDown={handleKeyInfectionDiseases}
                         />
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setConditions26(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>  
+                    
                     </tr>
                      }
                     
@@ -9074,64 +6137,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       {
                           otherConditionArray.map((i,index)=><tr key={index}>
                             <td>{i.condition}</td>
-                           <td><input type="checkbox" checked={i?.yes===true} /></td>
-                           <td><input type="checkbox" checked={i?.yes===false} /></td>
-                            <td style={{paddingLeft:'20px',fontWeight:"500"}}>{i?.comments}</td>
-                            <td>
-<AiFillDelete
-        onClick={() => ConditionDelete(index)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>
+                           <td><input type="checkbox" checked={i.yes===true} /></td>
+                           <td><input type="checkbox" checked={i.yes===false} /></td>
+                            <td style={{paddingLeft:'20px',fontWeight:"500"}}>{i.comments}</td>
                           </tr>)
                         
                       }
-                      <tr>
-                        <td>Other: <input type="text" className="treatment_plan_table"
-                        value={OtherConditionOther} onChange={(e)=>setOtherConditionOther(e.target.value)} placeholder="___________"/></td>
-                        <td>
-                          <input
-                            type="checkbox"
-                          
-                            checked={otherConditionYesNO === true}
-                            onChange={() => setOtherConditionYesNo(true)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                   
-                            checked={otherConditionYesNO === false}
-                            onChange={() => setOtherConditionYesNo(false)}
-                          />
-                        </td>
-                        <td>
-                          <textarea
-                            style={{
-                              border: "none",
-                              outline: "none",
-                              resize: "none",
-                            }}
-                            rows={Math.max((otherConditionDiscription ? otherConditionDiscription.split("\n").length : 1), 1)}
-                            value={otherConditionDiscription || ''}
-                           
-                            placeholder="___________"
-                            onChange={(e) => setOtherConditionDiscription(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setOtherConditionDiscription(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
-                    
                       
                     </tbody>
                   </table>
@@ -9319,7 +6330,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                      <label style={{ fontWeight: "bold" }}>
                     Substance Abuse history:
                   </label>
-                   
+                
                 
                 </div>
                   
@@ -9352,7 +6363,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       <th style={{ fontWeight: "bold" }}>Last Use</th>
                       <th style={{ fontWeight: "bold" }}>Frequency </th>
                       <th style={{ fontWeight: "bold" }}>Length of Sobriety</th>
-                      <th style={{ fontWeight: "bold" }}>Delete</th>
+                   
                     </thead>
                     <tbody>
                       {
@@ -9374,47 +6385,22 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                        <Select
-                  value={substanceAbuseHistoryDataLastUseAlcohol}
-                  onChange={handlersubstanceAbuseHistoryDataLastUseAlcohol}
-                  options={selectedsubstanceAbuseHistoryDataLastUseAlcohol}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseAlcohol}
-                />  
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseAlcohol?.value}/>
+                     
                         </td>
                               
                         <td>
-                        <Select
-                  value={substanceAbuseHistoryDataFrequencyAlcohol}
-                  onChange={handlersubstanceAbuseHistoryDataFrequencyAlcohol}
-                  options={selectedsubstanceAbuseHistoryDataFrequencyAlcohol}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyAlcohol}
-                />
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyAlcohol?.value}/>
+                      
 
                          
                         </td>
                         <td>
-
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyAlcohol}
-                  onChange={handlersubstanceAbuseHistoryDataLengthOfSobrietyAlcohol}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyAlcohol}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyAlcohol}
-                />
-
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyAlcohol?.value}/>
+                     
                          
                         </td>
-                        <td>
-<AiFillDelete
-        onClick={() => setType1(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>  
+                 
                       </tr>
                       }
                      
@@ -9437,50 +6423,23 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataLastUseBenzodiazepines}
-                onChange={handlesubstanceAbuseHistoryDataLastUseBenzodiazepines}
-                options={optionsubstanceAbuseHistoryDataLastUseBenzodiazepines}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseBenzodiazepines}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseBenzodiazepines?.value}/>
+                    
                        
                       </td>
                       <td>
-
-                        <Select
-                
-                value={substanceAbuseHistoryDataFrequencyBenzodiazepines}
-                onChange={handlesubstanceAbuseHistoryDataFrequencyBenzodiazepines}
-                options={optionsubstanceAbuseHistoryDataFrequencyBenzodiazepines}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyBenzodiazepines}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyBenzodiazepines?.value}/>
+                      
 
                        
                       </td>
                       <td>
-                        <Select
-                value={substanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
-                
-                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
-                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines?.value}/>
+                   
 
                      
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setType2(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+                  
                  
                     </tr>
                      }
@@ -9502,48 +6461,23 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataLastUseCrack}
-                onChange={handlesubstanceAbuseHistoryDataLastUseCrack}
-                options={optionsubstanceAbuseHistoryDataLastUseCrack}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseCrack}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseCrack?.value}/>
+                      
                      
                       </td>
                       <td>
-                        <Select
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyCrack?.value}/>
                 
-                value={substanceAbuseHistoryDataFrequencyCrack}
-                onChange={handlesubstanceAbuseHistoryDataFrequencyCrack}
-                options={optionsubstanceAbuseHistoryDataFrequencyCrack}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyCrack}
-              />
 
                         
                       </td>
                       <td>
-                        <Select
-                value={substanceAbuseHistoryDataLengthOfSobrietyCrack}
-                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyCrack}
-                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyCrack}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyCrack}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyCrack?.value}/>
+                   
 
                        
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setType3(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+                   
                     </tr>
                      }
                       
@@ -9564,49 +6498,22 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseHeroin}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseHeroin}
-                  options={optionsubstanceAbuseHistoryDataLastUseHeroin}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseHeroin}
-                />
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseHeroin?.value}/>
+                    
                         
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyHeroin}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyHeroin}
-                  options={optionsubstanceAbuseHistoryDataFrequencyHeroin}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyHeroin}
-                />
-
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyHeroin?.value}/>
+                    
                          
                         </td>
                         <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyHeroin}
-                  
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyHeroin}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyHeroin}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyHeroin}
-                />
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyHeroin?.value}/>
+                    
 
                          
                         </td>
-                        <td>
-<AiFillDelete
-        onClick={() => setType4(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>  
+                     
                       </tr>
                       }
                      
@@ -9629,48 +6536,22 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataLastUseInhalants}
-                onChange={handlesubstanceAbuseHistoryDataLastUseInhalants}
-                options={optionsubstanceAbuseHistoryDataLastUseInhalants}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseInhalants}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseInhalants?.value}/>
+                     
                        
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataFrequencyInhalants}
-                onChange={handlesubstanceAbuseHistoryDataFrequencyInhalants}
-                options={optionsubstanceAbuseHistoryDataFrequencyInhalants}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyInhalants}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyInhalants?.value}/>
+                    
 
                     
                       </td>
                       <td>
-                        <Select
-                value={substanceAbuseHistoryDataLengthOfSobrietyInhalants}
-                
-                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
-                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyInhalants}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyInhalants?.value}/>
+                   
 
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setType5(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+              
                     </tr>
                      }
 
@@ -9693,49 +6574,22 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataLastUseMarijuana}
-                onChange={handlesubstanceAbuseHistoryDataLastUseMarijuana}
-                options={optionsubstanceAbuseHistoryDataLastUseMarijuana}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMarijuana}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseMarijuana?.value}/>
+                    
                       
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataFrequencyMarijuana}
-                onChange={handlesubstanceAbuseHistoryDataFrequencyMarijuana}
-                options={optionsubstanceAbuseHistoryDataFrequencyMarijuana}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMarijuana}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyMarijuana?.value}/>
+                    
 
                       
                       </td>
                       <td>
-                        <Select
-                value={substanceAbuseHistoryDataLengthOfSobrietyMarijuana}
-                
-                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
-                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMarijuana}
-              />
-
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyMarijuana?.value}/>
+                     
                        
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setType6(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>  
+               
                     </tr>
                      }
                     
@@ -9758,47 +6612,20 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseMethamphetamine}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseMethamphetamine}
-                  options={optionsubstanceAbuseHistoryDataLastUseMethamphetamine}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMethamphetamine}
-                />
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseMethamphetamine?.value}/>
+                       
                          
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyMethamphetamine}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyMethamphetamine}
-                  options={optionsubstanceAbuseHistoryDataFrequencyMethamphetamine}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMethamphetamine}
-                />
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyMethamphetamine?.value}/>
+                      
 
                         </td>
                         <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyMethamphetamine}
-                  
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMethamphetamine}
-                />
-
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyMethamphetamine?.value}/>
+                     
                         </td>
-                        <td>
-<AiFillDelete
-        onClick={() => setType7(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>  
+              
                       </tr>
                       }
 
@@ -9821,49 +6648,22 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseMethadone}
-                  onChange={handlesubstanceAbuseHistoryDataLastUseMethadone}
-                  options={optionsubstanceAbuseHistoryDataLastUseMethadone}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMethadone}
-                />
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseMethadone?.value}/>
+                     
                          
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyMethadone}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyMethadone}
-                  options={optionsubstanceAbuseHistoryDataFrequencyMethadone}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMethadone}
-                />
-
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyMethadone?.value}/>
+                     
                          
                         </td>
                         <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyMethadone}
-                  
-                  onChange={hnadlesubstanceAbuseHistoryDataLengthOfSobrietyMethadone}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMethadone}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMethadone}
-                />
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyMethadone?.value}/>
+                     
 
                         
                         </td>
-                        <td>
-<AiFillDelete
-        onClick={() => setType8(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>  
+                
                       </tr>
                       }
                     
@@ -9884,47 +6684,20 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataLastUseMDMA}
-                onChange={handlesubstanceAbuseHistoryDataLastUseMDMA}
-                options={optionsubstanceAbuseHistoryDataLastUseMDMA}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseMDMA}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseMDMA?.value}/>
+                   
                       
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataFrequencyMDMA}
-                onChange={handlesubstanceAbuseHistoryDataFrequencyMDMA}
-                options={optionsubstanceAbuseHistoryDataFrequencyMDMA}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyMDMA}
-              />
-                      
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyMDMA?.value}/>
+                        
                       </td>
                       <td>
-                        <Select
-                value={substanceAbuseHistoryDataLengthOfSobrietyMDMA}
-                
-                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
-                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyMDMA}
-              />
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyMDMA?.value}/>
+                     
 
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setType9(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>  
+              
                     </tr>
                      }
                      
@@ -9945,48 +6718,23 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataLastUsePCP}
-                onChange={hnadlesubstanceAbuseHistoryDataLastUsePCP}
-                options={optionsubstanceAbuseHistoryDataLastUsePCP}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUsePCP}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUsePCP?.value}/>
+                     
                         
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataFrequencyPCP}
-                onChange={handlesubstanceAbuseHistoryDataFrequencyPCP}
-                options={optionsubstanceAbuseHistoryDataFrequencyPCP}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyPCP}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyPCP?.value}/>
+                  
 
                         
                       </td>
                       <td>
-                        <Select
-                value={substanceAbuseHistoryDataLengthOfSobrietyPCP}
-                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyPCP}
-                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyPCP}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyPCP}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyPCP?.value}/>
+                  
 
                         
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setType10(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>  
+                
                     </tr>
                      }
                      
@@ -10009,49 +6757,23 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataLastUsePrescription}
-                onChange={handlesubstanceAbuseHistoryDataLastUsePrescription}
-                options={optionsubstanceAbuseHistoryDataLastUsePrescription}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUsePrescription}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUsePrescription?.value}/>
+                 
                         
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataFrequencyPrescription}
-                onChange={handlesubstanceAbuseHistoryDataFrequencyPrescription}
-                options={optionsubstanceAbuseHistoryDataFrequencyPrescription}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyPrescription}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyPrescription?.value}/>
+                   
 
                         
                       </td>
                       <td>
-                        <Select
-                value={substanceAbuseHistoryDataLengthOfSobrietyPrescription}
-                
-                onChange={hnadlesubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
-                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyPrescription}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyPrescription?.value}/>
+                  
 
                        
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setType11(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>  
+                 
                     </tr>
                      }
 
@@ -10072,46 +6794,21 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataLastUseOTC}
-                onChange={hnadlesubstanceAbuseHistoryDataLastUseOTC}
-                options={optionsubstanceAbuseHistoryDataLastUseOTC}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseOTC}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseOTC?.value}/>
+                      
                        
                       </td>
                       <td>
-                        <Select
-                
-                value={substanceAbuseHistoryDataFrequencyOTC}
-                onChange={handlesubstanceAbuseHistoryDataFrequencyOTC}
-                options={optionsubstanceAbuseHistoryDataFrequencyOTC}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyOTC}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyOTC?.value}/>
+                   
 
                        
                       </td>
                       <td>
-                        <Select
-                value={substanceAbuseHistoryDataLengthOfSobrietyOTC}
-                onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyOTC}
-                options={optionsubstanceAbuseHistoryDataLengthOfSobrietyOTC}
-                isCreatable={true}
-                onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyOTC}
-              />
+                      <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyOTC?.value}/>
+                 
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setType12(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>  
+           
                     </tr>
                      }
 
@@ -10133,49 +6830,23 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseCocaine}
-                  onChange={hnadlesubstanceAbuseHistoryDataLastUseCocaine}
-                  options={optionsubstanceAbuseHistoryDataLastUseCocaine}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseCocaine}
-                />
+
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseCocaine?.value}/>
                         
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyCocaine}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyCocaine}
-                  options={optionsubstanceAbuseHistoryDataFrequencyCocaine}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyCocaine}
-                />
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyCocaine?.value}/>
+                         
 
                          
                         </td>
                         <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyCocaine}
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyCocaine?.value}/>
                   
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyCocaine}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyCocaine}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyCocaine}
-                />
 
                          
                         </td>
-                        <td>
-<AiFillDelete
-        onClick={() => setType13(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>  
+                     
                       </tr>
                       }
 
@@ -10196,128 +6867,36 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataLastUseHallucinogens}
-                  onChange={hnadlesubstanceAbuseHistoryDataLastUseHallucinogens}
-                  options={optionsubstanceAbuseHistoryDataLastUseHallucinogens}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLastUseHallucinogens}
-                />
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLastUseHallucinogens?.value}/>
+                     
                         
                         </td>
                         <td>
-                          <Select
-                  
-                  value={substanceAbuseHistoryDataFrequencyHallucinogens}
-                  onChange={handlesubstanceAbuseHistoryDataFrequencyHallucinogens}
-                  options={optionsubstanceAbuseHistoryDataFrequencyHallucinogens}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataFrequencyHallucinogens}
-                />
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataFrequencyHallucinogens?.value}/>
+                   
 
                          
                         </td>
                         <td>
-                          <Select
-                  value={substanceAbuseHistoryDataLengthOfSobrietyHallucinogens}
-                  
-                  onChange={handlesubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens}
-                  options={optionsubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens}
-                  isCreatable={true}
-                  onKeyDown={handleKeysubstanceAbuseHistoryDataLengthOfSobrietyHallucinogens}
-                />
-
+                        <input type="text" style={{border: "none"}} value={substanceAbuseHistoryDataLengthOfSobrietyHallucinogens?.value}/>
                          
                         </td>
-                        <td>
-<AiFillDelete
-        onClick={() => setType14(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>  
+                    
                       </tr>
                       }
                      
 
-                      {typeArray?.map((i,index) => (
-                        <tr key={index}>
+                      {typeArray?.map((i) => (
+                        <tr>
                           <td>{i.types}</td>
                           <td>{i.ageOfFirstUse} </td>
                           <td>{i.lastUse} </td>
                           <td>{i.frequency} </td>
                           <td>{i.lengthOfSobriety} </td>
-                          <td>
-<AiFillDelete
-        onClick={() => TypeDelete(index)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td>  
                         </tr>
                       ))}
 
-                      <tr >
-                        <td>
-                          Other:
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={otherTypeOther}
-                            onChange={(e) => setOtherTypeOther(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            className="treatment_plan_table"
-                            placeholder="_________"
-                            value={otherAgeOfFirstUse}
-                            onChange={(e) =>
-                              setOtherAgeOfFirstUse(e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                        <Select
-                  value={otherLastUse}
-                  
-                  onChange={handleotherLastUse}
-                  options={optionotherLastUse}
-                  isCreatable={true}
-                  onKeyDown={handleKeyotherLastUse}
-                />
-          
-                        </td>
-                        <td>
-                        <Select
-                  value={otherFrequancy}
-                  
-                  onChange={handleotherFrequancy}
-                  options={optionotherFrequancy}
-                  isCreatable={true}
-                  onKeyDown={handleKeyotherFrequancy}
-                />
-                        </td>
-                        <td>
-
-                        <Select
-                  value={OtherlengthOfSobrifty}
-                  
-                  onChange={handleOtherlengthOfSobrifty}
-                  options={optionOtherlengthOfSobrifty}
-                  isCreatable={true}
-                  onKeyDown={handleKeyOtherlengthOfSobrifty}
-                />
-                     
-                        </td>
-                      </tr>
+                    
                     </tbody>
                   </table>
                 </div>
@@ -12304,9 +8883,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </div>
               </div>
 
-          
-              <div className="formsheading">
-                <h6 style={{ fontWeight: "bold" }}>Significant Social/Developmental History:</h6>
+              <div className="form-field">
+                <label style={{ fontWeight: "bold" }}>
+                  Significant Social/Developmental History:
+                </label>
               </div>
 
               <div className="box-image-container">
@@ -12315,6 +8895,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     id="approvedby"
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     value={significantSocialDevelopmentalHistory}
                     placeholder="Enter "
                     required
@@ -12325,11 +8906,13 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 </div>
               </div>
 
-              <div className="formsheading">
-                <h6 style={{ fontWeight: "bold" }}>Educational history:</h6>
+              <div
+                className="form-field-single-update"
+                style={{ merginLeft: "10px",marginTop:"0.5rem" }}
+              >
+                <label>Educational history:</label>
+              
               </div>
-
-           
 
               <div className="form-field-update">
                 <div className="form-field-child">
@@ -12338,6 +8921,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     type="text"
                     value={highestEducation}
                     placeholder="Enter education"
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     required
                     onChange={(e) => setHighestEducation(e.target.value)}
                   />
@@ -12357,8 +8941,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     <div className="checkboxitem-update">
                       <input
                         type="checkbox"
-                        name=""
-                        id=""
+                        
                         checked={specialEducation === true}
                         onChange={() => setSpecialEducation(true)}
                       />
@@ -12387,8 +8970,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     <div className="checkboxitem-update">
                       <input
                         type="checkbox"
-                        name=""
-                        id=""
+                       
                         checked={currentStudent === true}
                         onChange={() => setCurrentStudent(true)}
                       />
@@ -12410,12 +8992,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     type="text"
                     value={ifYesWhere}
                     placeholder="Enter text"
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     required
                     onChange={(e) => setIfYesWhere(e.target.value)}
                   />
                 </div>
               </div>
-
               <div className="formsheading">
                 <h6 style={{ fontWeight: "bold" }}>Employment history:</h6>
               </div>
@@ -12453,6 +9035,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   </label>
                   <input
                     type="text"
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     required
                     value={employmentLocation}
                     placeholder="Enter text"
@@ -12468,6 +9051,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     placeholder="Enter text"
+                    style={{borderBottom:'none',marginBottom:"5px"}}
                     value={workHistory}
                     onChange={(e) => setWorkHistory(e.target.value)}
                   />
@@ -12558,7 +9142,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         <th>Not so good</th>
                         <th>Need assist</th>
                         <th>Comments</th>
-                        <th>Delete</th>
+                
                       </tr>
                     </thead>
                     <tbody>
@@ -12589,7 +9173,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <select
+                          {
+                            BathingGoodNeedAssist ? <p>True</p>: <p>False</p>
+                          }
+                          {/* <select
                             value={BathingGoodNeedAssist}
                             onChange={(e) =>
                               setBathingGoodNeedAssist(e.target.value)
@@ -12598,7 +9185,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option disabled>Select value</option>
                             <option value={true}>Yes</option>
                             <option value={false}>No</option>
-                          </select>
+                          </select> */}
                         </td>
                         <td>
                           <textarea
@@ -12622,15 +9209,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
-                        <td>
-<AiFillDelete
-        onClick={() => setIndependent1(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+                        
                       </tr>
                       }
                     
@@ -12662,7 +9241,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <select
+                      {
+                            GroomingGoodNeedAssist ? <p>True</p>: <p>False</p>
+                          }
+                        {/* <select
                           value={GroomingGoodNeedAssist}
                           onChange={(e) =>
                             setGroomingGoodNeedAssist(e.target.value)
@@ -12671,7 +9253,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           <option disabled>Select value</option>
                           <option value={true}>Yes</option>
                           <option value={false}>No</option>
-                        </select>
+                        </select> */}
                       </td>
                       <td>
                         <textarea
@@ -12698,15 +9280,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           }}
                         />
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setIndependent2(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+                      
                     </tr>
                     }
                       {
@@ -12736,7 +9310,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <select
+                        {
+                            MobilityGoodNeedAssist ? <p>True</p>: <p>False</p>
+                          }
+                          {/* <select
                             value={MobilityGoodNeedAssist}
                             onChange={(e) =>
                               setMobilityGoodNeedAssist(e.target.value)
@@ -12745,7 +9322,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option disabled>Select value</option>
                             <option value={true}>Yes</option>
                             <option value={false}>No</option>
-                          </select>
+                          </select> */}
                         </td>
                         <td>
                           <textarea
@@ -12772,15 +9349,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
-                        <td>
-<AiFillDelete
-        onClick={() => setIndependent3(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+                     
                       </tr>
                       }
 
@@ -12811,7 +9380,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <select
+                        {
+                            HouseworkGoodNeedAssist ? <p>True</p>: <p>False</p>
+                          }
+                          {/* <select
                             value={HouseworkGoodNeedAssist}
                             onChange={(e) =>
                               setHouseworkGoodNeedAssist(e.target.value)
@@ -12820,7 +9392,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option disabled>Select value</option>
                             <option value={true}>Yes</option>
                             <option value={false}>No</option>
-                          </select>
+                          </select> */}
                         </td>
                         <td>
                           <textarea
@@ -12847,15 +9419,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
-                        <td>
-<AiFillDelete
-        onClick={() => setIndependent4(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+                    
                       </tr>
                       }
                    
@@ -12886,7 +9450,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       />
                     </td>
                     <td>
-                      <select
+                    {
+                            ShoppingGoodNeedAssist ? <p>True</p>: <p>False</p>
+                          }
+                      {/* <select
                         value={ShoppingGoodNeedAssist}
                         onChange={(e) =>
                           setShoppingGoodNeedAssist(e.target.value)
@@ -12895,7 +9462,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         <option disabled>Select value</option>
                         <option value={true}>Yes</option>
                         <option value={false}>No</option>
-                      </select>
+                      </select> */}
                     </td>
                     <td>
                       <textarea
@@ -12922,15 +9489,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         }}
                       />
                     </td>
-                    <td>
-<AiFillDelete
-        onClick={() => setIndependent5(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+                
                   </tr>
                    }
                     
@@ -12962,7 +9521,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <select
+                      {
+                            ManagingGoodNeedAssist ? <p>True</p>: <p>False</p>
+                          }
+                        {/* <select
                           value={ManagingGoodNeedAssist}
                           onChange={(e) =>
                             setManagingGoodNeedAssist(e.target.value)
@@ -12971,7 +9533,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           <option disabled>Select value</option>
                           <option value={true}>Yes</option>
                           <option value={false}>No</option>
-                        </select>
+                        </select> */}
                       </td>
                       <td>
                         <textarea
@@ -12998,15 +9560,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           }}
                         />
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setIndependent6(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+                     
                     </tr>
                     }
                     
@@ -13038,7 +9592,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <select
+                      {
+                            PreparingGoodNeedAssist ? <p>True</p>: <p>False</p>
+                          }
+                        {/* <select
                           value={PreparingGoodNeedAssist}
                           onChange={(e) =>
                             setPreparingGoodNeedAssist(e.target.value)
@@ -13047,7 +9604,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           <option disabled>Select value</option>
                           <option value={true}>Yes</option>
                           <option value={false}>No</option>
-                        </select>
+                        </select> */}
                       </td>
                       <td>
                         <textarea
@@ -13074,15 +9631,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           }}
                         />
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setIndependent7(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+                   
                     </tr>
                     }
                       
@@ -13114,7 +9663,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           />
                         </td>
                         <td>
-                          <select
+                        {
+                            EatingGoodNeedAssist ? <p>True</p>: <p>False</p>
+                          }
+                          {/* <select
                             value={EatingGoodNeedAssist}
                             onChange={(e) =>
                               setEatingGoodNeedAssist(e.target.value)
@@ -13123,7 +9675,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <option disabled>Select value</option>
                             <option value={true}>Yes</option>
                             <option value={false}>No</option>
-                          </select>
+                          </select> */}
                         </td>
                         <td>
                           <textarea
@@ -13149,15 +9701,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
-                        <td>
-<AiFillDelete
-        onClick={() => setIndependent8(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+                      
                       </tr>
                       }
                      
@@ -13188,7 +9732,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <select
+                      {
+                            ToiletingGoodNeedAssist ? <p>True</p>: <p>False</p>
+                          }
+                        {/* <select
                           value={ToiletingGoodNeedAssist}
                           onChange={(e) =>
                             setToiletingGoodNeedAssist(e.target.value)
@@ -13198,7 +9745,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                          
                           <option value={true}>Yes</option>
                           <option value={false}>No</option>
-                        </select>
+                        </select> */}
                       </td>
                       <td>
                         <textarea
@@ -13225,15 +9772,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           }}
                         />
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setIndependent9(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+                  
                     </tr>
                      }
 
@@ -13264,17 +9803,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
                       <td>
-                        <select
-                          value={TakingGoodNeedAssist}
-                          onChange={(e) =>
-                            setTakingGoodNeedAssist(e.target.value)
+                      {
+                            TakingGoodNeedAssist ? <p>True</p>: <p>False</p>
                           }
-                        >
-                          <option disabled>Select value</option>
-                         
-                          <option value={true}>Yes</option>
-                          <option value={false}>No</option>
-                        </select>
+                      
                       </td>
                       <td>
                         <textarea
@@ -13301,19 +9833,9 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           }}
                         />
                       </td>
-                      <td>
-<AiFillDelete
-        onClick={() => setIndependent10(false)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+                 
                     </tr>
                      }
-
-                     
                     
                      
 
@@ -13337,109 +9859,17 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             {` ${i.needAssist === true ? "Yes" : "No"}`}{" "}
                           </td>
                           <td style={{paddingLeft:"20px"}}> {i.comments} </td>
-                          <td>
-<AiFillDelete
-        onClick={() => IndependentDelete(index)}
-        style={{
-          fontSize: "1.5rem",
-          cursor: "pointer",
-        }}
-      />
-</td> 
+                       
                         </tr>
                       ))}
-                      <tr>
-                        <td>
-                          Other:{" "}
-                          <input
-                            type="text"
-                            placeholder="___________"
-                            className="treatment_plan_table"
-                            value={otherCurrentOther}
-                            onChange={(e) =>
-                              setOtherCurrentOther(e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={otherCurrentGood}
-                            onChange={(e) =>
-                              setOtherCurrentGood(!otherCurrentGood)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={otherCurrentFair}
-                            onChange={(e) =>
-                              setOtherCurrentFair(!otherCurrentFair)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={otherCurrentNotSoGood}
-                            onChange={(e) =>
-                              setOtherCurrentNotSoGood(!otherCurrentNotSoGood)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <select
-                            value={otherCurrentNeed}
-                            onChange={(e) =>
-                              setOtherCurrentNeed(e.target.value)
-                            }
-                          >
-                            <option>Select</option>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                          </select>
-                        </td>
-                        <td>
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              otherCurrentComment
-                                ?  otherCurrentComment.split("\n").length
-                                : 1,
-                              1
-                            )}
-                            value={ otherCurrentComment || ""}
-                           
-                            placeholder="___________"
-                            onChange={(e) =>
-                              setOtherCurrentComment(e.target.value)
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setOtherCurrentComment(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
+                    
                     </tbody>
                   </table>
                 </div>
               </div>
 
-              <div className="form-actions  hidePrint">
-                <button
-                  type="button"
-                  className="safetybutton"
-                  onClick={handleRiskFactorActivity}
-                >
-                  Add
-                </button>
-              </div>
+
+         
 
 
               <div className="box-image-container">
@@ -13448,7 +9878,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     placeholder="Enter text"
-                    
+                    required
+                    style={{borderBottom:'none'}}
                     value={triggers}
                     onChange={(e) => setTriggers(e.target.value)}
                   />
@@ -13457,7 +9888,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   className="yeschechboxFall-risk"
                   style={{ marginTop: "0.5rem", marginLeft: "10px" }}
                 >
-                  <label style={{fontWeight:"bold"}}>Fall risk:</label>
+                  <label htmlFor="">Fall risk:</label>
                   <div
                     style={{
                       display: "flex",
@@ -13494,6 +9925,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     id="approvedby"
+                    style={{borderBottom:'none'}}
                     value={fallRiskExplanation}
                     placeholder="Enter text"
                     
@@ -13508,6 +9940,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     id="approvedby"
+                    style={{borderBottom:'none'}}
                     value={hobbiesLeisureActivities}
                     placeholder="Enter text"
                     
@@ -13764,7 +10197,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         <th>Yes</th>
                         <th>No</th>
                         <th>Comments</th>
-                        <th>Delete</th>
+                      
                       </tr>
                     </thead>
                     <tbody>
@@ -13788,15 +10221,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setRiskComment(e.target.value)}}
                           />
                         </td>
-                        <td>
-                        <AiFillDelete
-                                onClick={() => setRiskFactor1(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+                     
                       </tr>
                       }
 
@@ -13820,15 +10245,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setPriorComment(e.target.value)}}
                           />
                         </td>
-                        <td>
-                        <AiFillDelete
-                                onClick={() => setRiskFactor2(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+                   
                       </tr>
                       }
                      
@@ -13853,15 +10270,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           onChange={(e)=>{setAccessComment(e.target.value)}}
                         />
                       </td>
-                      <td>
-                        <AiFillDelete
-                                onClick={() => setRiskFactor3(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+                    
                     </tr>
                     }
 
@@ -13887,15 +10296,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setSubstanceCommentAbuse(e.target.value)}}
                           />
                         </td>
-                        <td>
-                        <AiFillDelete
-                                onClick={() => setRiskFactor4(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+                   
                       </tr>
                       }
 
@@ -13921,15 +10322,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setabusingComment(e.target.value)}}
                           />
                         </td>
-                        <td>
-                        <AiFillDelete
-                                onClick={() => setRiskFactor5(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+                   
                       </tr>
                       }
                       
@@ -13955,15 +10348,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setRecentComment(e.target.value)}}
                           />
                         </td>
-                        <td>
-                        <AiFillDelete
-                                onClick={() => setRiskFactor6(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+
                       </tr>
                       }
                      
@@ -13995,15 +10380,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           }
                         />
                       </td>
-                      <td>
-                        <AiFillDelete
-                                onClick={() => setRiskFactor7(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+                   
                     </tr>
                      }
                      
@@ -14035,15 +10412,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         />
                       </td>
 
-                      <td>
-                        <AiFillDelete
-                                onClick={() => setRiskFactor8(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+                  
                       
                     </tr>
                      }
@@ -14070,15 +10439,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           onChange={(e)=>{setFamily(e.target.value)}}
                         />
                       </td>
-                      <td>
-                        <AiFillDelete
-                                onClick={() => setRiskFactor9(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+                    
                     </tr>
 
                      }
@@ -14105,15 +10466,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           onChange={(e)=>{setTerminal(e.target.value)}}
                         />
                       </td>
-                      <td>
-                        <AiFillDelete
-                                onClick={() => setRiskFactor10(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+                     
                     </tr>
                      }
                       
@@ -14140,15 +10493,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setCurrent(e.target.value)}}
                           />
                         </td>
-                        <td>
-                        <AiFillDelete
-                                onClick={() => setRiskFactor11(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+                       
                       </tr>
                       }
                      
@@ -14175,15 +10520,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           onChange={(e)=>{setChronicPain(e.target.value)}}
                         />
                       </td>
-                      <td>
-                        <AiFillDelete
-                                onClick={() => setRiskFactor12(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+                  
                     </tr>
                      }
                      
@@ -14198,42 +10535,11 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <td><input type="checkbox" checked={i.yesNo===true}/></td>
                             <td><input type="checkbox" checked={i.yesNo===false}/></td>
                             <td style={{paddingLeft:"20px"}}>{`${i.comment}`} </td>
-                            <td>
-                        <AiFillDelete
-                                onClick={() => RiskDelete(index)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+                         
                           </tr>
                         ))
                   )}
-                      <tr>
-                        <td>Other: 
-                          <input
-                          type="text"
-                          value={otherRiskOther}
-                          placeholder="__________"
-                          className="treatment_plan_table"
-                          onChange={(e)=>setOtherRiskOther(e.target.value)}/> </td>
-                        <td>
-                          <input type="checkbox" checked={otherRiskYesOrNot===true} onChange={()=>setOtherRiskOtherYesOrNot(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox" checked={otherRiskYesOrNot===false} onChange={()=>setOtherRiskOtherYesOrNot(false)} />
-                        </td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            placeholder="____________"
-                            value={otherRiskComment}
-                            onChange={(e)=>setOtherRiskComment(e.target.value)}
-                          />
-                        </td>
-                      </tr>
+                      
                     </tbody>
                   </table>
                 </div>
@@ -14253,7 +10559,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
               <div className="formsheading">
                 <h6 style={{ fontWeight: "bold" }}>Protective factors:</h6>
               </div>
-
               <div className="needs-interventions-container2 table-respnosive">
                 <div className="needs-interventions-column2">
                   <table>
@@ -14263,7 +10568,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         <th>Yes</th>
                         <th>No</th>
                         <th>Comments</th>
-                        <th>Delete</th>
+                      
                       </tr>
                     </thead>
                     <tbody>
@@ -14288,15 +10593,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             value={SupportsComment}
                             onChange={(e)=>{setSupportsComment(e.target.value)}}
                           />
-                        </td>
-                        <td>
-                        <AiFillDelete
-                                onClick={() => setProtective1(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
                         </td>
                    
                       </tr>
@@ -14323,15 +10619,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setSpiritualComment(e.target.value)}}
                           />
                         </td>
-                        <td>
-                        <AiFillDelete
-                                onClick={() => setProtective2(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+                   
                       </tr>
                       }
                       
@@ -14357,15 +10645,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             onChange={(e)=>{setReligiousComment(e.target.value)}}
                           />
                         </td>
-                        <td>
-                        <AiFillDelete
-                                onClick={() => setProtective3(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+                    
                       </tr>
                       }
                     
@@ -14392,15 +10672,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
         onChange={(e)=>{setFearComment(e.target.value)}}
       />
     </td>
-    <td>
-                        <AiFillDelete
-                                onClick={() => setProtective4(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+
   </tr>
 }
 
@@ -14426,15 +10698,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
       onChange={(e)=>{setInterventionComment(e.target.value)}}
     />
   </td> 
-   <td>
-                        <AiFillDelete
-                                onClick={() => setProtective5(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+
 </tr>
 }
 
@@ -14460,15 +10724,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 onChange={(e)=>{setWillingComment(e.target.value)}}
               />
             </td>
-            <td>
-                        <AiFillDelete
-                                onClick={() => setProtective6(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+           
           </tr>
            }      
                      
@@ -14481,52 +10737,16 @@ setBhpTime(getApiData?.bhpInformation?.time);
                            <td><input type="checkbox" checked={i.yesNo===true}/></td>
                            <td><input type="checkbox" checked={i.yesNo===false}/></td>
                             <td style={{paddingLeft:"20px"}}>{` ${i.comment}`} </td>
-                            <td>
-                        <AiFillDelete
-                                onClick={() => ProtectiveDelete(index)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+                        
                           </tr>
                         ))} 
-                           <tr>
-                        <td>Other: <input type="text" 
-                        className="treatment_plan_table"
-                        placeholder="__________"
-                        value={otherProtectiveFactorsApply} onChange={(e)=>setOtherProtectiveFactorsApply(e.target.value)}/></td>
-                        <td>
-                          <input type="checkbox" checked={otherProtectiveFactorsYesNo===true} onChange={()=>setOtherProtectiveFactorsYesNO(true)}/>
-                        </td>
-                        <td>
-                          <input type="checkbox"  checked={otherProtectiveFactorsYesNo===false} onChange={()=>setOtherProtectiveFactorsYesNO(false)}/>
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            placeholder="__________"
-                            className="treatment_plan_table"
-                            value={otherProtectiveFactorsDescription}
-                            onChange={(e)=>setOtherProtectiveFactorsDescription(e.target.value)}
-                          />
-                        </td>
-                      </tr>
+                         
                     </tbody>
                   </table>
                 </div>
               </div>
 
-              <div className="form-actions hidePrint">
-                <button
-                  type="button"
-                  className="safetybutton"
-                  onClick={handleProtectiveFactors}
-                >
-                  Add
-                </button>
-              </div>
+          
 
            
 
@@ -14581,13 +10801,12 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <label>High Risk</label>
                 </div>
               </div>
-
-
               <div className="formsheading">
                 <h6 style={{ fontWeight: "bold" }}>Diagnoses:</h6>
               </div>
              
 
+            
               <div className="needs-interventions-container2">
                 <div className="needs-interventions-column2">
                   <table>
@@ -14633,15 +10852,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
-                        <td>
-                        <AiFillDelete
-                                onClick={() => setDiagnoses1(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+                   
                       </tr>
                       }
 
@@ -14681,15 +10892,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
-                        <td>
-                        <AiFillDelete
-                                onClick={() => setDiagnoses2(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+                    
                       </tr>
                       }
                     
@@ -14730,15 +10933,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           }}
                         />
                       </td>
-                      <td>
-                        <AiFillDelete
-                                onClick={() => setDiagnoses3(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+                   
                     </tr>
                     }
                      
@@ -14778,15 +10973,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
-                        <td>
-                        <AiFillDelete
-                                onClick={() => setDiagnoses4(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+                     
                       </tr>
                       }
                     
@@ -14797,57 +10984,11 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <td>{i?.name}</td>
                             <td style={{paddingLeft:"20px"}}>{i?.icdCode}</td>
                             <td style={{paddingLeft:"20px"}}>{i?.description}</td>
-                            <td>
-                            <AiFillDelete
-                                onClick={() => DiagnosesDelete(index)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+                        
                           </tr>)
                         }
                   
-                      <tr>
-                        <td>Other: <input
-                        className="treatment_plan_table"
-                        type="text"
-                        value={otherPsychiatricOption}
-                        placeholder="__________"
-                        onChange={(e)=>setOtherPsychiatricOption(e.target.value)}
-                        /></td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            placeholder="___________"
-                            value={othericdCode}
-                            onChange={(e)=>setOtherIcdCode(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          {" "}
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              otherdescription.split("\n").length,
-                              1
-                            )}
-                            value={otherdescription}
-                            placeholder="___________"
-                            onChange={(e) => setOtherDescription(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setOtherDescription(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
+                   
                     </tbody>
                   </table>
                 </div>
@@ -14875,7 +11016,6 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       <th>Medical Diagnoses</th>
                       <th>ICD Code</th>
                       <th>Description</th>
-                      <th>Delete</th>
                     </thead>
                     <tbody>
                       {
@@ -14914,15 +11054,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
-                        <td>
-                        <AiFillDelete
-                                onClick={() => setMatical1(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                        </td>
+                      
                       </tr>
                       }
 
@@ -14962,13 +11094,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             }}
                           />
                         </td>
-                        <td><AiFillDelete
-                                onClick={() => setMatical2(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              /></td>
+                      
                         
                       </tr>
                       }
@@ -15009,15 +11135,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                           }}
                         />
                       </td>
-                      <td>
-                      <AiFillDelete
-                                onClick={() => setMatical3(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                      </td>
+                     
                      
                     </tr>
                      }
@@ -15058,15 +11176,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         }}
                       />
                     </td>
-                    <td>
-                    <AiFillDelete
-                                onClick={() => setMatical4(false)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                    </td>
+                   
                     
                   </tr>
                    }
@@ -15078,57 +11188,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                             <td >{i?.name}</td>
                             <td style={{paddingLeft:"20px"}}>{i?.icdCode}</td>
                             <td style={{paddingLeft:"20px"}}>{i?.description}</td>
-                            <td>
-                    <AiFillDelete
-                                onClick={() => medicalDelete(index)}
-                                style={{
-                                  fontSize: "1.5rem",
-                                  cursor: "pointer",
-                                }}
-                              />
-                    </td>
+                         
                           </tr>)
                         }
                   
-                      <tr>
-                        <td>Other: <input
-                        className="treatment_plan_table"
-                        type="text"
-                        value={OtherMedicalOption}
-                        placeholder="__________"
-                        onChange={(e)=>setOtherMedicalOption(e.target.value)}
-                        /></td>
-                        <td>
-                          <input
-                            className="treatment_plan_table"
-                            type="text"
-                            placeholder="___________"
-                            value={OthericdCodeMedicalDiagnoses}
-                            onChange={(e)=>setOtherIcdCodeMedicalDiagnoses(e.target.value)}
-                          />
-                        </td>
-                        <td>
-                          {" "}
-                          <textarea
-                            className="treatment_plan_table"
-                            rows={Math.max(
-                              OtherdescriptionMedicalDiagnoses.split("\n").length,
-                              1
-                            )}
-                            value={OtherdescriptionMedicalDiagnoses}
-                            placeholder="___________"
-                            onChange={(e) => setOtherDescriptionMedicalDiagnoses(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                setOtherDescriptionMedicalDiagnoses(
-                                  (prevComment) => prevComment + "\n"
-                                );
-                              }
-                            }}
-                          />
-                        </td>
-                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -15457,7 +11520,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     id="approvedby"
                     value={additionalNotes}
                     placeholder="Enter text"
-                    required
+                    style={{borderBottom:'none'}}
                     onChange={(e) => setAdditionalNotes(e.target.value)}
                   />
                 </div>
@@ -15506,7 +11569,8 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     type="text"
                     value={residentGuardianName}
                     placeholder="Enter text"
-                    required
+                    
+                    style={{borderBottom:'none'}}
                     onChange={(e) => setResidentGuardianName(e.target.value)}
                   />
                 </div>
@@ -15516,11 +11580,13 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   style={{ marginLeft: "10px" }}
                 >
                   <div className="file-upload-box-child hidePrint">
-              
-               <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
-                     { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
-                </button>
-             
+                    <button
+                      className="upload-button1"
+                      type="button"
+                      onClick={() => setDraftModel(true)}
+                    >
+                      SAVED AS DRAFT
+                    </button>
                     <button
                       className="upload-button"
                       type="button"
@@ -15555,9 +11621,10 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   <input
                     type="text"
                     id="approvedby"
+                    required
                     value={staffName}
                     placeholder="Enter text"
-                    required
+                    style={{borderBottom:'none'}}
                     onChange={(e) => setStaffName(e.target.value)}
                   />
                 </div>
@@ -15567,11 +11634,13 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   style={{ marginLeft: "10px" }}
                 >
                   <div className="file-upload-box-child">
-                  <div >
-               <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
-                     { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
-                </button>
-                </div>
+                    <button
+                      className="upload-button1"
+                      type="button"
+                      onClick={() => setDraftModel(true)}
+                    >
+                      SAVED AS DRAFT
+                    </button>
                     <button
                       className="upload-button"
                       type="button"
@@ -15607,8 +11676,9 @@ setBhpTime(getApiData?.bhpInformation?.time);
                       type="text"
                       id="approvedby"
                       value={bhpName}
-                      placeholder="Enter text"
                       required
+                      placeholder="Enter text"
+                      style={{borderBottom:'none'}}
                       onChange={(e) => setBhpName(e.target.value)}
                     />
                   </div>
@@ -15618,6 +11688,7 @@ setBhpTime(getApiData?.bhpInformation?.time);
                     </label>
                     <input
                       type="text"
+                      style={{borderBottom:'none'}}
                       required
                       value={bhpCredentials}
                       onChange={(e) => setBhpCredentials(e.target.value)}
@@ -15630,11 +11701,15 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   style={{ marginLeft: "10px" }}
                 >
                   <div className="file-upload-box-child">
-                  <div >
-               <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
-                     { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
-                </button>
-                </div>
+                    <div>
+                      <button
+                        className="upload-button1"
+                        type="button"
+                        onClick={() => setDraftModel(true)}
+                      >
+                        SAVED AS DRAFT
+                      </button>
+                    </div>
                     <div>
                       <button
                         className="upload-button"
@@ -15644,21 +11719,15 @@ setBhpTime(getApiData?.bhpInformation?.time);
                         SAVED AND SIGNED
                       </button>
                     </div>
-                  {
-                      
-                        filedForm &&   <div>
-
-                        <button
-                          className="upload-button signature_shift_margin"
-                          type="button"
-                          onClick={handlePrint2}
-                        >
-                          PRINT THIS FORM
-                        </button>
-                      </div>
-                      
-                  }
-                  
+                    <div>
+                      <button
+                        className="upload-button signature_shift_margin"
+                        type="button"
+                        
+                      >
+                        PRINT THIS FORM
+                      </button>
+                    </div>
                   </div>
                   <div>
                     {bhpSignature && (
@@ -15684,25 +11753,17 @@ setBhpTime(getApiData?.bhpInformation?.time);
 
           
           <div className="form-actions hidePrint">
-              <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
+              <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#1A9FB2",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem"}} >
               SUBMIT DETAILS
             </button>
-          
+         
             </div>
           </form>
         </div>
         {draftModel && <Draftinmodel onClose={() => setDraftModel(false)} />}
       </div>
-
-
-      <div ref={componentRef} className="hidaData">
-      <Initial_Assessment_print_Draft
-        componentRef={componentRef}
-        getApiDataValue={getApiData}
-      />
-      </div>
     </>
   );
 };
 
-export default InitialAssessmentDraft;
+export default Initial_Assessment_print_Draft;

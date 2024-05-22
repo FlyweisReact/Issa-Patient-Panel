@@ -101,6 +101,7 @@ const InitialAssessment = () => {
   };
 
   //singin model
+  const [saveAsDraft,setSaveAsDraft]=useState(false);
   const [draftModel, setDraftModel] = useState(false);
   const [signInModel1, setSigInModel1] = useState(false);
   const [signInModel2, setSigInModel2] = useState(false);
@@ -3885,11 +3886,1004 @@ setBhpTime(getApiData?.bhpInformation?.time);
         bhpDate:bhpDate,
         time:bhpTime,
       },
+      saveAsDraft:saveAsDraft
     };
 
-    initialAssestment_form(data);
+    initialAssestment_form(data,saveAsDraft);
     navigate("/intake");
   };
+
+  const handleData = () => {
+
+    const stringValues = residentStrengths.map((item) => item.value);
+
+    let SignificantFamilyMedicalPsychiatricHistoryArray=[];
+    SignificantFamilyMedicalPsychiatricHistory.forEach((item)=>{
+      SignificantFamilyMedicalPsychiatricHistoryArray.push(item?.value);
+    })
+
+    const admissionStatusArray=[];
+    admissionStatus.forEach((item)=>{
+      admissionStatusArray.push(item?.value)
+    })
+
+    const selectedValueArray=[];
+    selectedValue.forEach((item)=>{
+      selectedValueArray.push(item?.value)
+    })
+
+    const selectedValueMedicalArray=[];
+    selectedValueMedical.forEach((item)=>{
+      selectedValueMedicalArray.push(item?.value);
+    })
+
+    const selectedValueSpecialPrecautionsArray=[];
+    selectedValueSpecialPrecautions.forEach((item)=>{
+      selectedValueSpecialPrecautionsArray.push(item?.value)
+    })
+
+    const thyroidDisorderArray=[];
+    thyroidDisorder.forEach((item)=>{
+      thyroidDisorderArray.push(item.value)
+    })
+
+    const infectionDiseasesArray=[];
+    infectionDiseases.forEach((item)=>{
+      infectionDiseasesArray.push(item.value)
+    })
+
+    const reasonForAdmissionArray=[];
+    reasonForAdmission.forEach((item)=>{
+      reasonForAdmissionArray.push(item?.value);
+    })
+
+    const riskFacrtor1=[];
+    behaviorcuesDropDown.forEach((item)=>{
+      riskFacrtor1.push(item?.value);
+    })
+
+    const riskFacrtor2=[];
+    symptomsOfPsychosisDropDown.forEach((item)=>{
+      riskFacrtor2.push(item?.value);
+    })
+
+    // medical condition
+    const otherConditionArrayTemp=[
+      {
+        condition: "diabetes",
+        yes: yesDiabetes,
+        comments: commentDiabety,
+        state: condition1
+      },
+      {
+        condition: "Heart disease / heart attack",
+        yes: yesHeart,
+        comments: commentHeart,
+        state: condition2
+      },
+      {
+        condition: "History",
+        yes: yesHistory,
+        comments: commentHistory,
+        state: condition3
+      }
+      ,
+      {
+        condition: "High Blood Pressure",
+        yes: yesHigh,
+        comments: commentHigh,
+        state: condition4
+      }
+      ,
+      {
+        condition: "Lung disease (ie asthma, COPD, emphysema)",
+        yes: yesLung,
+        comments: commentLung,
+        state: condition5
+      }
+      ,
+      {
+        condition: "Seizures",
+        yes: yesSeizures,
+        comments: commentSeizures,
+        state: condition6
+      }
+      ,
+      {
+        condition: "Cancer",
+        yes: yesCancer,
+        comments: commentCancer,
+        state: condition7
+      }
+      ,
+      {
+        condition: "Liver/kidney disease",
+        yes: yesLiver,
+        comments: commentLiver,
+        state: condition8
+      }
+      ,
+      {
+        condition: "Thyroid disorder",
+        yes: yesThyroid,
+        comment: thyroidDisorderArray,
+        state: condition9
+      }
+      ,
+      {
+        condition: "History of head trauma/traumatic brain injury",
+        yes: yesbrain,
+        comments: commentbrain,
+        state: condition10
+      }
+      ,
+      {
+        condition: "injury",
+        yes: yesInjury,
+        comments: commentInjury,
+        state: condition11
+      }
+      ,
+      {
+        condition: "Chronic painChronic pain",
+        yes: yesChronic,
+        comments: chronicCommit,
+        state: condition12
+      },  {
+        condition: "Allergies",
+        yes: AllergiesYes,
+        comments: AllergiesComment,
+        state: condition13
+      },  {
+        condition: "Surgeries",
+        yes: SurgeriesYes,
+        comments: SurgeriesComment,
+        state: condition14
+      }
+      ,  {
+        condition: "Number of pregnancies / births",
+        yes: pregnanciesYes,
+        comments: pregnanciesComment,
+        state: condition15
+      }
+      ,  {
+        condition: "Substance use disorder (please specify)",
+        yes: SubstanceYes,
+        comments: SubstanceComment,
+        state: condition16
+      }
+      ,  {
+        condition: "Depression",
+        yes: DepressionYes,
+        comments: DepressionComment,
+        state: condition17
+      }
+      ,  {
+        condition: "Anxiety/panic attacks",
+        yes: AnxietyYes,
+        comments: AnxietyComment,
+        state: condition18
+      }
+      ,  {
+        condition: "Insomnia",
+        yes: InsomniaYes,
+        comments: InsomniaComment,
+        state: condition19
+      }
+      ,  {
+        condition: "Bipolar disorder",
+        yes: BipolarYes,
+        comments: BipolarComment,
+        state: condition20
+      }
+      ,  {
+        condition: "Schizophrenia",
+        yes: SchizophreniaYes,
+        comments: SchizophreniaComment,
+        state: condition21
+      }
+      ,  {
+        condition: "Obsessive compulsive disorder",
+        yes: ObsessiveYes,
+        comments: ObsessiveComment,
+        state: condition22
+      }
+      ,  {
+        condition: "Personality disorder (please specify)",
+        yes: PersonalityYes,
+        comments: PersonalityComment,
+        state: condition23
+      }
+      ,  {
+        condition: "Phobias",
+        yes: PhobiasYes,
+        comments: PhobiasComment,
+        state: condition24
+      }
+      ,  {
+        condition: "Any other health conditions",
+        yes: healthConditionsYes,
+        comments: healthConditionsYesComment,
+        state: condition25
+      }
+      ,  {
+        condition: "Infection or Diseases",
+        yes: healthConditionsYes,
+        comment: infectionDiseasesArray,
+        state: condition26
+      }
+    ]
+
+    const otherConditionArrayTempAns=[...otherConditionArrayTemp,...otherConditionArray]
+
+    // substance array
+    const typeArrayTemp= [
+      {
+        types: "Alcohol",
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseAlcohol,
+        lastUse: substanceAbuseHistoryDataLastUseAlcohol?.value,
+        frequency: substanceAbuseHistoryDataFrequencyAlcohol?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyAlcohol?.value,
+        state: type1
+      },
+      {
+        types: "Benzodiazepines",
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseBenzodiazepines,
+        lastUse: substanceAbuseHistoryDataLastUseBenzodiazepines?.value,
+        frequency: substanceAbuseHistoryDataFrequencyBenzodiazepines?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyBenzodiazepines?.value,
+        state: type2
+      },
+      {
+        types: "Crack",
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseCrack,
+        lastUse: substanceAbuseHistoryDataLastUseCrack?.value,
+        frequency: substanceAbuseHistoryDataFrequencyCrack?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyCrack?.value,
+        state: type3
+      },
+      {
+        types: "Heroin",
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseHeroin,
+        lastUse: substanceAbuseHistoryDataLastUseHeroin?.value,
+        frequency: substanceAbuseHistoryDataFrequencyHeroin?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyHeroin?.value,
+        state: type4
+      },
+      {
+        types: "Inhalants",
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseInhalants,
+        lastUse: substanceAbuseHistoryDataLastUseInhalants?.value,
+        frequency: substanceAbuseHistoryDataFrequencyInhalants?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyInhalants?.value,
+        state: type5
+      },
+      {
+        types: "Marijuana",
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMarijuana,
+        lastUse: substanceAbuseHistoryDataLastUseMarijuana?.value,
+        frequency: substanceAbuseHistoryDataFrequencyMarijuana?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMarijuana?.value,
+        state: type6
+      },
+      {
+        types: "Methamphetamine",
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMethamphetamine,
+        lastUse: substanceAbuseHistoryDataLastUseMethamphetamine?.value,
+        frequency: substanceAbuseHistoryDataFrequencyMethamphetamine?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMethamphetamine?.value,
+        state: type7
+      },
+      {
+        types: "Methadone",
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMethadone,
+        lastUse: substanceAbuseHistoryDataLastUseMethadone?.value,
+        frequency: substanceAbuseHistoryDataFrequencyMethadone?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMethadone?.value,
+        state: type8
+      },
+      {
+        types: "MDMA (ecstasy)",
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseMDMA,
+        lastUse: substanceAbuseHistoryDataLastUseMDMA?.value,
+        frequency: substanceAbuseHistoryDataFrequencyMDMA?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyMDMA?.value,
+        state: type9
+      },
+      {
+        types: "PCP (angel dust)",
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUsePCP,
+        lastUse: substanceAbuseHistoryDataLastUsePCP?.value,
+        frequency: substanceAbuseHistoryDataFrequencyPCP?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyPCP?.value,
+        state: type10
+      },
+      {
+        types: "Prescription medicine",
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUsePrescription,
+        lastUse: substanceAbuseHistoryDataLastUsePrescription?.value,
+        frequency: substanceAbuseHistoryDataFrequencyPrescription?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyPrescription?.value,
+        state: type11
+      },
+      {
+        types: "OTC medicine",
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseOTC,
+        lastUse: substanceAbuseHistoryDataLastUseOTC?.value,
+        frequency: substanceAbuseHistoryDataFrequencyOTC?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyOTC?.value,
+        state: type12
+      },
+      {
+        types: "Cocaine",
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseCocaine,
+        lastUse: substanceAbuseHistoryDataLastUseCocaine?.value,
+        frequency: substanceAbuseHistoryDataFrequencyCocaine?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyCocaine?.value,
+        state: type13
+      },
+      {
+        types: "Hallucinogens",
+        ageOfFirstUse: substanceAbuseHistoryDataAgeOfFirstUseHallucinogens,
+        lastUse: substanceAbuseHistoryDataLastUseHallucinogens?.value,
+        frequency: substanceAbuseHistoryDataFrequencyHallucinogens?.value,
+        lengthOfSobriety: substanceAbuseHistoryDataLengthOfSobrietyHallucinogens?.value,
+        state: type14
+      },
+    ]
+
+    const typeArrayTempAns=[ ...typeArrayTemp,...typeArray]
+
+    const handleRiskFactorActivityArrayTemp= [
+        {
+          type: "Bathing/Showering",
+          good: BathingGood,
+          fair: BathingFair,
+          otherCurrentNotSoGood:BathingNotSoGood,
+          needAssist: BathingGoodNeedAssist,
+          comments: BathingComments,
+          state: Independent1
+        },
+        {
+          type: "Grooming/hygiene",
+          good: GroomingGood,
+          fair: GroomingFair,
+          otherCurrentNotSoGood:GroomingNotSoGood,
+          needAssist: GroomingGoodNeedAssist,
+          comments: GroomingComments,
+          state: Independent2
+        },
+        {
+          type: "Mobility",
+          good: MobilityGood,
+          fair: MobilityFair,
+          otherCurrentNotSoGood:MobilityNotSoGood,
+          needAssist: MobilityGoodNeedAssist,
+          comments: MobilityComments,
+          state: Independent3
+        },
+        {
+          type: "Housework",
+          good: HouseworkGood,
+          fair: HouseworkFair,
+          otherCurrentNotSoGood:HouseworkNotSoGood,
+          needAssist: HouseworkGoodNeedAssist,
+          comments: HouseworkComments,
+          state: Independent4
+        },
+        {
+          type: "Shopping",
+          good: ShoppingGood,
+          fair: ShoppingFair,
+          otherCurrentNotSoGood:ShoppingNotSoGood,
+          needAssist: ShoppingGoodNeedAssist,
+          comments: ShoppingComments,
+          state: Independent5
+        },
+        {
+          type: "Managing money/budget",
+          good: ManagingGood,
+          fair: ManagingFair,
+          otherCurrentNotSoGood:ManagingNotSoGood,
+          needAssist:ManagingGoodNeedAssist ,
+          comments: ManagingComments,
+          state: Independent6
+        },
+        {
+          type: "Preparing food",
+          good: PreparingGood,
+          fair: PreparingFair,
+          otherCurrentNotSoGood:PreparingNotSoGood,
+          needAssist: PreparingGoodNeedAssist,
+          comments: PreparingComments,
+          state: Independent7
+        },
+        {
+          type: "Eating",
+          good: EatingGood,
+          fair: EatingFair,
+          otherCurrentNotSoGood:EatingNotSoGood,
+          needAssist: EatingGoodNeedAssist,
+          comments: EatingComments,
+          state: Independent8
+        },
+        {
+          type: "Toileting",
+          good: ToiletingGood,
+          fair: ToiletingFair,
+          otherCurrentNotSoGood:ToiletingNotSoGood,
+          needAssist: ToiletingGoodNeedAssist,
+          comments: ToiletingComments,
+          state: Independent9
+        },
+        {
+          type: "Taking medications",
+          good: TakingGood,
+          fair: TakingFair,
+          otherCurrentNotSoGood:TakingNotSoGood,
+          needAssist: TakingGoodNeedAssist,
+          comments: TakingComments,
+          state: Independent10
+        },
+      ]
+
+      const handleRiskFactorActivityArrayTempAns= [...handleRiskFactorActivityArrayTemp,...handleRiskFactorActivityArray]
+
+    // riskFactors
+    const riskFactorsTemp= [
+      {
+        type:"Current suicidal ideation",
+        yesNo:riskYesNo,
+        comment:riskComment,
+        state: riskFactor1
+      },
+      {
+        type:"Prior suicide attempt",
+        yesNo:PriorYesNo,
+        comment:PriorComment,
+        state: riskFactor2
+      },
+      {
+        type:"Access to means (i.e. weapon)",
+        yesNo:AccessYesNo,
+        comment:AccessComment,
+        state: riskFactor3
+      },
+      {
+        type:"Substance abuse",
+        yesNo:SubstanceYesNo,
+        comment:SubstanceAbuseComment,
+        state: riskFactor4
+      },
+      {
+        type:"Other self-abusing behavior",
+        yesNo:abusingYesNo,
+        comment:abusingComment,
+        state: riskFactor5
+      },
+      {
+        type:"Recent losses/lack of support",
+        yesNo:RecentYesNo,
+        comment:RecentComment,
+        state: riskFactor6
+      },
+      {
+        type:"Behavior cues",
+        yesNo:behaviourYesNO,
+        comments:riskFacrtor1,
+        state: riskFactor7
+      },
+      {
+        type:"Symptoms of psychosis",
+        yesNo:SymptomsYesNO,
+        comments:riskFacrtor2,
+        state: riskFactor8
+      },
+      {
+        type:"Family history of suicide",
+        yesNo:FamilyYesNO,
+        comment:Family,
+        state: riskFactor9
+      },
+      {
+        type:"Terminal physical illness",
+        yesNo:TerminalYesNO,
+        comment:Terminal,
+        state: riskFactor10
+      },
+      {
+        type:"Current stressors (specify)",
+        yesNo:CurrentYesNO,
+        comment:Current,
+        state: riskFactor11
+      },
+      {
+        type:"Chronic pain",
+        yesNo:ChronicYesNO,
+        comment:ChronicPain,
+        state: riskFactor12
+      },
+    ]
+
+    const riskFactorArrayTempAns=[...riskFactorsTemp,...riskFactorArray]
+
+    // protectiveFactorsArray
+    const protectiveFactorsArrayTemp=[
+      {
+        type:"Supports available (family friends)",
+        yesNo:SupportsYesNo,
+        comment:SupportsComment,
+        state: Protective1
+      },
+      {
+        type:"Spiritual / religious support",
+        yesNo:SpiritualYesNo,
+        comment:SpiritualComment,
+        state: Protective2
+      },
+      {
+        type:"Religious/cultural prohibitions",
+        yesNo:ReligiousYesNo,
+        comment:ReligiousComment,
+        state: Protective3
+      },
+      {
+        type:"Fear of consequences",
+        yesNo:FearYesNo,
+        comment:FearComment,
+        state: Protective4
+      },
+      {
+        type:"Able to be engaged in intervention",
+        yesNo:interventionYesNo,
+        comment:interventionComment,
+        state: Protective5
+      },
+      {
+        type:"Willing to commit to keeping self safe",
+        yesNo:WillingYesNo,
+        comment:WillingComment,
+        state: Protective6
+      },
+    ]
+
+
+    
+    const protectiveFactorsArrayTempAns=[...protectiveFactorsArrayTemp,...protectiveFactorsArray]
+
+    //psychiatricDiagnoses
+      const psychiatricDiagnosesArrayTemp=[
+        {
+          icdCode:psychiatricPrimaryIcdCode,
+          description:psychiatricPrimaryDescription,
+          name:"Primary",
+          state: Diagnoses1
+        },
+        {
+          icdCode:psychiatricSecondaryicdCode,
+          description:psychiatricSecondaryDescription,
+          name:"Secondary",
+          state: Diagnoses2
+          
+        },
+        {
+          icdCode:psychiatricTertiaryIcdCode,
+          description:psychiatricTertiaryDescription,
+          name:"Tertiary",
+          state: Diagnoses3
+          
+        },
+        {
+          icdCode:psychiatricAdditionalicdCode,
+          description:psychiatricAdditionalDescription,
+          name:"Additional",
+          state: Diagnoses4
+         
+        },
+      ]
+
+
+      const psychiatricDiagnosesArrayAns=[...psychiatricDiagnosesArrayTemp,...psychiatricDiagnosesArray]
+
+      const medicalDiagnosesArrayTemp=[
+        {
+          icdCode:primaryIcdCode,
+          description:primaryDescription,
+          name:"Primary",
+          state: Medical1
+        },
+        {
+          icdCode:secondaryicdCode,
+          description:secondaryDescription,
+          name:"Secondary",
+          state: Medical2
+        },
+        {
+          icdCode:TertiaryIcdCode,
+          description:TertiaryDescription,
+          name:"Tertiary",
+          state: Medical3
+        },
+        {
+          icdCode:Additional1icdCode,
+          description:Additional1Description,
+          name:"Additional",
+          state: Medical4
+        },
+      ]
+
+      const medicalDiagnosesArrayTempAns=[...medicalDiagnosesArrayTemp,...psychiatricDiagnosesArray]
+
+
+    const data = {
+      residentName,
+      dateOfBirth:dob,
+      sex,
+      assessmentType,
+      patientId:patientId,
+      hasNotified,
+      assessmentOn,
+      companyName,
+      residentName,
+      sex,
+      dateOfAssessment,
+      ahcccsNumber,
+      preferredLanguage,
+      ethnicity,
+      admissionStatus:admissionStatusArray,
+      programLocation,
+      guardianship,
+      powerOfAttorneyStatus,
+      todayDate,
+      guardianshipPoaPubFidName,
+      approvedBy,
+      reasonForAdmission:reasonForAdmissionArray,
+      residentGoals,
+      residentStrengths: stringValues,
+      residentLimitations,
+      currentBehavioralIssues,
+      medicalConditions: otherConditionArrayTempAns,
+      SignificantFamilyMedicalPsychiatricHistory:SignificantFamilyMedicalPsychiatricHistoryArray,
+      
+      mentalHealthTreatmentHistory:typeOfServiceArray,
+     
+      substanceAbuseHistory,
+      substanceAbuseDenies,
+
+      substanceAbuseHistoryData : typeArrayTempAns,
+
+      ActiveWithdrawalSymptoms :{
+        noneReportedOrObserved,
+        Agitation,
+        Nausea,
+        Vomiting,
+        Headache,
+        TactileDisturbances,
+        Anxiety,
+        Tremors,
+        VisualDisturbances,
+        AuditoryDisturbances:VisualDisturbancesOtherType,
+        Sweats,
+        Paranoia,
+        GooseBumps,
+        Runningnose,
+        BonePain,
+        Tearing,
+        Seizures,
+        LossofMuscleCoordination,
+        LossofMuscleCoordinationOtherType
+      },
+      mentalStatusExam: {
+        apparentAge:{
+          consistent:consistent,
+          younger,
+          older,
+          
+          otherComment:olderOther
+        },
+        height:{
+          average:averageHeight,
+          short,
+          tall,
+          otherComment:heigthOther
+        },
+        weight:{
+          average:averageWeight,
+          obese,
+          overweight,
+          thin,
+          emaciated,
+          otherComment:WeightOther
+        },
+        attire:{
+          Casual:casual,
+          Neat:neat,
+          Tattered:tattered,
+          Dirty:dirty,
+          otherComment:attireOther
+        },
+        grooming:{
+          wellGroomed:wellGroomed,
+          adequate:adequateGrooming,
+          unkempt,
+          disheveled,
+          otherComment:GroomingOther
+        },
+        Mood:{
+          Euthymic:euthymic,
+          Irritable:irritable,
+          Elevated: elevated,
+          Depressed:depressedMood,
+          Anxious:anxious,
+          otherComment:euthymicOtherBooleanType
+        },
+        Affect:{
+          normalRange,
+          Depressed:depressedAffect,
+          Labile:labile,
+          Constricted:constricted,
+          otherComment:otherText
+        },
+        EyeContact:{
+          Appropriate:appropriate,
+          Minimal:minimal,
+          Poor:poor,
+          Adequate:adequateEyeContact,
+          otherComment:EyeContactOtherBooleanType
+        },
+        Cooperation:{
+          Appropriate:appropriateCooperation,
+          Hostile:hostile,
+          Evasive: evasive,
+          Defensive:defensive,
+          Indifferent:indifferent,
+          otherComment: CooperationOtherBooleanType
+        },
+        Articulation:{
+          Normal:normalArticulation,
+          Unintelligible:unintelligible,
+          Mumbled:mumbled,
+          Slurred:slurred,
+          Stuttered:stuttered,
+          otherComment:ArticulationOtherBooleanOther
+        },
+        Tone:{
+          Normal:normalTone,
+          Soft:soft,
+          Loud:loud,
+          Pressured:pressured,
+          otherComment:ToneOtherBooleanOther
+        },
+        Rate:{
+          Normal:normalRate,
+          Slow:slow,
+          Fast:fast,
+          otherComment:RateOtherBooleanOther
+        },
+        Quantity:{
+          Normal:normalQuantity,
+          Verbose:verbose,
+          Mutism:mutism,
+          otherComment:QuantityOtherBooleanOther,
+
+        },
+        responseLatency:{
+          Normal:normalresponseLatency,
+          Delayed:delayed,
+          Shortened:shortened,
+          otherComment:responseLatencyOtherBooleanOther
+        },
+
+        thoughtContent:{
+          Unremarkable:unremarkablethoughtContent,
+          Suspicious:suspicious,
+          Negative:negative,
+          Concrete:concrete,
+          otherComment:thoughtContentOther
+        },
+
+        thoughtProcesses:{
+          logicalCoherent:logicalCoherent,
+          Tangential:tangential,
+          Circumstantial:circumstantial,
+          Vague:vague,
+          otherComment:thoughtProcessesOther
+        },
+
+        Delusions:{
+          No:noDelusions,
+          YesPersecutory: yesPersecutory,
+          YesSomatic:yesSomatic,
+          YesGrandiose:yesGrandiose,
+          otherComment:yesOtherDelusionsText
+        },
+
+        Hallucinations:{
+          Unremarkable:unremarkableHallucinations,
+          VisualHallucinations:visualHallucinations,
+          AuditoryHallucinations:auditoryHallucinations,
+          TactileHallucinations:tactileHallucinations,
+          otherComment:yesOtherHallucinationsText
+        },
+
+        Gait:{
+          Normal:normalGait,
+          Staggering:staggering,
+          Shuffling:shuffling,
+          Slow:slowGait,
+          Awkward:awkward,
+          otherComment:gaitOther,
+        },
+
+        Posture:{
+          Normal:normalPosture,
+          Relaxed:relaxed,
+          Rigid:rigid,
+          Tense:tense,
+          Slouched:slouched,
+          otherComment:PostureOther,
+        },
+
+        PsychomotorActivity:{
+          Withinnormallimits:withinNormalLimits,
+          Calm:calm,
+          Hyperactive:hyperactive,
+          Agitated:agitated,
+          Hypoactive:hypoactive,
+          otherComment:PsychomotorActivityOther,
+        },
+
+        Mannerisms:{
+          None:none,
+          Tics:tics,
+          Tremors:tremorsMannerisms,
+          Rocking:rocking,
+          Picking:picking,
+          otherComment:MannerismsOther,
+        },
+
+        orientation:{
+          person,
+          place,
+          time,
+          circumstances:circumstances
+        },
+
+        Judgment:{
+          Good:goodJudgment,
+          Fair:fairJudgment,
+          Poor:poorJudgment
+        },
+
+        Insight:{
+          Good:goodInsight,
+          Fair:fairInsight,
+          Poor:poorInsight
+        },
+        Memory:{
+          Good:goodMemory,
+          Fair:fairMemory,
+          Poor:poorMemory
+        },
+        AbilityToConcentration:{
+          Intact:intactAbilityToConcentration,
+          Other:otherAbilityToConcentration
+        },
+      },
+
+      significantSocialDevelopmentalHistory,
+
+      personalInformation:{
+        educationalHistory,
+        highestEducation,
+        specialEducation,
+        currentStudent,
+        currentStudentLocation:ifYesWhere
+      },
+
+      employmentHistory:{
+        currentlyEmployed,
+        employmentLocation,
+      
+      },
+      workHistory,
+      militaryHistory:{
+        militaryService,
+        activeDuty
+      },
+      legalHistory:selectedValueArray,
+
+      independentLivingSkills:handleRiskFactorActivityArrayTempAns,
+      triggers,
+      fallRisk,
+      fallRiskExplanation,
+      hobbiesLeisureActivities,
+      medicalEquipmentArray:selectedValueMedicalArray,
+      specialPrecautions:selectedValueSpecialPrecautionsArray,
+      currentThoughtsOfHarmingSelf,
+  
+      suicidalIdeation,
+      suicidalIdeationUrgency,
+      suicidalIdeationSeverity,
+      currentThoughtsOfHarmingOthers,
+
+      riskFactors:riskFactorArrayTempAns,
+      protectiveFactors:protectiveFactorsArrayTempAns,
+
+      riskLevel,
+
+      psychiatricDiagnoses:psychiatricDiagnosesArrayAns,
+
+      medicalDiagnoses:medicalDiagnosesArrayTempAns,
+
+                primarySupportGroup,
+                maritalProblems,
+                accessToHealthCareServices,
+                educationalProblems,
+                housingProblems,
+                familyProblems,
+                occupationalProblems,
+                interactionWithLegalSystem,
+                substanceUseInHome,
+                sexualProblems,
+                otherStressors,
+
+     
+
+      significantRecentLosses:{
+        yes:setNoAndYes,
+        typeOfLoss:{
+          death,
+          injury,
+          medicalSurgical,
+          job,
+          divorceSeparation:divorceSeparation,
+          accidentInjury,
+          childRemovedFromHouse,
+          violentActsAgainstPersonFamily:violentActsAgainstPersonFamily,
+          comment:otherSignificantRecentLossesType?true:false,
+        },
+        comment:otherSignificantRecentLossesType
+      },
+
+      additionalNotes,
+      acceptResident,
+
+      residentInformation: {
+        ResidentName: residentGuardianName,
+        ResidentSignature: residentGauardianSignature,
+        ResidentDate: residentGuardianDate,
+        time:residentGuardianTime,
+      },
+      staffInformation: {
+        staffName: staffName,
+        staffSignature: staffSignature,
+        staffDate: staffDate,
+        time:staffDateTime
+      },
+      bhpInformation: {
+        bhpName: bhpName,
+        bhpCredentials: bhpCredentials,
+        bhpSignature: bhpSignature,
+        bhpDate:bhpDate,
+        time:bhpTime,
+      },
+      saveAsDraft:saveAsDraft
+    };
+    initialAssestment_form(data,saveAsDraft);
+  };
+
+
+  useEffect(()=>{
+    if(saveAsDraft){
+      handleData();
+    }
+  },[saveAsDraft])
+
+  const handleSaveAsDraft=()=>{
+    // setDraftModel(!draftModel); 
+    setSaveAsDraft(!saveAsDraft);
+  }
 
   const option_value_Admission = [
     { label: "Voluntary", value: "Voluntary" },
@@ -14515,13 +15509,9 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   style={{ marginLeft: "10px" }}
                 >
                   <div className="file-upload-box-child hidePrint">
-                    <button
-                      className="upload-button1"
-                      type="button"
-                      onClick={() => setDraftModel(true)}
-                    >
-                      SAVED AS DRAFT
-                    </button>
+                  <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
+                     { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
+                </button>
                     <button
                       className="upload-button"
                       type="button"
@@ -14568,13 +15558,11 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   style={{ marginLeft: "10px" }}
                 >
                   <div className="file-upload-box-child">
-                    <button
-                      className="upload-button1"
-                      type="button"
-                      onClick={() => setDraftModel(true)}
-                    >
-                      SAVED AS DRAFT
-                    </button>
+                 
+               <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
+                     { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
+                </button>
+              
                     <button
                       className="upload-button"
                       type="button"
@@ -14633,15 +15621,11 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   style={{ marginLeft: "10px" }}
                 >
                   <div className="file-upload-box-child">
-                    <div>
-                      <button
-                        className="upload-button1"
-                        type="button"
-                        onClick={() => setDraftModel(true)}
-                      >
-                        SAVED AS DRAFT
-                      </button>
-                    </div>
+                  <div >
+               <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
+                     { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
+                </button>
+                </div>
                     <div>
                       <button
                         className="upload-button"

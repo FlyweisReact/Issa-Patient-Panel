@@ -14,101 +14,10 @@ import SingInUpdateModel from "../Modal/SingInUpdateModel";
 import { useReactToPrint } from "react-to-print";
 import AutoSize from "../AutoSize/AutoSize";
 import Loader from "../../Pages/LandingPage/Loader"; 
-import TreatmentPlanPrint from "./TreatmentPlanPrint";
-import TreatmentPlanDraftPrint from "./Treatment_plan_DraftPrint";
 
-const Treatmentplan_updateDraft = () => {
+const TreatmentPlanDraftPrint = ({componentRef}) => {
+
   const [loading,setLoading]=useState(false);
-
-  const componentRef = React.useRef();
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-  });
-
-  let hideData = document.getElementsByClassName("hidaData");
-
-  for (let i = 0; i < hideData.length; i++) {
-    hideData[i].style.display = "none";
-  }
-
-  const handlePrint2 = () => {
-    var elements = document.getElementsByClassName("hidePrint");
-    var hidePrintButton = document.getElementsByClassName("hidePrintButton");
-    var signatureRightAndSide =
-      document.getElementsByClassName("file-upload-box");
-
-    var form_field_gender = document.getElementsByClassName("form-field-child");
-    var form_field_single_update = document.getElementsByClassName(
-      "form-field-single-update"
-    );
-
-    for (let i = 0; i < hideData.length; i++) {
-      hideData[i].style.display = "block";
-    }
-
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].style.display = "none";
-    }
-
-    for (let i = 0; i < hidePrintButton.length; i++) {
-      hidePrintButton[i].style.display = "none";
-    }
-
-    for (let i = 0; i < signatureRightAndSide.length; i++) {
-      signatureRightAndSide[i].style.justifyContent = "right";
-    }
-
-    // hode bottom
-    for (let i = 0; i < form_field_gender.length; i++) {
-      var inputs = form_field_gender[i].getElementsByTagName("input");
-      for (let j = 0; j < inputs.length; j++) {
-        inputs[j].style.borderBottom = "none";
-      }
-    }
-
-    for (let i = 0; i < form_field_single_update.length; i++) {
-      var inputs = form_field_single_update[i].getElementsByTagName("input");
-      for (let j = 0; j < inputs.length; j++) {
-        inputs[j].style.borderBottom = "none";
-      }
-    }
-
-    handlePrint();
-
-    setTimeout(() => {
-      for (var i = 0; i < elements.length; i++) {
-        elements[i].style.display = "flex";
-        elements[i].style.justifyContent = "center";
-      }
-
-      for (let i = 0; i < hidePrintButton.length; i++) {
-        hidePrintButton[i].style.display = "flex";
-      }
-
-      for (let i = 0; i < signatureRightAndSide.length; i++) {
-        signatureRightAndSide[i].style.justifyContent = "space-between";
-      }
-
-      for (let i = 0; i < hideData.length; i++) {
-        hideData[i].style.display = "none";
-      }
-
-      // hide bottom
-      for (let i = 0; i < form_field_gender.length; i++) {
-        var inputs = form_field_gender[i].getElementsByTagName("input");
-        for (let j = 0; j < inputs.length; j++) {
-          inputs[j].style.borderBottom = "1px solid black";
-        }
-      }
-
-      for (let i = 0; i < form_field_single_update.length; i++) {
-        var inputs = form_field_single_update[i].getElementsByTagName("input");
-        for (let j = 0; j < inputs.length; j++) {
-          inputs[j].style.borderBottom = "1px solid black";
-        }
-      }
-    }, 1000);
-  };
 
   // model data
   const [draftModel, setDraftModel] = useState(false);
@@ -350,9 +259,11 @@ const Treatmentplan_updateDraft = () => {
   const [commentsOther, setCommentOther] = useState("");
   //other array add add on array
   const [otherArray, setOtherArray] = useState([]);
+  const [showOther, setShowOther] = useState(false);
 
   const handleAddButtonClick = () => {
     // Create a new object with the form values
+    setShowOther(true);
 
     if (
       optionOther ||
@@ -486,1037 +397,464 @@ const Treatmentplan_updateDraft = () => {
   }
 
   useEffect(() => {
+    setInitialUpdate(getApiData?.name);
+    setSaveAsDraft(getApiData?.saveAsDraft);
+    setResidentName(getApiData?.residentName);
+    setDob(user?.dateOfBirth ? user?.dateOfBirth?.slice(0, 10) : "");
+    setDate(getApiData?.date ? getApiData?.date?.slice(0, 10) : "");
+    setAdminDate(
+      getApiData?.admitDate ? getApiData?.admitDate.slice(0, 10) : ""
+    );
+    setPhysicalService(getApiData?.care ? getApiData?.care?.[0] : "");
+    setBehavior(getApiData?.care ? getApiData?.care?.[1] : "");
 
-    if(getApiData){
-      setInitialUpdate(getApiData?.name);
-      setResidentName(getApiData?.residentName);
-      setDob(getApiData?.dateOfBirth?getApiData?.dateOfBirth?.slice(0,10):"");
-      setDate(getApiData?.date ? getApiData?.date?.slice(0, 10) : "");
-      setAdminDate(
-        getApiData?.admitDate ? getApiData?.admitDate.slice(0, 10) : ""
-      );
-      setPhysicalService(getApiData?.care ? getApiData?.care?.[0] : "");
-      setBehavior(getApiData?.care ? getApiData?.care?.[1] : "");
-  
-      // Resetting medication service state variables
-      setMedicationAdministation(
-        getApiData?.medicationService ? getApiData?.medicationService?.[0] : ""
-      );
-      setMedicationAssistence(
-        getApiData?.medicationService ? getApiData?.medicationService?.[1] : ""
-      );
-      setPresentingPrice(
-        getApiData?.presentingProblems
-          ? getApiData.presentingProblems.map((item) => ({
-              label: item,
-              value: item, 
-            }))
-          : []
-      );
-  
-      // Resetting diagnosis state variable
-      setDiagonsis(getApiData?.diagonsis);
-  
-      // Resetting mental status state variables
-      setMentelHealth(getApiData?.mentalStatus);
-      setMentelText(getApiData?.mentalStatusOther);
-  
-      // Resetting mood level state variables
-      setMind(getApiData?.moodLevel);
-      setMindText(getApiData?.moodLevelOther);
-  
-      // Resetting ADLS state variables
-      setAdls(getApiData?.adls);
-      setAldsText(getApiData?.adlsOther);
-  
-      // Resetting behavioral health services state variables
-      setBHealth(getApiData?.behavioralHealthServices);
-      setBtext(getApiData?.behavioralHealthServicesOther);
-  
-      // Resetting primary care provider state variables
-      setPrimaryCare(getApiData?.primaryCareProvider);
-      setPsychiatricProvider(getApiData?.psychiatricProvider);
-  
-      // Resetting resident goals state variables
-      setResidentGoal(getApiData?.residentGoals);
-      setAllergies(getApiData?.allergies);
-      setTriggers(getApiData?.triggers);
-      setStrengths(
-        getApiData?.strengths
-          ? getApiData.strengths.map((item) => ({
-              label: item, // Assuming 'name' is the property you want to use as label
-              value: item, // Assuming 'id' is the property you want to use as value
-            }))
-          : []
-      );
-  
-      // Resetting barriers state variables
-      setBarriers(
-        getApiData?.barriers
-          ? getApiData.barriers.map((item) => ({
-              label: item, // Assuming 'name' is the property you want to use as label
-              value: item, // Assuming 'id' is the property you want to use as value
-            }))
-          : []
-      );
-  
-      // Resetting risk assessment state variables
-      setBehavioralSymptoms(
-        getApiData?.riskAssessment?.behavioralSymptoms
-          ? getApiData?.riskAssessment?.behavioralSymptoms
-          : []
-      );
-      setBehavioralSymptomsBoolean(
-        getApiData?.riskAssessment?.behavioralSymptomsOther ? true : false
-      );
-      setBehavioralSymptomsOther(
-        getApiData?.riskAssessment?.behavioralSymptomsOther
-      );
-  
-      // Resetting physical symptoms state variables
-      setPhysicalSymptoms(
-        getApiData?.riskAssessment?.physicalSymptoms
-          ? getApiData?.riskAssessment?.physicalSymptoms
-          : []
-      );
-      setPhysicalSymptomsBoolean(
-        getApiData?.riskAssessment?.physicalSymptoms ? true : false
-      );
-      setPhysicalSymptomsOther(getApiData?.riskAssessment?.physicalSymptomsOther);
-  
-      // Resetting cognitive symptoms state variables
-      setConsnotiveSymptoms(
-        getApiData?.riskAssessment?.cognitiveSymptoms
-          ? getApiData?.riskAssessment?.cognitiveSymptoms
-          : []
-      );
-      setConsnotiveSymptomsBoolean(
-        getApiData?.riskAssessment?.cognitiveSymptoms ? true : false
-      );
-      setConsnotiveSymptomsOther(
-        getApiData?.riskAssessment?.cognitiveSymptomsOther
-      );
-  
-      // Resetting psychosocial symptoms state variables
-      setPsychosocialSymptoms(
-        getApiData?.riskAssessment?.psychosocialSymptoms
-          ? getApiData?.riskAssessment?.psychosocialSymptoms
-          : []
-      );
-      setPsychosocialSymptomsBoolean(
-        getApiData?.riskAssessment?.psychosocialSymptoms ? true : false
-      );
-      setPsychosocialSymptomsOther(
-        getApiData?.riskAssessment?.psychosocialSymptomsOther
-      );
-  
-      // Resetting interventions implemented state variables
-      setInterventionsImplemented(
-        getApiData?.interventions ? getApiData?.interventions : []
-      );
-      setInterventionsImplementedBoolean(
-        getApiData?.interventionsComment ? true : false
-      );
-  
-      setInterventionsImplementedOther(getApiData?.interventionsComment);
-  
-      // Resetting counseling and frequency state variables
-      setMinimumHoure(getApiData?.counselingFrequencyMinimum);
-      setIndividualComment(getApiData?.IndividualComment);
-      setCounselingOptions(
-        getApiData?.counselingFrequency ? getApiData?.counselingFrequency : []
-      );
-      setCounselingOptionsOther(getApiData?.counselingFrequencyComment);
-      setCounselingOptionsTextBoolean(
-        getApiData?.counselingFrequencyComment ? true : false
-      );
-  
-  
-      // Resetting admissionMeasure1 state variables
-      if(getApiData?.maintainSobrietyPreviousMeasure){
-        setOption1(
-          getApiData?.maintainSobrietyType
-            ? getApiData.maintainSobrietyType.map((item) => ({
-                label: item,
-                value: item, 
-              }))
-            : []
-        );
-        setAdmissionMeasure1(getApiData?.maintainSobrietyAdmissionMeasure);
-        setCurrentMeasure1(getApiData?.maintainSobrietyCurrentMeasure);
-        setEstimatedDateOfCompletion1(
-          getApiData?.maintainSobrietyEstimatedDateOfCompletion
-            ? getApiData?.maintainSobrietyEstimatedDateOfCompletion?.slice(0, 10)
-            : ""
-        );
-        setComment1(getApiData?.maintainSobrietyComments);
-      }else{
-        setOption1([]);
-        setAdmissionMeasure1("");
-        setCurrentMeasure1("");
-        setEstimatedDateOfCompletion1(
-          ""
-        );
-        setComment1("");
-      }
-      
-  
-      // Resetting admissionMeasure2 state variables
-      if(getApiData?.independentLivingSkillsPreviousMeasure){
-        setOption2(
-          getApiData?.independentLivingSkillsType
-            ? getApiData.independentLivingSkillsType.map((item) => ({
-                label: item,
-                value: item, 
-              }))
-            : []
-        );
-        setAdmissionMeasure2(getApiData?.independentLivingSkillsAdmissionMeasure);
-        setCurrentMeasure2(getApiData?.independentLivingSkillsCurrentMeasure);
-        setEstimatedDateOfCompletion2(
-          getApiData?.independentLivingSkillsEstimatedDateOfCompletion
-            ? getApiData?.independentLivingSkillsEstimatedDateOfCompletion?.slice(
-                0,
-                10
-              )
-            : ""
-        );
-        setComment2(getApiData?.independentLivingSkillsComments);
-      }else{
-        setOption2(
-        []
-        );
-        setAdmissionMeasure2("");
-        setCurrentMeasure2("");
-        setEstimatedDateOfCompletion2(
-        ""
-        );
-        setComment2("");
-      }
-  
-     
-  
-      // Resetting admissionMeasure3 state variables
-      if(getApiData?.employmentPreviousMeasure){
-        setOption3(
-          getApiData?.employmentType
-            ? getApiData.employmentType.map((item) => ({
-                label: item, 
-                value: item, 
-              }))
-            : []
-        );
-        setAdmissionMeasure3(getApiData?.employmentAdmissionMeasure);
-        setCurrentMeasure3(getApiData?.employmentCurrentMeasure);
-        setEstimatedDateOfCompletion3(
-          getApiData?.employmentEstimatedDateOfCompletion
-            ? getApiData?.employmentEstimatedDateOfCompletion?.slice(0, 10)
-            : ""
-        );
-        setComment3(getApiData?.employmentComments);
-      }else{
-        setOption3(
-    []
-        );
-        setAdmissionMeasure3("");
-        setCurrentMeasure3("");
-        setEstimatedDateOfCompletion3(
-         ""
-        );
-        setComment3("");
-      }
-   
-  
-      // Resetting admissionMeasure4 state variables
-      if(getApiData?.adlsSecondPreviousMeasure){
-        setOption4(
-          getApiData?.adlsSecondType
-            ? getApiData.adlsSecondType.map((item) => ({
-                label: item, 
-                value: item, 
-              }))
-            : []
-        );
-        setAdmissionMeasure4(getApiData?.adlsSecondAdmissionMeasure);
-        setCurrentMeasure4(getApiData?.adlsSecondCurrentMeasure);
-        setEstimatedDateOfCompletion4(
-          getApiData?.adlsSecondEstimatedDateOfCompletion
-            ? getApiData?.adlsSecondEstimatedDateOfCompletion?.slice(0, 10)
-            : ""
-        );
-        setComment4(getApiData?.adlsSecondComments);
-      }else{
-        setOption4(
-          []
-        );
-        setAdmissionMeasure4("");
-        setCurrentMeasure4("");
-        setEstimatedDateOfCompletion4(
-          ""
-        );
-        setComment4("");
-      }
-   
-  
-      // Resetting admissionMeasure5 state variables
-      if(getApiData?.safetyPreviousMeasure){
-        setOption5(
-          getApiData?.safetyType
-            ? getApiData.safetyType.map((item) => ({
-                label: item, 
-                value: item, 
-              }))
-            : []
-        );
-        setAdmissionMeasure5(getApiData?.safetyAdmissionMeasure);
-        setCurrentMeasure5(getApiData?.safetyCurrentMeasure);
-        setEstimatedDateOfCompletion5(
-          getApiData?.safetyEstimatedDateOfCompletion
-            ? getApiData?.safetyEstimatedDateOfCompletion?.slice(0, 10)
-            : ""
-        );
-        setComment5(getApiData?.safetyComments);
-      }else{
-        setOption5(
-   []
-        );
-        setAdmissionMeasure5("");
-        setCurrentMeasure5("");
-        setEstimatedDateOfCompletion5(
-        ""
-        );
-        setComment5("");
-      }
-     
-  
-      // Resetting admissionMeasure6 state variables
-      if(getApiData?.medicationEducationPreviousMeasure){
-        setOption6(
-          getApiData?.medicationEducationType
-            ? getApiData.medicationEducationType.map((item) => ({
-                label: item, 
-                value: item, 
-              }))
-            : []
-        );
-        setAdmissionMeasure6(getApiData?.medicationEducationAdmissionMeasure);
-        setCurrentMeasure6(getApiData?.medicationEducationCurrentMeasure);
-        setEstimatedDateOfCompletion6(
-          getApiData?.medicationEducationEstimatedDateOfCompletion
-            ? getApiData?.medicationEducationEstimatedDateOfCompletion?.slice(0, 10)
-            : ""
-        );
-        setComment6(getApiData?.medicationEducationComments);
-      }else{
-        setOption6(
-         []
-        );
-        setAdmissionMeasure6("");
-        setCurrentMeasure6("");
-        setEstimatedDateOfCompletion6(
-        ""
-        );
-        setComment6("");
-      }
-      
-  
-      // Resetting admissionMeasure7 state variables
-      if(getApiData?.managingMentalHealthPreviousMeasure){
-        setOption7(
-          getApiData?.managingMentalHealthType
-            ? getApiData.managingMentalHealthType.map((item) => ({
-                label: item, 
-                value: item, 
-              }))
-            : []
-        );
-        setAdmissionMeasure7(getApiData?.managingMentalHealthAdmissionMeasure);
-        setCurrentMeasure7(getApiData?.managingMentalHealthCurrentMeasure);
-        setEstimatedDateOfCompletion7(
-          getApiData?.managingMentalHealthEstimatedDateOfCompletion
-            ? getApiData?.managingMentalHealthEstimatedDateOfCompletion?.slice(
-                0,
-                10
-              )
-            : ""
-        );
-        setComment7(getApiData?.managingMentalHealthComments);
-      }else{
-        setOption7(
-       []
-        );
-        setAdmissionMeasure7("");
-        setCurrentMeasure7("");
-        setEstimatedDateOfCompletion7(
-        ""
-        );
-        setComment7("");
-      }
-    
-  
-      // Resetting admissionMeasure8 state variables
-      if(getApiData?.legalPreviousMeasure){
-        setOption8(
-          getApiData?.legalType
-            ? getApiData.legalType.map((item) => ({
-                label: item, 
-                value: item, 
-              }))
-            : []
-        );
-        setAdmissionMeasure8(getApiData?.legalAdmissionMeasure);
-        setCurrentMeasure8(getApiData?.legalCurrentMeasure);
-        setEstimatedDateOfCompletion8(
-          getApiData?.legalEstimatedDateOfCompletion
-            ? getApiData?.legalEstimatedDateOfCompletion?.slice(0, 10)
-            : ""
-        );
-        setComment8(getApiData?.legalComments);
-      }else{
-        setOption8(
-          []
-        );
-        setAdmissionMeasure8("");
-        setCurrentMeasure8("");
-        setEstimatedDateOfCompletion8(
-        ""
-        );
-        setComment8("");
-      }
-    
-   
-  
-      // Resetting otherArray state variables
-      setOtherArray(getApiData?.other ? getApiData?.other : []);
-  
-      // Resetting resident overall participation state variables
-      setResidentParticipation(getApiData?.residentParticipation);
-      setResidentAttitute(getApiData?.residentAttitude);
-      setResidentProgress(getApiData?.residentProgress);
-      setSupportSystemPhoneNumber(getApiData?.supportSystemPhoneNumber);
-      setSupportSystem(
-        getApiData?.supportSystem ? getApiData?.supportSystem : []
-      );
-      setSupportSystemOtherText(getApiData?.residentAttitude);
-      setSupportSystemOtherTextBoolean(false);
-      setCurrentMedications(getApiData?.currentMedications);
-      setreligiousPreference(getApiData?.religiousPreference);
-  
-      if (getApiData?.religiousPreference) {
-        setReligiousPreferenceText(getApiData?.religiousPreference);
-      }
-  
-      setNutritionAndWellnessPlanning(
-        getApiData?.nutritionAndWellnessPlanning
-          ? getApiData?.nutritionAndWellnessPlanning
-          : []
-      );
-      setRecommendationToExtendResidentialTreatment(
-        getApiData?.recommendationToExtendResidentialTreatment
-      );
-      setPersonalFinances(getApiData?.personalFinances);
-      setDischargePlanning(getApiData?.dischargePlanning);
-      setAdditionalComment(getApiData?.additionalComment);
-      setRecommendationsForFurtherPrograms(
-        getApiData?.recommendationsForFurtherPrograms
-          ? getApiData?.recommendationsForFurtherPrograms
-          : []
-      );
-      setrecommendationsForFurtherProgramsBoolean(
-        getApiData?.recommendationsForFurtherPrograms?.length > 0 ? true : false
-      );
-  
-      setRecommendationsForFurtherProgramsOther(
-        getApiData?.recommendationsForFurtherProgramsOther
-      );
-  
-      setAfterCareAndTransitionPlanning(
-        getApiData?.afterCareAndTransitionPlanning
-          ? getApiData?.afterCareAndTransitionPlanning
-          : []
-      );
-  
-      setTextData(
-        getApiData?.clinicalSummaryBeforeDate
-          ? getApiData?.clinicalSummaryBeforeDate?.slice(0, 10)
-          : ""
-      );
-  
-      // Resetting clinicalSummary state variables
-      setClinicalSummary(
-        getApiData?.clinicalSummary
-          ? getApiData.clinicalSummary.map((item) => ({
-              label: item,
-              value: item,
-            }))
-          : []
-      );
-      setTreatmentPlanReviewDate(
-        getApiData?.treatmentPlanReviewDate
-          ? getApiData?.treatmentPlanReviewDate.slice(0, 10)
-          : ""
-      );
-      setDischargePlanDate(
-        getApiData?.dischargePlanDate
-          ? getApiData?.dischargePlanDate.slice(0, 10)
-          : ""
-      );
-      // Resetting individual participating state variables
-      setResident(getApiData?.individualsParticipatingInServicePlan?.resident);
-      setGuardian(getApiData?.individualsParticipatingInServicePlan?.guardian);
-      setStaff(getApiData?.individualsParticipatingInServicePlan?.staff);
-      setBph(getApiData?.individualsParticipatingInServicePlan?.bhp);
-      setCommentIndividual(
-        getApiData?.individualsParticipatingInServicePlan?.comment
-      );
-  
-      // Resetting isReason state variable
-      setIsReason(getApiData?.residentAgreementIsReason);
-      setrefusalReason(getApiData?.residentAgreementRefusalReason);
-  
-      // Resetting signaturesResident state variables
-      setNameResident(getApiData?.signaturesResident?.name);
-      setCredentialsResident(getApiData?.signaturesResident?.credentials);
-      setsignatureResident(getApiData?.signaturesResident?.signature);
-      setDateResident(
-        getApiData?.signaturesResident?.date
-          ? formatDate(getApiData?.signaturesResident?.date)
-          : ""
-      );
-      setTimeResident(getApiData?.signaturesResident?.time);
-  
-      // Resetting signaturesFacilityRep state variables
-      setNameFacilityRep(getApiData?.signaturesFacilityRep?.name);
-      setCredentialsFacilityRep(getApiData?.signaturesFacilityRep?.credentials);
-      setsignatureFacilityRep(getApiData?.signaturesFacilityRep?.signature);
-      setDateFacilityRep(
-        getApiData?.signaturesFacilityRep?.date
-          ? formatDate(getApiData?.signaturesFacilityRep?.date)
-          : ""
-      );
-      setTimeFacality(getApiData?.signaturesFacilityRep?.time);
-  
-      // Resetting signaturesBhp state variables
-      setNameBhp(getApiData?.signaturesBhp?.name);
-      setCredentialsBhp(getApiData?.signaturesBhp?.credentials);
-      setsignatureBhp(getApiData?.signaturesBhp?.signature);
-      setDateBhp(
-        getApiData?.signaturesBhp?.date
-          ? formatDate(getApiData?.signaturesBhp?.date)
-          : ""
-      );
-      setTimeBhp(getApiData?.signaturesBhp?.time);
+    // Resetting medication service state variables
+    setMedicationAdministation(
+      getApiData?.medicationService ? getApiData?.medicationService?.[0] : ""
+    );
+    setMedicationAssistence(
+      getApiData?.medicationService ? getApiData?.medicationService?.[1] : ""
+    );
+    setPresentingPrice(
+      getApiData?.presentingProblems
+        ? getApiData.presentingProblems.map((item) => ({
+            label: item, // Assuming 'name' is the property you want to use as label
+            value: item, // Assuming 'id' is the property you want to use as value
+          }))
+        : []
+    );
 
+    // Resetting diagnosis state variable
+    setDiagonsis(getApiData?.diagonsis);
+
+    // Resetting mental status state variables
+    setMentelHealth(getApiData?.mentalStatus);
+    setMentelText(getApiData?.mentalStatusOther);
+
+    // Resetting mood level state variables
+    setMind(getApiData?.moodLevel);
+    setMindText(getApiData?.moodLevelOther);
+
+    // Resetting ADLS state variables
+    setAdls(getApiData?.adls);
+    setAldsText(getApiData?.adlsOther);
+
+    // Resetting behavioral health services state variables
+    setBHealth(getApiData?.behavioralHealthServices);
+    setBtext(getApiData?.behavioralHealthServicesOther);
+
+    // Resetting primary care provider state variables
+    setPrimaryCare(getApiData?.primaryCareProvider);
+    setPsychiatricProvider(getApiData?.psychiatricProvider);
+
+    // Resetting resident goals state variables
+    setResidentGoal(getApiData?.residentGoals);
+    setAllergies(getApiData?.allergies);
+    setTriggers(getApiData?.triggers);
+    setStrengths(
+      getApiData?.strengths
+        ? getApiData.strengths.map((item) => ({
+            label: item, // Assuming 'name' is the property you want to use as label
+            value: item, // Assuming 'id' is the property you want to use as value
+          }))
+        : []
+    );
+
+    // Resetting barriers state variables
+    setBarriers(
+      getApiData?.barriers
+        ? getApiData.barriers.map((item) => ({
+            label: item, // Assuming 'name' is the property you want to use as label
+            value: item, // Assuming 'id' is the property you want to use as value
+          }))
+        : []
+    );
+
+    // Resetting risk assessment state variables
+    setBehavioralSymptoms(
+      getApiData?.riskAssessment?.behavioralSymptoms
+        ? getApiData?.riskAssessment?.behavioralSymptoms
+        : []
+    );
+    setBehavioralSymptomsBoolean(
+      getApiData?.riskAssessment?.behavioralSymptomsOther ? true : false
+    );
+    setBehavioralSymptomsOther(
+      getApiData?.riskAssessment?.behavioralSymptomsOther
+    );
+
+    // Resetting physical symptoms state variables
+    setPhysicalSymptoms(
+      getApiData?.riskAssessment?.physicalSymptoms
+        ? getApiData?.riskAssessment?.physicalSymptoms
+        : []
+    );
+    setPhysicalSymptomsBoolean(
+      getApiData?.riskAssessment?.physicalSymptoms ? true : false
+    );
+    setPhysicalSymptomsOther(getApiData?.riskAssessment?.physicalSymptomsOther);
+
+    // Resetting cognitive symptoms state variables
+    setConsnotiveSymptoms(
+      getApiData?.riskAssessment?.cognitiveSymptoms
+        ? getApiData?.riskAssessment?.cognitiveSymptoms
+        : []
+    );
+    setConsnotiveSymptomsBoolean(
+      getApiData?.riskAssessment?.cognitiveSymptoms ? true : false
+    );
+    setConsnotiveSymptomsOther(
+      getApiData?.riskAssessment?.cognitiveSymptomsOther
+    );
+
+    // Resetting psychosocial symptoms state variables
+    setPsychosocialSymptoms(
+      getApiData?.riskAssessment?.psychosocialSymptoms
+        ? getApiData?.riskAssessment?.psychosocialSymptoms
+        : []
+    );
+    setPsychosocialSymptomsBoolean(
+      getApiData?.riskAssessment?.psychosocialSymptoms ? true : false
+    );
+    setPsychosocialSymptomsOther(
+      getApiData?.riskAssessment?.psychosocialSymptomsOther
+    );
+
+    // Resetting interventions implemented state variables
+    setInterventionsImplemented(
+      getApiData?.interventions ? getApiData?.interventions : []
+    );
+    setInterventionsImplementedBoolean(
+      getApiData?.interventionsComment ? true : false
+    );
+
+    setInterventionsImplementedOther(getApiData?.interventionsComment);
+
+    // Resetting counseling and frequency state variables
+    setMinimumHoure(getApiData?.counselingFrequencyMinimum);
+    setIndividualComment(getApiData?.IndividualComment);
+    setCounselingOptions(
+      getApiData?.counselingFrequency ? getApiData?.counselingFrequency : []
+    );
+    setCounselingOptionsOther(getApiData?.counselingFrequencyComment);
+    setCounselingOptionsTextBoolean(
+      getApiData?.counselingFrequencyComment ? true : false
+    );
+
+    // Resetting goals for changes state variables
+    setOption1(
+      getApiData?.maintainSobrietyType
+        ? getApiData.maintainSobrietyType.map((item) => ({
+            label: item, // Assuming 'name' is the property you want to use as label
+            value: item, // Assuming 'id' is the property you want to use as value
+          }))
+        : []
+    );
+
+    // Resetting option2 state variables
+    setOption2(
+      getApiData?.independentLivingSkillsType
+        ? getApiData.independentLivingSkillsType.map((item) => ({
+            label: item, // Assuming 'name' is the property you want to use as label
+            value: item, // Assuming 'id' is the property you want to use as value
+          }))
+        : []
+    );
+
+    // Resetting option3 state variables
+    setOption3(
+      getApiData?.employmentType
+        ? getApiData.employmentType.map((item) => ({
+            label: item, // Assuming 'name' is the property you want to use as label
+            value: item, // Assuming 'id' is the property you want to use as value
+          }))
+        : []
+    );
+
+    // Resetting option4 state variables
+    setOption4(
+      getApiData?.adlsSecondType
+        ? getApiData.adlsSecondType.map((item) => ({
+            label: item, // Assuming 'name' is the property you want to use as label
+            value: item, // Assuming 'id' is the property you want to use as value
+          }))
+        : []
+    );
+
+    // Resetting option5 state variables
+    setOption5(
+      getApiData?.safetyType
+        ? getApiData.safetyType.map((item) => ({
+            label: item, // Assuming 'name' is the property you want to use as label
+            value: item, // Assuming 'id' is the property you want to use as value
+          }))
+        : []
+    );
+
+    // Resetting option6 state variables
+    setOption6(
+      getApiData?.medicationEducationType
+        ? getApiData.medicationEducationType.map((item) => ({
+            label: item, // Assuming 'name' is the property you want to use as label
+            value: item, // Assuming 'id' is the property you want to use as value
+          }))
+        : []
+    );
+
+    // Resetting option7 state variables
+    setOption7(
+      getApiData?.managingMentalHealthType
+        ? getApiData.managingMentalHealthType.map((item) => ({
+            label: item, // Assuming 'name' is the property you want to use as label
+            value: item, // Assuming 'id' is the property you want to use as value
+          }))
+        : []
+    );
+
+    // Resetting option8 state variables
+    setOption8(
+      getApiData?.legalType
+        ? getApiData.legalType.map((item) => ({
+            label: item, // Assuming 'name' is the property you want to use as label
+            value: item, // Assuming 'id' is the property you want to use as value
+          }))
+        : []
+    );
+
+    // Resetting admissionMeasure1 state variables
+    setAdmissionMeasure1(getApiData?.maintainSobrietyAdmissionMeasure);
+    setCurrentMeasure1(getApiData?.maintainSobrietyCurrentMeasure);
+    setEstimatedDateOfCompletion1(
+      getApiData?.maintainSobrietyEstimatedDateOfCompletion
+        ? getApiData?.maintainSobrietyEstimatedDateOfCompletion?.slice(0, 10)
+        : ""
+    );
+    setComment1(getApiData?.maintainSobrietyComments);
+    setTableShow1(getApiData?.maintainSobrietyPreviousMeasure)
+    // Resetting admissionMeasure2 state variables
+    setAdmissionMeasure2(getApiData?.independentLivingSkillsAdmissionMeasure);
+
+    setCurrentMeasure2(getApiData?.independentLivingSkillsCurrentMeasure);
+    setEstimatedDateOfCompletion2(
+      getApiData?.independentLivingSkillsEstimatedDateOfCompletion
+        ? getApiData?.independentLivingSkillsEstimatedDateOfCompletion?.slice(
+            0,
+            10
+          )
+        : ""
+    );
+    setComment2(getApiData?.independentLivingSkillsComments);
+    setTableShow2(getApiData?.independentLivingSkillsPreviousMeasure)
+    // Resetting admissionMeasure3 state variables
+    setAdmissionMeasure3(getApiData?.employmentAdmissionMeasure);
+
+    setCurrentMeasure3(getApiData?.employmentCurrentMeasure);
+    setEstimatedDateOfCompletion3(
+      getApiData?.employmentEstimatedDateOfCompletion
+        ? getApiData?.employmentEstimatedDateOfCompletion?.slice(0, 10)
+        : ""
+    );
+    setComment3(getApiData?.employmentComments);
+    setTableShow3(getApiData?.employmentPreviousMeasure)
+
+    // Resetting admissionMeasure4 state variables
+    setAdmissionMeasure4(getApiData?.adlsSecondAdmissionMeasure);
+
+    setCurrentMeasure4(getApiData?.adlsSecondCurrentMeasure);
+    setEstimatedDateOfCompletion4(
+      getApiData?.adlsSecondEstimatedDateOfCompletion
+        ? getApiData?.adlsSecondEstimatedDateOfCompletion?.slice(0, 10)
+        : ""
+    );
+    setComment4(getApiData?.adlsSecondComments);
+    setTableShow4(getApiData?.adlsSecondPreviousMeasure)
+    // Resetting admissionMeasure5 state variables
+    setAdmissionMeasure5(getApiData?.safetyAdmissionMeasure);
+
+    setCurrentMeasure5(getApiData?.safetyCurrentMeasure);
+    setEstimatedDateOfCompletion5(
+      getApiData?.safetyEstimatedDateOfCompletion
+        ? getApiData?.safetyEstimatedDateOfCompletion?.slice(0, 10)
+        : ""
+    );
+    setComment5(getApiData?.safetyComments);
+    setTableShow5(getApiData?.safetyPreviousMeasure)
+    // Resetting admissionMeasure6 state variables
+    setAdmissionMeasure6(getApiData?.medicationEducationAdmissionMeasure);
+
+    setCurrentMeasure6(getApiData?.medicationEducationCurrentMeasure);
+    setEstimatedDateOfCompletion6(
+      getApiData?.medicationEducationEstimatedDateOfCompletion
+        ? getApiData?.medicationEducationEstimatedDateOfCompletion?.slice(0, 10)
+        : ""
+    );
+    setComment6(getApiData?.medicationEducationComments);
+    setTableShow6(getApiData?.medicationEducationPreviousMeasure)
+    // Resetting admissionMeasure7 state variables
+    setAdmissionMeasure7(getApiData?.managingMentalHealthAdmissionMeasure);
+
+    setCurrentMeasure7(getApiData?.managingMentalHealthCurrentMeasure);
+    setEstimatedDateOfCompletion7(
+      getApiData?.managingMentalHealthEstimatedDateOfCompletion
+        ? getApiData?.managingMentalHealthEstimatedDateOfCompletion?.slice(
+            0,
+            10
+          )
+        : ""
+    );
+    setComment7(getApiData?.managingMentalHealthComments);
+    setTableShow7(getApiData?.managingMentalHealthPreviousMeasure)
+    // Resetting admissionMeasure8 state variables
+    setAdmissionMeasure8(getApiData?.legalAdmissionMeasure);
+    setCurrentMeasure8(getApiData?.legalCurrentMeasure);
+    setEstimatedDateOfCompletion8(
+      getApiData?.legalEstimatedDateOfCompletion
+        ? getApiData?.legalEstimatedDateOfCompletion?.slice(0, 10)
+        : ""
+    );
+    setComment8(getApiData?.legalComments);
+    setTableShow8(getApiData?.legalPreviousMeasure)
+
+    // Resetting otherArray state variables
+    setOtherArray(getApiData?.other ? getApiData?.other : []);
+    setShowOther(false);
+
+    // Resetting resident overall participation state variables
+    setResidentParticipation(getApiData?.residentParticipation);
+    setResidentAttitute(getApiData?.residentAttitude);
+    setResidentProgress(getApiData?.residentProgress);
+    setSupportSystemPhoneNumber(getApiData?.supportSystemPhoneNumber);
+    setSupportSystem(
+      getApiData?.supportSystem ? getApiData?.supportSystem : []
+    );
+    setSupportSystemOtherText(getApiData?.residentAttitude);
+    setSupportSystemOtherTextBoolean(false);
+    setCurrentMedications(getApiData?.currentMedications);
+    setreligiousPreference(getApiData?.religiousPreference);
+
+    if (getApiData?.religiousPreference) {
+      setReligiousPreferenceText(getApiData?.religiousPreference);
     }
-    
+
+    setNutritionAndWellnessPlanning(
+      getApiData?.nutritionAndWellnessPlanning
+        ? getApiData?.nutritionAndWellnessPlanning
+        : []
+    );
+    setRecommendationToExtendResidentialTreatment(
+      getApiData?.recommendationToExtendResidentialTreatment
+    );
+    setPersonalFinances(getApiData?.personalFinances);
+    setDischargePlanning(getApiData?.dischargePlanning);
+    setAdditionalComment(getApiData?.additionalComment);
+    setRecommendationsForFurtherPrograms(
+      getApiData?.recommendationsForFurtherPrograms
+        ? getApiData?.recommendationsForFurtherPrograms
+        : []
+    );
+    setrecommendationsForFurtherProgramsBoolean(
+      getApiData?.recommendationsForFurtherPrograms?.length > 0 ? true : false
+    );
+
+    setRecommendationsForFurtherProgramsOther(
+      getApiData?.recommendationsForFurtherProgramsOther
+    );
+
+    setAfterCareAndTransitionPlanning(
+      getApiData?.afterCareAndTransitionPlanning
+        ? getApiData?.afterCareAndTransitionPlanning
+        : []
+    );
+
+    setTextData(
+      getApiData?.clinicalSummaryBeforeDate
+        ? getApiData?.clinicalSummaryBeforeDate?.slice(0, 10)
+        : ""
+    );
+
+    // Resetting clinicalSummary state variables
+    setClinicalSummary(
+      getApiData?.clinicalSummary
+        ? getApiData.clinicalSummary.map((item) => ({
+            label: item,
+            value: item,
+          }))
+        : []
+    );
+    setTreatmentPlanReviewDate(
+      getApiData?.treatmentPlanReviewDate
+        ? getApiData?.treatmentPlanReviewDate.slice(0, 10)
+        : ""
+    );
+    setDischargePlanDate(
+      getApiData?.dischargePlanDate
+        ? getApiData?.dischargePlanDate.slice(0, 10)
+        : ""
+    );
+    // Resetting individual participating state variables
+    setResident(getApiData?.individualsParticipatingInServicePlan?.resident);
+    setGuardian(getApiData?.individualsParticipatingInServicePlan?.guardian);
+    setStaff(getApiData?.individualsParticipatingInServicePlan?.staff);
+    setBph(getApiData?.individualsParticipatingInServicePlan?.bhp);
+    setCommentIndividual(
+      getApiData?.individualsParticipatingInServicePlan?.comment
+    );
+
+    // Resetting isReason state variable
+    setIsReason(getApiData?.residentAgreementIsReason);
+    setrefusalReason(getApiData?.residentAgreementRefusalReason);
+
+    // Resetting signaturesResident state variables
+    setNameResident(getApiData?.signaturesResident?.name);
+    setCredentialsResident(getApiData?.signaturesResident?.credentials);
+    setsignatureResident(getApiData?.signaturesResident?.signature);
+    setDateResident(
+      getApiData?.signaturesResident?.date
+        ? formatDate(getApiData?.signaturesResident?.date)
+        : ""
+    );
+    setTimeResident(getApiData?.signaturesResident?.time);
+
+    // Resetting signaturesFacilityRep state variables
+    setNameFacilityRep(getApiData?.signaturesFacilityRep?.name);
+    setCredentialsFacilityRep(getApiData?.signaturesFacilityRep?.credentials);
+    setsignatureFacilityRep(getApiData?.signaturesFacilityRep?.signature);
+    setDateFacilityRep(
+      getApiData?.signaturesFacilityRep?.date
+        ? formatDate(getApiData?.signaturesFacilityRep?.date)
+        : ""
+    );
+    setTimeFacality(getApiData?.signaturesFacilityRep?.time);
+
+    // Resetting signaturesBhp state variables
+    setNameBhp(getApiData?.signaturesBhp?.name);
+    setCredentialsBhp(getApiData?.signaturesBhp?.credentials);
+    setsignatureBhp(getApiData?.signaturesBhp?.signature);
+    setDateBhp(
+      getApiData?.signaturesBhp?.date
+        ? formatDate(getApiData?.signaturesBhp?.date)
+        : ""
+    );
+    setTimeBhp(getApiData?.signaturesBhp?.time);
   }, [getApiData]);
 
-
-
-  // useEffect(() => {
-  //   setLoading(true); 
-  //   if (previusData) {
-  //     patient_form_treatment_get(userId, (data) => {
-  //       setGetApiData(data);
-  //       setLoading(false); 
-  //     });
-  //   } else {
-  //     setLoading(false); 
-  //   }
-  // }, [userId, previusData]);
-
-  useEffect(() => {
-    setLoading(true); 
-    if (userId) {
-      patient_form_treatment_get_Draft(userId, setGetApiData, setLoading);
-    } else {
-      setLoading(false); 
+ 
+  useEffect(()=>{
+    if(userId){
+      patient_form_treatment_get_Draft(userId,setGetApiData);
     }
-  }, [userId]);
-  
-  // useEffect(() => {
-  //   setLoading(true); 
-  //   if (previusData) {
-  //     patient_form_treatment_get_Draft(userId, setGetApiData, setLoading);
-  //   } else {
-  //     setLoading(false); 
-  //   }
-  // }, [userId, previusData]);
-
-
+  },[userId])
 
 
   useEffect(() => {
     setFiledForm(user?.treatmentPlan);
     setUserId(user?._id);
-    // setResidentName(user?.fullName);
-    // setDob(user?.dateOfBirth ? user?.dateOfBirth?.slice(0, 10) : "");
+    
   }, [user]);
 
   useEffect(() => {
     user_detail(setUser);
   }, []);
-
-  const handlePost = (e) => {
-    e.preventDefault();
-
-    let presentingPriceArray = [];
-
-    presentingPrice.forEach((item) => {
-      presentingPriceArray.push(item?.value);
-    });
-
-    let strengthsArray = [];
-    strengths.forEach((item) => {
-      strengthsArray.push(item?.value);
-    });
-
-    let BarriersArray = [];
-    Barriers.forEach((item) => {
-      BarriersArray.push(item?.value);
-    });
-
-    let option1Array = [];
-    option1.forEach((item) => {
-      option1Array.push(item?.value);
-    });
-
-    let option2Array = [];
-    option2.forEach((item) => {
-      option2Array.push(item?.value);
-    });
-
-    let option3Array = [];
-    option3.forEach((item) => {
-      option3Array.push(item?.value);
-    });
-
-    let option4Array = [];
-    option4.forEach((item) => {
-      option4Array.push(item?.value);
-    });
-
-    let option5Array = [];
-    option5.forEach((item) => {
-      option5Array.push(item?.value);
-    });
-
-    let option6Array = [];
-    option6.forEach((item) => {
-      option6Array.push(item?.value);
-    });
-
-    let option7Array = [];
-    option7.forEach((item) => {
-      option7Array.push(item?.value);
-    });
-
-    let option8Array = [];
-    option8.forEach((item) => {
-      option8Array.push(item?.value);
-    });
-
-    let clinicalSummaryArray = [];
-    clinicalSummary.forEach((item) => {
-      clinicalSummaryArray.push(item?.value);
-    });
-
-    const data = {
-      saveAsDraft,
-      residentName,
-      dateOfBirth: dob,
-      patientId: userId,
-      name: initialUpdate,
-      dateOfBirth: dob,
-      date: date,
-      admitDate: admitDate,
-      care: [physicalService, behavior],
-      medicationService: [medicationAdministation, medicationAssistance],
-      presentingProblems: presentingPriceArray,
-      diagonsis,
-      mentalStatus: mendelHealth,
-      mentalStatusOther: mentelText,
-      moodLevel: mind,
-      moodLevelOther: mindText,
-      adls: adls,
-      adlsOther: adlsText,
-      behavioralHealthServices: BHealth,
-      behavioralHealthServicesOther: Btext,
-      primaryCareProvider: primaryCare,
-      psychiatricProvider: psychiatricProvider,
-      residentGoals: residentGoal,
-      allergies: allergies,
-      triggers: Triggers,
-      strengths: strengthsArray,
-      barriers: BarriersArray,
-      riskAssessment: {
-        behavioralSymptoms: behavioralSymptoms,
-        behavioralSymptomsOther: behavioralSymptomsOther,
-        physicalSymptoms: physicalSymptoms,
-        physicalSymptomsOther: physicalSymptomsOther,
-        cognitiveSymptoms: consnotiveSymptoms,
-        cognitiveSymptomsOther: consnotiveSymptomsOther,
-        psychosocialSymptoms: psychosocialSymptoms,
-        psychosocialSymptomsOther: psychosocialSymptomssOther,
-      },
-      interventions: interventionsImplemented,
-      interventionsComment: interventionsImplementedOther,
-      counselingFrequency: counselingOptions,
-      counselingFrequencyMinimum: minimumHoure,
-      counselingFrequencyComment: counselingOptionsText,
-      IndividualComment,
-
-      maintainSobrietyType: option1Array,
-      maintainSobrietyAdmissionMeasure: admissionMeasure1,
-      maintainSobrietyCurrentMeasure: currentMeasure1,
-      maintainSobrietyEstimatedDateOfCompletion: estimatedDateOfCompletion1,
-      maintainSobrietyComments: comments1,
-      maintainSobrietyPreviousMeasure:tableshow1,
-
-      independentLivingSkillsType: option2Array,
-      independentLivingSkillsAdmissionMeasure: admissionMeasure2,
-      independentLivingSkillsCurrentMeasure: currentMeasure2,
-      independentLivingSkillsEstimatedDateOfCompletion:
-        estimatedDateOfCompletion2,
-      independentLivingSkillsComments: comments2,
-      independentLivingSkillsPreviousMeasure:tableshow2,
-
-      employmentType: option3Array,
-      employmentAdmissionMeasure: admissionMeasure3,
-      employmentCurrentMeasure: currentMeasure3,
-      employmentEstimatedDateOfCompletion: estimatedDateOfCompletion3,
-      employmentComments: comments3,
-      employmentPreviousMeasure:tableshow3,
-
-      adlsSecondType: option4Array,
-      adlsSecondAdmissionMeasure: admissionMeasure4,
-      adlsSecondCurrentMeasure: currentMeasure4,
-      adlsSecondEstimatedDateOfCompletion: estimatedDateOfCompletion4,
-      adlsSecondComments: comments4,
-      adlsSecondPreviousMeasure:tableshow4,
-
-      safetyType: option5Array,
-      safetyAdmissionMeasure: admissionMeasure5,
-      safetyCurrentMeasure: currentMeasure5,
-      safetyEstimatedDateOfCompletion: estimatedDateOfCompletion5,
-      safetyComments: comments5,
-      safetyPreviousMeasure:tableshow5,
-
-      medicationEducationType: option6Array,
-      medicationEducationAdmissionMeasure: admissionMeasure6,
-      medicationEducationCurrentMeasure: currentMeasure6,
-      medicationEducationEstimatedDateOfCompletion: estimatedDateOfCompletion6,
-      medicationEducationComments: comments6,
-      medicationEducationPreviousMeasure:tableshow6,
-
-      managingMentalHealthType: option7Array,
-      managingMentalHealthAdmissionMeasure: admissionMeasure7,
-      managingMentalHealthCurrentMeasure: currentMeasure7,
-      managingMentalHealthEstimatedDateOfCompletion: estimatedDateOfCompletion7,
-      managingMentalHealthComments: comments7,
-      managingMentalHealthPreviousMeasure:tableshow7,
-
-      legalType: option8Array,
-      legalAdmissionMeasure: admissionMeasure8,
-      legalCurrentMeasure: currentMeasure8,
-      legalEstimatedDateOfCompletion: estimatedDateOfCompletion8,
-      legalComments: comments8,
-      legalPreviousMeasure:tableshow8,
-
-      other: otherArray,
-
-      residentParticipation,
-      residentAttitude: residentAttitute,
-      residentProgress,
-      supportSystem,
-      supportSystemPhoneNumber: supportSystemPhoneNumber,
-      currentMedications,
-      religiousPreference,
-      nutritionAndWellnessPlanning,
-      recommendationToExtendResidentialTreatment,
-      personalFinances,
-      dischargePlanning,
-      additionalComment,
-      recommendationsForFurtherPrograms,
-      recommendationsForFurtherProgramsOther,
-      afterCareAndTransitionPlanning,
-      clinicalSummaryBeforeDate: textData,
-      clinicalSummary: clinicalSummaryArray,
-      treatmentPlanReviewDate,
-      dischargePlanDate,
-
-      individualsParticipatingInServicePlan: {
-        resident: resident,
-        guardian: guardian,
-        staff: staff,
-        bhp: bpn,
-        comment: commentIndividual,
-      },
-
-      residentAgreementIsReason: isReason,
-      residentAgreementRefusalReason: refusalReason,
-
-      signaturesResident: {
-        name: nameResident,
-        credentials: credentialsResident,
-        signature: signatureResident,
-        date: dateResident,
-        time: timeResident,
-      },
-      signaturesFacilityRep: {
-        name: nameFacilityRep,
-        credentials: credentialsFacilityRep,
-        signature: signatureFacilityRep,
-        date: dateFacilityRep,
-        time: timeFacality,
-      },
-      signaturesBhp: {
-        name: nameBhp,
-        credentials: credentialsBhp,
-        signature: signatureBhp,
-        date: dateBhp,
-        time: timeBhp,
-      },
-    };
-    patient_form(data,saveAsDraft);
-    navigate("/intake");
-  };
-
-  const handleData = () => {
-
-    let presentingPriceArray = [];
-
-    presentingPrice.forEach((item) => {
-      presentingPriceArray.push(item?.value);
-    });
-
-    let strengthsArray = [];
-    strengths.forEach((item) => {
-      strengthsArray.push(item?.value);
-    });
-
-    let BarriersArray = [];
-    Barriers.forEach((item) => {
-      BarriersArray.push(item?.value);
-    });
-
-    let option1Array = [];
-    option1.forEach((item) => {
-      option1Array.push(item?.value);
-    });
-
-    let option2Array = [];
-    option2.forEach((item) => {
-      option2Array.push(item?.value);
-    });
-
-    let option3Array = [];
-    option3.forEach((item) => {
-      option3Array.push(item?.value);
-    });
-
-    let option4Array = [];
-    option4.forEach((item) => {
-      option4Array.push(item?.value);
-    });
-
-    let option5Array = [];
-    option5.forEach((item) => {
-      option5Array.push(item?.value);
-    });
-
-    let option6Array = [];
-    option6.forEach((item) => {
-      option6Array.push(item?.value);
-    });
-
-    let option7Array = [];
-    option7.forEach((item) => {
-      option7Array.push(item?.value);
-    });
-
-    let option8Array = [];
-    option8.forEach((item) => {
-      option8Array.push(item?.value);
-    });
-
-    let clinicalSummaryArray = [];
-    clinicalSummary.forEach((item) => {
-      clinicalSummaryArray.push(item?.value);
-    });
-
-    const data = {
-      saveAsDraft,
-      residentName,
-      dateOfBirth: dob,
-      patientId: userId,
-      name: initialUpdate,
-      dateOfBirth: dob,
-      date: date,
-      admitDate: admitDate,
-      care: [physicalService, behavior],
-      medicationService: [medicationAdministation, medicationAssistance],
-      presentingProblems: presentingPriceArray,
-      diagonsis,
-      mentalStatus: mendelHealth,
-      mentalStatusOther: mentelText,
-      moodLevel: mind,
-      moodLevelOther: mindText,
-      adls: adls,
-      adlsOther: adlsText,
-      behavioralHealthServices: BHealth,
-      behavioralHealthServicesOther: Btext,
-      primaryCareProvider: primaryCare,
-      psychiatricProvider: psychiatricProvider,
-      residentGoals: residentGoal,
-      allergies: allergies,
-      triggers: Triggers,
-      strengths: strengthsArray,
-      barriers: BarriersArray,
-      riskAssessment: {
-        behavioralSymptoms: behavioralSymptoms,
-        behavioralSymptomsOther: behavioralSymptomsOther,
-        physicalSymptoms: physicalSymptoms,
-        physicalSymptomsOther: physicalSymptomsOther,
-        cognitiveSymptoms: consnotiveSymptoms,
-        cognitiveSymptomsOther: consnotiveSymptomsOther,
-        psychosocialSymptoms: psychosocialSymptoms,
-        psychosocialSymptomsOther: psychosocialSymptomssOther,
-      },
-      interventions: interventionsImplemented,
-      interventionsComment: interventionsImplementedOther,
-      counselingFrequency: counselingOptions,
-      counselingFrequencyMinimum: minimumHoure,
-      counselingFrequencyComment: counselingOptionsText,
-      IndividualComment,
-
-      maintainSobrietyType: option1Array,
-      maintainSobrietyAdmissionMeasure: admissionMeasure1,
-      maintainSobrietyCurrentMeasure: currentMeasure1,
-      maintainSobrietyEstimatedDateOfCompletion: estimatedDateOfCompletion1,
-      maintainSobrietyComments: comments1,
-      maintainSobrietyPreviousMeasure:tableshow1,
-
-      independentLivingSkillsType: option2Array,
-      independentLivingSkillsAdmissionMeasure: admissionMeasure2,
-      independentLivingSkillsCurrentMeasure: currentMeasure2,
-      independentLivingSkillsEstimatedDateOfCompletion:
-        estimatedDateOfCompletion2,
-      independentLivingSkillsComments: comments2,
-      independentLivingSkillsPreviousMeasure:tableshow2,
-
-      employmentType: option3Array,
-      employmentAdmissionMeasure: admissionMeasure3,
-      employmentCurrentMeasure: currentMeasure3,
-      employmentEstimatedDateOfCompletion: estimatedDateOfCompletion3,
-      employmentComments: comments3,
-      employmentPreviousMeasure:tableshow3,
-
-      adlsSecondType: option4Array,
-      adlsSecondAdmissionMeasure: admissionMeasure4,
-      adlsSecondCurrentMeasure: currentMeasure4,
-      adlsSecondEstimatedDateOfCompletion: estimatedDateOfCompletion4,
-      adlsSecondComments: comments4,
-      adlsSecondPreviousMeasure:tableshow4,
-
-      safetyType: option5Array,
-      safetyAdmissionMeasure: admissionMeasure5,
-      safetyCurrentMeasure: currentMeasure5,
-      safetyEstimatedDateOfCompletion: estimatedDateOfCompletion5,
-      safetyComments: comments5,
-      safetyPreviousMeasure:tableshow5,
-
-      medicationEducationType: option6Array,
-      medicationEducationAdmissionMeasure: admissionMeasure6,
-      medicationEducationCurrentMeasure: currentMeasure6,
-      medicationEducationEstimatedDateOfCompletion: estimatedDateOfCompletion6,
-      medicationEducationComments: comments6,
-      medicationEducationPreviousMeasure:tableshow6,
-
-      managingMentalHealthType: option7Array,
-      managingMentalHealthAdmissionMeasure: admissionMeasure7,
-      managingMentalHealthCurrentMeasure: currentMeasure7,
-      managingMentalHealthEstimatedDateOfCompletion: estimatedDateOfCompletion7,
-      managingMentalHealthComments: comments7,
-      managingMentalHealthPreviousMeasure:tableshow7,
-
-      legalType: option8Array,
-      legalAdmissionMeasure: admissionMeasure8,
-      legalCurrentMeasure: currentMeasure8,
-      legalEstimatedDateOfCompletion: estimatedDateOfCompletion8,
-      legalComments: comments8,
-      legalPreviousMeasure:tableshow8,
-
-      other: otherArray,
-
-      residentParticipation,
-      residentAttitude: residentAttitute,
-      residentProgress,
-      supportSystem,
-      supportSystemPhoneNumber: supportSystemPhoneNumber,
-      currentMedications,
-      religiousPreference,
-      nutritionAndWellnessPlanning,
-      recommendationToExtendResidentialTreatment,
-      personalFinances,
-      dischargePlanning,
-      additionalComment,
-      recommendationsForFurtherPrograms,
-      recommendationsForFurtherProgramsOther,
-      afterCareAndTransitionPlanning,
-      clinicalSummaryBeforeDate: textData,
-      clinicalSummary: clinicalSummaryArray,
-      treatmentPlanReviewDate,
-      dischargePlanDate,
-
-      individualsParticipatingInServicePlan: {
-        resident: resident,
-        guardian: guardian,
-        staff: staff,
-        bhp: bpn,
-        comment: commentIndividual,
-      },
-
-      residentAgreementIsReason: isReason,
-      residentAgreementRefusalReason: refusalReason,
-
-      signaturesResident: {
-        name: nameResident,
-        credentials: credentialsResident,
-        signature: signatureResident,
-        date: dateResident,
-        time: timeResident,
-      },
-      signaturesFacilityRep: {
-        name: nameFacilityRep,
-        credentials: credentialsFacilityRep,
-        signature: signatureFacilityRep,
-        date: dateFacilityRep,
-        time: timeFacality,
-      },
-      signaturesBhp: {
-        name: nameBhp,
-        credentials: credentialsBhp,
-        signature: signatureBhp,
-        date: dateBhp,
-        time: timeBhp,
-      },
-    };
-    patient_form(data,saveAsDraft);
-   
-  };
-
-
-  useEffect(()=>{
-    if(saveAsDraft){
-      handleData();
-    }
-  },[saveAsDraft])
-
-  const handleSaveAsDraft=()=>{
-    // setDraftModel(!draftModel); 
-    setSaveAsDraft(!saveAsDraft);
-  }
 
 
   //handle check box
@@ -1701,7 +1039,6 @@ const Treatmentplan_updateDraft = () => {
   }, [counselingOptions, supportSystem]);
   // Presenting Problems
   const presentingPriceOption = [
-    { label: "Anxiety", value: "Anxiety" },
     { label: "Depression", value: "Depression" },
     { label: "Mood Changes", value: "Mood Changes" },
     {
@@ -1709,9 +1046,9 @@ const Treatmentplan_updateDraft = () => {
       value: "Trouble Falling / staying Asleep",
     },
     { label: "Mood Swings", value: "Mood Swings" },
-    { label: "Social Withdrawal", value: "Social Withdrawal" },
+    { label: "Social Withdrawals", value: "Social Withdrawals" },
     { label: "Changes in Eating habits", value: "Changes in Eating habits" },
-    { label: "Feelings of anger", value: "Feelings of anger" },
+    { label: "Feeling of anger", value: "Feeling of anger" },
     { label: "Negative thoughts", value: "Negative thoughts" },
     { label: "Confused thinking ", value: "Confused thinking " },
     { label: "Irritability", value: "Irritability" },
@@ -1794,17 +1131,15 @@ const Treatmentplan_updateDraft = () => {
   const strengthsOption = [
     { label: "Self Motivated", value: "Self Motivated" },
     { label: "Loving", value: "Loving" },
-    { label: "Honesty", value: "Honesty" },
-    { label: "Like to help others ", value: "Like to help others " },
-    { label: "Good at Communication ", value: "Good at Communication " },
+    { label: "Honest", value: "Honest" },
+    { label: "Helping Others", value: "Helping Others" },
+    { label: "Communication", value: "Communication" },
     { label: "Creative", value: "Creative" },
     { label: "Patient", value: "Patient" },
-    { label: "Dedicated", value: "Dedicated" },
-    { label: "Artistic", value: "Artistic" },
-    { label: "Friendly", value: "Friendly" },
-    { label: "Team work", value: "Team work" },
-    { label: "Confident", value: "Confident" },
-    { label: "Intelligent", value: "Intelligent" },
+    { label: "Dedication", value: "Dedication" },
+    { label: "Coloring", value: "Coloring" },
+    { label: "Decision Making", value: "Decision Making" },
+    { label: "Team Work", value: "Team Work" },
   ];
 
   const handleKeyStrengths = (event) => {
@@ -1848,18 +1183,21 @@ const Treatmentplan_updateDraft = () => {
     { label: "Cognitive", value: "Cognitive" },
     { label: "Lack of Insight", value: "Lack of Insight" },
     { label: "Financial", value: "Financial" },
-    { label: "Social Stigma", value: "Social Stigma" },
     { label: "Refusal of Treatment", value: "Refusal of Treatment" },
-
+    { label: "Social Stigma", value: "Social Stigma" },
+    { label: "Racial", value: "Racial" },
     {
-      label: "Limited mental health literacy",
-      value: "Limited mental health literacy",
+      label: "Limited availibility to Mental Health awareness & Education",
+      value: "Limited availibility to Mental Health awareness & Education",
     },
     {
-      label: "Limited  mental health services",
-      value: "Limited  mental health services",
+      label: "Lack of Mental Health professionals & Services",
+      value: "Lack of Mental Health professionals & Services",
     },
-  
+    {
+      label: "Risk Assessment / Warning Signs & Symptoms of Suicidal Ideations",
+      value: "Risk Assessment / Warning Signs & Symptoms of Suicidal Ideations",
+    },
   ];
 
   const handleKeyBarriers = (event) => {
@@ -2101,8 +1439,8 @@ const Treatmentplan_updateDraft = () => {
   const option3Option = [
     { label: "Resident to Create resume", value: "Resident to Create resume" },
     {
-      label: "Resident will Call, email, or contact agencies for employment",
-      value: "Resident will Call, email, or contact agencies for employment",
+      label: "Resident will Call, email, or contact ",
+      value: "Resident will Call, email, or contact ",
     },
     {
       label: "Resident to learn mock interview",
@@ -2510,42 +1848,7 @@ const Treatmentplan_updateDraft = () => {
   };
 
 
-  // table data treatment plan
-  // const [treatmentTable, setTreatmentTable] = useState([]);
 
-  // useEffect(() => {
-  //   const data = [
-  //     {
-  //       treatmentGoals : {
-  //         heading : "Maintain sobriety" ,
-  //         options : option1Option ,
-  //         value : option1 ,
-  //         changeOperation : option1Handler ,
-  //         keyOperation : handleKeyOption1
-  //       },
-  //       admissionMeasure : {
-  //         defaulValue : admissionMeasure1 , 
-  //         setValue  :setAdmissionMeasure1
-  //       } ,
-  //       currentMeasure : {
-  //         value : currentMeasure1 , 
-  //         setValue :setCurrentMeasure1
-  //       },
-  //       dateOfCompletion : {
-  //         value : estimatedDateOfCompletion1 ,
-  //         setValue : setEstimatedDateOfCompletion1
-  //       }
-  //     }
-  //   ]
-  //   setTreatmentTable(data)
-  // },[])
-
-
-  const handleDeleteArray=(index)=>{
-    const updatedArray = [...otherArray];
-    updatedArray.splice(index, 1);
-    setOtherArray(updatedArray);
-  }
 
   const [tableshow1,setTableShow1]=useState(true);
   const [tableshow2,setTableShow2]=useState(true);
@@ -2560,20 +1863,8 @@ const Treatmentplan_updateDraft = () => {
 
   return (
     <>
-      <div>
+      <div ref={componentRef} className="hidaData">
         <div>
-          <div className="backbutton hidePrint">
-            <IoArrowBackCircle
-              style={{
-                color: "#1A9FB2",
-                width: "40px",
-                height: "40px",
-                cursor: "pointer",
-              }}
-              onClick={() => navigate("/intake")}
-            />
-          </div>
-
           <div className="Boss">
             <div className="formheading1">
               <div className="formsheading_updated_treatment">
@@ -2602,7 +1893,7 @@ const Treatmentplan_updateDraft = () => {
               </div>
             </div>
 
-            <form onSubmit={handlePost}>
+            <form >
               <div className="form-section">
                 <div className="box-image-container">
                   <div className="form-field-update">
@@ -2888,7 +2179,7 @@ const Treatmentplan_updateDraft = () => {
                 >
                   ADLS:
                 </label>
-                <div className="nursing-Cardiovascular">
+                <div className="yeschechbox-review">
                   <div>
                     <input
                       type="checkbox"
@@ -2908,7 +2199,7 @@ const Treatmentplan_updateDraft = () => {
                       onChange={() => setAdls("personalCareLevel")}
                     />
                     <label htmlFor="personalCareLevel">
-                      Personal care level – See Attached personal care treatment plan
+                      Personal care level
                     </label>
                   </div>
                 </div>
@@ -2977,7 +2268,7 @@ const Treatmentplan_updateDraft = () => {
                     onChange={(e) => setBtext(e.target.value)}
                   />
                 </div>
-                <div className="box-image-container">
+                <div className="box-image-container" style={{marginTop: "5rem"}}>
                   <div className="form-field-single-update">
                     <label>Primary Care Provider:</label>
                     {/* khf */}
@@ -3154,16 +2445,16 @@ const Treatmentplan_updateDraft = () => {
                     <input
                       type="checkbox"
                       id="talkingorwriting"
-                      checked={behavioralSymptoms.includes("TalkingorwritingAboutdeath")}
+                      checked={behavioralSymptoms.includes("talkingorwriting")}
                       onChange={() =>
-                        handleCheckboxChangeBehavioral("TalkingorwritingAboutdeath")
+                        handleCheckboxChangeBehavioral("talkingorwriting")
                       }
                     />
                     <label htmlFor="talkingorwriting">
-                      Talking, or writing About death 
+                      Talking, or writing
                     </label>
                   </div>
-                  {/* <div>
+                  <div>
                     <input
                       type="checkbox"
                       id="aboutdeath"
@@ -3173,8 +2464,8 @@ const Treatmentplan_updateDraft = () => {
                       }
                     />
                     <label htmlFor="aboutdeath">About death </label>
-                  </div> */}
-
+                  </div>
+                  {/* add paremeter */}
                   <div>
                     <input
                       type="checkbox"
@@ -3305,6 +2596,13 @@ const Treatmentplan_updateDraft = () => {
                     />
                     <label>Other</label>
                     {physicalSymptomsBoolean && (
+                      // <AutosizeInput
+                      //   type="text"
+                      //   inputStyle={{ border: "none", outline: "none" }}
+                      //   placeholder="________"
+                      //   value={physicalSymptomsOther}
+                      //   onChange={(e) => setPhysicalSymptomsOther(e.target.value)}
+                      // />
                       <AutoSize
                         value={physicalSymptomsOther}
                         setValue={setPhysicalSymptomsOther}
@@ -3561,7 +2859,15 @@ const Treatmentplan_updateDraft = () => {
                     />
                     <label htmlFor="OtherpsychosocialSymptoms">Other</label>
                     {psychosocialSymptomsBoolean && (
-                  
+                      // <AutosizeInput
+                      //   type="text"
+                      //   inputStyle={{ border: "none", outline: "none" }}
+                      //   placeholder="________"
+                      //   value={psychosocialSymptomssOther}
+                      //   onChange={(e) =>
+                      //     setPsychosocialSymptomsOther(e.target.value)
+                      //   }
+                      // />
                       <AutoSize
                         value={psychosocialSymptomssOther}
                         setValue={setPsychosocialSymptomsOther}
@@ -3570,7 +2876,23 @@ const Treatmentplan_updateDraft = () => {
                     )}
                   </div>
                 </div>
-               
+                {/* 
+              {
+                psychosocialSymptomsBoolean && (
+                  <div className="form-field">
+                <label htmlFor="programlocation&addresstypeOfOtherBoolean">Comments</label>
+                <textarea
+                  id="programlocation&addresstypeOfOtherBoolean"
+                  value={psychosocialSymptomssOther}
+                  placeholder="Enter text"
+                  rows={2}
+                  cols={82}
+                  required
+                  onChange={(e)=>setPsychosocialSymptomsOther(e.target.value)}
+                />
+              </div>
+                )
+              } */}
 
                 <label
                   htmlFor=""
@@ -3709,21 +3031,6 @@ const Treatmentplan_updateDraft = () => {
                     />
                     <label htmlFor="Conflict resolution">
                       Conflict resolution
-                    </label>
-                  </div>
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="Sponsors, and support programs & people"
-                      checked={interventionsImplemented.includes(
-                        "Sponsors, and support programs & people"
-                      )}
-                      onChange={() =>
-                        handleCheckboxChange("Sponsors, and support programs & people")
-                      }
-                    />
-                    <label htmlFor="Sponsors, and support programs & people">
-                    Sponsors, and support programs & people
                     </label>
                   </div>
                   <div>
@@ -4046,14 +3353,14 @@ const Treatmentplan_updateDraft = () => {
 
                 <div className="formsheading">
                   <h6 style={{ fontWeight: "bold" }}>
-                    Goals for Changes in the Resident psychosocial Interaction
-                    or Behaviour :
+                    Goals for Changes in the Resident Psychosocial Interaction
+                    or Behavior:
                   </h6>
                 </div>
 
-                <div className="needs-interventions-container2 table-respnosive">
-                  <div className="needs-interventions-column2">
-                    <table>
+          
+                  <div className="needs-interventions-treatments">
+                    <table >
                       <thead>
                         <tr>
                           <th>Treatment Goals</th>
@@ -4061,25 +3368,21 @@ const Treatmentplan_updateDraft = () => {
                           <th>Current Measure</th>
                           <th>Estimated Date of Goal Completion</th>
                           <th>Comments</th>
-                          <th>Delete</th>
                         </tr>
                       </thead>
                       <tbody>
-
                         {
-                          tableshow1 && 
-                          <tr >
+                          tableshow1 && <tr>
                           <td>
                             {" "}
                             <p>1: Maintain sobriety:</p>
-                            <Select
-                              isMulti
-                              options={option1Option}
-                              value={option1}
-                              onChange={option1Handler}
-                              isCreatable={true}
-                              onKeyDown={handleKeyOption1}
-                            />
+                       
+                            <ul>
+                              {option1?.length > 0 &&
+                                option1.map((item, index) => (
+                                  <li key={index}>{item?.value}</li>
+                                ))}
+                            </ul>
                           </td>
                           <td>
                             <input
@@ -4117,6 +3420,7 @@ const Treatmentplan_updateDraft = () => {
                             />
                           </td>
                           <td>
+                         
                             <textarea
                               className="treatment_plan_table"
                               rows={Math.max(
@@ -4136,25 +3440,21 @@ const Treatmentplan_updateDraft = () => {
                               }}
                             />
                           </td>
-                          <td>
-                            <AiFillDelete style={{fontSize:"20px",cursor:"pointer"}} onClick={()=>setTableShow1(false)}/>
-                          </td>
                         </tr>
                         }
-                       
+                        
 {
   tableshow2 && <tr>
   <td>
     {" "}
     <p>2: Independent Living Skills:</p>
-    <Select
-      isMulti
-      options={option2Option}
-      value={option2}
-      onChange={option2Handler}
-      isCreatable={true}
-      onKeyDown={handleKeyOption2}
-    />
+
+    <ul>
+      {option2?.length > 0 &&
+        option2.map((item, index) => (
+          <li key={index}>{item?.value}</li>
+        ))}
+    </ul>
   </td>
   <td>
     <input
@@ -4192,7 +3492,7 @@ const Treatmentplan_updateDraft = () => {
     />
   </td>
   <td>
-
+    
     <textarea
       className="treatment_plan_table"
       rows={Math.max(
@@ -4212,175 +3512,187 @@ const Treatmentplan_updateDraft = () => {
       }}
     />
   </td>
-  <td>
-                            <AiFillDelete style={{fontSize:"20px",cursor:"pointer"}} onClick={()=>setTableShow2(false)}/>
+</tr>
+
+}
+                        
+                        {
+                          tableshow3 &&  <tr>
+                          <td>
+                            {" "}
+                            <p>3: Employment:</p>
+                            {/* <Select
+                            isMulti
+                            options={option3Option}
+                            value={option3}
+                            onChange={option3Handler}
+                            isCreatable={true}
+                            onKeyDown={handleKeyOption3}
+                          /> */}
+                            <ul>
+                              {option3?.length > 0 &&
+                                option3.map((item, index) => (
+                                  <li key={index}>{item?.value}</li>
+                                ))}
+                            </ul>
                           </td>
-</tr>
-}
-                        
-{
-  tableshow3 && <tr>
-  <td>
-    {" "}
-    <p>3: Employment:</p>
-    <Select
-      isMulti
-      options={option3Option}
-      value={option3}
-      onChange={option3Handler}
-      isCreatable={true}
-      onKeyDown={handleKeyOption3}
-    />
-  </td>
-  <td>
-    <input
-      className="treatment_plan_table"
-      type="text"
-      value={admissionMeasure3}
-      placeholder="___________"
-      required
-      onChange={(e) =>
-        setAdmissionMeasure3(e.target.value)
-      }
-    />
-  </td>
-  <td>
-    <input
-      className="treatment_plan_table"
-      type="text"
-      value={currentMeasure3}
-      placeholder="___________"
-      required
-      onChange={(e) =>
-        setCurrentMeasure3(e.target.value)
-      }
-    />
-  </td>
-  <td>
-    <input
-      type="date"
-      value={estimatedDateOfCompletion3}
-      className="treatment_plan_table"
-      required
-      onChange={(e) =>
-        setEstimatedDateOfCompletion3(e.target.value)
-      }
-    />
-  </td>
-  <td>
-    <textarea
-      className="treatment_plan_table"
-      rows={Math.max(
-        comments3 ? comments3.split("\n").length : 1,
-        1
-      )}
-      value={comments3 || ""}
-      placeholder="___________"
-      onChange={(e) => setComment3(e.target.value)}
-      onKeyDown={(e) => {
-        if (e.key === "Enter") {
-          e.preventDefault();
-          setComment3(
-            (prevComment) => prevComment + "\n"
-          );
-        }
-      }}
-    />
-  </td>
-   <td>
- <AiFillDelete style={{fontSize:"20px",cursor:"pointer"}} onClick={()=>setTableShow3(false)}/>
-</td>
-</tr>
-}
-                        
-{
-  tableshow4 &&  <tr>
-  <td>
-    {" "}
-    <p>4: ADLS:</p>
-    <Select
-      isMulti
-      options={option4Option}
-      value={option4}
-      onChange={option4Handler}
-      isCreatable={true}
-      onKeyDown={handleKeyOption4}
-    />
-  </td>
-  <td>
-    <input
-      className="treatment_plan_table"
-      type="text"
-      value={admissionMeasure4}
-      placeholder="___________"
-      required
-      onChange={(e) =>
-        setAdmissionMeasure4(e.target.value)
-      }
-    />
-  </td>
-  <td>
-    <input
-      className="treatment_plan_table"
-      type="text"
-      value={currentMeasure4}
-      placeholder="___________"
-      required
-      onChange={(e) =>
-        setCurrentMeasure4(e.target.value)
-      }
-    />
-  </td>
-  <td>
-    <input
-      type="date"
-      value={estimatedDateOfCompletion4}
-      className="treatment_plan_table"
-      required
-      onChange={(e) =>
-        setEstimatedDateOfCompletion4(e.target.value)
-      }
-    />
-  </td>
-  <td>
-    <textarea
-      className="treatment_plan_table"
-      rows={Math.max(
-        comments4 ? comments4.split("\n").length : 1,
-        1
-      )}
-      value={comments4 || ""}
-      placeholder="___________"
-      onChange={(e) => setComment4(e.target.value)}
-      onKeyDown={(e) => {
-        if (e.key === "Enter") {
-          e.preventDefault();
-          setComment4(
-            (prevComment) => prevComment + "\n"
-          );
-        }
-      }}
-    />
-  </td>
-  <td>
- <AiFillDelete style={{fontSize:"20px",cursor:"pointer"}} onClick={()=>setTableShow4(false)}/>
-</td>
-</tr>
-}
-                       
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={admissionMeasure3}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setAdmissionMeasure3(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="treatment_plan_table"
+                              type="text"
+                              value={currentMeasure3}
+                              placeholder="___________"
+                              required
+                              onChange={(e) =>
+                                setCurrentMeasure3(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="date"
+                              value={estimatedDateOfCompletion3}
+                              className="treatment_plan_table"
+                              required
+                              onChange={(e) =>
+                                setEstimatedDateOfCompletion3(e.target.value)
+                              }
+                            />
+                          </td>
+                          <td>
+                            <textarea
+                              className="treatment_plan_table"
+                              rows={Math.max(
+                                comments3 ? comments3.split("\n").length : 1,
+                                1
+                              )}
+                              value={comments3 || ""}
+                              placeholder="___________"
+                              onChange={(e) => setComment3(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                  e.preventDefault();
+                                  setComment3(
+                                    (prevComment) => prevComment + "\n"
+                                  );
+                                }
+                              }}
+                            />
+                          </td>
+                        </tr>
+
+                        }
+
+                        {
+                          tableshow4 &&    
+                          <tr>
+                            <td>
+                              {" "}
+                              <p>4: ADLS:</p>
+                              {/* <Select
+                              isMulti
+                              options={option4Option}
+                              value={option4}
+                              onChange={option4Handler}
+                              isCreatable={true}
+                              onKeyDown={handleKeyOption4}
+                            /> */}
+                              <ul>
+                                {option4?.length > 0 &&
+                                  option4.map((item, index) => (
+                                    <li key={index}>{item?.value}</li>
+                                  ))}
+                              </ul>
+                            </td>
+                            <td>
+                              <input
+                                className="treatment_plan_table"
+                                type="text"
+                                value={admissionMeasure4}
+                                placeholder="___________"
+                                required
+                                onChange={(e) =>
+                                  setAdmissionMeasure4(e.target.value)
+                                }
+                              />
+                            </td>
+                            <td>
+                              <input
+                                className="treatment_plan_table"
+                                type="text"
+                                value={currentMeasure4}
+                                placeholder="___________"
+                                required
+                                onChange={(e) =>
+                                  setCurrentMeasure4(e.target.value)
+                                }
+                              />
+                            </td>
+                            <td>
+                              <input
+                                type="date"
+                                value={estimatedDateOfCompletion4}
+                                className="treatment_plan_table"
+                                required
+                                onChange={(e) =>
+                                  setEstimatedDateOfCompletion4(e.target.value)
+                                }
+                              />
+                            </td>
+                            <td>
+                              <textarea
+                                className="treatment_plan_table"
+                                rows={Math.max(
+                                  comments4 ? comments4.split("\n").length : 1,
+                                  1
+                                )}
+                                value={comments4 || ""}
+                                placeholder="___________"
+                                onChange={(e) => setComment4(e.target.value)}
+                                onKeyDown={(e) => {
+                                  if (e.key === "Enter") {
+                                    e.preventDefault();
+                                    setComment4(
+                                      (prevComment) => prevComment + "\n"
+                                    );
+                                  }
+                                }}
+                              />
+                            </td>
+                          </tr>
+                        }
+                    
 {
   tableshow5 &&  <tr>
   <td>
     {" "}
     <p>5: Safety:</p>
-    <Select
-      isMulti
-      options={option5Option}
-      value={option5}
-      onChange={option5Handler}
-      isCreatable={true}
-      onKeyDown={handleKeyOption5}
-    />
+    {/* <Select
+    isMulti
+    options={option5Option}
+    value={option5}
+    onChange={option5Handler}
+    isCreatable={true}
+    onKeyDown={handleKeyOption5}
+  /> */}
+    <ul>
+      {option5?.length > 0 &&
+        option5.map((item, index) => (
+          <li key={index}>{item?.value}</li>
+        ))}
+    </ul>
   </td>
   <td>
     <input
@@ -4437,246 +3749,252 @@ const Treatmentplan_updateDraft = () => {
       }}
     />
   </td>
-  <td>
- <AiFillDelete style={{fontSize:"20px",cursor:"pointer"}} onClick={()=>setTableShow5(false)}/>
-</td>
 </tr>
 }
-          {
-            tableshow6 &&  <tr>
-            <td>
-              {" "}
-              <p>6: Medication Education:</p>
-              <Select
-                isMulti
-                options={option6Option}
-                value={option6}
-                onChange={option6Handler}
-                isCreatable={true}
-                onKeyDown={handleKeyOption6}
-              />
-            </td>
-            <td>
-              <input
-                className="treatment_plan_table"
-                type="text"
-                value={admissionMeasure6}
-                placeholder="___________"
-                required
-                onChange={(e) =>
-                  setAdmissionMeasure6(e.target.value)
-                }
-              />
-            </td>
-            <td>
-              <input
-                className="treatment_plan_table"
-                type="text"
-                value={currentMeasure6}
-                placeholder="___________"
-                required
-                onChange={(e) =>
-                  setCurrentMeasure6(e.target.value)
-                }
-              />
-            </td>
-            <td>
-              <input
-                type="date"
-                value={estimatedDateOfCompletion6}
-                className="treatment_plan_table"
-                required
-                onChange={(e) =>
-                  setEstimatedDateOfCompletion6(e.target.value)
-                }
-              />
-            </td>
-            <td>
-              <textarea
-                className="treatment_plan_table"
-                rows={Math.max(
-                  comments6 ? comments6.split("\n").length : 1,
-                  1
-                )}
-                value={comments6 || ""}
-                placeholder="___________"
-                onChange={(e) => setComment6(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    e.preventDefault();
-                    setComment6(
-                      (prevComment) => prevComment + "\n"
-                    );
-                  }
-                }}
-              />
-            </td>
-            <td>
- <AiFillDelete style={{fontSize:"20px",cursor:"pointer"}} onClick={()=>setTableShow6(false)}/>
-</td>
-          </tr>
-          }             
+                  {
+                    tableshow6 &&  <tr>
+                    <td>
+                      {" "}
+                      <p>6: Medication Education:</p>
+                      {/* <Select
+                      isMulti
+                      options={option6Option}
+                      value={option6}
+                      onChange={option6Handler}
+                      isCreatable={true}
+                      onKeyDown={handleKeyOption6}
+                    /> */}
+                      <ul>
+                        {option6?.length > 0 &&
+                          option6.map((item, index) => (
+                            <li key={index}>{item?.value}</li>
+                          ))}
+                      </ul>
+                    </td>
+                    <td>
+                      <input
+                        className="treatment_plan_table"
+                        type="text"
+                        value={admissionMeasure6}
+                        placeholder="___________"
+                        required
+                        onChange={(e) =>
+                          setAdmissionMeasure6(e.target.value)
+                        }
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="treatment_plan_table"
+                        type="text"
+                        value={currentMeasure6}
+                        placeholder="___________"
+                        required
+                        onChange={(e) =>
+                          setCurrentMeasure6(e.target.value)
+                        }
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="date"
+                        value={estimatedDateOfCompletion6}
+                        className="treatment_plan_table"
+                        required
+                        onChange={(e) =>
+                          setEstimatedDateOfCompletion6(e.target.value)
+                        }
+                      />
+                    </td>
+                    <td>
+                      <textarea
+                        className="treatment_plan_table"
+                        rows={Math.max(
+                          comments6 ? comments6.split("\n").length : 1,
+                          1
+                        )}
+                        value={comments6 || ""}
+                        placeholder="___________"
+                        onChange={(e) => setComment6(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            e.preventDefault();
+                            setComment6(
+                              (prevComment) => prevComment + "\n"
+                            );
+                          }
+                        }}
+                      />
+                    </td>
+                  </tr>
+                  }     
 
                        
 {
-tableshow7 &&  <tr>
-<td>
-  {" "}
-  <p>7: Managing Mental Health:</p>
-  <Select
+  tableshow7 &&    <tr>
+  <td>
+    {" "}
+    <p>7: Managing Mental Health:</p>
+    {/* <Select
     isMulti
     options={option7Option}
     value={option7}
     onChange={option7Handler}
     isCreatable={true}
     onKeyDown={handleKeyOption7}
-  />
-</td>
-<td>
-  <input
-    className="treatment_plan_table"
-    type="text"
-    value={admissionMeasure7}
-    placeholder="___________"
-    required
-    onChange={(e) =>
-      setAdmissionMeasure7(e.target.value)
-    }
-  />
-</td>
-<td>
-  <input
-    className="treatment_plan_table"
-    type="text"
-    value={currentMeasure7}
-    placeholder="___________"
-    required
-    onChange={(e) =>
-      setCurrentMeasure7(e.target.value)
-    }
-  />
-</td>
-<td>
-  <input
-    type="date"
-    value={estimatedDateOfCompletion7}
-    className="treatment_plan_table"
-    required
-    onChange={(e) =>
-      setEstimatedDateOfCompletion7(e.target.value)
-    }
-  />
-</td>
-<td>
-  <textarea
-    className="treatment_plan_table"
-    rows={Math.max(
-      comments7 ? comments7.split("\n").length : 1,
-      1
-    )}
-    value={comments7 || ""}
-    placeholder="___________"
-    onChange={(e) => setComment7(e.target.value)}
-    onKeyDown={(e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        setComment7(
-          (prevComment) => prevComment + "\n"
-        );
+  /> */}
+    <ul>
+      {option7?.length > 0 &&
+        option7.map((item, index) => (
+          <li key={index}>{item?.value}</li>
+        ))}
+    </ul>
+  </td>
+  <td>
+    <input
+      className="treatment_plan_table"
+      type="text"
+      value={admissionMeasure7}
+      placeholder="___________"
+      required
+      onChange={(e) =>
+        setAdmissionMeasure7(e.target.value)
       }
-    }}
-  />
-</td>
-<td>
-  <AiFillDelete style={{fontSize:"20px",cursor:"pointer"}} onClick={()=>setTableShow7(false)}/>
- </td>
+    />
+  </td>
+  <td>
+    <input
+      className="treatment_plan_table"
+      type="text"
+      value={currentMeasure7}
+      placeholder="___________"
+      required
+      onChange={(e) =>
+        setCurrentMeasure7(e.target.value)
+      }
+    />
+  </td>
+  <td>
+    <input
+      type="date"
+      value={estimatedDateOfCompletion7}
+      className="treatment_plan_table"
+      required
+      onChange={(e) =>
+        setEstimatedDateOfCompletion7(e.target.value)
+      }
+    />
+  </td>
+  <td>
+    <textarea
+      className="treatment_plan_table"
+      rows={Math.max(
+        comments7 ? comments7.split("\n").length : 1,
+        1
+      )}
+      value={comments7 || ""}
+      placeholder="___________"
+      onChange={(e) => setComment7(e.target.value)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          setComment7(
+            (prevComment) => prevComment + "\n"
+          );
+        }
+      }}
+    />
+  </td>
 </tr>
 }
-        {
-          tableshow8 && 
-          <tr>
-            <td>
-              {" "}
-              <p>8: Legal:</p>
-              <Select
-                isMulti
-                options={option8Option}
-                value={option8}
-                onChange={option8Handler}
-                isCreatable={true}
-                onKeyDown={handleKeyOption8}
-              />
-            </td>
-            <td>
-              <input
-                className="treatment_plan_table"
-                type="text"
-                value={admissionMeasure8}
-                placeholder="___________"
-                required
-                onChange={(e) =>
-                  setAdmissionMeasure8(e.target.value)
-                }
-              />
-            </td>
-            <td>
-              <input
-                className="treatment_plan_table"
-                type="text"
-                value={currentMeasure8}
-                placeholder="___________"
-                required
-                onChange={(e) =>
-                  setCurrentMeasure8(e.target.value)
-                }
-              />
-            </td>
-            <td>
-              <input
-                type="date"
-                value={estimatedDateOfCompletion8}
-                className="treatment_plan_table"
-                required
-                onChange={(e) =>
-                  setEstimatedDateOfCompletion8(e.target.value)
-                }
-              />
-            </td>
-            <td>
-              <textarea
-                className="treatment_plan_table"
-                rows={Math.max(
-                  comments8 ? comments8.split("\n").length : 1,
-                  1
-                )}
-                value={comments8 || ""}
-                placeholder="___________"
-                onChange={(e) => setComment8(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    e.preventDefault();
-                    setComment8(
-                      (prevComment) => prevComment + "\n"
-                    );
-                  }
-                }}
-              />
-            </td>
-            <td>
-  <AiFillDelete style={{fontSize:"20px",cursor:"pointer"}} onClick={()=>setTableShow8(false)}/>
- </td>
-          </tr>
-        }               
+                    {
+                      tableshow8 && <tr>
+                      <td>
+                        {" "}
+                        <p>8: Legal:</p>
+                        {/* <Select
+                        isMulti
+                        options={option8Option}
+                        value={option8}
+                        onChange={option8Handler}
+                        isCreatable={true}
+                        onKeyDown={handleKeyOption8}
+                      /> */}
+                        <ul>
+                          {option8?.length > 0 &&
+                            option8.map((item, index) => (
+                              <li key={index}>{item?.value}</li>
+                            ))}
+                        </ul>
+                      </td>
+                      <td>
+                        <input
+                          className="treatment_plan_table"
+                          type="text"
+                          value={admissionMeasure8}
+                          placeholder="___________"
+                          required
+                          onChange={(e) =>
+                            setAdmissionMeasure8(e.target.value)
+                          }
+                        />
+                      </td>
+                      <td>
+                        <input
+                          className="treatment_plan_table"
+                          type="text"
+                          value={currentMeasure8}
+                          placeholder="___________"
+                          required
+                          onChange={(e) =>
+                            setCurrentMeasure8(e.target.value)
+                          }
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="date"
+                          value={estimatedDateOfCompletion8}
+                          className="treatment_plan_table"
+                          required
+                          onChange={(e) =>
+                            setEstimatedDateOfCompletion8(e.target.value)
+                          }
+                        />
+                      </td>
+                      <td>
+                        <textarea
+                          className="treatment_plan_table"
+                          rows={Math.max(
+                            comments8 ? comments8.split("\n").length : 1,
+                            1
+                          )}
+                          value={comments8 || ""}
+                          placeholder="___________"
+                          onChange={(e) => setComment8(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              setComment8(
+                                (prevComment) => prevComment + "\n"
+                              );
+                            }
+                          }}
+                        />
+                      </td>
+                    </tr>
+                    } 
 
+                        
 
                         {otherArray.length > 0 &&
                           otherArray.map((data, index) => (
                             <tr key={index}>
                               <td>
-                                <div className="treatment_table_other">
-                                  <p>{9 + index}: </p>
-                                  <p>{data?.otherType}</p>
-                                </div>
+                                <p>{9 + index}: </p>
+                                <ul>
+                                  <li>{data?.otherType}</li>
+                                </ul>
                               </td>
                               <td>{data?.admissionMeasure}</td>
                               <td>{data?.currentMeasure}</td>
@@ -4686,40 +4004,34 @@ tableshow7 &&  <tr>
                                   : ""}
                               </td>
                               <td>{data?.comments}</td>
-                              <td>
-  <AiFillDelete style={{fontSize:"20px",cursor:"pointer"}} onClick={()=>handleDeleteArray(index)}/>
- </td>
                             </tr>
                           ))}
 
-                     
+                        {showOther && (
                           <tr>
                             <td>
-                              <div className="treatment_table_other">
-                                <p>{otherArray.length + 9}: Other:</p>
-                                <textarea
-                                  className="treatment_plan_table"
-                                  rows={Math.max(
-                                    optionOther
-                                      ? optionOther.split("\n").length
-                                      : 1,
-                                    1
-                                  )}
-                                  value={optionOther || ""}
-                                  placeholder="___________"
-                                  onChange={(e) =>
-                                    setOptionOther(e.target.value)
+                              {" "}
+                              <p>{otherArray.length + 9}: Other:</p>
+                              <textarea
+                                className="treatment_plan_table"
+                                rows={Math.max(
+                                  optionOther
+                                    ? optionOther.split("\n").length
+                                    : 1,
+                                  1
+                                )}
+                                value={optionOther || ""}
+                                placeholder="___________"
+                                onChange={(e) => setOptionOther(e.target.value)}
+                                onKeyDown={(e) => {
+                                  if (e.key === "Enter") {
+                                    e.preventDefault();
+                                    setOptionOther(
+                                      (prevComment) => prevComment + "\n"
+                                    );
                                   }
-                                  onKeyDown={(e) => {
-                                    if (e.key === "Enter") {
-                                      e.preventDefault();
-                                      setOptionOther(
-                                        (prevComment) => prevComment + "\n"
-                                      );
-                                    }
-                                  }}
-                                />
-                              </div>
+                                }}
+                              />
                             </td>
                             <td>
                               <input
@@ -4727,7 +4039,7 @@ tableshow7 &&  <tr>
                                 type="text"
                                 value={admissionMeasureOther}
                                 placeholder="___________"
-                                
+                                required
                                 onChange={(e) =>
                                   setAdmissionMeasureOther(e.target.value)
                                 }
@@ -4739,7 +4051,7 @@ tableshow7 &&  <tr>
                                 type="text"
                                 value={currentMeasureOther}
                                 placeholder="___________"
-                                
+                                required
                                 onChange={(e) =>
                                   setCurrentMeasureOther(e.target.value)
                                 }
@@ -4750,7 +4062,7 @@ tableshow7 &&  <tr>
                                 type="date"
                                 value={estimatedDateOfCompletionOther}
                                 className="treatment_plan_table"
-                                
+                                required
                                 onChange={(e) =>
                                   setEstimatedDateOfCompletionOther(
                                     e.target.value
@@ -4780,13 +4092,12 @@ tableshow7 &&  <tr>
                                 }}
                               />
                             </td>
-                       
                           </tr>
-                      
+                        )}
                       </tbody>
                     </table>
                   </div>
-                </div>
+               
 
                 <div className="form-actions  hidePrint">
                   <button
@@ -4869,7 +4180,6 @@ tableshow7 &&  <tr>
                       Resident Attitude:
                     </label>
                   </div>
-
                   <div className="yeschechbox-review-treatment-child ">
                     <div className="checkbox-style-data">
                       <input
@@ -4940,7 +4250,7 @@ tableshow7 &&  <tr>
                       Resident progress:
                     </label>
                   </div>
-                  <div className="yeschechbox-review-treatment-progress">
+                  <div className="yeschechbox-review-treatment-progress" >
                     <div className="checkbox-style-data">
                       <input
                         type="checkbox"
@@ -4986,6 +4296,7 @@ tableshow7 &&  <tr>
                       />
                       <label htmlFor="Goal achieved">Goal achieved</label>
                     </div>
+
                     <div className="checkbox-style-data">
                       <input
                         type="checkbox"
@@ -5044,7 +4355,7 @@ tableshow7 &&  <tr>
                         handleCheckboxChangeSupportSystem("Clinical Team")
                       }
                     />
-                    <label htmlFor="Clinical seam">Clinical Team</label>
+                    <label htmlFor="Clinical Team">Clinical Team</label>
                   </div>
                   <div>
                     <input
@@ -5289,7 +4600,7 @@ tableshow7 &&  <tr>
                     />
                     <label htmlFor="personalFinances">
                       Resident requires Assistance to maintain personal funds
-                      and/or handle personal finances
+                      and/or hand personal finances
                     </label>
                   </div>
                 </div>
@@ -5570,6 +4881,54 @@ tableshow7 &&  <tr>
                   </div>
                 </div>
 
+                {/* <div className="yeschechbox-review">
+                  {[
+                    "PHP",
+                    "IOP",
+                    "Sober living",
+                    "Home",
+                    "Flex Care 23.9",
+                    "Flex Care 16",
+                    "Flex Care 8",
+                    "Other",
+                  ].map((recommendation, index) => (
+                    <div key={index}>
+                      <input
+                        type="checkbox"
+                        id={`recommendationCheckbox${index}`}
+                        checked={recommendationsForFurtherPrograms.includes(
+                          recommendation
+                        )}
+                        onChange={() =>
+                          handleCheckboxChangerecommendationsForFurtherPrograms(
+                            recommendation
+                          )
+                        }
+                      />
+                      <label htmlFor={`recommendationCheckbox${index}`}>
+                        {recommendation}
+                      </label>
+                    </div>
+                  ))}
+                </div> */}
+                {/*
+                {recommendationsForFurtherProgramsBoolean && (
+                  <div className="form-field">
+                    <label htmlFor="programlocation&address">Comment:</label>
+                    <textarea
+                      id="programlocation&address"
+                      value={recommendationsForFurtherProgramsOther}
+                      placeholder="Enter text"
+                      rows={2}
+                      cols={82}
+                      required
+                      onChange={(e) =>
+                        setRecommendationsForFurtherProgramsOther(e.target.value)
+                      }
+                    />
+                  </div>
+                )} */}
+
                 <label htmlFor="" className="label-review">
                   After care and Transition planning / Community Resources:
                 </label>
@@ -5634,7 +4993,6 @@ tableshow7 &&  <tr>
                   </div>
                 </div>
 
-          
 
                 <div className="formsheading">
                   <label className="label-review-clinical">
@@ -5653,6 +5011,13 @@ tableshow7 &&  <tr>
                   />
                 </div>
 
+                {/* <div className="formsheading">
+                <p>
+                  The mirrors in the facility are SHATTERPROOF, and if they were
+                  standard mirrors it would not present as a current safety risk
+                  to this resident.
+                </p>
+              </div> */}
                 <div className="form-field-update">
                   <div className="form-field-child">
                     <label>Treatment plan review date:</label>
@@ -5689,24 +5054,7 @@ tableshow7 &&  <tr>
                 >
                   Note: Earlier review may be performed if resident has a
                   significant change in condition or event that affects
-                  treatment This treatment plan has been developed before the
-                  resident receives physical health services or behavioral
-                  health services or within 48hours after the initial assessment
-                  is completed. It will be review and updated on an on-going
-                  basis according to the review date{" "}
-                  <span>
-                    <AutoSize
-                      type="date"
-                      value={textData}
-                      setValue={setTextData}
-                      placeholder="________"
-                    />
-                  </span>
-                  specified in the treatment plan, when a treatment goal is
-                  accomplished or changed, when additional information that
-                  affects the resident’s behavioral health assessment is
-                  identified and when the resident has a significant change in
-                  condition or experiences an event that affects treatment.
+                  treatment.
                 </p>
 
                 <div className="formsheading">
@@ -5787,7 +5135,7 @@ tableshow7 &&  <tr>
                       Yes,{" "}
                       <span>
                         I am in agreement with the services included in this
-                        treatment Plan.
+                        treatment Plan
                       </span>
                     </label>
                   </div>
@@ -5804,9 +5152,10 @@ tableshow7 &&  <tr>
                       }
                     />
                     <label htmlFor="refusalReason">
-                      No, {" "}
+                      No,{" "}
                       <span>
-                      I am not in agreement with some or all of the services included in this treatment plan and I refuse to sign.
+                        I am not in agreement with the services included in this
+                        treatment Plan
                       </span>
                     </label>
                   </div>
@@ -5839,22 +5188,17 @@ tableshow7 &&  <tr>
               </div>
 
               <div className="form-field-update">
-                <div className="form-field-child">
-                  <label>First and Last Name:</label>
-                  <input
-                    type="text"
-                    value={nameResident}
-                    placeholder="Enter text"
-                    required
-                    onChange={(e) => setNameResident(e.target.value)}
-                  />
-                </div>
+               
 
                 <div class="file-upload-box" style={{ marginTop: "0.5rem" }}>
                   <div className="file-upload-box-child hidePrint">
-                  <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
-                     { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
-                </button>
+                    <button
+                      className="upload-button1"
+                      type="button"
+                      onClick={() => handleDraftValue()}
+                    >
+                      SAVED AS DRAFT
+                    </button>
                     <button
                       className="upload-button"
                       type="button"
@@ -5866,7 +5210,7 @@ tableshow7 &&  <tr>
                   <div>
                     {signatureResident && (
                       <p className="signature_name_print">
-                        Digitally Sign by {signatureResident} {dateResident}{" "}
+                      {nameResident}{" "}Digitally Sign by {signatureResident} {dateResident}{" "}
                         {timeResident}
                       </p>
                     )}
@@ -5885,16 +5229,6 @@ tableshow7 &&  <tr>
               </div>
 
               <div className="form-field-update">
-                <div className="form-field-child">
-                  <label>First and Last Name:</label>
-                  <input
-                    type="text"
-                    value={nameFacilityRep}
-                    placeholder="Enter text"
-                    required
-                    onChange={(e) => setNameFacilityRep(e.target.value)}
-                  />
-                </div>
 
                 <div className="form-field-child">
                   <label>Facility Representative:</label>
@@ -5910,9 +5244,13 @@ tableshow7 &&  <tr>
 
               <div class="file-upload-box " style={{ marginTop: "0.2rem" }}>
                 <div className="file-upload-box-child hidePrint">
-                <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
-                     { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
-                </button>
+                  <button
+                    className="upload-button1"
+                    type="button"
+                    onClick={() => handleDraftValue()}
+                  >
+                    SAVED AS DRAFT
+                  </button>
                   <button
                     className="upload-button"
                     type="button"
@@ -5924,7 +5262,7 @@ tableshow7 &&  <tr>
                 <div>
                   {signatureFacilityRep && (
                     <p className="signature_name_print">
-                      Digitally Sign by {signatureFacilityRep} {dateFacilityRep}{" "}
+                      {nameFacilityRep}{" "}Digitally Sign by {signatureFacilityRep} {dateFacilityRep}{" "}
                       {timeFacality}
                     </p>
                   )}
@@ -5942,16 +5280,7 @@ tableshow7 &&  <tr>
               )}
 
               <div className="form-field-update ">
-                <div className="form-field-child">
-                  <label>First and Last Name:</label>
-                  <input
-                    type="text"
-                    value={nameBhp}
-                    placeholder="Enter text"
-                    required
-                    onChange={(e) => setNameBhp(e.target.value)}
-                  />
-                </div>
+              
                 <div className="form-field-child">
                   <label>Behavioral Health Professional:</label>
                   <input
@@ -5966,11 +5295,15 @@ tableshow7 &&  <tr>
 
               <div class="file-upload-box " style={{ marginTop: "0.2rem" }}>
                 <div className="file-upload-box-child hidePrint">
-                <div >
-               <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
-                     { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
-                </button>
-                </div>
+                  <div>
+                    <button
+                      className="upload-button1"
+                      type="button"
+                      onClick={() => handleDraftValue()}
+                    >
+                      SAVED AS DRAFT
+                    </button>
+                  </div>
                   <div>
                     <button
                       className="upload-button"
@@ -5980,24 +5313,20 @@ tableshow7 &&  <tr>
                       SAVED AND SIGNED
                     </button>
                   </div>
-
-                    {
-                      filedForm &&  <div>
-                      <button
-                        className="upload-button signature_shift_margin"
-                        type="button"
-                        onClick={handlePrint2}
-                      >
-                        PRINT THIS FORM
-                      </button>
-                    </div>
-                    }
-                 
+                  <div>
+                    <button
+                      className="upload-button signature_shift_margin"
+                      type="button"
+                      
+                    >
+                      PRINT THIS FORM
+                    </button>
+                  </div>
                 </div>
                 <div>
                   {signatureBhp && (
                     <p className="signature_name_print">
-                      Digitally Sign by {signatureBhp} {dateBhp} {timeBhp}
+                      {nameBhp}{" "}Digitally Sign by {signatureBhp} {dateBhp} {timeBhp}
                     </p>
                   )}
                 </div>
@@ -6012,29 +5341,12 @@ tableshow7 &&  <tr>
                   setSignatureTime={setTimeBhp}
                 />
               )}
-
-              <div className="form-actions hidePrint">
-              
-                 <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
-              SUBMIT DETAILS
-            </button>
-           
-              </div>
             </form>
           </div>
         </div>
-        {draftModel && <Draftinmodel onClose={() => setDraftModel(false)} />}
       </div>
-
-      {/* print form data*/}
-      <div ref={componentRef} className="hidaData">
-<TreatmentPlanDraftPrint
-  componentRe={componentRef}
-/>
-</div>
-      
     </>
   );
 };
 
-export default Treatmentplan_updateDraft;
+export default TreatmentPlanDraftPrint;

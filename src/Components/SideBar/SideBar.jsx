@@ -14,6 +14,7 @@ import { show_notification } from "../../Api_Collection/Api.js";
 import { useDispatch } from 'react-redux';
 import { CiSaveDown2 } from "react-icons/ci";
 import { LOGOUT } from '../../Store/authSlice.js';
+import { LiaWpforms } from "react-icons/lia";
 
 const Sidebar = ({ toggleMenu }) => {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const Sidebar = ({ toggleMenu }) => {
     },
     {
       title: "Draft Intake",
-      icon: <CiSaveDown2 /> ,
+      icon: <LiaWpforms style={{fontWeight:"bold",fontSize:"1.8rem"}}/>,
       link: "/draft-intake",
     },
   ];

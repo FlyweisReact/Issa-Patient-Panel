@@ -214,7 +214,7 @@ function formatDate(dateString) {
 
   useEffect(() => {
     setLoading(true); 
-    if (previusData) {
+    if (previusData && userId) {
       Safety_form_get(userId, setGetApiData, setLoading);
     } else {
       setLoading(false); 
@@ -228,9 +228,7 @@ function formatDate(dateString) {
   }, [userDetail]);
 
 
-
   useEffect(() => {
-   
     user_detail(setUserDetail);
   }, []);
 
@@ -341,23 +339,93 @@ function formatDate(dateString) {
       signatureDate,
       signatureTime
     };
-    safety_form(data);
-    initial_value();
-    navigate("/intake");
+    safety_form(data,saveAsDraft);
   };
 
-  // const handleSocialArray = () => {
+  const handleData = () => {
+
+    const enviromentAdressArray=[];
+
+    for(let i=0;i<enviromentAdress.length;i++){
+      enviromentAdressArray.push(enviromentAdress[i].value);
+    }
     
-  //   const newContact = {
-  //     name: socialName,
-  //     phone: socialPhone,
-  //     relationship: socialRelationship,
-  //   };
-  //   setSocialArray((prev) => [...prev, newContact]);
-  //   setSocialName("");
-  //   setSocialPhone("");
-  //   setSocialRelationship("");
-  // };
+
+    const data = {
+      saveAsDraft,
+      patientId: userId,
+      residentName:user,
+      dateOfBirth: date,
+      warningSigns:[{
+        warning1,
+        warning2,
+        warning3
+      }] ,
+      internalCopingStrategies: [{
+        internalCopy1,
+        internalCopy2,
+        internalCopy3
+      }],
+      distractionsPeople :[
+        {
+          name: socialName,
+          phone: socialPhone,
+          relationship: socialRelationship
+        },
+        {
+          name: socialName1,
+          phone: socialPhone1,
+          relationship: socialRelationship1
+        }
+      ],
+      // internalCopyinternalCopy: socialArray,
+      distractionsPlace: address,
+      distractionsPlane: place,
+      // array add
+      helpContactsPeople: helpArray,
+      // Professionals or agencies I can contact during Crisis
+      professionalsClinicianName,
+      professionalsPhone,
+      professionalsRelationship,
+      // professionals: crisisArray,
+      professionals: [
+        {
+          clinicianName: crisisName,
+          phone : crisisPhone,
+          relationship: crisisRelationship
+        },
+        {
+          clinicianName: crisisName1,
+          phone:  crisisPhone1,
+         relationship: crisisRelationship1
+        }
+      ],
+      //penddig
+      environmentSafetyMedications: enviromentAdressArray,
+      signature: singin,
+      signatureDate,
+      signatureTime
+    };
+    safety_form(data,saveAsDraft);
+    initial_value();
+    {
+      !saveAsDraft && navigate("/intake")
+    }
+
+  };
+
+  useEffect(()=>{
+    if(saveAsDraft){
+      handleData();
+    }
+  },[saveAsDraft])
+
+  const handleSaveAsDraft=()=>{
+    // setDraftModel(!draftModel); 
+    setSaveAsDraft(!saveAsDraft);
+  }
+
+
   const handleHelpArray = () => {
     if(helpName || helpPhone || helpRelationship){
       const newContact = {
@@ -377,19 +445,6 @@ function formatDate(dateString) {
     setHelpArray((prev)=>[...prev.filter((_,i)=>i!==index)]);
   }
 
-
-  // const handleCrisisArray = () => {
-  //   const newContact = {
-  //     clinicianName: crisisName,
-  //     phone: crisisPhone,
-  //     relationship: crisisRelationship,
-  //   };
-  //   setCrisisArray((prev) => [...prev, newContact]);
-
-  //   setCrisisName("");
-  //   setCrisisPhone("");
-  //   setCrisisRelationship("");
-  // };
 
   // Making the environment safe
   const enviromentAdressOptions=[
@@ -997,9 +1052,9 @@ function formatDate(dateString) {
               <div class="file-upload-box ">
               
               <div className="file-upload-box-child hidePrint">
-               <div >
-                <button className="upload-button1" type="button" onClick={() => {setDraftModel(true);setSaveAsDraft(true)}}>
-                  SAVED AS DRAFT
+              <div >
+               <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
+                     { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
                 </button>
                 </div>
                 <div>

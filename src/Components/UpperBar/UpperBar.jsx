@@ -70,6 +70,8 @@ const UpperBar = ({ isMenuOpen, toggleMenu }) => {
     notification_get(setNotification);
   }, []);
 
+  console.log(user,"user information")
+
   const openProfileModal = () => {
     setProfileModalOpen(true);
   };
@@ -119,12 +121,16 @@ const UpperBar = ({ isMenuOpen, toggleMenu }) => {
             onClick={openProfileModal}
             style={{ height: "50px", width: "50px", borderRadius: "50%" }}
           />
-          <RiMessage2Line
+
+          {
+            user?.isChat && <RiMessage2Line
             className="icons"
             onClick={() => setIsChat(true)}
             color="#1A9FB2"
             size={30}
           />
+          }
+          
           <FaBell
             className="icons"
             onClick={openNotificationModal}
