@@ -42,11 +42,11 @@ const Sidebar = ({ toggleMenu }) => {
       icon: <FaRegFileAlt />,
       link: "/intake",
     },
-    {
-      title: "Draft Intake",
-      icon: <LiaWpforms style={{fontWeight:"bold",fontSize:"1.8rem"}}/>,
-      link: "/draft-intake",
-    },
+    // {
+    //   title: "Draft Intake",
+    //   icon: <LiaWpforms style={{fontWeight:"bold",fontSize:"1.8rem"}}/>,
+    //   link: "/draft-intake",
+    // },
   ];
 
   return (

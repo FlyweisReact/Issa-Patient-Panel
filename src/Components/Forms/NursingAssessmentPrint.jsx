@@ -17,10 +17,9 @@ import SingInUpdateModel from "../Modal/SingInUpdateModel";
 import { useReactToPrint } from "react-to-print";
 import AutoSize from "../AutoSize/AutoSize"
 import Loader from "../../Pages/LandingPage/Loader";
-import NursingAssessmentPrint from "./NursingAssessmentPrint";
 
 
-const NursingAssessment = () => {
+const NursingAssessmentPrint = () => {
   const [loading,setLoading]=useState(false);
 
   const [showSingInOne, setShowSingInOne] = useState(false);
@@ -34,12 +33,6 @@ const NursingAssessment = () => {
     content: () => componentRef.current,
   });
 
-  let hideData = document.getElementsByClassName("hidaData");
-
-  for (let i = 0; i < hideData.length; i++) {
-    hideData[i].style.display = "none";
-  }
-
 
 
   const handlePrint2 = () => {
@@ -49,10 +42,6 @@ const NursingAssessment = () => {
     var submitButton=document.getElementsByClassName("form-actions");
     var bodyiamge=document.getElementsByClassName("bodyiamge");
 
-    
-    for (let i = 0; i < hideData.length; i++) {
-      hideData[i].style.display = "block";
-    }
 
     // hide bottom
     var form_field_gender = document.getElementsByClassName("form-field-child");
@@ -131,9 +120,7 @@ for (let i = 0; i < bodyiamge.length; i++) {
     bodyiamge[i].style.margin = "20px 20px"
   }
 
-  for (let i = 0; i < hideData.length; i++) {
-    hideData[i].style.display = "none";
-  }
+   
 
     }, 1000);
   };
@@ -347,18 +334,18 @@ function formatDate(dateString) {
   },[getApiData])
 
   
-  const [previusData,setPreviusData]=useState(false);
+//   const [previusData,setPreviusData]=useState(false);
 
 
 
   useEffect(() => {
     setLoading(true); 
-    if (previusData) {
+    if (userId) {
       Nurssing_form_get(userId, setGetApiData, setLoading);
     } else {
       setLoading(false); 
     }
-  }, [userId, previusData]);
+  }, [userId]);
 
   useEffect(() => {
 
@@ -830,7 +817,7 @@ const handlerepsychosocialSymptoms = (symptom) => {
 
   return (
     <>
-    <div  >
+    <div ref={componentRef} >
       <div className="backbutton hidePrint">
         <IoArrowBackCircle
           style={{
@@ -3218,14 +3205,7 @@ const handlerepsychosocialSymptoms = (symptom) => {
             <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
               SUBMIT DETAILS
             </button>
-            {
-              filedForm &&   <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
-            
-              {
-                    loading ? <Loader/> : "PREVIOUS FORM"
-                  }
-            </button>
-            }
+          
           </div>
 
         </form>
@@ -3236,15 +3216,8 @@ const handlerepsychosocialSymptoms = (symptom) => {
         draftModel && (<Draftinmodel onClose={() => setDraftModel(false)}/>)
       }
       </div>
-
-
-      <div ref={componentRef} className="hidaData">
-<NursingAssessmentPrint
-  componentRe={componentRef}
-/>
-</div>
     </>
   );
 };
 
-export default NursingAssessment;
+export default NursingAssessmentPrint;

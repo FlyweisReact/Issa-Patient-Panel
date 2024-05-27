@@ -1985,7 +1985,7 @@ function formatDate(dateString) {
                     <div
                       style={{
                         display: "flex",
-                        gap: "10px",
+                       
                         alignItems: "center",
                       }}
                     >
@@ -2012,13 +2012,13 @@ function formatDate(dateString) {
 
                   <div class="file-upload-box ">
                     <div className="file-upload-box-child hidePrint">
-                      <button
+                      {/* <button
                         className="upload-button1"
                         type="button"
                         onClick={() =>saveAndSignHandler()}
                       >
                         SAVED AS DRAFT
-                      </button>
+                      </button> */}
                       <button
                         className="upload-button"
                         type="button"
@@ -2064,13 +2064,13 @@ function formatDate(dateString) {
 
                   <div class="file-upload-box">
                     <div className="file-upload-box-child hidePrint">
-                      <button
+                      {/* <button
                         className="upload-button1"
                         type="button"
                         onClick={() => saveAndSignHandler()}
                       >
                         SAVED AS DRAFT
-                      </button>
+                      </button> */}
                       <button
                         className="upload-button"
                         type="button"
@@ -2114,7 +2114,7 @@ function formatDate(dateString) {
 
                   <div class="file-upload-box ">
                     <div className="file-upload-box-child hidePrint">
-                      <div>
+                      {/* <div>
                         <button
                           className="upload-button1"
                           type="button"
@@ -2122,7 +2122,7 @@ function formatDate(dateString) {
                         >
                           SAVED AS DRAFT
                         </button>
-                      </div>
+                      </div> */}
                       <div>
                         <button
                           className="upload-button"
@@ -2348,13 +2348,13 @@ function formatDate(dateString) {
 
                   <div class="file-upload-box ">
                     <div className="file-upload-box-child hidePrint">
-                      <button
+                      {/* <button
                         className="upload-button1"
                         type="button"
                         onClick={() => saveAndSignHandler()}
                       >
                         SAVED AS DRAFT
-                      </button>
+                      </button> */}
                       <button
                         className="upload-button"
                         type="button"
@@ -2409,13 +2409,13 @@ function formatDate(dateString) {
                   </label>
                   <div class="file-upload-box">
                     <div className="file-upload-box-child hidePrint">
-                      <button
+                      {/* <button
                         className="upload-button1"
                         type="button"
                         onClick={() =>saveAndSignHandler()}
                       >
                         SAVED AS DRAFT
-                      </button>
+                      </button> */}
                       <button
                         className="upload-button"
                         type="button"
@@ -2464,13 +2464,13 @@ function formatDate(dateString) {
                   </label>
                   <div class="file-upload-box ">
                     <div className="file-upload-box-child hidePrint">
-                      <button
+                      {/* <button
                         className="upload-button1"
                         type="button"
                         onClick={() => saveAndSignHandler()}
                       >
                         SAVED AS DRAFT
-                      </button>
+                      </button> */}
                       <button
                         className="upload-button"
                         type="button"
@@ -2750,13 +2750,13 @@ function formatDate(dateString) {
                   </label>
                   <div class="file-upload-box ">
                     <div className="file-upload-box-child hidePrint">
-                      <button
+                      {/* <button
                         className="upload-button1"
                         type="button"
                         onClick={() => saveAndSignHandler()}
                       >
                         SAVED AS DRAFT
-                      </button>
+                      </button> */}
                       <button
                         className="upload-button"
                         type="button"
@@ -2812,7 +2812,7 @@ function formatDate(dateString) {
                   </label>
                   <div class="file-upload-box ">
                     <div className="file-upload-box-child hidePrint">
-                      <div>
+                      {/* <div>
                         <button
                           className="upload-button1"
                           type="button"
@@ -2820,7 +2820,7 @@ function formatDate(dateString) {
                         >
                           SAVED AS DRAFT
                         </button>
-                      </div>
+                      </div> */}
                       <div>
                         <button
                           className="upload-button"
@@ -3087,7 +3087,7 @@ function formatDate(dateString) {
                   </label>
                   <div class="file-upload-box ">
                     <div className="file-upload-box-child hidePrint">
-                      <div>
+                      {/* <div>
                         <button
                           className="upload-button1"
                           type="button"
@@ -3095,7 +3095,7 @@ function formatDate(dateString) {
                         >
                           SAVED AS DRAFT
                         </button>
-                      </div>
+                      </div> */}
                       <div>
                         <button
                           className="upload-button"
@@ -3648,7 +3648,7 @@ function formatDate(dateString) {
                   </div>
                   <div class="file-upload-box hidePrint" style={{marginTop:"0.5rem"}}>
                     <div className="file-upload-box-child ">
-                      <div>
+                      {/* <div>
                         <button
                           className="upload-button1"
                           type="button"
@@ -3656,7 +3656,7 @@ function formatDate(dateString) {
                         >
                           SAVED AS DRAFT
                         </button>
-                      </div>
+                      </div> */}
 
                       <div>
                         <button
@@ -3778,13 +3778,13 @@ function formatDate(dateString) {
                   </label>
                   <div class="file-upload-box ">
                     <div className="file-upload-box-child hidePrint">
-                      <button
+                      {/* <button
                         className="upload-button1"
                         type="button"
                         onClick={() => saveAndSignHandler()}
                       >
                         SAVED AS DRAFT
-                      </button>
+                      </button> */}
                       <button
                         className="upload-button"
                         type="button"
@@ -3845,7 +3845,7 @@ function formatDate(dateString) {
                   </label>
                   <div class="file-upload-box ">
                     <div className="file-upload-box-child hidePrint">
-                      <div>
+                      {/* <div>
                         <button
                           className="upload-button1"
                           type="button"
@@ -3853,7 +3853,7 @@ function formatDate(dateString) {
                         >
                           SAVED AS DRAFT
                         </button>
-                      </div>
+                      </div> */}
                       <div>
                         <button
                           className="upload-button"
@@ -3982,13 +3982,13 @@ function formatDate(dateString) {
                   </label>
                   <div class="file-upload-box ">
                     <div className="file-upload-box-child hidePrint">
-                      <button
+                      {/* <button
                         className="upload-button1"
                         type="button"
                         onClick={() => saveAndSignHandler()}
                       >
                         SAVED AS DRAFT
-                      </button>
+                      </button> */}
                       <button
                         className="upload-button"
                         type="button"
@@ -4042,7 +4042,7 @@ function formatDate(dateString) {
                   </label>
                   <div class="file-upload-box ">
                     <div className="file-upload-box-child hidePrint">
-                      <div>
+                      {/* <div>
                         <button
                           className="upload-button1"
                           type="button"
@@ -4050,7 +4050,7 @@ function formatDate(dateString) {
                         >
                           SAVED AS DRAFT
                         </button>
-                      </div>
+                      </div> */}
                       <div>
                         <button
                           className="upload-button"
@@ -4253,13 +4253,13 @@ function formatDate(dateString) {
                   </label>
                   <div class="file-upload-box ">
                     <div className="file-upload-box-child hidePrint">
-                      <button
+                      {/* <button
                         className="upload-button1"
                         type="button"
                         onClick={() =>saveAndSignHandler()  }
                       >
                         SAVED AS DRAFT 
-                      </button>
+                      </button> */}
                       <button
                         className="upload-button"
                         type="button"
@@ -4313,13 +4313,13 @@ function formatDate(dateString) {
                   </label>
                   <div class="file-upload-box ">
                     <div className="file-upload-box-child hidePrint">
-                      <button
+                      {/* <button
                         className="upload-button1"
                         type="button"
                         onClick={() => saveAndSignHandler()}
                       >
                         SAVED AS DRAFT
-                      </button>
+                      </button> */}
                       <button
                         className="upload-button"
                         type="button"
@@ -4372,7 +4372,7 @@ function formatDate(dateString) {
                     <label>Signature Witness:</label>
                     <div class="file-upload-box ">
                       <div className="file-upload-box-child hidePrint">
-                        <div>
+                        {/* <div>
                           <button
                             className="upload-button1"
                             type="button"
@@ -4380,7 +4380,7 @@ function formatDate(dateString) {
                           >
                             SAVED AS DRAFT
                           </button>
-                        </div>
+                        </div> */}
                         <div>
                           <button
                             className="upload-button"
@@ -4679,13 +4679,13 @@ function formatDate(dateString) {
                   </label>
                   <div class="file-upload-box ">
                     <div className="file-upload-box-child hidePrint">
-                      <button
+                      {/* <button
                         className="upload-button1"
                         type="button"
                         onClick={() =>saveAndSignHandler() }
                       >
                         SAVED AS DRAFT
-                      </button>
+                      </button> */}
                       <button
                         className="upload-button"
                         type="button"
@@ -4745,7 +4745,7 @@ function formatDate(dateString) {
                   </label>
                   <div class="file-upload-box ">
                     <div className="file-upload-box-child hidePrint">
-                      <div>
+                      {/* <div>
                         <button
                           className="upload-button1"
                           type="button"
@@ -4753,7 +4753,7 @@ function formatDate(dateString) {
                         >
                           SAVED AS DRAFT
                         </button>
-                      </div>
+                      </div> */}
                       <div>
                         <button
                           className="upload-button"

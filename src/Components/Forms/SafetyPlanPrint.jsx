@@ -11,9 +11,8 @@ import SingInUpdateModel from "../Modal/SingInUpdateModel";
 import { useReactToPrint } from "react-to-print";
 import { AiFillDelete } from "react-icons/ai";
 import Loader from "../../Pages/LandingPage/Loader";
-import SafetyPlanPrint from "./SafetyPlanPrint";
 
-const SafetyPlan = () => {
+const SafetyPlanPrint = () => {
   const [loading,setLoading]=useState(false);
   const [draftModel,setDraftModel]=useState(false);
   const [saveAsDraft,setSaveAsDraft]=useState(false);
@@ -21,13 +20,6 @@ const SafetyPlan = () => {
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
-
-  let hideData = document.getElementsByClassName("hidaData");
-
-  for (let i = 0; i < hideData.length; i++) {
-    hideData[i].style.display = "none";
-  }
-
 
   const handlePrint2 = () => {
     var elements = document.getElementsByClassName("hidePrint");
@@ -38,10 +30,6 @@ const SafetyPlan = () => {
      // hide bottom
      var form_field_gender = document.getElementsByClassName("form-field-child");
      var form_field_single_update = document.getElementsByClassName("form-field-single-update");
-
-     for (let i = 0; i < hideData.length; i++) {
-      hideData[i].style.display = "block";
-    }
 
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
@@ -104,11 +92,6 @@ for (let i = 0; i < form_field_single_update.length; i++) {
             inputs[j].style.borderBottom = "1px solid black";
         }
     }
-
-    for (let i = 0; i < hideData.length; i++) {
-      hideData[i].style.display = "none";
-    }
-    
     }, 1000);
   };
 
@@ -225,18 +208,16 @@ function formatDate(dateString) {
   
   },[getApiData])
 
-  const [previusData,setPreviusData]=useState(false)
-
 
 
   useEffect(() => {
     setLoading(true); 
-    if (previusData && userId) {
+    if (userId) {
       Safety_form_get(userId, setGetApiData, setLoading);
     } else {
       setLoading(false); 
     }
-  }, [userId, previusData]);
+  }, [userId]);
 
   useEffect(() => {
     setFiledForm(userDetail?.safetyPlan);
@@ -508,7 +489,7 @@ function formatDate(dateString) {
 
   return (
     <>
-    <div >
+    <div ref={componentRef}>
       <div className="backbutton">
         <IoArrowBackCircle
           style={{
@@ -1112,14 +1093,7 @@ function formatDate(dateString) {
           <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
               SUBMIT DETAILS
             </button>
-            {
-              filedForm &&   <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
-            
-              {
-                    loading ? <Loader/> : "PREVIOUS FORM"
-                  }
-            </button>
-            }
+          
           </div>
         </form>
       </div>
@@ -1129,14 +1103,8 @@ function formatDate(dateString) {
         draftModel && (<Draftinmodel onClose={() => setDraftModel(false)}/>)
       }
       </div>
-
-      <div ref={componentRef} className="hidaData">
-<SafetyPlanPrint
-  componentRe={componentRef}
-/>
-</div>
     </>
   );
 };
 
-export default SafetyPlan;
+export default SafetyPlanPrint;

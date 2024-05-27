@@ -99,7 +99,6 @@
 
 .formsheading-initial-assestment{
   text-align: center;
-  width: 60%;
   margin-bottom: 20px;
   margin-top: 20px;
   height: auto;
@@ -109,9 +108,10 @@
   margin: auto;
   border-radius: 10px;
   display: flex;
+  justify-content: center;
   column-gap: 2rem;
   align-items: center;
-  padding: 5px 30px;
+  width: 60%;
 }
 
 .formsheading2 h1 {
@@ -124,7 +124,7 @@
   display: flex;
   align-items: center;
   align-content: center;
-  gap: 10px
+  gap: 10px;
 }
 
 .checkboxitem125555 label {
@@ -165,10 +165,12 @@
   .formsheading_updated_treatment{
     width: 100%;
     height: auto;
+    padding: 5px 10px;
   }
   
   .formsheading_updated_treatment_nursing{
     width: 100%;
+    padding: 5px 10px;
   }
   
 
@@ -177,13 +179,20 @@
     height: auto;
     padding: 10px 0;
   }
+
+  .checkboxitem125555 label {
+    padding: 5px 10px;
+  }
+
   .formsheading_safety_plane{
     width: 100%;
+    padding: 5px 10px;
   }
 
   .formsheading-initial-assestment{
     width: 100%;
     height: auto;
+    padding: 5px 10px;
   }
 
 }

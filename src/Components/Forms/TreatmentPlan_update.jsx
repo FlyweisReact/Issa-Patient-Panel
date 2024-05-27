@@ -452,8 +452,8 @@ const Treatmentplan_update = () => {
   const [bpn, setBph] = useState("");
   const [commentIndividual, setCommentIndividual] = useState("");
   //isReason
-  const [isReason, setIsReason] = useState("no");
-  const [refusalReason, setrefusalReason] = useState("no");
+  const [isReason, setIsReason] = useState("");
+  const [refusalReason, setrefusalReason] = useState("");
   //signaturesResident
   const [nameResident, setNameResident] = useState("");
   const [credentialsResident, setCredentialsResident] = useState("");
@@ -5840,10 +5840,10 @@ tableshow7 &&  <tr>
 
                 <div class="file-upload-box" style={{ marginTop: "0.5rem" }}>
                   <div className="file-upload-box-child hidePrint">
-                   
+{/*                    
                <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
                      { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
-                </button>
+                </button> */}
                     <button
                       className="upload-button"
                       type="button"
@@ -5900,10 +5900,10 @@ tableshow7 &&  <tr>
               <div class="file-upload-box " style={{ marginTop: "0.2rem" }}>
                 <div className="file-upload-box-child hidePrint">
             
-               <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
+               {/* <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
                      { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
                 </button>
-           
+            */}
                   <button
                     className="upload-button"
                     type="button"
@@ -5957,11 +5957,11 @@ tableshow7 &&  <tr>
 
               <div class="file-upload-box " style={{ marginTop: "0.2rem" }}>
                 <div className="file-upload-box-child hidePrint">
-                <div >
+                {/* <div >
                <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
                      { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
                 </button>
-                </div>
+                </div> */}
                   <div>
                     <button
                       className="upload-button"

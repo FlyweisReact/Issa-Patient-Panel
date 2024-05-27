@@ -10,9 +10,8 @@ import Draftinmodel from "../Modal/Draftinmodel";
 import { useReactToPrint } from "react-to-print";
 import SingInUpdateModel from "../Modal/SingInUpdateModel";
 import Loader from "../../Pages/LandingPage/Loader";
-import FaceSheetPrint from "./FaceSheetPrint";
 
-const FaceSheet = () => {
+const FaceSheetPrint = () => {
   const [loading,setLoading]=useState(false);
   const [showSignature,setShowSignature]=useState(false);
   const [saveAsDraft,setSaveAsDraft]=useState(false);
@@ -22,13 +21,6 @@ const FaceSheet = () => {
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
-
-  let hideData = document.getElementsByClassName("hidaData");
-
-  for (let i = 0; i < hideData.length; i++) {
-    hideData[i].style.display = "none";
-  }
-
 
   const handlePrint2 = () => {
     var elements = document.getElementsByClassName("hidePrint");
@@ -40,9 +32,6 @@ const FaceSheet = () => {
         var form_field_single_update = document.getElementsByClassName("form-field-single-update");
         var face_sheet_table = document.getElementsByClassName("form-field-child-face-sheet-table");
 
-        for (let i = 0; i < hideData.length; i++) {
-          hideData[i].style.display = "block";
-        }
 
     for (let i = 0; i < hidePrintButton.length; i++) {
       hidePrintButton[i].style.display = "none";
@@ -115,10 +104,6 @@ const FaceSheet = () => {
     for (let j = 0; j < inputs.length; j++) {
         inputs[j].style.borderBottom = "1px solid black";
     }
-}
-
-for (let i = 0; i < hideData.length; i++) {
-  hideData[i].style.display = "none";
 }
 
     }, 1000);
@@ -324,35 +309,15 @@ if(getApiData){
 }
   },[getApiData])
 
-  const [previusData,setPreviusData]=useState("");
-
-  // useEffect(()=>{
-  //   if(previusData){
-  //     faceSheet_form_get(patientId,setGetApiData);
-  //   }
-  // },[patientId,previusData])
-
-  // useEffect(() => {
-  //   setLoading(true); 
-  //   if (previusData) {
-  //     faceSheet_form_get(patientId, (data) => {
-  //       setGetApiData(data);
-  //       setLoading(false); 
-  //     });
-  //   } else {
-  //     setLoading(false); 
-  //   }
-  // }, [patientId, previusData]);
-
     
   useEffect(() => {
     setLoading(true); 
-    if (previusData) {
+    if (patientId) {
       faceSheet_form_get(patientId, setGetApiData, setLoading);
     } else {
       setLoading(false); 
     }
-  }, [patientId, previusData]);
+  }, [patientId]);
 
   
 
@@ -498,7 +463,7 @@ if(getApiData){
  
   return (
     <>
-    <div  >
+    <div ref={componentRef} >
       <div className="backbutton hidePrint">
         <IoArrowBackCircle
           style={{
@@ -1259,14 +1224,7 @@ if(getApiData){
             <button type="submit"  style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
               SUBMIT DETAILS
             </button>
-            {
-              filedForm &&   <button type="button" onClick={()=>setPreviusData(!previusData)} style={{padding:"5px 20px", border:"none",outline:"none",backgroundColor:"#0c5c75",borderRadius:"5px",marginBottom:"2.5rem",textAlign:"center",marginTop:"1.5rem",color:"white"}} >
-            
-              {
-                    loading ? <Loader/> : "PREVIOUS FORM"
-                  }
-            </button>
-            }
+         
             </div>
         </form>
       </div>
@@ -1274,14 +1232,8 @@ if(getApiData){
         draftModel && (<Draftinmodel onClose={() => setDraftModel(false)}/>)
       }
       </div>
-
-      <div ref={componentRef} className="hidaData">
-<FaceSheetPrint
-  componentRe={componentRef}
-/>
-</div>
     </>
   );
 };
 
-export default FaceSheet;
+export default FaceSheetPrint;

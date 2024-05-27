@@ -7349,7 +7349,9 @@ setBhpTime(getApiData?.bhpInformation?.time);
           />
         </div>
         <div className="Boss">
+
           <FormUpper setAssessmentType={setAssessmentType} assessmentType={assessmentType}/>
+
           <p style={{ marginTop: "0.5rem", marginBottom: "0"}}>
             <span>
             
@@ -15509,9 +15511,9 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   style={{ marginLeft: "10px" }}
                 >
                   <div className="file-upload-box-child hidePrint">
-                  <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
+                  {/* <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
                      { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
-                </button>
+                </button> */}
                     <button
                       className="upload-button"
                       type="button"
@@ -15559,9 +15561,9 @@ setBhpTime(getApiData?.bhpInformation?.time);
                 >
                   <div className="file-upload-box-child">
                  
-               <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
+               {/* <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
                      { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
-                </button>
+                </button> */}
               
                     <button
                       className="upload-button"
@@ -15621,11 +15623,11 @@ setBhpTime(getApiData?.bhpInformation?.time);
                   style={{ marginLeft: "10px" }}
                 >
                   <div className="file-upload-box-child">
-                  <div >
+                  {/* <div >
                <button className="upload-button1" type="button" onClick={handleSaveAsDraft}>
                      { saveAsDraft ? "SAVED AS DRAFT" : "IN DRAFT" }       
                 </button>
-                </div>
+                </div> */}
                     <div>
                       <button
                         className="upload-button"

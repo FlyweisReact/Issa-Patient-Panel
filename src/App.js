@@ -46,7 +46,8 @@ function App() {
           element={<Home Wcomponenet={FileUpload} />}
         />
         <Route path="/intake" element={<Home Wcomponenet={Intake} />} />
-        <Route path="/draft-intake" element={<Home Wcomponenet={SaveAsDraft} />} />
+
+        {/* <Route path="/draft-intake" element={<Home Wcomponenet={SaveAsDraft} />} /> */}
 
         <Route
           path="/appointment_scheduling"
