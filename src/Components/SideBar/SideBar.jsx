@@ -1,7 +1,7 @@
 /** @format */
 
 // Sidebar.js
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./SideBar.css";
 import { PiHouseBold } from "react-icons/pi";
 import { FaRegFileAlt } from "react-icons/fa";
@@ -10,11 +10,12 @@ import { useLocation } from "react-router-dom";
 import { MdClose } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import logo from "../../img/OasisNotes.png";
-import { show_notification } from "../../Api_Collection/Api.js";
+import { BaseUrl, show_notification } from "../../Api_Collection/Api.js";
 import { useDispatch } from 'react-redux';
 import { CiSaveDown2 } from "react-icons/ci";
 import { LOGOUT } from '../../Store/authSlice.js';
 import { LiaWpforms } from "react-icons/lia";
+import axios from "axios";
 
 const Sidebar = ({ toggleMenu }) => {
   const dispatch = useDispatch();
@@ -30,6 +31,40 @@ const Sidebar = ({ toggleMenu }) => {
   const isItemActive = (itemName) => {
     return itemName === activeItem ? "active" : "";
   };
+  const [patientData,setPatientData]=useState({});
+
+  const getAllPatientData=async()=>{
+    
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('No token found');
+      }
+    
+      const res = await axios.get(`${BaseUrl}Patient/getProfile`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+    
+     setPatientData(res?.data?.data);
+    } catch (error) {
+      if (error.response) {
+        // Server responded with a status other than 200 range
+        console.error('Response error:', error.response.data);
+      } else if (error.request) {
+        // Request was made but no response received
+        console.error('Request error:', error.request);
+      } else {
+        // Other errors (e.g., no token, config errors)
+        console.error('Error:', error.message);
+      }
+    }
+  }
+
+  useEffect(()=>{
+    getAllPatientData()
+  },[])
 
   const data = [
     {
@@ -53,7 +88,7 @@ const Sidebar = ({ toggleMenu }) => {
     <div className="sidebar">
       <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
         <div className="logo">
-          <img src={logo} alt="" />
+          <img style={{maxWidth:"70px",maxHeight:"60px"}}  src={patientData?.adminId?.logo ||logo} alt="" />
         </div>
       </div>
       <span className="closeButton" onClick={toggleMenu}>
